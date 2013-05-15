@@ -1,7 +1,7 @@
 function [data] = compare_maculas()
 	%Read in the original image
-	img = '1.jpg';
-	color = imread(img);
+	img = '1';
+	color = imread(strcat(img, '.jpg'));
 	original = rgb2gray(color);
 	optic_x = 0;
 	optic_y = 0;
@@ -79,8 +79,6 @@ function [data] = compare_maculas()
 		end
 	end
 
-	%imwrite(tophat, 'test.jpg');
-
 	%Use open morphological filtering
 	openmorph = imopen(tophat, strel('square', 3));
 
@@ -88,7 +86,7 @@ function [data] = compare_maculas()
 	skel = bwmorph(openmorph, 'skel', Inf);
 	
 	%Save to disk
-	imwrite(skel, 'test.jpg');
+	imwrite(skel, strcat('test_', img ,'.jpg'));
 end
 
-	
+
