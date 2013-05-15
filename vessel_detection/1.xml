@@ -1,10 +1,10 @@
 <image id="1">
 	<optic_disk>
-		<x> </x>
-		<y> </y>
+		<x> 15 </x>
+		<y> 520 </y>
 	</optic_disk>
 	<macula>
-		<x> </x>
-		<y> </y>
+		<x> 380 </x>
+		<y> 540 </y>
 	</macula>
-<image>
+</image>
