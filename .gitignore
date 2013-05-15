@@ -1,3 +1,2 @@
-*.jpg
 *.db
-original/*
+vessel_detection/original/*
