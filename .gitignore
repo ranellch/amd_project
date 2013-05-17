@@ -1,3 +1,4 @@
 *.db
 *test*
+*.jpg
 vessel_detection/original/*
