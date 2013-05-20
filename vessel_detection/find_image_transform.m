@@ -14,7 +14,7 @@ function [out] = find_transform()
 		id = char(image.getAttribute('id'));
 		time = char(image.getAttribute('time')); 
 		path = char(image.getAttribute('path'));
-		if strcmpi(id, img) == 1
+		if strcmpi(id, img)
 			optic_x = char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent);
 			optic_y = char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent);
 			macula_x = char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent);

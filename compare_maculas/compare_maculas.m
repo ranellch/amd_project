@@ -10,7 +10,7 @@ function [ data ] = compare_maculas()
                   'MAQ',  [] ...
                  );
 
-    %~~~Get first image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    %~~~Get images~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % If an images directory exists, look there first
     path = set_path('./Images/','*.tif');
@@ -43,7 +43,6 @@ function [ data ] = compare_maculas()
     p.optic_disk1 = round(ginput(1));
     disp('Points Selected:');
     disp(p);
-   
 
     
     

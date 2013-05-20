@@ -53,7 +53,7 @@ function [proc2] = scale_intensities(img1, fov1, opt1, img2, fov2, opt2)
     % Calculate scaling factors b1 & b2 (y=b1x+b2)
     
     b = lsqnonneg(sampls2,sampls1);
-    if size(b)==2
+    if length(b)==2
         proc2 = img2*b(1) +b(2);
     else
         proc2 = img2*b(1);
