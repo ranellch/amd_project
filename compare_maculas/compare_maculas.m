@@ -4,14 +4,14 @@ function [ data ] = compare_maculas()
     % Create a struct for the curve data
     data = struct('surf_new',[], ...
                   'surf_old',[], ...
-                  'yx_ratio', [],...
-                  'eye'  , '', ...
                   'DWB' , [], ...
                   'HPRS', [], ...
                   'HPOS', [], ...
                   'MAQ',  [] ...
                  );
 
+    %~~~Get images~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
     % If an images directory exists, look there first
     path = set_path('./Images/','*.tif');
 
@@ -37,85 +37,16 @@ function [ data ] = compare_maculas()
     figure('Name', image_filename1);
     imshow(img1);
     %uiwait(msgbox('Please click on fovea', '','modal')); 
-    p = struct('fovea', [], 'optic_disk', []);
-    p.fovea = round(ginput(1));
+    p = struct('fovea1', [], 'optic_disk1', [], 'fovea2', [], 'optic_disk2', []);
+    p.fovea1 = round(ginput(1));
     %uiwait(msgbox('Please click on optic disk','', 'modal'));
-    p.optic_disk = round(ginput(1));
+    p.optic_disk1 = round(ginput(1));
     disp('Points Selected:');
     disp(p);
-    
-   %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
-    
-    % Run gaussian filter
-     r1 = round(10/770*img_sz1(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
-     c1 = round(10/768*img_sz1(2));
-     
-     H = fspecial('gaussian', [r1 c1], 5);
-    proc1=imfilter(img1,H);
-     
-    % Create circle mask
-    x2=p.fovea(2); 
-    y2=p.fovea(1);
-    [xgrid, ygrid] = meshgrid(1:img_sz1(2), 1:img_sz1(1));   
-    x = xgrid - x2;    % offset the origin
-    y = ygrid - y2;
-    r=sqrt((p.optic_disk(2)-p.fovea(2))^2+(p.optic_disk(1)-p.fovea(1))^2)/2;
-    circlemask = x.^2 + y.^2 <= r.^2;
-    
-    
-    
-%     % Smooth intensity gradients 
-%     se = strel('square',31);
-%     proc1(~circlemask) = imtophat(proc1(~circlemask),se);
-    
-    % Adjust contrast
 
-     proc1 = contrast_stretch(proc1, 3);
-
-  %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    % Create a figure for the image before and after processing
-    figure('Name',image_filename1);
-    subplot(1,2,1);
-    imshow(img1); title('Original');
-    subplot(1,2,2);
-    imshow(proc1); title('Processed');
- 
-    % Determine if left or right eye
-    if p.fovea(1) > p.optic_disk(1)
-        data.eye = 'l';
-    elseif p.fovea(1) < p.optic_disk(1)
-        data.eye = 'r';
-    end
     
- 
-
-   %Create macular window
-       lbound = p.fovea(1) - round(abs(p.fovea(1) - p.optic_disk(1))*.5);
-       rbound = p.fovea(1) + round(abs(p.fovea(1) - p.optic_disk(1))*.5);
-       if lbound < 1
-           lbound = 1;
-       end
-       if rbound > img_sz1(2)
-           rbound = img_sz1(2);
-       end
-       width = lbound : rbound;
-      
-       bbound = p.fovea(2) + round(abs(p.fovea(1) - p.optic_disk(1))*.5);
-       tbound = p.fovea(2) - round(abs(p.fovea(1) - p.optic_disk(1))*.5);
-       if tbound < 1 
-           tbound = 1;
-       end
-       if bbound > img_sz1(1)
-           bbound = img_sz1(1);
-       end
-       height =  tbound : bbound;
-
-   win1 = proc1(height,width);
-   sz1 = size(win1);
-   data.yx_ratio = abs(p.fovea(1) - p.optic_disk(1))/(p.fovea(2) - p.optic_disk(2));
-    
-    %~~~Get second image~~~~~
+    %~~~Get second image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % If an images directory exists, look there first
     path = set_path('./Images/','*.tif');
@@ -144,53 +75,91 @@ function [ data ] = compare_maculas()
     figure('Name', image_filename2);
     imshow(img2);
     %uiwait(msgbox('Please click on fovea', '','modal')); 
-    p = struct('fovea', [], 'optic_disk', []);
-    p.fovea = round(ginput(1));
+    p.fovea2 = round(ginput(1));
     %uiwait(msgbox('Please click on optic disk','', 'modal'));
-    p.optic_disk = round(ginput(1));
+    p.optic_disk2 = round(ginput(1));
     disp('Points Selected:');
     disp(p);
     
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
+     r1 = round(10/770*img_sz1(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
+     c1 = round(10/768*img_sz1(2));
+     
+     H = fspecial('gaussian', [r1 c1], 5);
+     proc1=imfilter(img1,H);
+    
      r2 = round(10/770*img_sz2(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
      c2 = round(10/768*img_sz2(2));
      
      H = fspecial('gaussian', [r2 c2], 5);
-    proc2=imfilter(img2,H);
-     
+     proc2=imfilter(img2,H);
+    
+    %Scale intensity of img2 to img1
+     proc2 = scale_intensities(proc1, p.fovea1, p.optic_disk1, proc2, p.fovea2, p.optic_disk2);
+    
+     % Adjust contrasts
+      proc2 = contrast_stretch(proc2, 2);
+      proc1 = contrast_stretch(proc1, 2);
+
+ 
+    % Create a figure for the images before and after processing
+    figure('Name','Processing Results');
+    subplot(2,2,1);
+    imshow(img1); title(strcat('Original', image_filename1));
+    subplot(2,2,2);
+    imshow(proc1); title(strcat('Processed', image_filename1));
+    subplot(2,2,3);
+    imshow(img2); title(strcat('Original', image_filename2));
+    subplot(2,2,4);
+    imshow(proc2); title(strcat('Processed', image_filename2));
+    
+       
+    %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
     % Create circle mask
-    x2=p.fovea(2); 
-    y2=p.fovea(1);
+    xoff=p.fovea1(1); 
+    yoff=p.fovea1(2);
     [xgrid, ygrid] = meshgrid(1:img_sz1(2), 1:img_sz1(1));   
-    x = xgrid - x2;    % offset the origin
-    y = ygrid - y2;
-    r=sqrt((p.optic_disk(2)-p.fovea(2))^2+(p.optic_disk(1)-p.fovea(1))^2)/2;
+    x = xgrid - xoff;    % offset the origin
+    y = ygrid - yoff;
+    r=sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)/2;
     circlemask = x.^2 + y.^2 <= r.^2;
     
-    
-    
-%     % Remove background gradients 
-%     se = strel('square',31);
-%     proc2(~circlemask) = imtophat(proc2(~circlemask),se);
-%    
-    % Adjust contrast
+    % Get standard deviation of pixel inensity outside macula for img1
+    periph = double(proc1(~circlemask));
+    hypr_thrsh = std(periph(:));
+    hypo_thrsh = -1*std(periph(:));
 
-     proc2 = contrast_stretch(proc2, 3);
+   %~~~~~~~~~~~~~~Analyze Maculas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+   %Create macular window 1
+       lbound = p.fovea1(1) - round(abs(p.fovea1(1) - p.optic_disk1(1))*.5);
+       rbound = p.fovea1(1) + round(abs(p.fovea1(1) - p.optic_disk1(1))*.5);
+       if lbound < 1
+           lbound = 1;
+       end
+       if rbound > img_sz1(2)
+           rbound = img_sz1(2);
+       end
+       width = lbound : rbound;
+      
+       bbound = p.fovea1(2) + round(abs(p.fovea1(1) - p.optic_disk1(1))*.5);
+       tbound = p.fovea1(2) - round(abs(p.fovea1(1) - p.optic_disk1(1))*.5);
+       if tbound < 1 
+           tbound = 1;
+       end
+       if bbound > img_sz1(1)
+           bbound = img_sz1(1);
+       end
+       height =  tbound : bbound;
 
-  %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   win1 = proc1(height,width);
+   sz1 = size(win1);
   
-    % Create a figure for the image before and after processing
-    figure('Name',image_filename1);
-    subplot(1,2,1);
-    imshow(img2); title('Original');
-    subplot(1,2,2);
-    imshow(proc2); title('Processed');
-
-    %Create macular window
-       lbound = p.fovea(1) - round(abs(p.fovea(1) - p.optic_disk(1))*.5);
-       rbound = p.fovea(1) + round(abs(p.fovea(1) - p.optic_disk(1))*.5);
+    %Create macular window 2
+       lbound = p.fovea2(1) - round(abs(p.fovea2(1) - p.optic_disk2(1))*.5);
+       rbound = p.fovea2(1) + round(abs(p.fovea2(1) - p.optic_disk2(1))*.5);
        if lbound < 1
            lbound = 1;
        end
@@ -199,8 +168,8 @@ function [ data ] = compare_maculas()
        end
        width = lbound : rbound;
       
-       bbound = p.fovea(2) + round(abs(p.fovea(1) - p.optic_disk(1))*.5);
-       tbound = p.fovea(2) - round(abs(p.fovea(1) - p.optic_disk(1))*.5);
+       bbound = p.fovea2(2) + round(abs(p.fovea2(1) - p.optic_disk2(1))*.5);
+       tbound = p.fovea2(2) - round(abs(p.fovea2(1) - p.optic_disk2(1))*.5);
        if tbound < 1 
            tbound = 1;
        end
@@ -213,7 +182,8 @@ function [ data ] = compare_maculas()
        sz2 = size(win2);
        
     %Call Nate's function
-       
+
+    %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~       
      % Show maculas
     figure('Name', 'Areas of Interest');
     subplot(1,2,1);
@@ -233,7 +203,7 @@ function [ data ] = compare_maculas()
     view(153, 78);
     
    
-    %~~~~Show disease progress~~~~~
+    %~~~~Show Disease Progress~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     
     figure('Name', 'Macular Comparison');
@@ -280,43 +250,42 @@ function [ data ] = compare_maculas()
     data.HPRS = sum(sum(data.DWB(data.DWB>0)));
     data.MAQ = sum(sum(data.DWB));
     
-     %Show gridlines for DAN calculation
+     %Show gridlines for MAQ calculation
     hold(h5);
-    for k = 1:yln1:sz1(1)-rem(sz1(1),yln1)+1
-    x = [1 sz1(2)];
-    y = [k-1 k-1];
+    for k = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)+0.5
+    x = [0.5 sz1(2)+0.5];
+    y = [k k];
     plot(h5,x,y,'Color','k','LineStyle','-');
     end
 
-    for k = 1:xln1:sz1(2)-rem(sz1(2),xln1)+1
-    x = [k-1 k-1];
-    y = [1 sz1(1)];
+    for k = 0.5:xln1:sz1(2)-rem(sz1(2),xln1)+0.5
+    x = [k k];
+    y = [0.5 sz1(1)+0.5];
     plot(h5,x,y,'Color','k','LineStyle','-');
     end
     hold off
     
-    % Show changes in hypo/hyper regions
+    %~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
     
     redx=ones(4,1000);
     yellx=ones(4,1000);
     redy=ones(4,1000);
     yelly=ones(4,1000);
+ 
     
     m = 1; 
     p1 = 1;
     p2 = 1;
-    for i = 1:yln1:sz1(1)-rem(sz1(1),yln1)-yln1+1
+    for i = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)-yln1+0.5
         k=1;
-        for j = 1:xln1:sz1(2)-rem(sz1(2),xln1)-xln1+1
-         hypr_thrsh = 50;
-         hypo_thrsh = -50;
+        for j = 0.5:xln1:sz1(2)-rem(sz1(2),xln1)-xln1+0.5
          if data.DWB(m,k) > hypr_thrsh
-            yelly(:,p1) = [i-1;i-1;i-1+yln1;i-1+yln1]; %specify vertices of patches
-            yellx(:,p1) = [j-1;j-1+xln1;j-1+xln1;j-1];
+            yelly(:,p1) = [i;i;i+yln1;i+yln1]; %specify vertices of patches
+            yellx(:,p1) = [j;j+xln1;j+xln1;j];
             p1=p1+1;
          elseif data.DWB(m,k) < hypo_thrsh
-            redy(:,p2) = [i-1;i-1;i-1+yln1;i-1+yln1];
-            redx(:,p2) = [j-1;j-1+xln1;j-1+xln1;j-1];
+            redy(:,p2) = [i;i;i+yln1;i+yln1];
+            redx(:,p2) = [j;j+xln1;j+xln1;j];
             p2=p2+1;
          end
          k=k+1;
@@ -337,7 +306,7 @@ function [ data ] = compare_maculas()
         alpha(patch(yellx,yelly,'y'),.5);
         hold off
 
-    
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
     fprintf('Results: \n');
     disp(data);
     

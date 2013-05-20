@@ -1,0 +1,36 @@
+<images>
+
+<image id="00036771" time="0" path="00_03_67_77_001.jpg">
+	<optic_disk>
+		<x> 15 </x>
+		<y> 520 </y>
+	</optic_disk>
+	<macula>
+		<x> 380 </x>
+		<y> 540 </y>
+	</macula>
+</image>
+
+<image id="00036771" time="1" path="00_03_67_77_004.jpg">
+	<optic_disk>
+		<x> 800 </x>
+		<y> 50 </y>
+	</optic_disk>
+	<macula>
+		<x> 750 </x>
+		<y> 800 </y>
+	</macula>
+</image>
+
+<image id="00036771" time="2" path="00_03_67_77_005.jpg">
+	<optic_disk>
+		<x> 15 </x>
+		<y> 520 </y>
+	</optic_disk>
+	<macula>
+		<x> 380 </x>
+		<y> 540 </y>
+	</macula>
+</image>
+
+</images>

@@ -16,6 +16,7 @@ function [out] = find_image_transform(pid)
 		id = char(image.getAttribute('id'));
 		time = char(image.getAttribute('time')); 
 		path = char(image.getAttribute('path'));
+
 		if strcmpi(id, image_string) == 1
 			optic_x = char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent);
 			optic_y = char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent);
