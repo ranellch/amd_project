@@ -1,4 +1,4 @@
-function [outfile] = align_imges(img1, img2)
+function [aligned1, aligned2] = align_images(img1, img2)
 	original = imread(img1);
 	distorted = imread(img2);
 

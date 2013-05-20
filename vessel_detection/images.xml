@@ -9,6 +9,16 @@
 		<x> 380 </x>
 		<y> 540 </y>
 	</macula>
+	<region type="square">
+		<top_left>
+			<x> 0 </x>
+			<y> 130 </y>
+		</top_left>
+		<bottom_right>
+			<x> 768 </x>
+			<y> 868 </y>
+		</bottom_right>
+	</region>
 </image>
 
 <image id="00036771" time="1" path="00_03_67_77_004.jpg">
@@ -20,6 +30,16 @@
 		<x> 750 </x>
 		<y> 800 </y>
 	</macula>
+	<region type="square">
+		<top_left>
+			<x> 0 </x>
+			<y> 143 </y>
+		</top_left>
+		<bottom_right>
+			<x> 1536 </x>
+			<y> 1636 </y>
+		</bottom_right>
+	</region>
 </image>
 
 <image id="00036771" time="2" path="00_03_67_77_005.jpg">
@@ -31,6 +51,16 @@
 		<x> 380 </x>
 		<y> 540 </y>
 	</macula>
+	<region type="square">
+		<top_left>
+			<x> 0 </x>
+			<y> 130 </y>
+		</top_left>
+		<bottom_right>
+			<x> 768 </x>
+			<y> 868 </y>
+		</bottom_right>
+	</region>
 </image>
 
 </images>
