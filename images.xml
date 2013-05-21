@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<images>
+
+
+   <image id="00036771" path="00_03_67_710_001.tif" time="0">
+	
+      <optic_disk>
+		
+         <x> 15 </x>
+		
+         <y> 520 </y>
+	
+      </optic_disk>
+	
+      <macula>
+		
+         <x> 380 </x>
+		
+         <y> 540 </y>
+	
+      </macula>
+	
+      <region type="square">
+		
+         <top_left>
+			
+            <x> 10 </x>
+			
+            <y> 10 </y>
+		
+         </top_left>
+		
+         <bottom_right>
+			
+            <x> 760 </x>
+			
+            <y> 730 </y>
+		
+         </bottom_right>
+	
+      </region>
+
+   </image>
+
+
+   <image id="00036771" path="00_03_67_710_004.tif" time="1">
+	
+      <optic_disk>
+		
+         <x> 50 </x>
+		
+         <y> 800 </y>
+	
+      </optic_disk>
+	
+      <macula>
+		
+         <x> 750 </x>
+		
+         <y> 800 </y>
+	
+      </macula>
+	
+      <region type="square">
+		
+         <top_left>
+			
+            <x> 10 </x>
+			
+            <y> 10 </y>
+		
+         </top_left>
+		
+         <bottom_right>
+			
+            <x> 1500 </x>
+			
+            <y> 1470 </y>
+		
+         </bottom_right>
+	
+      </region>
+
+   </image>
+
+
+   <image id="00036771" path="00_03_67_710_005.tif" time="2">
+	
+      <optic_disk>
+		
+         <x> 15 </x>
+		
+         <y> 520 </y>
+	
+      </optic_disk>
+	
+      <macula>
+		
+         <x> 380 </x>
+		
+         <y> 540 </y>
+	
+      </macula>
+	
+      <region type="square">
+		
+         <top_left>
+			
+            <x> 0 </x>
+			
+            <y> 0 </y>
+		
+         </top_left>
+		
+         <bottom_right>
+			
+            <x> 750 </x>
+			
+            <y> 800 </y>
+		
+         </bottom_right>
+	
+      </region>
+
+   </image>
+
+
+   <image id="00270567" path="00_27_05_670_001.tif" time="0">
+      <macula>
+         <x>773</x>
+         <y>759</y>
+      </macula>
+      <optic_disk>
+         <x>33</x>
+         <y>648</y>
+      </optic_disk>
+   </image>
+</images>
