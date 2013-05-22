@@ -1,43 +1,39 @@
-function [ data ] = compare_maculas_test()
+function [ data ] = compare_maculas_test(visit1, visit2, patid, trialname)
 % Process Image
 
     % Create a struct for the curve data
     data = struct(...
-                  'DWB' , [], ...
+                  'Trial', '', ...
                   'HPRS', [], ...
                   'HPOS', [], ...
                   'MAQ',  [] ...
                  );
 
     
-p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
-
+p = struct('fovea1', [0 0], 'optic1', [0 0], 'fovea2', [0 0], 'optic2', [0 0]);
+data.Trial = strcat(patid, trialname);
     
 %~~~Get image 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    % If an images directory exists, look there first
-    path = set_path('./Images/','*.tif');
-
-    % Open dialog box to select file
-    [filename1,pathname1] = uigetfile(path, 'Select Image to Process');
-    fullpath = fullfile(pathname1,filename1);
-    	
+    fullpath = fullfile('./Test Set/', visit1);
+    filename1 = visit1;
+    filename2 = visit2;
+    
 	xDoc= xmlread('images.xml');
 	images = xDoc.getElementsByTagName('image');
 
   	% Get coordinates of fovea and macula from xml
      for count = 1:images.getLength  
         image = images.item(count - 1);
-		%Get the filename from the image tag
+		%Find specified
 		path = char(image.getAttribute('path'));
-        if all(strcmpi(path, filename1))
-			p.optic1(1) = str2double(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent);
-			p.optic1(2) = str2double(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent);
-			p.fovea1(1) = str2double(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent);
-			p.fovea1(2) = str2double(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent);
-            img1_info = [path, ',', optic_x,',', optic_y,',', fovea1,',', fovea];
-            disp(strcat('Image(', filename1, '):  ', img1_info));
+        if all(strcmpi(path, visit1))
+			p.optic1(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
+			p.optic1(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
+			p.fovea1(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
+			p.fovea1(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
         end
      end
+     
 
     % Read the image
     imgRGB=imread(fullpath);
@@ -55,31 +51,28 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
     
     %~~~Get second image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    % If an images directory exists, look there first
-    path = set_path('./Images/','*.tif');
-
-    % Open dialog box to select file
-    [filename2,pathname2] = uigetfile(path, 'Select Image to Compare');
-    img_path = fullfile(pathname2,filename2);
+   fullpath = fullfile('./Test Set/', visit2);
     
-    % Get coordinates of fovea and macula from xml
+	xDoc= xmlread('images.xml');
+	images = xDoc.getElementsByTagName('image');
+
+  	% Get coordinates of fovea and macula from xml
      for count = 1:images.getLength  
         image = images.item(count - 1);
-     % Get the path from the image tag
+		%Get the filename from the image tag
 		path = char(image.getAttribute('path'));
-        if strcmpi(path, filename2)
-			p.optic2(1) = image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent;
-			p.optic2(2) = image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent;
-			p.fovea2(1) = image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent;
-			p.fovea2(2) = image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent;
-            img1_info = [path, ',', optic_x,',', optic_y,',', fovea1,',', fovea];
-            disp(strcat('Image(', filename1, '):  ', img1_info));
+        if all(strcmpi(path, visit2))
+			p.optic2(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
+			p.optic2(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
+			p.fovea2(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
+			p.fovea2(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
         end
      end
+     
 
     
     % Read the image
-    imgRGB=imread(img_path);
+    imgRGB=imread(fullpath);
     RGB_test=size(size(imgRGB));
     if(RGB_test(2)==3)
         img2=rgb2gray(imgRGB);
@@ -93,9 +86,10 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
      % Store the size of the image
     img_sz2 = size(img2);
         
-    
- 
-    
+     % Make folder for outputs if one does not already exist
+     if exist(strcat('./Output Images/', patid), 'dir') ~= 7
+          mkdir('./Output Images/',patid);
+     end
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
@@ -120,7 +114,7 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
 
  
     % Create a figure for the images before and after processing
-    figure('Name','Processing Results');
+    h = figure('Name','Processing Results','visible','off');
     subplot(2,2,1);
     imshow(img1); title(strcat('Original', filename1));
     subplot(2,2,2);
@@ -129,6 +123,9 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
     imshow(img2); title(strcat('Original', filename2));
     subplot(2,2,4);
     imshow(proc2); title(strcat('Processed', filename2));
+    data_filename = fullfile('./Output Images/', patid, trialname);
+    saveas(h, strcat(data_filename, '-processing'),'png');
+    
     
        
     %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
@@ -207,7 +204,7 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
 %     colormap(gray), imagesc(win1);
     
     % Show surfaces
-    figure('Name', '3D Surfaces');
+    h = figure('Name', '3D Surfaces','visible', 'off');
     subplot(1,2,1);   
     surf(fliplr(double(win2)),'EdgeColor', 'none'); 
     title(strcat('Previous Visit: ',filename2)); 
@@ -216,12 +213,12 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
     surf(fliplr(double(win1)),'EdgeColor', 'none');   
     title(strcat('Current Visit:',filename1));
     view(153, 78);
-    
+    saveas(h, strcat(data_filename, '-3D'),'png');
    
     %~~~~Show Disease Progress~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     
-    figure('Name', 'Macular Comparison');
+    h=figure('Name', 'Macular Comparison','visible','off');
     subplot(1,3,1);
     imshow(win2); title('Previous Visit');
     h4=gca;
@@ -260,10 +257,10 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
         m=m+1;
     end
     
-    data.DWB = win_avg1 - win_avg2;
-    data.HPOS = sum(sum(data.DWB(data.DWB<0)));
-    data.HPRS = sum(sum(data.DWB(data.DWB>0)));
-    data.MAQ = sum(sum(data.DWB));
+    DWB = win_avg1 - win_avg2;
+    data.HPOS = sum(sum(DWB(DWB<0)));
+    data.HPRS = sum(sum(DWB(DWB>0)));
+    data.MAQ = sum(sum(DWB));
     
      %Show gridlines for MAQ calculation
     hold(h5);
@@ -294,11 +291,11 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
     for i = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)-yln1+0.5
         k=1;
         for j = 0.5:xln1:sz1(2)-rem(sz1(2),xln1)-xln1+0.5
-         if data.DWB(m,k) > hypr_thrsh
+         if DWB(m,k) > hypr_thrsh
             yelly(:,p1) = [i;i;i+yln1;i+yln1]; %specify vertices of patches
             yellx(:,p1) = [j;j+xln1;j+xln1;j];
             p1=p1+1;
-         elseif data.DWB(m,k) < hypo_thrsh
+         elseif DWB(m,k) < hypo_thrsh
             redy(:,p2) = [i;i;i+yln1;i+yln1];
             redx(:,p2) = [j;j+xln1;j+xln1;j];
             p2=p2+1;
@@ -320,6 +317,8 @@ p = struct('fovea1', [], 'optic1', [], 'fovea2', [], 'optic2', []);
         alpha(patch(redx,redy,'r'),.5); 
         alpha(patch(yellx,yelly,'y'),.5);
         hold off
+        
+        saveas(h, strcat(data_filename, '-progression'),'png');
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
 %     fprintf('Results: \n');

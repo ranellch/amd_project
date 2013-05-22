@@ -2,9 +2,7 @@ function [ data ] = compare_maculas()
 % Process Image
 
     % Create a struct for the curve data
-    data = struct('surf_new',[], ...
-                  'surf_old',[], ...
-                  'DWB' , [], ...
+    data = struct(...
                   'HPRS', [], ...
                   'HPOS', [], ...
                   'MAQ',  [] ...
@@ -245,10 +243,10 @@ function [ data ] = compare_maculas()
         m=m+1;
     end
     
-    data.DWB = win_avg1 - win_avg2;
-    data.HPOS = sum(sum(data.DWB(data.DWB<0)));
-    data.HPRS = sum(sum(data.DWB(data.DWB>0)));
-    data.MAQ = sum(sum(data.DWB));
+    DWB = win_avg1 - win_avg2;
+    data.HPOS = sum(sum(DWB(DWB<0)));
+    data.HPRS = sum(sum(DWB(DWB>0)));
+    data.MAQ = sum(sum(DWB));
     
      %Show gridlines for MAQ calculation
     hold(h5);
@@ -279,11 +277,11 @@ function [ data ] = compare_maculas()
     for i = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)-yln1+0.5
         k=1;
         for j = 0.5:xln1:sz1(2)-rem(sz1(2),xln1)-xln1+0.5
-         if data.DWB(m,k) > hypr_thrsh
+         if DWB(m,k) > hypr_thrsh
             yelly(:,p1) = [i;i;i+yln1;i+yln1]; %specify vertices of patches
             yellx(:,p1) = [j;j+xln1;j+xln1;j];
             p1=p1+1;
-         elseif data.DWB(m,k) < hypo_thrsh
+         elseif DWB(m,k) < hypo_thrsh
             redy(:,p2) = [i;i;i+yln1;i+yln1];
             redx(:,p2) = [j;j+xln1;j+xln1;j];
             p2=p2+1;
