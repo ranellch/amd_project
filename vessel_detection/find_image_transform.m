@@ -1,8 +1,8 @@
 function [out] = find_image_transform(pid)
 	%Convert input to something else
-    image_string = char(pid);
+	image_string = char(pid);
 
-    %Parse XML document and find this pictures information
+	%Parse XML document and find this pictures information
 	xDoc= xmlread('images.xml');
 	images = xDoc.getElementsByTagName('image');
 
@@ -24,14 +24,14 @@ function [out] = find_image_transform(pid)
 			macula_y = char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent);
 			type = char(image.getElementsByTagName('region').item(0).getAttribute('type'));
 			
-            values = '';
-            if(strcmpi(type, 'square') == 1)
+        		values = '';
+        		if(strcmpi(type, 'square') == 1)
 				x1 = char(image.getElementsByTagName('region').item(0).getElementsByTagName('top_left').item(0).getElementsByTagName('x').item(0).getTextContent);
 				y1 = char(image.getElementsByTagName('region').item(0).getElementsByTagName('top_left').item(0).getElementsByTagName('y').item(0).getTextContent);
 				x2 = char(image.getElementsByTagName('region').item(0).getElementsByTagName('bottom_right').item(0).getElementsByTagName('x').item(0).getTextContent);
 				y2 = char(image.getElementsByTagName('region').item(0).getElementsByTagName('bottom_right').item(0).getElementsByTagName('y').item(0).getTextContent);
 				values = strcat('square,',x1,',',y1,',',x2,',',y2);
-            end
+        		end
             
 			images_to_compare(time) = [path, ',', optic_x,',', optic_y,',', macula_x,',', macula_y, ',', values];
 		end
