@@ -123,7 +123,7 @@ data.Trial = strcat(patid, trialname);
     imshow(img2); title(strcat('Original', filename2));
     subplot(2,2,4);
     imshow(proc2); title(strcat('Processed', filename2));
-    data_filename = fullfile('./Output Images/', patid, trialname);
+    data_filename = strcat('./Output Images/', patid, '/', data.Trial);
     saveas(h, strcat(data_filename, '-processing'),'png');
     
     
@@ -219,12 +219,11 @@ data.Trial = strcat(patid, trialname);
     
     
     h=figure('Name', 'Macular Comparison','visible','off');
-    subplot(1,3,1);
+    subplot(2,2,1);
     imshow(win2); title('Previous Visit');
-    h4=gca;
-    subplot(1,3,2);
+    subplot(2,2,2);
    imshow(win1); title('Current Visit');
-    subplot(1,3,3);
+    subplot(2,2,3);
     imshow(win1); title('Progression');
     h5=gca;
 
@@ -318,7 +317,11 @@ data.Trial = strcat(patid, trialname);
         alpha(patch(yellx,yelly,'y'),.5);
         hold off
         
+        set(h5, 'Position', [0.27 0.02000 1.5*0.3347 1.5*0.3338]); % Increase size of progression image
+        
         saveas(h, strcat(data_filename, '-progression'),'png');
+        close all
+
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
 %     fprintf('Results: \n');

@@ -204,13 +204,13 @@ function [ data ] = compare_maculas()
     %~~~~Show Disease Progress~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     
-    figure('Name', 'Macular Comparison');
-    subplot(1,3,1);
+      
+    h=figure('Name', 'Macular Comparison');
+    subplot(2,2,1);
     imshow(win2); title('Previous Visit');
-    h4=gca;
-    subplot(1,3,2);
+    subplot(2,2,2);
    imshow(win1); title('Current Visit');
-    subplot(1,3,3);
+    subplot(2,2,3);
     imshow(win1); title('Progression');
     h5=gca;
 
