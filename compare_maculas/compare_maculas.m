@@ -97,11 +97,60 @@ function [ data ] = compare_maculas()
     %Scale intensity of img2 to img1
      proc2 = scale_intensities(proc1, p.fovea1, p.optic_disk1, proc2, p.fovea2, p.optic_disk2);
     
-     % Adjust contrasts
-      proc2 = contrast_stretch(proc2, 2);
-      proc1 = contrast_stretch(proc1, 2);
+     % Adjust contrasts/center pix distriution on mean intensity of ring between
+     % macula and optic disk
+     
+     % create ring mask
+     [xgrd1, ygrd1] = meshgrid(1:img_sz1(2), 1:img_sz1(1));   
+      x1 = xgrd1 - p.fovea1(1);    % offset the origin
+      y1 = ygrd1 - p.fovea1(2);
+     ro= sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2);
+     ri = sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)*.5;
+     ob = x1.^2 + y1.^2 <= ro.^2; %outer bound   
+     ib = x1.^2 + y1.^2 >= ri.^2; %inner bound
+     ring = logical(ib.*ob);
+      rep1 = mean(proc1(ring));
+      if rep1 < 64
+          gamma1 = 0.5;
+      elseif rep1 >= 64 && rep1 < 96
+          gamma1 = 0.75;
+      elseif rep1 >=96 && rep1 < 128
+          gamma1 = 1.0;
+      elseif rep1 >= 128 && rep1 < 192
+          gamma1 = 1.25;
+      elseif rep1 >=192
+          gamma1 = 1.5;
+      end
 
- 
+%        proc1 = contrast_stretch(proc1, cmean1, 2);
+       proc1 = imadjust(proc1,[],[],gamma1);
+    
+      [xgrd2, ygrd2] = meshgrid(1:img_sz2(2), 1:img_sz2(1));   
+      x2 = xgrd2 - p.fovea2(1);    % offset the origin
+      y2 = ygrd2- p.fovea2(2);
+      ro= sqrt((p.optic_disk2(1)-p.fovea2(1))^2+(p.optic_disk2(2)-p.fovea2(2))^2);
+      ri = sqrt((p.optic_disk2(1)-p.fovea2(1))^2+(p.optic_disk2(2)-p.fovea2(2))^2)*.5;
+      ob = x2.^2 + y2.^2 <= ro.^2; %outer bound   
+      ib = x2.^2 + y2.^2 >= ri.^2; %inner bound
+      ring = logical(ib.*ob);
+       rep2 = mean(proc2(ring));
+      if rep2 < 64
+          gamma2 = 0.5;
+      elseif rep2 >= 64 && rep1 < 96
+          gamma2 = 0.75;
+      elseif rep2 >=96 && rep1 < 128
+          gamma2 = 1.0;
+      elseif rep2 >= 128 && rep1 < 192
+          gamma2 = 1.25;
+      elseif rep2 >=192
+          gamma2 = 1.5;
+      end
+      
+
+%       proc2 = contrast_stretch(proc2, cmean2, 2);
+      proc2 = imadjust(proc2,[],[],gamma2);
+      
+      
     % Create a figure for the images before and after processing
     figure('Name','Processing Results');
     subplot(2,2,1);
@@ -115,18 +164,13 @@ function [ data ] = compare_maculas()
     
        
     %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
-    % Create circle mask
-    xoff=p.fovea1(1); 
-    yoff=p.fovea1(2);
-    [xgrid, ygrid] = meshgrid(1:img_sz1(2), 1:img_sz1(1));   
-    x = xgrid - xoff;    % offset the origin
-    y = ygrid - yoff;
+    % Create circle mask to ignore macula
     r=sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)/2;
-    circlemask = x.^2 + y.^2 <= r.^2;
+    circlemask = x1.^2 + y1.^2 <= r.^2;
     
     % Get standard deviation of pixel inensity outside macula for img1
     periph = double(proc1(~circlemask));
-    hypr_thrsh = std(periph(:));
+    hypr_thrsh = 1*std(periph(:));
     hypo_thrsh = -1*std(periph(:));
 
    %~~~~~~~~~~~~~~Analyze Maculas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,7 +249,7 @@ function [ data ] = compare_maculas()
     
     
       
-    h=figure('Name', 'Macular Comparison');
+    figure('Name', 'Macular Comparison');
     subplot(2,2,1);
     imshow(win2); title('Previous Visit');
     subplot(2,2,2);
@@ -216,27 +260,27 @@ function [ data ] = compare_maculas()
 
     
     %Calculate MAQ
-    win_avg1 = zeros(1000,1000);
-    win_avg2 = zeros(1000,1000);
-    xln1 = round(10/500*sz1(2)); %scale grid boxes---10 by 10 pixs for 500 by 600 window
-    yln1 = round(10/600*sz1(1));
-    xln2 = round(10/500*sz2(2));
-    yln2 = round(10/600*sz2(1));
+    win_avg1 = zeros(50,50);
+    win_avg2 = zeros(50,50);
+    xln1 = sz1(2)/50; %create 50 by 50 grid
+    yln1 = sz1(1)/50;
+    xln2 = sz2(2)/50;
+    yln2 = sz2(1)/50;
     m=1;
-    for i = 1:yln1:sz1(1)-rem(sz1(1),yln1)-yln1+1
+    for i = 1:yln1:sz1(1)-yln1+1
         k=1; 
-         for j = 1:xln1:sz1(2)-rem(sz1(2),xln1)-xln1+1
-            bloc = win1(i:i+yln1-1, j:j+xln1-1);
+         for j = 1:xln1:sz1(2)-xln1+1
+            bloc = win1(round(i):round(i+yln1)-1, round(j):round(j+xln1)-1);
             win_avg1(m,k)  = mean2(bloc);
             k=k+1;
         end
         m=m+1;
     end
        m=1;
-    for i = 1:yln2:sz2(1)-rem(sz2(1),yln2)-yln2+1
+    for i = 1:yln2:sz2(1)-yln2+1
         k=1; 
-         for j = 1:xln2:sz2(2)-rem(sz2(2),xln2)-xln2+1
-            bloc = win2(i:i+yln2-1, j:j+xln2-1);
+         for j = 1:xln2:sz2(2)-xln2+1
+            bloc = win2(round(i):round(i+yln2)-1, round(j):round(j+xln2)-1);
             win_avg2(m,k)  = mean2(bloc);
             k=k+1;
         end
@@ -265,10 +309,10 @@ function [ data ] = compare_maculas()
     
     %~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    redx=ones(4,1000);
-    yellx=ones(4,1000);
-    redy=ones(4,1000);
-    yelly=ones(4,1000);
+    redx=ones(4,250);
+    yellx=ones(4,250);
+    redy=ones(4,250);
+    yelly=ones(4,250);
  
     
     m = 1; 
@@ -303,7 +347,9 @@ function [ data ] = compare_maculas()
         alpha(patch(redx,redy,'r'),.5); 
         alpha(patch(yellx,yelly,'y'),.5);
         hold off
-
+  
+        set(h5, 'Position', [0.27 0.02000 1.5*0.3347 1.5*0.3338]); % Increase size of progression image
+        
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
     fprintf('Results: \n');
     disp(data);

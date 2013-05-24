@@ -9,6 +9,9 @@ for i = 1:images.getLength-1
     if str2double(time) == 1 %loop through 2 and 3
         for j = 1:2
             nextimage = images.item(i-1 + j);
+            if ~strcmpi(char(nextimage.getAttribute('id')),patid)
+                break
+            end
             visit1  =  char(image.getAttribute('path'));
             visit2 = char(nextimage.getAttribute('path'));
             trialname = strcat('-1v', num2str(j+1));
@@ -17,7 +20,10 @@ for i = 1:images.getLength-1
             loc = loc + length(fieldnames(data))+1;
         end
     elseif str2double(time) == 2 % run on 3
-        nextimage = images.item(i+1);
+        nextimage = images.item(i);
+        if ~strcmpi(char(nextimage.getAttribute('id')),patid)
+                continue
+        end
         visit1 = char(image.getAttribute('path'));
         visit2 = char(nextimage.getAttribute('path'));
         trialname = '-2v3';

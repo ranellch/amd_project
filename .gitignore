@@ -1,4 +1,5 @@
 *.db
 *.jpg
 *.tif
+*.png
 vessel_detection/original/*
