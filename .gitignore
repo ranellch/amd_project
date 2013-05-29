@@ -2,3 +2,4 @@
 *.jpg
 *.tif
 vessel_detection/original/*
+.DS_Store
