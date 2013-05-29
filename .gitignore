@@ -1,5 +1,6 @@
 *.db
 *.jpg
 *.tif
+*.png
 vessel_detection/original/*
 .DS_Store
