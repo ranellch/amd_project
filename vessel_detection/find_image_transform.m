@@ -1,4 +1,4 @@
-function [out] = find_image_transform(pid)
+function [scale, x, y, theta] = find_image_transform(pid, base, next)
 	%Convert input to something else
     image_string = char(pid);
 
@@ -6,8 +6,9 @@ function [out] = find_image_transform(pid)
 	xDoc= xmlread('images.xml');
 	images = xDoc.getElementsByTagName('image');
 
-	images_to_compare = containers.Map('KeyType','char','ValueType','any');
-
+    base_val = '';
+    next_val = '';
+    
 	%Loop on the image field in the images tag
 	for count = 1:images.getLength
 		image = images.item(count - 1);
@@ -33,37 +34,58 @@ function [out] = find_image_transform(pid)
 				values = strcat('square,',x1,',',y1,',',x2,',',y2);
             end
             
-			images_to_compare(time) = [path, ',', optic_x,',', optic_y,',', macula_x,',', macula_y, ',', values];
+            if strcmpi(time, base) == 1
+                base_val = [path, ',', optic_x,',', optic_y,',', macula_x,',', macula_y, ',', values];
+            elseif strcmpi(time, next) == 1
+                next_val = [path, ',', optic_x,',', optic_y,',', macula_x,',', macula_y, ',', values];
+            end
 		end
-	end
+    end
+    
+    
+	%Parse all of the information out of the string
+	splitit = regexp(base_val, '[,]', 'split');
+    base_file = char(splitit(1));
+	base_optic_x = str2double(char(splitit(2)));
+	base_optic_y = str2double(char(splitit(3)));
+	base_macula_x = str2double(char(splitit(4)));
+	base_macula_y = str2double(char(splitit(5)));
+    base_type = char(splitit(6));
+    base_x1 = str2double(char(splitit(7)));
+    base_y1 = str2double(char(splitit(8)));
+    base_x2 = str2double(char(splitit(9)));
+    base_y2 = str2double(char(splitit(10)));
 
-	%Run the transform on the images in order
-	for count = 1:length(images_to_compare)
-		key = int2str(count - 1);
-		info_array = images_to_compare(key);
-		disp(strcat('Image(', int2str(count), '):  ', info_array));
-		
-		splitit = regexp(info_array, '[,]', 'split');
-		file = char(splitit(1));
-		optic_x = str2double(char(splitit(2)));
-		optic_y = str2double(char(splitit(3)));
-		macula_x = str2double(char(splitit(4)));
-		macula_y = str2double(char(splitit(5)));
-		type = char(splitit(6));
-		x1 = str2double(char(splitit(7)));
-		y1 = str2double(char(splitit(8)));
-		x2 = str2double(char(splitit(9)));
-		y2 = str2double(char(splitit(10)));
+    %Crop the image
+    base = imread(base_file);
+	if strcmpi(base_type, 'square') == 1
+		diffx = base_x2 - base_x1;
+		diffy = base_y2 - base_y1;
+		base = imcrop(base, [base_x1, base_y1, diffx, diffy]);
+        %base = vessel_detection(base, base_optic_x, base_optic_y, base_macula_x, base_macula_y)
+    end
 
-		filename = vessel_detection(file, optic_x, optic_y, macula_x, macula_y, type, x1, y1, x2, y2);
-		
-		images_to_compare(key) = filename;
-	end
+    splitit = regexp(next_val, '[,]', 'split');
+    next_file = char(splitit(1));
+	next_optic_x = str2double(char(splitit(2)));
+	next_optic_y = str2double(char(splitit(3)));
+	next_macula_x = str2double(char(splitit(4)));
+	next_macula_y = str2double(char(splitit(5)));
+    next_type = char(splitit(6));
+    next_x1 = str2double(char(splitit(7)));
+    next_y1 = str2double(char(splitit(8)));
+    next_x2 = str2double(char(splitit(9)));
+    next_y2 = str2double(char(splitit(10)));
+    
+	%Crop the image
+	next = imread(next_file);
+	if strcmpi(next_type, 'square') == 1
+		diffx = next_x2 - next_x1;
+		diffy = next_y2 - next_y1;
+		next = imcrop(next, [next_x1, next_y1, diffx, diffy]);
+        %next = vessel_detection(next, next_optic_x, next_optic_y, next_macula_x, next_macula_y);
+    end
 
-	%Get the offest of the images
-	base_img = images_to_compare('0');
-	for count = 2:length(images_to_compare)
-		next_img = char(images_to_compare(key));
-		align_images_vl(base_img, next_img);
-	end
+    
+	align_images(base, next);
 end
