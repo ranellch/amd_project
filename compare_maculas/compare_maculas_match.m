@@ -1,60 +1,120 @@
-function [ data ] = compare_maculas()
+function [ data ] = compare_maculas(varargin)
 % Process Image
 
     % Create a struct for the curve data
     data = struct(...
+                  'Trial', '', ...    
                   'HPRS', [], ...
                   'HPOS', [], ...
                   'MAQ',  [] ...
                  );
 
-    %~~~Get images~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
-    % If an images directory exists, look there first
-    path = set_path('./Images/','*.tif');
+     p = struct('fovea1', [0 0], 'optic1', [0 0], 'fovea2', [0 0], 'optic2', [0 0], 'bifurs1', [], 'bifurs2', []);
+     if ~isempty(varargin) || length(varargin) ~=4
+         disp('Invalid arguments entered');
+         return
+     end
+     
+     %~~~Get image 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    if isempty(varargin) %if runtest has not been called, prompt user for files
+        % If an images directory exists, look there first
+        path = set_path('./Images/','*.tif');
 
-    % Open dialog box to select file
-    [image_filename1,image_pathname1] = uigetfile(path, 'Select Image to Process');
-    fullpath = fullfile(image_pathname1,image_filename1);
+        % Open dialog box to select file
+        [filename1,path1] = uigetfile(path, 'Select Image to Process');
+        if isequal(filename1,0) || isequal(path1,0)
+           disp('User pressed cancel')
+           return
+        else
+           disp(['User selected ', fullfile(path1, filename1)])
+        end
+        fullpath = fullfile(path1,filename1);
+
+    
+    else %read from xml if runtest has been called
+       
+        visit1 = varargin{1};
+        visit2 = varargin{2};
+        patid = varargin{3};
+        trialname = varargin{4};
+        
+        filename1 = visit1;
+        filename2 = visit2;
+        
+        fullpath = fullfile('./Test Set/', visit1);
+       
+        xDoc= xmlread('images.xml');
+        images = xDoc.getElementsByTagName('image');
+
+        % Get coordinates of fovea and macula from xml
+         for count = 1:images.getLength  
+            image = images.item(count - 1);
+            %Find specified
+            path = char(image.getAttribute('path'));
+            if all(strcmpi(path, visit1))
+                p.optic1(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
+                p.optic1(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
+                p.fovea1(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
+                p.fovea1(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
+            end
+         end
+         data.Trial = strcat(patid, trialname);
+     end
     
     % Read the image
-    imgRGB=imread(fullpath);
-    RGB_test=size(size(imgRGB));
-    if(RGB_test(2)==3)
-        img1=rgb2gray(imgRGB);
-    else
-        img1=imgRGB;
-    end
-    
+        imgRGB=imread(fullpath);
+        RGB_test=size(size(imgRGB));
+        if(RGB_test(2)==3)
+            img1=rgb2gray(imgRGB);
+        else
+            img1=imgRGB;
+        end
     % Crop footer
     img1 = crop_footer(img1);
     % Store the size/dimensions of the image
     img_sz1 = size(img1);
          
-    % Ask for input points
-    figure('Name', image_filename1);
-    imshow(img1);
-    %uiwait(msgbox('Please click on fovea', '','modal')); 
-    p = struct('fovea1', [], 'optic_disk1', [], 'fovea2', [], 'optic_disk2', []);
-    p.fovea1 = round(ginput(1));
-    %uiwait(msgbox('Please click on optic disk','', 'modal'));
-    p.optic_disk1 = round(ginput(1));
-    disp('Points Selected:');
-    disp(p);
 
     
     
     %~~~Get second image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
-    % If an images directory exists, look there first
-    path = set_path('./Images/','*.tif');
+    if isempty(varargin) %if runtest has not been called, prompt user for files
+        % If an images directory exists, look there first
+        path = set_path('./Images/','*.tif');
 
-    % Open dialog box to select file
-    [image_filename2,image_pathname2] = uigetfile(path, 'Select Image to Compare');
-    img_path = fullfile(image_pathname2,image_filename2);
+        % Open dialog box to select file
+        [filename2,path2] = uigetfile(path, 'Select Image to Compare');
+         if isequal(filename2,0) || isequal(path2,0)
+           disp('User pressed cancel')
+           return
+        else
+           disp(['User selected ', fullfile(path2, filename2)])
+        end
+        fullpath = fullfile(path2,filename2);
+    else
+        fullpath = fullfile('./Test Set/', visit2);
+
+        xDoc= xmlread('images.xml');
+        images = xDoc.getElementsByTagName('image');
+
+        % Get coordinates of fovea and macula from xml
+         for count = 1:images.getLength  
+            image = images.item(count - 1);
+            %Get the filename from the image tag
+            path = char(image.getAttribute('path'));
+            if all(strcmpi(path, visit2))
+                p.optic2(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
+                p.optic2(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
+                p.fovea2(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
+                p.fovea2(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
+            end
+         end
+    end
+     
+
     
-    % Read the image
-    imgRGB=imread(img_path);
+      % Read the image
+    imgRGB=imread(fullpath);
     RGB_test=size(size(imgRGB));
     if(RGB_test(2)==3)
         img2=rgb2gray(imgRGB);
@@ -69,16 +129,23 @@ function [ data ] = compare_maculas()
     img_sz2 = size(img2);
         
     
-   % Ask for input points
-    figure('Name', image_filename2);
-    imshow(img2);
-    %uiwait(msgbox('Please click on fovea', '','modal')); 
-    p.fovea2 = round(ginput(1));
-    %uiwait(msgbox('Please click on optic disk','', 'modal'));
-    p.optic_disk2 = round(ginput(1));
-    disp('Points Selected:');
-    disp(p);
-    
+
+  %~~~~~~~~% Ask for input points~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    figure('Name', 'Selected Images');
+    subplot(1,2,1); imshow(img1)
+    title(filename1)
+    subplot(1,2,2); imshow(img2)
+    title(filename2)
+    p = struct('fovea1', [], 'optic_disk1', [], 'bifurs', [], 'bifurs', [], 'fovea2', [], 'optic_disk2', [];
+    disp('Select fovea on current visit')
+    p.fovea1 = round(ginput(1));
+    disp('Select optic disk on current visit')
+    p.optic_disk1 = round(ginput(1));
+    disp('Select bifurcation point 1 on current visit')
+    p.bifur1 = round(ginput(1));
+    disp('Select same bifurcation point 1 on previous visit')
+    p.bifur2 = round(ginput(1));
+   
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
@@ -114,17 +181,18 @@ function [ data ] = compare_maculas()
           gamma1 = 0.5;
       elseif rep1 >= 64 && rep1 < 96
           gamma1 = 0.75;
-      elseif rep1 >=96 && rep1 < 128
+      elseif rep1 >=96 && rep1 < 160
           gamma1 = 1.0;
-      elseif rep1 >= 128 && rep1 < 192
+      elseif rep1 >= 160 && rep1 < 192
           gamma1 = 1.25;
       elseif rep1 >=192
           gamma1 = 1.5;
       end
 
-%        proc1 = contrast_stretch(proc1, cmean1, 2);
+      
        proc1 = imadjust(proc1,[],[],gamma1);
-    
+
+       
       [xgrd2, ygrd2] = meshgrid(1:img_sz2(2), 1:img_sz2(1));   
       x2 = xgrd2 - p.fovea2(1);    % offset the origin
       y2 = ygrd2- p.fovea2(2);
@@ -134,46 +202,58 @@ function [ data ] = compare_maculas()
       ib = x2.^2 + y2.^2 >= ri.^2; %inner bound
       ring = logical(ib.*ob);
        rep2 = mean(proc2(ring));
-      rep1 = mean(proc1(ring));
-      if rep1 < 64
-          gamma1 = 0.5;
-      elseif rep1 >= 64 && rep1 < 96
-          gamma1 = 0.75;
-      elseif rep1 >=96 && rep1 < 128
-          gamma1 = 1.0;
-      elseif rep1 >= 128 && rep1 < 192
-          gamma1 = 1.25;
-      elseif rep1 >=192
-          gamma1 = 1.5;
+      if rep2 < 64
+          gamma2 = 0.5;
+      elseif rep2 >= 64 && rep1 < 96
+          gamma2 = 0.75;
+      elseif rep2 >=96 && rep1 < 160
+          gamma2 = 1.0;
+      elseif rep2 >= 160 && rep1 < 192
+          gamma2 = 1.25;
+      elseif rep2 >=192
+          gamma2 = 1.5;
       end
       
 
-%       proc2 = contrast_stretch(proc2, cmean2, 2);
+      
       proc2 = imadjust(proc2,[],[],gamma2);
-     
 
- 
+      
     % Create a figure for the images before and after processing
-    figure('Name','Processing Results');
-    subplot(2,2,1);
-    imshow(img1); title(strcat('Original', image_filename1));
-    subplot(2,2,2);
-    imshow(proc1); title(strcat('Processed', image_filename1));
-    subplot(2,2,3);
-    imshow(img2); title(strcat('Original', image_filename2));
-    subplot(2,2,4);
-    imshow(proc2); title(strcat('Processed', image_filename2));
+    if isempty(varargin)
+        figure('Name','Processing Results');
+        subplot(2,2,1);
+        imshow(img1); title(strcat('Original', filename1));
+        subplot(2,2,2);
+        imshow(proc1); title(strcat('Processed', filename1));
+        subplot(2,2,3);
+        imshow(img2); title(strcat('Original', filename2));
+        subplot(2,2,4);
+        imshow(proc2); title(strcat('Processed', filename2));
+    else
+        h = figure('Name','Processing Results','visible','off');
+        subplot(2,2,1);
+        imshow(img1); title(strcat('Original', filename1));
+        subplot(2,2,2);
+        imshow(proc1); title(strcat('Processed', filename1));
+        subplot(2,2,3);
+        imshow(img2); title(strcat('Original', filename2));
+        subplot(2,2,4);
+        imshow(proc2); title(strcat('Processed', filename2));
+        data_filename = strcat('./Output Images/', patid, '/', data.Trial);
+        saveas(h, strcat(data_filename, '-processing'),'png');
+    end
     
        
-    %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
-    % Create circle mask to ignore macula
-    r=sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)/2;
-    circlemask = x1.^2 + y1.^2 <= r.^2;
-    
-    % Get standard deviation of pixel inensity outside macula for img1
-    periph = double(proc1(~circlemask));
-    hypr_thrsh = 1*std(periph(:));
-    hypo_thrsh = -1*std(periph(:));
+%     %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
+%     % Create circle mask to ignore macula
+%     r=sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)/2;
+%     circlemask = x1.^2 + y1.^2 <= r.^2;
+%     
+%     % Get standard deviation of pixel inensity outside macula for img1
+%     periph = double(proc1(~circlemask));
+%     hypr_thrsh = 1*std(periph(:));
+%     hypo_thrsh = -1*std(periph(:));
 
    %~~~~~~~~~~~~~~Analyze Maculas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
@@ -224,7 +304,11 @@ function [ data ] = compare_maculas()
 
        win2 = proc2(height,width);
        sz2 = size(win2);
+%        
+%        win2= contrast_stretch(win2, mean2(win2), 2);
+%        win1 = contrast_stretch(win1,mean2(win1),2);
        
+
     %Call Nate's function
 
     %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~       
@@ -239,11 +323,11 @@ function [ data ] = compare_maculas()
     figure('Name', '3D Surfaces');
     subplot(1,2,1);   
     surf(fliplr(double(win2)),'EdgeColor', 'none'); 
-    title(strcat('Previous Visit: ',image_filename2)); 
+    title(strcat('Previous Visit: ',filename2)); 
     view(153, 78);
     subplot(1,2,2);
     surf(fliplr(double(win1)),'EdgeColor', 'none');   
-    title(strcat('Current Visit:',image_filename1));
+    title(strcat('Current Visit:',filename1));
     view(153, 78);
     
    
@@ -293,6 +377,9 @@ function [ data ] = compare_maculas()
     data.HPOS = sum(sum(DWB(DWB<0)));
     data.HPRS = sum(sum(DWB(DWB>0)));
     data.MAQ = sum(sum(DWB));
+    
+    hypr_thrsh = std(DWB(:))
+    hypo_thrsh = -std(DWB(:))       
     
      %Show gridlines for MAQ calculation
     hold(h5);
@@ -361,7 +448,7 @@ function [ data ] = compare_maculas()
 %     path = set_path('Data','');
 % 
 %     % Open dialog box to save the data in the Data directory
-%     data_filename = fullfile(path, strrep(image_filename1,'.tif','.mat'));
+%     data_filename = fullfile(path, strrep(filename1,'.tif','.mat'));
 %     
 %     % Store the surfaces into our structure
 %     data.surf_new = surf_new;

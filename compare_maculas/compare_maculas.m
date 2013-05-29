@@ -35,12 +35,11 @@ function [ data ] = compare_maculas()
     figure('Name', image_filename1);
     imshow(img1);
     %uiwait(msgbox('Please click on fovea', '','modal')); 
-    p = struct('fovea1', [], 'optic_disk1', [], 'fovea2', [], 'optic_disk2', []);
+    p = struct('fovea1', [], 'optic_disk1', [], 'bifur1', [], 'fovea2', [], 'optic_disk2', [], 'bifur2', []);
     p.fovea1 = round(ginput(1));
     %uiwait(msgbox('Please click on optic disk','', 'modal'));
     p.optic_disk1 = round(ginput(1));
-    disp('Points Selected:');
-    disp(p);
+    p.bifur1 = round(ginput(1));
 
     
     
@@ -76,8 +75,8 @@ function [ data ] = compare_maculas()
     p.fovea2 = round(ginput(1));
     %uiwait(msgbox('Please click on optic disk','', 'modal'));
     p.optic_disk2 = round(ginput(1));
-    disp('Points Selected:');
-    disp(p);
+    p.bifur1= round(ginput(1));
+
     
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
@@ -114,17 +113,18 @@ function [ data ] = compare_maculas()
           gamma1 = 0.5;
       elseif rep1 >= 64 && rep1 < 96
           gamma1 = 0.75;
-      elseif rep1 >=96 && rep1 < 128
+      elseif rep1 >=96 && rep1 < 160
           gamma1 = 1.0;
-      elseif rep1 >= 128 && rep1 < 192
+      elseif rep1 >= 160 && rep1 < 192
           gamma1 = 1.25;
       elseif rep1 >=192
           gamma1 = 1.5;
       end
 
-%        proc1 = contrast_stretch(proc1, cmean1, 2);
+      
        proc1 = imadjust(proc1,[],[],gamma1);
-    
+
+       
       [xgrd2, ygrd2] = meshgrid(1:img_sz2(2), 1:img_sz2(1));   
       x2 = xgrd2 - p.fovea2(1);    % offset the origin
       y2 = ygrd2- p.fovea2(2);
@@ -138,18 +138,18 @@ function [ data ] = compare_maculas()
           gamma2 = 0.5;
       elseif rep2 >= 64 && rep1 < 96
           gamma2 = 0.75;
-      elseif rep2 >=96 && rep1 < 128
+      elseif rep2 >=96 && rep1 < 160
           gamma2 = 1.0;
-      elseif rep2 >= 128 && rep1 < 192
+      elseif rep2 >= 160 && rep1 < 192
           gamma2 = 1.25;
       elseif rep2 >=192
           gamma2 = 1.5;
       end
       
 
-%       proc2 = contrast_stretch(proc2, cmean2, 2);
-      proc2 = imadjust(proc2,[],[],gamma2);
       
+      proc2 = imadjust(proc2,[],[],gamma2);
+
       
     % Create a figure for the images before and after processing
     figure('Name','Processing Results');
@@ -163,15 +163,15 @@ function [ data ] = compare_maculas()
     imshow(proc2); title(strcat('Processed', image_filename2));
     
        
-    %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
-    % Create circle mask to ignore macula
-    r=sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)/2;
-    circlemask = x1.^2 + y1.^2 <= r.^2;
-    
-    % Get standard deviation of pixel inensity outside macula for img1
-    periph = double(proc1(~circlemask));
-    hypr_thrsh = 1*std(periph(:));
-    hypo_thrsh = -1*std(periph(:));
+%     %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
+%     % Create circle mask to ignore macula
+%     r=sqrt((p.optic_disk1(1)-p.fovea1(1))^2+(p.optic_disk1(2)-p.fovea1(2))^2)/2;
+%     circlemask = x1.^2 + y1.^2 <= r.^2;
+%     
+%     % Get standard deviation of pixel inensity outside macula for img1
+%     periph = double(proc1(~circlemask));
+%     hypr_thrsh = 1*std(periph(:));
+%     hypo_thrsh = -1*std(periph(:));
 
    %~~~~~~~~~~~~~~Analyze Maculas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
@@ -222,7 +222,11 @@ function [ data ] = compare_maculas()
 
        win2 = proc2(height,width);
        sz2 = size(win2);
+%        
+%        win2= contrast_stretch(win2, mean2(win2), 2);
+%        win1 = contrast_stretch(win1,mean2(win1),2);
        
+
     %Call Nate's function
 
     %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~       
@@ -291,6 +295,9 @@ function [ data ] = compare_maculas()
     data.HPOS = sum(sum(DWB(DWB<0)));
     data.HPRS = sum(sum(DWB(DWB>0)));
     data.MAQ = sum(sum(DWB));
+    
+    hypr_thrsh = std(DWB(:))
+    hypo_thrsh = -std(DWB(:))       
     
      %Show gridlines for MAQ calculation
     hold(h5);

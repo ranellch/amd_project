@@ -90,7 +90,7 @@ data.Trial = strcat(patid, trialname);
      if exist(strcat('./Output Images/', patid), 'dir') ~= 7
           mkdir('./Output Images/',patid);
      end
-    %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
+      %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
      r1 = round(10/770*img_sz1(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
@@ -106,12 +106,12 @@ data.Trial = strcat(patid, trialname);
      proc2=imfilter(img2,H);
     
     %Scale intensity of img2 to img1
-     proc2 = scale_intensities(proc1, p.fovea1, p.optic1, proc2, p.fovea2, p.optic2);
+     proc2 = scale_intensities(proc1, p.fovea1, p.optic_disk1, proc2, p.fovea2, p.optic_disk2);
     
      % Adjust contrasts/center pix distriution on mean intensity of ring between
      % macula and optic disk
      
-        % create ring mask
+     % create ring mask
      [xgrd1, ygrd1] = meshgrid(1:img_sz1(2), 1:img_sz1(1));   
       x1 = xgrd1 - p.fovea1(1);    % offset the origin
       y1 = ygrd1 - p.fovea1(2);
@@ -121,18 +121,22 @@ data.Trial = strcat(patid, trialname);
      ib = x1.^2 + y1.^2 >= ri.^2; %inner bound
      ring = logical(ib.*ob);
       rep1 = mean(proc1(ring));
-      if rep1 > 64 && rep1 < 128
-          gamma1 = 0.75;
-      elseif rep1 <= 64
+      if rep1 < 64
           gamma1 = 0.5;
-      elseif rep1 >= 128 && rep1 < 192
+      elseif rep1 >= 64 && rep1 < 96
+          gamma1 = 0.75;
+      elseif rep1 >=96 && rep1 < 160
+          gamma1 = 1.0;
+      elseif rep1 >= 160 && rep1 < 192
           gamma1 = 1.25;
       elseif rep1 >=192
           gamma1 = 1.5;
       end
-%     
-%        proc1 = contrast_stretch(proc1, cmean1, 2);
+
+ 
        proc1 = imadjust(proc1,[],[],gamma1);
+       proc1 = contrast_stretch(proc1, mean(proc1), 2);
+       
     
       [xgrd2, ygrd2] = meshgrid(1:img_sz2(2), 1:img_sz2(1));   
       x2 = xgrd2 - p.fovea2(1);    % offset the origin
@@ -143,18 +147,23 @@ data.Trial = strcat(patid, trialname);
       ib = x2.^2 + y2.^2 >= ri.^2; %inner bound
       ring = logical(ib.*ob);
        rep2 = mean(proc2(ring));
-      if rep2 > 64 && rep2 < 128
-          gamma2 = 0.75;
-      elseif rep2 <= 64
+      if rep2 < 64
           gamma2 = 0.5;
-      elseif rep2 >= 128 && rep1 < 192
+      elseif rep2 >= 64 && rep1 < 96
+          gamma2 = 0.75;
+      elseif rep2 >=96 && rep1 < 160
+          gamma2 = 1.0;
+      elseif rep2 >= 160 && rep1 < 192
           gamma2 = 1.25;
-      elseif rep1 >=192
+      elseif rep2 >=192
           gamma2 = 1.5;
       end
       
-%       proc2 = contrast_stretch(proc2, cmean2, 2);
+      
+
       proc2 = imadjust(proc2,[],[],gamma2);
+      proc2 = contrast_stretch(proc2, mean(proc1), 2);
+      
      
 
  
