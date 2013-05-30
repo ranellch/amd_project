@@ -13,5 +13,6 @@ end
 
 cropped_img = img(1:i-1,:);
 
+
 end
 

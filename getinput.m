@@ -1,18 +1,17 @@
-function [good] = getinput()
+function [] = getinput()
     xDoc= xmlread('images.xml');
-    images = xDoc.getElementsByTagName('image');
     
     newImage = xDoc.createElement('image');
     
-    [file, path] = uigetfile('*.*');
+    path = set_path('./Test Set/','*.tif');
+    [file, path] = uigetfile(path);
     
     if isequal(file,0)
         error('Error in specifiying the file');
     end
     
     img = imread(strcat(path, '\', file));
-    
-    figure;image(img);
+    figure(1);imshow(img);title(file);
     [xin,yin] = ginput(2);
         
     macula_xml = xDoc.createElement('macula');
