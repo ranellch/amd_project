@@ -368,7 +368,7 @@ data.Trial = strcat(patid, trialname);
         set(h5, 'Position', [0.27 0.02000 1.5*0.3347 1.5*0.3338]); % Increase size of progression image
         
         saveas(h, strcat(data_filename, '-progression'),'png');
-        close all hidden
+        close (h)
 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    

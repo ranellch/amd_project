@@ -259,38 +259,10 @@ function [ data ] = compare_maculas_match(varargin)
 
   
    %~~~~~~~~~~~~~Find optic disk and fovea in image 2~~~~~~~~~~~~~~~~~~        
-      
-      if ~test  %get points
-        h = figure('Name', 'Selected Images');
-        subplot(1,2,1); imshow(img1)
-        title(strcat('Current Visit: ', filename1))
-        subplot(1,2,2); imshow(img2)
-        title(strcat('Previous Visit: ', filename2))
-        disp('Select bifurcation point 1 on current visit')
-        p.bifurs1(1,:) = round(ginput(1));
-        disp('Select same bifurcation point 1 on previous visit')
-        p.bifurs2(1,:) = round(ginput(1));
-        disp('Select bifurcation point 2 on current visit')
-        p.bifurs1(2,:) = round(ginput(1));
-        disp('Select same bifurcation point 2 on previous visit')
-        p.bifurs2(2,:) = round(ginput(1));
-        close(h)
-      end
-      
-      p = point_match(proc2, p);
+   
+
+       p = point_match(proc1, proc2, p, test);
        
-       figure('Name', 'Match Results')
-       subplot(1,2,1)
-       imshow(img1), title('Original')
-       hold(gca)
-       plot(p.fovea1,'x', p.optic1, 'x')
-       hold off
-       subplot(1,2,2)
-       imshow(img2), title('Match')
-       hold(gca)
-       plot(p.fovea2,'x', p.optic2, 'x')
-       hold off      
-    
 
  %~~~~~~~~~~~~~~Analyze Maculas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
