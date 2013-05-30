@@ -23,12 +23,12 @@ function [out] = find_image_transform(pid)
 		path = char(image.getAttribute('path'));
 
 		if strcmpi(id, image_string) == 1
-			optic_x = str2double(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent);
-			optic_y = str2double(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent);
-			macula_x = str2double(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent);
-			macula_y = str2double(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent);
+			%optic_x = str2double(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent);
+			%optic_y = str2double(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent);
+			%macula_x = str2double(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent);
+			%macula_y = str2double(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent);
 
-            filename = vessel_detection(path, optic_x, optic_y, macula_x, macula_y);
+            filename = vessel_detection(path);%, optic_x, optic_y, macula_x, macula_y);
             disp(['Run:', path, ' -> ', filename]);
             the_list.add(filename);
             total_count = total_count + 1;

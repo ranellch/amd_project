@@ -1,4 +1,4 @@
-function [outfile] = vessel_detection(img, optic_x, optic_y, macula_x, macula_y)
+function [outfile] = vessel_detection(img)%, optic_x, optic_y, macula_x, macula_y)
 	%Read in the original image
 	img_val = regexp(img, '[.]', 'split');
 	img_name = char(img_val(1));
@@ -10,9 +10,9 @@ function [outfile] = vessel_detection(img, optic_x, optic_y, macula_x, macula_y)
     original = crop_footer(original);
     
 	%Get the distance between optic disk and macula 
-	distance = sqrt(power(optic_x - macula_x, 2) + power(optic_y - macula_y, 2));
-	a = distance * .7;
-	b = distance;
+	%distance = sqrt(power(optic_x - macula_x, 2) + power(optic_y - macula_y, 2));
+	%a = distance * .7;
+	%b = distance;
 
 	%Run Gaussian filter
 	g_filter = imfilter(original, fspecial('gaussian', [5 5], 1.2), 'same');
@@ -50,15 +50,15 @@ function [outfile] = vessel_detection(img, optic_x, optic_y, macula_x, macula_y)
 	for x=1:size(out,2)
 		for y = 1:size(out,1)
             %Get the x and y distance from the macula that this point it
-			xdiff = abs(double(x) - macula_x);
-			ydiff = abs(double(y) - macula_y);
+			%xdiff = abs(double(x) - macula_x);
+			%ydiff = abs(double(y) - macula_y);
 
 			%Calculate the distance from the macula the current point 
-			distance = sqrt(power(xdiff, 2) + power(ydiff, 2));
+			%distance = sqrt(power(xdiff, 2) + power(ydiff, 2));
 
             %Calculate the ellipse distance at this angle
-			theta = 1.0 / tan(ydiff / xdiff);
-            distance_ellipse = (a*b) / sqrt(power(b * cos(theta),2) + power(a * sin(theta),2));	
+			%theta = 1.0 / tan(ydiff / xdiff);
+            %distance_ellipse = (a*b) / sqrt(power(b * cos(theta),2) + power(a * sin(theta),2));	
 	
 			%if distance >= distance_ellipse
 			if 1 == 1
