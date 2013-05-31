@@ -10,7 +10,7 @@ function [ data ] = compare_maculas_match(varargin)
                  );
 
      p = struct('fovea1', [0 0], 'optic1', [0 0], 'fovea2', [0 0], 'optic2', [0 0], 'bifurs1', [], 'bifurs2', []);
-     if ~isempty(varargin) || length(varargin) ~=4
+     if ~isempty(varargin) && length(varargin) ~=4
          disp('Invalid arguments entered');
          return
      end
@@ -130,18 +130,18 @@ function [ data ] = compare_maculas_match(varargin)
        end
   else % get user to input points 
         h = figure('Name', 'Selected Images');
-        subplot(1,2,1); imshow(img1)
+        subplot(1,2,2); imshow(img1)
         title(strcat('Current Visit: ', filename1))
-        subplot(1,2,2); imshow(img2)
-        title(strcat('Previous Visit: ', filename2))
-        disp('Select fovea on current visit')
-        p.fovea1 = round(ginput(1));
-        disp('Select optic disk on current visit')
-        p.optic1 = round(ginput(1));
+        subplot(1,2,1); imshow(img2)
+        title(strcat('Previous Visit: ', filename2)) 
         disp('Select fovea on previous visit')
         p.fovea2 = round(ginput(1));
         disp('Select optic disk on previous visit')
         p.optic2 = round(ginput(1));  
+        disp('Select fovea on current visit')
+        p.fovea1 = round(ginput(1));
+        disp('Select optic disk on current visit')
+        p.optic1 = round(ginput(1));
         close(h)
   end
  
@@ -261,19 +261,27 @@ function [ data ] = compare_maculas_match(varargin)
    %~~~~~~~~~~~~~Find optic disk and fovea in image 2~~~~~~~~~~~~~~~~~~        
       
       if ~test  %get points
-        h = figure('Name', 'Selected Images');
-        subplot(1,2,1); imshow(img1)
+        h = figure('Name', 'Processing Complete: Select Vessel Bifurcations');
+        h1 = subplot(1,2,2); imshow(proc1)
         title(strcat('Current Visit: ', filename1))
-        subplot(1,2,2); imshow(img2)
+        h2 = subplot(1,2,1); imshow(proc2)
         title(strcat('Previous Visit: ', filename2))
-        disp('Select bifurcation point 1 on current visit')
-        p.bifurs1(1,:) = round(ginput(1));
-        disp('Select same bifurcation point 1 on previous visit')
-        p.bifurs2(1,:) = round(ginput(1));
-        disp('Select bifurcation point 2 on current visit')
-        p.bifurs1(2,:) = round(ginput(1));
-        disp('Select same bifurcation point 2 on previous visit')
+        hold(h2)
+        disp('Select bifurcation point 1 on previous visit')
+        p.bifurs2(1,:) = round(ginput(1));  
+        plot(h2, p.bifurs2(1,1), p.bifurs2(1,2), 'wx', 'MarkerSize',10)
+        disp('Select bifurcation point 2 on previous visit')
         p.bifurs2(2,:) = round(ginput(1));
+        plot(h2, p.bifurs2(2,1), p.bifurs2(2,2),'wx', 'MarkerSize',10)
+        hold off
+        hold(h1)
+        disp('Select same bifurcation point 1 on current visit')
+        p.bifurs1(1,:) = round(ginput(1));
+        plot(h1, p.bifurs1(1,1), p.bifurs1(1,2),'wx', 'MarkerSize',10)
+        disp('Select same bifurcation point 2 on current visit')
+        p.bifurs1(2,:) = round(ginput(1));
+        plot(h1, p.bifurs1(2,1), p.bifurs1(2,2),'wx', 'MarkerSize',10)
+        hold off
         close(h)
       end
       
@@ -281,14 +289,14 @@ function [ data ] = compare_maculas_match(varargin)
        
        figure('Name', 'Match Results')
        subplot(1,2,1)
-       imshow(img1), title('Original')
+       imshow(proc1), title('Original Points')
        hold(gca)
-       plot(p.fovea1,'x', p.optic1, 'x')
+       plot(p.fovea1(1), p.fovea1(2),'bx', p.optic1(1), p.optic1(2), 'bx', 'MarkerSize',10)
        hold off
        subplot(1,2,2)
-       imshow(img2), title('Match')
+       imshow(proc2), title('Matched Points')
        hold(gca)
-       plot(p.fovea2,'x', p.optic2, 'x')
+       plot(p.fovea2(1),p.fovea2(2),'gx', p.optic2(1), p.optic2(2), 'gx', 'MarkerSize',10)
        hold off      
     
 
