@@ -285,7 +285,7 @@ function [ data ] = compare_maculas_match(varargin)
         close(h)
       end
       
-      p = point_match(proc2, p);
+       [p, proc2] = point_match(proc2, p);
        
        figure('Name', 'Match Results')
        subplot(1,2,1)
@@ -433,13 +433,10 @@ function [ data ] = compare_maculas_match(varargin)
     end
     
     DWB = win_avg1 - win_avg2;
-    data.HPOS = sum(sum(DWB(DWB<0)));
-    data.HPRS = sum(sum(DWB(DWB>0)));
-    data.MAQ = sum(sum(DWB));
-    
-    hypr_thrsh = std(DWB(:))
-    hypo_thrsh = -std(DWB(:))       
-    
+    data.HPOS = sum(sum(DWB(DWB<0).^2));
+    data.HPRS = sum(sum(DWB(DWB>0).^2));
+    data.MAQ = data.HPOS+data.HPRS;
+         
      %Show gridlines for MAQ calculation
     hold(h5);
     for k = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)+0.5
@@ -462,6 +459,8 @@ function [ data ] = compare_maculas_match(varargin)
     redy=ones(4,250);
     yelly=ones(4,250);
  
+    hypo_thrsh = -40;
+    hypr_thrsh = 40;
     
     m = 1; 
     p1 = 1;
