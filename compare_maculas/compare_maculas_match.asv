@@ -432,11 +432,10 @@ function [ data ] = compare_maculas_match(varargin)
         m=m+1;
     end
     
-    %divide sum of squared differences (deviations from expected value of zero) by grid size to get variance
     DWB = win_avg1 - win_avg2;
     data.HPOS = sum(sum(DWB(DWB<0).^2));
     data.HPRS = sum(sum(DWB(DWB>0).^2));
-    data.MAQ = (data.HPOS+data.HPRS)/(50*50); 
+    data.MAQ = (data.HPOS+data.HPRS)/;
          
      %Show gridlines for MAQ calculation
     hold(h5);
@@ -460,8 +459,8 @@ function [ data ] = compare_maculas_match(varargin)
     redy=ones(4,250);
     yelly=ones(4,250);
  
-    hypo_thrsh = -30;
-    hypr_thrsh = 30;
+    hypo_thrsh = -40;
+    hypr_thrsh = 40;
     
     m = 1; 
     p1 = 1;

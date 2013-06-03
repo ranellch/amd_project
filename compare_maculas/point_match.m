@@ -52,9 +52,9 @@ function [ p, img2 ] = point_match( img2, p)
     yoffset = mean([rotbif1(2) - p.bifurs1(1,2)*scalefactor, rotbif2(2) - p.bifurs1(2,2)*scalefactor])
     
     %new fovea and optic disk coordinates
-    p.fovea2(1) = round(p.fovea1(1) + xoffset);
-    p.fovea2(2) = round(p.fovea1(2) + yoffset);
-    p.optic2(1) = round(p.optic1(1) + xoffset);
-    p.optic2(2) = round(p.optic1(2) + yoffset);
+    p.fovea2(1) = round(p.fovea1(1)*scalefactor + xoffset);
+    p.fovea2(2) = round(p.fovea1(2)*scalefactor + yoffset);
+    p.optic2(1) = round(p.optic1(1)*scalefactor + xoffset);
+    p.optic2(2) = round(p.optic1(2)*scalefactor + yoffset);
 end
 
