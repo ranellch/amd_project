@@ -11,32 +11,42 @@ function [result] = align_images_coor(img1, img2)
     image1 = imresize(image1, [minx, miny]);
     image2 = imresize(image2, [minx, miny]);
 
-	cc = correlCorresp('image1', image1, 'image2', image2);%, 'printProgress', 100);
+	cc = correlCorresp('image1', image1, 'image2', image2, 'printProgress', 100);
     cc.relThresh = 0.4;
     cc.convTol = 0.05; 
 	cc = cc.findCorresps;
     
-	correspEdgeDisplay(cc.corresps, 'projective', image1, image2);
+    figure(1);
+    correspDisplay(cc.corresps, image1);
+    %figure(2);
+	%correspEdgeDisplay(cc.corresps, 'projective', image1, image2);
     
-    xdiff = 0.0;
-    ydiff = 0.0;
-    size_of_it = size(cc.corresps(1,:), 1);
-    for index = 1:size_of_it
-        x1 = cc.corresps(1,index);
-        x2 = cc.corresps(3,index);
-        
-        xdiff = xdiff + (x2 - x1);
-        
-        y1 = cc.corresps(2,index);
-        y2 = cc.corresps(4,index);
-        
-        ydiff = ydiff + (y2 - y1);
+    temp = most_common(cc.corresps);
+    figure(3);
+    correspDisplay(temp, image1);
+end
+
+function [quad] = which_quad(x, y, xaxis, yaxis)
+    % Break the image up into the following quadrant
+    % ---------
+    % | 1 | 2 |
+    % ---------
+    % | 4 | 3 |
+    % ---------
+    
+    if x <= (xaxis / 2.0)
+        if y <= (yaxis / 2.0)
+            quad = 1;
+        else
+            quad = 4;
+        end
+    else
+        if y <= (yaxis / 2.0)
+            quad = 2;
+        else
+            quad = 3;
+        end
     end
-    
-    xdiff = xdiff / size_of_it;
-    ydiff = ydiff / size_of_it;
-    
-    result = [xdiff, ydiff];
 end
 
 function [out] = min_axis(img1, img2, dim)
