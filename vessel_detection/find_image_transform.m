@@ -42,8 +42,6 @@ function [out] = find_image_transform(pid)
             next_img = char(the_list.get(count2));
             offset = align_images_coor(base_img, next_img);
             disp(['Compare: ', base_img, ' = ', next_img]);
-            disp(['x change: ', num2str(offset(1))]);
-            disp(['y change: ', num2str(offset(2))]);
         end
     end
 end

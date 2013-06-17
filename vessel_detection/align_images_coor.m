@@ -18,35 +18,21 @@ function [result] = align_images_coor(img1, img2)
     
     figure(1);
     correspDisplay(cc.corresps, image1);
-    %figure(2);
-	%correspEdgeDisplay(cc.corresps, 'projective', image1, image2);
     
-    temp = most_common(cc.corresps);
-    figure(3);
+    %Get the most common points in each quad
+    temp = most_common(cc.corresps, minx, miny);
+    
+    figure(2);
     correspDisplay(temp, image1);
-end
 
-function [quad] = which_quad(x, y, xaxis, yaxis)
-    % Break the image up into the following quadrant
-    % ---------
-    % | 1 | 2 |
-    % ---------
-    % | 4 | 3 |
-    % ---------
+    %Form arry in the correct manner
+    pointsA = temp(1:2,:)';
+    pointsB = temp(3:4,:)';
     
-    if x <= (xaxis / 2.0)
-        if y <= (yaxis / 2.0)
-            quad = 1;
-        else
-            quad = 4;
-        end
-    else
-        if y <= (yaxis / 2.0)
-            quad = 2;
-        else
-            quad = 3;
-        end
-    end
+    csvwrite('pointsA.csv', pointsA);
+    csvwrite('pointsB.csv', pointsB);
+    
+    result = temp;
 end
 
 function [out] = min_axis(img1, img2, dim)
