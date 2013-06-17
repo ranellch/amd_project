@@ -1,4 +1,4 @@
-function [ data ] = compare_maculas_match(varargin)
+function [ data ] = compare_maculas_best(varargin)
 % Process Image
 
     % Create a struct for the curve data
@@ -9,7 +9,7 @@ function [ data ] = compare_maculas_match(varargin)
                   'MAQ',  [] ...
                  );
 
-     p = struct('fovea1', [0 0], 'optic1', [0 0], 'fovea2', [0 0], 'optic2', [0 0], 'bifurs1', [], 'bifurs2', []);
+     p = struct('fovea', [0 0], 'optic', [0 0]);
      if ~isempty(varargin) && length(varargin) ~=4
          disp('Invalid arguments entered');
          return
@@ -22,7 +22,7 @@ function [ data ] = compare_maculas_match(varargin)
         % If an images directory exists, look there first
         path = set_path('./Images/','*.tif');
         % Open dialog box to select file
-        [filename1,path1] = uigetfile(path, 'Select Image to Process');
+        [filename1,path1] = uigetfile(path, 'Select Image');
         if isequal(filename1,0) || isequal(path1,0)
            disp('User pressed cancel')
            return
@@ -41,7 +41,10 @@ function [ data ] = compare_maculas_match(varargin)
         fullpath = fullfile('./Test Set/', visit1);
       
          data.Trial = strcat(patid, trialname);
-     end
+         data_filename = strcat('./Output Images/', patid, '/', data.Trial);
+    end
+    
+   
     
     % Read the image
         imgRGB=imread(fullpath);
@@ -53,8 +56,6 @@ function [ data ] = compare_maculas_match(varargin)
         end
     % Crop footer
     img1 = crop_footer(img1);
-    % Store the size/dimensions of the image
-    img_sz1 = size(img1);
          
 
     
@@ -64,7 +65,7 @@ function [ data ] = compare_maculas_match(varargin)
         % If an images directory exists, look there first
         path = set_path('./Images/','*.tif');
         % Open dialog box to select file
-        [filename2,path2] = uigetfile(path, 'Select Image to Compare');
+        [filename2,path2] = uigetfile(path, 'Select Past Image to Compare');
          if isequal(filename2,0) || isequal(path2,0)
            disp('User pressed cancel')
            return
@@ -89,95 +90,101 @@ function [ data ] = compare_maculas_match(varargin)
     
     % Crop footer
     img2 = crop_footer(img2);
-    
-     % Store the size of the image
-    img_sz2 = size(img2);
+
         
     
 
   %~~~~~~~~% Ask for input points~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
-  if test % get optic disk, fovea, and bifurcation points from xml
+  if test % get optic disk and fovea from xml
       xDoc= xmlread('images.xml');
 	  images = xDoc.getElementsByTagName('image');
        for count = 1:images.getLength  
             image = images.item(count - 1);
             path = char(image.getAttribute('path'));
             if all(strcmpi(path, visit1))
-                p.optic1(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.optic1(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
-                p.fovea1(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.fovea1(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
-                p.bifurs1(1,1) = str2double(char(image.getElementsByTagName('bifur_1').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.bifurs1(1,2) = str2double(char(image.getElementsByTagName('bifur_1').item(0).getElementsByTagName('y').item(0).getTextContent));
-                p.bifurs1(2,1) = str2double(char(image.getElementsByTagName('bifur_2').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.bifurs1(2,2) = str2double(char(image.getElementsByTagName('bifur_2').item(0).getElementsByTagName('y').item(0).getTextContent));
+                p.optic(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
+                p.optic(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
+                p.fovea(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
+                p.fovea(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
             end
        end
-       for count = 1:images.getLength  
-            image = images.item(count - 1);
-            path = char(image.getAttribute('path'));
-            if all(strcmpi(path, visit2))
-                p.optic2(1) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.optic2(2) = str2double(char(image.getElementsByTagName('optic_disk').item(0).getElementsByTagName('y').item(0).getTextContent));
-                p.fovea2(1) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.fovea2(2) = str2double(char(image.getElementsByTagName('macula').item(0).getElementsByTagName('y').item(0).getTextContent));
-                p.bifurs2(1,1) = str2double(char(image.getElementsByTagName('bifur_1').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.bifurs2(1,2) = str2double(char(image.getElementsByTagName('bifur_1').item(0).getElementsByTagName('y').item(0).getTextContent));
-                p.bifurs2(2,1) = str2double(char(image.getElementsByTagName('bifur_2').item(0).getElementsByTagName('x').item(0).getTextContent));
-                p.bifurs2(2,2) = str2double(char(image.getElementsByTagName('bifur_2').item(0).getElementsByTagName('y').item(0).getTextContent));
-            end
-       end
-  else % get user to input points 
-        h = figure('Name', 'Selected Images');
-        subplot(1,2,2); imshow(img1)
-        title(strcat('Current Visit: ', filename1))
-        subplot(1,2,1); imshow(img2)
-        title(strcat('Previous Visit: ', filename2)) 
-        disp('Select fovea on previous visit')
-        p.fovea2 = round(ginput(1));
-        disp('Select optic disk on previous visit')
-        p.optic2 = round(ginput(1));  
-        disp('Select fovea on current visit')
-        p.fovea1 = round(ginput(1));
-        disp('Select optic disk on current visit')
-        p.optic1 = round(ginput(1));
+
+  else % get input points for fovea and optic disk from user
+        h = figure('Name', 'Past Image');
+        imshow(img2)
+        title(strcat(filename2)) 
+        disp('Select fovea')
+        p.fovea = round(ginput(1));
+        disp('Select optic disk')
+        p.optic = round(ginput(1));  
         close(h)
   end
  
-       
+   %~~~~~~~~~~~~~~~~~~Image Registration~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+   
+   if test % get control points from xml
+        for count = 1:images.getLength  
+            image = images.item(count - 1);
+            path = char(image.getAttribute('path'));
+            if all(strcmpi(path, visit1))
+                input_points(:,1) = str2double(char(image.getElementsByTagName('icontrols').item(0).getElementsByTagName('x').item(0).getTextContent));
+                input_points(:,2) = str2double(char(image.getElementsByTagName('icontrols').item(0).getElementsByTagName('y').item(0).getTextContent));
+                base_points(:,1) = str2double(char(image.getElementsByTagName('bcontrols').item(0).getElementsByTagName('x').item(0).getTextContent));
+                base_points(:,2) = str2double(char(image.getElementsByTagName('bcontrols').item(0).getElementsByTagName('y').item(0).getTextContent));
+            end
+        end
+   else % get control points from user
+       [input_points, base_points] = cpselect(img1,img2,'Wait', true);
+   end
+   
+   tform = cp2tform(input_points,base_points,'affine');
+   img1 = imtransform(img1, tform, 'XData',[1 size(img2,2)],'YData', [1 size(img2,1)]);
+   
+   
+   if test
+    h = figure('Name', 'Registration Results', 'visible','off');
+   else
+    figure('Name', 'Registration Results')
+   end
+       subplot(1,2,1)
+       imshow(img2), title('Base Image (Past Visit)')
+       subplot(1,2,2)
+       imshow(img1), title('Co-Registered Image (Recent Visit)')
+    if test
+        saveas(h, strcat(data_filename, '-Registration'),'png');
+        close(h)
+    end
+    
+    % Store the new sizes/dimensions of the images (should be the same)
+    img_sz = size(img1);
    
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
-     r1 = round(10/770*img_sz1(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
-     c1 = round(10/768*img_sz1(2));
+     r = round(10/770*img_sz(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
+     c = round(10/768*img_sz(2));
      
-     H = fspecial('gaussian', [r1 c1], 5);
+     H = fspecial('gaussian', [r c], 5);
      proc1=imfilter(img1,H);
-    
-     r2 = round(10/770*img_sz2(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
-     c2 = round(10/768*img_sz2(2));
-     
-     H = fspecial('gaussian', [r2 c2], 5);
      proc2=imfilter(img2,H);
     
-    %Scale intensity of img2 to img1
-     proc2 = scale_intensities(proc1, p.fovea1, p.optic1, proc2, p.fovea2, p.optic2);
+     proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
     
-     % Adjust contrasts/center pix distriution on mean intensity of ring between
+     % Adjust contrasts/center pix distribution on mean intensity of ring between
      % macula and optic disk
      
      % create ring mask
-     [xgrd1, ygrd1] = meshgrid(1:img_sz1(2), 1:img_sz1(1));   
-      x1 = xgrd1 - p.fovea1(1);    % offset the origin
-      y1 = ygrd1 - p.fovea1(2);
-     ro= sqrt((p.optic1(1)-p.fovea1(1))^2+(p.optic1(2)-p.fovea1(2))^2);
-     ri = sqrt((p.optic1(1)-p.fovea1(1))^2+(p.optic1(2)-p.fovea1(2))^2)*.5;
-     ob = x1.^2 + y1.^2 <= ro.^2; %outer bound   
-     ib = x1.^2 + y1.^2 >= ri.^2; %inner bound
+     [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
+      x = xgrd - p.fovea(1);    % offset the origin
+      y = ygrd - p.fovea(2);
+     ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2);
+     ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
+     ob = x.^2 + y.^2 <= ro.^2; %outer bound   
+     ib = x.^2 + y.^2 >= ri.^2; %inner bound
      ring = logical(ib.*ob);
-      rep1 = mean(proc1(ring));
+      
+     rep1 = mean(proc1(ring));
       if rep1 < 64
           gamma1 = 0.5;
       elseif rep1 >= 64 && rep1 < 96
@@ -193,15 +200,6 @@ function [ data ] = compare_maculas_match(varargin)
       
        proc1 = imadjust(proc1,[],[],gamma1);
 
-       
-      [xgrd2, ygrd2] = meshgrid(1:img_sz2(2), 1:img_sz2(1));   
-      x2 = xgrd2 - p.fovea2(1);    % offset the origin
-      y2 = ygrd2- p.fovea2(2);
-      ro= sqrt((p.optic2(1)-p.fovea2(1))^2+(p.optic2(2)-p.fovea2(2))^2);
-      ri = sqrt((p.optic2(1)-p.fovea2(1))^2+(p.optic2(2)-p.fovea2(2))^2)*.5;
-      ob = x2.^2 + y2.^2 <= ro.^2; %outer bound   
-      ib = x2.^2 + y2.^2 >= ri.^2; %inner bound
-      ring = logical(ib.*ob);
        rep2 = mean(proc2(ring));
       if rep2 < 64
           gamma2 = 0.5;
@@ -214,8 +212,6 @@ function [ data ] = compare_maculas_match(varargin)
       elseif rep2 >=192
           gamma2 = 1.5;
       end
-      
-
       
       proc2 = imadjust(proc2,[],[],gamma2);
 
@@ -258,97 +254,35 @@ function [ data ] = compare_maculas_match(varargin)
 %     hypo_thrsh = -1*std(periph(:));
 
   
-   %~~~~~~~~~~~~~Find optic disk and fovea in image 2~~~~~~~~~~~~~~~~~~        
-      
-      if ~test  %get points
-        h = figure('Name', 'Processing Complete: Select Vessel Bifurcations');
-        h1 = subplot(1,2,2); imshow(proc1)
-        title(strcat('Current Visit: ', filename1))
-        h2 = subplot(1,2,1); imshow(proc2)
-        title(strcat('Previous Visit: ', filename2))
-        hold(h2)
-        disp('Select bifurcation point 1 on previous visit')
-        p.bifurs2(1,:) = round(ginput(1));  
-        plot(h2, p.bifurs2(1,1), p.bifurs2(1,2), 'wx', 'MarkerSize',10)
-        disp('Select bifurcation point 2 on previous visit')
-        p.bifurs2(2,:) = round(ginput(1));
-        plot(h2, p.bifurs2(2,1), p.bifurs2(2,2),'wx', 'MarkerSize',10)
-        hold off
-        hold(h1)
-        disp('Select same bifurcation point 1 on current visit')
-        p.bifurs1(1,:) = round(ginput(1));
-        plot(h1, p.bifurs1(1,1), p.bifurs1(1,2),'wx', 'MarkerSize',10)
-        disp('Select same bifurcation point 2 on current visit')
-        p.bifurs1(2,:) = round(ginput(1));
-        plot(h1, p.bifurs1(2,1), p.bifurs1(2,2),'wx', 'MarkerSize',10)
-        hold off
-        close(h)
-      end
-      
-       [p, proc2] = point_match(proc2, p);
-       
-       figure('Name', 'Match Results')
-       subplot(1,2,1)
-       imshow(proc1), title('Original Points')
-       hold(gca)
-       plot(p.fovea1(1), p.fovea1(2),'bx', p.optic1(1), p.optic1(2), 'bx', 'MarkerSize',10)
-       hold off
-       subplot(1,2,2)
-       imshow(proc2), title('Matched Points')
-       hold(gca)
-       plot(p.fovea2(1),p.fovea2(2),'gx', p.optic2(1), p.optic2(2), 'gx', 'MarkerSize',10)
-       hold off      
-    
-
+   
  %~~~~~~~~~~~~~~Analyze Maculas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
-  %Create macular window 1
-       lbound = p.fovea1(1) - round(abs(p.fovea1(1) - p.optic1(1))*.5);
-       rbound = p.fovea1(1) + round(abs(p.fovea1(1) - p.optic1(1))*.5);
+  %Create macular windows
+       lbound = p.fovea(1) - round(abs(p.fovea(1) - p.optic(1))*.5);
+       rbound = p.fovea(1) + round(abs(p.fovea(1) - p.optic(1))*.5);
        if lbound < 1
            lbound = 1;
        end
-       if rbound > img_sz1(2)
-           rbound = img_sz1(2);
+       if rbound > img_sz(2)
+           rbound = img_sz(2);
        end
        width = lbound : rbound;
       
-       bbound = p.fovea1(2) + round(abs(p.fovea1(1) - p.optic1(1))*.5);
-       tbound = p.fovea1(2) - round(abs(p.fovea1(1) - p.optic1(1))*.5);
+       bbound = p.fovea(2) + round(abs(p.fovea(1) - p.optic(1))*.5);
+       tbound = p.fovea(2) - round(abs(p.fovea(1) - p.optic(1))*.5);
        if tbound < 1 
            tbound = 1;
        end
-       if bbound > img_sz1(1)
-           bbound = img_sz1(1);
+       if bbound > img_sz(1)
+           bbound = img_sz(1);
        end
        height =  tbound : bbound;
 
    win1 = proc1(height,width);
-   sz1 = size(win1);
+   winsz = size(win1);
+   win2 = proc2(height,width);
   
-    %Create macular window 2
-       lbound = p.fovea2(1) - round(abs(p.fovea2(1) - p.optic2(1))*.5);
-       rbound = p.fovea2(1) + round(abs(p.fovea2(1) - p.optic2(1))*.5);
-       if lbound < 1
-           lbound = 1;
-       end
-       if rbound > img_sz2(2)
-           rbound = img_sz2(2);
-       end
-       width = lbound : rbound;
-      
-       bbound = p.fovea2(2) + round(abs(p.fovea2(1) - p.optic2(1))*.5);
-       tbound = p.fovea2(2) - round(abs(p.fovea2(1) - p.optic2(1))*.5);
-       if tbound < 1 
-           tbound = 1;
-       end
-       if bbound > img_sz2(1)
-           bbound = img_sz2(1);
-       end
-       height =  tbound : bbound;
 
-       win2 = proc2(height,width);
-       sz2 = size(win2);
 %        
 %        win2= contrast_stretch(win2, mean2(win2), 2);
 %        win1 = contrast_stretch(win1,mean2(win1),2);
@@ -407,25 +341,23 @@ function [ data ] = compare_maculas_match(varargin)
     %Calculate MAQ
     win_avg1 = zeros(50,50);
     win_avg2 = zeros(50,50);
-    xln1 = sz1(2)/50; %create 50 by 50 grid
-    yln1 = sz1(1)/50;
-    xln2 = sz2(2)/50;
-    yln2 = sz2(1)/50;
+    xln = winsz(2)/50; %create 50 by 50 grid
+    yln = winsz(1)/50;
     m=1;
-    for i = 1:yln1:sz1(1)-yln1+1
+    for i = 1:yln:winsz(1)-yln+1
         k=1; 
-         for j = 1:xln1:sz1(2)-xln1+1
-            bloc = win1(round(i):round(i+yln1)-1, round(j):round(j+xln1)-1);
+         for j = 1:xln:winsz(2)-xln+1
+            bloc = win1(round(i):round(i+yln)-1, round(j):round(j+xln)-1);
             win_avg1(m,k)  = mean2(bloc);
             k=k+1;
         end
         m=m+1;
     end
        m=1;
-    for i = 1:yln2:sz2(1)-yln2+1
+    for i = 1:yln:winsz(1)-yln+1
         k=1; 
-         for j = 1:xln2:sz2(2)-xln2+1
-            bloc = win2(round(i):round(i+yln2)-1, round(j):round(j+xln2)-1);
+         for j = 1:xln:winsz(2)-xln+1
+            bloc = win2(round(i):round(i+yln)-1, round(j):round(j+xln)-1);
             win_avg2(m,k)  = mean2(bloc);
             k=k+1;
         end
@@ -442,15 +374,15 @@ function [ data ] = compare_maculas_match(varargin)
          
      %Show gridlines for MAQ calculation
     hold(h5);
-    for k = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)+0.5
-    x = [0.5 sz1(2)+0.5];
+    for k = 0.5:yln:winsz(1)-rem(winsz(1),yln)+0.5
+    x = [0.5 winsz(2)+0.5];
     y = [k k];
     plot(h5,x,y,'Color','k','LineStyle','-');
     end
 
-    for k = 0.5:xln1:sz1(2)-rem(sz1(2),xln1)+0.5
+    for k = 0.5:xln:winsz(2)-rem(winsz(2),xln)+0.5
     x = [k k];
-    y = [0.5 sz1(1)+0.5];
+    y = [0.5 winsz(1)+0.5];
     plot(h5,x,y,'Color','k','LineStyle','-');
     end
     hold off
@@ -466,16 +398,16 @@ function [ data ] = compare_maculas_match(varargin)
     m = 1; 
     p1 = 1;
     p2 = 1;
-    for i = 0.5:yln1:sz1(1)-rem(sz1(1),yln1)-yln1+0.5
+    for i = 0.5:yln:winsz(1)-rem(winsz(1),yln)-yln+0.5
         k=1;
-        for j = 0.5:xln1:sz1(2)-rem(sz1(2),xln1)-xln1+0.5
+        for j = 0.5:xln:winsz(2)-rem(winsz(2),xln)-xln+0.5
          if DWB(m,k) > hypr_thrsh
-            yelly(:,p1) = [i;i;i+yln1;i+yln1]; %specify vertices of patches
-            yellx(:,p1) = [j;j+xln1;j+xln1;j];
+            yelly(:,p1) = [i;i;i+yln;i+yln]; %specify vertices of patches
+            yellx(:,p1) = [j;j+xln;j+xln;j];
             p1=p1+1;
          elseif DWB(m,k) < hypo_thrsh
-            redy(:,p2) = [i;i;i+yln1;i+yln1];
-            redx(:,p2) = [j;j+xln1;j+xln1;j];
+            redy(:,p2) = [i;i;i+yln;i+yln];
+            redx(:,p2) = [j;j+xln;j+xln;j];
             p2=p2+1;
          end
          k=k+1;
