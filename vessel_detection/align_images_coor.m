@@ -19,10 +19,18 @@ function [result] = align_images_coor(img1, img2)
     figure(1);
     correspDisplay(cc.corresps, image1);
     
+    %Get the most common points in each quad
     temp = most_common(cc.corresps, minx, miny);
     
     figure(2);
     correspDisplay(temp, image1);
+
+    %Form arry in the correct manner
+    pointsA = temp(1:2,:)';
+    pointsB = temp(3:4,:)';
+    
+    csvwrite('pointsA.csv', pointsA);
+    csvwrite('pointsB.csv', pointsB);
     
     result = temp;
 end

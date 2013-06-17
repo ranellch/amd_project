@@ -66,10 +66,10 @@ function [outer] = most_common(matrix, minx, miny)
         eindex = sindex;
         while(eindex < size_of_it && sortedIt(eindex, 2) == keys(quad))
             if (sortedIt(eindex, 1) == quad_mode(quad, 1))
-                combined(1, curcount) = sortedIt(eindex, 3);
-                combined(2, curcount) = sortedIt(eindex, 4);
-                combined(3, curcount) = sortedIt(eindex, 5);
-                combined(4, curcount) = sortedIt(eindex, 6);
+                combined(1, curcount) = int32(sortedIt(eindex, 3));
+                combined(2, curcount) = int32(sortedIt(eindex, 4));
+                combined(3, curcount) = int32(sortedIt(eindex, 5));
+                combined(4, curcount) = int32(sortedIt(eindex, 6));
                 curcount = curcount + 1;
             end
             eindex = eindex + 1;
