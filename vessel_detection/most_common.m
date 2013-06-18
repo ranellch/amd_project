@@ -77,7 +77,7 @@ function [outer] = most_common(matrix, minx, miny)
         sindex = eindex;
     end
     
-    disp(strcat('Found X-Y Correlated Modal Matches: ', num2str(length(combined))));
+    disp(['Found X-Y Correlated Modal Matches: ', num2str(length(combined))]);
     outer = combined;
 end
 
