@@ -128,12 +128,19 @@ function [ data ] = compare_maculas_best(varargin)
             image = images.item(count - 1);
             path = char(image.getAttribute('path'));
             if all(strcmpi(path, visit1))
-                input_points(:,1) = str2double(char(image.getElementsByTagName('icontrols').item(0).getElementsByTagName('x').item(0).getTextContent));
-                input_points(:,2) = str2double(char(image.getElementsByTagName('icontrols').item(0).getElementsByTagName('y').item(0).getTextContent));
-                base_points(:,1) = str2double(char(image.getElementsByTagName('bcontrols').item(0).getElementsByTagName('x').item(0).getTextContent));
-                base_points(:,2) = str2double(char(image.getElementsByTagName('bcontrols').item(0).getElementsByTagName('y').item(0).getTextContent));
+                input_points(:,1) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('x').item(0).getTextContent));
+                input_points(:,2) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('y').item(0).getTextContent));
             end
         end
+        for count = 1:images.getLength  
+            image = images.item(count - 1);
+            path = char(image.getAttribute('path'));
+            if all(strcmpi(path, visit2))
+                base_points(:,1) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('x').item(0).getTextContent));
+                base_points(:,2) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('y').item(0).getTextContent));
+            end
+        end
+        
    else % get control points from user
        [input_points, base_points] = cpselect(img1,img2,'Wait', true);
    end
@@ -162,13 +169,14 @@ function [ data ] = compare_maculas_best(varargin)
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
-     r = round(10/770*img_sz(1)); %scale filter size---10 by 10 pixs for 768 by 770 res (standard res - footer)
-     c = round(10/768*img_sz(2));
+     r = round(5/768*img_sz(1)); %scale filter size---10 by 10 pixs for 768 by 768 res (standard res - footer)
+     c = round(5/768*img_sz(2));
      
      H = fspecial('gaussian', [r c], 5);
      proc1=imfilter(img1,H);
      proc2=imfilter(img2,H);
-    
+     
+
      proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
     
      % Adjust contrasts/center pix distribution on mean intensity of ring between
@@ -337,6 +345,37 @@ function [ data ] = compare_maculas_best(varargin)
     subplot(2,2,3);
     imshow(win1); title('Progression');
     h5=gca;
+    
+%     prog=win1-win2;
+    hypo_thrsh = -30;
+    hypr_thrsh = 30;
+% 
+%         
+%     redx=ones(1,1000);
+%     yellx=ones(1,1000);
+%     redy=ones(1,1000);
+%     yelly=ones(1, 1000);
+% 
+%     
+%     m=1;
+%     k=1;
+%     for i=1:winsz(1)
+%         for j = 1:winsz(2)
+%             if prog(i,j) > hypr_thrsh
+%                 yellx(m) = j;
+%                 yelly(m) = i;
+%                 m=m+1;
+%             elseif prog(i,j) < hypo_thrsh
+%                 redx(k) = j;
+%                 redy(k) = i;
+%                 k=k+1;
+%             end
+%         end
+%     end
+%     hold(h5)
+%     plot(h5, yellx, yelly, '.y', redx, redy, '.r');
+
+    
 
     %Calculate MAQ
     win_avg1 = zeros(50,50);
@@ -365,8 +404,7 @@ function [ data ] = compare_maculas_best(varargin)
     end
     
     %divide sum of squared differences (deviations from expected value of zero) by grid size to get variance
-    hypo_thrsh = -30;
-    hypr_thrsh = 30;
+
     DWB = win_avg1 - win_avg2;
     data.HPOS = sum(DWB(DWB<hypo_thrsh).^2);
     data.HPRS = sum(DWB(DWB>hypr_thrsh).^2);
@@ -387,7 +425,7 @@ function [ data ] = compare_maculas_best(varargin)
     end
     hold off
     
-    %~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
     
     redx=ones(4,250);
     yellx=ones(4,250);
@@ -428,7 +466,7 @@ function [ data ] = compare_maculas_best(varargin)
         alpha(patch(yellx,yelly,'y'),.5);
         hold off
   
-        set(h5, 'Position', [0.27 0.02000 1.5*0.3347 1.5*0.3338]); % Increase size of progression image
+         set(h5, 'Position', [0.27 0.02000 1.5*0.3347 1.5*0.3338]); % Increase size of progression image
         
     if test
         saveas(h, strcat(data_filename, '-progression'),'png');
