@@ -4,6 +4,11 @@ function [theta, scale, translation, tform] = transform_it(pointsA, pointsB)
     
     %Estimate the transform
     gte = vision.GeometricTransformEstimator;
+    gte.Transform = 'Nonreflective similarity';
+    gte.ExcludeOutliers = true;
+    gte.Method = 'Random Sample Consensus (RANSAC)';
+    gte.RefineTransformMatrix = true;
+    
     [tform] = step(gte, pointsB, pointsA);
     
     %Get the affine matrix

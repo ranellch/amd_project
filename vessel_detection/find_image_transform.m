@@ -15,6 +15,11 @@ function [out] = find_image_transform(pid)
     the_list = java.util.LinkedList;
     total_count = 0;
     
+    vdetectdir = 'vdetect';
+    if exist(vdetectdir, 'dir') == false
+       mkdir(vdetectdir); 
+    end
+    
 	%Loop on the image field in the images tag
 	for count = 1:images.getLength
 		image = images.item(count - 1);
@@ -24,7 +29,7 @@ function [out] = find_image_transform(pid)
 		path = char(image.getAttribute('path'));
 
 		if strcmpi(id, image_string) == 1
-            filename = vessel_detection(path);
+            filename = vessel_detection(path, vdetectdir);
             disp(['Vessel Detect: ', path, ' -> ', filename]);
             the_list_orig.add(path);
             the_list.add(filename);
