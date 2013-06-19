@@ -32,7 +32,7 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     pointsB = temp(3:4,:)';
    
     %Estimate the image transform
-    [theta, scale, translation, tform] = transform_it(pointsA, pointsB);
+    [theta, scale, translation, tform] = transform_it_vision(pointsA, pointsB);
     
     disp(['Correcting Image: theta: ' , num2str(theta), ' scale: ', num2str(scale), ...
             ' x: ', num2str(translation(1)), ' y: ', num2str(translation(2))]);
