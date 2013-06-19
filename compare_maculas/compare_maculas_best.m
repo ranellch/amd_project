@@ -192,6 +192,10 @@ function [ data ] = compare_maculas_best(varargin)
      ib = x.^2 + y.^2 >= ri.^2; %inner bound
      ring = logical(ib.*ob);
       
+%      %show ring
+%      figure()
+%      imshow(mat2gray(double(proc1).*double(ring)))
+     
      rep1 = mean(proc1(ring));
       if rep1 < 64
           gamma1 = 0.5;
@@ -425,7 +429,7 @@ function [ data ] = compare_maculas_best(varargin)
     end
     hold off
     
-    ~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
+   % ~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
     
     redx=ones(4,250);
     yellx=ones(4,250);
