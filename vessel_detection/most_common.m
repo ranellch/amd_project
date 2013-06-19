@@ -1,4 +1,4 @@
-function [outer] = most_common(matrix, minx, miny)
+function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     %Get the size of the correlated points
     size_of_it = size(matrix(1,:), 2);
     diff = zeros(size_of_it, 6);
@@ -15,7 +15,7 @@ function [outer] = most_common(matrix, minx, miny)
         diff(index, 1) = round(sqrt(power(x2 - x1, 2) + power(y2 - y1, 2)));
         
         %Get the quad that this things starts in
-        diff(index, 2) = which_quad(x1, y1, minx, miny, 3);
+        diff(index, 2) = which_quad(x1, y1, minx, miny, breakup);
         
         %Get the x and y correlated points
         diff(index, 3) = x1;
@@ -29,30 +29,35 @@ function [outer] = most_common(matrix, minx, miny)
     
     %Find the unique quads
     keys = unique(sortedIt(:,2));
-    quad_mode = zeros(length(keys), 2);
+    quad_mode = zeros((length(keys) - length(quad_skip)), 2);
+    quad_mode_index = 1;
     final_length = 0;
     
     %Find the mode and the count for each quad
     sindex = 1;
     eindex = 1;
     for quad=1 : length(keys)
-        while(sindex < size_of_it && sortedIt(sindex, 2) ~= keys(quad))
-            sindex = sindex + 1;
+        %Check to make sure that this is not one of the quads to skip
+        if(isempty(find(quad_skip == keys(quad), 1)))
+            while(sindex < size_of_it && sortedIt(sindex, 2) ~= keys(quad))
+                sindex = sindex + 1;
+            end
+            eindex = sindex;
+            while(eindex < size_of_it && sortedIt(eindex, 2) == keys(quad))
+                eindex = eindex + 1;
+            end
+
+            [M, F] = mode(sortedIt(sindex:eindex, 1));
+            quad_mode(quad_mode_index, 1) = M;
+            quad_mode(quad_mode_index, 2) = F;
+            quad_mode_index = quad_mode_index + 1;
+
+            final_length = final_length + F;
+
+            sindex = eindex;
         end
-        eindex = sindex;
-        while(eindex < size_of_it && sortedIt(eindex, 2) == keys(quad))
-            eindex = eindex + 1;
-        end
-        
-        [M, F] = mode(sortedIt(sindex:eindex, 1));
-        quad_mode(quad, 1) = M;
-        quad_mode(quad, 2) = F;
-        
-        final_length = final_length + F;
-               
-        sindex = eindex;
     end
-    
+        
     %Get the x,y matched pairs for the mode of each quad
     combined = zeros(4, final_length);
     curcount = 1;
@@ -91,19 +96,17 @@ function [quad] = which_quad(x, y, xaxis, yaxis, breakup)
     % | 7 | 8 | 9 |
     % -------------
     
-    matrix = zeros(3);
-    matrix(1,1) = 1;
-    matrix(1,2) = 2;
-    matrix(1,3) = 3;
-    
-    matrix(2,1) = 4;
-    matrix(2,2) = 5;
-    matrix(2,3) = 6;
-    
-    matrix(3,1) = 7;
-    matrix(3,2) = 8;
-    matrix(3,3) = 9;
-    
+    %Build the matrix of coordinates
+    matrix = zeros(breakup);
+    tile = 1;
+    for ycont=drange(1:breakup)
+        for xcont=drange(1:breakup)
+            matrix(ycont, xcont) = tile;
+            tile = tile + 1;
+        end
+    end
+       
+    %Get the index of the x and y
     xindex = 0;
     yindex = 0;
     

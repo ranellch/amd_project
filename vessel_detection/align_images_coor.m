@@ -1,9 +1,8 @@
-function [result] = align_images_coor(img1, img2)
-	addpath('crosscoor');
-    addpath('skel_endpoints');
+function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
+    addpath('crosscoor');
     
     image1 = double(imread(img1))/256;
-	image2 = double(imread(img2))/256;
+    image2 = double(imread(img2))/256;
 
     minx = min_axis(image1, image2, 1);
     miny = min_axis(image1, image2, 2);
@@ -12,13 +11,13 @@ function [result] = align_images_coor(img1, img2)
     image2 = imresize(image2, [minx, miny]);
 
     disp(['Running Correlation: ', img1, ' - ', img2]);
-	cc = correlCorresp('image1', image1, 'image2', image2);%, 'printProgress', 100);
+    cc = correlCorresp('image1', image1, 'image2', image2);%, 'printProgress', 100);
     cc.relThresh = 0.4;
     cc.convTol = 0.05; 
-	cc = cc.findCorresps;
+    cc = cc.findCorresps;
         
     %Get the most common points in each quad
-    temp = most_common(cc.corresps, minx, miny);
+    temp = most_common(cc.corresps, quad_count, skip_quad, minx, miny);
 
     %Display the original set of matched points
     %figure(1);
