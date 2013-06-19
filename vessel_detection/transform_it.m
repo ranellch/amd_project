@@ -1,7 +1,7 @@
 function [theta, scale, translation, tform] = transform_it(pointsA, pointsB)
     %Estimate the transform and set the parameters
     gte = vision.GeometricTransformEstimator;
-    gte.Transform = 'Nonreflective similarity';
+    gte.Transform = 'affine';
     gte.ExcludeOutliers = true;
     gte.Method = 'Random Sample Consensus (RANSAC)';
     gte.RefineTransformMatrix = true;
