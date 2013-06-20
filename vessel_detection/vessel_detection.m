@@ -64,8 +64,8 @@ function [outfile] = vessel_detection(img, outputdir)
     out = bwareaopen(out, 20);
     
     %Save to disk
-    output = strcat(outputdir, '\vd_', img_name ,'.jpg');
-    imwrite(out, output);
+    output = strcat(outputdir, '\vd_', img_name ,'.tif');
+    imwrite(out, output, 'tif');
     
     outfile = output;
 end

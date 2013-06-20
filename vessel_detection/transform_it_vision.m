@@ -1,13 +1,9 @@
 function [theta, scale, translation, tform] = transform_it_vision(pointsA, pointsB)
     %Estimate the transform and set the parameters
     gte = vision.GeometricTransformEstimator;
-    gte.Transform = 'affine';
-    gte.ExcludeOutliers = true;
-    gte.Method = 'Random Sample Consensus (RANSAC)';
-    gte.RefineTransformMatrix = true;
     
     %Get the tform matrix
-    [tform] = step(gte, pointsB, pointsA);
+    tform = step(gte, pointsB, pointsA);
     
     %Get the affine matrix
     R = tform(1:2,1:2);

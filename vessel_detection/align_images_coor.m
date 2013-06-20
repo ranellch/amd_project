@@ -1,17 +1,22 @@
 function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
+    %Add the path for the Correlation Correspondance code
     addpath('crosscoor');
     
+    %Read in the images
     image1 = double(imread(img1))/256;
     image2 = double(imread(img2))/256;
 
-    minx = min_axis(image1, image2, 1);
-    miny = min_axis(image1, image2, 2);
+    %Find the smallest axis of the two images
+    miny = min_axis(image1, image2, 1);
+    minx = min_axis(image1, image2, 2);
     
-    image1 = imresize(image1, [minx, miny]);
-    image2 = imresize(image2, [minx, miny]);
+    %Resize the image so that they are both the same now
+    image1 = imresize(image1, [miny, minx]);
+    image2 = imresize(image2, [miny, minx]);
 
+    %Run Correlation Correspondance
     disp(['Running Correlation: ', img1, ' - ', img2]);
-    cc = correlCorresp('image1', image1, 'image2', image2);%, 'printProgress', 100);
+    cc = correlCorresp('image1', image1, 'image2', image2);
     cc.relThresh = 0.4;
     cc.convTol = 0.05; 
     cc = cc.findCorresps;
@@ -26,11 +31,11 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     %Displat the subset of polled mathced points
     %figure(2);
     %correspDisplay(temp, image1);
-    
+        
     %Form arry in the correct manner
     pointsA = temp(1:2,:)';
     pointsB = temp(3:4,:)';
-   
+    
     %Estimate the image transform
     [theta, scale, translation, tform] = transform_it_vision(pointsA, pointsB);
     

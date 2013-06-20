@@ -4,7 +4,7 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     diff = zeros(size_of_it, 6);
     
     %Calcualte the x and y offest of matched points
-    for index = 1:size_of_it
+    for index=1:size_of_it
         x1 = matrix(1,index);
         y1 = matrix(2,index);
         
@@ -29,7 +29,7 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     
     %Find the unique quads
     keys = unique(sortedIt(:,2));
-    quad_mode = zeros((length(keys) - length(quad_skip)), 2);
+    quad_mode = zeros((length(keys) - length(quad_skip)), 4);
     quad_mode_index = 1;
     final_length = 0;
     
@@ -39,47 +39,95 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     for quad=1 : length(keys)
         %Check to make sure that this is not one of the quads to skip
         if(isempty(find(quad_skip == keys(quad), 1)))
-            while(sindex < size_of_it && sortedIt(sindex, 2) ~= keys(quad))
+            %Find the index of the first element in this quad
+            while(sindex <= size_of_it && sortedIt(sindex, 2) ~= keys(quad))
                 sindex = sindex + 1;
             end
+            if(sindex > size_of_it)
+                sindex = size_of_it;
+            end
+            
+            %find the index of the last element in this quad
             eindex = sindex;
-            while(eindex < size_of_it && sortedIt(eindex, 2) == keys(quad))
+            while(eindex <= size_of_it && sortedIt(eindex, 2) == keys(quad))
                 eindex = eindex + 1;
             end
+            if(eindex > size_of_it)
+                eindex = size_of_it;
+            end
+            
+            %Create a list of possible modes
+            possible_modes = sort(unique(sortedIt(sindex:eindex, 1)));
+            possible_frequencies = zeros(length(possible_modes), 1);
+            biggest_mode = 0;
+            biggest_mode_index = 0;
+            
+            %Find the frequency of each of the modes
+            for i=1:length(possible_modes)
+                possible_frequencies(i, 1) = length(find(sortedIt(sindex:eindex, 1) == possible_modes(i)));
+                if(biggest_mode < possible_frequencies(i, 1))
+                   biggest_mode = possible_frequencies(i, 1);
+                   biggest_mode_index = i;
+                end
+            end
+            
+            %Calculate the most frequent change and get the points on either side of it
+            quad_mode(quad_mode_index, 1) = keys(quad);
+            quad_mode(quad_mode_index, 2) = possible_modes(biggest_mode_index, 1) - 1;
+            quad_mode(quad_mode_index, 3) = possible_modes(biggest_mode_index, 1);
+            quad_mode(quad_mode_index, 4) = possible_modes(biggest_mode_index, 1) + 1;
+            
+            %Try to get the frequency of the length from one bin above the biggest
+            final_length = final_length + length(find(sortedIt(sindex:eindex, 1) == quad_mode(quad_mode_index, 2)));
+            
+            %Get the frequency of the mode bin
+            final_length = final_length + biggest_mode;
 
-            [M, F] = mode(sortedIt(sindex:eindex, 1));
-            quad_mode(quad_mode_index, 1) = M;
-            quad_mode(quad_mode_index, 2) = F;
+            %Get the frequency of the length from one bin below the biggest
+            final_length = final_length + length(find(sortedIt(sindex:eindex, 1) == quad_mode(quad_mode_index, 4)));
+            
             quad_mode_index = quad_mode_index + 1;
-
-            final_length = final_length + F;
-
+            
             sindex = eindex;
         end
     end
-        
+    
     %Get the x,y matched pairs for the mode of each quad
     combined = zeros(4, final_length);
-    curcount = 1;
+    curcount = 0;
     sindex = 1;
     eindex = 1;
     for quad=1 : length(quad_mode)
-        %Find the start of this badboy
-        while(sindex < size_of_it && sortedIt(sindex, 2) ~= keys(quad))
+        %Find the start of this quad
+        while(sindex <= size_of_it && sortedIt(sindex, 2) ~= quad_mode(quad, 1))
             sindex = sindex + 1;
         end
+        if(sindex > size_of_it)
+                sindex = size_of_it;
+        end
+        
+        %Loop on each correlated point in this quad
         eindex = sindex;
-        while(eindex < size_of_it && sortedIt(eindex, 2) == keys(quad))
-            if (sortedIt(eindex, 1) == quad_mode(quad, 1))
+        while(eindex <= size_of_it && sortedIt(eindex, 2) == quad_mode(quad, 1))
+            change = sortedIt(eindex, 1);
+            if (change == quad_mode(quad, 2)) || (change == quad_mode(quad, 3)) || (change == quad_mode(quad, 4))
+                curcount = curcount + 1;
                 combined(1, curcount) = int32(sortedIt(eindex, 3));
                 combined(2, curcount) = int32(sortedIt(eindex, 4));
                 combined(3, curcount) = int32(sortedIt(eindex, 5));
                 combined(4, curcount) = int32(sortedIt(eindex, 6));
-                curcount = curcount + 1;
             end
             eindex = eindex + 1;
         end
         sindex = eindex;
+    end
+    
+    if(curcount ~= final_length)
+        if(curcount < final_length)
+            combined(:, final_length) = [];
+        end
+        msg = (['The curcount (', num2str(curcount),') variable did not match the final_length (', num2str(final_length) ,') variable in most_common.m']);
+        disp(msg);
     end
     
     disp(['Found X-Y Correlated Modal Matches: ', num2str(length(combined))]);
