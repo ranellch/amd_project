@@ -31,7 +31,7 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     %Displat the subset of polled mathced points
     %figure(2);
     %correspDisplay(temp, image1);
-        
+
     %Form arry in the correct manner
     pointsA = temp(1:2,:)';
     pointsB = temp(3:4,:)';
