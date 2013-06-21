@@ -1,10 +1,10 @@
-function [outfile] = vessel_detection(img, outputdir)
+function [filename, image] = vessel_detection(img, outputdir)
 	%Read in the original image
 	img_val = regexp(img, '[.]', 'split');
 	img_name = char(img_val(1));
     
     %Get the image and convert to graysacle
-	original = (imread(img));
+	original = imread(img);
     
     %Remove the footer from the image
     original = crop_footer(original);
@@ -63,11 +63,12 @@ function [outfile] = vessel_detection(img, outputdir)
     
     out = bwareaopen(out, 20);
     
-    %Save to disk
+    %Save to disk uncomment if you want to debug the vessel detection algorithm
     output = strcat(outputdir, '\vd_', img_name ,'.tif');
-    imwrite(out, output, 'tif');
+    %imwrite(out, output, 'tif');
     
-    outfile = output;
+    filename = output;
+    image = out;
 end
 
 

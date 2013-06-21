@@ -3,8 +3,8 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     addpath('crosscoor');
     
     %Read in the images
-    image1 = double(imread(img1))/256;
-    image2 = double(imread(img2))/256;
+    image1 = im2double(img1)/256;
+    image2 = im2double(img2)/256;
 
     %Find the smallest axis of the two images
     miny = min_axis(image1, image2, 1);
@@ -14,8 +14,18 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     image1 = imresize(image1, [miny, minx]);
     image2 = imresize(image2, [miny, minx]);
 
+    %Build string for output information
+    skip = '';
+    if(isempty(skip_quad) == false)
+        skip = num2str(skip_quad(1));
+        for i=2:length(skip_quad)
+            disp(quad_count);
+            skip = strcat(skip, ',', num2str(skip_quad(i)));
+        end
+    end
+    disp(['Running Correlation: skipping quads => ', skip]);
+    
     %Run Correlation Correspondance
-    disp(['Running Correlation: ', img1, ' - ', img2]);
     cc = correlCorresp('image1', image1, 'image2', image2);
     cc.relThresh = 0.4;
     cc.convTol = 0.05; 
@@ -43,14 +53,4 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
             ' x: ', num2str(translation(1)), ' y: ', num2str(translation(2))]);
     
     result = tform;
-end
-
-function [out] = min_axis(img1, img2, dim)
-    min = size(img1, dim);
-    
-    if(size(img2, dim) < min)
-       min =  size(img2, dim);
-    end
-    
-    out = min;
 end
