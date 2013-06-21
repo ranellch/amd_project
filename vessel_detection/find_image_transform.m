@@ -1,6 +1,8 @@
 function [out] = find_image_transform(pid)
-    %Add the parent folder to the path
+    %Add the location of the XML file with patient information
     addpath('..');
+    
+    %Add the location of the images
     addpath(genpath('../Test Set'));
     
     %Convert input to something else

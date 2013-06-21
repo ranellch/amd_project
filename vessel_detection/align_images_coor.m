@@ -23,7 +23,7 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
             skip = strcat(skip, ',', num2str(skip_quad(i)));
         end
     end
-    disp(['Running Correlation: skipping quads => ', skip]);
+    disp(['Running Correlation: skip(', skip, ') Please Wait...(up to 5 Minutes)']);
     
     %Run Correlation Correspondance
     cc = correlCorresp('image1', image1, 'image2', image2);

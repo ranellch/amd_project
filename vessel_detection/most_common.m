@@ -126,7 +126,7 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
         if(curcount < final_length)
             combined(:, final_length) = [];
         end
-        msg = (['The curcount (', num2str(curcount),') variable did not match the final_length (', num2str(final_length) ,') variable in most_common.m']);
+        msg = (['Debug: curcount (', num2str(curcount),') != final_length (', num2str(final_length) ,') => most_common.m']);
         disp(msg);
     end
     
