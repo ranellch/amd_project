@@ -12,7 +12,7 @@ function [name] = parse_outname(thestring)
     lengthlash = length(slashstart);
     slashindex = 0;
 	if lengthlash > 0
-        slashindex = slashstart(lengthlash);
+        slashindex = slashstart(lengthlash) + 1;
     else
         slashindex = 1;
     end

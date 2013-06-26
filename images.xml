@@ -420,4 +420,13 @@
          <y>733</y>
       </optic_disk>
    </image>
+   <image id="FA_CUSTOM" path="FA_CUSTOM/FA1.png" time="1" invert="true">
+      
+   </image>
+   <image id="FA_CUSTOM" path="FA_CUSTOM/FA2.png" time="2" invert="true">
+           
+   </image>
+   <image id="FA_CUSTOM" path="FA_CUSTOM/FA3.png" time="3" invert="true">
+           
+   </image>
 </images>

@@ -3,7 +3,7 @@ function [image] = vessel_detection(img)
 	original = img;
     
     %Remove the footer from the image
-    original = crop_footer(original);
+    %original = crop_footer(original);
     
     %Run Gaussian filter
     g_filter = imfilter(original, fspecial('gaussian', [5 5], 1.2), 'same');
@@ -37,20 +37,22 @@ function [image] = vessel_detection(img)
     %From the mean and std dev calculate the threshold as one stddev
     threshold = mean_val + (stddev * .4);
 
+    fout = im2bw(out);
+    
     %Threshold this badboy
     for x=1:size(out,2)
         for y = 1:size(out,1)
             pixel = out(y, x);
             if(pixel < threshold)
-                out(y, x) = 0;
+                fout(y, x) = 0;
             else
-                out(y, x) = 255;
+                fout(y, x) = 1;
             end
         end
     end
     
     %Calculate the skeleton on the image
-    out = bwareaopen(out, 20);
+    out = bwareaopen(fout, 20);
     out = bwmorph(out, 'bridge');
     out = bwmorph(out, 'thin', Inf);
     out = bwmorph(out, 'fill');

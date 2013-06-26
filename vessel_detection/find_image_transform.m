@@ -23,6 +23,19 @@ function [out] = find_image_transform(pid)
         %Get the attribute from the image tag
         id = char(image.getAttribute('id'));
         path = char(image.getAttribute('path'));
+	invert = 0;
+
+	%If invert tag exists then get it else invert is alse by default
+	try
+		toinvert = char(image.getAttribute('invert'));
+		if(strcmpi(toinvert, 'true') == 0)
+			invert = 1;
+		else
+			invert = 0;
+		end
+	catch
+		invert = 0;
+	end
 
         if strcmpi(id, image_string) == 1         
             %Keep track of original and new filename
@@ -42,7 +55,7 @@ function [out] = find_image_transform(pid)
             next_img_real = char(the_list_orig.get(count2));
             
             %Register the images and save in output directory (image_string)
-            register_images(base_img_real, next_img_real, image_string);
+            register_images(base_img_real, next_img_real, invert, image_string);
         end
     end
 end
