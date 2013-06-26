@@ -7,6 +7,7 @@ function [out] = find_image_transform(pid)
     
     %Convert input to something else
     image_string = char(pid);
+    output_path = ['results/', image_string];
 
     %Parse XML document and find this pictures information
     xDoc= xmlread('images.xml');
@@ -55,7 +56,7 @@ function [out] = find_image_transform(pid)
             next_img_real = char(the_list_orig.get(count2));
             
             %Register the images and save in output directory (image_string)
-            register_images(base_img_real, next_img_real, invert, image_string);
+            register_images(base_img_real, next_img_real, invert, output_path);
         end
     end
 end
