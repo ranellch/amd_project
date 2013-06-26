@@ -180,7 +180,7 @@ function [ data ] = compare_maculas_best(type, varargin)
      
      
      if strcmpi(type,'AF')
-            proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
+%             proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
 
 
          % Adjust contrasts/center pix distribution on mean intensity of ring between
@@ -230,6 +230,16 @@ function [ data ] = compare_maculas_best(type, varargin)
           end
 
           proc2 = imadjust(proc2,[],[],gamma2);
+          
+          se1 = strel('disk',20);
+          se2 = strel('disk',20);
+          
+          proc1 = imtophat(proc1,se1);
+          proc1 = imtophat(proc1,se2);
+          
+          proc2 = imtophat(proc2,se1);
+          proc2 = imtophat(proc2,se2);
+          
      
      elseif strcmpi(type,'FA')
          se1 = strel('line',img_sz(2)/2,0);
