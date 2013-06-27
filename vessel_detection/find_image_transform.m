@@ -15,6 +15,7 @@ function [out] = find_image_transform(pid)
 
     %Java lists to keep track of original filename and vessel detection
     the_list_orig = java.util.LinkedList;
+    the_list_transform = java.util.LinkedList;
     total_count = 0;
       
 	%Loop on the image field in the images tag
@@ -24,19 +25,17 @@ function [out] = find_image_transform(pid)
         %Get the attribute from the image tag
         id = char(image.getAttribute('id'));
         path = char(image.getAttribute('path'));
-	invert = 0;
+        transform = 'none';
 
-	%If invert tag exists then get it else invert is alse by default
-	try
-		toinvert = char(image.getAttribute('invert'));
-		if(strcmpi(toinvert, 'true') == 0)
-			invert = 1;
-		else
-			invert = 0;
-		end
-	catch
-		invert = 0;
-	end
+        %If invert tag exists then get it else invert is alse by default
+        try
+            toinvert = char(image.getAttribute('transform'));
+            transform = toinvert;
+        catch 
+            transform = 'none';
+        end
+        
+        the_list_transform.add(transform);
 
         if strcmpi(id, image_string) == 1         
             %Keep track of original and new filename
@@ -49,14 +48,16 @@ function [out] = find_image_transform(pid)
     for count1 = 0:total_count - 1
         %Get the base image
         base_img_real = char(the_list_orig.get(count1));
+        basetrans = char(the_list_transform.get(count1));
         
         %Loop on images to pair with
         for count2 = count1 + 1:total_count - 1
             %Get the next image to pair
             next_img_real = char(the_list_orig.get(count2));
+            nextrans = char(the_list_transform.get(count2));
             
             %Register the images and save in output directory (image_string)
-            register_images(base_img_real, next_img_real, invert, output_path);
+            register_images(base_img_real, basetrans, next_img_real, nextrans, output_path);
         end
     end
 end

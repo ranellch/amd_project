@@ -1,4 +1,7 @@
-function [new_base_filename, new_corr_filename] = register_images(base_img_real_file, next_img_real_file, invert_vd, outputdir)
+function [new_base_filename, new_corr_filename] = register_images(...
+                                                base_img_real_file, transformbase, ...
+                                                next_img_real_file, transformnext, ...
+                                                outputdir)
 	%Update console and user with information about image registration
 	disp('==============================================================');
 	disp([base_img_real_file, ' - ', next_img_real_file, ' => ', outputdir]);
@@ -12,15 +15,10 @@ function [new_base_filename, new_corr_filename] = register_images(base_img_real_
 	base_img_real = imread(base_img_real_file);
 	next_img_real = imread(next_img_real_file);
 
-	%Invert the images color if need be
- 	if(invert_vd ~= 0)
-		base_img_vd = imcomplement(base_img_real);
-		next_img_vd = imcomplement(next_img_real);
-	else
-		base_img_vd = (base_img_real);
-                next_img_vd = (next_img_real);
-	end   
- 
+    %Apply necessary transforms to images to prepare for vessel detection
+    base_img_vd = prepare_image(base_img_real, transformbase);
+    next_img_vd = prepare_image(next_img_real, transformnext);
+    
 	%Get the vessel outline of each image
 	base_img = vessel_detection(base_img_vd);
 	next_img = vessel_detection(next_img_vd);
