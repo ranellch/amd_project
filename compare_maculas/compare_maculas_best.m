@@ -40,7 +40,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         filename1 = visit1;
         filename2 = visit2;
         
-        fullpath = fullfile('./Test Set/', visit1);
+        fullpath = fullfile('./Test Set/',patid, visit1);
       
          data.Trial = strcat(patid, trialname);
          data_filename = strcat('./Output Images/', patid, '/', data.Trial);
@@ -76,7 +76,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         end
         fullpath = fullfile(path2,filename2);
     else % use visit arguments
-        fullpath = fullfile('./Test Set/', visit2);
+        fullpath = fullfile('./Test Set/',patid, visit2);
     end
      
 
@@ -180,7 +180,7 @@ function [ data ] = compare_maculas_best(type, varargin)
      
      
      if strcmpi(type,'AF')
-            proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
+             proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
 
 
          % Adjust contrasts/center pix distribution on mean intensity of ring between
