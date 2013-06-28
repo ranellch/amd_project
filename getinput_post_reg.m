@@ -3,13 +3,13 @@
     list=dir('./Test Set/');
     list = setdiff({list.name},{'.','..','.DS_Store'});
     
-    for i=6
+    for i=1:length(list)
         
+        if isdir(list{i})
             path = strcat('./Test Set/',list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
-             
-            for j=1:length(pics)
+             for j=1:length(pics)
                 file = pics{j};
                 
                 newImage = xDoc.createElement('image');
@@ -25,9 +25,10 @@
                 time = inputdlg(strcat('Enter the sequence number of this image from patient (', pid , '):'));
                 type = inputdlg('Enter base or corr:');
 
-                if strcmpi(type, 'base')
-
-                    corr = inputdlg('Enter corr image sequence number:');
+               switch type
+                   
+                   case 'base'
+                   
                     [xin,yin] = ginput(2);
 
                     macula_xml = xDoc.createElement('macula');
@@ -54,7 +55,13 @@
 
                     newImage.appendChild(macula_xml);
                     newImage.appendChild(optic_xml);
-                    newImage.setAttribute('corr',corr);
+                  
+                    
+                   case 'corr'
+                       
+                   base = inputdlg('Enter base image sequence number:');
+                   newImage.setAttribute('base',base);
+                       
                 end
 
                 newImage.setAttribute('id', pid);
@@ -66,5 +73,6 @@
 
                 xmlwrite('images.xml', newImage);
              end
+        end
     end
 

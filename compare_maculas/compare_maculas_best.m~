@@ -19,6 +19,14 @@ function [ data ] = compare_maculas_best(type, varargin)
      
      test = ~isempty(varargin);
     
+        if test 
+            strcat('./Output Images/', patid)
+             if exist(, 'dir') == false
+                output_dir = ['results/', image_string];
+                mkdir(output_dir); 
+             end
+         end
+     
      %~~~Get image 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
     if ~test %if runtest has not been called, prompt user for files
         % If an images directory exists, look there first
@@ -41,15 +49,9 @@ function [ data ] = compare_maculas_best(type, varargin)
         filename2 = visit2;
         
         fullpath = fullfile('./Test Set/',patid, visit1);
-        
-        
-        output_dir = strcat('./Output Images/', patid);
-             if exist(output_dir, 'dir') == false
-                mkdir(output_dir); 
-             end
       
          data.Trial = strcat(patid, trialname);
-         data_filename = strcat(output_dir, '/', data.Trial);
+         data_filename = strcat('./Output Images/', patid, '/', data.Trial);
     end
     
    
@@ -225,11 +227,11 @@ function [ data ] = compare_maculas_best(type, varargin)
            rep2 = mean(proc2(ring));
           if rep2 < 64
               gamma2 = 0.5;
-          elseif rep2 >= 64 && rep2 < 96
+          elseif rep2 >= 64 && rep1 < 96
               gamma2 = 0.75;
-          elseif rep2 >=96 && rep2 < 160
+          elseif rep2 >=96 && rep1 < 160
               gamma2 = 1.0;
-          elseif rep2 >= 160 && rep2 < 192
+          elseif rep2 >= 160 && rep1 < 192
               gamma2 = 1.25;
           elseif rep2 >=192
               gamma2 = 1.5;
@@ -264,6 +266,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         imshow(img2); title(strcat('Original', filename2));
         subplot(2,2,4);
         imshow(proc2); title(strcat('Processed', filename2));
+        data_filename = strcat('./Output Images/', patid, '/', data.Trial);
         saveas(h, strcat(data_filename, '-processing'),'png');
         close(h)
     else
