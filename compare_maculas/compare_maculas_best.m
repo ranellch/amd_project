@@ -40,7 +40,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         filename1 = visit1;
         filename2 = visit2;
         
-        fullpath = fullfile('./Test Set/',patid, visit1);
+        fullpath = fullfile('./Test Set/',patid, visit2);
         
         
         output_dir = strcat('./Output Images/', patid);
@@ -82,7 +82,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         end
         fullpath = fullfile(path2,filename2);
     else % use visit arguments
-        fullpath = fullfile('./Test Set/',patid, visit2);
+        fullpath = fullfile('./Test Set/',patid, visit1);
     end
      
 
