@@ -1,12 +1,12 @@
 
-    xDoc= xmlread('images.xml');
-    list=dir('./Test Set/');
+    xDoc= xmlread('reg_images.xml');
+    list=dir('./Reg Set/');
     list = setdiff({list.name},{'.','..','.DS_Store'});
     
     for i=6:length(list)
         
         if isdir(list{i})
-            path = strcat('./Test Set/',list{i},'/');
+            path = strcat('./Reg Set/',list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
              for j=1:length(pics)
@@ -61,7 +61,7 @@
                
                 xDoc.getDocumentElement.appendChild(newImage);
 
-                xmlwrite('images.xml', newImage);
+                xmlwrite('reg_images.xml', newImage);
              end
         end
     end

@@ -1,15 +1,15 @@
-xDoc= xmlread('images.xml');
+xDoc= xmlread('reg_images.xml');
 images = xDoc.getElementsByTagName('image');
 results = cell(1000,1);
 loc = 1;
-list=dir('./Test Set/');
+list=dir('./Reg Set/');
     list = setdiff({list.name},{'.','..','.DS_Store'});
     
     for i=1:length(list)
         
         if isdir(list{i})
             patid=list{i};
-            path = strcat('./Test Set/',list{i},'/');
+            path = strcat('./Reg Set/',list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
               for j=1:length(pics)
