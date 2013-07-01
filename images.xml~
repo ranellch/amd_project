@@ -450,8 +450,12 @@
          <y>199</y>
       </optic_disk>
    </image>   
-   <image id="00270567" path="00270567/00_27_05_670_009.tif" time="1">
+    <image id="09210105" path="09210105/09_21_01_050_006.tif" time="3">
    </image>
-   <image id="00270567" path="00270567/00_27_05_670_001.tif" time="2">
+   <image id="09210105" path="09210105" time="2">
+
+   </image>
+   <image id="09210105" path="FA_CUSTOM/FA3.png" time="3" invert="true">
+
    </image>
 </images>

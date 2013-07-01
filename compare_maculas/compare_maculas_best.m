@@ -63,7 +63,7 @@ function [ data ] = compare_maculas_best(type, varargin)
             img1=imgRGB;
         end
     % Crop footer
-%     img1 = crop_footer(img1);
+     img1 = crop_footer(img1);
          
 
     
@@ -97,7 +97,7 @@ function [ data ] = compare_maculas_best(type, varargin)
     end
     
     % Crop footer
-%     img2 = crop_footer(img2);
+     img2 = crop_footer(img2);
 
         
     
@@ -375,8 +375,8 @@ function [ data ] = compare_maculas_best(type, varargin)
     h5=gca;
     
 %     prog=win1-win2;
-    hypo_thrsh = -30;
-    hypr_thrsh = 30;
+    hypo_thrsh = -40;
+    hypr_thrsh = 40;
 % 
 %         
 %     redx=ones(1,1000);
