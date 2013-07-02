@@ -18,7 +18,7 @@ function [ data ] = compare_maculas_best(type, varargin)
      end
      
      test = ~isempty(varargin);
-     
+    
      %~~~Get image 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
     if ~test %if runtest has not been called, prompt user for files
         % If an images directory exists, look there first
@@ -40,10 +40,16 @@ function [ data ] = compare_maculas_best(type, varargin)
         filename1 = visit1;
         filename2 = visit2;
         
-        fullpath = fullfile('./Test Set/', visit1);
+        fullpath = fullfile('./Test Set/',patid, visit2);
+        
+        
+        output_dir = strcat('./Output Images/', patid);
+             if exist(output_dir, 'dir') == false
+                mkdir(output_dir); 
+             end
       
          data.Trial = strcat(patid, trialname);
-         data_filename = strcat('./Output Images/', patid, '/', data.Trial);
+         data_filename = strcat(output_dir, '/', data.Trial);
     end
     
    
@@ -57,7 +63,7 @@ function [ data ] = compare_maculas_best(type, varargin)
             img1=imgRGB;
         end
     % Crop footer
-    img1 = crop_footer(img1);
+     img1 = crop_footer(img1);
          
 
     
@@ -76,7 +82,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         end
         fullpath = fullfile(path2,filename2);
     else % use visit arguments
-        fullpath = fullfile('./Test Set/', visit2);
+        fullpath = fullfile('./Test Set/',patid, visit1);
     end
      
 
@@ -91,7 +97,7 @@ function [ data ] = compare_maculas_best(type, varargin)
     end
     
     % Crop footer
-    img2 = crop_footer(img2);
+     img2 = crop_footer(img2);
 
         
     
@@ -180,7 +186,7 @@ function [ data ] = compare_maculas_best(type, varargin)
      
      
      if strcmpi(type,'AF')
-            proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
+             proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
 
 
          % Adjust contrasts/center pix distribution on mean intensity of ring between
@@ -219,11 +225,11 @@ function [ data ] = compare_maculas_best(type, varargin)
            rep2 = mean(proc2(ring));
           if rep2 < 64
               gamma2 = 0.5;
-          elseif rep2 >= 64 && rep1 < 96
+          elseif rep2 >= 64 && rep2 < 96
               gamma2 = 0.75;
-          elseif rep2 >=96 && rep1 < 160
+          elseif rep2 >=96 && rep2 < 160
               gamma2 = 1.0;
-          elseif rep2 >= 160 && rep1 < 192
+          elseif rep2 >= 160 && rep2 < 192
               gamma2 = 1.25;
           elseif rep2 >=192
               gamma2 = 1.5;
@@ -258,7 +264,6 @@ function [ data ] = compare_maculas_best(type, varargin)
         imshow(img2); title(strcat('Original', filename2));
         subplot(2,2,4);
         imshow(proc2); title(strcat('Processed', filename2));
-        data_filename = strcat('./Output Images/', patid, '/', data.Trial);
         saveas(h, strcat(data_filename, '-processing'),'png');
         close(h)
     else
@@ -370,8 +375,8 @@ function [ data ] = compare_maculas_best(type, varargin)
     h5=gca;
     
 %     prog=win1-win2;
-    hypo_thrsh = -30;
-    hypr_thrsh = 30;
+    hypo_thrsh = -40;
+    hypr_thrsh = 40;
 % 
 %         
 %     redx=ones(1,1000);

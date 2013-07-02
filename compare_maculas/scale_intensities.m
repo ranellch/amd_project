@@ -29,7 +29,7 @@ function [proc2] = scale_intensities(img1, img2, fov, opt)
     sampls1(i) = mean(img1(ring));
     sampls2(i) = mean(img2(ring));
     
-    
+     
  end
     % Calculate scaling factors b1 & b2 (y=b1x+b2)
     

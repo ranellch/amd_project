@@ -1,40 +1,53 @@
-xDoc= xmlread('images.xml');
+xDoc= xmlread('reg_images.xml');
 images = xDoc.getElementsByTagName('image');
 results = cell(1000,1);
 loc = 1;
-for i = 1:images.getLength-1
-    image = images.item(i - 1);
-    time = char(image.getAttribute('time'));
-    patid = char(image.getAttribute('id'));
-    if str2double(time) == 1 %loop through 2 and 3
-        for j = 1:2
-            nextimage = images.item(i-1 + j);
-            if ~strcmpi(char(nextimage.getAttribute('id')),patid)
-                break
-            end
-            visit1  =  char(image.getAttribute('path'));
-            visit2 = char(nextimage.getAttribute('path'));
-            trialname = strcat('-1v', num2str(j+1));
-            data = compare_maculas_test(visit1, visit2, patid, trialname);
-            results(loc:loc+length(fieldnames(data))-1) = struct2cell(data);
-            loc = loc + length(fieldnames(data))+1;
-        end
-    elseif str2double(time) == 2 % run on 3
-        nextimage = images.item(i);
-        if ~strcmpi(char(nextimage.getAttribute('id')),patid)
-                continue
-        end
-        visit1 = char(image.getAttribute('path'));
-        visit2 = char(nextimage.getAttribute('path'));
-        trialname = '-2v3';
-        data = compare_maculas_test(visit1, visit2, patid, trialname);
-        results(loc:loc+length(fieldnames(data))-1) = struct2cell(data);
-        loc = loc + length(fieldnames(data))+1;
-    elseif str2double(time) == 3 % go to next patient
-    continue
+list=dir('./Reg Set/');
+    list = setdiff({list.name},{'.','..','.DS_Store'});
+    
+    for i=1:length(list)
+        
+        if isdir(list{i})
+            patid=list{i};
+            path = strcat('./Reg Set/',list{i},'/');
+            sublist = dir(path);
+            pics = setdiff({sublist.name},{'.','..','.DS_Store'});
+              for j=1:length(pics)
+                  file = pics{j};
+                  ind=strfind(file,'_corrimg');% look for correlated images
+                    if isempty(ind)
+                        continue
+                    else                    
+                         %get correlated image labels
+                         for count = 1:images.getLength  
+                            cimage = images.item(count - 1);
+                            corrpath = char(cimage.getAttribute('path'));
+                            if strcmpi(corrpath, file)
+                                visit2 =  char(cimage.getAttribute('path'));
+                                time2 = char(cimage.getAttribute('time'));
+                                break
+                            end
+                         end
+                         %get base image labels
+                         [pathstr, name, ext] = fileparts(file);
+                         bfile=strcat(file(1:ind-1),'_baseimg', ext);
+                         for count = 1:images.getLength
+                             bimage = images.item(count-1);
+                             basepath = char(bimage.getAttribute('path'));
+                             if strcmpi(basepath, bfile)                               
+                                visit1 = char(bimage.getAttribute('path'));
+                                time1 = char(bimage.getAttribute('time'));
+                                break
+                             end
+                         end
+                            trialname = strcat('-', time1, 'v', time2);
+                            data = compare_maculas_best('AF',visit1, visit2, patid, trialname);
+                            results(loc:loc+length(fieldnames(data))-1) = struct2cell(data);
+                            loc = loc + length(fieldnames(data))+1;
+                    end
+              end
+        end 
     end
 
-end
-
-xlswrite('results.xls',results); 
+xlswrite('results.xlsx',results); 
         
