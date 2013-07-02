@@ -27,21 +27,28 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     
     %Run Correlation Correspondance
     cc = correlCorresp('image1', image1, 'image2', image2);
-    cc.relThresh = 0.4;
-    cc.convTol = 0.05; 
+    %Increase this value to decrease the number of featues
+    cc.relThresh = 0.5;
+    %Decrease this value to make the matches more precise
+    %Decrease this value also increases time to run
+    cc.convTol = 0.05;
+    %Set value to 2 for more less strict reverse matching
+    %Set value to 1 for more strict revserse matching
+    cc.matchTol = 2;
+
+    %Run the sliding crossCorr
+    t = cputime;
     cc = cc.findCorresps;
+    t = cputime - t;
+    disp(['Correlation Time: ', num2str(t), ' seconds']);
         
     %Get the most common points in each quad
     temp = most_common(cc.corresps, quad_count, skip_quad, minx, miny);
 
     %Display the original set of matched points
     %figure(1);
-    %correspDisplay(cc.corresps, image1);
+    %correspDisplay(cc.corresps, temp);
     
-    %Displat the subset of polled mathced points
-    %figure(2);
-    %correspDisplay(temp, image1);
-
     %Form arry in the correct manner
     pointsA = temp(1:2,:)';
     pointsB = temp(3:4,:)';

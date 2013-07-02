@@ -19,31 +19,35 @@ function [out] = find_image_transform(pid)
     total_count = 0;
       
 	%Loop on the image field in the images tag
-    for count = 1:images.getLength
+    for count=1:images.getLength
         image = images.item(count - 1);
 
         %Get the attribute from the image tag
         id = char(image.getAttribute('id'));
-        path = char(image.getAttribute('path'));
-        transform = 'none';
-
-        %If invert tag exists then get it else invert is alse by default
-        try
-            toinvert = char(image.getAttribute('transform'));
-            transform = toinvert;
-        catch 
-            transform = 'none';
-        end
         
-        the_list_transform.add(transform);
-
-        if strcmpi(id, image_string) == 1         
+       
+        
+        if strcmp(id, image_string) == 1       
+            path = char(image.getAttribute('path'));
+            transform = 'none';
+            
+            %If invert tag exists then get it else invert is alse by default
+            try
+                transform = char(image.getAttribute('transform'));
+            catch 
+                transform = 'none';
+            end
+        
+            the_list_transform.add(transform);
+        
             %Keep track of original and new filename
             the_list_orig.add(path);
             total_count = total_count + 1;
         end
     end
-        
+    
+    disp(['To Run ', num2str(total_count), ' images from: ', image_string]);
+    
 	%Get the offest of the images
     for count1 = 0:total_count - 1
         %Get the base image

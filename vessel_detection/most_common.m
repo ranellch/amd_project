@@ -123,10 +123,13 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     end
     
     if(curcount ~= final_length)
+        difference = (final_length - curcount);
         if(curcount < final_length)
-            combined(:, final_length) = [];
+            for removeindex=1:difference
+                combined(:, final_length - removeindex) = [];
+            end
         end
-        msg = (['Debug: curcount (', num2str(curcount),') != final_length (', num2str(final_length) ,') => most_common.m']);
+        msg = (['Debug: curcount (', num2str(curcount),') != final_length (', num2str(final_length) ,') - remove: ', num2str(difference), ' => most_common.m']);
         disp(msg);
     end
     
