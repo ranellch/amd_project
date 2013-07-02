@@ -50,7 +50,7 @@
          <y>361</y>
       </optic_disk>
    </image>
-   <image id="BIGNALL " path="BIGNALL OD 3 (poor image).tif" time="3">
+   <image id="BIGNALL" path="BIGNALL OD 3 (poor image).tif" time="3">
       <macula>
          <x>664</x>
          <y>893</y>
