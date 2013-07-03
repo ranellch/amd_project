@@ -15,7 +15,7 @@
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
              for j=1:length(pics)
                 file = pics{j};
-                [regpth, regname,ext] = fileparts(file);
+                [~, regname,~] = fileparts(file);
 
                 if isequal(file,0)
                     error('Error in specifiying the file');
@@ -35,19 +35,28 @@
                     error('Error: Images do not appear to be registered');                
                 end
                 
+                    check_eye_tagD = strfind(id,'_OD');
+                    check_eye_tagS = strfind(id,'_OS');
+                    if ~isempty(check_eye_tagD) 
+                        id=id(1:check_eye_tagD-1);
+                    end
+                    if ~isempty(check_eye_tagS)
+                        id=id(1:check_eye_tagS-1);
+                    end
+                    
                 if strcmpi(type,'base')
                     
 
-                    index  = strfind(file,'-');
-                    identifier = regname(index-3:index-1);
+                    index  = strfind(regname,'-');
+                    identifier = regname(1:index-1);
+                    
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
-                            path = char(image.getAttribute('path'));
-                            [pathstr, name, ext] = fileparts(path);
-                            srchstrn = name(end-2:end);
-                                if strcmpi(srchstrn,identifier);
+                            xmlpath = char(image.getAttribute('path'));
+                            [~, name, ~] = fileparts(xmlpath);
+                                if strcmpi(name,identifier);
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
@@ -55,7 +64,7 @@
                     end
 
                    
-                   
+                    disp('Select fovea then select optic Disk')
                     [xin,yin] = ginput(2);
 
                     macula_xml = xDoc.createElement('macula');
@@ -85,15 +94,16 @@
                     
                 elseif strcmpi(type, 'corr')
                     
-                    identifier = regname(end-2:end);
+                    index  = strfind(regname,'-');
+                    endindex = strfind(regname,'_corrimg');
+                    identifier = regname(index+1:endindex-1);
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
-                            path = char(image.getAttribute('path'));
-                            [pathstr, name, ext] = fileparts(path);
-                            srchstrn = name(end-2:end);
-                                if strcmpi(srchstrn,identifier);
+                            xmlpath = char(image.getAttribute('path'));
+                            [~, name, ~] = fileparts(xmlpath);
+                                if strcmpi(name,identifier);
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
@@ -101,11 +111,10 @@
                     end
                 end
                 
-                
-                newImage.setAttribute('path', file);
-                newImage.setAttribute('time',time);
+                newImage.setAttribute('path', file);               
                 newImage.setAttribute('id',id);
-               
+                newImage.setAttribute('time',time);
+              
                 xDoc.getDocumentElement.appendChild(newImage);
 
                 xmlwrite('reg_images.xml', newImage);
