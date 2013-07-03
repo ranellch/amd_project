@@ -15,7 +15,7 @@
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
              for j=1:length(pics)
                 file = pics{j};
-                [~, regname,~] = fileparts(file);
+                [regpth, regname,ext] = fileparts(file);
 
                 if isequal(file,0)
                     error('Error in specifiying the file');
@@ -38,15 +38,16 @@
                 if strcmpi(type,'base')
                     
 
-                    index  = strfind(name,'-');
-                    identifier = regname(1:index-1);
+                    index  = strfind(file,'-');
+                    identifier = regname(index-3:index-1);
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
                             path = char(image.getAttribute('path'));
-                            [~, name, ~] = fileparts(path);
-                                if strcmpi(name,identifier);
+                            [pathstr, name, ext] = fileparts(path);
+                            srchstrn = name(end-2:end);
+                                if strcmpi(srchstrn,identifier);
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
@@ -54,7 +55,7 @@
                     end
 
                    
-                    disp('Select fovea then select optic Disk')
+                   
                     [xin,yin] = ginput(2);
 
                     macula_xml = xDoc.createElement('macula');
@@ -84,15 +85,15 @@
                     
                 elseif strcmpi(type, 'corr')
                     
-                    index  = strfind(name,'-');
-                    identifier = regname(index+1:end);
+                    identifier = regname(end-2:end);
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
                             path = char(image.getAttribute('path'));
                             [pathstr, name, ext] = fileparts(path);
-                                if strcmpi(name,identifier);
+                            srchstrn = name(end-2:end);
+                                if strcmpi(srchstrn,identifier);
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
@@ -100,10 +101,11 @@
                     end
                 end
                 
-                newImage.setAttribute('path', file);               
-                newImage.setAttribute('id',id);
+                
+                newImage.setAttribute('path', file);
                 newImage.setAttribute('time',time);
-              
+                newImage.setAttribute('id',id);
+               
                 xDoc.getDocumentElement.appendChild(newImage);
 
                 xmlwrite('reg_images.xml', newImage);
