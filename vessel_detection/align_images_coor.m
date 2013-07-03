@@ -5,15 +5,12 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     %Read in the images
     image1 = im2double(img1)/256;
     image2 = im2double(img2)/256;
-
-    %Find the smallest axis of the two images
-    miny = min_axis(image1, image2, 1);
-    minx = min_axis(image1, image2, 2);
     
-    %Resize the image so that they are both the same now
-    image1 = imresize(image1, [miny, minx]);
-    image2 = imresize(image2, [miny, minx]);
+    %Resize/Crop the image so that they are both the same now
+    [image1, image2] = match_sizing(image1, image2);
 
+    imshowpair(image1, image2);
+    
     %Build string for output information
     skip = '';
     if(isempty(skip_quad) == false)
