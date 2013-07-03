@@ -8,7 +8,7 @@ list=dir('./Reg Set/');
     for i=1:length(list)
         
         if isdir(list{i})
-            patid=list{i};
+            id=list{i};
             path = strcat('./Reg Set/',list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
@@ -18,17 +18,17 @@ list=dir('./Reg Set/');
                     if isempty(ind)
                         continue
                     else                    
-                         %get correlated image labels
+                         %get correlated image tags
                          for count = 1:images.getLength  
                             cimage = images.item(count - 1);
                             corrpath = char(cimage.getAttribute('path'));
-                            if strcmpi(corrpath, file)
+                            if strcmpi(corrpath, file)                               
                                 visit2 =  char(cimage.getAttribute('path'));
                                 time2 = char(cimage.getAttribute('time'));
                                 break
                             end
                          end
-                         %get base image labels
+                         %get base image tags
                          [pathstr, name, ext] = fileparts(file);
                          bfile=strcat(file(1:ind-1),'_baseimg', ext);
                          for count = 1:images.getLength
@@ -41,7 +41,7 @@ list=dir('./Reg Set/');
                              end
                          end
                             trialname = strcat('-', time1, 'v', time2);
-                            data = compare_maculas_best('AF',visit1, visit2, patid, trialname);
+                            data = compare_maculas_best('AF',visit1, visit2, id, trialname);
                             results(loc:loc+length(fieldnames(data))-1) = struct2cell(data);
                             loc = loc + length(fieldnames(data))+1;
                     end

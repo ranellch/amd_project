@@ -18,8 +18,42 @@ function [ data ] = compare_maculas_best(type, varargin)
      end
      
      test = ~isempty(varargin);
+     
+         %~~~Get first image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    if ~test %if runtest has not been called, prompt user for files
+        % If an images directory exists, look there first
+        path = set_path('./Images/','*.tif');
+        % Open dialog box to select file
+        [filename2,path2] = uigetfile(path, 'Select Past Image to Compare to More Recent');
+         if isequal(filename2,0) || isequal(path2,0)
+           disp('User pressed cancel')
+           return
+        else
+           disp(['User selected ', fullfile(path2, filename2)])
+        end
+        fullpath = fullfile(path2,filename2);
+    else % use visit arguments
+        fullpath = fullfile('./Test Set/',patid, visit1);
+    end
+     
+
     
-     %~~~Get image 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+      % Read the image
+    imgRGB=imread(fullpath);
+    RGB_test=size(size(imgRGB));
+    if(RGB_test(2)==3)
+        img2=rgb2gray(imgRGB);
+    else
+        img2=imgRGB;
+    end
+    
+    % Crop footer
+     img2 = crop_footer(img2);
+
+        
+    
+    
+     %~~~Get second image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
     if ~test %if runtest has not been called, prompt user for files
         % If an images directory exists, look there first
         path = set_path('./Images/','*.tif');
@@ -68,39 +102,7 @@ function [ data ] = compare_maculas_best(type, varargin)
 
     
     
-    %~~~Get second image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    if ~test %if runtest has not been called, prompt user for files
-        % If an images directory exists, look there first
-        path = set_path('./Images/','*.tif');
-        % Open dialog box to select file
-        [filename2,path2] = uigetfile(path, 'Select Past Image to Compare');
-         if isequal(filename2,0) || isequal(path2,0)
-           disp('User pressed cancel')
-           return
-        else
-           disp(['User selected ', fullfile(path2, filename2)])
-        end
-        fullpath = fullfile(path2,filename2);
-    else % use visit arguments
-        fullpath = fullfile('./Test Set/',patid, visit1);
-    end
-     
 
-    
-      % Read the image
-    imgRGB=imread(fullpath);
-    RGB_test=size(size(imgRGB));
-    if(RGB_test(2)==3)
-        img2=rgb2gray(imgRGB);
-    else
-        img2=imgRGB;
-    end
-    
-    % Crop footer
-     img2 = crop_footer(img2);
-
-        
-    
 
   %~~~~~~~~% Ask for input points~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
