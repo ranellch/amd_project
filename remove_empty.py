@@ -1,9 +1,18 @@
-f = open('images.xml')
-fout = open('images_out.xml', 'w')
+import sys
+
+input_file = sys.argv[1]
+output_file = sys.argv[2]
+
+f = open(input_file)
+
+longstring = '';
 
 for line in f:
     if(line.isspace() == False):
-        fout.write(line )
+        longstring += line
 
 f.close()
+
+fout = open(output_file, 'w')
+fout.write(longstring)
 fout.close()
