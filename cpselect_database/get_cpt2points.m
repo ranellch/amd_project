@@ -51,7 +51,7 @@ function [out] = get_cpt2points()
                         dx = return_xyas(regxml, 'dx');
                         dy = return_xyas(regxml, 'dy');
                         scale = return_xyas(regxml, 'scale');
-                        angle = return_xyas(regxml, 'angle');
+                        angle =return_xyas(regxml, 'angle');
                     end
                 catch
                     alreadydone = 0;
@@ -68,8 +68,13 @@ function [out] = get_cpt2points()
                     %Read in the next image to corr
                     next = imread(path2);
                     
-                    %Resize the images so that match in size
-                    [image1, image2] = match_sizing(base, next);
+                    %Find the smallest axis of the two images
+                    miny = min_axis(base, next, 1);
+                    minx = min_axis(base, next, 2);
+
+                    %Resize the image so that they are both the same now
+                    image1 = imresize(base, [miny, minx]);
+                    image2 = imresize(next, [miny, minx]);
 
                     %Use cpselect tool to put them together and get affine transform
                     [xyinput_out, xybase_out] = cpselect(image2, image1, 'Wait', true);
@@ -135,8 +140,8 @@ function [out] = get_cpt2points()
                 
                 %Disp the transform calculated or already stored
                 disp([id1, ' ', path1, ' - ', path2, ...
-                     ' => theta: ', num2str(angle), ' scale: ', num2str(scale),...
-                     ' x: ', num2str(dx), ' y: ', num2str(dy)]);
+                    ' => theta: ', num2str(angle), ' scale: ', num2str(scale),...
+                    ' x: ', num2str(dx), ' y: ', num2str(dy)]);
             end
 
             %Move onto next image
