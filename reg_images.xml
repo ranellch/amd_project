@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 @@ -1,582 +1,4847 @@
  <?xml version="1.0" encoding="utf-8"?>
  <images>
@@ -1856,6 +1857,11 @@
 =======
 <?xml version="1.0" encoding="utf-8"?>
 <images>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<images>
+<<<<<<< HEAD
+>>>>>>> parent of e594056... Revert "tagged and added more registered images to the registered images XML"
     
     
     
@@ -6700,5 +6706,385 @@
     </image>
     <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_005_corrimg.tif" time="2"/>  
  
+<<<<<<< HEAD
 </images>
 >>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
+=======
+=======
+   <image path="BARR OD 1-BARR OD 2_baseimg.tif" id="BARR" time="1">
+      <macula>
+         <x>352</x>
+         <y>387</y>
+      </macula>
+      <optic_disk>
+         <x>39</x>
+         <y>385</y>
+      </optic_disk>
+   </image>
+   <image path="BARR OD 1-BARR OD 2_corrimg.tif" id="BARR" time="2"/>
+   <image path="BARR OD 1-BARR OD 3 (poor quality)_baseimg.tif" id="BARR" time="1">
+      <macula>
+         <x>355</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>34</x>
+         <y>381</y>
+      </optic_disk>
+   </image>
+   <image path="BARR OD 1-BARR OD 3 (poor quality)_corrimg.tif" id="BARR" time="3"/>
+   <image path="BARR OD 2-BARR OD 3 (poor quality)_baseimg.tif" id="BARR" time="2">
+      <macula>
+         <x>378</x>
+         <y>396</y>
+      </macula>
+      <optic_disk>
+         <x>48</x>
+         <y>399</y>
+      </optic_disk>
+   </image>
+   <image path="BARR OD 2-BARR OD 3 (poor quality)_corrimg.tif" id="BARR" time="3"/>
+   <image path="BORON OD 1 (bright)-BORON OD 2_baseimg.tif" id="BORON" time="1">
+      <macula>
+         <x>361</x>
+         <y>396</y>
+      </macula>
+      <optic_disk>
+         <x>60</x>
+         <y>379</y>
+      </optic_disk>
+   </image>
+   <image path="BORON OD 1 (bright)-BORON OD 2_corrimg.tif" id="BORON" time="2"/>
+   <image path="BORON OD 1 (bright)-BORON OD 3_baseimg.tif" id="BORON" time="1">
+      <macula>
+         <x>363</x>
+         <y>394</y>
+      </macula>
+      <optic_disk>
+         <x>60</x>
+         <y>378</y>
+      </optic_disk>
+   </image>
+   <image path="BORON OD 1 (bright)-BORON OD 3_corrimg.tif" id="BORON" time="3"/>
+   <image path="BORON OD 2-BORON OD 3_baseimg.tif" id="BORON" time="2">
+      <macula>
+         <x>710</x>
+         <y>656</y>
+      </macula>
+      <optic_disk>
+         <x>107</x>
+         <y>641</y>
+      </optic_disk>
+   </image>
+   <image path="BORON OD 2-BORON OD 3_corrimg.tif" id="BORON" time="3"/>
+   <image path="BUCHANAN OD 1-BUCHANAN OD 2_baseimg.tif" id="BUCHANAN" time="1">
+      <macula>
+         <x>355</x>
+         <y>397</y>
+      </macula>
+      <optic_disk>
+         <x>58</x>
+         <y>355</y>
+      </optic_disk>
+   </image>
+   <image path="BUCHANAN OD 1-BUCHANAN OD 2_corrimg.tif" id="BUCHANAN" time="2"/>
+   <image path="BUCHANAN OD 1-BUCHANAN OD 3_baseimg.tif" id="BUCHANAN" time="1">
+      <macula>
+         <x>355</x>
+         <y>396</y>
+      </macula>
+      <optic_disk>
+         <x>63</x>
+         <y>358</y>
+      </optic_disk>
+   </image>
+   <image path="BUCHANAN OD 1-BUCHANAN OD 3_corrimg.tif" id="BUCHANAN" time="3"/>
+   <image path="BUCHANAN OD 2-BUCHANAN OD 3_baseimg.tif" id="BUCHANAN" time="2">
+      <macula>
+         <x>369</x>
+         <y>399</y>
+      </macula>
+      <optic_disk>
+         <x>70</x>
+         <y>382</y>
+      </optic_disk>
+   </image>
+   <image path="BUCHANAN OD 2-BUCHANAN OD 3_corrimg.tif" id="BUCHANAN" time="3"/>
+   <image path="CERVENKA OD 1-CERVENKA OD 2_baseimg.tif" id="CERVENKA" time="1">
+      <macula>
+         <x>355</x>
+         <y>399</y>
+      </macula>
+      <optic_disk>
+         <x>30</x>
+         <y>385</y>
+      </optic_disk>
+   </image>
+   <image path="CERVENKA OD 1-CERVENKA OD 2_corrimg.tif" id="CERVENKA" time="2"/>
+   <image path="CERVENKA OD 1-CERVENKA OD 3_baseimg.tif" id="CERVENKA" time="1">
+      <macula>
+         <x>354</x>
+         <y>396</y>
+      </macula>
+      <optic_disk>
+         <x>28</x>
+         <y>384</y>
+      </optic_disk>
+   </image>
+   <image path="CERVENKA OD 1-CERVENKA OD 3_corrimg.tif" id="CERVENKA" time="3"/>
+   <image path="CERVENKA OD 2-CERVENKA OD 3_baseimg.tif" id="CERVENKA" time="2">
+      <macula>
+         <x>345</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>18</x>
+         <y>385</y>
+      </optic_disk>
+   </image>
+   <image path="CERVENKA OD 2-CERVENKA OD 3_corrimg.tif" id="CERVENKA" time="3"/>
+   <image path="COMBS OS 1 (poor image)-COMBS OS 2_baseimg.tif" id="COMBS" time="1">
+      <macula>
+         <x>411</x>
+         <y>409</y>
+      </macula>
+      <optic_disk>
+         <x>135</x>
+         <y>405</y>
+      </optic_disk>
+   </image>
+   <image path="COMBS OS 1 (poor image)-COMBS OS 2_corrimg.tif" id="COMBS" time="2"/>
+   <image path="COMBS OS 1 (poor image)-COMBS OS 3_baseimg.tif" id="COMBS" time="1">
+      <macula>
+         <x>818</x>
+         <y>818</y>
+      </macula>
+      <optic_disk>
+         <x>275</x>
+         <y>815</y>
+      </optic_disk>
+   </image>
+   <image path="COMBS OS 1 (poor image)-COMBS OS 3_corrimg.tif" id="COMBS" time="3"/>
+   <image path="COMBS OS 2-COMBS OS 3_baseimg.tif" id="COMBS" time="2">
+      <macula>
+         <x>430</x>
+         <y>394</y>
+      </macula>
+      <optic_disk>
+         <x>166</x>
+         <y>372</y>
+      </optic_disk>
+   </image>
+   <image path="COMBS OS 2-COMBS OS 3_corrimg.tif" id="COMBS" time="3"/>
+   <image path="COMISKY OS 1-COMISKY OS 2_baseimg.tif" id="COMISKY" time="1">
+      <macula>
+         <x>415</x>
+         <y>400</y>
+      </macula>
+      <optic_disk>
+         <x>114</x>
+         <y>393</y>
+      </optic_disk>
+   </image>
+   <image path="COMISKY OS 1-COMISKY OS 2_corrimg.tif" id="COMISKY" time="2"/>
+   <image path="COMISKY OS 1-COMISKY OS 3_baseimg.tif" id="COMISKY" time="1">
+      <macula>
+         <x>417</x>
+         <y>399</y>
+      </macula>
+      <optic_disk>
+         <x>117</x>
+         <y>391</y>
+      </optic_disk>
+   </image>
+   <image path="COMISKY OS 1-COMISKY OS 3_corrimg.tif" id="COMISKY" time="3"/>
+   <image path="COMISKY OS 2-COMISKY OS 3_baseimg.tif" id="COMISKY" time="2">
+      <macula>
+         <x>418</x>
+         <y>391</y>
+      </macula>
+      <optic_disk>
+         <x>115</x>
+         <y>387</y>
+      </optic_disk>
+   </image>
+   <image path="COMISKY OS 2-COMISKY OS 3_corrimg.tif" id="COMISKY" time="3"/>
+   <image path="GETTEL OD 1-GETTEL OD 2_baseimg.tif" id="GETTEL" time="1">
+      <macula>
+         <x>343</x>
+         <y>406</y>
+      </macula>
+      <optic_disk>
+         <x>63</x>
+         <y>373</y>
+      </optic_disk>
+   </image>
+   <image path="GETTEL OD 1-GETTEL OD 2_corrimg.tif" id="GETTEL" time="2"/>
+   <image path="GETTEL OD 1-GETTEL OD 3_baseimg.tif" id="GETTEL" time="1">
+      <macula>
+         <x>352</x>
+         <y>405</y>
+      </macula>
+      <optic_disk>
+         <x>54</x>
+         <y>375</y>
+      </optic_disk>
+   </image>
+   <image path="GETTEL OD 1-GETTEL OD 3_corrimg.tif" id="GETTEL" time="3"/>
+   <image path="GETTEL OD 2-GETTEL OD 3_baseimg.tif" id="GETTEL" time="2">
+      <macula>
+         <x>363</x>
+         <y>402</y>
+      </macula>
+      <optic_disk>
+         <x>69</x>
+         <y>364</y>
+      </optic_disk>
+   </image>
+   <image path="GETTEL OD 2-GETTEL OD 3_corrimg.tif" id="GETTEL" time="3"/>
+   <image path="KUKLA OS 1 (poor image)-KUKLA OS 3 (poor image)_baseimg.tif" id="KUKLA" time="1">
+      <macula>
+         <x>336</x>
+         <y>511</y>
+      </macula>
+      <optic_disk>
+         <x>30</x>
+         <y>444</y>
+      </optic_disk>
+   </image>
+   <image path="KUKLA OS 1 (poor image)-KUKLA OS 3 (poor image)_corrimg.tif" id="KUKLA" time="3"/>
+   <image path="KUKLA OS 2 (poor image)-KUKLA OS 3 (poor image)_baseimg.tif" id="KUKLA" time="2">
+      <macula>
+         <x>433</x>
+         <y>408</y>
+      </macula>
+      <optic_disk>
+         <x>121</x>
+         <y>334</y>
+      </optic_disk>
+   </image>
+   <image path="KUKLA OS 2 (poor image)-KUKLA OS 3 (poor image)_corrimg.tif" id="KUKLA" time="3"/>
+   <image path="LEMAY OS 1-LEMAY OS 2_baseimg.tif" id="LEMAY" time="1">
+      <macula>
+         <x>435</x>
+         <y>402</y>
+      </macula>
+      <optic_disk>
+         <x>129</x>
+         <y>366</y>
+      </optic_disk>
+   </image>
+   <image path="LEMAY OS 1-LEMAY OS 2_corrimg.tif" id="LEMAY" time="2"/>
+   <image path="REAM OS 1-REAM OS 2_baseimg.tif" id="REAM" time="1">
+      <macula>
+         <x>414</x>
+         <y>393</y>
+      </macula>
+      <optic_disk>
+         <x>123</x>
+         <y>364</y>
+      </optic_disk>
+   </image>
+   <image path="REAM OS 1-REAM OS 2_corrimg.tif" id="REAM" time="2"/>
+   <image path="REAM OS 1-REAM OS 3_baseimg.tif" id="REAM" time="1">
+      <macula>
+         <x>412</x>
+         <y>390</y>
+      </macula>
+      <optic_disk>
+         <x>120</x>
+         <y>364</y>
+      </optic_disk>
+   </image>
+   <image path="REAM OS 1-REAM OS 3_corrimg.tif" id="REAM" time="3"/>
+   <image path="REAM OS 2-REAM OS 3_baseimg.tif" id="REAM" time="2">
+      <macula>
+         <x>405</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>115</x>
+         <y>351</y>
+      </optic_disk>
+   </image>
+   <image path="REAM OS 2-REAM OS 3_corrimg.tif" id="REAM" time="3"/>
+   <image path="RHOADES OS 1-RHOADES OS 2_baseimg.tif" id="RHOADES" time="1">
+      <macula>
+         <x>426</x>
+         <y>391</y>
+      </macula>
+      <optic_disk>
+         <x>72</x>
+         <y>385</y>
+      </optic_disk>
+   </image>
+   <image path="RHOADES OS 1-RHOADES OS 2_corrimg.tif" id="RHOADES" time="2"/>
+   <image path="VINCENT OD 1-VINCENT OD 2_baseimg.tif" id="VINCENT" time="1">
+      <macula>
+         <x>339</x>
+         <y>399</y>
+      </macula>
+      <optic_disk>
+         <x>9</x>
+         <y>373</y>
+      </optic_disk>
+   </image>
+   <image path="VINCENT OD 1-VINCENT OD 2_corrimg.tif" id="VINCENT" time="2"/>
+   <image path="VINCENT OD 1-VINCENT OD 3 (funny iamge)_baseimg.tif" id="VINCENT" time="1">
+      <macula>
+         <x>343</x>
+         <y>399</y>
+      </macula>
+      <optic_disk>
+         <x>3</x>
+         <y>370</y>
+      </optic_disk>
+   </image>
+   <image path="VINCENT OD 1-VINCENT OD 3 (funny iamge)_corrimg.tif" id="VINCENT" time="3"/>
+   <image path="VINCENT OD 2-VINCENT OD 3 (funny iamge)_baseimg.tif" id="VINCENT" time="2">
+      <macula>
+         <x>761</x>
+         <y>794</y>
+      </macula>
+      <optic_disk>
+         <x>65</x>
+         <y>734</y>
+      </optic_disk>
+   </image>
+   <image path="VINCENT OD 2-VINCENT OD 3 (funny iamge)_corrimg.tif" id="VINCENT" time="3"/>
+   <image path="White OD 1-White OD 2_baseimg.tif" id="White" time="1">
+      <macula>
+         <x>402</x>
+         <y>411</y>
+      </macula>
+      <optic_disk>
+         <x>52</x>
+         <y>375</y>
+      </optic_disk>
+   </image>
+   <image path="White OD 1-White OD 2_corrimg.tif" id="White" time="2"/>
+   <image path="White OD 1-White OD 3 (poor image)_baseimg.tif" id="White" time="1">
+      <macula>
+         <x>785</x>
+         <y>812</y>
+      </macula>
+      <optic_disk>
+         <x>116</x>
+         <y>749</y>
+      </optic_disk>
+   </image>
+   <image path="White OD 1-White OD 3 (poor image)_corrimg.tif" id="White" time="3"/>
+   <image path="White OD 2-White OD 3 (poor image)_baseimg.tif" id="White" time="2">
+      <macula>
+         <x>363</x>
+         <y>405</y>
+      </macula>
+      <optic_disk>
+         <x>39</x>
+         <y>346</y>
+      </optic_disk>
+   </image>
+   <image path="White OD 2-White OD 3 (poor image)_corrimg.tif" id="White" time="3"/>
+>>>>>>> 9bc4bc49449c72b4a3da66c66188e13e61cb4767
+</images>
+>>>>>>> parent of e594056... Revert "tagged and added more registered images to the registered images XML"

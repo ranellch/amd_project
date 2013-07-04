@@ -24,8 +24,7 @@
                 
                 newImage = xDoc.createElement('image');
                 
-                img = imread(strcat(path, file));
-                figure(1);imshow(img);title(file);
+               
                 
                 if ~isempty(strfind(file,'_corrimg'));
                     type = 'corr';
@@ -34,25 +33,28 @@
                 else 
                     error('Error: Images do not appear to be registered');                
                 end
-                
-                if strcmpi(type,'base')
+    
                     
-
-                    index  = strfind(name,'-');
+                if strcmpi(type,'base')
+                                         
+                    index  = strfind(regname,'-');
                     identifier = regname(1:index-1);
+                    
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
-                            path = char(image.getAttribute('path'));
-                            [~, name, ~] = fileparts(path);
+                            xmlpath = char(image.getAttribute('path'));
+                            [~, name, ~] = fileparts(xmlpath);
                                 if strcmpi(name,identifier);
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
                         end
                     end
-
+                    
+                    img = imread(strcat(path, file));
+                    figure(1);imshow(img);title(file);
                    
                     disp('Select fovea then select optic Disk')
                     [xin,yin] = ginput(2);
@@ -84,14 +86,15 @@
                     
                 elseif strcmpi(type, 'corr')
                     
-                    index  = strfind(name,'-');
-                    identifier = regname(index+1:end);
+                    index  = strfind(regname,'-');
+                    endindex = strfind(regname,'_corrimg');
+                    identifier = regname(index+1:endindex-1);
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
-                            path = char(image.getAttribute('path'));
-                            [pathstr, name, ext] = fileparts(path);
+                            xmlpath = char(image.getAttribute('path'));
+                            [~, name, ~] = fileparts(xmlpath);
                                 if strcmpi(name,identifier);
                                     time = char(image.getAttribute('time'));
                                     break
