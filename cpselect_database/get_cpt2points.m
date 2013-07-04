@@ -73,59 +73,63 @@ function [out] = get_cpt2points()
 
                     %Use cpselect tool to put them together and get affine transform
                     [xyinput_out, xybase_out] = cpselect(image2, image1, 'Wait', true);
-                    [angle, scale, translation, tform] = transform_it_vision(xybase_out, xyinput_out);
-                    
-                    %get the x offset
-                    dx = translation(1);
-                    x_xml = xDoc.createElement('dx');
-                    x_xml.setTextContent(num2str(dx));
-                    reg_xmlf.appendChild(x_xml);
-                    x_xml = xDoc.createElement('dx');
-                    x_xml.setTextContent(num2str(-1.0 * dx));
-                    reg_xmlb.appendChild(x_xml);
+                    if size(xyinput_out, 1) >= 3 && size(xybase_out, 1) >= 3 && size(xyinput_out, 1) == size(xybase_out, 1)
+                        [angle, scale, translation, tform] = transform_it_vision(xybase_out, xyinput_out);
 
-                    %Get the yoffset
-                    dy = translation(2);
-                    y_xml = xDoc.createElement('dy');
-                    y_xml.setTextContent(num2str(dy));
-                    reg_xmlf.appendChild(y_xml);
-                    y_xml = xDoc.createElement('dy');
-                    y_xml.setTextContent(num2str(-1.0 * dy));
-                    reg_xmlb.appendChild(y_xml);
+                        %get the x offset
+                        dx = translation(1);
+                        x_xml = xDoc.createElement('dx');
+                        x_xml.setTextContent(num2str(dx));
+                        reg_xmlf.appendChild(x_xml);
+                        x_xml = xDoc.createElement('dx');
+                        x_xml.setTextContent(num2str(-1.0 * dx));
+                        reg_xmlb.appendChild(x_xml);
 
-                    %Get the angle offset
-                    a_xml = xDoc.createElement('angle');
-                    a_xml.setTextContent(num2str(angle));
-                    reg_xmlf.appendChild(a_xml);
-                    a_xml = xDoc.createElement('angle');
-                    a_xml.setTextContent(num2str(-1.0 * angle));
-                    reg_xmlb.appendChild(a_xml);
-                    
-                    %Get the scale offset
-                    s_xml = xDoc.createElement('scale');
-                    s_xml.setTextContent(num2str(scale));
-                    reg_xmlf.appendChild(s_xml);
-                    s_xml = xDoc.createElement('scale');
-                    s_xml.setTextContent(num2str(1.0 / scale));
-                    reg_xmlb.appendChild(s_xml);
+                        %Get the yoffset
+                        dy = translation(2);
+                        y_xml = xDoc.createElement('dy');
+                        y_xml.setTextContent(num2str(dy));
+                        reg_xmlf.appendChild(y_xml);
+                        y_xml = xDoc.createElement('dy');
+                        y_xml.setTextContent(num2str(-1.0 * dy));
+                        reg_xmlb.appendChild(y_xml);
 
-                    %apply the transform and display to use so one can seeit
-                    [img1_correct, img2_correct] = apply_transform(tform, image1, image2);
-                    pairhandle = imshowpair(img1_correct, img2_correct);
-                    waitfor(pairhandle);
-                    
-                    % Construct a questdlg with three options
-                    choice = questdlg('Would you like use this match?', ...
-                                        'Valid Match', 'Yes', 'No', 'No');
-                    % Handle response
-                    switch choice
-                        case 'Yes'
-                            %Add the new tag and write the output
-                            image1xml.appendChild(reg_xmlf);
-                            image2xml.appendChild(reg_xmlb);
-                            xmlwrite('images.xml', xDoc);
-                        case 'No'
-                            disp('Ok does not sound good!');
+                        %Get the angle offset
+                        a_xml = xDoc.createElement('angle');
+                        a_xml.setTextContent(num2str(angle));
+                        reg_xmlf.appendChild(a_xml);
+                        a_xml = xDoc.createElement('angle');
+                        a_xml.setTextContent(num2str(-1.0 * angle));
+                        reg_xmlb.appendChild(a_xml);
+
+                        %Get the scale offset
+                        s_xml = xDoc.createElement('scale');
+                        s_xml.setTextContent(num2str(scale));
+                        reg_xmlf.appendChild(s_xml);
+                        s_xml = xDoc.createElement('scale');
+                        s_xml.setTextContent(num2str(1.0 / scale));
+                        reg_xmlb.appendChild(s_xml);
+
+                        %apply the transform and display to use so one can seeit
+                        [img1_correct, img2_correct] = apply_transform(tform, image1, image2);
+                        pairhandle = imshowpair(img1_correct, img2_correct);
+                        waitfor(pairhandle);
+
+                        % Construct a questdlg with three options
+                        choice = questdlg('Would you like use this match?', ...
+                                            'Valid Match', 'Yes', 'No', 'No');
+                        % Handle response
+                        switch choice
+                            case 'Yes'
+                                %Add the new tag and write the output
+                                image1xml.appendChild(reg_xmlf);
+                                image2xml.appendChild(reg_xmlb);
+                                xmlwrite('images.xml', xDoc);
+                            case 'No'
+                                disp('Ok does not sound good!');
+                        end
+                    else
+                        disp('You have not entered enough points (minimum of 3) and/or matching points');
                     end
                 end
                 
