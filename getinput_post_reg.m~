@@ -15,7 +15,11 @@
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
              for j=1:length(pics)
                 file = pics{j};
+<<<<<<< HEAD
                 [regpth, regname,ext] = fileparts(file);
+=======
+                [~, regname,~] = fileparts(file);
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
 
                 if isequal(file,0)
                     error('Error in specifiying the file');
@@ -35,19 +39,43 @@
                     error('Error: Images do not appear to be registered');                
                 end
                 
+<<<<<<< HEAD
                 if strcmpi(type,'base')
                     
 
                     index  = strfind(file,'-');
                     identifier = regname(index-3:index-1);
+=======
+                    check_eye_tagD = strfind(id,'_OD');
+                    check_eye_tagS = strfind(id,'_OS');
+                    if ~isempty(check_eye_tagD) 
+                        id=id(1:check_eye_tagD-1);
+                    end
+                    if ~isempty(check_eye_tagS)
+                        id=id(1:check_eye_tagS-1);
+                    end
+                    
+                if strcmpi(type,'base')
+                    
+
+                    index  = strfind(regname,'-');
+                    identifier = regname(1:index-1);
+                    
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
+<<<<<<< HEAD
                             path = char(image.getAttribute('path'));
                             [pathstr, name, ext] = fileparts(path);
                             srchstrn = name(end-2:end);
                                 if strcmpi(srchstrn,identifier);
+=======
+                            xmlpath = char(image.getAttribute('path'));
+                            [~, name, ~] = fileparts(xmlpath);
+                                if strcmpi(name,identifier);
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
@@ -55,7 +83,11 @@
                     end
 
                    
+<<<<<<< HEAD
                    
+=======
+                    disp('Select fovea then select optic Disk')
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
                     [xin,yin] = ginput(2);
 
                     macula_xml = xDoc.createElement('macula');
@@ -85,15 +117,27 @@
                     
                 elseif strcmpi(type, 'corr')
                     
+<<<<<<< HEAD
                     identifier = regname(end-2:end);
+=======
+                    index  = strfind(regname,'-');
+                    endindex = strfind(regname,'_corrimg');
+                    identifier = regname(index+1:endindex-1);
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
                     
                     for count = 1:images.getLength
                         image = images.item(count - 1);
                         if strcmpi(id, image.getAttribute('id'))
+<<<<<<< HEAD
                             path = char(image.getAttribute('path'));
                             [pathstr, name, ext] = fileparts(path);
                             srchstrn = name(end-2:end);
                                 if strcmpi(srchstrn,identifier);
+=======
+                            xmlpath = char(image.getAttribute('path'));
+                            [~, name, ~] = fileparts(xmlpath);
+                                if strcmpi(name,identifier);
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
                                     time = char(image.getAttribute('time'));
                                     break
                                 end
@@ -101,11 +145,18 @@
                     end
                 end
                 
+<<<<<<< HEAD
                 
                 newImage.setAttribute('path', file);
                 newImage.setAttribute('time',time);
                 newImage.setAttribute('id',id);
                
+=======
+                newImage.setAttribute('path', file);               
+                newImage.setAttribute('id',id);
+                newImage.setAttribute('time',time);
+              
+>>>>>>> parent of 6f02b10... Merge branch 'master' of https://github.com/ranellch/amd_project
                 xDoc.getDocumentElement.appendChild(newImage);
 
                 xmlwrite('reg_images.xml', newImage);
