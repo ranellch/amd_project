@@ -1,6 +1,8 @@
 function [out] = get_cpt2points()
     %Add the path of the images to look for
     addpath(genpath('../Test Set'));
+    
+    %Add path for match_sizing.m
     addpath('../vessel_detection');
 
     %Opent the xml document
@@ -67,14 +69,9 @@ function [out] = get_cpt2points()
 
                     %Read in the next image to corr
                     next = imread(path2);
-                    
-                    %Find the smallest axis of the two images
-                    miny = min_axis(base, next, 1);
-                    minx = min_axis(base, next, 2);
 
                     %Resize the image so that they are both the same now
-                    image1 = imresize(base, [miny, minx]);
-                    image2 = imresize(next, [miny, minx]);
+                    [image1, image2] = match_sizing(next, base);
 
                     %Use cpselect tool to put them together and get affine transform
                     [xyinput_out, xybase_out] = cpselect(image2, image1, 'Wait', true);

@@ -37,6 +37,12 @@
          <angle>0.023941</angle>
          <scale>1.0016</scale>
       </reg>
+      <reg corr_time="3">
+         <dx>20.775</dx>
+         <dy>5.5074</dy>
+         <angle>0.012791</angle>
+         <scale>0.99813</scale>
+      </reg>
    </image>
    <image id="BARR" path="BARR OD 3 (poor quality).tif" time="3">
       <macula>
@@ -53,6 +59,12 @@
          <angle>0.011619</angle>
          <scale>1.0017</scale>
       </reg>
+      <reg corr_time="2">
+         <dx>-20.775</dx>
+         <dy>-5.5074</dy>
+         <angle>-0.012791</angle>
+         <scale>1.0019</scale>
+      </reg>
    </image>
    <image id="BIGNALL" path="BIGNALL OD 1.tif" time="1">
       <macula>
@@ -63,6 +75,18 @@
          <x>7</x>
          <y>339</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>14.207</dx>
+         <dy>-14.2109</dy>
+         <angle>-0.051052</angle>
+         <scale>0.99379</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>14.4936</dx>
+         <dy>-55.6079</dy>
+         <angle>-0.0054543</angle>
+         <scale>0.99596</scale>
+      </reg>
    </image>
    <image id="BIGNALL" path="BIGNALL OD 2.tif" time="2">
       <macula>
@@ -73,6 +97,18 @@
          <x>9</x>
          <y>361</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>-14.207</dx>
+         <dy>14.2109</dy>
+         <angle>0.051052</angle>
+         <scale>1.0062</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-6.3457</dx>
+         <dy>-43.2751</dy>
+         <angle>0.052463</angle>
+         <scale>1.0075</scale>
+      </reg>
    </image>
    <image id="BIGNALL" path="BIGNALL OD 3 (poor image).tif" time="3">
       <macula>
@@ -83,6 +119,18 @@
          <x>9</x>
          <y>789</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>-14.4936</dx>
+         <dy>55.6079</dy>
+         <angle>0.0054543</angle>
+         <scale>1.0041</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>6.3457</dx>
+         <dy>43.2751</dy>
+         <angle>-0.052463</angle>
+         <scale>0.9926</scale>
+      </reg>
    </image>
    <image id="BORON" path="BORON OD 1 (bright).tif" time="1">
       <macula>
@@ -93,6 +141,18 @@
          <x>4</x>
          <y>375</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>5.3842</dx>
+         <dy>61.5812</dy>
+         <angle>-0.0023927</angle>
+         <scale>1.0039</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-63.4782</dx>
+         <dy>-1.7275</dy>
+         <angle>0.050162</angle>
+         <scale>1.0037</scale>
+      </reg>
    </image>
    <image id="BORON" path="BORON OD 2.tif" time="2">
       <macula>
@@ -103,6 +163,18 @@
          <x>7</x>
          <y>629</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>-5.3842</dx>
+         <dy>-61.5812</dy>
+         <angle>0.0023927</angle>
+         <scale>0.99611</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-133.2947</dx>
+         <dy>-135.4305</dy>
+         <angle>0.042848</angle>
+         <scale>1.002</scale>
+      </reg>
    </image>
    <image id="BORON" path="BORON OD 3.tif" time="3">
       <macula>
@@ -113,6 +185,18 @@
          <x>53</x>
          <y>741</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>63.4782</dx>
+         <dy>1.7275</dy>
+         <angle>-0.050162</angle>
+         <scale>0.99631</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>133.2947</dx>
+         <dy>135.4305</dy>
+         <angle>-0.042848</angle>
+         <scale>0.99801</scale>
+      </reg>
    </image>
    <image id="BUCHANAN" path="BUCHANAN OD 1.tif" time="1">
       <macula>
@@ -123,6 +207,18 @@
          <x>14</x>
          <y>348</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>7.3234</dx>
+         <dy>-25.6616</dy>
+         <angle>-0.054675</angle>
+         <scale>0.99908</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>46.2611</dx>
+         <dy>-43.7294</dy>
+         <angle>-0.076814</angle>
+         <scale>0.99378</scale>
+      </reg>
    </image>
    <image id="BUCHANAN" path="BUCHANAN OD 2.tif" time="2">
       <macula>
@@ -133,6 +229,18 @@
          <x>53</x>
          <y>743</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>-7.3234</dx>
+         <dy>25.6616</dy>
+         <angle>0.054675</angle>
+         <scale>1.0009</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>37.5001</dx>
+         <dy>-21.4447</dy>
+         <angle>-0.024291</angle>
+         <scale>0.99898</scale>
+      </reg>
    </image>
    <image id="BUCHANAN" path="BUCHANAN OD 3.tif" time="3">
       <macula>
@@ -143,6 +251,18 @@
          <x>6</x>
          <y>391</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>-46.2611</dx>
+         <dy>43.7294</dy>
+         <angle>0.076814</angle>
+         <scale>1.0063</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>-37.5001</dx>
+         <dy>21.4447</dy>
+         <angle>0.024291</angle>
+         <scale>1.001</scale>
+      </reg>
    </image>
    <image id="CERVENKA" path="CERVENKA OD 1.tif" time="1">
       <macula>
@@ -153,6 +273,18 @@
          <x>4</x>
          <y>381</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>20.9101</dx>
+         <dy>5.5452</dy>
+         <angle>-0.016342</angle>
+         <scale>0.99935</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>17.4661</dx>
+         <dy>-6.1031</dy>
+         <angle>-0.033302</angle>
+         <scale>0.99827</scale>
+      </reg>
    </image>
    <image id="CERVENKA" path="CERVENKA OD 2.tif" time="2">
       <macula>
@@ -163,6 +295,18 @@
          <x>-4</x>
          <y>377</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>-20.9101</dx>
+         <dy>-5.5452</dy>
+         <angle>0.016342</angle>
+         <scale>1.0006</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-4.3132</dx>
+         <dy>-8.7116</dy>
+         <angle>-0.017126</angle>
+         <scale>1</scale>
+      </reg>
    </image>
    <image id="CERVENKA" path="CERVENKA OD 3.tif" time="3">
       <macula>
@@ -173,6 +317,18 @@
          <x>5</x>
          <y>388</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>4.3132</dx>
+         <dy>8.7116</dy>
+         <angle>0.017126</angle>
+         <scale>1</scale>
+      </reg>
+      <reg corr_time="1">
+         <dx>-17.4661</dx>
+         <dy>6.1031</dy>
+         <angle>0.033302</angle>
+         <scale>1.0017</scale>
+      </reg>
    </image>
    <image id="COMBS" path="COMBS OS 1 (poor image).tif" time="1">
       <macula>
@@ -183,6 +339,18 @@
          <x>153</x>
          <y>803</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>-62.0549</dx>
+         <dy>38.5507</dy>
+         <angle>0.093693</angle>
+         <scale>1.0275</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-42.0544</dx>
+         <dy>39.3681</dy>
+         <angle>0.071043</angle>
+         <scale>1.04</scale>
+      </reg>
    </image>
    <image id="COMBS" path="COMBS OS 2.tif" time="2">
       <macula>
@@ -193,6 +361,18 @@
          <x>110</x>
          <y>357</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>62.0549</dx>
+         <dy>-38.5507</dy>
+         <angle>-0.093693</angle>
+         <scale>0.97324</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>42.3312</dx>
+         <dy>-6.6179</dy>
+         <angle>-0.016972</angle>
+         <scale>0.99653</scale>
+      </reg>
    </image>
    <image id="COMBS" path="COMBS OS 3.tif" time="3">
       <macula>
@@ -203,6 +383,18 @@
          <x>149</x>
          <y>749</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>42.0544</dx>
+         <dy>-39.3681</dy>
+         <angle>-0.071043</angle>
+         <scale>0.96156</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>-42.3312</dx>
+         <dy>6.6179</dy>
+         <angle>0.016972</angle>
+         <scale>1.0035</scale>
+      </reg>
    </image>
    <image id="COMISKY" path="COMISKY OS 1.tif" time="1">
       <macula>
@@ -213,6 +405,18 @@
          <x>61</x>
          <y>385</y>
       </optic_disk>
+      <reg corr_time="2">
+         <dx>-5.1053</dx>
+         <dy>6.0643</dy>
+         <angle>0.0028412</angle>
+         <scale>1.0018</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-13.3696</dx>
+         <dy>19.5021</dy>
+         <angle>0.03151</angle>
+         <scale>0.99955</scale>
+      </reg>
    </image>
    <image id="COMISKY" path="COMISKY OS 2.tif" time="2">
       <macula>
@@ -223,6 +427,18 @@
          <x>61</x>
          <y>377</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>5.1053</dx>
+         <dy>-6.0643</dy>
+         <angle>-0.0028412</angle>
+         <scale>0.99821</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-5.5459</dx>
+         <dy>14.7037</dy>
+         <angle>0.025908</angle>
+         <scale>0.9949</scale>
+      </reg>
    </image>
    <image id="COMISKY" path="COMISKY OS 3.tif" time="3">
       <macula>
@@ -233,6 +449,18 @@
          <x>52</x>
          <y>364</y>
       </optic_disk>
+      <reg corr_time="1">
+         <dx>13.3696</dx>
+         <dy>-19.5021</dy>
+         <angle>-0.03151</angle>
+         <scale>1.0005</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>5.5459</dx>
+         <dy>-14.7037</dy>
+         <angle>-0.025908</angle>
+         <scale>1.0051</scale>
+      </reg>
    </image>
    <image id="GETTEL" path="GETTEL OD 1.tif" time="1">
       <macula>
@@ -554,10 +782,10 @@
          <scale>0.99829</scale>
       </reg>
       <reg corr_time="3">
-         <dx>120.5897</dx>
-         <dy>-68.8558</dy>
-         <angle>-0.043898</angle>
-         <scale>1.0084</scale>
+         <dx>-110.889</dx>
+         <dy>58.2907</dy>
+         <angle>0.037571</angle>
+         <scale>0.99411</scale>
       </reg>
    </image>
    <image id="VINCENT" path="VINCENT OD 3 (funny iamge).tif" time="3">
@@ -576,10 +804,10 @@
          <scale>0.99632</scale>
       </reg>
       <reg corr_time="2">
-         <dx>-120.5897</dx>
-         <dy>68.8558</dy>
-         <angle>0.043898</angle>
-         <scale>0.9917</scale>
+         <dx>110.889</dx>
+         <dy>-58.2907</dy>
+         <angle>-0.037571</angle>
+         <scale>1.0059</scale>
       </reg>
    </image>
    <image id="WHITE" path="White OD 1.tif" time="1">
