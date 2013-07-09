@@ -8,7 +8,9 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     
     %Resize the image so that they are both the same now
     [image1, image2] = match_sizing(image1, image2);
-
+    minx = size(image1, 2);
+    miny = size(image1, 1);
+    
     %Build string for output information
     skip = '';
     if(isempty(skip_quad) == false)
@@ -36,7 +38,7 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     cc = cc.findCorresps;
     t = cputime - t;
     disp(['Correlation Time: ', num2str(t), ' seconds']);
-        
+                  
     %Get the most common points in each quad
     temp = most_common(cc.corresps, quad_count, skip_quad, minx, miny);
 

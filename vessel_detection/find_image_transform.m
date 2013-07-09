@@ -25,8 +25,6 @@ function [out] = find_image_transform(pid)
         %Get the attribute from the image tag
         id = char(image.getAttribute('id'));
         
-       
-        
         if strcmp(id, image_string) == 1       
             path = char(image.getAttribute('path'));
             transform = 'none';
