@@ -18,22 +18,31 @@ function [ data ] = compare_maculas_best(type, varargin)
      end
      
      test = ~isempty(varargin);
+     if test
+        visit1 = varargin{1};
+        visit2 = varargin{2};
+        patid = varargin{3};
+        trialname = varargin{4};    
+        filename1 = visit1;
+        filename2 = visit2;
+     end
+        
      
          %~~~Get first image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     if ~test %if runtest has not been called, prompt user for files
         % If an images directory exists, look there first
         path = set_path('./Images/','*.tif');
         % Open dialog box to select file
-        [filename2,path2] = uigetfile(path, 'Select Past Image to Compare to More Recent');
-         if isequal(filename2,0) || isequal(path2,0)
+        [filename1,path1] = uigetfile(path, 'Select Past Image to Compare to More Recent');
+         if isequal(filename1,0) || isequal(path1,0)
            disp('User pressed cancel')
            return
         else
-           disp(['User selected ', fullfile(path2, filename2)])
+           disp(['User selected ', fullfile(path1, filename1)])
         end
-        fullpath = fullfile(path2,filename2);
+        fullpath = fullfile(path1,filename1);
     else % use visit arguments
-        fullpath = fullfile('./Test Set/',patid, visit1);
+        fullpath = fullfile('./Reg Set/',patid, visit1);
     end
      
 
@@ -42,13 +51,13 @@ function [ data ] = compare_maculas_best(type, varargin)
     imgRGB=imread(fullpath);
     RGB_test=size(size(imgRGB));
     if(RGB_test(2)==3)
-        img2=rgb2gray(imgRGB);
+        img1=rgb2gray(imgRGB);
     else
-        img2=imgRGB;
+        img1=imgRGB;
     end
     
     % Crop footer
-     img2 = crop_footer(img2);
+     img1 = crop_footer(img1);
 
         
     
@@ -58,23 +67,17 @@ function [ data ] = compare_maculas_best(type, varargin)
         % If an images directory exists, look there first
         path = set_path('./Images/','*.tif');
         % Open dialog box to select file
-        [filename1,path1] = uigetfile(path, 'Select Image');
-        if isequal(filename1,0) || isequal(path1,0)
+        [filename2,path2] = uigetfile(path, 'Select Image');
+        if isequal(filename2,0) || isequal(path2,0)
            disp('User pressed cancel')
            return
         else
-           disp(['User selected ', fullfile(path1, filename1)])
+           disp(['User selected ', fullfile(path2, filename2)])
         end
-        fullpath = fullfile(path1,filename1);
+        fullpath = fullfile(path2,filename2);
     else %use visit arguments  
-        visit1 = varargin{1};
-        visit2 = varargin{2};
-        patid = varargin{3};
-        trialname = varargin{4};    
-        filename1 = visit1;
-        filename2 = visit2;
-        
-        fullpath = fullfile('./Test Set/',patid, visit2);
+
+        fullpath = fullfile('./Reg Set/',patid, visit2);
         
         
         output_dir = strcat('./Output Images/', patid);
@@ -92,12 +95,12 @@ function [ data ] = compare_maculas_best(type, varargin)
         imgRGB=imread(fullpath);
         RGB_test=size(size(imgRGB));
         if(RGB_test(2)==3)
-            img1=rgb2gray(imgRGB);
+            img2=rgb2gray(imgRGB);
         else
-            img1=imgRGB;
+            img2=imgRGB;
         end
     % Crop footer
-     img1 = crop_footer(img1);
+     img2 = crop_footer(img2);
          
 
     
@@ -107,7 +110,7 @@ function [ data ] = compare_maculas_best(type, varargin)
   %~~~~~~~~% Ask for input points~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   if test % get optic disk and fovea from xml
-      xDoc= xmlread('images.xml');
+      xDoc= xmlread('reg_images.xml');
 	  images = xDoc.getElementsByTagName('image');
        for count = 1:images.getLength  
             image = images.item(count - 1);
@@ -122,8 +125,8 @@ function [ data ] = compare_maculas_best(type, varargin)
 
   else % get input points for fovea and optic disk from user
         h = figure('Name', 'Past Image');
-        imshow(img2)
-        title(strcat(filename2)) 
+        imshow(img1)
+        title(strcat(filename1)) 
         disp('Select fovea')
         p.fovea = round(ginput(1));
         disp('Select optic disk')
@@ -183,8 +186,8 @@ function [ data ] = compare_maculas_best(type, varargin)
      c = round(5/768*img_sz(2));
      
      H = fspecial('gaussian', [r c], 5);
-     proc1=imfilter(img1,H);
      proc2=imfilter(img2,H);
+     proc1=imfilter(img1,H);
      
      
      if strcmpi(type,'AF')
@@ -198,7 +201,7 @@ function [ data ] = compare_maculas_best(type, varargin)
          [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
           x = xgrd - p.fovea(1);    % offset the origin
           y = ygrd - p.fovea(2);
-         ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2);
+         ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.8;
          ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
          ob = x.^2 + y.^2 <= ro.^2; %outer bound   
          ib = x.^2 + y.^2 >= ri.^2; %inner bound
@@ -259,25 +262,25 @@ function [ data ] = compare_maculas_best(type, varargin)
     if test
         h = figure('Name','Processing Results','visible','off');
         subplot(2,2,1);
-        imshow(img1); title(strcat('Original', filename1));
-        subplot(2,2,2);
-        imshow(proc1); title(strcat('Processed', filename1));
-        subplot(2,2,3);
         imshow(img2); title(strcat('Original', filename2));
+        subplot(2,2,2);
+        imshow(proc1); title(strcat('Processed', filename2));
+        subplot(2,2,3);
+        imshow(img1); title(strcat('Original', filename1));
         subplot(2,2,4);
-        imshow(proc2); title(strcat('Processed', filename2));
+        imshow(proc2); title(strcat('Processed', filename1));
         saveas(h, strcat(data_filename, '-processing'),'png');
         close(h)
     else
         figure('Name','Processing Results');
         subplot(2,2,1);
-        imshow(img1); title(strcat('Original', filename1));
-        subplot(2,2,2);
-        imshow(proc1); title(strcat('Processed', filename1));
-        subplot(2,2,3);
         imshow(img2); title(strcat('Original', filename2));
+        subplot(2,2,2);
+        imshow(proc1); title(strcat('Processed', filename2));
+        subplot(2,2,3);
+        imshow(img1); title(strcat('Original', filename1));
         subplot(2,2,4);
-        imshow(proc2); title(strcat('Processed', filename2));
+        imshow(proc2); title(strcat('Processed', filename1));
     end
     
        
@@ -342,11 +345,11 @@ function [ data ] = compare_maculas_best(type, varargin)
         h = figure('Name', '3D Surfaces','visible', 'off');
         subplot(1,2,1);   
         surf(fliplr(double(win2)),'EdgeColor', 'none'); 
-        title(strcat('Previous Visit: ',filename2)); 
+        title(strcat('Previous Visit: ',filename1)); 
         view(153, 78);
         subplot(1,2,2);
         surf(fliplr(double(win1)),'EdgeColor', 'none');   
-        title(strcat('Current Visit:',filename1));
+        title(strcat('Current Visit:',filename2));
         view(153, 78);
         saveas(h, strcat(data_filename, '-3D'),'png');
         close(h)
@@ -354,11 +357,11 @@ function [ data ] = compare_maculas_best(type, varargin)
         figure('Name', '3D Surfaces');
         subplot(1,2,1);   
         surf(fliplr(double(win2)),'EdgeColor', 'none'); 
-        title(strcat('Previous Visit: ',filename2)); 
+        title(strcat('Previous Visit: ',filename1)); 
         view(153, 78);
         subplot(1,2,2);
         surf(fliplr(double(win1)),'EdgeColor', 'none');   
-        title(strcat('Current Visit:',filename1));
+        title(strcat('Current Visit:',filename2));
         view(153, 78);
     end
    
