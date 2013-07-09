@@ -262,25 +262,25 @@ function [ data ] = compare_maculas_best(type, varargin)
     if test
         h = figure('Name','Processing Results','visible','off');
         subplot(2,2,1);
-        imshow(img2); title(strcat('Original', filename2));
-        subplot(2,2,2);
-        imshow(proc1); title(strcat('Processed', filename2));
-        subplot(2,2,3);
         imshow(img1); title(strcat('Original', filename1));
+        subplot(2,2,2);
+        imshow(proc1); title(strcat('Processed', filename1));
+        subplot(2,2,3);
+        imshow(img2); title(strcat('Original', filename2));
         subplot(2,2,4);
-        imshow(proc2); title(strcat('Processed', filename1));
+        imshow(proc2); title(strcat('Processed', filename2));
         saveas(h, strcat(data_filename, '-processing'),'png');
         close(h)
     else
         figure('Name','Processing Results');
         subplot(2,2,1);
-        imshow(img2); title(strcat('Original', filename2));
-        subplot(2,2,2);
-        imshow(proc1); title(strcat('Processed', filename2));
-        subplot(2,2,3);
         imshow(img1); title(strcat('Original', filename1));
+        subplot(2,2,2);
+        imshow(proc1); title(strcat('Processed', filename1));
+        subplot(2,2,3);
+        imshow(img2); title(strcat('Original', filename2));
         subplot(2,2,4);
-        imshow(proc2); title(strcat('Processed', filename1));
+        imshow(proc2); title(strcat('Processed', filename2));
     end
     
        
@@ -335,20 +335,20 @@ function [ data ] = compare_maculas_best(type, varargin)
     if ~test
         figure('Name', 'Areas of Interest');
         subplot(1,2,1);
-        colormap(gray), imagesc(win2); 
+        colormap(gray), imagesc(win1); 
         subplot(1,2,2);
-        colormap(gray), imagesc(win1);
+        colormap(gray), imagesc(win2);
     end
     
     % Show surfaces
     if test
         h = figure('Name', '3D Surfaces','visible', 'off');
         subplot(1,2,1);   
-        surf(fliplr(double(win2)),'EdgeColor', 'none'); 
+        surf(fliplr(double(win1)),'EdgeColor', 'none'); 
         title(strcat('Previous Visit: ',filename1)); 
         view(153, 78);
         subplot(1,2,2);
-        surf(fliplr(double(win1)),'EdgeColor', 'none');   
+        surf(fliplr(double(win2)),'EdgeColor', 'none');   
         title(strcat('Current Visit:',filename2));
         view(153, 78);
         saveas(h, strcat(data_filename, '-3D'),'png');
@@ -356,11 +356,11 @@ function [ data ] = compare_maculas_best(type, varargin)
     else
         figure('Name', '3D Surfaces');
         subplot(1,2,1);   
-        surf(fliplr(double(win2)),'EdgeColor', 'none'); 
+        surf(fliplr(double(win1)),'EdgeColor', 'none'); 
         title(strcat('Previous Visit: ',filename1)); 
         view(153, 78);
         subplot(1,2,2);
-        surf(fliplr(double(win1)),'EdgeColor', 'none');   
+        surf(fliplr(double(win2)),'EdgeColor', 'none');   
         title(strcat('Current Visit:',filename2));
         view(153, 78);
     end
@@ -372,11 +372,11 @@ function [ data ] = compare_maculas_best(type, varargin)
          h = figure('Name', 'Macular Comparison');
     end
     subplot(2,2,1);
-    imshow(win2); title('Previous Visit');
+    imshow(win1); title('Previous Visit');
     subplot(2,2,2);
-    imshow(win1); title('Current Visit');
+    imshow(win2); title('Current Visit');
     subplot(2,2,3);
-    imshow(win1); title('Progression');
+    imshow(win2); title('Progression');
     h5=gca;
     
 %     prog=win1-win2;
@@ -438,7 +438,7 @@ function [ data ] = compare_maculas_best(type, varargin)
     
     %divide sum of squared differences (deviations from expected value of zero) by grid size to get variance
 
-    DWB = win_avg1 - win_avg2;
+    DWB = win_avg2 - win_avg1;
     if strcmpi(type,'AF')
         data.HPOS = sum(DWB(DWB<hypo_thrsh).^2);
         data.HPRS = sum(DWB(DWB>hypr_thrsh).^2);
