@@ -191,56 +191,59 @@ function [ data ] = compare_maculas_best(type, varargin)
      
      
      if strcmpi(type,'AF')
-             proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
-
+         
+         
 
          % Adjust contrasts/center pix distribution on mean intensity of ring between
          % macula and optic disk
+% 
+%          % create ring mask
+%          [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
+%           x = xgrd - p.fovea(1);    % offset the origin
+%           y = ygrd - p.fovea(2);
+%          ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.8;
+%          ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
+%          ob = x.^2 + y.^2 <= ro.^2; %outer bound   
+%          ib = x.^2 + y.^2 >= ri.^2; %inner bound
+%          ring = logical(ib.*ob);
+% 
+%     %      %show ring
+%     %      figure()
+%     %      imshow(mat2gray(double(proc1).*double(ring)))
+% 
+%          rep1 = mean(proc1(ring));
+%           if rep1 < 64
+%               gamma1 = 0.5;
+%           elseif rep1 >= 64 && rep1 < 96
+%               gamma1 = 0.75;
+%           elseif rep1 >=96 && rep1 < 160
+%               gamma1 = 1.0;
+%           elseif rep1 >= 160 && rep1 < 192
+%               gamma1 = 1.25;
+%           elseif rep1 >=192
+%               gamma1 = 1.5;
+%           end
+% 
+% 
+%            proc1 = imadjust(proc1,[],[],gamma1);
+% 
+%            rep2 = mean(proc2(ring));
+%           if rep2 < 64
+%               gamma2 = 0.5;
+%           elseif rep2 >= 64 && rep2 < 96
+%               gamma2 = 0.75;
+%           elseif rep2 >=96 && rep2 < 160
+%               gamma2 = 1.0;
+%           elseif rep2 >= 160 && rep2 < 192
+%               gamma2 = 1.25;
+%           elseif rep2 >=192
+%               gamma2 = 1.5;
+%           end
+% 
+%           proc2 = imadjust(proc2,[],[],gamma2);
+          
+          proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
 
-         % create ring mask
-         [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
-          x = xgrd - p.fovea(1);    % offset the origin
-          y = ygrd - p.fovea(2);
-         ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.8;
-         ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
-         ob = x.^2 + y.^2 <= ro.^2; %outer bound   
-         ib = x.^2 + y.^2 >= ri.^2; %inner bound
-         ring = logical(ib.*ob);
-
-    %      %show ring
-    %      figure()
-    %      imshow(mat2gray(double(proc1).*double(ring)))
-
-         rep1 = mean(proc1(ring));
-          if rep1 < 64
-              gamma1 = 0.5;
-          elseif rep1 >= 64 && rep1 < 96
-              gamma1 = 0.75;
-          elseif rep1 >=96 && rep1 < 160
-              gamma1 = 1.0;
-          elseif rep1 >= 160 && rep1 < 192
-              gamma1 = 1.25;
-          elseif rep1 >=192
-              gamma1 = 1.5;
-          end
-
-
-           proc1 = imadjust(proc1,[],[],gamma1);
-
-           rep2 = mean(proc2(ring));
-          if rep2 < 64
-              gamma2 = 0.5;
-          elseif rep2 >= 64 && rep2 < 96
-              gamma2 = 0.75;
-          elseif rep2 >=96 && rep2 < 160
-              gamma2 = 1.0;
-          elseif rep2 >= 160 && rep2 < 192
-              gamma2 = 1.25;
-          elseif rep2 >=192
-              gamma2 = 1.5;
-          end
-
-          proc2 = imadjust(proc2,[],[],gamma2);
      
      elseif strcmpi(type,'FA')
          se1 = strel('line',img_sz(2)/2,0);
