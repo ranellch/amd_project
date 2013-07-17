@@ -1,6 +1,6 @@
 
     xDoc= xmlread('reg_images.xml');
-    list=dir('./Reg Set/');
+    list=dir('./results/');
     list = setdiff({list.name},{'.','..','.DS_Store'});
     
     imgDoc = xmlread('images.xml');
@@ -10,7 +10,7 @@
         
         if isdir(list{i})
             id=list{i};
-            path = strcat('./Reg Set/',list{i},'/');
+            path = strcat('./results/',list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
              for j=1:length(pics)
