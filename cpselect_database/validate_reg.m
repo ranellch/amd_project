@@ -9,17 +9,25 @@ function [out] = validate_reg()
     images = xDoc.getElementsByTagName('image');
     
     filename = 'exp.csv';
-    outputfile = fopen(filename,'w');
-	fprintf(outputfile, 'id, time1, time2, runtime, x1, y1, theta1, scale1, x2, y2, theta2, scale2\n');
-	fclose(outputfile);
-                
+    if exist(filename) ~= 0
+        readfile = fopen(filename,'r');
+        mydata = textscan(readfile, '%*s %*s %*s %*[^\n]', 'delimiter', ',');
+        fclose(readfile);
+        disp(mydata);
+        disp('yolo');
+    else
+        outputfile = fopen(filename,'w');
+        fprintf(outputfile, 'id, time1, time2, runtime, x1, y1, theta1, scale1, x2, y2, theta2, scale2\n');
+        fclose(outputfile);
+    end
+          
     for count1=1:images.getLength
         image1 = images.item(count1 - 1);
         id1 = char(image1.getAttribute('id'));
         path1 = char(image1.getAttribute('path'));
         time1 = char(image1.getAttribute('time'));
         transform1 = get_transform(image1);
-        
+                
         for count2=1:images.getLength
             image2 = images.item(count2 - 1);
             id2 = char(image2.getAttribute('id'));
@@ -28,6 +36,7 @@ function [out] = validate_reg()
             transform2 = get_transform(image2);
             
             if strcmp(id1, id2) == 1 && strcmp(time1, time2) == 0
+                               
                 disp('================================================');
                 disp([id1, ': ', time1, ' => ', time2]);
                 
@@ -57,7 +66,7 @@ function [out] = validate_reg()
                 cc.relThresh = 0.5;
                 %Decrease this value to make the matches more precise
                 %Decrease this value also increases time to run
-                cc.convTol = 0.05;
+                cc.convTol = 0.01;
                 %Set value to 2 for more less strict reverse matching
                 %Set value to 1 for more strict revserse matching
                 cc.matchTol = 2;

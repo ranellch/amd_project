@@ -3,5 +3,6 @@
 *.tif
 *.tiff
 *.png
+*.~
 cpselect_database/run*
 .DS_Store
