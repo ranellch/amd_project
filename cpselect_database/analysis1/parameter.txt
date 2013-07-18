@@ -1,0 +1,3 @@
+cc.relThresh = 0.5;
+cc.convTol = 0.05;
+cc.matchTol = 2;

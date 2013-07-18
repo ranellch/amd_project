@@ -13,8 +13,6 @@ function [out] = validate_reg()
         readfile = fopen(filename,'r');
         mydata = textscan(readfile, '%*s %*s %*s %*[^\n]', 'delimiter', ',');
         fclose(readfile);
-        disp(mydata);
-        disp('yolo');
     else
         outputfile = fopen(filename,'w');
         fprintf(outputfile, 'id, time1, time2, runtime, x1, y1, theta1, scale1, x2, y2, theta2, scale2\n');
@@ -66,7 +64,7 @@ function [out] = validate_reg()
                 cc.relThresh = 0.5;
                 %Decrease this value to make the matches more precise
                 %Decrease this value also increases time to run
-                cc.convTol = 0.01;
+                cc.convTol = 0.1;
                 %Set value to 2 for more less strict reverse matching
                 %Set value to 1 for more strict revserse matching
                 cc.matchTol = 2;

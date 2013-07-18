@@ -2,9 +2,10 @@ import sys
 import struct
 import numpy as np
 
-input_file = sys.argv[1]
+file = sys.argv[1]
+input_file = 'exp.csv'
 
-f = open(input_file)
+f = open(file + "/" + input_file)
 
 i = 0
 columns_header = dict()
@@ -26,7 +27,7 @@ for line in f:
         time1 = int(splitit[columns_header['time1']])
         time2 = int(splitit[columns_header['time2']])
 		
-		#Make sure that alaways time1 < time2
+	    #Make sure that alaways time1 < time2
         if time2 < time1:
             temp = time1
             time1 = time2
@@ -88,7 +89,10 @@ f.close()
 y_max = []
 y_max.append(max(yx))
 y_max.append(max(yy))
-y_max.append(max(ytheta))
+if(abs(max(ytheta)) > abs(min(ytheta))):
+    y_max.append(abs(max(ytheta)))
+else:
+    y_max.append(abs(min(ytheta)))
 y_max.append(max(yscale))
 y_max.append(max(yrun))
 
@@ -106,10 +110,9 @@ y_stddev.append(np.std(ytheta) * 2)
 y_stddev.append(np.std(yscale) * 2)
 y_stddev.append(np.std(yrun) * 2)
 
-
 #Write the results of the difference between image sets
 resultscsv = 'results.csv'
-f=open(resultscsv, 'w')
+f=open(file + "/" + resultscsv, 'w')
 i = 0
 for x_val in x:
     f.write(str(x_val))
@@ -136,8 +139,8 @@ line = 'set terminal png\n'
 line += 'set xlabel "Image Pairs"\n'
 line += 'unset key\n'
 line += 'set output "plot_x.png"\n'
-line += 'set ylabel "Pixels\n'
-line += 'set title "Difference in X-Values"\n'
+line += 'set ylabel "Pixels"\n'
+line += 'set title "Difference in X-Values - stddev: ' + str(y_stddev[0] / 2.0) + '"\n'
 line += 'unset arrow\n'
 line += 'set arrow from 0,' + str(y_mean[0]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[0]) + ' nohead lc rgb "red"\n'
 line += 'set arrow from 0,' + str(y_mean[0] + y_stddev[0]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[0] + y_stddev[0]) + ' nohead lc rgb "green"\n'
@@ -146,7 +149,7 @@ line += 'set yrange [' + str(-1 * y_max[0]) + ':' + str(y_max[0]) + ']\n'
 line += 'plot "' + resultscsv + '" using 1:2 with points lc rgb "blue"\n'
 line += 'set output "plot_y.png"\n'
 line += 'set ylabel "Pixels"\n'
-line += 'set title "Difference in Y-Values"\n'
+line += 'set title "Difference in Y-Values - stddev: ' + str(y_stddev[1] / 2.0) + '"\n'
 line += 'unset arrow\n'
 line += 'set arrow from 0,' + str(y_mean[1]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[1]) + ' nohead lc rgb "red"\n'
 line += 'set arrow from 0,' + str(y_mean[1] + y_stddev[1]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[1] + y_stddev[1]) + ' nohead lc rgb "green"\n'
@@ -155,7 +158,7 @@ line += 'set yrange [' + str(-1 * y_max[1]) + ':' + str(y_max[1]) + ']\n'
 line += 'plot "' + resultscsv + '" using 1:3 with points lc rgb "blue"\n'
 line += 'set output "plot_theta.png"\n'
 line += 'set ylabel "Theta"\n'
-line += 'set title "Difference in Theta-Values"\n'
+line += 'set title "Difference in Theta-Values - stddev: ' + str(y_stddev[2] / 2.0) + '"\n'
 line += 'unset arrow\n'
 line += 'set arrow from 0,' + str(y_mean[2]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[2]) + ' nohead lc rgb "red"\n'
 line += 'set arrow from 0,' + str(y_mean[2] + y_stddev[2]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[2] + y_stddev[2]) + ' nohead lc rgb "green"\n'
@@ -164,7 +167,7 @@ line += 'set yrange [' + str(-1 * y_max[2]) + ':' + str(y_max[2]) + ']\n'
 line += 'plot "' + resultscsv + '" using 1:4 with points lc rgb "blue"\n'
 line += 'set output "plot_scale.png"\n'
 line += 'set ylabel "Scale"\n'
-line += 'set title "Difference in Scale-Values"\n'
+line += 'set title "Difference in Scale-Values - stddev: ' + str(y_stddev[3] / 2.0) + '"\n'
 line += 'unset arrow\n'
 line += 'set arrow from 0,' + str(y_mean[3]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[3]) + ' nohead lc rgb "red"\n'
 line += 'set arrow from 0,' + str(y_mean[3] + y_stddev[3]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[3] + y_stddev[3]) + ' nohead lc rgb "green"\n'
@@ -173,7 +176,7 @@ line += 'set yrange [' + str(-1 * y_max[3]) + ':' + str(y_max[3]) + ']\n'
 line += 'plot "' + resultscsv + '" using 1:5 with points lc rgb "blue"\n'
 line += 'set output "plot_time.png"\n'
 line += 'set ylabel "Time (sec)"\n'
-line += 'set title "Runtime for Pairs of Images"\n'
+line += 'set title "Runtime for Pairs of Images - stddev: ' + str(y_stddev[4] / 2.0) + '"\n'
 line += 'unset arrow\n'
 line += 'set arrow from 0,' + str(y_mean[4]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[4]) + ' nohead lc rgb "red"\n'
 line += 'set arrow from 0,' + str(y_mean[4] + y_stddev[4]) + ' to ' + str(x[len(x)-1]) + ',' + str(y_mean[4] + y_stddev[4]) + ' nohead lc rgb "green"\n'
@@ -181,6 +184,6 @@ line += 'set arrow from 0,' + str(y_mean[4] - y_stddev[4]) + ' to ' + str(x[len(
 line += 'set yrange [0:' + str(y_max[4]) + ']\n'
 line += 'plot "' + resultscsv + '" using 1:6 with points lc rgb "blue"\n'
 
-f=open('plot_it.plt', 'w') 
+f=open(file + '/plot_it.plt', 'w') 
 f.write(line)
 f.close()
