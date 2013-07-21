@@ -1,4 +1,4 @@
-function [out] = validate_reg()
+function [out] = validate_reg(id, ctime1, ctime2)
     %Add the path for the set of images to test
     addpath(genpath('../Test Set'));
     addpath('../vessel_detection');
@@ -17,63 +17,24 @@ function [out] = validate_reg()
 	%Set value to 1 for more strict revserse matching
     cc_matchTol = 2;
 
-    %Get the mapObj to hanle this badboy
-    mapObj = containers.Map('KeyType','char','ValueType', 'int32');
-    
-    filename = 'exp.csv';
-    if exist(filename, 'file') ~= 0
-        readfile = fopen(filename,'r');
-        i = 0;
-        while ~feof(readfile)
-            readline = fgetl(readfile);
-            if(i > 0)
-                mydata = textscan(readline, '%s %f %f %*[^\n]','delimiter', ',');
-                startval = mydata{1, 2};
-                endval = mydata{1, 3};
-                if(startval > endval)
-                    temp = startval;
-                    startval = endval;
-                    endval = temp;
-                end
-                key = [char(mydata{1, 1}), char(num2str(startval)), char(num2str(endval))];
-                mapObj(key) = 1;
-            end
-            i=i+1;
-        end
-        fclose(readfile);
-    else
-        outputfile = fopen(filename,'w');
-        fprintf(outputfile, 'id, time1, time2, runtime, x1, y1, theta1, scale1, x2, y2, theta2, scale2\n');
-        fclose(outputfile);
-    end
-          
+    path1 = '0';
+    transform1 = '0';
+    path2 = '0';
+    transform2 = '0';
     for count1=1:images.getLength
         image1 = images.item(count1 - 1);
         id1 = char(image1.getAttribute('id'));
-        path1 = char(image1.getAttribute('path'));
-        time1 = char(image1.getAttribute('time'));
-        transform1 = get_transform(image1);
-                
-        for count2=1:images.getLength
-            image2 = images.item(count2 - 1);
-            id2 = char(image2.getAttribute('id'));
-            path2 = char(image2.getAttribute('path'));
-            time2 = char(image2.getAttribute('time'));
-            transform2 = get_transform(image2);
-            
-            if strcmp(id1, id2) == 1 && strcmp(time1, time2) == 0
-                %Check to make sure that this has not already been run
-                startval = str2num(time1);
-                endval = str2num(time2);
-                if(startval > endval)
-                    temp = startval;
-                    startval = endval;
-                    endval = temp;
-                end
-                key = [id1, char(num2str(startval)), char(num2str(endval))];
-                
-                tf = isKey(mapObj, key);
-                if tf == 0
+        time = char(image1.getAttribute('time'));
+        if (strcmp(id1, id) == 1) && (strcmp(ctime1, time) == 1)
+            path1 = char(image1.getAttribute('path'));
+            transform1 = get_transform(image1);
+        end
+        if (strcmp(id1, id) == 1) && (strcmp(ctime2, time) == 1)
+            path2 = char(image1.getAttribute('path'));
+            transform1 = get_transform(image1);
+        end
+    end        
+        
                     disp('================================================');
                     disp([id1, ': ', time1, ' => ', time2]);
 
