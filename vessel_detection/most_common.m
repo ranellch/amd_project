@@ -122,6 +122,7 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
         sindex = eindex;
     end
     
+    %removed the ends that were not calculated
     if(curcount ~= final_length)
         difference = (final_length - curcount);
         if(curcount < final_length)
@@ -131,6 +132,12 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
         end
         msg = (['Debug: curcount (', num2str(curcount),') != final_length (', num2str(final_length) ,') - remove: ', num2str(difference), ' => most_common.m']);
         disp(msg);
+    end
+    
+    %Remove the ends that have not filled with anything
+    while combined(1, curcount) == 0 && combined(2, curcount) == 0
+        combined(:, curcount) = [];
+        curcount=curcount-1;
     end
     
     disp(['Found X-Y Correlated Modal Matches: ', num2str(length(combined))]);

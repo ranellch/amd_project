@@ -1,453 +1,4428 @@
 <?xml version="1.0" encoding="utf-8"?>
 <images>
-    <image id="BARR" path="BARR OD 1.tif" time="1">
-        <macula>
-            <x>358</x>
-            <y>383</y>
-        </macula>
-        <optic_disk>
-            <x>5</x>
-            <y>375</y>
-        </optic_disk>
-    </image>
-    <image id="BARR" path="BARR OD 2.tif" time="2">
-        <macula>
-            <x>724</x>
-            <y>782</y>
-        </macula>
-        <optic_disk>
-            <x>13</x>
-            <y>776</y>
-        </optic_disk>
-    </image>
-    <image id="BARR" path="BARR OD 3 (poor quality).tif" time="3">
-        <macula>
-            <x>345</x>
-            <y>391</y>
-        </macula>
-        <optic_disk>
-            <x>6</x>
-            <y>379</y>
-        </optic_disk>
-    </image>
-    <image id="BIGNALL" path="BIGNALL OD 1.tif" time="1">
-        <macula>
-            <x>350</x>
-            <y>384</y>
-        </macula>
-        <optic_disk>
-            <x>7</x>
-            <y>339</y>
-        </optic_disk>
-    </image>
-    <image id="BIGNALL" path="BIGNALL OD 2.tif" time="2">
-        <macula>
-            <x>362</x>
-            <y>391</y>
-        </macula>
-        <optic_disk>
-            <x>9</x>
-            <y>361</y>
-        </optic_disk>
-    </image>
-    <image id="BIGNALL" path="BIGNALL OD 3 (poor image).tif" time="3">
-        <macula>
-            <x>664</x>
-            <y>893</y>
-        </macula>
-        <optic_disk>
-            <x>9</x>
-            <y>789</y>
-        </optic_disk>
-    </image>
-    <image id="BORON" path="BORON OD 1 (bright).tif" time="1">
-        <macula>
-            <x>359</x>
-            <y>386</y>
-        </macula>
-        <optic_disk>
-            <x>4</x>
-            <y>375</y>
-        </optic_disk>
-    </image>
-    <image id="BORON" path="BORON OD 2.tif" time="2">
-        <macula>
-            <x>702</x>
-            <y>659</y>
-        </macula>
-        <optic_disk>
-            <x>7</x>
-            <y>629</y>
-        </optic_disk>
-    </image>
-    <image id="BORON" path="BORON OD 3.tif" time="3">
-        <macula>
-            <x>806</x>
-            <y>813</y>
-        </macula>
-        <optic_disk>
-            <x>53</x>
-            <y>741</y>
-        </optic_disk>
-    </image>
-    <image id="BUCHANAN" path="BUCHANAN OD 1.tif" time="1">
-        <macula>
-            <x>343</x>
-            <y>395</y>
-        </macula>
-        <optic_disk>
-            <x>14</x>
-            <y>348</y>
-        </optic_disk>
-    </image>
-    <image id="BUCHANAN" path="BUCHANAN OD 2.tif" time="2">
-        <macula>
-            <x>722</x>
-            <y>800</y>
-        </macula>
-        <optic_disk>
-            <x>53</x>
-            <y>743</y>
-        </optic_disk>
-    </image>
-    <image id="BUCHANAN" path="BUCHANAN OD 3.tif" time="3">
-        <macula>
-            <x>338</x>
-            <y>405</y>
-        </macula>
-        <optic_disk>
-            <x>6</x>
-            <y>391</y>
-        </optic_disk>
-    </image>
-    <image id="CERVENKA" path="CERVENKA OD 1.tif" time="1">
-        <macula>
-            <x>347</x>
-            <y>393</y>
-        </macula>
-        <optic_disk>
-            <x>4</x>
-            <y>381</y>
-        </optic_disk>
-    </image>
-    <image id="CERVENKA" path="CERVENKA OD 2.tif" time="2">
-        <macula>
-            <x>338</x>
-            <y>383</y>
-        </macula>
-        <optic_disk>
-            <x>-4</x>
-            <y>377</y>
-        </optic_disk>
-    </image>
-    <image id="CERVENKA" path="CERVENKA OD 3.tif" time="3">
-        <macula>
-            <x>345</x>
-            <y>392</y>
-        </macula>
-        <optic_disk>
-            <x>5</x>
-            <y>388</y>
-        </optic_disk>
-    </image>
-    <image id="COMBS" path="COMBS OS 1 (poor image).tif" time="1">
-        <macula>
-            <x>816</x>
-            <y>813</y>
-        </macula>
-        <optic_disk>
-            <x>153</x>
-            <y>803</y>
-        </optic_disk>
-    </image>
-    <image id="COMBS" path="COMBS OS 2.tif" time="2">
-        <macula>
-            <x>422</x>
-            <y>390</y>
-        </macula>
-        <optic_disk>
-            <x>110</x>
-            <y>357</y>
-        </optic_disk>
-    </image>
-    <image id="COMBS" path="COMBS OS 3.tif" time="3">
-        <macula>
-            <x>774</x>
-            <y>801</y>
-        </macula>
-        <optic_disk>
-            <x>149</x>
-            <y>749</y>
-        </optic_disk>
-    </image>
-    <image id="COMISKY" path="COMISKY OS 1.tif" time="1">
-        <macula>
-            <x>416</x>
-            <y>400</y>
-        </macula>
-        <optic_disk>
-            <x>61</x>
-            <y>385</y>
-        </optic_disk>
-    </image>
-    <image id="COMISKY" path="COMISKY OS 2.tif" time="2">
-        <macula>
-            <x>417</x>
-            <y>395</y>
-        </macula>
-        <optic_disk>
-            <x>61</x>
-            <y>377</y>
-        </optic_disk>
-    </image>
-    <image id="COMISKY" path="COMISKY OS 3.tif" time="3">
-        <macula>
-            <x>424</x>
-            <y>393</y>
-        </macula>
-        <optic_disk>
-            <x>52</x>
-            <y>364</y>
-        </optic_disk>
-    </image>
-    <image id="GETTEL" path="GETTEL OD 1.tif" time="1">
-        <macula>
-            <x>346</x>
-            <y>397</y>
-        </macula>
-        <optic_disk>
-            <x>12</x>
-            <y>366</y>
-        </optic_disk>
-    </image>
-    <image id="GETTEL" path="GETTEL OD 2.tif" time="2">
-        <macula>
-            <x>365</x>
-            <y>400</y>
-        </macula>
-        <optic_disk>
-            <x>17</x>
-            <y>352</y>
-        </optic_disk>
-    </image>
-    <image id="GETTEL" path="GETTEL OD 3.tif" time="3">
-        <macula>
-            <x>340</x>
-            <y>430</y>
-        </macula>
-        <optic_disk>
-            <x>16</x>
-            <y>374</y>
-        </optic_disk>
-    </image>
-    <image id="KUKLA" path="KUKLA OS 1 (poor image).tif" time="1">
-        <macula>
-            <x>654</x>
-            <y>1022</y>
-        </macula>
-        <optic_disk>
-            <x>27</x>
-            <y>885</y>
-        </optic_disk>
-    </image>
-    <image id="KUKLA" path="KUKLA OS 2 (poor image).tif" time="2">
-        <macula>
-            <x>425</x>
-            <y>401</y>
-        </macula>
-        <optic_disk>
-            <x>78</x>
-            <y>316</y>
-        </optic_disk>
-    </image>
-    <image id="KUKLA" path="KUKLA OS 3 (poor image).tif" time="3">
-        <macula>
-            <x>375</x>
-            <y>434</y>
-        </macula>
-        <optic_disk>
-            <x>44</x>
-            <y>360</y>
-        </optic_disk>
-    </image>
-    <image id="LEMAY" path="LEMAY OS 1.tif" time="1">
-        <macula>
-            <x>427</x>
-            <y>392</y>
-        </macula>
-        <optic_disk>
-            <x>76</x>
-            <y>354</y>
-        </optic_disk>
-    </image>
-    <image id="LEMAY" path="LEMAY OS 2.tif" time="2">
-        <macula>
-            <x>422</x>
-            <y>396</y>
-        </macula>
-        <optic_disk>
-            <x>78</x>
-            <y>349</y>
-        </optic_disk>
-    </image>
-    <image id="MASSIMILLA" path="MASSIMILLA OD 3.tif" time="3">
-        <macula>
-            <x>700</x>
-            <y>797</y>
-        </macula>
-        <optic_disk>
-            <x>55</x>
-            <y>699</y>
-        </optic_disk>
-    </image>
-    <image id="REAM" path="REAM OS 1.tif" time="1">
-        <macula>
-            <x>411</x>
-            <y>390</y>
-        </macula>
-        <optic_disk>
-            <x>71</x>
-            <y>357</y>
-        </optic_disk>
-    </image>
-    <image id="REAM" path="REAM OS 2.tif" time="2">
-        <macula>
-            <x>804</x>
-            <y>757</y>
-        </macula>
-        <optic_disk>
-            <x>111</x>
-            <y>687</y>
-        </optic_disk>
-    </image>
-    <image id="REAM" path="REAM OS 3.tif" time="3">
-        <macula>
-            <x>408</x>
-            <y>397</y>
-        </macula>
-        <optic_disk>
-            <x>66</x>
-            <y>362</y>
-        </optic_disk>
-    </image>
-    <image id="RHOADES" path="RHOADES OS 1.tif" time="1">
-        <macula>
-            <x>416</x>
-            <y>391</y>
-        </macula>
-        <optic_disk>
-            <x>37</x>
-            <y>384</y>
-        </optic_disk>
-    </image>
-    <image id="RHOADES" path="RHOADES OS 2.tif" time="2">
-        <macula>
-            <x>792</x>
-            <y>806</y>
-        </macula>
-        <optic_disk>
-            <x>37</x>
-            <y>765</y>
-        </optic_disk>
-    </image>
-    <image id="RHOADES " path="RHOADES OS 3.tif" time="3">
-        <macula>
-            <x>410</x>
-            <y>417</y>
-        </macula>
-        <optic_disk>
-            <x>38</x>
-            <y>401</y>
-        </optic_disk>
-    </image>
-    <image id="VINCENT" path="VINCENT OD 1.tif" time="1">
-        <macula>
-            <x>336</x>
-            <y>397</y>
-        </macula>
-        <optic_disk>
-            <x>-49</x>
-            <y>360</y>
-        </optic_disk>
-    </image>
-    <image id="VINCENT" path="VINCENT OD 2.tif" time="2">
-        <macula>
-            <x>746</x>
-            <y>809</y>
-        </macula>
-        <optic_disk>
-            <x>1</x>
-            <y>721</y>
-        </optic_disk>
-    </image>
-    <image id="VINCENT" path="VINCENT OD 3 (funny iamge).tif" time="3">
-        <macula>
-            <x>688</x>
-            <y>801</y>
-        </macula>
-        <optic_disk>
-            <x>-31</x>
-            <y>735</y>
-        </optic_disk>
-    </image>
-    <image id="WHITE" path="White OD 1.tif" time="1">
-        <macula>
-            <x>734</x>
-            <y>806</y>
-        </macula>
-        <optic_disk>
-            <x>11</x>
-            <y>735</y>
-        </optic_disk>
-    </image>
-    <image id="WHITE" path="White OD 2.tif" time="2">
-        <macula>
-            <x>330</x>
-            <y>393</y>
-        </macula>
-        <optic_disk>
-            <x>1</x>
-            <y>331</y>
-        </optic_disk>
-    </image>
-    <image id="WHITE" path="White OD 3 (poor image).tif" time="3">
-        <macula>
-            <x>730</x>
-            <y>836</y>
-        </macula>
-        <optic_disk>
-            <x>9</x>
-            <y>733</y>
-        </optic_disk>
-    </image>
-    <image id="FA_CUSTOM" path="FA_CUSTOM/FA1.png" time="1" transform="invert">
-        <macula>
-            <x>315</x>
-            <y>238</y>
-        </macula>
-        <optic_disk>
-            <x>571</x>
-            <y>231</y>
-        </optic_disk>
-    </image>
-    <image id="FA_CUSTOM" path="FA_CUSTOM/FA2.png" time="2" transform="invert">
-        <macula>
-            <x>341</x>
-            <y>214</y>
-        </macula>
-        <optic_disk>
-            <x>570</x>
-            <y>226</y>
-        </optic_disk>
-    </image>
-    <image id="FA_CUSTOM" path="FA_CUSTOM/FA3.png" time="3" transform="invert">
-        <macula>
-            <x>258</x>
-            <y>218</y>
-        </macula>
-        <optic_disk>
-            <x>495</x>
-            <y>199</y>
-        </optic_disk>
-    </image>   
+   
+   <image id="BARR" path="BARR OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>358</x>
+         
+         <y>383</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>5</x>
+         
+         <y>375</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-10.6932</dx>
+         
+         <dy>-16.5864</dy>
+         
+         <angle>-0.023941</angle>
+         
+         <scale>0.99838</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>14.7139</dx>
+         
+         <dy>-14.2859</dy>
+         
+         <angle>-0.011619</angle>
+         
+         <scale>0.99826</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BARR" path="BARR OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>724</x>
+         
+         <y>782</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>13</x>
+         
+         <y>776</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>10.6932</dx>
+         
+         <dy>16.5864</dy>
+         
+         <angle>0.023941</angle>
+         
+         <scale>1.0016</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>20.775</dx>
+         
+         <dy>5.5074</dy>
+         
+         <angle>0.012791</angle>
+         
+         <scale>0.99813</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BARR" path="BARR OD 3 (poor quality).tif" time="3">
+      
+      <macula>
+         
+         <x>345</x>
+         
+         <y>391</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>6</x>
+         
+         <y>379</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-14.7139</dx>
+         
+         <dy>14.2859</dy>
+         
+         <angle>0.011619</angle>
+         
+         <scale>1.0017</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-20.775</dx>
+         
+         <dy>-5.5074</dy>
+         
+         <angle>-0.012791</angle>
+         
+         <scale>1.0019</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BIGNALL" path="BIGNALL OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>350</x>
+         
+         <y>384</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>7</x>
+         
+         <y>339</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>14.207</dx>
+         
+         <dy>-14.2109</dy>
+         
+         <angle>-0.051052</angle>
+         
+         <scale>0.99379</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>14.4936</dx>
+         
+         <dy>-55.6079</dy>
+         
+         <angle>-0.0054543</angle>
+         
+         <scale>0.99596</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BIGNALL" path="BIGNALL OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>362</x>
+         
+         <y>391</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>9</x>
+         
+         <y>361</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-14.207</dx>
+         
+         <dy>14.2109</dy>
+         
+         <angle>0.051052</angle>
+         
+         <scale>1.0062</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-6.3457</dx>
+         
+         <dy>-43.2751</dy>
+         
+         <angle>0.052463</angle>
+         
+         <scale>1.0075</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BIGNALL" path="BIGNALL OD 3 (poor image).tif" time="3">
+      
+      <macula>
+         
+         <x>664</x>
+         
+         <y>893</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>9</x>
+         
+         <y>789</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-14.4936</dx>
+         
+         <dy>55.6079</dy>
+         
+         <angle>0.0054543</angle>
+         
+         <scale>1.0041</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>6.3457</dx>
+         
+         <dy>43.2751</dy>
+         
+         <angle>-0.052463</angle>
+         
+         <scale>0.9926</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BORON" path="BORON OD 1 (bright).tif" time="1">
+      
+      <macula>
+         
+         <x>359</x>
+         
+         <y>386</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>4</x>
+         
+         <y>375</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>5.3842</dx>
+         
+         <dy>61.5812</dy>
+         
+         <angle>-0.0023927</angle>
+         
+         <scale>1.0039</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-63.4782</dx>
+         
+         <dy>-1.7275</dy>
+         
+         <angle>0.050162</angle>
+         
+         <scale>1.0037</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BORON" path="BORON OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>702</x>
+         
+         <y>659</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>7</x>
+         
+         <y>629</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-5.3842</dx>
+         
+         <dy>-61.5812</dy>
+         
+         <angle>0.0023927</angle>
+         
+         <scale>0.99611</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-133.2947</dx>
+         
+         <dy>-135.4305</dy>
+         
+         <angle>0.042848</angle>
+         
+         <scale>1.002</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BORON" path="BORON OD 3.tif" time="3">
+      
+      <macula>
+         
+         <x>806</x>
+         
+         <y>813</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>53</x>
+         
+         <y>741</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>63.4782</dx>
+         
+         <dy>1.7275</dy>
+         
+         <angle>-0.050162</angle>
+         
+         <scale>0.99631</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>133.2947</dx>
+         
+         <dy>135.4305</dy>
+         
+         <angle>-0.042848</angle>
+         
+         <scale>0.99801</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BUCHANAN" path="BUCHANAN OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>343</x>
+         
+         <y>395</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>14</x>
+         
+         <y>348</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>7.3234</dx>
+         
+         <dy>-25.6616</dy>
+         
+         <angle>-0.054675</angle>
+         
+         <scale>0.99908</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>46.2611</dx>
+         
+         <dy>-43.7294</dy>
+         
+         <angle>-0.076814</angle>
+         
+         <scale>0.99378</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BUCHANAN" path="BUCHANAN OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>722</x>
+         
+         <y>800</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>53</x>
+         
+         <y>743</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-7.3234</dx>
+         
+         <dy>25.6616</dy>
+         
+         <angle>0.054675</angle>
+         
+         <scale>1.0009</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>37.5001</dx>
+         
+         <dy>-21.4447</dy>
+         
+         <angle>-0.024291</angle>
+         
+         <scale>0.99898</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="BUCHANAN" path="BUCHANAN OD 3.tif" time="3">
+      
+      <macula>
+         
+         <x>338</x>
+         
+         <y>405</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>6</x>
+         
+         <y>391</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-46.2611</dx>
+         
+         <dy>43.7294</dy>
+         
+         <angle>0.076814</angle>
+         
+         <scale>1.0063</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-37.5001</dx>
+         
+         <dy>21.4447</dy>
+         
+         <angle>0.024291</angle>
+         
+         <scale>1.001</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="CERVENKA" path="CERVENKA OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>347</x>
+         
+         <y>393</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>4</x>
+         
+         <y>381</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>20.9101</dx>
+         
+         <dy>5.5452</dy>
+         
+         <angle>-0.016342</angle>
+         
+         <scale>0.99935</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>17.4661</dx>
+         
+         <dy>-6.1031</dy>
+         
+         <angle>-0.033302</angle>
+         
+         <scale>0.99827</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="CERVENKA" path="CERVENKA OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>338</x>
+         
+         <y>383</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>-4</x>
+         
+         <y>377</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-20.9101</dx>
+         
+         <dy>-5.5452</dy>
+         
+         <angle>0.016342</angle>
+         
+         <scale>1.0006</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-4.3132</dx>
+         
+         <dy>-8.7116</dy>
+         
+         <angle>-0.017126</angle>
+         
+         <scale>1</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="CERVENKA" path="CERVENKA OD 3.tif" time="3">
+      
+      <macula>
+         
+         <x>345</x>
+         
+         <y>392</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>5</x>
+         
+         <y>388</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>4.3132</dx>
+         
+         <dy>8.7116</dy>
+         
+         <angle>0.017126</angle>
+         
+         <scale>1</scale>
+      
+      </reg>
+      
+      <reg corr_time="1">
+         
+         <dx>-17.4661</dx>
+         
+         <dy>6.1031</dy>
+         
+         <angle>0.033302</angle>
+         
+         <scale>1.0017</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="COMBS" path="COMBS OS 1 (poor image).tif" time="1">
+      
+      <macula>
+         
+         <x>816</x>
+         
+         <y>813</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>153</x>
+         
+         <y>803</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-62.0549</dx>
+         
+         <dy>38.5507</dy>
+         
+         <angle>0.093693</angle>
+         
+         <scale>1.0275</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-42.0544</dx>
+         
+         <dy>39.3681</dy>
+         
+         <angle>0.071043</angle>
+         
+         <scale>1.04</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="COMBS" path="COMBS OS 2.tif" time="2">
+      
+      <macula>
+         
+         <x>422</x>
+         
+         <y>390</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>110</x>
+         
+         <y>357</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>62.0549</dx>
+         
+         <dy>-38.5507</dy>
+         
+         <angle>-0.093693</angle>
+         
+         <scale>0.97324</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>42.3312</dx>
+         
+         <dy>-6.6179</dy>
+         
+         <angle>-0.016972</angle>
+         
+         <scale>0.99653</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="COMBS" path="COMBS OS 3.tif" time="3">
+      
+      <macula>
+         
+         <x>774</x>
+         
+         <y>801</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>149</x>
+         
+         <y>749</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>42.0544</dx>
+         
+         <dy>-39.3681</dy>
+         
+         <angle>-0.071043</angle>
+         
+         <scale>0.96156</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-42.3312</dx>
+         
+         <dy>6.6179</dy>
+         
+         <angle>0.016972</angle>
+         
+         <scale>1.0035</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="COMISKY" path="COMISKY OS 1.tif" time="1">
+      
+      <macula>
+         
+         <x>416</x>
+         
+         <y>400</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>61</x>
+         
+         <y>385</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-5.1053</dx>
+         
+         <dy>6.0643</dy>
+         
+         <angle>0.0028412</angle>
+         
+         <scale>1.0018</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-13.3696</dx>
+         
+         <dy>19.5021</dy>
+         
+         <angle>0.03151</angle>
+         
+         <scale>0.99955</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="COMISKY" path="COMISKY OS 2.tif" time="2">
+      
+      <macula>
+         
+         <x>417</x>
+         
+         <y>395</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>61</x>
+         
+         <y>377</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>5.1053</dx>
+         
+         <dy>-6.0643</dy>
+         
+         <angle>-0.0028412</angle>
+         
+         <scale>0.99821</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-5.5459</dx>
+         
+         <dy>14.7037</dy>
+         
+         <angle>0.025908</angle>
+         
+         <scale>0.9949</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="COMISKY" path="COMISKY OS 3.tif" time="3">
+      
+      <macula>
+         
+         <x>424</x>
+         
+         <y>393</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>52</x>
+         
+         <y>364</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>13.3696</dx>
+         
+         <dy>-19.5021</dy>
+         
+         <angle>-0.03151</angle>
+         
+         <scale>1.0005</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>5.5459</dx>
+         
+         <dy>-14.7037</dy>
+         
+         <angle>-0.025908</angle>
+         
+         <scale>1.0051</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="GETTEL" path="GETTEL OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>346</x>
+         
+         <y>397</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>12</x>
+         
+         <y>366</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-18.3687</dx>
+         
+         <dy>12.937</dy>
+         
+         <angle>0.026568</angle>
+         
+         <scale>0.99271</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-6.0888</dx>
+         
+         <dy>-10.5224</dy>
+         
+         <angle>0.027433</angle>
+         
+         <scale>0.98518</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="GETTEL" path="GETTEL OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>365</x>
+         
+         <y>400</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>17</x>
+         
+         <y>352</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>18.3687</dx>
+         
+         <dy>-12.937</dy>
+         
+         <angle>-0.026568</angle>
+         
+         <scale>1.0073</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>16.8603</dx>
+         
+         <dy>-25.5734</dy>
+         
+         <angle>-0.0053772</angle>
+         
+         <scale>0.99539</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="GETTEL" path="GETTEL OD 3.tif" time="3">
+      
+      <macula>
+         
+         <x>340</x>
+         
+         <y>430</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>16</x>
+         
+         <y>374</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-16.8603</dx>
+         
+         <dy>25.5734</dy>
+         
+         <angle>0.0053772</angle>
+         
+         <scale>1.0046</scale>
+      
+      </reg>
+      
+      <reg corr_time="1">
+         
+         <dx>6.0888</dx>
+         
+         <dy>10.5224</dy>
+         
+         <angle>-0.027433</angle>
+         
+         <scale>1.015</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="KUKLA" path="KUKLA OS 1 (poor image).tif" time="1">
+      
+      <macula>
+         
+         <x>654</x>
+         
+         <y>1022</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>27</x>
+         
+         <y>885</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="3">
+         
+         <dx>-49.6027</dx>
+         
+         <dy>93.5893</dy>
+         
+         <angle>0.02656</angle>
+         
+         <scale>0.99652</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-118.1694</dx>
+         
+         <dy>126.9293</dy>
+         
+         <angle>0.041796</angle>
+         
+         <scale>0.98617</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="KUKLA" path="KUKLA OS 2 (poor image).tif" time="2">
+      
+      <macula>
+         
+         <x>425</x>
+         
+         <y>401</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>78</x>
+         
+         <y>316</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>118.1694</dx>
+         
+         <dy>-126.9293</dy>
+         
+         <angle>-0.041796</angle>
+         
+         <scale>1.014</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>77.0624</dx>
+         
+         <dy>-32.9967</dy>
+         
+         <angle>-0.022433</angle>
+         
+         <scale>0.99052</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="KUKLA" path="KUKLA OS 3 (poor image).tif" time="3">
+      
+      <macula>
+         
+         <x>375</x>
+         
+         <y>434</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>44</x>
+         
+         <y>360</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>49.6027</dx>
+         
+         <dy>-93.5893</dy>
+         
+         <angle>-0.02656</angle>
+         
+         <scale>1.0035</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-77.0624</dx>
+         
+         <dy>32.9967</dy>
+         
+         <angle>0.022433</angle>
+         
+         <scale>1.0096</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="LEMAY" path="LEMAY OS 1.tif" time="1">
+      
+      <macula>
+         
+         <x>427</x>
+         
+         <y>392</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>76</x>
+         
+         <y>354</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-7.8969</dx>
+         
+         <dy>9.8969</dy>
+         
+         <angle>0.0072138</angle>
+         
+         <scale>1.0014</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="LEMAY" path="LEMAY OS 2.tif" time="2">
+      
+      <macula>
+         
+         <x>422</x>
+         
+         <y>396</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>78</x>
+         
+         <y>349</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>7.8969</dx>
+         
+         <dy>-9.8969</dy>
+         
+         <angle>-0.0072138</angle>
+         
+         <scale>0.99861</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="MASSIMILLA" path="MASSIMILLA OD 3.tif" time="3">
+      
+      <macula>
+         
+         <x>700</x>
+         
+         <y>797</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>55</x>
+         
+         <y>699</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="REAM" path="REAM OS 1.tif" time="1">
+      
+      <macula>
+         
+         <x>411</x>
+         
+         <y>390</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>71</x>
+         
+         <y>357</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>7.7689</dx>
+         
+         <dy>10.8657</dy>
+         
+         <angle>0.0031459</angle>
+         
+         <scale>0.99839</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>7.5956</dx>
+         
+         <dy>-10.0664</dy>
+         
+         <angle>-0.020484</angle>
+         
+         <scale>0.99585</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="REAM" path="REAM OS 2.tif" time="2">
+      
+      <macula>
+         
+         <x>804</x>
+         
+         <y>757</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>111</x>
+         
+         <y>687</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-7.7689</dx>
+         
+         <dy>-10.8657</dy>
+         
+         <angle>-0.0031459</angle>
+         
+         <scale>1.0016</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-2.6463</dx>
+         
+         <dy>-23.0678</dy>
+         
+         <angle>-0.022223</angle>
+         
+         <scale>1.0032</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="REAM" path="REAM OS 3.tif" time="3">
+      
+      <macula>
+         
+         <x>408</x>
+         
+         <y>397</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>66</x>
+         
+         <y>362</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-7.5956</dx>
+         
+         <dy>10.0664</dy>
+         
+         <angle>0.020484</angle>
+         
+         <scale>1.0042</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>2.6463</dx>
+         
+         <dy>23.0678</dy>
+         
+         <angle>0.022223</angle>
+         
+         <scale>0.99686</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="RHOADES" path="RHOADES OS 1.tif" time="1">
+      
+      <macula>
+         
+         <x>416</x>
+         
+         <y>391</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>37</x>
+         
+         <y>384</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>19.0393</dx>
+         
+         <dy>-5.7313</dy>
+         
+         <angle>0.021926</angle>
+         
+         <scale>1.0006</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="RHOADES" path="RHOADES OS 2.tif" time="2">
+      
+      <macula>
+         
+         <x>792</x>
+         
+         <y>806</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>37</x>
+         
+         <y>765</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-19.0393</dx>
+         
+         <dy>5.7313</dy>
+         
+         <angle>-0.021926</angle>
+         
+         <scale>0.9994</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="RHOADES " path="RHOADES OS 3.tif" time="3">
+      
+      <macula>
+         
+         <x>410</x>
+         
+         <y>417</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>38</x>
+         
+         <y>401</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="VINCENT" path="VINCENT OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>336</x>
+         
+         <y>397</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>-49</x>
+         
+         <y>360</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-45.8484</dx>
+         
+         <dy>7.2287</dy>
+         
+         <angle>0.020336</angle>
+         
+         <scale>1.0017</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>16.6466</dx>
+         
+         <dy>-26.7425</dy>
+         
+         <angle>-0.023391</angle>
+         
+         <scale>1.0037</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="VINCENT" path="VINCENT OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>746</x>
+         
+         <y>809</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1</x>
+         
+         <y>721</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>45.8484</dx>
+         
+         <dy>-7.2287</dy>
+         
+         <angle>-0.020336</angle>
+         
+         <scale>0.99829</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-110.889</dx>
+         
+         <dy>58.2907</dy>
+         
+         <angle>0.037571</angle>
+         
+         <scale>0.99411</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="VINCENT" path="VINCENT OD 3 (funny iamge).tif" time="3">
+      
+      <macula>
+         
+         <x>688</x>
+         
+         <y>801</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>-31</x>
+         
+         <y>735</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-16.6466</dx>
+         
+         <dy>26.7425</dy>
+         
+         <angle>0.023391</angle>
+         
+         <scale>0.99632</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>110.889</dx>
+         
+         <dy>-58.2907</dy>
+         
+         <angle>-0.037571</angle>
+         
+         <scale>1.0059</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="WHITE" path="White OD 1.tif" time="1">
+      
+      <macula>
+         
+         <x>734</x>
+         
+         <y>806</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>11</x>
+         
+         <y>735</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>11.8581</dx>
+         
+         <dy>18.4572</dy>
+         
+         <angle>0.05698</angle>
+         
+         <scale>0.99442</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-33.4191</dx>
+         
+         <dy>-9.6867</dy>
+         
+         <angle>0.033297</angle>
+         
+         <scale>0.99847</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="WHITE" path="White OD 2.tif" time="2">
+      
+      <macula>
+         
+         <x>330</x>
+         
+         <y>393</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1</x>
+         
+         <y>331</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>-11.8581</dx>
+         
+         <dy>-18.4572</dy>
+         
+         <angle>-0.05698</angle>
+         
+         <scale>1.0056</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-21.042</dx>
+         
+         <dy>-30.5783</dy>
+         
+         <angle>-0.03357</angle>
+         
+         <scale>1.0044</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="WHITE" path="White OD 3 (poor image).tif" time="3">
+      
+      <macula>
+         
+         <x>730</x>
+         
+         <y>836</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>9</x>
+         
+         <y>733</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>33.4191</dx>
+         
+         <dy>9.6867</dy>
+         
+         <angle>-0.033297</angle>
+         
+         <scale>1.0015</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>21.042</dx>
+         
+         <dy>30.5783</dy>
+         
+         <angle>0.03357</angle>
+         
+         <scale>0.99564</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="FA_CUSTOM" path="FA_CUSTOM/FA1.png" time="1" transform="invert">
+      
+      <macula>
+         
+         <x>315</x>
+         
+         <y>238</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>571</x>
+         
+         <y>231</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-47.632</dx>
+         
+         <dy>16.1265</dy>
+         
+         <angle>0.012118</angle>
+         
+         <scale>0.99366</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>37.7843</dx>
+         
+         <dy>6.4768</dy>
+         
+         <angle>0.0031569</angle>
+         
+         <scale>0.99858</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="FA_CUSTOM" path="FA_CUSTOM/FA2.png" time="2" transform="invert">
+      
+      <macula>
+         
+         <x>341</x>
+         
+         <y>214</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>570</x>
+         
+         <y>226</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="1">
+         
+         <dx>47.632</dx>
+         
+         <dy>-16.1265</dy>
+         
+         <angle>-0.012118</angle>
+         
+         <scale>1.0064</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>85.6556</dx>
+         
+         <dy>-9.2671</dy>
+         
+         <angle>-0.010592</angle>
+         
+         <scale>1.0025</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="FA_CUSTOM" path="FA_CUSTOM/FA3.png" time="3" transform="invert">
+      
+      <macula>
+         
+         <x>258</x>
+         
+         <y>218</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>495</x>
+         
+         <y>199</y>
+      
+      </optic_disk>
+      
+      <reg corr_time="2">
+         
+         <dx>-85.6556</dx>
+         
+         <dy>9.2671</dy>
+         
+         <angle>0.010592</angle>
+         
+         <scale>0.99753</scale>
+      
+      </reg>
+      
+      <reg corr_time="1">
+         
+         <dx>-37.7843</dx>
+         
+         <dy>-6.4768</dy>
+         
+         <angle>-0.0031569</angle>
+         
+         <scale>1.0014</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00270567/OD/00_27_05_670_011.tif" time="1">
+      
+      <reg corr_time="2">
+         
+         <dx>10.9966</dx>
+         
+         <dy>20.2421</dy>
+         
+         <angle>-0.012357</angle>
+         
+         <scale>1.0264</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-6.4193</dx>
+         
+         <dy>29.7341</dy>
+         
+         <angle>0.0024704</angle>
+         
+         <scale>1.0569</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-31.7817</dx>
+         
+         <dy>43.7823</dy>
+         
+         <angle>0.075591</angle>
+         
+         <scale>1.0559</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>51.2861</dx>
+         
+         <dy>78.7412</dy>
+         
+         <angle>0.021462</angle>
+         
+         <scale>1.05</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>3.0933</dx>
+         
+         <dy>35.6369</dy>
+         
+         <angle>0.0050845</angle>
+         
+         <scale>1.0291</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00270567/OD/00_27_05_670_008.tif" time="2">
+      
+      <reg corr_time="1">
+         
+         <dx>-10.9966</dx>
+         
+         <dy>-20.2421</dy>
+         
+         <angle>0.012357</angle>
+         
+         <scale>0.97425</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-34.9828</dx>
+         
+         <dy>24.7853</dy>
+         
+         <angle>0.013904</angle>
+         
+         <scale>1.021</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>71.3254</dx>
+         
+         <dy>127.8022</dy>
+         
+         <angle>0.038349</angle>
+         
+         <scale>1.0225</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-11.5165</dx>
+         
+         <dy>10.5761</dy>
+         
+         <angle>0.008135</angle>
+         
+         <scale>1.0117</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-49.5202</dx>
+         
+         <dy>36.5823</dy>
+         
+         <angle>0.077438</angle>
+         
+         <scale>1.0167</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00270567/OD/00_27_05_670_006.tif" time="3">
+      
+      <reg corr_time="1">
+         
+         <dx>6.4193</dx>
+         
+         <dy>-29.7341</dy>
+         
+         <angle>-0.0024704</angle>
+         
+         <scale>0.94612</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>34.9828</dx>
+         
+         <dy>-24.7853</dy>
+         
+         <angle>-0.013904</angle>
+         
+         <scale>0.97939</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-44.0522</dx>
+         
+         <dy>18.9087</dy>
+         
+         <angle>0.069753</angle>
+         
+         <scale>1.0108</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>117.902</dx>
+         
+         <dy>86.4954</dy>
+         
+         <angle>0.014317</angle>
+         
+         <scale>1.0084</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>11.7451</dx>
+         
+         <dy>-31.4564</dy>
+         
+         <angle>-0.004673</angle>
+         
+         <scale>0.99565</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00270567/OD/00_27_05_670_004.tif" time="4">
+      
+      <reg corr_time="1">
+         
+         <dx>31.7817</dx>
+         
+         <dy>-43.7823</dy>
+         
+         <angle>-0.075591</angle>
+         
+         <scale>0.94709</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>44.0522</dx>
+         
+         <dy>-18.9087</dy>
+         
+         <angle>-0.069753</angle>
+         
+         <scale>0.98934</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>49.5202</dx>
+         
+         <dy>-36.5823</dy>
+         
+         <angle>-0.077438</angle>
+         
+         <scale>0.98357</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>163.7686</dx>
+         
+         <dy>62.0593</dy>
+         
+         <angle>-0.049027</angle>
+         
+         <scale>0.98688</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>50.9664</dx>
+         
+         <dy>-35.9013</dy>
+         
+         <angle>-0.071397</angle>
+         
+         <scale>0.99122</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00270567_OD" path="00270567/OD/00_27_05_670_002.tif" time="5">
+      
+      <reg corr_time="1">
+         
+         <dx>-51.2861</dx>
+         
+         <dy>-78.7412</dy>
+         
+         <angle>-0.021462</angle>
+         
+         <scale>0.9524</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-71.3254</dx>
+         
+         <dy>-127.8022</dy>
+         
+         <angle>-0.038349</angle>
+         
+         <scale>0.978</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-117.902</dx>
+         
+         <dy>-86.4954</dy>
+         
+         <angle>-0.014317</angle>
+         
+         <scale>0.99172</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-163.7686</dx>
+         
+         <dy>-62.0593</dy>
+         
+         <angle>0.049027</angle>
+         
+         <scale>1.0133</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-105.1195</dx>
+         
+         <dy>-103.9903</dy>
+         
+         <angle>-0.012911</angle>
+         
+         <scale>0.99398</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00270567_OD" path="00270567/OD/00_27_05_670_000.tif" time="6">
+      
+      <reg corr_time="1">
+         
+         <dx>-3.0933</dx>
+         
+         <dy>-35.6369</dy>
+         
+         <angle>-0.0050845</angle>
+         
+         <scale>0.97174</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>11.5165</dx>
+         
+         <dy>-10.5761</dy>
+         
+         <angle>-0.008135</angle>
+         
+         <scale>0.98846</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-11.7451</dx>
+         
+         <dy>31.4564</dy>
+         
+         <angle>0.004673</angle>
+         
+         <scale>1.0044</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-50.9664</dx>
+         
+         <dy>35.9013</dy>
+         
+         <angle>0.071397</angle>
+         
+         <scale>1.0089</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>105.1195</dx>
+         
+         <dy>103.9903</dy>
+         
+         <angle>0.012911</angle>
+         
+         <scale>1.0061</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_012.tif" time="1">
+      
+      <reg corr_time="2">
+         
+         <dx>10.9364</dx>
+         
+         <dy>-27.9054</dy>
+         
+         <angle>-0.028582</angle>
+         
+         <scale>1.0082</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>9.395</dx>
+         
+         <dy>-6.6898</dy>
+         
+         <angle>-0.034115</angle>
+         
+         <scale>1.049</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>12.5179</dx>
+         
+         <dy>-7.6036</dy>
+         
+         <angle>-0.013861</angle>
+         
+         <scale>1.0442</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-10.4874</dx>
+         
+         <dy>22.3678</dy>
+         
+         <angle>0.048851</angle>
+         
+         <scale>1.0457</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-2.7718</dx>
+         
+         <dy>-2.593</dy>
+         
+         <angle>0.0025188</angle>
+         
+         <scale>1.0558</scale>
+      
+      </reg>
+      
+      <reg corr_time="7">
+         
+         <dx>28</dx>
+         
+         <dy>-15.4806</dy>
+         
+         <angle>-0.034516</angle>
+         
+         <scale>1.0468</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_010.tif" time="2">
+      
+      <reg corr_time="1">
+         
+         <dx>-10.9364</dx>
+         
+         <dy>27.9054</dy>
+         
+         <angle>0.028582</angle>
+         
+         <scale>0.99183</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-3.0421</dx>
+         
+         <dy>22.3528</dy>
+         
+         <angle>-0.00042056</angle>
+         
+         <scale>1.0427</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-9.2439</dx>
+         
+         <dy>10.9012</dy>
+         
+         <angle>0.013749</angle>
+         
+         <scale>1.0528</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-24.9897</dx>
+         
+         <dy>40.7741</dy>
+         
+         <angle>0.068555</angle>
+         
+         <scale>1.0454</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-24.8723</dx>
+         
+         <dy>20.8439</dy>
+         
+         <angle>0.027499</angle>
+         
+         <scale>1.0606</scale>
+      
+      </reg>
+      
+      <reg corr_time="7">
+         
+         <dx>8.9236</dx>
+         
+         <dy>4.796</dy>
+         
+         <angle>-0.00378</angle>
+         
+         <scale>1.0454</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_009.tif" time="3">
+      
+      <reg corr_time="1">
+         
+         <dx>-9.395</dx>
+         
+         <dy>6.6898</dy>
+         
+         <angle>0.034115</angle>
+         
+         <scale>0.95328</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>3.0421</dx>
+         
+         <dy>-22.3528</dy>
+         
+         <angle>0.00042056</angle>
+         
+         <scale>0.95905</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-6.2024</dx>
+         
+         <dy>-20.6403</dy>
+         
+         <angle>0.015135</angle>
+         
+         <scale>1.0065</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-29.471</dx>
+         
+         <dy>-8.8375</dy>
+         
+         <angle>0.033159</angle>
+         
+         <scale>1.017</scale>
+      
+      </reg>
+      
+      <reg corr_time="7">
+         
+         <dx>39.1015</dx>
+         
+         <dy>-31.1669</dy>
+         
+         <angle>-0.0017537</angle>
+         
+         <scale>1.0016</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-32.7167</dx>
+         
+         <dy>24.2414</dy>
+         
+         <angle>0.067541</angle>
+         
+         <scale>0.9989</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_007.tif" time="4">
+      
+      <reg corr_time="1">
+         
+         <dx>-12.5179</dx>
+         
+         <dy>7.6036</dy>
+         
+         <angle>0.013861</angle>
+         
+         <scale>0.95769</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>9.2439</dx>
+         
+         <dy>-10.9012</dy>
+         
+         <angle>-0.013749</angle>
+         
+         <scale>0.94982</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>6.2024</dx>
+         
+         <dy>20.6403</dy>
+         
+         <angle>-0.015135</angle>
+         
+         <scale>0.9935</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-33.4317</dx>
+         
+         <dy>52.3085</dy>
+         
+         <angle>0.054755</angle>
+         
+         <scale>1.0023</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-16.8953</dx>
+         
+         <dy>4.1749</dy>
+         
+         <angle>0.01295</angle>
+         
+         <scale>1.0115</scale>
+      
+      </reg>
+      
+      <reg corr_time="7">
+         
+         <dx>30.596</dx>
+         
+         <dy>-15.6768</dy>
+         
+         <angle>-0.022434</angle>
+         
+         <scale>1.0046</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_005.tif" time="5">
+      
+      <reg corr_time="1">
+         
+         <dx>10.4874</dx>
+         
+         <dy>-22.3678</dy>
+         
+         <angle>-0.048851</angle>
+         
+         <scale>0.95633</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>24.9897</dx>
+         
+         <dy>-40.7741</dy>
+         
+         <angle>-0.068555</angle>
+         
+         <scale>0.95661</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>33.4317</dx>
+         
+         <dy>-52.3085</dy>
+         
+         <angle>-0.054755</angle>
+         
+         <scale>0.99771</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>32.7167</dx>
+         
+         <dy>-24.2414</dy>
+         
+         <angle>-0.067541</angle>
+         
+         <scale>1.0011</scale>
+      
+      </reg>
+      
+      <reg corr_time="7">
+         
+         <dx>69.1322</dx>
+         
+         <dy>-64.1227</dy>
+         
+         <angle>-0.079078</angle>
+         
+         <scale>1.0026</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>4.3131</dx>
+         
+         <dy>-39.7581</dy>
+         
+         <angle>-0.033425</angle>
+         
+         <scale>1.01</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_003.tif" time="6">
+      
+      <reg corr_time="1">
+         
+         <dx>2.7718</dx>
+         
+         <dy>2.593</dy>
+         
+         <angle>-0.0025188</angle>
+         
+         <scale>0.94717</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>24.8723</dx>
+         
+         <dy>-20.8439</dy>
+         
+         <angle>-0.027499</angle>
+         
+         <scale>0.94284</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>29.471</dx>
+         
+         <dy>8.8375</dy>
+         
+         <angle>-0.033159</angle>
+         
+         <scale>0.98331</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>16.8953</dx>
+         
+         <dy>-4.1749</dy>
+         
+         <angle>-0.01295</angle>
+         
+         <scale>0.98865</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-4.3131</dx>
+         
+         <dy>39.7581</dy>
+         
+         <angle>0.033425</angle>
+         
+         <scale>0.99009</scale>
+      
+      </reg>
+      
+      <reg corr_time="7">
+         
+         <dx>59.0701</dx>
+         
+         <dy>-28.3949</dy>
+         
+         <angle>-0.041566</angle>
+         
+         <scale>0.98914</scale>
+      
+      </reg>
+   
+   </image>  
+   
+   <image id="00270567_OS" path="00270567/OS/00_27_05_670_001.tif" time="7">
+      
+      <reg corr_time="1">
+         
+         <dx>-28</dx>
+         
+         <dy>15.4806</dy>
+         
+         <angle>0.034516</angle>
+         
+         <scale>0.95529</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-8.9236</dx>
+         
+         <dy>-4.796</dy>
+         
+         <angle>0.00378</angle>
+         
+         <scale>0.95659</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-39.1015</dx>
+         
+         <dy>31.1669</dy>
+         
+         <angle>0.0017537</angle>
+         
+         <scale>0.99845</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-30.596</dx>
+         
+         <dy>15.6768</dy>
+         
+         <angle>0.022434</angle>
+         
+         <scale>0.99543</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-69.1322</dx>
+         
+         <dy>64.1227</dy>
+         
+         <angle>0.079078</angle>
+         
+         <scale>0.99743</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>-59.0701</dx>
+         
+         <dy>28.3949</dy>
+         
+         <angle>0.041566</angle>
+         
+         <scale>1.011</scale>
+      
+      </reg>
+   
+   </image>  
+   
+   <image id="00036771" path="00036771/00_03_67_710_005.tif" time="1">
+      
+      <reg corr_time="2">
+         
+         <dx>9.7688</dx>
+         
+         <dy>-8.2067</dy>
+         
+         <angle>-0.036653</angle>
+         
+         <scale>1.0712</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>22.6715</dx>
+         
+         <dy>-20.0956</dy>
+         
+         <angle>-0.047704</angle>
+         
+         <scale>1.0528</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>0.3613</dx>
+         
+         <dy>-2.4156</dy>
+         
+         <angle>-0.011901</angle>
+         
+         <scale>1.0758</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>39.3695</dx>
+         
+         <dy>58.9478</dy>
+         
+         <angle>-0.0034325</angle>
+         
+         <scale>1.0692</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>16.9233</dx>
+         
+         <dy>-103.2558</dy>
+         
+         <angle>-0.050355</angle>
+         
+         <scale>0.99623</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00036771" path="00036771/00_03_67_710_004.tif" time="2">
+      
+      <reg corr_time="1">
+         
+         <dx>-9.7688</dx>
+         
+         <dy>8.2067</dy>
+         
+         <angle>0.036653</angle>
+         
+         <scale>0.9335</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>20.3612</dx>
+         
+         <dy>-18.7387</dy>
+         
+         <angle>-0.027024</angle>
+         
+         <scale>0.98578</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-32.0646</dx>
+         
+         <dy>14.2093</dy>
+         
+         <angle>0.035558</angle>
+         
+         <scale>1.0093</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>27.5482</dx>
+         
+         <dy>-93.3363</dy>
+         
+         <angle>-0.021646</angle>
+         
+         <scale>0.92448</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>55.7556</dx>
+         
+         <dy>135.4841</dy>
+         
+         <angle>0.027831</angle>
+         
+         <scale>0.98511</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00036771" path="00036771/00_03_67_710_003.tif" time="3">
+      
+      <reg corr_time="1">
+         
+         <dx>-22.6715</dx>
+         
+         <dy>20.0956</dy>
+         
+         <angle>0.047704</angle>
+         
+         <scale>0.94986</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-20.3612</dx>
+         
+         <dy>18.7387</dy>
+         
+         <angle>0.027024</angle>
+         
+         <scale>1.0144</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-40.2951</dx>
+         
+         <dy>34.2831</dy>
+         
+         <angle>0.050748</angle>
+         
+         <scale>1.0182</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>7.4414</dx>
+         
+         <dy>-80.7894</dy>
+         
+         <angle>0.0058021</angle>
+         
+         <scale>0.93954</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>38.1716</dx>
+         
+         <dy>153.8247</dy>
+         
+         <angle>0.050613</angle>
+         
+         <scale>0.99998</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00036771" path="00036771/00_03_67_710_002.tif" time="4">
+      
+      <reg corr_time="1">
+         
+         <dx>-0.3613</dx>
+         
+         <dy>2.4156</dy>
+         
+         <angle>0.011901</angle>
+         
+         <scale>0.92953</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>32.0646</dx>
+         
+         <dy>-14.2093</dy>
+         
+         <angle>-0.035558</angle>
+         
+         <scale>0.99081</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>40.2951</dx>
+         
+         <dy>-34.2831</dy>
+         
+         <angle>-0.050748</angle>
+         
+         <scale>0.98208</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>39.5592</dx>
+         
+         <dy>-96.617</dy>
+         
+         <angle>-0.050113</angle>
+         
+         <scale>0.91342</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>85.9624</dx>
+         
+         <dy>120.96</dy>
+         
+         <angle>-0.0069801</angle>
+         
+         <scale>0.97658</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00036771" path="00036771/00_03_67_710_001.tif" time="5">
+      
+      <reg corr_time="2">
+         
+         <dx>-27.5482</dx>
+         
+         <dy>93.3363</dy>
+         
+         <angle>0.021646</angle>
+         
+         <scale>1.0817</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-7.4414</dx>
+         
+         <dy>80.7894</dy>
+         
+         <angle>-0.0058021</angle>
+         
+         <scale>1.0643</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-39.5592</dx>
+         
+         <dy>96.617</dy>
+         
+         <angle>0.050113</angle>
+         
+         <scale>1.0948</scale>
+      
+      </reg>
+      
+      <reg corr_time="1">
+         
+         <dx>-16.9233</dx>
+         
+         <dy>103.2558</dy>
+         
+         <angle>0.050355</angle>
+         
+         <scale>1.0038</scale>
+      
+      </reg>
+      
+      <reg corr_time="6">
+         
+         <dx>25.318</dx>
+         
+         <dy>171.6694</dy>
+         
+         <angle>0.029473</angle>
+         
+         <scale>1.0528</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00036771" path="00036771/00_03_67_710_000.tif" time="6">
+      
+      <reg corr_time="1">
+         
+         <dx>-39.3695</dx>
+         
+         <dy>-58.9478</dy>
+         
+         <angle>0.0034325</angle>
+         
+         <scale>0.93527</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-55.7556</dx>
+         
+         <dy>-135.4841</dy>
+         
+         <angle>-0.027831</angle>
+         
+         <scale>1.0151</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>-38.1716</dx>
+         
+         <dy>-153.8247</dy>
+         
+         <angle>-0.050613</angle>
+         
+         <scale>1</scale>
+      
+      </reg>
+      
+      <reg corr_time="4">
+         
+         <dx>-85.9624</dx>
+         
+         <dy>-120.96</dy>
+         
+         <angle>0.0069801</angle>
+         
+         <scale>1.024</scale>
+      
+      </reg>
+      
+      <reg corr_time="5">
+         
+         <dx>-25.318</dx>
+         
+         <dy>-171.6694</dy>
+         
+         <angle>-0.029473</angle>
+         
+         <scale>0.94989</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00349225_OD" path="00349225/OD/00_34_92_250_004.tif" time="1">
+      
+      <reg corr_time="2">
+         
+         <dx>-3.6598</dx>
+         
+         <dy>32.3174</dy>
+         
+         <angle>-0.020408</angle>
+         
+         <scale>1.0579</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>4.806</dx>
+         
+         <dy>17.4652</dy>
+         
+         <angle>-0.012693</angle>
+         
+         <scale>1.0543</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00349225_OD" path="00349225/OD/00_34_92_250_002.tif" time="2">
+      
+      <reg corr_time="1">
+         
+         <dx>3.6598</dx>
+         
+         <dy>-32.3174</dy>
+         
+         <angle>0.020408</angle>
+         
+         <scale>0.94526</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>5.3924</dx>
+         
+         <dy>-18.747</dy>
+         
+         <angle>0.010697</angle>
+         
+         <scale>0.99625</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00349225_OD" path="00349225/OD/00_34_92_250_000.tif" time="3">
+      
+      <reg corr_time="1">
+         
+         <dx>-4.806</dx>
+         
+         <dy>-17.4652</dy>
+         
+         <angle>0.012693</angle>
+         
+         <scale>0.9485</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-5.3924</dx>
+         
+         <dy>18.747</dy>
+         
+         <angle>-0.010697</angle>
+         
+         <scale>1.0038</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00349225_OS" path="00349225/OS/00_34_92_250_005.tif" time="1">
+      
+      <reg corr_time="2">
+         
+         <dx>-15.1119</dx>
+         
+         <dy>76.4607</dy>
+         
+         <angle>0.0065085</angle>
+         
+         <scale>1.0527</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>6.6048</dx>
+         
+         <dy>10.8082</dy>
+         
+         <angle>-0.015051</angle>
+         
+         <scale>1.0575</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00349225_OS" path="00349225/OS/00_34_92_250_003.tif" time="2">
+      
+      <reg corr_time="1">
+         
+         <dx>15.1119</dx>
+         
+         <dy>-76.4607</dy>
+         
+         <angle>-0.0065085</angle>
+         
+         <scale>0.94993</scale>
+      
+      </reg>
+      
+      <reg corr_time="3">
+         
+         <dx>61.5808</dx>
+         
+         <dy>-117.2151</dy>
+         
+         <angle>-0.028464</angle>
+         
+         <scale>0.99885</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00349225_OS" path="00349225/OS/00_34_92_250_001.tif" time="3">
+      
+      <reg corr_time="1">
+         
+         <dx>-6.6048</dx>
+         
+         <dy>-10.8082</dy>
+         
+         <angle>0.015051</angle>
+         
+         <scale>0.94562</scale>
+      
+      </reg>
+      
+      <reg corr_time="2">
+         
+         <dx>-61.5808</dx>
+         
+         <dy>117.2151</dy>
+         
+         <angle>0.028464</angle>
+         
+         <scale>1.0012</scale>
+      
+      </reg>
+   
+   </image>   
+   
+   <image id="00387531" path="00387531/00_38_75_310_000.tif" time="1">
+      
+      <reg corr_time="2">
+         
+         <dx>-77.8066</dx>
+         
+         <dy>7.2009</dy>
+         
+         <angle>0.0054545</angle>
+         
+         <scale>1.0238</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00387531" path="00387531/00_38_75_310_001.tif" time="2">
+      
+      <reg corr_time="1">
+         
+         <dx>77.8066</dx>
+         
+         <dy>-7.2009</dy>
+         
+         <angle>-0.0054545</angle>
+         
+         <scale>0.97672</scale>
+      
+      </reg>
+   
+   </image>
+   
+   <image id="00518054" path="00518054/00_51_80_540_000.tif" time="1">
+   
+      <reg corr_time="2">
+         <dx>27.8589</dx>
+         <dy>-5.1912</dy>
+         <angle>-0.030532</angle>
+         <scale>1.0013</scale>
+      </reg>
+   </image>
+   
+   <image id="00518054" path="00518054/00_51_80_540_001.tif" time="2">
+   
+      <reg corr_time="1">
+         <dx>-27.8589</dx>
+         <dy>5.1912</dy>
+         <angle>0.030532</angle>
+         <scale>0.99875</scale>
+      </reg>
+   </image>
+   
+   <image id="00538530" path="00538530/00_53_85_300_004.tif" time="1">
+   
+      <reg corr_time="2">
+         <dx>4.1811</dx>
+         <dy>10.9664</dy>
+         <angle>-0.037998</angle>
+         <scale>1.0611</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-33.8272</dx>
+         <dy>-36.1295</dy>
+         <angle>-0.013344</angle>
+         <scale>1.0645</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-45.0339</dx>
+         <dy>-28.6549</dy>
+         <angle>0.00231</angle>
+         <scale>1.0786</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-15.1</dx>
+         <dy>-58.161</dy>
+         <angle>-0.074101</angle>
+         <scale>1.0665</scale>
+      </reg>
+   </image>
+   
+   <image id="00538530" path="00538530/00_53_85_300_003.tif" time="2">
+   
+      <reg corr_time="1">
+         <dx>-4.1811</dx>
+         <dy>-10.9664</dy>
+         <angle>0.037998</angle>
+         <scale>0.94243</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-70.6831</dx>
+         <dy>-85.6938</dy>
+         <angle>0.025263</angle>
+         <scale>1.002</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-123.9401</dx>
+         <dy>-64.2603</dy>
+         <angle>0.048605</angle>
+         <scale>1.017</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-27.0266</dx>
+         <dy>-116.7419</dy>
+         <angle>-0.032638</angle>
+         <scale>1.0036</scale>
+      </reg>
+   </image>   
+   
+   <image id="00538530" path="00538530/00_53_85_300_002.tif" time="3">
+   
+      <reg corr_time="1">
+         <dx>33.8272</dx>
+         <dy>36.1295</dy>
+         <angle>0.013344</angle>
+         <scale>0.93938</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>70.6831</dx>
+         <dy>85.6938</dy>
+         <angle>-0.025263</angle>
+         <scale>0.99801</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-18.5545</dx>
+         <dy>18.1961</dy>
+         <angle>0.0095588</angle>
+         <scale>1.0021</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>55.9595</dx>
+         <dy>-61.0883</dy>
+         <angle>-0.072</angle>
+         <scale>0.9986</scale>
+      </reg>
+   </image>   
+   
+   <image id="00538530" path="00538530/00_53_85_300_001.tif" time="4">
+   
+      <reg corr_time="1">
+         <dx>45.0339</dx>
+         <dy>28.6549</dy>
+         <angle>-0.00231</angle>
+         <scale>0.92716</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>123.9401</dx>
+         <dy>64.2603</dy>
+         <angle>-0.048605</angle>
+         <scale>0.98328</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>18.5545</dx>
+         <dy>-18.1961</dy>
+         <angle>-0.0095588</angle>
+         <scale>0.99794</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>55.2008</dx>
+         <dy>-52.2589</dy>
+         <angle>-0.078436</angle>
+         <scale>1.0021</scale>
+      </reg>
+   </image>   
+   
+   <image id="00538530" path="00538530/00_53_85_300_000.tif" time="5">
+   
+      <reg corr_time="1">
+         <dx>15.1</dx>
+         <dy>58.161</dy>
+         <angle>0.074101</angle>
+         <scale>0.93768</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>27.0266</dx>
+         <dy>116.7419</dy>
+         <angle>0.032638</angle>
+         <scale>0.99638</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-55.9595</dx>
+         <dy>61.0883</dy>
+         <angle>0.072</angle>
+         <scale>1.0014</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-55.2008</dx>
+         <dy>52.2589</dy>
+         <angle>0.078436</angle>
+         <scale>0.99793</scale>
+      </reg>
+   </image>   
+   
+   <image id="07091810_OD" path="07091810/OD/07_09_18_100_010.tif" time="1">
+   
+      <reg corr_time="2">
+         <dx>-29.2628</dx>
+         <dy>20.972</dy>
+         <angle>0.039541</angle>
+         <scale>1.0559</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-14.2343</dx>
+         <dy>30.6182</dy>
+         <angle>0.043298</angle>
+         <scale>1.0526</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>-15.2893</dx>
+         <dy>27.819</dy>
+         <angle>0.045792</angle>
+         <scale>1.0473</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-6.8586</dx>
+         <dy>25.4007</dy>
+         <angle>0.04909</angle>
+         <scale>1.0542</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-6.008</dx>
+         <dy>-0.95845</dy>
+         <angle>0.01777</angle>
+         <scale>1.0545</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OD" path="07091810/OD/07_09_18_100_008.tif" time="2">
+   
+      <reg corr_time="1">
+         <dx>29.2628</dx>
+         <dy>-20.972</dy>
+         <angle>-0.039541</angle>
+         <scale>0.94707</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>111.4857</dx>
+         <dy>-4.5405</dy>
+         <angle>-0.018312</angle>
+         <scale>1.0008</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>38.6071</dx>
+         <dy>53.4852</dy>
+         <angle>0.014624</angle>
+         <scale>0.98757</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>4.7604</dx>
+         <dy>90.5586</dy>
+         <angle>0.037009</angle>
+         <scale>0.99917</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>20.9753</dx>
+         <dy>27.4883</dy>
+         <angle>0.0057944</angle>
+         <scale>0.99857</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OD" path="07091810/OD/07_09_18_100_006.tif" time="3">
+   
+      <reg corr_time="2">
+         <dx>-111.4857</dx>
+         <dy>4.5405</dy>
+         <angle>0.018312</angle>
+         <scale>0.99919</scale>
+      </reg>
+      <reg corr_time="1">
+         <dx>6.8586</dx>
+         <dy>-25.4007</dy>
+         <angle>-0.04909</angle>
+         <scale>0.9486</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-3.4804</dx>
+         <dy>1.2743</dy>
+         <angle>-0.012067</angle>
+         <scale>0.99428</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-7.3222</dx>
+         <dy>-43.6785</dy>
+         <angle>-0.028841</angle>
+         <scale>0.99927</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>-9.5</dx>
+         <dy>4.8101</dy>
+         <angle>-0.0023568</angle>
+         <scale>0.98753</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OD" path="07091810/OD/07_09_18_100_004.tif" time="4">
+   
+      <reg corr_time="1">
+         <dx>14.2343</dx>
+         <dy>-30.6182</dy>
+         <angle>-0.043298</angle>
+         <scale>0.95007</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>3.4804</dx>
+         <dy>-1.2743</dy>
+         <angle>0.012067</angle>
+         <scale>1.0057</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>-20.9753</dx>
+         <dy>-27.4883</dy>
+         <angle>-0.0057944</angle>
+         <scale>1.0014</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-2.7876</dx>
+         <dy>-57.8059</dy>
+         <angle>-0.023215</angle>
+         <scale>1.0009</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>-9.3989</dx>
+         <dy>-3.8976</dy>
+         <angle>0.0039769</angle>
+         <scale>1.0033</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OD" path="07091810/OD/07_09_18_100_002.tif" time="5">
+   
+      <reg corr_time="2">
+         <dx>-38.6071</dx>
+         <dy>-53.4852</dy>
+         <angle>-0.014624</angle>
+         <scale>1.0126</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>7.3222</dx>
+         <dy>43.6785</dy>
+         <angle>0.028841</angle>
+         <scale>1.0007</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>2.7876</dx>
+         <dy>57.8059</dy>
+         <angle>0.023215</angle>
+         <scale>0.99912</scale>
+      </reg>
+      <reg corr_time="1">
+         <dx>6.008</dx>
+         <dy>0.95845</dy>
+         <angle>-0.01777</angle>
+         <scale>0.94832</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>8.6689</dx>
+         <dy>6.916</dy>
+         <angle>0.0072237</angle>
+         <scale>0.99427</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OD" path="07091810/OD/07_09_18_100_000.tif" time="6">
+   
+      <reg corr_time="1">
+         <dx>15.2893</dx>
+         <dy>-27.819</dy>
+         <angle>-0.045792</angle>
+         <scale>0.95484</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>-4.7604</dx>
+         <dy>-90.5586</dy>
+         <angle>-0.037009</angle>
+         <scale>1.0008</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>9.5</dx>
+         <dy>-4.8101</dy>
+         <angle>0.0023568</angle>
+         <scale>1.0126</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>9.3989</dx>
+         <dy>3.8976</dy>
+         <angle>-0.0039769</angle>
+         <scale>0.99673</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-8.6689</dx>
+         <dy>-6.916</dy>
+         <angle>-0.0072237</angle>
+         <scale>1.0058</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OS" path="07091810/OS/07_09_18_100_011.tif" time="1">
+   
+      <reg corr_time="2">
+         <dx>5.3803</dx>
+         <dy>1.3514</dy>
+         <angle>-0.032387</angle>
+         <scale>1.0423</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-8.8351</dx>
+         <dy>5.546</dy>
+         <angle>-0.013168</angle>
+         <scale>1.0475</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-17.7164</dx>
+         <dy>12.8632</dy>
+         <angle>0.00447</angle>
+         <scale>1.0529</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>-3.7043</dx>
+         <dy>16.709</dy>
+         <angle>-0.0082863</angle>
+         <scale>1.0567</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-10.5779</dx>
+         <dy>12.3486</dy>
+         <angle>-0.00059261</angle>
+         <scale>1.0422</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OS" path="07091810/OS/07_09_18_100_009.tif" time="2">
+   
+      <reg corr_time="1">
+         <dx>-5.3803</dx>
+         <dy>-1.3514</dy>
+         <angle>0.032387</angle>
+         <scale>0.95944</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-54.639</dx>
+         <dy>26.179</dy>
+         <angle>0.045619</angle>
+         <scale>1.0186</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-46.7313</dx>
+         <dy>7.9069</dy>
+         <angle>0.031089</angle>
+         <scale>1.0197</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-36.7219</dx>
+         <dy>7.6896</dy>
+         <angle>0.055771</angle>
+         <scale>1.006</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>63.8139</dx>
+         <dy>64.1276</dy>
+         <angle>0.045394</angle>
+         <scale>0.9733</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OS" path="07091810/OS/07_09_18_100_007.tif" time="3">
+   
+      <reg corr_time="2">
+         <dx>54.639</dx>
+         <dy>-26.179</dy>
+         <angle>-0.045619</angle>
+         <scale>0.98176</scale>
+      </reg>
+      <reg corr_time="1">
+         <dx>10.5779</dx>
+         <dy>-12.3486</dy>
+         <angle>0.00059261</angle>
+         <scale>0.95949</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-5.4562</dx>
+         <dy>3.1936</dy>
+         <angle>0.00030629</angle>
+         <scale>1.002</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>3.609</dx>
+         <dy>1.9219</dy>
+         <angle>-0.011373</angle>
+         <scale>1.0053</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-21.0019</dx>
+         <dy>-0.42932</dy>
+         <angle>0.0040157</angle>
+         <scale>1.0072</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OS" path="07091810/OS/07_09_18_100_005.tif" time="4">
+   
+      <reg corr_time="1">
+         <dx>8.8351</dx>
+         <dy>-5.546</dy>
+         <angle>0.013168</angle>
+         <scale>0.95464</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>46.7313</dx>
+         <dy>-7.9069</dy>
+         <angle>-0.031089</angle>
+         <scale>0.98072</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>5.4562</dx>
+         <dy>-3.1936</dy>
+         <angle>-0.00030629</angle>
+         <scale>0.99797</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-10.034</dx>
+         <dy>4.1602</dy>
+         <angle>0.024296</angle>
+         <scale>1.0014</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>17.5342</dx>
+         <dy>-11.4401</dy>
+         <angle>-0.0060895</angle>
+         <scale>1.0006</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OS" path="07091810/OS/07_09_18_100_003.tif" time="5">
+   
+      <reg corr_time="1">
+         <dx>17.7164</dx>
+         <dy>-12.8632</dy>
+         <angle>-0.00447</angle>
+         <scale>0.94977</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>36.7219</dx>
+         <dy>-7.6896</dy>
+         <angle>-0.055771</angle>
+         <scale>0.99406</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>10.034</dx>
+         <dy>-4.1602</dy>
+         <angle>-0.024296</angle>
+         <scale>0.99865</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>21.0019</dx>
+         <dy>0.42932</dy>
+         <angle>-0.0040157</angle>
+         <scale>0.99283</scale>
+      </reg>
+      <reg corr_time="6">
+         <dx>24.5073</dx>
+         <dy>9.1592</dy>
+         <angle>-0.008802</angle>
+         <scale>0.99595</scale>
+      </reg>
+   </image>
+   
+   <image id="07091810_OS" path="07091810/OS/07_09_18_100_001.tif" time="6">
+   
+      <reg corr_time="1">
+         <dx>3.7043</dx>
+         <dy>-16.709</dy>
+         <angle>0.0082863</angle>
+         <scale>0.94632</scale>
+      </reg>
+      <reg corr_time="2">
+         <dx>-63.8139</dx>
+         <dy>-64.1276</dy>
+         <angle>-0.045394</angle>
+         <scale>1.0274</scale>
+      </reg>
+      <reg corr_time="3">
+         <dx>-3.609</dx>
+         <dy>-1.9219</dy>
+         <angle>0.011373</angle>
+         <scale>0.99476</scale>
+      </reg>
+      <reg corr_time="4">
+         <dx>-17.5342</dx>
+         <dy>11.4401</dy>
+         <angle>0.0060895</angle>
+         <scale>0.99943</scale>
+      </reg>
+      <reg corr_time="5">
+         <dx>-24.5073</dx>
+         <dy>-9.1592</dy>
+         <angle>0.008802</angle>
+         <scale>1.0041</scale>
+      </reg>
+   </image>
+   
+   <image id="07093874_OD" path="07093874/OD/07_09_38_740_002.tif" time="1">
+   
+   </image>
+   
+   <image id="07093874_OD" path="07093874/OD/07_09_38_740_000.tif" time="2">
+   
+   </image>
+   
+   <image id="07093874_OS" path="07093874/OS/07_09_38_740_003.tif" time="1">
+   
+   </image>
+   
+   <image id="07093874_OS" path="07093874/OS/07_09_38_740_001.tif" time="2">
+   
+   </image>
+   
+   <image id="09055709" path="09055709/09_05_57_090_005.tif" time="1">
+   
+   </image>
+   
+   <image id="09055709" path="09055709/09_05_57_090_004.tif" time="2">
+   
+   </image>
+   
+   <image id="09055709" path="09055709/09_05_57_090_003.tif" time="3">
+   
+   </image>
+   
+   <image id="09055709" path="09055709/09_05_57_090_002.tif" time="4">
+   
+   </image>
+   
+   <image id="09055709" path="09055709/09_05_57_090_001.tif" time="5">
+   
+   </image>
+   
+   <image id="09055709" path="09055709/09_05_57_090_000.tif" time="6">
+   
+   </image>
+   
+   <image id="09140888" path="09140888/09_14_08_880_005.tif" time="1">
+   
+   </image>
+   
+   <image id="09140888" path="09140888/09_14_08_880_004.tif" time="2">
+   
+   </image>
+   
+   <image id="09140888" path="09140888/09_14_08_880_003.tif" time="3">
+   
+   </image>
+   
+   <image id="09140888" path="09140888/09_14_08_880_002.tif" time="4">
+   
+   </image>
+   
+   <image id="09140888" path="09140888/09_14_08_880_001.tif" time="5">
+   
+   </image>
+   
+   <image id="09140888" path="09140888/09_14_08_880_000.tif" time="6">
+   
+   </image>
+   
+   <image id="09146686" path="09146686/09_14_66_860_004.tif" time="1">
+   
+   </image>
+   
+   <image id="09146686" path="09146686/09_14_66_860_003.tif" time="2">
+   
+   </image>
+   
+   <image id="09146686" path="09146686/09_14_66_860_002.tif" time="3">
+   
+   </image>
+   
+   <image id="09146686" path="09146686/09_14_66_860_001.tif" time="4">
+   
+   </image>
+   
+   <image id="09146686" path="09146686/09_14_66_860_000.tif" time="5">
+   
+   </image>
+   
+   <image id="09161204" path="09161204/09_16_12_040_002.tif" time="1">
+   
+   </image>
+   
+   <image id="09161204" path="09161204/09_16_12_040_001.tif" time="2">
+   
+   </image>
+   
+   <image id="09161204" path="09161204/09_16_12_040_000.tif" time="3">
+   
+   </image>
+   
+   <image id="09181670_OD" path="09181670/OD/09_18_16_700_002.tif" time="1">
+   
+   </image>
+   
+   <image id="09181670_OD" path="09181670/OD/09_18_16_700_000.tif" time="2">
+   
+   </image>
+   
+   <image id="09181670_OS" path="09181670/OS/09_18_16_700_003.tif" time="1">
+   
+   </image>
+   
+   <image id="09181670_OS" path="09181670/OS/09_18_16_700_001.tif" time="2">
+   
+   </image>
+   
+   <image id="09186494" path="09186494/09_18_64_940_005.tif" time="1">
+   
+   </image>
+   
+   <image id="09186494" path="09186494/09_18_64_940_004.tif" time="2">
+   
+   </image>
+   
+   <image id="09186494" path="09186494/09_18_64_940_003.tif" time="3">
+   
+   </image>
+   
+   <image id="09186494" path="09186494/09_18_64_940_002.tif" time="4">
+   
+   </image>
+   
+   <image id="09186494" path="09186494/09_18_64_940_001.tif" time="5">
+   
+   </image>
+   
+   <image id="09186494" path="09186494/09_18_64_940_000.tif" time="6">
+   
+   </image>
+   
+   <image id="09198258" path="09198258/09_19_82_580_004.tif" time="1">
+   
+   </image>
+   
+   <image id="09198258" path="09198258/09_19_82_580_003.tif" time="2">
+   
+   </image>
+   
+   <image id="09198258" path="09198258/09_19_82_580_002.tif" time="3">
+   
+   </image>
+   
+   <image id="09198258" path="09198258/09_19_82_580_001.tif" time="4">
+   
+   </image>
+   
+   <image id="09198258" path="09198258/09_19_82_580_000.tif" time="5">
+   
+   </image>
+   
+   <image id="09210105_OD" path="09210105/OD/09_21_01_050_010.tif" time="1">
+   
+   </image>
+   
+   <image id="09210105_OD" path="09210105/OD/09_21_01_050_008.tif" time="2">
+   
+   </image>
+   
+   <image id="09210105_OD" path="09210105/OD/09_21_01_050_006.tif" time="3">
+   
+   </image>
+   
+   <image id="09210105_OD" path="09210105/OD/09_21_01_050_004.tif" time="4">
+   
+   </image>
+   
+   <image id="09210105_OD" path="09210105/OD/09_21_01_050_002.tif" time="5">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_011.tif" time="1">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_009.tif" time="2">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_007.tif" time="3">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_005.tif" time="4">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_003.tif" time="5">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_001.tif" time="6">
+   
+   </image>
+   
+   <image id="09210105_OS" path="09210105/OS/09_21_01_050_000.tif" time="7">
+   
+   </image>
+   
+   <image id="09227227" path="09227227/09_22_72_270_005.tif" time="1">
+   
+   </image>
+   
+   <image id="09227227" path="09227227/09_22_72_270_004.tif" time="2">
+   
+   </image>
+   
+   <image id="09227227" path="09227227/09_22_72_270_003.tif" time="3">
+   
+   </image>
+   
+   <image id="09227227" path="09227227/09_22_72_270_002.tif" time="4">
+   
+   </image>
+   
+   <image id="09227227" path="09227227/09_22_72_270_001.tif" time="5">
+   
+   </image>
+   
+   <image id="09227227" path="09227227/09_22_72_270_000.tif" time="6">
+   
+   </image>
+   
+   <image id="09228261_OD" path="09228261/OD/09_22_82_610_010.tif" time="1">
+   
+   </image>
+   
+   <image id="09228261_OD" path="09228261/OD/09_22_82_610_008.tif" time="2">
+   
+   </image>
+   
+   <image id="09228261_OD" path="09228261/OD/09_22_82_610_006.tif" time="3">
+   
+   </image>
+   
+   <image id="09228261_OD" path="09228261/OD/09_22_82_610_004.tif" time="4">
+   
+   </image>
+   
+   <image id="09228261_OD" path="09228261/OD/09_22_82_610_002.tif" time="5">
+   
+   </image>
+   
+   <image id="09228261_OD" path="09228261/OD/09_22_82_610_000.tif" time="6">
+   
+   </image>
+   
+   <image id="09228261_OS" path="09228261/OS/09_22_82_610_011.tif" time="1">
+   
+   </image>
+   
+   <image id="09228261_OS" path="09228261/OS/09_22_82_610_009.tif" time="2">
+   
+   </image>
+   
+   <image id="09228261_OS" path="09228261/OS/09_22_82_610_007.tif" time="3">
+   
+   </image>
+   
+   <image id="09228261_OS" path="09228261/OS/09_22_82_610_005.tif" time="4">
+   
+   </image>
+   
+   <image id="09228261_OS" path="09228261/OS/09_22_82_610_003.tif" time="5">
+   
+   </image>
+   
+   <image id="09228261_OS" path="09228261/OS/09_22_82_610_001.tif" time="6">
+   
+   </image>
+   
+   <image id="09230622_OD" path="09230622/OD/09_23_06_220_009.tif" time="1">
+   
+   </image>
+   
+   <image id="09230622_OD" path="09230622/OD/09_23_06_220_007.tif" time="2">
+   
+   </image>
+   
+   <image id="09230622_OD" path="09230622/OD/09_23_06_220_005.tif" time="3">
+   
+   </image>
+   
+   <image id="09230622_OD" path="09230622/OD/09_23_06_220_002.tif" time="4">
+   
+   </image>
+   
+   <image id="09230622_OD" path="09230622/OD/09_23_06_220_000.tif" time="5">
+   
+   </image>
+   
+   <image id="09230622_OS" path="09230622/OS/09_23_06_220_010.tif" time="1">
+   
+   </image>
+   
+   <image id="09230622_OS" path="09230622/OS/09_23_06_220_008.tif" time="2">
+   
+   </image>
+   
+   <image id="09230622_OS" path="09230622/OS/09_23_06_220_006.tif" time="3">
+   
+   </image>
+   
+   <image id="09230622_OS" path="09230622/OS/09_23_06_220_004.tif" time="4">
+   
+   </image>
+   
+   <image id="09230622_OS" path="09230622/OS/09_23_06_220_003.tif" time="5">
+   
+   </image>
+   
+   <image id="09230622_OS" path="09230622/OS/09_23_06_220_001.tif" time="6">
+   
+   </image>
+   
+   <image id="09237019" path="09237019/09_23_70_190_001.tif" time="1">
+   
+   </image>
+   
+   <image id="09237019" path="09237019/09_23_70_190_000.tif" time="2">
+   
+   </image>
+   
+   <image id="09291240_OD" path="09291240/OD/09_29_12_400_006.tif" time="1">
+   
+   </image>
+   
+   <image id="09291240_OD" path="09291240/OD/09_29_12_400_004.tif" time="2">
+   
+   </image>
+   
+   <image id="09291240_OD" path="09291240/OD/09_29_12_400_002.tif" time="3">
+   
+   </image>
+   
+   <image id="09291240_OD" path="09291240/OD/09_29_12_400_000.tif" time="4">
+   
+   </image>
+   
+   <image id="09291240_OS" path="09291240/OS/09_29_12_400_007.tif" time="1">
+   
+   </image>
+   
+   <image id="09291240_OS" path="09291240/OS/09_29_12_400_005.tif" time="2">
+   
+   </image>
+   
+   <image id="09291240_OS" path="09291240/OS/09_29_12_400_003.tif" time="3">
+   
+   </image>
+   
+   <image id="09291240_OS" path="09291240/OS/09_29_12_400_001.tif" time="4">
+   
+   </image>
+   
+   <image id="09306504" path="09306504/09_30_65_040_003.tif" time="1">
+   
+   </image>
+   
+   <image id="09306504" path="09306504/09_30_65_040_002.tif" time="2">
+   
+   </image>
+   
+   <image id="09306504" path="09306504/09_30_65_040_001.tif" time="3">
+   
+   </image>
+   
+   <image id="09306504" path="09306504/09_30_65_040_000.tif" time="4">
+   
+   </image>
+   
+   <image id="09317927_OD" path="09317927/OD/09_31_79_270_008.tif" time="1">
+   
+   </image>
+   
+   <image id="09317927_OD" path="09317927/OD/09_31_79_270_006.tif" time="2">
+   
+   </image>
+   
+   <image id="09317927_OD" path="09317927/OD/09_31_79_270_004.tif" time="3">
+   
+   </image>
+   
+   <image id="09317927_OD" path="09317927/OD/09_31_79_270_002.tif" time="4">
+   
+   </image>
+   
+   <image id="09317927_OD" path="09317927/OD/09_31_79_270_000.tif" time="5">
+   
+   </image>
+   
+   <image id="09317927_OS" path="09317927/OS/09_31_79_270_009.tif" time="1">
+   
+   </image>
+   
+   <image id="09317927_OS" path="09317927/OS/09_31_79_270_007.tif" time="2">
+   
+   </image>
+   
+   <image id="09317927_OS" path="09317927/OS/09_31_79_270_005.tif" time="3">
+   
+   </image>
+   
+   <image id="09317927_OS" path="09317927/OS/09_31_79_270_003.tif" time="4">
+   
+   </image>
+   
+   <image id="09317927_OS" path="09317927/OS/09_31_79_270_001.tif" time="5">
+   
+   </image>
+   
+   <image id="09362244" path="09362244/09_36_22_440_001.tif" time="1">
+   
+   </image>
+   
+   <image id="09362244" path="09362244/09_36_22_440_000.tif" time="2">
+   
+   </image>
+   
+   <image id="09323896_OD" path="09323896/OD/09_32_38_960_010.tif" time="1">
+   
+   </image>
+   
+   <image id="09323896_OD" path="09323896/OD/09_32_38_960_008.tif" time="2">
+   
+   </image>
+   
+   <image id="09323896_OD" path="09323896/OD/09_32_38_960_006.tif" time="3">
+   
+   </image>
+   
+   <image id="09323896_OD" path="09323896/OD/09_32_38_960_004.tif" time="4">
+   
+   </image>
+   
+   <image id="09323896_OD" path="09323896/OD/09_32_38_960_002.tif" time="5">
+   
+   </image>
+   
+   <image id="09323896_OD" path="09323896/OD/09_32_38_960_000.tif" time="6">
+   
+   </image>
+   
+   <image id="09323896_OS" path="09323896/OS/09_32_38_960_011.tif" time="1">
+   
+   </image>
+   
+   <image id="09323896_OS" path="09323896/OS/09_32_38_960_009.tif" time="2">
+   
+   </image>    
+   
+   <image id="09323896_OS" path="09323896/OS/09_32_38_960_007.tif" time="3">
+   
+   </image>    
+   
+   <image id="09323896_OS" path="09323896/OS/09_32_38_960_005.tif" time="4">
+   
+   </image>    
+   
+   <image id="09323896_OS" path="09323896/OS/09_32_38_960_003.tif" time="5">
+   
+   </image>
+   
+   <image id="09323896_OS" path="09323896/OS/09_32_38_960_001.tif" time="6">
+   
+   </image>
+
 </images>
