@@ -26,8 +26,8 @@ function [proc2] = scale_intensities(img1, img2, fov, opt)
     ib = x.^2 + y.^2 >= ri.^2; %inner bound
     ring = logical(ib.*ob);
     
-    sampls1(i) = mean(img1(ring));
-    sampls2(i) = mean(img2(ring));
+    sampls1(i) = mean(img1(ring(ring>0)));
+    sampls2(i) = mean(img2(ring(ring>0)));
     
      
  end
