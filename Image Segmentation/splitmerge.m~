@@ -66,7 +66,7 @@ function v = split_test(B, mindim, f, fun)
             continue
         end
         flag = feval(fun, quadregion, f);
-        if ~flag
+        if flag
             v(I) = true;
         end
     end
