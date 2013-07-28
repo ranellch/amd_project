@@ -22,14 +22,14 @@ Iopen=imopen(I,se);
 figure, imshow(Iopen)
 
 
-%Find optic disk, if present
+%Find optic disc, if present
 [centers1,radii1,metric1] = imfindcircles(Iopen,[Diskmin, Diskmin + (Diskmax-Diskmin)/2],'sensitivity', .95);
 [centers2,radii2,metric2] = imfindcircles(Iopen,[Diskmin + (Diskmax-Diskmin)/2, Diskmax],'sensitivity', .95);
 
 if ~isempty(centers1) || ~isempty(centers2)
     if ~isempty(centers1) && ~isempty(centers2)
     %only look at most likely circle 
-        switch metric1(1) >= metric2(1)
+        switch metric1(1) >= metric2(1) 
             case 1 
                 centerStrongest = centers1(1,:);
                 radiusStrongest = radii1(1);
@@ -44,8 +44,8 @@ if ~isempty(centers1) || ~isempty(centers2)
         centerStrongest = centers2(1,:);
         radiusStrongest = radii2(1,:);
     end
-        %mask optic disk 
-        leeway = .6;
+        %mask optic disc 
+        leeway = .75;
         r = radiusStrongest*(1+leeway);
         [xgrd, ygrd] = meshgrid(1:size(Iopen,2), 1:size(Iopen,1));   
         x = xgrd - centerStrongest(1);  
@@ -65,8 +65,39 @@ Itop=imtophat(Itop,se2);
 figure, imshow(Itop)
 
 
+%get seed points for leak reconstruction
+Imarker = Itop == max(Itop(:));
+if numel(Imarker~=0) > 1
+    %eliminate duplicate connected seed locations to improve reconstruction
+    %speed
+    Imarker = bwmorph(Imarker, 'shrink', Inf);
+end
 
-% quad tree decomp that bitch
+%apply threshold to get mask for leak reconstruction
+thresh = graythresh(Itop)*255;
+Imask = Itop >= thresh;
+
+%reconstruct area most likely to contain leak
+Irecon = imreconstruct(Imarker,Imask);
+figure, imshow(Irecon);
+
+%apply second threshold to eliminate remaining pixels outside of leak
+Ileak = uint8(Irecon).*I;
+thresh = graythresh(Ileak(Ileak~=0))*255;
+BWleak = Ileak>=thresh;
+
+%clean up final leak mask
+BWleak = imfill(BWleak, 'holes');
+BWleak = bwmorph(
+Ileak = Ileak.*uint8(BWleak);
+figure, imshow(Ileak)
+
+%only keep biggest connected region
+CC = bwconncomp(BWleak);
+numPixels = cellfun(@numel,CC.PixelIdxList);
+[~,idx] = max(numPixels);
+Ileak = zeros(size(Iqt));
+Ileak(CC.PixelIdxList{idx}) = 1;
 
 end
 

@@ -7,7 +7,7 @@ function [ flag ] = splitpred_leak2( region, f )
 M=mean2(f);
 t = M+2*std2(f(:));
 m = mean2(region);
-flag = m > t || sum(region(:)) == 0;
+flag = m > t 
 
 
 end

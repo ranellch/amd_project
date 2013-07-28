@@ -1,4 +1,4 @@
-function [ g ] = splitmerge(f, mindim, fun )
+function [ g ] = splitmerge(f, mindim, varargin )
 %*******ADAPTED FROM GONZALEZ, WOODS "DIGITAL IMAGE PROCESSING IN MATLAB"
 % FIFTH EDITION, 2009 - FUNCTION SPLITMERGE ON PG 428***********
 %
@@ -13,6 +13,8 @@ function [ g ] = splitmerge(f, mindim, fun )
 % PREDICATE is a function in the MATLAB path provided by the user.  Its
 % syntax is FLAG = PREDICATE(REGION)
 
+
+
 %Pad image with zeros to guarantee that function qtdecomp will split
 %regions down to size 1-by-1.
 Q = 2^nextpow2(max(size(f)));
@@ -22,7 +24,7 @@ f = padarray(f, [Q-M, Q-N], 'post');
 %Perform splitting
 S= qtdecomp(f, @split_test, mindim, f, fun);
 
-%Now Merge by looking at each quadregion and setting all its lements to 1 if
+%Now Merge by looking at each quadregion and setting all its elements to 1 if
 %the block satisfies the predicate.
 Lmax =  full(max(S(:)));
 g = zeros(size(f));
@@ -31,8 +33,8 @@ for K = 1:Lmax
     if ~isempty(vals)
         %Check the predicate for each of the regions of size K-by-K with
         %coordinates given by vectors r and c.
-        for I = 1:length(r)
-            xlow = r(I); ylow = c(I);
+        for i = 1:length(r)
+            xlow = r(i); ylow = c(i);
             xhigh = xlow + K - 1; yhigh = ylow + K - 1;
             region = f(xlow:xhigh, ylow:yhigh);
             flag = feval(fun, region, f);
@@ -59,15 +61,15 @@ function v = split_test(B, mindim, f, fun)
     k = size(B,3); %number of regions in B at this step
     
     v(1:k) = false;
-    for I = 1:k
-        quadregion = B(:,:,I);
-        if size(quadregion, 1) <= mindim
-            v(I) = false;
+    for i = 1:k
+        quadregion = B(:,:,i);
+        if size(quadregion, 1) <= mindim || any(quadregion(:)) == false;
+            v(i) = false;
             continue
         end
         flag = feval(fun, quadregion, f);
-        if flag
-            v(I) = true;
+        if ~flag 
+            v(i) = true;
         end
     end
 end
