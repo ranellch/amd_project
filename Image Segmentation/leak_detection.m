@@ -7,6 +7,7 @@ function [ BWleak ] = leak_detection( varargin )
 %Diskmin and Diskmax are optional variables specifying an approximate pixel
 %range for the radius of the optic disk
 
+
 I = varargin{1};
 if nargin == 2;
     Diskmin = min(varargin{2});
@@ -19,7 +20,6 @@ end
 %Get rid of vessels
 se=strel('disk',20);
 Iopen=imopen(I,se);
-figure, imshow(Iopen)
 
 
 %Find optic disc, if present
@@ -52,7 +52,6 @@ if ~isempty(centers1) || ~isempty(centers2)
         y = ygrd - centerStrongest(2);
         omask = x.^2 + y.^2 >= r^2;  
         Inodsk = Iopen.*uint8(omask);
-        figure, imshow(Inodsk);
 else
     Inodsk = Iopen;
 end
@@ -62,7 +61,6 @@ se1 = strel('line',300,0);
 se2 = strel('line',300,90);
 Itop=imtophat(Inodsk,se1);
 Itop=imtophat(Itop,se2);
-figure, imshow(Itop)
 
 
 %get seed points for leak reconstruction
@@ -76,12 +74,9 @@ end
 %apply threshold to get mask for leak reconstruction
 thresh = graythresh(Itop)*255;
 Imask = Itop >= thresh;
-
-%reconstruct area most likely to contain leak
 Irecon = imreconstruct(Imarker,Imask);
-figure, imshow(Irecon);
 
-%apply second threshold to eliminate remaining pixels outside of leak
+%apply second threshold to further refine leak mask
 Ileak = uint8(Irecon).*I;
 thresh = graythresh(Ileak(Ileak~=0))*255;
 BWleak = Ileak>=thresh;
@@ -98,8 +93,19 @@ numPixels = cellfun(@numel,CC.PixelIdxList);
 BWleak = zeros(size(BWleak));
 BWleak(CC.PixelIdxList{idx}) = 1;
 
-Ileak = Ileak.*uint8(BWleak);
-figure, imshow(Ileak)
+%show tinted leak
+[Iind,map] = gray2ind(I,256);
+Irgb=ind2rgb(Iind,map);
+Ihsv = rgb2hsv(Irgb);
+hueImage = Ihsv(:,:,1);
+hueImage(BWleak>0) = 0.011; %red
+Ihsv(:,:,1) = hueImage;
+satImage = Ihsv(:,:,2);
+satImage(BWleak>0) = .8; %semi transparent
+Ihsv(:,:,2) = satImage;
+Irgb = hsv2rgb(Ihsv);
+
+figure, imshow(Irgb)
 
 end
 
