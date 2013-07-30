@@ -74,9 +74,22 @@ thresh = graythresh(Iopen(~omask))*255;
 clear Iopen
 thresh = thresh * (1-tolerance);
 BWthresh1 = Inodsc >= thresh;
+
+%throw out regions on image border
+BWthresh1 = imclearborder(BWthresh1, 5);
+
+%dilate regions left
+BWthresh1 = bwmorph(BWthresh1, 'dilate',1);
+
+%only keep biggest connected region 
+CC = bwconncomp(BWthresh1);
+numPixels = cellfun(@numel,CC.PixelIdxList);
+[~,idx] = max(numPixels);
+BWthresh1 = zeros(size(BWthresh1));
+BWthresh1(CC.PixelIdxList{idx}) = 1;
+
 Ithresh1 = I .* uint8(BWthresh1);
 figure, imshow(Ithresh1)
-
 
 %apply second threshold to further refine leak mask using original
 %image 
@@ -88,13 +101,12 @@ BWleak = Ithresh1 >= thresh;
 BWleak = imfill(BWleak, 'holes');
 BWleak = bwmorph(BWleak,'majority');
 BWleak = bwmorph(BWleak, 'clean');
+BWleak = logical(BWleak);
 
-%only keep biggest connected region
-CC = bwconncomp(BWleak);
-numPixels = cellfun(@numel,CC.PixelIdxList);
-[~,idx] = max(numPixels);
-BWleak = zeros(size(BWleak));
-BWleak(CC.PixelIdxList{idx}) = 1;
+%make sure it isnt a false positive
+if mean2(Iorg(BWleak)) > 100
+    BWleak = zeros(size(Iorg));
+end
 
 %show tinted leak
 [Iind,map] = gray2ind(I,256);

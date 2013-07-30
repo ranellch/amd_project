@@ -1,29 +1,35 @@
-function [ BWleak ] = leak_detection( varargin )
+function [ BWhypo ] = hypo_detection( varargin )
 %BWleak = leak_detection(I, [Diskmin Diskmax], tolerance)
-%Takes in grayscaled FA image as input I and returns binary image BWleak consisting solely of
-%the leak being extracted. Uses morphological techniques to eliminate
-%vessels, optic disks, and other unwanted objects before segmenting out
+%Analyzes grayscale AF image I and returns binary image BWhypo consisting
+%solely of any hypofluoresence present in the macula. Uses morphological techniques to eliminate
+%vessels, optic discs, and other unwanted objects before segmenting out
 %area of leakage.  
 %Diskmin and Diskmax are optional variables specifying an approximate pixel
 %range for the radius of the optic disk
 %Tolerance is an optional variable in the range [0 1] that determines
 %threshold deviation (higher tolerance = lower threshold)
 
-I = varargin{1};
-figure, imshow(I)
-if nargin >= 2 && numel(varargin{2}) == 2
-    Diskmin = min(varargin{2});
-    Diskmax = max(varargin{2});
-    if numel(varargin{2}) == 1
+Iorg = varargin{1};
+figure, imshow(Iorg)
+
+I=imcomplement(Iorg);
+I=imadjust(I);
+
+if nargin >= 2 
+    if numel(varargin{2}) == 2
+         Diskmin = min(varargin{2});
+         Diskmax = max(varargin{2});
+    elseif numel(varargin{2}) == 1
+         Diskmin = 100;
+         Diskmax = 200;
         tolerance = varargin{2};
     elseif nargin == 3
-        tolerance = varargin{2};
-    else
-
+        tolerance = varargin{3};
     end
 else
     Diskmin = 100;
     Diskmax = 200;
+    tolerance = 0;
 end
 
 
@@ -39,7 +45,7 @@ centerStrongest = [];
 radiusStrongest = [];
 maxMetric = 0;
 for i = 1:4
-    [centers,radii,metrics] = imfindcircles(Iopen,[Diskmin + step*(i-1), Diskmin + step*i],'sensitivity', .97);
+    [centers,radii,metrics] = imfindcircles(Iopen,[Diskmin + step*(i-1), Diskmin + step*i],'sensitivity', .99);
     if isempty(metrics)
         continue
     end
@@ -72,37 +78,49 @@ thresh = graythresh(Iopen(~omask))*255;
 clear Iopen
 thresh = thresh * (1-tolerance);
 BWthresh1 = Inodsc >= thresh;
+
+%throw out regions on image border
+BWthresh1 = imclearborder(BWthresh1, 4);
+
+%dilate regions left
+BWthresh1 = bwmorph(BWthresh1, 'dilate',1);
+
+%only keep biggest connected region 
+CC = bwconncomp(BWthresh1);
+numPixels = cellfun(@numel,CC.PixelIdxList);
+[~,idx] = max(numPixels);
+BWthresh1 = zeros(size(BWthresh1));
+BWthresh1(CC.PixelIdxList{idx}) = 1;
+
 Ithresh1 = I .* uint8(BWthresh1);
 figure, imshow(Ithresh1)
-
 
 %apply second threshold to further refine leak mask using original
 %image 
 thresh = graythresh(Ithresh1(Ithresh1>0))*255;
 thresh = thresh * (1-tolerance);
-BWleak = Ithresh1 >= thresh;
+BWhypo = Ithresh1 >= thresh;
 
 %clean up final leak mask
-BWleak = imfill(BWleak, 'holes');
-BWleak = bwmorph(BWleak,'majority');
-BWleak = bwmorph(BWleak, 'clean');
+BWhypo = imfill(BWhypo, 'holes');
+BWhypo = bwmorph(BWhypo,'majority');
+BWhypo = bwmorph(BWhypo, 'clean');
+BWhypo = logical(BWhypo);
 
-%only keep biggest connected region
-CC = bwconncomp(BWleak);
-numPixels = cellfun(@numel,CC.PixelIdxList);
-[~,idx] = max(numPixels);
-BWleak = zeros(size(BWleak));
-BWleak(CC.PixelIdxList{idx}) = 1;
+%make sure it isnt a false positive
+if mean2(Iorg(BWhypo)) > 100
+    BWhypo = zeros(size(Iorg));
+end
 
 %show tinted leak
-[Iind,map] = gray2ind(I,256);
+[Iind,map] = gray2ind(Iorg,256);
 Irgb=ind2rgb(Iind,map);
 Ihsv = rgb2hsv(Irgb);
 hueImage = Ihsv(:,:,1);
-hueImage(BWleak>0) = 0.011; %red
+hueImage(BWhypo>0) = 0.011; %red
 Ihsv(:,:,1) = hueImage;
 satImage = Ihsv(:,:,2);
-satImage(BWleak>0) = .8; %semi transparent
+satImage(BWhypo>0) = .8; %semi transparent
 Ihsv(:,:,2) = satImage;
 Irgb = hsv2rgb(Ihsv);
 
