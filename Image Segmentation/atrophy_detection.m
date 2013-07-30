@@ -1,6 +1,6 @@
-function [ BWleak ] = leak_detection( varargin )
+function [ BWatrop ] = atrophy_detection( varargin )
 %BWleak = leak_detection(I, [Diskmin Diskmax], tolerance)
-%Takes in grayscaled FA image as input I and returns binary image BWleak consisting solely of
+%Takes in grayscaled AF image as input I and returns binary image BWztrop consisting solely of
 %the leak being extracted. Uses morphological techniques to eliminate
 %vessels, optic disks, and other unwanted objects before segmenting out
 %area of leakage.  
@@ -9,8 +9,12 @@ function [ BWleak ] = leak_detection( varargin )
 %Tolerance is an optional variable in the range [0 1] that determines
 %threshold deviation (higher tolerance = lower threshold)
 
-I = varargin{1};
-figure, imshow(I)
+Iorg = varargin{1};
+figure, imshow(Iorg)
+
+I=imcomplement(Iorg);
+I=imadjust(I);
+
 if nargin >= 2 
     if numel(varargin{2}) == 2
          Diskmin = min(varargin{2});
@@ -25,7 +29,7 @@ if nargin >= 2
 else
     Diskmin = 100;
     Diskmax = 200;
-    tolerance = .25;
+    tolerance = 0;
 end
 
 
@@ -41,7 +45,7 @@ centerStrongest = [];
 radiusStrongest = [];
 maxMetric = 0;
 for i = 1:4
-    [centers,radii,metrics] = imfindcircles(Iopen,[Diskmin + step*(i-1), Diskmin + step*i],'sensitivity', .97);
+    [centers,radii,metrics] = imfindcircles(Iopen,[Diskmin + step*(i-1), Diskmin + step*i],'sensitivity', .99);
     if isempty(metrics)
         continue
     end
@@ -82,29 +86,29 @@ figure, imshow(Ithresh1)
 %image 
 thresh = graythresh(Ithresh1(Ithresh1>0))*255;
 thresh = thresh * (1-tolerance);
-BWleak = Ithresh1 >= thresh;
+BWatrop = Ithresh1 >= thresh;
 
 %clean up final leak mask
-BWleak = imfill(BWleak, 'holes');
-BWleak = bwmorph(BWleak,'majority');
-BWleak = bwmorph(BWleak, 'clean');
+BWatrop = imfill(BWatrop, 'holes');
+BWatrop = bwmorph(BWatrop,'majority');
+BWatrop = bwmorph(BWatrop, 'clean');
 
 %only keep biggest connected region
-CC = bwconncomp(BWleak);
+CC = bwconncomp(BWatrop);
 numPixels = cellfun(@numel,CC.PixelIdxList);
 [~,idx] = max(numPixels);
-BWleak = zeros(size(BWleak));
-BWleak(CC.PixelIdxList{idx}) = 1;
+BWatrop = zeros(size(BWatrop));
+BWatrop(CC.PixelIdxList{idx}) = 1;
 
 %show tinted leak
-[Iind,map] = gray2ind(I,256);
+[Iind,map] = gray2ind(Iorg,256);
 Irgb=ind2rgb(Iind,map);
 Ihsv = rgb2hsv(Irgb);
 hueImage = Ihsv(:,:,1);
-hueImage(BWleak>0) = 0.011; %red
+hueImage(BWatrop>0) = 0.011; %red
 Ihsv(:,:,1) = hueImage;
 satImage = Ihsv(:,:,2);
-satImage(BWleak>0) = .8; %semi transparent
+satImage(BWatrop>0) = .8; %semi transparent
 Ihsv(:,:,2) = satImage;
 Irgb = hsv2rgb(Ihsv);
 
