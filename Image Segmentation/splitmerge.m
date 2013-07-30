@@ -1,4 +1,4 @@
-function [ g ] = splitmerge(f, mindim, varargin )
+function [ g ] = splitmerge(f, mindim , fun)
 %*******ADAPTED FROM GONZALEZ, WOODS "DIGITAL IMAGE PROCESSING IN MATLAB"
 % FIFTH EDITION, 2009 - FUNCTION SPLITMERGE ON PG 428***********
 %
@@ -7,8 +7,7 @@ function [ g ] = splitmerge(f, mindim, varargin )
 % integer power of 2) specifies the minimum allowed dimension of the quadtree
 % regions.  If necessary, the function pads the image with zeros to the
 % nearest square size that is an integer power of 2.  The result is cropped
-% back to the original size of the input image.  In the output, G, each
-% connected region is labeled with a different integer.
+% back to the original size of the input image.  
 %
 % PREDICATE is a function in the MATLAB path provided by the user.  Its
 % syntax is FLAG = PREDICATE(REGION)
@@ -22,7 +21,7 @@ Q = 2^nextpow2(max(size(f)));
 f = padarray(f, [Q-M, Q-N], 'post');
 
 %Perform splitting
-S= qtdecomp(f, @split_test, mindim, f, fun);
+S= qtdecomp(f, @split_test, mindim, fun);
 
 %Now Merge by looking at each quadregion and setting all its elements to 1 if
 %the block satisfies the predicate.
@@ -37,7 +36,7 @@ for K = 1:Lmax
             xlow = r(i); ylow = c(i);
             xhigh = xlow + K - 1; yhigh = ylow + K - 1;
             region = f(xlow:xhigh, ylow:yhigh);
-            flag = feval(fun, region, f);
+            flag = feval(fun, region);
             if flag
                 g(xlow:xhigh, ylow:yhigh)  = 1;
             end
@@ -45,15 +44,13 @@ for K = 1:Lmax
     end
 end
 
-%Label each connected region 
-g = bwlabel(g);
-
 %Crop and exit
 g = g(1:M, 1:N);
+g=logical(g);
 end
 
 %------------------------------------------------------------------------
-function v = split_test(B, mindim, f, fun)
+function v = split_test(B, mindim, fun)
     %Determines whether quadregions are split.  Returns in v logical 1s for
     %the blocks that should be split and logical 0s for those that should
     %not.
@@ -67,8 +64,8 @@ function v = split_test(B, mindim, f, fun)
             v(i) = false;
             continue
         end
-        flag = feval(fun, quadregion, f);
-        if ~flag 
+        flag = feval(fun, quadregion);
+        if ~flag || size(quadregion, 1) >= 64 
             v(i) = true;
         end
     end
