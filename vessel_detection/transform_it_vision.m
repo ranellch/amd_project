@@ -1,6 +1,7 @@
 function [theta, scale, translation, tform] = transform_it_vision(pointsA, pointsB)
     %Estimate the transform and set the parameters
     gte = vision.GeometricTransformEstimator;
+    gte.Transform = 'Nonreflective similarity';
     
     %Get the tform matrix
     tform = step(gte, pointsB, pointsA);

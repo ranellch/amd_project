@@ -1,4 +1,4 @@
-function [out] = validate_reg(id, ctime1, ctime2)
+function [out] = analysis_reg(id, ctime1, ctime2)
     %Add the path for the set of images to test
     addpath(genpath('../Test Set'));
     addpath('../vessel_detection');
@@ -9,7 +9,7 @@ function [out] = validate_reg(id, ctime1, ctime2)
     images = xDoc.getElementsByTagName('image');
     
     %Get the parameters as editable
-    cc_relThresh = 0.5;
+    cc_relThresh = 0.2;
     %Decrease this value to make the matches more precise
     %Decrease this value also increases time to run
 	cc_convTol = 0.1;
@@ -64,7 +64,7 @@ function [out] = validate_reg(id, ctime1, ctime2)
     imshow(next_img);
     
     %Run Correlation Correspondance
-    cc = correlCorresp('image1', base_img, 'image2', next_img);
+    cc = correlCorresp('image1', base_img, 'image2', next_img, 'printProgress', 100);
     %Increase this value to decrease the number of featues
     cc.relThresh = cc_relThresh;
     %Decrease this value to make the matches more precise

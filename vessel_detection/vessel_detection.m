@@ -35,7 +35,7 @@ function [image] = vessel_detection(img)
     stddev = sqrt(variance / count);
 
     %From the mean and std dev calculate the threshold as one stddev
-    threshold = mean_val + (stddev * .4);
+    threshold = mean_val + (stddev * .6);
 
     fout = im2bw(out);
     
@@ -50,15 +50,16 @@ function [image] = vessel_detection(img)
             end
         end
     end
-    
+     
     %Calculate the skeleton on the image
-    out = bwareaopen(fout, 20);
+    out = bwareaopen(fout, 500);
+    out = imclose(out, strel('disk',5));
+    out = bwmorph(out, 'spur');
     out = bwmorph(out, 'bridge');
     out = bwmorph(out, 'thin', Inf);
-    out = bwmorph(out, 'fill');
-    out = bwmorph(out, 'spur');
-    out = bwmorph(out, 'thin', Inf);
-    out = bwareaopen(out, 20);
+    out = bwmorph(out, 'clean');
+    out = bwareaopen(out, 200);
+    imshow(out);
     
     %Return the image
     image = out;
