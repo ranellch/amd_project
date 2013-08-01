@@ -14,7 +14,11 @@ function [new_base_filename, new_corr_filename] = register_images(...
 	%Read in the files to attempt to register
 	base_img_real = imread(base_img_real_file);
 	next_img_real = imread(next_img_real_file);
-
+    
+    %Remove the footer from the image
+    base_img_real = crop_footer(base_img_real);
+    next_img_real = crop_footer(next_img_real);
+    
     %Apply necessary transforms to images to prepare for vessel detection
     base_img_vd = prepare_image(base_img_real, transformbase);
     next_img_vd = prepare_image(next_img_real, transformnext);

@@ -1,10 +1,7 @@
 function [image] = vessel_detection(img)
     %Get the image and convert to graysacle
 	original = img;
-    
-    %Remove the footer from the image
-    %original = crop_footer(original);
-    
+     
     %Run Gaussian filter
     g_filter = imfilter(original, fspecial('gaussian', [5 5], 1.2), 'same');
 
@@ -59,7 +56,6 @@ function [image] = vessel_detection(img)
     out = bwmorph(out, 'thin', Inf);
     out = bwmorph(out, 'clean');
     out = bwareaopen(out, 200);
-    imshow(out);
     
     %Return the image
     image = out;

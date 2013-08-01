@@ -25,24 +25,26 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
         diff(index, 7) = y2;
     end
     
+    disp(['Initial X-Y Correlated Modal Matches: ', num2str(size_of_it)]);
+    
     %Get the modes for the different axis x then y
     [xindex, xmode_val] = find_mode(diff, 3, 1, quad_skip);
     [yindex, ymode_val] = find_mode(diff, 3, 2, quad_skip);
     
     index_intersect = intersect(xindex, yindex);
-    disp('X Mode Val: ');
-    disp(xmode_val);
-    disp('Y Mode Val: ');
-    disp(ymode_val);
-    disp(['Found X-Y Correlated Modal Matches: ', num2str(length(index_intersect))]);
+    disp(['Cleaned X-Y Correlated Modal Matches: ', num2str(length(index_intersect))]);
     
     outer = zeros(4, length(index_intersect));
+    minus = 0;
     for count=1:length(index_intersect)
         if(index_intersect(count) > 0)
-            outer(1, count) = diff(index_intersect(count), 4);
-            outer(2, count) = diff(index_intersect(count), 5);
-            outer(3, count) = diff(index_intersect(count), 6);
-            outer(4, count) = diff(index_intersect(count), 7);
+            outer(1, count - minus) = diff(index_intersect(count), 4);
+            outer(2, count - minus) = diff(index_intersect(count), 5);
+            outer(3, count - minus) = diff(index_intersect(count), 6);
+            outer(4, count - minus) = diff(index_intersect(count), 7);
+        else
+            outer(:, length(index_intersect) - minus) = [];
+            minus = minus + 1;
         end
     end
 end
@@ -56,7 +58,7 @@ function [indexed, mode_val] = find_mode(the_list, quad_index, diff_index, quad_
     
     %Get all the quads unique to this badboy
     quads_found = unique(sortedIt(:,quad_index));
-    quad_mode = zeros((length(quads_found) - length(quad_skip)), 4);
+    quad_mode = zeros((length(quads_found) - length(quad_skip)), 3);
     mode_val = zeros((length(quads_found) - length(quad_skip)), 1);
     quad_mode_index = 1;
     final_length = 0;
@@ -101,10 +103,9 @@ function [indexed, mode_val] = find_mode(the_list, quad_index, diff_index, quad_
             
             %Calculate the most frequent change and get the points on either side of it
             quad_mode(quad_mode_index, 1) = quads_found(quad);
-            quad_mode(quad_mode_index, 2) = possible_modes(biggest_mode_index, 1) - 1;
-            quad_mode(quad_mode_index, 3) = possible_modes(biggest_mode_index, 1);
+            quad_mode(quad_mode_index, 2) = possible_modes(biggest_mode_index, 1) - 2;
+            quad_mode(quad_mode_index, 3) = possible_modes(biggest_mode_index, 1) + 3;
             mode_val(quad_mode_index, 1) = possible_modes(biggest_mode_index, 1);
-            quad_mode(quad_mode_index, 4) = possible_modes(biggest_mode_index, 1) + 1;
             
             %Try to get the frequency of the length from one bin above the biggest
             final_length = final_length + length(find(sortedIt(sindex:eindex, diff_index) == quad_mode(quad_mode_index, 2)));
@@ -113,7 +114,7 @@ function [indexed, mode_val] = find_mode(the_list, quad_index, diff_index, quad_
             final_length = final_length + biggest_mode;
 
             %Get the frequency of the length from one bin below the biggest
-            final_length = final_length + length(find(sortedIt(sindex:eindex, diff_index) == quad_mode(quad_mode_index, 4)));
+            final_length = final_length + length(find(sortedIt(sindex:eindex, diff_index) == quad_mode(quad_mode_index, 3)));
             
             %Move to the next quad to check out
             quad_mode_index = quad_mode_index + 1;
@@ -141,7 +142,7 @@ function [indexed, mode_val] = find_mode(the_list, quad_index, diff_index, quad_
         eindex = sindex;
         while(eindex <= size_of_it && sortedIt(eindex, quad_index) == quad_mode(quad, 1))
             change = sortedIt(eindex, diff_index);
-            if (quad_mode(quad, 2) <= change)  && (change <= quad_mode(quad, 4))
+            if (quad_mode(quad, 2) <= change)  && (change <= quad_mode(quad, 3))
                 curcount = curcount + 1;
                 combined(1, curcount) = int32(sortedIt(eindex, 4));
                 combined(2, curcount) = int32(sortedIt(eindex, 5));
@@ -173,8 +174,9 @@ function [indexed, mode_val] = find_mode(the_list, quad_index, diff_index, quad_
         disp('Debug: removing end places becuase they only are zero for some reason');
     end
     
-    %Find the reverse indexing
-    indexed = zeros(curcount);
+    %Find the reverse indexing to the original input list
+    indexed = zeros(curcount, 1);
+    not_found = 0;
     for count1=1:curcount
         found = 0;
         count2 = 1;
@@ -185,11 +187,17 @@ function [indexed, mode_val] = find_mode(the_list, quad_index, diff_index, quad_
                the_list(count2, 7) == combined(4, count1))
                 found = count2;
             end
-            count2=count2+1;        
+            count2 = count2 + 1;        
         end
         if(found > 0)
             indexed(count1) = found;
+        else
+            not_found = not_found + 1;
         end
+    end
+    
+    if(not_found > 0)
+        disp(['Did not find: ', num2str(not_found)]);
     end
 end
 
