@@ -3,10 +3,10 @@ function runtest(directory)
 xDoc= xmlread('reg_images.xml');
 images = xDoc.getElementsByTagName('image');
 results = cell(1000,4);
-results(1,1)='Trial';
-results(1,2)='% change hypr';
-results(1,3)='% change hypo';
-results(1,4)='MAQ';
+results{1,1}='Trial';
+results{1,2}='% change hypr';
+results{1,3}='% change hypo';
+results{1,4}='MAQ';
 index = 2;
 list=dir(directory);
     list = setdiff({list.name},{'.','..','.DS_Store'});
