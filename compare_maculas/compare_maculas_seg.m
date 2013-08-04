@@ -378,9 +378,9 @@ function [ data ] = compare_maculas_seg(type, varargin)
 
     DBW = win_avg2 - win_avg1;
     if strcmpi(type,'AF') 
-        data.MAQ = (sum(DBW(DBW<hypo_thresh).^2)+sum(DBW(DBW>hypr_thresh).^2)/(50*50)); 
+        data.MAQ = (sum(DBW(DBW<hypo_thresh).^2)+sum(DBW(DBW>hypr_thresh).^2))/(50*50); 
     elseif strcmpi(type,'FA')
-     data.MAQ = (sum(DBW(DBW>hypr_thresh).^2)/(50*50)); 
+     data.MAQ = (sum(DBW(DBW>hypr_thresh).^2))/(50*50); 
     end
          
      %Show gridlines for MAQ calculation
