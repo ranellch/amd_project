@@ -14,13 +14,13 @@ I=imadjust(Iorg);
 se=strel('disk',round(size(I,1)/50));
 Iclose = imclose(I,se);
 
- figure, imshow(Iclose)
+%  figure, imshow(Iclose)
 
 se=strel('disk',round(size(I,1)/10));
 Itop = imtophat(Iclose,se);
 
 
-figure, imshow(Itop)
+% figure, imshow(Itop)
 
 %apply multiple thresholds to further refine hypo mask using original
 %image.  keep thresholding until normalized between class variance (difference between class means) changes

@@ -1261,5 +1261,38 @@
    
    <image id="White" path="White OD 2-White OD 3 (poor image)_corrimg.tif" time="3"/>
 
+   <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 2_baseimg.tif" time="1">
+      <macula>
+         <x>351</x>
+         <y>390</y>
+      </macula>
+      <optic_disk>
+         <x>34</x>
+         <y>346</y>
+      </optic_disk>
+   </image>
+   <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 2_corrimg.tif" time="2"/>
+   <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 3 (poor image)_baseimg.tif" time="1">
+      <macula>
+         <x>346</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>39</x>
+         <y>351</y>
+      </optic_disk>
+   </image>
+   <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 3 (poor image)_corrimg.tif" time="3"/>
+   <image id="BIGNALL" path="BIGNALL OD 2-BIGNALL OD 3 (poor image)_baseimg.tif" time="2">
+      <macula>
+         <x>352</x>
+         <y>394</y>
+      </macula>
+      <optic_disk>
+         <x>36</x>
+         <y>376</y>
+      </optic_disk>
+   </image>
+   <image id="BIGNALL" path="BIGNALL OD 2-BIGNALL OD 3 (poor image)_corrimg.tif" time="3"/>
 
 </images>

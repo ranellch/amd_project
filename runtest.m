@@ -3,9 +3,9 @@ function runtest(directory)
 xDoc= xmlread('reg_images.xml');
 images = xDoc.getElementsByTagName('image');
 results = cell(1000,4);
-results{1,1}='Trial';
-results{1,2}='% change hypr';
-results{1,3}='% change hypo';
+results{1,1}='TRIAL';
+results{1,2}='% CHANGE HYPR';
+results{1,3}='% CHANGE HYPO';
 results{1,4}='MAQ';
 index = 2;
 list=dir(directory);
@@ -15,7 +15,7 @@ list=dir(directory);
         
         if isdir(list{i})
             id=list{i};
-            path = strcat('./Reg Set/',list{i},'/');
+            path = strcat(directory,list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
               for j=1:length(pics)
@@ -47,16 +47,16 @@ list=dir(directory);
                              end
                          end
                             trialname = strcat('-', time1, 'v', time2);
-                            data = compare_maculas_best('AF',visit1, visit2, id, trialname);
+                            data = compare_maculas_seg('AF',visit1, visit2, id, trialname, directory);
                             data=struct2cell(data)';
-                            results(index) = data;
+                            results(index,:) = data;
                             index = index+1;
                     end
               end
         end 
     end
 
-xlwrite('results.xls',results); 
+xlwrite('results.xlsx',results); 
 
 end
         

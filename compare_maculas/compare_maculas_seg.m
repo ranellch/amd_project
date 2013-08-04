@@ -12,7 +12,7 @@ function [ data ] = compare_maculas_seg(type, varargin)
 
  
      p = struct('fovea', [0 0], 'optic', [0 0]);
-     if ~isempty(varargin) && length(varargin) ~=4
+     if ~isempty(varargin) && length(varargin) ~=5
          disp('Invalid arguments entered');
          return
      end
@@ -22,7 +22,8 @@ function [ data ] = compare_maculas_seg(type, varargin)
         visit1 = varargin{1};
         visit2 = varargin{2};
         patid = varargin{3};
-        trialname = varargin{4};    
+        trialname = varargin{4}; 
+        directory = varargin{5};
         filename1 = visit1;
         filename2 = visit2;
      end
@@ -42,7 +43,7 @@ function [ data ] = compare_maculas_seg(type, varargin)
         end
         fullpath = fullfile(path1,filename1);
     else % use visit arguments
-        fullpath = fullfile('./Reg Set/',patid, visit1);
+        fullpath = fullfile(directory,patid, visit1);
     end
      
 
@@ -77,7 +78,7 @@ function [ data ] = compare_maculas_seg(type, varargin)
         fullpath = fullfile(path2,filename2);
     else %use visit arguments  
 
-        fullpath = fullfile('./Reg Set/',patid, visit2);
+        fullpath = fullfile(directory,patid, visit2);
         
         
         output_dir = strcat('./Output Images/', patid);
