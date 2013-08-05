@@ -3,7 +3,7 @@ function [img1re, img2re] = match_sizing(img1, img2)
     miny = min_axis(img1, img2, 1);
     minx = min_axis(img1, img2, 2);
     
-    %Find which axis to base it upon around
+    %Choose which axis to base the transform upon
     largeaxis = 'x';
     
     %Get the transform factor for the first image
@@ -22,14 +22,14 @@ function [img1re, img2re] = match_sizing(img1, img2)
         
     %Add padding to the images so that they are now the same
     [img1re, img2re] = pad_to_size(img1re, img2re);
-    
-    %imshowpair(img1re, img2re);
 end
 
 function [img1, img2] = pad_to_size(img1, img2)
+    %Get the dimensions of the input img1
     img1y = size(img1, 1);
     img1x = size(img1, 2);
     
+    %Get the dimensions of the input img2
     img2y = size(img2, 1);
     img2x = size(img2, 2);
     
@@ -51,12 +51,13 @@ function [img1, img2] = pad_to_size(img1, img2)
             larger_val = img2y - img1y;
             which_img = '1';
         end
-    elseif(img1x ==img2x && img1y == img2y)
+    elseif(img1x == img2x && img1y == img2y)
         return;
     else
         disp('Neither X nor Y axis are the same, pad_to_size');
     end
-            
+    
+    %Checkout which image to pad
     if(strcmp(which_img, '1') == 1)
         img1 = pad_array(img1, to_pad, larger_val);
     else
@@ -65,36 +66,32 @@ function [img1, img2] = pad_to_size(img1, img2)
 end
 
 function [outval] = pad_array(img, side, pad)
+    %Create a new temporary matrix that will hold the original image in addition to the new padding
     if(strcmp(side, 'x') == 1)
-        outval = zeros(size(img, 1), size(img,2) + pad);
+        outval = uint8(zeros(size(img, 1), size(img,2) + pad, size(img, 3)));
     elseif(strcmp(side, 'y') == 1)
-        outval = zeros(size(img, 1) + pad, size(img,2));
+        outval = uint8(zeros(size(img, 1) + pad, size(img,2), size(img, 3)));
     else
-        msgbox('Error: pad_array');
+        outval = img;
+        msgbox('Error: pad_array in input of side variable');
         return;
     end
     
+    %Copy in the portion of the image that was part of the original
     for y=1:size(img, 1)
         for x=1:size(img, 2)
-            outval(y, x) = img(y, x);
+            for pixel=1:size(img,3)
+                outval(y, x, pixel) = img(y, x, pixel);
+            end
         end
     end
 end
 
 function [imgcorr] = find_factor(img, largeaxis, minx, miny)
-    %Find transformation factor from original minx or minx based upon largeaxis
     imgcorr = 0;
     if strcmp(largeaxis, 'x') == 1
         imgcorr = minx / size(img, 2);
     elseif strcmp(largeaxis, 'y') == 1
         imgcorr = miny / size(img, 1);
-    end
-end
-
-function [out] = min_axis(img1, img2, dim)
-    %Find the minimum between two images for individual dimensions
-    out = size(img1, dim);
-    if(size(img2, dim) < out)
-       out =  size(img2, dim);
     end
 end
