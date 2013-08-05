@@ -13,6 +13,9 @@ function [out] = find_image_transform(pid)
     xDoc= xmlread('images.xml');
     images = xDoc.getElementsByTagName('image');
 
+    %Start map
+    mapObj = containers.Map('KeyType', 'int32', 'ValueType', 'int32');
+    
     %Java lists to keep track of original filename and vessel detection
     the_list_orig = java.util.LinkedList;
     the_list_transform = java.util.LinkedList;
@@ -35,8 +38,11 @@ function [out] = find_image_transform(pid)
             catch 
                 transform = 'none';
             end
-        
             the_list_transform.add(transform);
+            
+            %Get a map list of the images to compare
+            the_time = (char(image.getAttribute('time')));
+            mapObj(str2num(the_time)) = total_count;
         
             %Keep track of original and new filename
             the_list_orig.add(path);
@@ -46,17 +52,23 @@ function [out] = find_image_transform(pid)
     
     disp(['To Run ', num2str(total_count), ' images from: ', image_string]);
     
+    the_keys = keys(mapObj);
+    
 	%Get the offest of the images
-    for count1 = 0:total_count - 1
+    for count1=1:length(the_keys)
+        index1 = mapObj(the_keys{count1});
+        
         %Get the base image
-        base_img_real = char(the_list_orig.get(count1));
-        basetrans = char(the_list_transform.get(count1));
+        base_img_real = char(the_list_orig.get(index1));
+        basetrans = char(the_list_transform.get(index1));
         
         %Loop on images to pair with
-        for count2 = count1 + 1:total_count - 1
+        for count2=count1+1:length(the_keys)
+            index2 = mapObj(the_keys{count2});
+            
             %Get the next image to pair
-            next_img_real = char(the_list_orig.get(count2));
-            nextrans = char(the_list_transform.get(count2));
+            next_img_real = char(the_list_orig.get(index2));
+            nextrans = char(the_list_transform.get(index2));
             
             %Register the images and save in output directory (image_string)
             register_images(base_img_real, basetrans, next_img_real, nextrans, output_path);

@@ -88,10 +88,7 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
         end
         quad_modes{quad_map(quad)} = the_map;
     end
-    
-    disp(quad_map);
-    disp(quad_modes);
-    
+
     %Loop over the quads
     for i=1:length(quad_modes)
         the_map = quad_modes{i};
@@ -128,7 +125,7 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
             length_of_output = length_of_output + quad_mode(i, 3);
         end
     end
-        
+    
     %Create vector list for indicies of output
     indexed = zeros(length_of_output, 1);
     mode_val = zeros(length(quads_found), 1);
@@ -146,7 +143,11 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
     end
     
     if length_of_output ~= indexed_index
-        disp(['The calculated modal size and the actual modal size are not the same => length_of_output: ', sum2str(length_of_output), ' - indexed_index: ', num2str(indexed_index)]);
+        %Remove the empty points
+        for i=indexed_index+1:length_of_output
+            indexed(indexed_index+1) = [];
+        end
+        disp(['The calculated modal size and the actual modal size are not the same => length_of_output: ', num2str(length_of_output), ' - indexed_index: ', num2str(indexed_index)]);
     end
 end
 
