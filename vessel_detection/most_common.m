@@ -71,9 +71,7 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
             end
         end
     end
-    
-    
-    
+
     for i=1:length(the_list)
         %Get the current tuples quad and value
         quad = the_list(i, quad_index);
@@ -91,32 +89,35 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
         quad_modes{quad_map(quad)} = the_map;
     end
     
+    disp(quad_map);
+    disp(quad_modes);
+    
     %Loop over the quads
     for i=1:length(quad_modes)
-        the_map = quad_modes{quad_map(i)};
+        the_map = quad_modes{i};
         modal_value = 0;
         modal_size = 0;
 
         %Get the list of all keys available in this quad
         keySet = keys(the_map);
         for j=1:length(keySet)
-            if(the_map(keySet(j)) > modal_size)
-                modal_value = keySet(j);
-                modal_size = the_map(keySet(j));
+            if(the_map(keySet{j}) > modal_size)
+                modal_value = keySet{j};
+                modal_size = the_map(keySet{j});
             end
         end
 
         %Get a range around the mode
-        quad_mode(quad_map(i), 1) = modal_value - 1;
-        quad_mode(quad_map(i), 2) = modal_value + 1;
+        quad_mode(i, 1) = modal_value - 1;
+        quad_mode(i, 2) = modal_value + 1;
 
         %Get the size of the output array for trimmed output
-        quad_mode(quad_map(i), 3) = modal_size;
+        quad_mode(i, 3) = modal_size;
         if isKey(the_map, quad_mode(i, 1))
-            quad_mode(quad_map(i), 3) = quad_mode(quad_map(i), 3) + the_map(quad_mode(quad_map(i), 1));
+            quad_mode(i, 3) = quad_mode(i, 3) + the_map(quad_mode(i, 1));
         end
         if isKey(the_map, quad_mode(i, 2))
-            quad_mode(quad_map(i), 3) = quad_mode(quad_map(i), 3) + the_map(quad_mode(quad_map(i), 2));
+            quad_mode(i, 3) = quad_mode(i, 3) + the_map(quad_mode(i, 2));
         end
     end
     
@@ -124,7 +125,7 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
     length_of_output = 0;
     for i=1:length(quad_mode)
         if isempty(find(quad == quad_skip, 1)) == 1
-            length_of_output = length_of_output + quad_mode(quad_map(i), 3);
+            length_of_output = length_of_output + quad_mode(i, 3);
         end
     end
         
