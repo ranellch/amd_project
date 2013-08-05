@@ -1,19 +1,21 @@
+function runtest(directory)
+
 xDoc= xmlread('reg_images.xml');
 images = xDoc.getElementsByTagName('image');
 results = cell(1000,4);
-results(1,1)='Trial';
-results(1,2)='HPRS';
-results(1,3)='HYPOS';
-results(1,4)='MAQ';
+results{1,1}='TRIAL';
+results{1,2}='% CHANGE HYPR';
+results{1,3}='% CHANGE HYPO';
+results{1,4}='MAQ';
 index = 2;
-list=dir('./Reg Set/');
+list=dir(directory);
     list = setdiff({list.name},{'.','..','.DS_Store'});
     
     for i=1:length(list)
         
         if isdir(list{i})
             id=list{i};
-            path = strcat('./Reg Set/',list{i},'/');
+            path = strcat(directory,list{i},'/');
             sublist = dir(path);
             pics = setdiff({sublist.name},{'.','..','.DS_Store'});
               for j=1:length(pics)
@@ -33,7 +35,7 @@ list=dir('./Reg Set/');
                             end
                          end
                          %get base image tags
-                         [pathstr, name, ext] = fileparts(file);
+                         [~, ~, ext] = fileparts(file);
                          bfile=strcat(file(1:ind-1),'_baseimg', ext);
                          for count = 1:images.getLength
                              bimage = images.item(count-1);
@@ -45,14 +47,16 @@ list=dir('./Reg Set/');
                              end
                          end
                             trialname = strcat('-', time1, 'v', time2);
-                            data = compare_maculas_best('AF',visit1, visit2, id, trialname);
+                            data = compare_maculas_seg('AF',visit1, visit2, id, trialname, directory);
                             data=struct2cell(data)';
-                            results(index) = data;
+                            results(index,:) = data;
                             index = index+1;
                     end
               end
         end 
     end
 
-xlwrite('results.xls',results); 
+xlwrite('results.xlsx',results); 
+
+end
         
