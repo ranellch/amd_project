@@ -5,8 +5,13 @@ function [none] = manual_detect(pid, time1, time2)
     
     %Convert input to something else
     image_string = char(pid);
-    output_path = ['results/', image_string];
-
+    
+    %Check and create output path for the restuls
+    output_path = 'manual_detect_output/';
+    if(exist(output_path, 'dir') == 0)
+        mkdir(output_path);
+    end
+    
     %Parse XML document and find this pictures information
     xDoc= xmlread('images.xml');
     images = xDoc.getElementsByTagName('image');
@@ -40,22 +45,26 @@ function [none] = manual_detect(pid, time1, time2)
         [xyinput_out, xybase_out] = cpselect(img2, img1, 'Wait', true);
         if size(xyinput_out, 1) >= 3 && size(xybase_out, 1) >= 3 && size(xyinput_out, 1) == size(xybase_out, 1)
         	[~, ~, ~, tform] = transform_it_vision(xybase_out, xyinput_out);
-            [img1out, img2out] = apply_transform(tform, img1, img2);
+            [img1_correct, img2_correct] = apply_transform(tform, img1, img2);
             
-            pairhandle = imshowpair(img1out, img2out);
+            pairhandle = imshowpair(img1_correct, img2_correct);
             waitfor(pairhandle);
             
-            %Get the filenames
-            count1 = parse_outname(path1);
-            count2 = parse_outname(path2);
+            button = questdlg('Would you like to save this registration pair?', ...
+                              'Registerd images', 'Yes', 'No', 'No');
+            if(strcmp(button, 'Yes') == 1)
+                %Get the filenames
+                count1 = parse_outname(path1);
+                count2 = parse_outname(path2);
 
-            %Build the output file name
-            new_base_filename = [count1, '-', count2, '_baseimg.tif'];
-            new_corr_filename = [count1, '-', count2, '_corrimg.tif'];
+                %Build the output file name
+                new_base_filename = [output_path, count1, '-', count2, '_baseimg.tif'];
+                new_corr_filename = [output_path, count1, '-', count2, '_corrimg.tif'];
 
-            %Write the corrected image pair to disk
-            imwrite(img1_correct, new_base_filename, 'tif');
-            imwrite(img2_correct, new_corr_filename, 'tif');
+                %Write the corrected image pair to disk
+                imwrite(img1_correct, new_base_filename, 'tif');
+                imwrite(img2_correct, new_corr_filename, 'tif')
+            end
         end
     end
 end
