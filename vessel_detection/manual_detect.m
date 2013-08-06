@@ -47,8 +47,7 @@ function [none] = manual_detect(pid, time1, time2)
         	[~, ~, ~, tform] = transform_it_vision(xybase_out, xyinput_out);
             [img1_correct, img2_correct] = apply_transform(tform, img1, img2);
             
-            pairhandle = imshowpair(img1_correct, img2_correct);
-            waitfor(pairhandle);
+            imshowpair(img1_correct, img2_correct);
             
             button = questdlg('Would you like to save this registration pair?', ...
                               'Registerd images', 'Yes', 'No', 'No');
