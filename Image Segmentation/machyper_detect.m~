@@ -60,9 +60,6 @@ end
 BWhyper = Itop>thresh1;
 clear Itop
 
-BWgrad = edge(I,'canny', thresh1/255);
-figure, imshow(BWgrad)
-
 %clean up final hypo mask
 BWhyper = bwmorph(BWhyper,'majority');
 

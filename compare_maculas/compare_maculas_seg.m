@@ -140,10 +140,10 @@ function [ data ] = compare_maculas_seg(type, varargin)
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
-     r = round(5/768*img_sz(1)); %scale filter size---5 by 5 pixs for 768 by 768 res (standard res - footer)
-     c = round(5/768*img_sz(2));
+     r = round(3/768*img_sz(1)); %scale filter size---3 by 3 pixs for 768 by 768 res (standard res - footer)
+     c = round(3/768*img_sz(2));
      
-     H = fspecial('gaussian', [r c], 5);
+     H = fspecial('gaussian', [r c], 3);
      proc2=imfilter(img2,H);
      proc1=imfilter(img1,H);
      
@@ -236,15 +236,13 @@ function [ data ] = compare_maculas_seg(type, varargin)
    if strcmpi(type,'AF')
 
    % standardize intensities
-       [BWhypo1, Ihypo1]  = machypo_detect(win1);
+       [BWhypo1, Ihypo1]  = machypo_detect(win1);       
        [BWhyper1, Ihyper1] = machyper_detect(win1, BWhypo1);    
        [BWhypo2, Ihypo2]  = machypo_detect(win2);
        [BWhyper2, Ihyper2] = machyper_detect(win2, BWhypo2);
 
        %match histograms of image 2 to image 1
 
-
-        win2 = histeq(win2, imhist(win1));
 
        hypo = imhist(win1(BWhypo1));
        hyper = imhist(win1(BWhyper1));
@@ -322,8 +320,8 @@ function [ data ] = compare_maculas_seg(type, varargin)
 %     
 %     % Get standard deviation of background pixel intensity for img1
     win1back = double(win1(~BWhyper1 & ~BWhypo1));
-    hypr_thresh = std(win1back(:));
-    hypo_thresh = -1*std(win1back(:));
+    hypr_thresh = 2*std(win1back(:));
+    hypo_thresh = -2*std(win1back(:));
 
   
    

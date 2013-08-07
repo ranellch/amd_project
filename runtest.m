@@ -31,8 +31,11 @@ list=dir(directory);
                             if strcmpi(corrpath, file)                               
                                 visit2 =  char(cimage.getAttribute('path'));
                                 time2 = char(cimage.getAttribute('time'));
-                                break
+                                break                            
                             end
+                         end
+                         if strcmpi(corrpath, file) == false
+                             continue
                          end
                          %get base image tags
                          [~, ~, ext] = fileparts(file);
@@ -45,6 +48,9 @@ list=dir(directory);
                                 time1 = char(bimage.getAttribute('time'));
                                 break
                              end
+                         end
+                         if strcmpi(basefile, bfile) == false
+                             continue
                          end
                             trialname = strcat('-', time1, 'v', time2);
                             data = compare_maculas_seg('AF',visit1, visit2, id, trialname, directory);

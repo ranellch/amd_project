@@ -37,8 +37,9 @@ function [none] = manual_detect(pid, time1, time2)
     end
     
     if ~isempty(path1) && ~isempty(path2)
-        base = imread(path1);
-        next = imread(path2);
+        base = crop_footer(rgb2gray(imread(path1)));
+        next = crop_footer(rgb2gray(imread(path2)));
+
         
         [img1, img2] = match_sizing(base, next);
         
@@ -47,7 +48,7 @@ function [none] = manual_detect(pid, time1, time2)
         	[~, ~, ~, tform] = transform_it_vision(xybase_out, xyinput_out);
             [img1_correct, img2_correct] = apply_transform(tform, img1, img2);
             
-            imshowpair(img1_correct, img2_correct);
+            figure, imshowpair(img1_correct, img2_correct);
             
             button = questdlg('Would you like to save this registration pair?', ...
                               'Registerd images', 'Yes', 'No', 'No');
