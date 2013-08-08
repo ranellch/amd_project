@@ -4,762 +4,1521 @@
  
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_001-09_14_66_860_000_baseimg.tif" time="4">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>454</x>
             
          
+         
+         
+         
          <y>367</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>841</x>
             
          
+         
+         
+         
          <y>298</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_001-09_14_66_860_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_002-09_14_66_860_000_baseimg.tif" time="3">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>445</x>
             
          
+         
+         
+         
          <y>363</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>832</x>
             
          
+         
+         
+         
          <y>288</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_002-09_14_66_860_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_002-09_14_66_860_001_baseimg.tif" time="3">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>829</x>
             
          
+         
+         
+         
          <y>743</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>1540</x>
             
          
+         
+         
+         
          <y>581</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_002-09_14_66_860_001_corrimg.tif" time="4"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_003-09_14_66_860_000_baseimg.tif" time="2">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>434</x>
             
          
+         
+         
+         
          <y>360</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>821</x>
             
          
+         
+         
+         
          <y>282</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_003-09_14_66_860_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_003-09_14_66_860_001_baseimg.tif" time="2">
         
+      
+      
+      
       
       <macula>
             
          
+         
+         
+         
          <x>817</x>
             
+         
+         
+         
          
          <y>701</y>
         
       
+      
+      
+      
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>1546</x>
             
          
+         
+         
+         
          <y>554</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_003-09_14_66_860_001_corrimg.tif" time="4"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_003-09_14_66_860_002_baseimg.tif" time="2">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>808</x>
             
          
+         
+         
+         
          <y>707</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>1558</x>
             
          
+         
+         
+         
          <y>566</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_003-09_14_66_860_002_corrimg.tif" time="3"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_000_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>413</x>
             
          
+         
+         
+         
          <y>336</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>842</x>
             
          
+         
+         
+         
          <y>279</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_001_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>407</x>
             
          
+         
+         
+         
          <y>339</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>833</x>
             
          
+         
+         
+         
          <y>280</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_001_corrimg.tif" time="4"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_002_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>418</x>
             
          
+         
+         
+         
          <y>339</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>820</x>
             
          
+         
+         
+         
          <y>271</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_002_corrimg.tif" time="3"/>
     
    
+   
+   
+   
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_003_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>412</x>
             
          
+         
+         
+         
          <y>339</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>806</x>
             
          
+         
+         
+         
          <y>280</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09146686" path="09_14_66_860_004-09_14_66_860_003_corrimg.tif" time="2"/>
     
    
+   
+   
+   
    <image id="09161204" path="09_16_12_040_001-09_16_12_040_000_baseimg.tif" time="2">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>880</x>
             
          
+         
+         
+         
          <y>890</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>196</x>
             
          
+         
+         
+         
          <y>818</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09161204" path="09_16_12_040_001-09_16_12_040_000_corrimg.tif" time="3"/>
     
    
+   
+   
+   
    <image id="09161204" path="09_16_12_040_002-09_16_12_040_000_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>817</x>
             
          
+         
+         
+         
          <y>941</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>139</x>
             
          
+         
+         
+         
          <y>851</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09161204" path="09_16_12_040_002-09_16_12_040_000_corrimg.tif" time="3"/>
     
    
+   
+   
+   
    <image id="09161204" path="09_16_12_040_002-09_16_12_040_001_baseimg.tif" time="1">
         
+      
+      
+      
       
       <macula>
             
          
+         
+         
+         
          <x>823</x>
             
+         
+         
+         
          
          <y>932</y>
         
       
+      
+      
+      
       </macula>
         
+      
+      
+      
       
       <optic_disk>
             
          
+         
+         
+         
          <x>142</x>
             
+         
+         
+         
          
          <y>869</y>
         
       
+      
+      
+      
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09161204" path="09_16_12_040_002-09_16_12_040_001_corrimg.tif" time="2"/>
     
 
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_001-09_19_82_580_000_baseimg.tif" time="4">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>748</x>
             
          
+         
+         
+         
          <y>785</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>100</x>
             
          
+         
+         
+         
          <y>680</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_001-09_19_82_580_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_002-09_19_82_580_000_baseimg.tif" time="3">
         
+      
+      
+      
       
       <macula>
             
          
+         
+         
+         
          <x>838</x>
             
+         
+         
+         
          
          <y>734</y>
         
       
+      
+      
+      
       </macula>
         
+      
+      
+      
       
       <optic_disk>
             
          
+         
+         
+         
          <x>148</x>
             
+         
+         
+         
          
          <y>659</y>
         
       
+      
+      
+      
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_002-09_19_82_580_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_002-09_19_82_580_001_baseimg.tif" time="3">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>838</x>
             
          
+         
+         
+         
          <y>713</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>148</x>
             
          
+         
+         
+         
          <y>653</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_002-09_19_82_580_001_corrimg.tif" time="4"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_003-09_19_82_580_000_baseimg.tif" time="2">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>823</x>
             
          
+         
+         
+         
          <y>734</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
          
+         
+         
+         
          <x>136</x>
             
+         
+         
+         
          
          <y>647</y>
         
       
+      
+      
+      
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_003-09_19_82_580_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_003-09_19_82_580_001_baseimg.tif" time="2">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>820</x>
             
          
+         
+         
+         
          <y>728</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>142</x>
             
          
+         
+         
+         
          <y>650</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_003-09_19_82_580_001_corrimg.tif" time="4"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_003-09_19_82_580_002_baseimg.tif" time="2">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>811</x>
             
          
+         
+         
+         
          <y>734</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>136</x>
             
          
+         
+         
+         
          <y>653</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_003-09_19_82_580_002_corrimg.tif" time="3"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_000_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>430</x>
             
          
+         
+         
+         
          <y>349</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>71</x>
             
          
+         
+         
+         
          <y>309</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_000_corrimg.tif" time="5"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_001_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>440</x>
             
          
+         
+         
+         
          <y>342</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
          
+         
+         
+         
          <x>68</x>
             
+         
+         
+         
          
          <y>313</y>
         
       
+      
+      
+      
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_001_corrimg.tif" time="4"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_002_baseimg.tif" time="1">
         
       
+      
+      
+      
       <macula>
             
+         
+         
+         
          
          <x>433</x>
             
          
+         
+         
+         
          <y>336</y>
         
+      
+      
+      
       
       </macula>
         
       
+      
+      
+      
       <optic_disk>
             
+         
+         
+         
          
          <x>77</x>
             
          
+         
+         
+         
          <y>300</y>
         
+      
+      
+      
       
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_002_corrimg.tif" time="3"/>
     
    
+   
+   
+   
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_003_baseimg.tif" time="1">
         
+      
+      
+      
       
       <macula>
             
          
+         
+         
+         
          <x>434</x>
             
+         
+         
+         
          
          <y>337</y>
         
       
+      
+      
+      
       </macula>
         
+      
+      
+      
       
       <optic_disk>
             
          
+         
+         
+         
          <x>68</x>
             
+         
+         
+         
          
          <y>295</y>
         
       
+      
+      
+      
       </optic_disk>
     
    
+   
+   
+   
    </image>
     
+   
+   
+   
    
    <image id="09198258" path="09_19_82_580_004-09_19_82_580_003_corrimg.tif" time="2"/>
    
@@ -768,411 +1527,5980 @@
    
  
 
+   
+   
+   
    <image id="BARR" path="BARR OD 1-BARR OD 2_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>349</x>
+         
+         
+         
          <y>390</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>28</x>
+         
+         
+         
          <y>382</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BARR" path="BARR OD 1-BARR OD 2_corrimg.tif" time="2"/>
+   
+   
+   
    <image id="BARR" path="BARR OD 1-BARR OD 3 (poor quality)_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>355</x>
+         
+         
+         
          <y>388</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>28</x>
+         
+         
+         
          <y>382</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BARR" path="BARR OD 1-BARR OD 3 (poor quality)_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BARR" path="BARR OD 2-BARR OD 3 (poor quality)_baseimg.tif" time="2">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>369</x>
+         
+         
+         
          <y>394</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>51</x>
+         
+         
+         
          <y>391</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BARR" path="BARR OD 2-BARR OD 3 (poor quality)_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 2_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>349</x>
+         
+         
+         
          <y>390</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>36</x>
+         
+         
+         
          <y>369</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 2_corrimg.tif" time="2"/>
+   
+   
+   
    <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 3 (poor image)_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>358</x>
+         
+         
+         
          <y>396</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>36</x>
+         
+         
+         
          <y>364</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BIGNALL" path="BIGNALL OD 1-BIGNALL OD 3 (poor image)_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BIGNALL" path="BIGNALL OD 2-BIGNALL OD 3 (poor image)_baseimg.tif" time="2">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>354</x>
+         
+         
+         
          <y>391</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>39</x>
+         
+         
+         
          <y>388</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BIGNALL" path="BIGNALL OD 2-BIGNALL OD 3 (poor image)_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BORON" path="BORON OD 1 (bright)-BORON OD 2_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>352</x>
+         
+         
+         
          <y>390</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>61</x>
+         
+         
+         
          <y>384</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BORON" path="BORON OD 1 (bright)-BORON OD 2_corrimg.tif" time="2"/>
+   
+   
+   
    <image id="BORON" path="BORON OD 1 (bright)-BORON OD 3_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>358</x>
+         
+         
+         
          <y>393</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>58</x>
+         
+         
+         
          <y>384</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BORON" path="BORON OD 1 (bright)-BORON OD 3_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BORON" path="BORON OD 2-BORON OD 3_baseimg.tif" time="2">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>719</x>
+         
+         
+         
          <y>653</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>113</x>
+         
+         
+         
          <y>641</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BORON" path="BORON OD 2-BORON OD 3_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BUCHANAN" path="BUCHANAN OD 1-BUCHANAN OD 2_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>360</x>
+         
+         
+         
          <y>397</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>63</x>
+         
+         
+         
          <y>363</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BUCHANAN" path="BUCHANAN OD 1-BUCHANAN OD 2_corrimg.tif" time="2"/>
+   
+   
+   
    <image id="BUCHANAN" path="BUCHANAN OD 1-BUCHANAN OD 3_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>354</x>
+         
+         
+         
          <y>391</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>57</x>
+         
+         
+         
          <y>360</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BUCHANAN" path="BUCHANAN OD 1-BUCHANAN OD 3_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="BUCHANAN" path="BUCHANAN OD 2-BUCHANAN OD 3_baseimg.tif" time="2">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>369</x>
+         
+         
+         
          <y>397</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>72</x>
+         
+         
+         
          <y>384</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="BUCHANAN" path="BUCHANAN OD 2-BUCHANAN OD 3_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="CERVENKA" path="CERVENKA OD 1-CERVENKA OD 2_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>351</x>
+         
+         
+         
          <y>399</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>30</x>
+         
+         
+         
          <y>388</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="CERVENKA" path="CERVENKA OD 1-CERVENKA OD 2_corrimg.tif" time="2"/>
+   
+   
+   
    <image id="CERVENKA" path="CERVENKA OD 1-CERVENKA OD 3_baseimg.tif" time="1">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>363</x>
+         
+         
+         
          <y>406</y>
+      
+      
+      
       </macula>
+      
+      
+      
       <optic_disk>
+         
+         
+         
          <x>25</x>
+         
+         
+         
          <y>390</y>
+      
+      
+      
       </optic_disk>
+   
+   
+   
    </image>
+   
+   
+   
    <image id="CERVENKA" path="CERVENKA OD 1-CERVENKA OD 3_corrimg.tif" time="3"/>
+   
+   
+   
    <image id="CERVENKA" path="CERVENKA OD 2-CERVENKA OD 3_baseimg.tif" time="2">
+      
+      
+      
       <macula>
+         
+         
+         
          <x>340</x>
+         
+         
+         
          <y>393</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>21</x>
+         
+         
+         
+         <y>388</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="CERVENKA" path="CERVENKA OD 2-CERVENKA OD 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>405</x>
+         
+         
+         
+         <y>409</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>145</x>
+         
+         
+         
+         <y>414</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 3_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>827</x>
+         
+         
+         
+         <y>815</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>275</x>
+         
+         
+         
+         <y>800</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="COMBS" path="COMBS OS 2-COMBS OS 3_baseimg.tif" time="2">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>433</x>
+         
+         
+         
+         <y>396</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>166</x>
+         
+         
+         
+         <y>379</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="COMBS" path="COMBS OS 2-COMBS OS 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>420</x>
+         
+         
+         
+         <y>400</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>115</x>
+         
+         
+         
+         <y>393</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 3_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>414</x>
+         
+         
+         
+         <y>396</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>118</x>
+         
+         
+         
+         <y>387</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="COMISKY" path="COMISKY OS 2-COMISKY OS 3_baseimg.tif" time="2">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>417</x>
+         
+         
+         
+         <y>394</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>121</x>
+         
+         
+         
+         <y>396</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="COMISKY" path="COMISKY OS 2-COMISKY OS 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>348</x>
+         
+         
+         
+         <y>402</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>57</x>
+         
+         
+         
+         <y>370</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 3_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>355</x>
+         
+         
+         
+         <y>402</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>58</x>
+         
+         
+         
+         <y>364</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="GETTEL" path="GETTEL OD 2-GETTEL OD 3_baseimg.tif" time="2">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>363</x>
+         
+         
+         
+         <y>399</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>67</x>
+         
+         
+         
+         <y>360</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="GETTEL" path="GETTEL OD 2-GETTEL OD 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 2 (poor image)_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>328</x>
+         
+         
+         
+         <y>507</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>30</x>
+         
+         
+         
+         <y>442</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 2 (poor image)_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 3 (poor image)_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>327</x>
+         
+         
+         
+         <y>507</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>30</x>
+         
+         
+         
+         <y>436</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 3 (poor image)_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="KUKLA" path="KUKLA OS 2 (poor image)-KUKLA OS 3 (poor image)_baseimg.tif" time="2">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>427</x>
+         
+         
+         
+         <y>403</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>123</x>
+         
+         
+         
+         <y>339</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="KUKLA" path="KUKLA OS 2 (poor image)-KUKLA OS 3 (poor image)_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="LEMAY" path="LEMAY OS 1-LEMAY OS 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>432</x>
+         
+         
+         
+         <y>397</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>136</x>
+         
+         
+         
+         <y>372</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="LEMAY" path="LEMAY OS 1-LEMAY OS 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="REAM" path="REAM OS 1-REAM OS 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>408</x>
+         
+         
+         
+         <y>387</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>123</x>
+         
+         
+         
+         <y>366</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="REAM" path="REAM OS 1-REAM OS 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="REAM" path="REAM OS 1-REAM OS 3_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>414</x>
+         
+         
+         
+         <y>387</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>126</x>
+         
+         
+         
+         <y>363</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="REAM" path="REAM OS 1-REAM OS 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="REAM" path="REAM OS 2-REAM OS 3_baseimg.tif" time="2">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>403</x>
+         
+         
+         
+         <y>382</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>111</x>
+         
+         
+         
+         <y>363</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="REAM" path="REAM OS 2-REAM OS 3_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="RHOADES" path="RHOADES OS 1-RHOADES OS 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>424</x>
+         
+         
+         
+         <y>390</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>73</x>
+         
+         
+         
+         <y>381</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="RHOADES" path="RHOADES OS 1-RHOADES OS 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>343</x>
+         
+         
+         
+         <y>402</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>3</x>
+         
+         
+         
+         <y>385</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 3 (funny iamge)_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>340</x>
+         
+         
+         
+         <y>399</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>1</x>
+         
+         
+         
+         <y>384</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 3 (funny iamge)_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="VINCENT" path="VINCENT OD 2-VINCENT OD 3 (funny iamge)_baseimg.tif" time="2">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>749</x>
+         
+         
+         
+         <y>803</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>65</x>
+         
+         
+         
+         <y>740</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="VINCENT" path="VINCENT OD 2-VINCENT OD 3 (funny iamge)_corrimg.tif" time="3"/>
+   
+   
+   
+   <image id="WHITE" path="White OD 1-White OD 2_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>393</x>
+         
+         
+         
+         <y>402</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>57</x>
+         
+         
+         
+         <y>373</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="WHITE" path="White OD 1-White OD 2_corrimg.tif" time="2"/>
+   
+   
+   
+   <image id="WHITE" path="White OD 1-White OD 3 (poor image)_baseimg.tif" time="1">
+      
+      
+      
+      <macula>
+         
+         
+         
+         <x>779</x>
+         
+         
+         
+         <y>803</y>
+      
+      
+      
+      </macula>
+      
+      
+      
+      <optic_disk>
+         
+         
+         
+         <x>110</x>
+         
+         
+         
+         <y>755</y>
+      
+      
+      
+      </optic_disk>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image id="WHITE" path="White OD 1-White OD 3 (poor image)_corrimg.tif" time="3"/>
+
+   
+   
+   <image id="00036771" path="00_03_67_710_001-00_03_67_710_000_baseimg.tif" time="5">
+      
+      
+      <macula>
+         
+         
+         <x>373</x>
+         
+         
+         <y>312</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>712</x>
+         
+         
+         <y>250</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_001-00_03_67_710_000_corrimg.tif" time="6"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_002-00_03_67_710_000_baseimg.tif" time="4">
+      
+      
+      <macula>
+         
+         
+         <x>734</x>
+         
+         
+         <y>812</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>1421</x>
+         
+         
+         <y>647</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_002-00_03_67_710_000_corrimg.tif" time="6"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_002-00_03_67_710_001_baseimg.tif" time="4">
+      
+      
+      <macula>
+         
+         
+         <x>363</x>
+         
+         
+         <y>406</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>358</x>
+         
+         
+         <y>409</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_002-00_03_67_710_001_corrimg.tif" time="5"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_003-00_03_67_710_000_baseimg.tif" time="3">
+      
+      
+      <macula>
+         
+         
+         <x>704</x>
+         
+         
+         <y>803</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>1394</x>
+         
+         
+         <y>683</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_003-00_03_67_710_000_corrimg.tif" time="6"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_003-00_03_67_710_001_baseimg.tif" time="3">
+      
+      
+      <macula>
+         
+         
+         <x>351</x>
+         
+         
+         <y>400</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>697</x>
+         
+         
+         <y>333</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_003-00_03_67_710_001_corrimg.tif" time="5"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_003-00_03_67_710_002_baseimg.tif" time="3">
+      
+      
+      <macula>
+         
+         
+         <x>719</x>
+         
+         
+         <y>794</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>1391</x>
+         
+         
+         <y>668</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_003-00_03_67_710_002_corrimg.tif" time="4"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_000_baseimg.tif" time="2">
+      
+      
+      <macula>
+         
+         
+         <x>752</x>
+         
+         
+         <y>788</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>1403</x>
+         
+         
+         <y>665</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_000_corrimg.tif" time="6"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_001_baseimg.tif" time="2">
+      
+      
+      <macula>
+         
+         
+         <x>370</x>
+         
+         
+         <y>403</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>706</x>
+         
+         
+         <y>330</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_001_corrimg.tif" time="5"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_002_baseimg.tif" time="2">
+      
+      
+      <macula>
+         
+         
+         <x>704</x>
+         
+         
+         <y>816</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>1406</x>
+         
+         
+         <y>656</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_002_corrimg.tif" time="4"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_003_baseimg.tif" time="2">
+      
+      
+      <macula>
+         
+         
+         <x>692</x>
+         
+         
+         <y>813</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>1391</x>
+         
+         
+         <y>653</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_004-00_03_67_710_003_corrimg.tif" time="3"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_000_baseimg.tif" time="1">
+      
+      
+      <macula>
+         
+         
+         <x>343</x>
+         
+         
+         <y>409</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>705</x>
+         
+         
+         <y>306</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_000_corrimg.tif" time="6"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_001_baseimg.tif" time="1">
+      
+      
+      <macula>
+         
+         
+         <x>357</x>
+         
+         
+         <y>402</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>694</x>
+         
+         
+         <y>307</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_001_corrimg.tif" time="5"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_002_baseimg.tif" time="1">
+      
+      
+      <macula>
+         
+         
+         <x>352</x>
+         
+         
+         <y>405</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>690</x>
+         
+         
+         <y>312</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_002_corrimg.tif" time="4"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_003_baseimg.tif" time="1">
+      
+      
+      <macula>
+         
+         
+         <x>343</x>
+         
+         
+         <y>409</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>696</x>
+         
+         
+         <y>318</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_003_corrimg.tif" time="3"/>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_004_baseimg.tif" time="1">
+      
+      
+      <macula>
+         
+         
+         <x>345</x>
+         
+         
+         <y>406</y>
+      
+      
+      </macula>
+      
+      
+      <optic_disk>
+         
+         
+         <x>700</x>
+         
+         
+         <y>313</y>
+      
+      
+      </optic_disk>
+   
+   
+   </image>
+   
+   
+   <image id="00036771" path="00_03_67_710_005-00_03_67_710_004_corrimg.tif" time="2"/>
+
+   
+   <image id="00270567_OD" path="00_27_05_670_002-00_27_05_670_000_baseimg.tif" time="5">
+      
+      <macula>
+         
+         <x>902</x>
+         
+         <y>866</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1535</x>
+         
+         <y>719</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_002-00_27_05_670_000_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_004-00_27_05_670_000_baseimg.tif" time="4">
+      
+      <macula>
+         
+         <x>758</x>
+         
+         <y>777</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1448</x>
+         
+         <y>701</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_004-00_27_05_670_000_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_004-00_27_05_670_002_baseimg.tif" time="4">
+      
+      <macula>
+         
+         <x>755</x>
+         
+         <y>791</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1460</x>
+         
+         <y>710</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_004-00_27_05_670_002_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_006-00_27_05_670_000_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>749</x>
+         
+         <y>801</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1448</x>
+         
+         <y>795</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_006-00_27_05_670_000_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_006-00_27_05_670_002_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>749</x>
+         
+         <y>791</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1436</x>
+         
+         <y>788</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_006-00_27_05_670_002_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_006-00_27_05_670_004_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>740</x>
+         
+         <y>812</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1430</x>
+         
+         <y>791</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_006-00_27_05_670_004_corrimg.tif" time="4"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_000_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>743</x>
+         
+         <y>752</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1403</x>
+         
+         <y>734</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_000_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_002_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>749</x>
+         
+         <y>758</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1391</x>
+         
+         <y>737</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_002_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_004_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>746</x>
+         
+         <y>752</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1397</x>
+         
+         <y>734</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_004_corrimg.tif" time="4"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_006_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>737</x>
+         
+         <y>749</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1397</x>
+         
+         <y>734</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_008-00_27_05_670_006_corrimg.tif" time="3"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_000_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>721</x>
+         
+         <y>369</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>393</x>
+         
+         <y>376</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_000_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_002_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>388</x>
+         
+         <y>381</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>726</x>
+         
+         <y>369</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_002_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_004_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>388</x>
+         
+         <y>384</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>735</x>
+         
+         <y>369</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_004_corrimg.tif" time="4"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_006_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>385</x>
+         
+         <y>378</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>723</x>
+         
+         <y>366</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_006_corrimg.tif" time="3"/>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_008_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>393</x>
+         
+         <y>384</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>724</x>
+         
+         <y>367</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OD" path="00_27_05_670_011-00_27_05_670_008_corrimg.tif" time="2"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_003-00_27_05_670_001_baseimg.tif" time="6">
+      
+      <macula>
+         
+         <x>764</x>
+         
+         <y>776</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>86</x>
+         
+         <y>701</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_003-00_27_05_670_001_corrimg.tif" time="7"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_005-00_27_05_670_001_baseimg.tif" time="5">
+      
+      <macula>
+         
+         <x>764</x>
+         
+         <y>776</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>107</x>
+         
+         <y>734</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_005-00_27_05_670_001_corrimg.tif" time="7"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_005-00_27_05_670_003_baseimg.tif" time="5">
+      
+      <macula>
+         
+         <x>92</x>
+         
+         <y>755</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>788</x>
+         
+         <y>779</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_005-00_27_05_670_003_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_007-00_27_05_670_001_baseimg.tif" time="4">
+      
+      <macula>
+         
+         <x>758</x>
+         
+         <y>789</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>95</x>
+         
+         <y>668</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_007-00_27_05_670_001_corrimg.tif" time="7"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_007-00_27_05_670_003_baseimg.tif" time="4">
+      
+      <macula>
+         
+         <x>755</x>
+         
+         <y>780</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>101</x>
+         
+         <y>674</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_007-00_27_05_670_003_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_007-00_27_05_670_005_baseimg.tif" time="4">
+      
+      <macula>
+         
+         <x>752</x>
+         
+         <y>774</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>101</x>
+         
+         <y>683</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_007-00_27_05_670_005_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_001_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>752</x>
+         
+         <y>801</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>80</x>
+         
+         <y>701</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_001_corrimg.tif" time="7"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_003_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>755</x>
+         
+         <y>792</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>77</x>
+         
+         <y>695</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_003_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_005_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>755</x>
+         
+         <y>791</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>89</x>
+         
+         <y>689</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_005_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_007_baseimg.tif" time="3">
+      
+      <macula>
+         
+         <x>743</x>
+         
+         <y>801</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>92</x>
+         
+         <y>692</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_009-00_27_05_670_007_corrimg.tif" time="4"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_001_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>385</x>
+         
+         <y>385</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>54</x>
+         
+         <y>342</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_001_corrimg.tif" time="7"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_003_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>391</x>
+         
+         <y>393</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>58</x>
+         
+         <y>346</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_003_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_005_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>387</x>
+         
+         <y>387</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>51</x>
+         
+         <y>342</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_005_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_007_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>390</x>
+         
+         <y>396</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>63</x>
+         
+         <y>348</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_007_corrimg.tif" time="4"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_009_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>393</x>
+         
+         <y>390</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>63</x>
+         
+         <y>345</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_010-00_27_05_670_009_corrimg.tif" time="3"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_001_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>381</x>
+         
+         <y>403</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>40</x>
+         
+         <y>367</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_001_corrimg.tif" time="7"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_003_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>370</x>
+         
+         <y>385</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>34</x>
+         
+         <y>366</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_003_corrimg.tif" time="6"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_005_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>384</x>
+         
+         <y>397</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>31</x>
+         
+         <y>361</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_005_corrimg.tif" time="5"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_007_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>376</x>
+         
+         <y>397</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>42</x>
+         
+         <y>361</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_007_corrimg.tif" time="4"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_009_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>381</x>
+         
+         <y>397</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>40</x>
+         
+         <y>369</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_009_corrimg.tif" time="3"/>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_010_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>375</x>
+         
+         <y>400</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>37</x>
+         
+         <y>366</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00270567_OS" path="00_27_05_670_012-00_27_05_670_010_corrimg.tif" time="2"/>
+   
+   <image id="00349225_OD" path="00_34_92_250_002-00_34_92_250_000_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>782</x>
+         
+         <y>816</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1337</x>
+         
+         <y>692</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00349225_OD" path="00_34_92_250_002-00_34_92_250_000_corrimg.tif" time="3"/>
+   
+   <image id="00349225_OD" path="00_34_92_250_004-00_34_92_250_000_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>394</x>
+         
+         <y>378</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>676</x>
+         
+         <y>316</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00349225_OD" path="00_34_92_250_004-00_34_92_250_000_corrimg.tif" time="3"/>
+   
+   <image id="00349225_OD" path="00_34_92_250_004-00_34_92_250_002_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>667</x>
+         
+         <y>313</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>682</x>
+         
+         <y>315</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00349225_OD" path="00_34_92_250_004-00_34_92_250_002_corrimg.tif" time="2"/>
+   
+   <image id="00349225_OS" path="00_34_92_250_003-00_34_92_250_001_baseimg.tif" time="2">
+      
+      <macula>
+         
+         <x>1722</x>
+         
+         <y>861</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>1722</x>
+         
+         <y>861</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00349225_OS" path="00_34_92_250_003-00_34_92_250_001_corrimg.tif" time="3"/>
+   
+   <image id="00349225_OS" path="00_34_92_250_005-00_34_92_250_001_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>673</x>
+         
+         <y>345</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>673</x>
+         
+         <y>345</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00349225_OS" path="00_34_92_250_005-00_34_92_250_001_corrimg.tif" time="3"/>
+   
+   <image id="00349225_OS" path="00_34_92_250_005-00_34_92_250_003_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>391</x>
+         
+         <y>385</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>97</x>
+         
+         <y>331</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00349225_OS" path="00_34_92_250_005-00_34_92_250_003_corrimg.tif" time="2"/>
+   
+   <image id="00387531" path="00_38_75_310_000-00_38_75_310_001_baseimg.tif" time="1">
+      
+      <macula>
+         
+         <x>408</x>
+         
+         <y>291</y>
+      
+      </macula>
+      
+      <optic_disk>
+         
+         <x>96</x>
+         
+         <y>271</y>
+      
+      </optic_disk>
+   
+   </image>
+   
+   <image id="00387531" path="00_38_75_310_000-00_38_75_310_001_corrimg.tif" time="2"/>
+
+   <image id="00518054" path="00_51_80_540_000-00_51_80_540_001_baseimg.tif" time="1">
+      <macula>
+         <x>764</x>
+         <y>792</y>
       </macula>
       <optic_disk>
-         <x>21</x>
-         <y>388</y>
+         <x>119</x>
+         <y>572</y>
       </optic_disk>
    </image>
-   <image id="CERVENKA" path="CERVENKA OD 2-CERVENKA OD 3_corrimg.tif" time="3"/>
-   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 2_baseimg.tif" time="1">
+   <image id="00518054" path="00_51_80_540_000-00_51_80_540_001_corrimg.tif" time="2"/>
+   <image id="00538530" path="00_53_85_300_001-00_53_85_300_000_baseimg.tif" time="4">
       <macula>
-         <x>405</x>
+         <x>692</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>152</x>
+         <y>731</y>
+      </optic_disk>
+   </image>
+   <image id="00538530" path="00_53_85_300_001-00_53_85_300_000_corrimg.tif" time="5"/>
+   <image id="00538530" path="00_53_85_300_002-00_53_85_300_000_baseimg.tif" time="3">
+      <macula>
+         <x>707</x>
+         <y>758</y>
+      </macula>
+      <optic_disk>
+         <x>146</x>
+         <y>722</y>
+      </optic_disk>
+   </image>
+   <image id="00538530" path="00_53_85_300_002-00_53_85_300_000_corrimg.tif" time="5"/>
+   <image id="00538530" path="00_53_85_300_002-00_53_85_300_001_baseimg.tif" time="3">
+      <macula>
+         <x>704</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>137</x>
+         <y>719</y>
+      </optic_disk>
+   </image>
+   <image id="00538530" path="00_53_85_300_002-00_53_85_300_001_corrimg.tif" time="4"/>
+   <image id="00538530" path="00_53_85_300_003-00_53_85_300_000_baseimg.tif" time="2">
+      <macula>
+         <x>755</x>
+         <y>854</y>
+      </macula>
+      <optic_disk>
+         <x>200</x>
+         <y>788</y>
+      </optic_disk>
+   </image>
+   <image id="00538530" path="00_53_85_300_003-00_53_85_300_000_corrimg.tif" time="5"/>
+   <image id="00538530" path="00_53_85_300_003-00_53_85_300_001_baseimg.tif" time="2">
+      <macula>
+         <x>755</x>
+         <y>860</y>
+      </macula>
+      <optic_disk>
+         <x>191</x>
+         <y>812</y>
+      </optic_disk>
+   </image>
+   <image id="00538530" path="00_53_85_300_003-00_53_85_300_001_corrimg.tif" time="4"/>
+   <image id="00538530" path="00_53_85_300_003-00_53_85_300_002_baseimg.tif" time="2">
+      <macula>
+         <x>755</x>
+         <y>861</y>
+      </macula>
+      <optic_disk>
+         <x>203</x>
+         <y>807</y>
+      </optic_disk>
+   </image>
+   <image id="00538530" path="00_53_85_300_003-00_53_85_300_002_corrimg.tif" time="3"/>
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_000_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
          <y>409</y>
       </macula>
       <optic_disk>
-         <x>145</x>
-         <y>414</y>
+         <x>111</x>
+         <y>388</y>
       </optic_disk>
    </image>
-   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 2_corrimg.tif" time="2"/>
-   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 3_baseimg.tif" time="1">
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_000_corrimg.tif" time="5"/>
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_001_baseimg.tif" time="1">
       <macula>
-         <x>827</x>
-         <y>815</y>
+         <x>396</x>
+         <y>405</y>
       </macula>
       <optic_disk>
-         <x>275</x>
-         <y>800</y>
-      </optic_disk>
-   </image>
-   <image id="COMBS" path="COMBS OS 1 (poor image)-COMBS OS 3_corrimg.tif" time="3"/>
-   <image id="COMBS" path="COMBS OS 2-COMBS OS 3_baseimg.tif" time="2">
-      <macula>
-         <x>433</x>
-         <y>396</y>
-      </macula>
-      <optic_disk>
-         <x>166</x>
-         <y>379</y>
-      </optic_disk>
-   </image>
-   <image id="COMBS" path="COMBS OS 2-COMBS OS 3_corrimg.tif" time="3"/>
-   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 2_baseimg.tif" time="1">
-      <macula>
-         <x>420</x>
-         <y>400</y>
-      </macula>
-      <optic_disk>
-         <x>115</x>
-         <y>393</y>
-      </optic_disk>
-   </image>
-   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 2_corrimg.tif" time="2"/>
-   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 3_baseimg.tif" time="1">
-      <macula>
-         <x>414</x>
-         <y>396</y>
-      </macula>
-      <optic_disk>
-         <x>118</x>
+         <x>109</x>
          <y>387</y>
       </optic_disk>
    </image>
-   <image id="COMISKY" path="COMISKY OS 1-COMISKY OS 3_corrimg.tif" time="3"/>
-   <image id="COMISKY" path="COMISKY OS 2-COMISKY OS 3_baseimg.tif" time="2">
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_001_corrimg.tif" time="4"/>
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_002_baseimg.tif" time="1">
       <macula>
-         <x>417</x>
+         <x>393</x>
+         <y>405</y>
+      </macula>
+      <optic_disk>
+         <x>106</x>
          <y>394</y>
-      </macula>
-      <optic_disk>
-         <x>121</x>
-         <y>396</y>
       </optic_disk>
    </image>
-   <image id="COMISKY" path="COMISKY OS 2-COMISKY OS 3_corrimg.tif" time="3"/>
-   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 2_baseimg.tif" time="1">
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_002_corrimg.tif" time="3"/>
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_003_baseimg.tif" time="1">
       <macula>
-         <x>348</x>
-         <y>402</y>
+         <x>381</x>
+         <y>409</y>
       </macula>
       <optic_disk>
-         <x>57</x>
-         <y>370</y>
+         <x>103</x>
+         <y>388</y>
       </optic_disk>
    </image>
-   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 2_corrimg.tif" time="2"/>
-   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 3_baseimg.tif" time="1">
+   <image id="00538530" path="00_53_85_300_004-00_53_85_300_003_corrimg.tif" time="2"/>
+   <image id="07091810_OD" path="07_09_18_100_002-07_09_18_100_000_baseimg.tif" time="5">
       <macula>
-         <x>355</x>
-         <y>402</y>
+         <x>764</x>
+         <y>774</y>
       </macula>
       <optic_disk>
-         <x>58</x>
+         <x>1340</x>
+         <y>686</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_002-07_09_18_100_000_corrimg.tif" time="6"/>
+   <image id="07091810_OD" path="07_09_18_100_004-07_09_18_100_000_baseimg.tif" time="4">
+      <macula>
+         <x>788</x>
+         <y>804</y>
+      </macula>
+      <optic_disk>
+         <x>1415</x>
+         <y>710</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_004-07_09_18_100_000_corrimg.tif" time="6"/>
+   <image id="07091810_OD" path="07_09_18_100_004-07_09_18_100_002_baseimg.tif" time="4">
+      <macula>
+         <x>785</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>1406</x>
+         <y>701</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_004-07_09_18_100_002_corrimg.tif" time="5"/>
+   <image id="07091810_OD" path="07_09_18_100_006-07_09_18_100_000_baseimg.tif" time="3">
+      <macula>
+         <x>857</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>1385</x>
+         <y>707</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_006-07_09_18_100_000_corrimg.tif" time="6"/>
+   <image id="07091810_OD" path="07_09_18_100_006-07_09_18_100_002_baseimg.tif" time="3">
+      <macula>
+         <x>860</x>
+         <y>774</y>
+      </macula>
+      <optic_disk>
+         <x>1394</x>
+         <y>689</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_006-07_09_18_100_002_corrimg.tif" time="5"/>
+   <image id="07091810_OD" path="07_09_18_100_006-07_09_18_100_004_baseimg.tif" time="3">
+      <macula>
+         <x>884</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>1403</x>
+         <y>722</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_006-07_09_18_100_004_corrimg.tif" time="4"/>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_000_baseimg.tif" time="2">
+      <macula>
+         <x>875</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>1373</x>
+         <y>749</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_000_corrimg.tif" time="6"/>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_002_baseimg.tif" time="2">
+      <macula>
+         <x>824</x>
+         <y>801</y>
+      </macula>
+      <optic_disk>
+         <x>1379</x>
+         <y>713</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_002_corrimg.tif" time="5"/>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_004_baseimg.tif" time="2">
+      <macula>
+         <x>845</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>1355</x>
+         <y>731</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_004_corrimg.tif" time="4"/>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_006_baseimg.tif" time="2">
+      <macula>
+         <x>842</x>
+         <y>785</y>
+      </macula>
+      <optic_disk>
+         <x>1349</x>
+         <y>713</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_008-07_09_18_100_006_corrimg.tif" time="3"/>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_000_baseimg.tif" time="1">
+      <macula>
+         <x>385</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>678</x>
+         <y>358</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_000_corrimg.tif" time="6"/>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_002_baseimg.tif" time="1">
+      <macula>
+         <x>394</x>
+         <y>384</y>
+      </macula>
+      <optic_disk>
+         <x>667</x>
+         <y>367</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_002_corrimg.tif" time="5"/>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_004_baseimg.tif" time="1">
+      <macula>
+         <x>393</x>
+         <y>387</y>
+      </macula>
+      <optic_disk>
+         <x>675</x>
+         <y>369</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_004_corrimg.tif" time="4"/>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_006_baseimg.tif" time="1">
+      <macula>
+         <x>393</x>
+         <y>387</y>
+      </macula>
+      <optic_disk>
+         <x>678</x>
          <y>364</y>
       </optic_disk>
    </image>
-   <image id="GETTEL" path="GETTEL OD 1-GETTEL OD 3_corrimg.tif" time="3"/>
-   <image id="GETTEL" path="GETTEL OD 2-GETTEL OD 3_baseimg.tif" time="2">
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_006_corrimg.tif" time="3"/>
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_008_baseimg.tif" time="1">
       <macula>
-         <x>363</x>
-         <y>399</y>
+         <x>393</x>
+         <y>385</y>
       </macula>
       <optic_disk>
-         <x>67</x>
-         <y>360</y>
-      </optic_disk>
-   </image>
-   <image id="GETTEL" path="GETTEL OD 2-GETTEL OD 3_corrimg.tif" time="3"/>
-   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 2 (poor image)_baseimg.tif" time="1">
-      <macula>
-         <x>328</x>
-         <y>507</y>
-      </macula>
-      <optic_disk>
-         <x>30</x>
-         <y>442</y>
-      </optic_disk>
-   </image>
-   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 2 (poor image)_corrimg.tif" time="2"/>
-   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 3 (poor image)_baseimg.tif" time="1">
-      <macula>
-         <x>327</x>
-         <y>507</y>
-      </macula>
-      <optic_disk>
-         <x>30</x>
-         <y>436</y>
-      </optic_disk>
-   </image>
-   <image id="KUKLA" path="KUKLA OS 1 (poor image)-KUKLA OS 3 (poor image)_corrimg.tif" time="3"/>
-   <image id="KUKLA" path="KUKLA OS 2 (poor image)-KUKLA OS 3 (poor image)_baseimg.tif" time="2">
-      <macula>
-         <x>427</x>
-         <y>403</y>
-      </macula>
-      <optic_disk>
-         <x>123</x>
-         <y>339</y>
-      </optic_disk>
-   </image>
-   <image id="KUKLA" path="KUKLA OS 2 (poor image)-KUKLA OS 3 (poor image)_corrimg.tif" time="3"/>
-   <image id="LEMAY" path="LEMAY OS 1-LEMAY OS 2_baseimg.tif" time="1">
-      <macula>
-         <x>432</x>
-         <y>397</y>
-      </macula>
-      <optic_disk>
-         <x>136</x>
-         <y>372</y>
-      </optic_disk>
-   </image>
-   <image id="LEMAY" path="LEMAY OS 1-LEMAY OS 2_corrimg.tif" time="2"/>
-   <image id="REAM" path="REAM OS 1-REAM OS 2_baseimg.tif" time="1">
-      <macula>
-         <x>408</x>
-         <y>387</y>
-      </macula>
-      <optic_disk>
-         <x>123</x>
+         <x>678</x>
          <y>366</y>
       </optic_disk>
    </image>
-   <image id="REAM" path="REAM OS 1-REAM OS 2_corrimg.tif" time="2"/>
-   <image id="REAM" path="REAM OS 1-REAM OS 3_baseimg.tif" time="1">
+   <image id="07091810_OD" path="07_09_18_100_010-07_09_18_100_008_corrimg.tif" time="2"/>
+   <image id="07091810_OS" path="07_09_18_100_003-07_09_18_100_001_baseimg.tif" time="5">
       <macula>
-         <x>414</x>
+         <x>764</x>
+         <y>743</y>
+      </macula>
+      <optic_disk>
+         <x>137</x>
+         <y>689</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_003-07_09_18_100_001_corrimg.tif" time="6"/>
+   <image id="07091810_OS" path="07_09_18_100_005-07_09_18_100_001_baseimg.tif" time="4">
+      <macula>
+         <x>770</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>149</x>
+         <y>659</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_005-07_09_18_100_001_corrimg.tif" time="6"/>
+   <image id="07091810_OS" path="07_09_18_100_005-07_09_18_100_003_baseimg.tif" time="4">
+      <macula>
+         <x>776</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>152</x>
+         <y>692</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_005-07_09_18_100_003_corrimg.tif" time="5"/>
+   <image id="07091810_OS" path="07_09_18_100_007-07_09_18_100_001_baseimg.tif" time="3">
+      <macula>
+         <x>749</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>158</x>
+         <y>698</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_007-07_09_18_100_001_corrimg.tif" time="6"/>
+   <image id="07091810_OS" path="07_09_18_100_007-07_09_18_100_003_baseimg.tif" time="3">
+      <macula>
+         <x>785</x>
+         <y>755</y>
+      </macula>
+      <optic_disk>
+         <x>164</x>
+         <y>686</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_007-07_09_18_100_003_corrimg.tif" time="5"/>
+   <image id="07091810_OS" path="07_09_18_100_007-07_09_18_100_005_baseimg.tif" time="3">
+      <macula>
+         <x>758</x>
+         <y>752</y>
+      </macula>
+      <optic_disk>
+         <x>158</x>
+         <y>686</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_007-07_09_18_100_005_corrimg.tif" time="4"/>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_001_baseimg.tif" time="2">
+      <macula>
+         <x>764</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>164</x>
+         <y>683</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_001_corrimg.tif" time="6"/>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_003_baseimg.tif" time="2">
+      <macula>
+         <x>773</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>188</x>
+         <y>671</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_003_corrimg.tif" time="5"/>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_005_baseimg.tif" time="2">
+      <macula>
+         <x>764</x>
+         <y>767</y>
+      </macula>
+      <optic_disk>
+         <x>170</x>
+         <y>665</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_005_corrimg.tif" time="4"/>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_007_baseimg.tif" time="2">
+      <macula>
+         <x>776</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>191</x>
+         <y>683</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_009-07_09_18_100_007_corrimg.tif" time="3"/>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_001_baseimg.tif" time="1">
+      <macula>
+         <x>393</x>
+         <y>379</y>
+      </macula>
+      <optic_disk>
+         <x>100</x>
+         <y>333</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_001_corrimg.tif" time="6"/>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_003_baseimg.tif" time="1">
+      <macula>
+         <x>399</x>
+         <y>379</y>
+      </macula>
+      <optic_disk>
+         <x>102</x>
+         <y>339</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_003_corrimg.tif" time="5"/>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_005_baseimg.tif" time="1">
+      <macula>
+         <x>402</x>
+         <y>378</y>
+      </macula>
+      <optic_disk>
+         <x>102</x>
+         <y>337</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_005_corrimg.tif" time="4"/>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_007_baseimg.tif" time="1">
+      <macula>
+         <x>411</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>97</x>
+         <y>336</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_007_corrimg.tif" time="3"/>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_009_baseimg.tif" time="1">
+      <macula>
+         <x>394</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>96</x>
+         <y>345</y>
+      </optic_disk>
+   </image>
+   <image id="07091810_OS" path="07_09_18_100_011-07_09_18_100_009_corrimg.tif" time="2"/>
+   <image id="07093874_OD" path="07_09_38_740_002-07_09_38_740_000_baseimg.tif" time="1">
+      <macula>
+         <x>384</x>
+         <y>384</y>
+      </macula>
+      <optic_disk>
+         <x>724</x>
+         <y>372</y>
+      </optic_disk>
+   </image>
+   <image id="07093874_OD" path="07_09_38_740_002-07_09_38_740_000_corrimg.tif" time="2"/>
+   <image id="07093874_OS" path="07_09_38_740_003-07_09_38_740_001_baseimg.tif" time="1">
+      <macula>
+         <x>376</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>52</x>
+         <y>315</y>
+      </optic_disk>
+   </image>
+   <image id="07093874_OS" path="07_09_38_740_003-07_09_38_740_001_corrimg.tif" time="2"/>
+   <image id="09055709" path="09_05_57_090_001-09_05_57_090_000_baseimg.tif" time="5">
+      <macula>
+         <x>767</x>
+         <y>777</y>
+      </macula>
+      <optic_disk>
+         <x>1433</x>
+         <y>722</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_001-09_05_57_090_000_corrimg.tif" time="6"/>
+   <image id="09055709" path="09_05_57_090_002-09_05_57_090_000_baseimg.tif" time="4">
+      <macula>
+         <x>779</x>
+         <y>786</y>
+      </macula>
+      <optic_disk>
+         <x>1424</x>
+         <y>701</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_002-09_05_57_090_000_corrimg.tif" time="6"/>
+   <image id="09055709" path="09_05_57_090_002-09_05_57_090_001_baseimg.tif" time="4">
+      <macula>
+         <x>770</x>
+         <y>774</y>
+      </macula>
+      <optic_disk>
+         <x>1430</x>
+         <y>710</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_002-09_05_57_090_001_corrimg.tif" time="5"/>
+   <image id="09055709" path="09_05_57_090_003-09_05_57_090_000_baseimg.tif" time="3">
+      <macula>
+         <x>803</x>
+         <y>789</y>
+      </macula>
+      <optic_disk>
+         <x>1427</x>
+         <y>743</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_003-09_05_57_090_000_corrimg.tif" time="6"/>
+   <image id="09055709" path="09_05_57_090_003-09_05_57_090_001_baseimg.tif" time="3">
+      <macula>
+         <x>740</x>
+         <y>786</y>
+      </macula>
+      <optic_disk>
+         <x>1436</x>
+         <y>725</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_003-09_05_57_090_001_corrimg.tif" time="5"/>
+   <image id="09055709" path="09_05_57_090_003-09_05_57_090_002_baseimg.tif" time="3">
+      <macula>
+         <x>761</x>
+         <y>777</y>
+      </macula>
+      <optic_disk>
+         <x>1463</x>
+         <y>734</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_003-09_05_57_090_002_corrimg.tif" time="4"/>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_000_baseimg.tif" time="2">
+      <macula>
+         <x>755</x>
+         <y>752</y>
+      </macula>
+      <optic_disk>
+         <x>1424</x>
+         <y>698</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_000_corrimg.tif" time="6"/>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_001_baseimg.tif" time="2">
+      <macula>
+         <x>746</x>
+         <y>758</y>
+      </macula>
+      <optic_disk>
+         <x>1427</x>
+         <y>704</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_001_corrimg.tif" time="5"/>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_002_baseimg.tif" time="2">
+      <macula>
+         <x>788</x>
+         <y>777</y>
+      </macula>
+      <optic_disk>
+         <x>1442</x>
+         <y>695</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_002_corrimg.tif" time="4"/>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_003_baseimg.tif" time="2">
+      <macula>
+         <x>758</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>1448</x>
+         <y>719</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_004-09_05_57_090_003_corrimg.tif" time="3"/>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_000_baseimg.tif" time="1">
+      <macula>
+         <x>378</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>717</x>
+         <y>345</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_000_corrimg.tif" time="6"/>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_001_baseimg.tif" time="1">
+      <macula>
+         <x>373</x>
+         <y>363</y>
+      </macula>
+      <optic_disk>
+         <x>711</x>
+         <y>333</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_001_corrimg.tif" time="5"/>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_002_baseimg.tif" time="1">
+      <macula>
+         <x>393</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>709</x>
+         <y>343</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_002_corrimg.tif" time="4"/>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_003_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>726</x>
+         <y>345</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_003_corrimg.tif" time="3"/>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_004_baseimg.tif" time="1">
+      <macula>
+         <x>390</x>
+         <y>381</y>
+      </macula>
+      <optic_disk>
+         <x>711</x>
+         <y>340</y>
+      </optic_disk>
+   </image>
+   <image id="09055709" path="09_05_57_090_005-09_05_57_090_004_corrimg.tif" time="2"/>
+   <image id="09140888" path="09_14_08_880_001-09_14_08_880_000_baseimg.tif" time="5">
+      <macula>
+         <x>403</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>87</x>
+         <y>327</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_001-09_14_08_880_000_corrimg.tif" time="6"/>
+   <image id="09140888" path="09_14_08_880_002-09_14_08_880_000_baseimg.tif" time="4">
+      <macula>
+         <x>379</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>79</x>
+         <y>310</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_002-09_14_08_880_000_corrimg.tif" time="6"/>
+   <image id="09140888" path="09_14_08_880_002-09_14_08_880_001_baseimg.tif" time="4">
+      <macula>
+         <x>381</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>61</x>
+         <y>301</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_002-09_14_08_880_001_corrimg.tif" time="5"/>
+   <image id="09140888" path="09_14_08_880_003-09_14_08_880_000_baseimg.tif" time="3">
+      <macula>
+         <x>474</x>
+         <y>312</y>
+      </macula>
+      <optic_disk>
+         <x>168</x>
+         <y>274</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_003-09_14_08_880_000_corrimg.tif" time="6"/>
+   <image id="09140888" path="09_14_08_880_003-09_14_08_880_001_baseimg.tif" time="3">
+      <macula>
+         <x>471</x>
+         <y>316</y>
+      </macula>
+      <optic_disk>
+         <x>153</x>
+         <y>280</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_003-09_14_08_880_001_corrimg.tif" time="5"/>
+   <image id="09140888" path="09_14_08_880_003-09_14_08_880_002_baseimg.tif" time="3">
+      <macula>
+         <x>917</x>
+         <y>629</y>
+      </macula>
+      <optic_disk>
+         <x>314</x>
+         <y>527</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_003-09_14_08_880_002_corrimg.tif" time="4"/>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_000_baseimg.tif" time="2">
+      <macula>
+         <x>399</x>
+         <y>414</y>
+      </macula>
+      <optic_disk>
+         <x>94</x>
+         <y>376</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_000_corrimg.tif" time="6"/>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_001_baseimg.tif" time="2">
+      <macula>
+         <x>393</x>
+         <y>417</y>
+      </macula>
+      <optic_disk>
+         <x>91</x>
+         <y>373</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_001_corrimg.tif" time="5"/>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_002_baseimg.tif" time="2">
+      <macula>
+         <x>791</x>
+         <y>849</y>
+      </macula>
+      <optic_disk>
+         <x>167</x>
+         <y>737</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_002_corrimg.tif" time="4"/>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_003_baseimg.tif" time="2">
+      <macula>
+         <x>767</x>
+         <y>842</y>
+      </macula>
+      <optic_disk>
+         <x>179</x>
+         <y>758</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_004-09_14_08_880_003_corrimg.tif" time="3"/>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_000_baseimg.tif" time="1">
+      <macula>
+         <x>385</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>69</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_000_corrimg.tif" time="6"/>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_001_baseimg.tif" time="1">
+      <macula>
+         <x>394</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>63</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_001_corrimg.tif" time="5"/>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_002_baseimg.tif" time="1">
+      <macula>
+         <x>390</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>69</x>
+         <y>313</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_002_corrimg.tif" time="4"/>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_003_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>73</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_003_corrimg.tif" time="3"/>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_004_baseimg.tif" time="1">
+      <macula>
+         <x>385</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>70</x>
+         <y>321</y>
+      </optic_disk>
+   </image>
+   <image id="09140888" path="09_14_08_880_005-09_14_08_880_004_corrimg.tif" time="2"/>
+   <image id="09146686" path="09_14_66_860_001-09_14_66_860_000_baseimg.tif" time="4">
+      <macula>
+         <x>390</x>
+         <y>390</y>
+      </macula>
+      <optic_disk>
+         <x>736</x>
+         <y>316</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_001-09_14_66_860_000_corrimg.tif" time="5"/>
+   <image id="09146686" path="09_14_66_860_002-09_14_66_860_000_baseimg.tif" time="3">
+      <macula>
+         <x>402</x>
+         <y>384</y>
+      </macula>
+      <optic_disk>
+         <x>720</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_002-09_14_66_860_000_corrimg.tif" time="5"/>
+   <image id="09146686" path="09_14_66_860_002-09_14_66_860_001_baseimg.tif" time="3">
+      <macula>
+         <x>782</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>1385</x>
+         <y>620</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_002-09_14_66_860_001_corrimg.tif" time="4"/>
+   <image id="09146686" path="09_14_66_860_003-09_14_66_860_000_baseimg.tif" time="2">
+      <macula>
+         <x>384</x>
+         <y>378</y>
+      </macula>
+      <optic_disk>
+         <x>736</x>
+         <y>313</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_003-09_14_66_860_000_corrimg.tif" time="5"/>
+   <image id="09146686" path="09_14_66_860_003-09_14_66_860_001_baseimg.tif" time="2">
+      <macula>
+         <x>794</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>1409</x>
+         <y>620</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_003-09_14_66_860_001_corrimg.tif" time="4"/>
+   <image id="09146686" path="09_14_66_860_003-09_14_66_860_002_baseimg.tif" time="2">
+      <macula>
+         <x>743</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>1448</x>
+         <y>629</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_003-09_14_66_860_002_corrimg.tif" time="3"/>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_000_baseimg.tif" time="1">
+      <macula>
+         <x>366</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>727</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_000_corrimg.tif" time="5"/>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_001_baseimg.tif" time="1">
+      <macula>
+         <x>364</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>733</x>
+         <y>313</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_001_corrimg.tif" time="4"/>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_002_baseimg.tif" time="1">
+      <macula>
+         <x>366</x>
+         <y>373</y>
+      </macula>
+      <optic_disk>
+         <x>733</x>
+         <y>315</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_002_corrimg.tif" time="3"/>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_003_baseimg.tif" time="1">
+      <macula>
+         <x>375</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>723</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09146686" path="09_14_66_860_004-09_14_66_860_003_corrimg.tif" time="2"/>
+   <image id="09161204" path="09_16_12_040_001-09_16_12_040_000_baseimg.tif" time="2">
+      <macula>
+         <x>857</x>
+         <y>954</y>
+      </macula>
+      <optic_disk>
+         <x>164</x>
+         <y>888</y>
+      </optic_disk>
+   </image>
+   <image id="09161204" path="09_16_12_040_001-09_16_12_040_000_corrimg.tif" time="3"/>
+   <image id="09161204" path="09_16_12_040_002-09_16_12_040_000_baseimg.tif" time="1">
+      <macula>
+         <x>779</x>
+         <y>1034</y>
+      </macula>
+      <optic_disk>
+         <x>140</x>
+         <y>929</y>
+      </optic_disk>
+   </image>
+   <image id="09161204" path="09_16_12_040_002-09_16_12_040_000_corrimg.tif" time="3"/>
+   <image id="09161204" path="09_16_12_040_002-09_16_12_040_001_baseimg.tif" time="1">
+      <macula>
+         <x>752</x>
+         <y>1011</y>
+      </macula>
+      <optic_disk>
+         <x>113</x>
+         <y>903</y>
+      </optic_disk>
+   </image>
+   <image id="09161204" path="09_16_12_040_002-09_16_12_040_001_corrimg.tif" time="2"/>
+   <image id="09181670_OD" path="09_18_16_700_002-09_18_16_700_000_baseimg.tif" time="1">
+      <macula>
+         <x>448</x>
+         <y>303</y>
+      </macula>
+      <optic_disk>
+         <x>762</x>
+         <y>264</y>
+      </optic_disk>
+   </image>
+   <image id="09181670_OD" path="09_18_16_700_002-09_18_16_700_000_corrimg.tif" time="2"/>
+   <image id="09181670_OS" path="09_18_16_700_003-09_18_16_700_001_baseimg.tif" time="1">
+      <macula>
+         <x>472</x>
+         <y>433</y>
+      </macula>
+      <optic_disk>
+         <x>165</x>
+         <y>390</y>
+      </optic_disk>
+   </image>
+   <image id="09181670_OS" path="09_18_16_700_003-09_18_16_700_001_corrimg.tif" time="2"/>
+   <image id="09186494" path="09_18_64_940_001-09_18_64_940_000_baseimg.tif" time="5">
+      <macula>
+         <x>391</x>
+         <y>391</y>
+      </macula>
+      <optic_disk>
+         <x>33</x>
+         <y>376</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_001-09_18_64_940_000_corrimg.tif" time="6"/>
+   <image id="09186494" path="09_18_64_940_002-09_18_64_940_000_baseimg.tif" time="4">
+      <macula>
+         <x>866</x>
+         <y>779</y>
+      </macula>
+      <optic_disk>
+         <x>65</x>
+         <y>650</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_002-09_18_64_940_000_corrimg.tif" time="6"/>
+   <image id="09186494" path="09_18_64_940_002-09_18_64_940_001_baseimg.tif" time="4">
+      <macula>
+         <x>387</x>
+         <y>391</y>
+      </macula>
+      <optic_disk>
+         <x>27</x>
+         <y>337</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_002-09_18_64_940_001_corrimg.tif" time="5"/>
+   <image id="09186494" path="09_18_64_940_003-09_18_64_940_000_baseimg.tif" time="3">
+      <macula>
+         <x>788</x>
+         <y>783</y>
+      </macula>
+      <optic_disk>
+         <x>65</x>
+         <y>686</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_003-09_18_64_940_000_corrimg.tif" time="6"/>
+   <image id="09186494" path="09_18_64_940_003-09_18_64_940_001_baseimg.tif" time="3">
+      <macula>
+         <x>387</x>
+         <y>393</y>
+      </macula>
+      <optic_disk>
+         <x>42</x>
+         <y>342</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_003-09_18_64_940_001_corrimg.tif" time="5"/>
+   <image id="09186494" path="09_18_64_940_003-09_18_64_940_002_baseimg.tif" time="3">
+      <macula>
+         <x>770</x>
+         <y>786</y>
+      </macula>
+      <optic_disk>
+         <x>77</x>
+         <y>686</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_003-09_18_64_940_002_corrimg.tif" time="4"/>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_000_baseimg.tif" time="2">
+      <macula>
+         <x>791</x>
+         <y>791</y>
+      </macula>
+      <optic_disk>
+         <x>107</x>
+         <y>701</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_000_corrimg.tif" time="6"/>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_001_baseimg.tif" time="2">
+      <macula>
+         <x>376</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>49</x>
+         <y>346</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_001_corrimg.tif" time="5"/>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_002_baseimg.tif" time="2">
+      <macula>
+         <x>749</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>89</x>
+         <y>710</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_002_corrimg.tif" time="4"/>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_003_baseimg.tif" time="2">
+      <macula>
+         <x>809</x>
+         <y>801</y>
+      </macula>
+      <optic_disk>
+         <x>44</x>
+         <y>710</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_004-09_18_64_940_003_corrimg.tif" time="3"/>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_000_baseimg.tif" time="1">
+      <macula>
+         <x>370</x>
          <y>387</y>
       </macula>
       <optic_disk>
-         <x>126</x>
-         <y>363</y>
+         <x>40</x>
+         <y>348</y>
       </optic_disk>
    </image>
-   <image id="REAM" path="REAM OS 1-REAM OS 3_corrimg.tif" time="3"/>
-   <image id="REAM" path="REAM OS 2-REAM OS 3_baseimg.tif" time="2">
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_000_corrimg.tif" time="6"/>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_001_baseimg.tif" time="1">
+      <macula>
+         <x>394</x>
+         <y>378</y>
+      </macula>
+      <optic_disk>
+         <x>37</x>
+         <y>351</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_001_corrimg.tif" time="5"/>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_002_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>39</x>
+         <y>351</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_002_corrimg.tif" time="4"/>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_003_baseimg.tif" time="1">
+      <macula>
+         <x>397</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>34</x>
+         <y>352</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_003_corrimg.tif" time="3"/>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_004_baseimg.tif" time="1">
+      <macula>
+         <x>376</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>40</x>
+         <y>348</y>
+      </optic_disk>
+   </image>
+   <image id="09186494" path="09_18_64_940_005-09_18_64_940_004_corrimg.tif" time="2"/>
+   <image id="09198258" path="09_19_82_580_001-09_19_82_580_000_baseimg.tif" time="4">
+      <macula>
+         <x>719</x>
+         <y>825</y>
+      </macula>
+      <optic_disk>
+         <x>83</x>
+         <y>743</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_001-09_19_82_580_000_corrimg.tif" time="5"/>
+   <image id="09198258" path="09_19_82_580_002-09_19_82_580_000_baseimg.tif" time="3">
+      <macula>
+         <x>746</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>134</x>
+         <y>704</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_002-09_19_82_580_000_corrimg.tif" time="5"/>
+   <image id="09198258" path="09_19_82_580_002-09_19_82_580_001_baseimg.tif" time="3">
+      <macula>
+         <x>746</x>
+         <y>786</y>
+      </macula>
+      <optic_disk>
+         <x>107</x>
+         <y>704</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_002-09_19_82_580_001_corrimg.tif" time="4"/>
+   <image id="09198258" path="09_19_82_580_003-09_19_82_580_000_baseimg.tif" time="2">
+      <macula>
+         <x>716</x>
+         <y>786</y>
+      </macula>
+      <optic_disk>
+         <x>128</x>
+         <y>695</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_003-09_19_82_580_000_corrimg.tif" time="5"/>
+   <image id="09198258" path="09_19_82_580_003-09_19_82_580_001_baseimg.tif" time="2">
+      <macula>
+         <x>755</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>77</x>
+         <y>677</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_003-09_19_82_580_001_corrimg.tif" time="4"/>
+   <image id="09198258" path="09_19_82_580_003-09_19_82_580_002_baseimg.tif" time="2">
+      <macula>
+         <x>710</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>104</x>
+         <y>701</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_003-09_19_82_580_002_corrimg.tif" time="3"/>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_000_baseimg.tif" time="1">
+      <macula>
+         <x>385</x>
+         <y>393</y>
+      </macula>
+      <optic_disk>
+         <x>58</x>
+         <y>349</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_000_corrimg.tif" time="5"/>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_001_baseimg.tif" time="1">
+      <macula>
+         <x>385</x>
+         <y>390</y>
+      </macula>
+      <optic_disk>
+         <x>52</x>
+         <y>343</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_001_corrimg.tif" time="4"/>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_002_baseimg.tif" time="1">
+      <macula>
+         <x>375</x>
+         <y>384</y>
+      </macula>
+      <optic_disk>
+         <x>64</x>
+         <y>339</y>
+      </optic_disk>
+   </image>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_002_corrimg.tif" time="3"/>
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_003_baseimg.tif" time="1">
       <macula>
          <x>403</x>
          <y>382</y>
       </macula>
       <optic_disk>
-         <x>111</x>
-         <y>363</y>
+         <x>31</x>
+         <y>340</y>
       </optic_disk>
    </image>
-   <image id="REAM" path="REAM OS 2-REAM OS 3_corrimg.tif" time="3"/>
-   <image id="RHOADES" path="RHOADES OS 1-RHOADES OS 2_baseimg.tif" time="1">
-      <macula>
-         <x>424</x>
-         <y>390</y>
-      </macula>
-      <optic_disk>
-         <x>73</x>
-         <y>381</y>
-      </optic_disk>
-   </image>
-   <image id="RHOADES" path="RHOADES OS 1-RHOADES OS 2_corrimg.tif" time="2"/>
-   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 2_baseimg.tif" time="1">
-      <macula>
-         <x>343</x>
-         <y>402</y>
-      </macula>
-      <optic_disk>
-         <x>3</x>
-         <y>385</y>
-      </optic_disk>
-   </image>
-   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 2_corrimg.tif" time="2"/>
-   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 3 (funny iamge)_baseimg.tif" time="1">
-      <macula>
-         <x>340</x>
-         <y>399</y>
-      </macula>
-      <optic_disk>
-         <x>1</x>
-         <y>384</y>
-      </optic_disk>
-   </image>
-   <image id="VINCENT" path="VINCENT OD 1-VINCENT OD 3 (funny iamge)_corrimg.tif" time="3"/>
-   <image id="VINCENT" path="VINCENT OD 2-VINCENT OD 3 (funny iamge)_baseimg.tif" time="2">
+   <image id="09198258" path="09_19_82_580_004-09_19_82_580_003_corrimg.tif" time="2"/>
+   <image id="09210105_OD" path="09_21_01_050_004-09_21_01_050_002_baseimg.tif" time="4">
       <macula>
          <x>749</x>
-         <y>803</y>
+         <y>776</y>
       </macula>
       <optic_disk>
-         <x>65</x>
+         <x>1364</x>
+         <y>671</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_004-09_21_01_050_002_corrimg.tif" time="5"/>
+   <image id="09210105_OD" path="09_21_01_050_006-09_21_01_050_002_baseimg.tif" time="3">
+      <macula>
+         <x>770</x>
+         <y>734</y>
+      </macula>
+      <optic_disk>
+         <x>1373</x>
+         <y>692</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_006-09_21_01_050_002_corrimg.tif" time="5"/>
+   <image id="09210105_OD" path="09_21_01_050_006-09_21_01_050_004_baseimg.tif" time="3">
+      <macula>
+         <x>749</x>
+         <y>740</y>
+      </macula>
+      <optic_disk>
+         <x>1382</x>
+         <y>698</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_006-09_21_01_050_004_corrimg.tif" time="4"/>
+   <image id="09210105_OD" path="09_21_01_050_008-09_21_01_050_002_baseimg.tif" time="2">
+      <macula>
+         <x>788</x>
+         <y>731</y>
+      </macula>
+      <optic_disk>
+         <x>1412</x>
+         <y>674</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_008-09_21_01_050_002_corrimg.tif" time="5"/>
+   <image id="09210105_OD" path="09_21_01_050_008-09_21_01_050_004_baseimg.tif" time="2">
+      <macula>
+         <x>776</x>
+         <y>719</y>
+      </macula>
+      <optic_disk>
+         <x>1394</x>
+         <y>656</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_008-09_21_01_050_004_corrimg.tif" time="4"/>
+   <image id="09210105_OD" path="09_21_01_050_008-09_21_01_050_006_baseimg.tif" time="2">
+      <macula>
+         <x>776</x>
+         <y>704</y>
+      </macula>
+      <optic_disk>
+         <x>1373</x>
+         <y>629</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_008-09_21_01_050_006_corrimg.tif" time="3"/>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_002_baseimg.tif" time="1">
+      <macula>
+         <x>363</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>685</x>
+         <y>340</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_002_corrimg.tif" time="5"/>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_004_baseimg.tif" time="1">
+      <macula>
+         <x>376</x>
+         <y>366</y>
+      </macula>
+      <optic_disk>
+         <x>697</x>
+         <y>333</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_004_corrimg.tif" time="4"/>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_006_baseimg.tif" time="1">
+      <macula>
+         <x>367</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>687</x>
+         <y>340</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_006_corrimg.tif" time="3"/>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_008_baseimg.tif" time="1">
+      <macula>
+         <x>391</x>
+         <y>357</y>
+      </macula>
+      <optic_disk>
+         <x>693</x>
+         <y>340</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OD" path="09_21_01_050_010-09_21_01_050_008_corrimg.tif" time="2"/>
+   <image id="09210105_OS" path="09_21_01_050_007-09_21_01_050_005_baseimg.tif" time="3">
+      <macula>
+         <x>995</x>
+         <y>659</y>
+      </macula>
+      <optic_disk>
+         <x>302</x>
+         <y>581</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_007-09_21_01_050_005_corrimg.tif" time="4"/>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_000_baseimg.tif" time="2">
+      <macula>
+         <x>821</x>
+         <y>746</y>
+      </macula>
+      <optic_disk>
+         <x>182</x>
+         <y>650</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_000_corrimg.tif" time="7"/>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_001_baseimg.tif" time="2">
+      <macula>
+         <x>794</x>
+         <y>740</y>
+      </macula>
+      <optic_disk>
+         <x>149</x>
+         <y>707</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_001_corrimg.tif" time="6"/>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_003_baseimg.tif" time="2">
+      <macula>
+         <x>821</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>152</x>
+         <y>719</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_003_corrimg.tif" time="5"/>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_005_baseimg.tif" time="2">
+      <macula>
+         <x>863</x>
+         <y>749</y>
+      </macula>
+      <optic_disk>
+         <x>155</x>
+         <y>695</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_005_corrimg.tif" time="4"/>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_007_baseimg.tif" time="2">
+      <macula>
+         <x>839</x>
+         <y>734</y>
+      </macula>
+      <optic_disk>
+         <x>134</x>
+         <y>671</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_009-09_21_01_050_007_corrimg.tif" time="3"/>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_000_baseimg.tif" time="1">
+      <macula>
+         <x>421</x>
+         <y>384</y>
+      </macula>
+      <optic_disk>
+         <x>82</x>
+         <y>349</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_000_corrimg.tif" time="7"/>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_001_baseimg.tif" time="1">
+      <macula>
+         <x>396</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>91</x>
+         <y>334</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_001_corrimg.tif" time="6"/>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_003_baseimg.tif" time="1">
+      <macula>
+         <x>421</x>
+         <y>367</y>
+      </macula>
+      <optic_disk>
+         <x>70</x>
+         <y>325</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_003_corrimg.tif" time="5"/>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_005_baseimg.tif" time="1">
+      <macula>
+         <x>415</x>
+         <y>361</y>
+      </macula>
+      <optic_disk>
+         <x>58</x>
+         <y>345</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_005_corrimg.tif" time="4"/>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_007_baseimg.tif" time="1">
+      <macula>
+         <x>400</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>88</x>
+         <y>339</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_007_corrimg.tif" time="3"/>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_009_baseimg.tif" time="1">
+      <macula>
+         <x>400</x>
+         <y>381</y>
+      </macula>
+      <optic_disk>
+         <x>82</x>
+         <y>354</y>
+      </optic_disk>
+   </image>
+   <image id="09210105_OS" path="09_21_01_050_011-09_21_01_050_009_corrimg.tif" time="2"/>
+   <image id="09227227" path="09_22_72_270_002-09_22_72_270_001_baseimg.tif" time="4">
+      <macula>
+         <x>722</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>1376</x>
+         <y>596</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_002-09_22_72_270_001_corrimg.tif" time="5"/>
+   <image id="09227227" path="09_22_72_270_003-09_22_72_270_000_baseimg.tif" time="3">
+      <macula>
+         <x>695</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>1388</x>
+         <y>674</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_003-09_22_72_270_000_corrimg.tif" time="6"/>
+   <image id="09227227" path="09_22_72_270_003-09_22_72_270_001_baseimg.tif" time="3">
+      <macula>
+         <x>773</x>
+         <y>774</y>
+      </macula>
+      <optic_disk>
+         <x>1391</x>
+         <y>662</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_003-09_22_72_270_001_corrimg.tif" time="5"/>
+   <image id="09227227" path="09_22_72_270_003-09_22_72_270_002_baseimg.tif" time="3">
+      <macula>
+         <x>749</x>
+         <y>767</y>
+      </macula>
+      <optic_disk>
+         <x>1376</x>
+         <y>671</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_003-09_22_72_270_002_corrimg.tif" time="4"/>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_000_baseimg.tif" time="2">
+      <macula>
+         <x>767</x>
+         <y>752</y>
+      </macula>
+      <optic_disk>
+         <x>1412</x>
+         <y>659</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_000_corrimg.tif" time="6"/>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_001_baseimg.tif" time="2">
+      <macula>
+         <x>776</x>
+         <y>774</y>
+      </macula>
+      <optic_disk>
+         <x>1406</x>
+         <y>665</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_001_corrimg.tif" time="5"/>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_002_baseimg.tif" time="2">
+      <macula>
+         <x>785</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>1433</x>
+         <y>638</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_002_corrimg.tif" time="4"/>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_003_baseimg.tif" time="2">
+      <macula>
+         <x>752</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>1388</x>
+         <y>662</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_004-09_22_72_270_003_corrimg.tif" time="3"/>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_000_baseimg.tif" time="1">
+      <macula>
+         <x>393</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>705</x>
+         <y>319</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_000_corrimg.tif" time="6"/>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_001_baseimg.tif" time="1">
+      <macula>
+         <x>385</x>
+         <y>379</y>
+      </macula>
+      <optic_disk>
+         <x>694</x>
+         <y>328</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_001_corrimg.tif" time="5"/>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_002_baseimg.tif" time="1">
+      <macula>
+         <x>384</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>702</x>
+         <y>328</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_002_corrimg.tif" time="4"/>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_003_baseimg.tif" time="1">
+      <macula>
+         <x>384</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>717</x>
+         <y>334</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_003_corrimg.tif" time="3"/>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_004_baseimg.tif" time="1">
+      <macula>
+         <x>388</x>
+         <y>361</y>
+      </macula>
+      <optic_disk>
+         <x>702</x>
+         <y>331</y>
+      </optic_disk>
+   </image>
+   <image id="09227227" path="09_22_72_270_005-09_22_72_270_004_corrimg.tif" time="2"/>
+   <image id="09228261_OD" path="09_22_82_610_002-09_22_82_610_000_baseimg.tif" time="5">
+      <macula>
+         <x>725</x>
+         <y>707</y>
+      </macula>
+      <optic_disk>
+         <x>1292</x>
+         <y>677</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_002-09_22_82_610_000_corrimg.tif" time="6"/>
+   <image id="09228261_OD" path="09_22_82_610_004-09_22_82_610_000_baseimg.tif" time="4">
+      <macula>
+         <x>767</x>
+         <y>780</y>
+      </macula>
+      <optic_disk>
+         <x>1346</x>
+         <y>749</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_004-09_22_82_610_000_corrimg.tif" time="6"/>
+   <image id="09228261_OD" path="09_22_82_610_004-09_22_82_610_002_baseimg.tif" time="4">
+      <macula>
+         <x>803</x>
+         <y>777</y>
+      </macula>
+      <optic_disk>
+         <x>1355</x>
+         <y>764</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_004-09_22_82_610_002_corrimg.tif" time="5"/>
+   <image id="09228261_OD" path="09_22_82_610_006-09_22_82_610_000_baseimg.tif" time="3">
+      <macula>
+         <x>779</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>1292</x>
          <y>740</y>
       </optic_disk>
    </image>
-   <image id="VINCENT" path="VINCENT OD 2-VINCENT OD 3 (funny iamge)_corrimg.tif" time="3"/>
-   <image id="WHITE" path="White OD 1-White OD 2_baseimg.tif" time="1">
+   <image id="09228261_OD" path="09_22_82_610_006-09_22_82_610_000_corrimg.tif" time="6"/>
+   <image id="09228261_OD" path="09_22_82_610_006-09_22_82_610_002_baseimg.tif" time="3">
       <macula>
-         <x>393</x>
-         <y>402</y>
+         <x>725</x>
+         <y>764</y>
       </macula>
       <optic_disk>
-         <x>57</x>
-         <y>373</y>
+         <x>1301</x>
+         <y>731</y>
       </optic_disk>
    </image>
-   <image id="WHITE" path="White OD 1-White OD 2_corrimg.tif" time="2"/>
-   <image id="WHITE" path="White OD 1-White OD 3 (poor image)_baseimg.tif" time="1">
+   <image id="09228261_OD" path="09_22_82_610_006-09_22_82_610_002_corrimg.tif" time="5"/>
+   <image id="09228261_OD" path="09_22_82_610_006-09_22_82_610_004_baseimg.tif" time="3">
       <macula>
-         <x>779</x>
-         <y>803</y>
+         <x>770</x>
+         <y>755</y>
       </macula>
       <optic_disk>
-         <x>110</x>
+         <x>1286</x>
+         <y>734</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_006-09_22_82_610_004_corrimg.tif" time="4"/>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_000_baseimg.tif" time="2">
+      <macula>
+         <x>773</x>
+         <y>764</y>
+      </macula>
+      <optic_disk>
+         <x>1334</x>
+         <y>743</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_000_corrimg.tif" time="6"/>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_002_baseimg.tif" time="2">
+      <macula>
+         <x>800</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>1334</x>
+         <y>752</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_002_corrimg.tif" time="5"/>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_004_baseimg.tif" time="2">
+      <macula>
+         <x>743</x>
+         <y>771</y>
+      </macula>
+      <optic_disk>
+         <x>1337</x>
+         <y>731</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_004_corrimg.tif" time="4"/>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_006_baseimg.tif" time="2">
+      <macula>
+         <x>758</x>
+         <y>749</y>
+      </macula>
+      <optic_disk>
+         <x>1337</x>
+         <y>734</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_008-09_22_82_610_006_corrimg.tif" time="3"/>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_000_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>663</x>
+         <y>378</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_000_corrimg.tif" time="6"/>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_002_baseimg.tif" time="1">
+      <macula>
+         <x>400</x>
+         <y>379</y>
+      </macula>
+      <optic_disk>
+         <x>669</x>
+         <y>360</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_002_corrimg.tif" time="5"/>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_004_baseimg.tif" time="1">
+      <macula>
+         <x>388</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>658</x>
+         <y>366</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_004_corrimg.tif" time="4"/>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_006_baseimg.tif" time="1">
+      <macula>
+         <x>388</x>
+         <y>378</y>
+      </macula>
+      <optic_disk>
+         <x>658</x>
+         <y>366</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_006_corrimg.tif" time="3"/>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_008_baseimg.tif" time="1">
+      <macula>
+         <x>379</x>
+         <y>369</y>
+      </macula>
+      <optic_disk>
+         <x>657</x>
+         <y>372</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OD" path="09_22_82_610_010-09_22_82_610_008_corrimg.tif" time="2"/>
+   <image id="09228261_OS" path="09_22_82_610_003-09_22_82_610_001_baseimg.tif" time="5">
+      <macula>
+         <x>767</x>
+         <y>755</y>
+      </macula>
+      <optic_disk>
+         <x>251</x>
+         <y>758</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_003-09_22_82_610_001_corrimg.tif" time="6"/>
+   <image id="09228261_OS" path="09_22_82_610_005-09_22_82_610_001_baseimg.tif" time="4">
+      <macula>
+         <x>770</x>
+         <y>786</y>
+      </macula>
+      <optic_disk>
+         <x>245</x>
+         <y>774</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_005-09_22_82_610_001_corrimg.tif" time="6"/>
+   <image id="09228261_OS" path="09_22_82_610_005-09_22_82_610_003_baseimg.tif" time="4">
+      <macula>
+         <x>767</x>
+         <y>774</y>
+      </macula>
+      <optic_disk>
+         <x>254</x>
+         <y>789</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_005-09_22_82_610_003_corrimg.tif" time="5"/>
+   <image id="09228261_OS" path="09_22_82_610_007-09_22_82_610_001_baseimg.tif" time="3">
+      <macula>
+         <x>773</x>
+         <y>755</y>
+      </macula>
+      <optic_disk>
+         <x>269</x>
          <y>755</y>
       </optic_disk>
    </image>
-   <image id="WHITE" path="White OD 1-White OD 3 (poor image)_corrimg.tif" time="3"/>
+   <image id="09228261_OS" path="09_22_82_610_007-09_22_82_610_001_corrimg.tif" time="6"/>
+   <image id="09228261_OS" path="09_22_82_610_007-09_22_82_610_003_baseimg.tif" time="3">
+      <macula>
+         <x>764</x>
+         <y>767</y>
+      </macula>
+      <optic_disk>
+         <x>281</x>
+         <y>777</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_007-09_22_82_610_003_corrimg.tif" time="5"/>
+   <image id="09228261_OS" path="09_22_82_610_007-09_22_82_610_005_baseimg.tif" time="3">
+      <macula>
+         <x>770</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>269</x>
+         <y>777</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_007-09_22_82_610_005_corrimg.tif" time="4"/>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_001_baseimg.tif" time="2">
+      <macula>
+         <x>779</x>
+         <y>758</y>
+      </macula>
+      <optic_disk>
+         <x>227</x>
+         <y>777</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_001_corrimg.tif" time="6"/>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_003_baseimg.tif" time="2">
+      <macula>
+         <x>785</x>
+         <y>758</y>
+      </macula>
+      <optic_disk>
+         <x>290</x>
+         <y>795</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_003_corrimg.tif" time="5"/>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_005_baseimg.tif" time="2">
+      <macula>
+         <x>782</x>
+         <y>761</y>
+      </macula>
+      <optic_disk>
+         <x>314</x>
+         <y>767</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_005_corrimg.tif" time="4"/>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_007_baseimg.tif" time="2">
+      <macula>
+         <x>776</x>
+         <y>774</y>
+      </macula>
+      <optic_disk>
+         <x>269</x>
+         <y>801</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_009-09_22_82_610_007_corrimg.tif" time="3"/>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_001_baseimg.tif" time="1">
+      <macula>
+         <x>390</x>
+         <y>385</y>
+      </macula>
+      <optic_disk>
+         <x>138</x>
+         <y>397</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_001_corrimg.tif" time="6"/>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_003_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>120</x>
+         <y>391</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_003_corrimg.tif" time="5"/>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_005_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>120</x>
+         <y>397</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_005_corrimg.tif" time="4"/>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_007_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>109</x>
+         <y>388</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_007_corrimg.tif" time="3"/>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_009_baseimg.tif" time="1">
+      <macula>
+         <x>370</x>
+         <y>385</y>
+      </macula>
+      <optic_disk>
+         <x>127</x>
+         <y>393</y>
+      </optic_disk>
+   </image>
+   <image id="09228261_OS" path="09_22_82_610_011-09_22_82_610_009_corrimg.tif" time="2"/>
+   <image id="09230622_OD" path="09_23_06_220_002-09_23_06_220_000_baseimg.tif" time="4">
+      <macula>
+         <x>391</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>708</x>
+         <y>346</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OD" path="09_23_06_220_002-09_23_06_220_000_corrimg.tif" time="5"/>
+   <image id="09230622_OD" path="09_23_06_220_005-09_23_06_220_000_baseimg.tif" time="3">
+      <macula>
+         <x>785</x>
+         <y>825</y>
+      </macula>
+      <optic_disk>
+         <x>1403</x>
+         <y>819</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OD" path="09_23_06_220_005-09_23_06_220_000_corrimg.tif" time="5"/>
+   <image id="09230622_OD" path="09_23_06_220_005-09_23_06_220_002_baseimg.tif" time="3">
+      <macula>
+         <x>400</x>
+         <y>417</y>
+      </macula>
+      <optic_disk>
+         <x>703</x>
+         <y>403</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OD" path="09_23_06_220_005-09_23_06_220_002_corrimg.tif" time="4"/>
+   <image id="09230622_OD" path="09_23_06_220_009-09_23_06_220_000_baseimg.tif" time="1">
+      <macula>
+         <x>369</x>
+         <y>363</y>
+      </macula>
+      <optic_disk>
+         <x>678</x>
+         <y>337</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OD" path="09_23_06_220_009-09_23_06_220_000_corrimg.tif" time="5"/>
+   <image id="09230622_OD" path="09_23_06_220_009-09_23_06_220_002_baseimg.tif" time="1">
+      <macula>
+         <x>358</x>
+         <y>364</y>
+      </macula>
+      <optic_disk>
+         <x>691</x>
+         <y>346</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OD" path="09_23_06_220_009-09_23_06_220_002_corrimg.tif" time="4"/>
+   <image id="09230622_OD" path="09_23_06_220_009-09_23_06_220_005_baseimg.tif" time="1">
+      <macula>
+         <x>364</x>
+         <y>361</y>
+      </macula>
+      <optic_disk>
+         <x>675</x>
+         <y>333</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OD" path="09_23_06_220_009-09_23_06_220_005_corrimg.tif" time="3"/>
+   <image id="09230622_OS" path="09_23_06_220_003-09_23_06_220_001_baseimg.tif" time="5">
+      <macula>
+         <x>396</x>
+         <y>406</y>
+      </macula>
+      <optic_disk>
+         <x>88</x>
+         <y>307</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_003-09_23_06_220_001_corrimg.tif" time="6"/>
+   <image id="09230622_OS" path="09_23_06_220_004-09_23_06_220_001_baseimg.tif" time="4">
+      <macula>
+         <x>878</x>
+         <y>807</y>
+      </macula>
+      <optic_disk>
+         <x>149</x>
+         <y>659</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_004-09_23_06_220_001_corrimg.tif" time="6"/>
+   <image id="09230622_OS" path="09_23_06_220_004-09_23_06_220_003_baseimg.tif" time="4">
+      <macula>
+         <x>372</x>
+         <y>390</y>
+      </macula>
+      <optic_disk>
+         <x>96</x>
+         <y>337</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_004-09_23_06_220_003_corrimg.tif" time="5"/>
+   <image id="09230622_OS" path="09_23_06_220_006-09_23_06_220_001_baseimg.tif" time="3">
+      <macula>
+         <x>776</x>
+         <y>755</y>
+      </macula>
+      <optic_disk>
+         <x>137</x>
+         <y>662</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_006-09_23_06_220_001_corrimg.tif" time="6"/>
+   <image id="09230622_OS" path="09_23_06_220_006-09_23_06_220_003_baseimg.tif" time="3">
+      <macula>
+         <x>372</x>
+         <y>388</y>
+      </macula>
+      <optic_disk>
+         <x>85</x>
+         <y>330</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_006-09_23_06_220_003_corrimg.tif" time="5"/>
+   <image id="09230622_OS" path="09_23_06_220_006-09_23_06_220_004_baseimg.tif" time="3">
+      <macula>
+         <x>761</x>
+         <y>792</y>
+      </macula>
+      <optic_disk>
+         <x>191</x>
+         <y>659</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_006-09_23_06_220_004_corrimg.tif" time="4"/>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_001_baseimg.tif" time="2">
+      <macula>
+         <x>749</x>
+         <y>812</y>
+      </macula>
+      <optic_disk>
+         <x>155</x>
+         <y>713</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_001_corrimg.tif" time="6"/>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_003_baseimg.tif" time="2">
+      <macula>
+         <x>403</x>
+         <y>409</y>
+      </macula>
+      <optic_disk>
+         <x>81</x>
+         <y>369</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_003_corrimg.tif" time="5"/>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_004_baseimg.tif" time="2">
+      <macula>
+         <x>746</x>
+         <y>795</y>
+      </macula>
+      <optic_disk>
+         <x>170</x>
+         <y>746</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_004_corrimg.tif" time="4"/>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_006_baseimg.tif" time="2">
+      <macula>
+         <x>776</x>
+         <y>816</y>
+      </macula>
+      <optic_disk>
+         <x>161</x>
+         <y>722</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_008-09_23_06_220_006_corrimg.tif" time="3"/>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_001_baseimg.tif" time="1">
+      <macula>
+         <x>312</x>
+         <y>423</y>
+      </macula>
+      <optic_disk>
+         <x>1</x>
+         <y>345</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_001_corrimg.tif" time="6"/>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_003_baseimg.tif" time="1">
+      <macula>
+         <x>303</x>
+         <y>433</y>
+      </macula>
+      <optic_disk>
+         <x>18</x>
+         <y>363</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_003_corrimg.tif" time="5"/>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_004_baseimg.tif" time="1">
+      <macula>
+         <x>319</x>
+         <y>430</y>
+      </macula>
+      <optic_disk>
+         <x>12</x>
+         <y>366</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_004_corrimg.tif" time="4"/>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_006_baseimg.tif" time="1">
+      <macula>
+         <x>288</x>
+         <y>436</y>
+      </macula>
+      <optic_disk>
+         <x>21</x>
+         <y>360</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_006_corrimg.tif" time="3"/>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_008_baseimg.tif" time="1">
+      <macula>
+         <x>288</x>
+         <y>439</y>
+      </macula>
+      <optic_disk>
+         <x>13</x>
+         <y>369</y>
+      </optic_disk>
+   </image>
+   <image id="09230622_OS" path="09_23_06_220_010-09_23_06_220_008_corrimg.tif" time="2"/>
+   <image id="09237019" path="09_23_70_190_001-09_23_70_190_000_baseimg.tif" time="1">
+      <macula>
+         <x>481</x>
+         <y>351</y>
+      </macula>
+      <optic_disk>
+         <x>783</x>
+         <y>261</y>
+      </optic_disk>
+   </image>
+   <image id="09237019" path="09_23_70_190_001-09_23_70_190_000_corrimg.tif" time="2"/>
+   <image id="09291240_OD" path="09_29_12_400_002-09_29_12_400_000_baseimg.tif" time="3">
+      <macula>
+         <x>722</x>
+         <y>449</y>
+      </macula>
+      <optic_disk>
+         <x>1406</x>
+         <y>353</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OD" path="09_29_12_400_002-09_29_12_400_000_corrimg.tif" time="4"/>
+   <image id="09291240_OD" path="09_29_12_400_004-09_29_12_400_000_baseimg.tif" time="2">
+      <macula>
+         <x>755</x>
+         <y>650</y>
+      </macula>
+      <optic_disk>
+         <x>1448</x>
+         <y>509</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OD" path="09_29_12_400_004-09_29_12_400_000_corrimg.tif" time="4"/>
+   <image id="09291240_OD" path="09_29_12_400_004-09_29_12_400_002_baseimg.tif" time="2">
+      <macula>
+         <x>770</x>
+         <y>617</y>
+      </macula>
+      <optic_disk>
+         <x>1454</x>
+         <y>509</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OD" path="09_29_12_400_004-09_29_12_400_002_corrimg.tif" time="3"/>
+   <image id="09291240_OD" path="09_29_12_400_006-09_29_12_400_000_baseimg.tif" time="1">
+      <macula>
+         <x>743</x>
+         <y>740</y>
+      </macula>
+      <optic_disk>
+         <x>1412</x>
+         <y>620</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OD" path="09_29_12_400_006-09_29_12_400_000_corrimg.tif" time="4"/>
+   <image id="09291240_OD" path="09_29_12_400_006-09_29_12_400_002_baseimg.tif" time="1">
+      <macula>
+         <x>767</x>
+         <y>731</y>
+      </macula>
+      <optic_disk>
+         <x>1442</x>
+         <y>629</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OD" path="09_29_12_400_006-09_29_12_400_002_corrimg.tif" time="3"/>
+   <image id="09291240_OD" path="09_29_12_400_006-09_29_12_400_004_baseimg.tif" time="1">
+      <macula>
+         <x>725</x>
+         <y>710</y>
+      </macula>
+      <optic_disk>
+         <x>1430</x>
+         <y>611</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OD" path="09_29_12_400_006-09_29_12_400_004_corrimg.tif" time="2"/>
+   <image id="09291240_OS" path="09_29_12_400_003-09_29_12_400_001_baseimg.tif" time="3">
+      <macula>
+         <x>947</x>
+         <y>515</y>
+      </macula>
+      <optic_disk>
+         <x>269</x>
+         <y>473</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OS" path="09_29_12_400_003-09_29_12_400_001_corrimg.tif" time="4"/>
+   <image id="09291240_OS" path="09_29_12_400_005-09_29_12_400_001_baseimg.tif" time="2">
+      <macula>
+         <x>728</x>
+         <y>707</y>
+      </macula>
+      <optic_disk>
+         <x>77</x>
+         <y>692</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OS" path="09_29_12_400_005-09_29_12_400_001_corrimg.tif" time="4"/>
+   <image id="09291240_OS" path="09_29_12_400_005-09_29_12_400_003_baseimg.tif" time="2">
+      <macula>
+         <x>746</x>
+         <y>716</y>
+      </macula>
+      <optic_disk>
+         <x>80</x>
+         <y>707</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OS" path="09_29_12_400_005-09_29_12_400_003_corrimg.tif" time="3"/>
+   <image id="09291240_OS" path="09_29_12_400_007-09_29_12_400_001_baseimg.tif" time="1">
+      <macula>
+         <x>821</x>
+         <y>743</y>
+      </macula>
+      <optic_disk>
+         <x>110</x>
+         <y>692</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OS" path="09_29_12_400_007-09_29_12_400_001_corrimg.tif" time="4"/>
+   <image id="09291240_OS" path="09_29_12_400_007-09_29_12_400_003_baseimg.tif" time="1">
+      <macula>
+         <x>794</x>
+         <y>716</y>
+      </macula>
+      <optic_disk>
+         <x>122</x>
+         <y>710</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OS" path="09_29_12_400_007-09_29_12_400_003_corrimg.tif" time="3"/>
+   <image id="09291240_OS" path="09_29_12_400_007-09_29_12_400_005_baseimg.tif" time="1">
+      <macula>
+         <x>794</x>
+         <y>734</y>
+      </macula>
+      <optic_disk>
+         <x>134</x>
+         <y>701</y>
+      </optic_disk>
+   </image>
+   <image id="09291240_OS" path="09_29_12_400_007-09_29_12_400_005_corrimg.tif" time="2"/>
+   <image id="09306504" path="09_30_65_040_001-09_30_65_040_000_baseimg.tif" time="3">
+      <macula>
+         <x>788</x>
+         <y>783</y>
+      </macula>
+      <optic_disk>
+         <x>89</x>
+         <y>701</y>
+      </optic_disk>
+   </image>
+   <image id="09306504" path="09_30_65_040_001-09_30_65_040_000_corrimg.tif" time="4"/>
+   <image id="09306504" path="09_30_65_040_002-09_30_65_040_000_baseimg.tif" time="2">
+      <macula>
+         <x>728</x>
+         <y>852</y>
+      </macula>
+      <optic_disk>
+         <x>698</x>
+         <y>828</y>
+      </optic_disk>
+   </image>
+   <image id="09306504" path="09_30_65_040_002-09_30_65_040_000_corrimg.tif" time="4"/>
+   <image id="09306504" path="09_30_65_040_002-09_30_65_040_001_baseimg.tif" time="2">
+      <macula>
+         <x>710</x>
+         <y>831</y>
+      </macula>
+      <optic_disk>
+         <x>101</x>
+         <y>740</y>
+      </optic_disk>
+   </image>
+   <image id="09306504" path="09_30_65_040_002-09_30_65_040_001_corrimg.tif" time="3"/>
+   <image id="09306504" path="09_30_65_040_003-09_30_65_040_000_baseimg.tif" time="1">
+      <macula>
+         <x>390</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>67</x>
+         <y>331</y>
+      </optic_disk>
+   </image>
+   <image id="09306504" path="09_30_65_040_003-09_30_65_040_000_corrimg.tif" time="4"/>
+   <image id="09306504" path="09_30_65_040_003-09_30_65_040_001_baseimg.tif" time="1">
+      <macula>
+         <x>388</x>
+         <y>375</y>
+      </macula>
+      <optic_disk>
+         <x>73</x>
+         <y>318</y>
+      </optic_disk>
+   </image>
+   <image id="09306504" path="09_30_65_040_003-09_30_65_040_001_corrimg.tif" time="3"/>
+   <image id="09306504" path="09_30_65_040_003-09_30_65_040_002_baseimg.tif" time="1">
+      <macula>
+         <x>378</x>
+         <y>370</y>
+      </macula>
+      <optic_disk>
+         <x>66</x>
+         <y>313</y>
+      </optic_disk>
+   </image>
+   <image id="09306504" path="09_30_65_040_003-09_30_65_040_002_corrimg.tif" time="2"/>
+   <image id="09317927_OD" path="09_31_79_270_002-09_31_79_270_000_baseimg.tif" time="4">
+      <macula>
+         <x>366</x>
+         <y>349</y>
+      </macula>
+      <optic_disk>
+         <x>664</x>
+         <y>306</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_002-09_31_79_270_000_corrimg.tif" time="5"/>
+   <image id="09317927_OD" path="09_31_79_270_004-09_31_79_270_000_baseimg.tif" time="3">
+      <macula>
+         <x>369</x>
+         <y>433</y>
+      </macula>
+      <optic_disk>
+         <x>687</x>
+         <y>378</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_004-09_31_79_270_000_corrimg.tif" time="5"/>
+   <image id="09317927_OD" path="09_31_79_270_004-09_31_79_270_002_baseimg.tif" time="3">
+      <macula>
+         <x>343</x>
+         <y>408</y>
+      </macula>
+      <optic_disk>
+         <x>678</x>
+         <y>372</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_004-09_31_79_270_002_corrimg.tif" time="4"/>
+   <image id="09317927_OD" path="09_31_79_270_006-09_31_79_270_000_baseimg.tif" time="2">
+      <macula>
+         <x>349</x>
+         <y>387</y>
+      </macula>
+      <optic_disk>
+         <x>699</x>
+         <y>349</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_006-09_31_79_270_000_corrimg.tif" time="5"/>
+   <image id="09317927_OD" path="09_31_79_270_006-09_31_79_270_002_baseimg.tif" time="2">
+      <macula>
+         <x>370</x>
+         <y>376</y>
+      </macula>
+      <optic_disk>
+         <x>699</x>
+         <y>363</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_006-09_31_79_270_002_corrimg.tif" time="4"/>
+   <image id="09317927_OD" path="09_31_79_270_006-09_31_79_270_004_baseimg.tif" time="2">
+      <macula>
+         <x>719</x>
+         <y>789</y>
+      </macula>
+      <optic_disk>
+         <x>1406</x>
+         <y>710</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_006-09_31_79_270_004_corrimg.tif" time="3"/>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_000_baseimg.tif" time="1">
+      <macula>
+         <x>376</x>
+         <y>381</y>
+      </macula>
+      <optic_disk>
+         <x>694</x>
+         <y>357</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_000_corrimg.tif" time="5"/>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_002_baseimg.tif" time="1">
+      <macula>
+         <x>387</x>
+         <y>399</y>
+      </macula>
+      <optic_disk>
+         <x>691</x>
+         <y>357</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_002_corrimg.tif" time="4"/>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_004_baseimg.tif" time="1">
+      <macula>
+         <x>402</x>
+         <y>387</y>
+      </macula>
+      <optic_disk>
+         <x>696</x>
+         <y>348</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_004_corrimg.tif" time="3"/>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_006_baseimg.tif" time="1">
+      <macula>
+         <x>394</x>
+         <y>370</y>
+      </macula>
+      <optic_disk>
+         <x>693</x>
+         <y>352</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OD" path="09_31_79_270_008-09_31_79_270_006_corrimg.tif" time="2"/>
+   <image id="09317927_OS" path="09_31_79_270_003-09_31_79_270_001_baseimg.tif" time="4">
+      <macula>
+         <x>388</x>
+         <y>340</y>
+      </macula>
+      <optic_disk>
+         <x>57</x>
+         <y>310</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_003-09_31_79_270_001_corrimg.tif" time="5"/>
+   <image id="09317927_OS" path="09_31_79_270_005-09_31_79_270_001_baseimg.tif" time="3">
+      <macula>
+         <x>394</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>67</x>
+         <y>346</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_005-09_31_79_270_001_corrimg.tif" time="5"/>
+   <image id="09317927_OS" path="09_31_79_270_005-09_31_79_270_003_baseimg.tif" time="3">
+      <macula>
+         <x>379</x>
+         <y>372</y>
+      </macula>
+      <optic_disk>
+         <x>60</x>
+         <y>337</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_005-09_31_79_270_003_corrimg.tif" time="4"/>
+   <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_001_baseimg.tif" time="2">
+      <macula>
+         <x>343</x>
+         <y>523</y>
+      </macula>
+      <optic_disk>
+         <x>24</x>
+         <y>457</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_001_corrimg.tif" time="5"/>
+   <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_003_baseimg.tif" time="2">
+      <macula>
+         <x>330</x>
+         <y>522</y>
+      </macula>
+      <optic_disk>
+         <x>19</x>
+         <y>463</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_003_corrimg.tif" time="4"/>
+   <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_005_baseimg.tif" time="2">
+      <macula>
+         <x>674</x>
+         <y>1008</y>
+      </macula>
+      <optic_disk>
+         <x>668</x>
+         <y>1038</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_007-09_31_79_270_005_corrimg.tif" time="3"/>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_001_baseimg.tif" time="1">
+      <macula>
+         <x>379</x>
+         <y>384</y>
+      </macula>
+      <optic_disk>
+         <x>60</x>
+         <y>325</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_001_corrimg.tif" time="5"/>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_003_baseimg.tif" time="1">
+      <macula>
+         <x>376</x>
+         <y>382</y>
+      </macula>
+      <optic_disk>
+         <x>60</x>
+         <y>324</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_003_corrimg.tif" time="4"/>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_005_baseimg.tif" time="1">
+      <macula>
+         <x>384</x>
+         <y>378</y>
+      </macula>
+      <optic_disk>
+         <x>63</x>
+         <y>325</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_005_corrimg.tif" time="3"/>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_007_baseimg.tif" time="1">
+      <macula>
+         <x>349</x>
+         <y>370</y>
+      </macula>
+      <optic_disk>
+         <x>57</x>
+         <y>337</y>
+      </optic_disk>
+   </image>
+   <image id="09317927_OS" path="09_31_79_270_009-09_31_79_270_007_corrimg.tif" time="2"/>
+   <image id="09323896_OD" path="09_32_38_960_002-09_32_38_960_000_baseimg.tif" time="5">
+      <macula>
+         <x>764</x>
+         <y>783</y>
+      </macula>
+      <optic_disk>
+         <x>1370</x>
+         <y>632</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_002-09_32_38_960_000_corrimg.tif" time="6"/>
+   <image id="09323896_OD" path="09_32_38_960_004-09_32_38_960_000_baseimg.tif" time="4">
+      <macula>
+         <x>773</x>
+         <y>1008</y>
+      </macula>
+      <optic_disk>
+         <x>1352</x>
+         <y>867</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_004-09_32_38_960_000_corrimg.tif" time="6"/>
+   <image id="09323896_OD" path="09_32_38_960_004-09_32_38_960_002_baseimg.tif" time="4">
+      <macula>
+         <x>782</x>
+         <y>1002</y>
+      </macula>
+      <optic_disk>
+         <x>1373</x>
+         <y>849</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_004-09_32_38_960_002_corrimg.tif" time="5"/>
+   <image id="09323896_OD" path="09_32_38_960_006-09_32_38_960_000_baseimg.tif" time="3">
+      <macula>
+         <x>710</x>
+         <y>849</y>
+      </macula>
+      <optic_disk>
+         <x>1328</x>
+         <y>722</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_006-09_32_38_960_000_corrimg.tif" time="6"/>
+   <image id="09323896_OD" path="09_32_38_960_006-09_32_38_960_002_baseimg.tif" time="3">
+      <macula>
+         <x>686</x>
+         <y>828</y>
+      </macula>
+      <optic_disk>
+         <x>1376</x>
+         <y>749</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_006-09_32_38_960_002_corrimg.tif" time="5"/>
+   <image id="09323896_OD" path="09_32_38_960_006-09_32_38_960_004_baseimg.tif" time="3">
+      <macula>
+         <x>680</x>
+         <y>843</y>
+      </macula>
+      <optic_disk>
+         <x>1307</x>
+         <y>737</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_006-09_32_38_960_004_corrimg.tif" time="4"/>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_000_baseimg.tif" time="2">
+      <macula>
+         <x>785</x>
+         <y>900</y>
+      </macula>
+      <optic_disk>
+         <x>1376</x>
+         <y>777</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_000_corrimg.tif" time="6"/>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_002_baseimg.tif" time="2">
+      <macula>
+         <x>773</x>
+         <y>897</y>
+      </macula>
+      <optic_disk>
+         <x>1349</x>
+         <y>777</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_002_corrimg.tif" time="5"/>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_004_baseimg.tif" time="2">
+      <macula>
+         <x>788</x>
+         <y>903</y>
+      </macula>
+      <optic_disk>
+         <x>1355</x>
+         <y>780</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_004_corrimg.tif" time="4"/>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_006_baseimg.tif" time="2">
+      <macula>
+         <x>764</x>
+         <y>900</y>
+      </macula>
+      <optic_disk>
+         <x>1337</x>
+         <y>783</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OD" path="09_32_38_960_008-09_32_38_960_006_corrimg.tif" time="3"/>
+   <image id="09323896_OS" path="09_32_38_960_003-09_32_38_960_001_baseimg.tif" time="5">
+      <macula>
+         <x>1019</x>
+         <y>870</y>
+      </macula>
+      <optic_disk>
+         <x>86</x>
+         <y>840</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_003-09_32_38_960_001_corrimg.tif" time="6"/>
+   <image id="09323896_OS" path="09_32_38_960_005-09_32_38_960_001_baseimg.tif" time="4">
+      <macula>
+         <x>752</x>
+         <y>846</y>
+      </macula>
+      <optic_disk>
+         <x>116</x>
+         <y>819</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_005-09_32_38_960_001_corrimg.tif" time="6"/>
+   <image id="09323896_OS" path="09_32_38_960_005-09_32_38_960_003_baseimg.tif" time="4">
+      <macula>
+         <x>770</x>
+         <y>813</y>
+      </macula>
+      <optic_disk>
+         <x>95</x>
+         <y>789</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_005-09_32_38_960_003_corrimg.tif" time="5"/>
+   <image id="09323896_OS" path="09_32_38_960_007-09_32_38_960_001_baseimg.tif" time="3">
+      <macula>
+         <x>764</x>
+         <y>809</y>
+      </macula>
+      <optic_disk>
+         <x>56</x>
+         <y>758</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_007-09_32_38_960_001_corrimg.tif" time="6"/>
+   <image id="09323896_OS" path="09_32_38_960_007-09_32_38_960_003_baseimg.tif" time="3">
+      <macula>
+         <x>725</x>
+         <y>807</y>
+      </macula>
+      <optic_disk>
+         <x>77</x>
+         <y>758</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_007-09_32_38_960_003_corrimg.tif" time="5"/>
+   <image id="09323896_OS" path="09_32_38_960_007-09_32_38_960_005_baseimg.tif" time="3">
+      <macula>
+         <x>722</x>
+         <y>779</y>
+      </macula>
+      <optic_disk>
+         <x>62</x>
+         <y>755</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_007-09_32_38_960_005_corrimg.tif" time="4"/>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_001_baseimg.tif" time="2">
+      <macula>
+         <x>722</x>
+         <y>818</y>
+      </macula>
+      <optic_disk>
+         <x>116</x>
+         <y>800</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_001_corrimg.tif" time="6"/>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_003_baseimg.tif" time="2">
+      <macula>
+         <x>773</x>
+         <y>809</y>
+      </macula>
+      <optic_disk>
+         <x>122</x>
+         <y>791</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_003_corrimg.tif" time="5"/>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_005_baseimg.tif" time="2">
+      <macula>
+         <x>794</x>
+         <y>801</y>
+      </macula>
+      <optic_disk>
+         <x>113</x>
+         <y>807</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_005_corrimg.tif" time="4"/>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_007_baseimg.tif" time="2">
+      <macula>
+         <x>752</x>
+         <y>794</y>
+      </macula>
+      <optic_disk>
+         <x>152</x>
+         <y>794</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_009-09_32_38_960_007_corrimg.tif" time="3"/>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_001_baseimg.tif" time="1">
+      <macula>
+         <x>271</x>
+         <y>414</y>
+      </macula>
+      <optic_disk>
+         <x>-47</x>
+         <y>378</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_001_corrimg.tif" time="6"/>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_003_baseimg.tif" time="1">
+      <macula>
+         <x>279</x>
+         <y>409</y>
+      </macula>
+      <optic_disk>
+         <x>-68</x>
+         <y>354</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_003_corrimg.tif" time="5"/>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_005_baseimg.tif" time="1">
+      <macula>
+         <x>265</x>
+         <y>414</y>
+      </macula>
+      <optic_disk>
+         <x>-26</x>
+         <y>378</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_005_corrimg.tif" time="4"/>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_007_baseimg.tif" time="1">
+      <macula>
+         <x>276</x>
+         <y>418</y>
+      </macula>
+      <optic_disk>
+         <x>-50</x>
+         <y>379</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_007_corrimg.tif" time="3"/>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_009_baseimg.tif" time="1">
+      <macula>
+         <x>274</x>
+         <y>412</y>
+      </macula>
+      <optic_disk>
+         <x>-12</x>
+         <y>376</y>
+      </optic_disk>
+   </image>
+   <image id="09323896_OS" path="09_32_38_960_011-09_32_38_960_009_corrimg.tif" time="2"/>
+   <image id="09362244" path="09_36_22_440_001-09_36_22_440_000_baseimg.tif" time="1">
+      <macula>
+         <x>791</x>
+         <y>801</y>
+      </macula>
+      <optic_disk>
+         <x>182</x>
+         <y>767</y>
+      </optic_disk>
+   </image>
+   <image id="09362244" path="09_36_22_440_001-09_36_22_440_000_corrimg.tif" time="2"/>
 </images>

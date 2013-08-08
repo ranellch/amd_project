@@ -6,13 +6,13 @@
     imgDoc = xmlread('images.xml');
     images = imgDoc.getElementsByTagName('image');
     
-    for i=1:length(list)
+    for i=7:length(list)
         
         if isdir(list{i})
             id=list{i};
             path = strcat('./results/',list{i},'/');
             sublist = dir(path);
-            pics = setdiff({sublist.name},{'.','..','.DS_Store'});
+            pics = setdiff({sublist.name},{'.','..','.DS_Store', 'Thumbs.db'});
              for j=1:length(pics)
                 file = pics{j};
                 [~, regname,~] = fileparts(file);
@@ -51,6 +51,9 @@
                                     break
                                 end
                         end
+                    end
+                    if strcmpi(id, image.getAttribute('id')) == false
+                        continue 
                     end
                     
                     img = imread(strcat(path, file));
@@ -100,6 +103,9 @@
                                     break
                                 end
                         end
+                    end
+                    if strcmpi(id, image.getAttribute('id')) == false
+                        continue
                     end
                 end
                 
