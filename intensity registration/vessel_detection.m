@@ -21,13 +21,13 @@ function [BWout] = vessel_detection(I)
     
     %Get the skeleton of the image      
     BWout = bwareaopen(BWout, 500); 
-    BWout = bwmorph(BWout, 'dilate');
-    figure, imshow(BWout)
+    BWout = imclose(BWout, strel('disk', round(width/500)));
     BWout = bwmorph(BWout, 'skel', Inf);
     BWout = bwmorph(BWout, 'bridge');
     BWout = bwmorph(BWout, 'spur', 20);
     BWout = bwmorph(BWout, 'clean');
-    BWout = bwareaopen(BWout, 200);
+    BWout = bwareaopen(BWout, 100);
+
     
     figure, imshow(BWout)
     
