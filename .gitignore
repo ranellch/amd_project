@@ -4,6 +4,6 @@
 *.tiff
 *.png
 *.asv
-*.~
+*~
 cpselect_database/run*
 .DS_Store

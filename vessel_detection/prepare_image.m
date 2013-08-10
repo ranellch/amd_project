@@ -1,10 +1,10 @@
-function [next_img] = prepare_image(img, transform_type)
+function [next_img, matlab_func] = prepare_image(img, transform_type)
 	%Apply transform to the image
  	if(strcmpi(transform_type, 'invert') == 1)
-        disp('prepare_image: imcomplement');
+        matlab_func = 'imcomplement';
 		next_img = imcomplement(img);
     else
-        disp('prepare_image: none');
+        matlab_func = 'none';
 		next_img = img;
     end
 end

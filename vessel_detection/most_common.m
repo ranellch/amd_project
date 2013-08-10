@@ -1,7 +1,7 @@
 function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     %Get the size of the correlated points
     size_of_it = size(matrix(1,:), 2);
-    diff = zeros(size_of_it, 7);
+    diff = zeros(size_of_it, 3);
     
     %Calcualte the x and y offest of matched points
     for index=1:size_of_it
@@ -17,15 +17,9 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
         
         %Get the quad that this things starts in
         diff(index, 3) = which_quad(x1, y1, minx, miny, breakup);
-        
-        %Get the x and y correlated points
-        diff(index, 4) = x1;
-        diff(index, 5) = y1;
-        diff(index, 6) = x2;
-        diff(index, 7) = y2;
     end
     
-    disp(['Initial X-Y Correlated Modal Matches: ', num2str(size_of_it)]);
+    disp(['Initial X,Y Correlated Matches: ', num2str(size_of_it)]);
     
     %Get the modes for the different axis x then y
     [xindex, xmode_val] = find_mode_2(diff, 3, 1, quad_skip);
@@ -38,10 +32,10 @@ function [outer] = most_common(matrix, breakup, quad_skip, minx, miny)
     minus = 0;
     for count=1:length(index_intersect)
         if(index_intersect(count) > 0)
-            outer(1, count - minus) = diff(index_intersect(count), 4);
-            outer(2, count - minus) = diff(index_intersect(count), 5);
-            outer(3, count - minus) = diff(index_intersect(count), 6);
-            outer(4, count - minus) = diff(index_intersect(count), 7);
+            outer(1, count - minus) = matrix(1, index_intersect(count));
+            outer(2, count - minus) = matrix(2, index_intersect(count));
+            outer(3, count - minus) = matrix(3, index_intersect(count));
+            outer(4, count - minus) = matrix(4, index_intersect(count));
         else
             outer(:, length(index_intersect) - minus) = [];
             minus = minus + 1;
@@ -147,7 +141,7 @@ function [indexed, mode_val] = find_mode_2(the_list, quad_index, diff_index, qua
         for i=indexed_index+1:length_of_output
             indexed(indexed_index+1) = [];
         end
-        disp(['The calculated modal size and the actual modal size are not the same => length_of_output: ', num2str(length_of_output), ' - indexed_index: ', num2str(indexed_index)]);
+        disp(['most_common.m BUG: length_of_output: ', num2str(length_of_output), ' - indexed_index: ', num2str(indexed_index)]);
     end
 end
 

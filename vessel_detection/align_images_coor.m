@@ -1,13 +1,12 @@
-function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
+function [pointsA, pointsB] = align_images_coor(img1, img2, quad_count, skip_quad)
     %Add the path for the Correlation Correspondance code
     addpath('crosscoor');
     
-    %Read in the images
+    %Convert the images to double and then normalize pixel intenstiy
     image1 = im2double(img1)/256;
     image2 = im2double(img2)/256;
     
     %Resize the image so that they are both the same now
-    [image1, image2] = match_sizing(image1, image2);
     minx = size(image1, 2);
     miny = size(image1, 1);
     
@@ -51,12 +50,4 @@ function [result] = align_images_coor(img1, img2, quad_count, skip_quad)
     %Form arry in the correct manner
     pointsA = temp(1:2,:)';
     pointsB = temp(3:4,:)';
-    
-    %Estimate the image transform
-    [theta, scale, translation, tform] = transform_it_vision(pointsA, pointsB);
-    
-    disp(['Correcting Image: theta: ' , num2str(theta), ' scale: ', num2str(scale), ...
-            ' x: ', num2str(translation(1)), ' y: ', num2str(translation(2))]);
-    
-    result = tform;
 end

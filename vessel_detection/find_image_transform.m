@@ -13,11 +13,11 @@ function [out] = find_image_transform(pid)
     xDoc= xmlread('images.xml');
     images = xDoc.getElementsByTagName('image');
 
-    %Start map
+    %Start map object
     mapObj = containers.Map('KeyType', 'int32', 'ValueType', 'int32');
     
     %Java lists to keep track of original filename and vessel detection
-    the_list_orig = java.util.LinkedList;
+    the_list_path = java.util.LinkedList;
     the_list_transform = java.util.LinkedList;
     total_count = 0;
       
@@ -29,37 +29,44 @@ function [out] = find_image_transform(pid)
         id = char(image.getAttribute('id'));
         
         if strcmp(id, image_string) == 1       
-            path = char(image.getAttribute('path'));
+            the_path = char(image.getAttribute('path'));
+            the_time = char(image.getAttribute('time'));
             transform = 'none';
             
-            %If invert tag exists then get it else invert is alse by default
+            %Get a map list of the images to compare
+            mapObj(str2num(the_time)) = total_count;
+            
+            %If transform tag exists then get it else keep as null
             try
                 transform = char(image.getAttribute('transform'));
             catch 
                 transform = 'none';
             end
             the_list_transform.add(transform);
+                    
+            %Get the path name for this badboy
+            the_list_path.add(the_path);
             
-            %Get a map list of the images to compare
-            the_time = (char(image.getAttribute('time')));
-            mapObj(str2num(the_time)) = total_count;
-        
-            %Keep track of original and new filename
-            the_list_orig.add(path);
+            %Increment the index of the 
             total_count = total_count + 1;
         end
     end
     
-    disp(['To Run ', num2str(total_count), ' images from: ', image_string]);
-    
+    %Get the time keys in order so that images are only run once going forward
     the_keys = keys(mapObj);
+    
+    %Calculate the number of paris that are going to be run
+    total_pairs = ((length(the_keys) * (length(the_keys) - 1)) / 2);
+    
+    %Write to console for user's benefit
+    disp(['To Run ', num2str(total_count), ' images for a total of ', num2str(total_pairs),' pairs from: ', image_string]);
     
 	%Get the offest of the images
     for count1=1:length(the_keys)
         index1 = mapObj(the_keys{count1});
         
         %Get the base image
-        base_img_real = char(the_list_orig.get(index1));
+        base_img_real = char(the_list_path.get(index1));
         basetrans = char(the_list_transform.get(index1));
         
         %Loop on images to pair with
@@ -67,7 +74,7 @@ function [out] = find_image_transform(pid)
             index2 = mapObj(the_keys{count2});
             
             %Get the next image to pair
-            next_img_real = char(the_list_orig.get(index2));
+            next_img_real = char(the_list_path.get(index2));
             nextrans = char(the_list_transform.get(index2));
             
             %Register the images and save in output directory (image_string)
