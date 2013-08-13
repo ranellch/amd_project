@@ -4,8 +4,8 @@ xDoc= xmlread('reg_images.xml');
 images = xDoc.getElementsByTagName('image');
 results = cell(1000,4);
 results{1,1}='TRIAL';
-results{1,2}='% CHANGE HYPR';
-results{1,3}='% CHANGE HYPO';
+results{1,2}='HYPR';
+results{1,3}='HYPO';
 results{1,4}='MAQ';
 index = 2;
 list=dir(directory);
@@ -17,7 +17,7 @@ list=dir(directory);
             id=list{i};
             path = strcat(directory,list{i},'/');
             sublist = dir(path);
-            pics = setdiff({sublist.name},{'.','..','.DS_Store'});
+            pics = setdiff({sublist.name},{'.','..','.DS_Store','Thumbs.dB'});
               for j=1:length(pics)
                   file = pics{j};
                   ind=strfind(file,'_corrimg');% look for correlated images
@@ -30,6 +30,7 @@ list=dir(directory);
                             corrpath = char(cimage.getAttribute('path'));
                             if strcmpi(corrpath, file)                               
                                 visit2 =  char(cimage.getAttribute('path'));
+                                disp(visit2)
                                 time2 = char(cimage.getAttribute('time'));
                                 break                            
                             end
@@ -45,15 +46,16 @@ list=dir(directory);
                              basepath = char(bimage.getAttribute('path'));
                              if strcmpi(basepath, bfile)                               
                                 visit1 = char(bimage.getAttribute('path'));
+                                disp(visit1)
                                 time1 = char(bimage.getAttribute('time'));
                                 break
                              end
                          end
-                         if strcmpi(basefile, bfile) == false
+                         if strcmpi(basepath, bfile) == false
                              continue
                          end
                             trialname = strcat('-', time1, 'v', time2);
-                            data = compare_maculas_seg('AF',visit1, visit2, id, trialname, directory);
+                            data = compare_maculas_best('AF',visit1, visit2, id, trialname, directory);
                             data=struct2cell(data)';
                             results(index,:) = data;
                             index = index+1;

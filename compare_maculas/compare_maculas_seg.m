@@ -58,7 +58,6 @@ function [ data ] = compare_maculas_seg(type, varargin)
     end
     
     % Crop footer
-     img1 = crop_footer(img1);
      img_sz = size(img1);
         
     
@@ -100,8 +99,7 @@ function [ data ] = compare_maculas_seg(type, varargin)
         else
             img2=imgRGB;
         end
-    % Crop footer
-     img2 = crop_footer(img2);
+
      
          
 
@@ -161,7 +159,7 @@ function [ data ] = compare_maculas_seg(type, varargin)
          ob = x.^2 + y.^2 <= ro.^2; %outer bound   
          ib = x.^2 + y.^2 >= ri.^2; %inner bound
          ring = logical(ib.*ob);
-
+         
          rep1 = mean(proc1(ring));
           if rep1 < 64
               gamma1 = 0.5;
@@ -252,8 +250,8 @@ function [ data ] = compare_maculas_seg(type, varargin)
        [~,Thyper] = histeq(win2(BWhyper2),hyper);
        [~,Tback] = histeq(win2(~BWhyper2 & ~BWhypo2),background);
 
-       for i = 1:size(win2,2)
-           for j = 1:size(win2,1)
+       for i = 1:size(win2,1)
+           for j = 1:size(win2,2)
                level = win2(i,j);
                if BWhypo2(i,j) 
                    win2(i,j) = Thypo(level+1)*255;

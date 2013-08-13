@@ -1,23 +1,18 @@
-function [BWout] = vessel_detection(I)
+function [BWout] = detect_vessels(I)
 
     height = size(I,1);
     width = size(I,2);
 
     %Run Gaussian filter
-    Ifilt = imfilter(I, fspecial('gaussian', [5 5], 1.2), 'same');
-    
-    %Close that shit
-    Iclose = imclose(Ifilt, strel('square', round(width/500)));
+    Ifilt = imfilter(I, fspecial('gaussian', [5 5], 1.2), 'symmetric');
 
     %Bottom Hat Filter   
     se = strel('square', round(width/50));
-    Ibot = imbothat(Iclose, se);
-    figure, imshow(Ibot)
-   
+    Ibot = imbothat(Ifilt, se);
+    
     %Threshold this badboy
     threshold = graythresh(Ibot);
-    BWout = im2bw(Ibot, threshold*.9);
-    figure, imshow(BWout)
+    BWout = im2bw(Ibot, threshold*.75);
     
     %Get the skeleton of the image      
     BWout = bwareaopen(BWout, 500); 
@@ -29,9 +24,8 @@ function [BWout] = vessel_detection(I)
     BWout = bwareaopen(BWout, 100);
 
     
-    figure, imshow(BWout)
-    
 
+   
 end
 
 

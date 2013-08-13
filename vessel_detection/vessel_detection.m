@@ -11,6 +11,7 @@ function [image] = vessel_detection(img)
     %Run BTH operator
     bthval = imclose(close_filter, strel('square', 31));
     out = imsubtract(bthval, close_filter);
+   
       
     mean_val = double(0);
     count = 0;
