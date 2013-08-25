@@ -66,7 +66,7 @@ thresh = graythresh(Inodsc(omask))*255;
 BWthresh1 = Inodsc >= thresh;
 
 %throw out regions on image border
-BWthresh1 = imclearborder(BWthresh1, 4);
+% BWthresh1 = imclearborder(BWthresh1, 4);
 
 %dilate regions left
 BWthresh1 = bwmorph(BWthresh1, 'dilate',5);
@@ -85,7 +85,7 @@ clear Inodsc
 
 %apply multiple thresholds to further refine leak mask using original
 %image.  keep thresholding until normalized variance (difference between class means)changes
-%by less than .8 on next iternation
+%by less than .1 on next iternation
 thresh1 = graythresh(Ithresh1(BWthresh1))*255;
 object1 = Ithresh1(Ithresh1 >= thresh1);
 background1 = Ithresh1(Ithresh1 < thresh1);
@@ -93,28 +93,28 @@ muO1 = mean2(object1);
 muB1 = mean2(background1);
 var1 = ((muB1-muO1)^2)/255^2;
 
-% thresh2 = graythresh(object1)*255;
-% object2 = object1(object1 >= thresh2);
-% background2 = object1(object1 < thresh2);
-% muO2 = mean2(object2);
-% muB2 = mean2(background2);
-% var2 = ((muB2-muO2)^2)/255^2;
-% 
-% while abs(var2 - var1) >= .8
-%     
-%     thresh1 = thresh2;
-%     object1 = object2;
-%     var1 = var2;
-%     
-%     thresh2 = graythresh(object1)*255;
-%     object2 = object1(object1 >= thresh2);
-%     background2 = object1(object1 < thresh2);
-%     muO2 = mean2(object2);
-%     muB2 = mean2(background2);
-%     var2 = (muB2-muO2)^2/255^2;
-% end
+thresh2 = graythresh(object1)*255;
+object2 = object1(object1 >= thresh2);
+background2 = object1(object1 < thresh2);
+muO2 = mean2(object2);
+muB2 = mean2(background2);
+var2 = ((muB2-muO2)^2)/255^2;
 
-BWleak = I.*uint8(Ithresh1>thresh1);
+while abs(var2 - var1) >= .1
+    
+    thresh1 = thresh2;
+    object1 = object2;
+    var1 = var2;
+    
+    thresh2 = graythresh(object1)*255;
+    object2 = object1(object1 >= thresh2);
+    background2 = object1(object1 < thresh2);
+    muO2 = mean2(object2);
+    muB2 = mean2(background2);
+    var2 = (muB2-muO2)^2/255^2;
+end
+
+BWleak = Ithresh1>thresh1;
 clear Ithresh1
 
 %clean up final leak mask

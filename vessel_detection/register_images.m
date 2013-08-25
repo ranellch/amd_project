@@ -9,11 +9,18 @@ function [new_base_filename, new_corr_filename] = register_images(...
 	%Create the output directory for this badboy
 	if exist(outputdir, 'dir') == false
 		mkdir(outputdir); 
-	end
-    
+    end
+       
 	%Read in the files to attempt to register
 	base_img_real = imread(base_img_real_file);
 	next_img_real = imread(next_img_real_file);
+    
+    if length(size(base_img_real)) == 3 
+        base_img_real = rgb2gray(base_img_real);
+    end
+    if length(size(next_img_real)) == 3
+        next_img_real = rgb2gray(next_img_real);
+    end
     
     %Remove the footer from the image
     base_img_real = crop_footer(base_img_real);

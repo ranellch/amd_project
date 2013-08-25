@@ -55,7 +55,7 @@ end
 BWhyper = Itop>thresh1;
 clear Itop
 
-%clean up final hypo mask
+%clean up final hyper mask
 BWhyper = bwmorph(BWhyper,'majority');
 
 % %clean up regions with less than 100 pixels 

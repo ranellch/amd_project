@@ -1,4 +1,4 @@
-function [Iout, cps] = adjust_intensity(I, baseimg)
+function [Iout] = adjust_intensity(I)
 %use control points on vessels to scale intensities of seperate image
 %sections
 

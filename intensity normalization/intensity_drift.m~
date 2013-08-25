@@ -1,0 +1,27 @@
+function [ Idrift ] = villum_drift( I )
+%VILLUM_DRIFT calculates illumination drift map
+%   IDRIFT = VILLIM_DRIFT(I) returns the grayscale intensity drift
+%   pattern for later subtraction from the original image. 
+%   This function samples vessel pixels to generate a bicubic interpolation
+%   that approximates the illumination drift
+
+
+vskel =  vessel_detection(I);
+Isparse = I.*uint8(vskel);
+
+%2D non-uniform bicubic interpolation
+imgbottom = size(I,1);
+imgwidth = size(I,2);
+for i=1:imgbottom
+    [x, y, v] = find(Isparse(i,:));
+    if ~isempty(v)
+        background(i,:) = interp1(y, v, 1:imgwidth, 'cubic');
+    else
+        background(i,:) = zeros(1,imgwidth);
+    end
+end
+
+
+
+end
+

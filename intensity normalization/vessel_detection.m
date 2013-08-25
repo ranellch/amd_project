@@ -1,4 +1,4 @@
-function [BWout] = detect_vessels(I)
+function [BWout] = vessel_detection(I)
 
     height = size(I,1);
     width = size(I,2);
