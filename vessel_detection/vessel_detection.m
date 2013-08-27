@@ -1,64 +1,31 @@
-function [image] = vessel_detection(img)
-    %Get the image and convert to graysacle
-	original = img;
-     
+function [BWout] = vessel_detection(I)
+
+    height = size(I,1);
+    width = size(I,2);
+
     %Run Gaussian filter
-    g_filter = imfilter(original, fspecial('gaussian', [5 5], 1.2), 'same');
+    Ifilt = imfilter(I, fspecial('gaussian', [5 5], 1.2), 'symmetric');
 
-    %Run closure on the image
-    close_filter = imclose(g_filter, strel('square', 3));
-    
-    %Run BTH operator
-    bthval = imclose(close_filter, strel('square', 31));
-    out = imsubtract(bthval, close_filter);
-      
-    mean_val = double(0);
-    count = 0;
-    for y = 1:size(out,1)
-        for x = 1:size(out,2)
-            mean_val = mean_val + double(out(y, x));
-            count = count + 1;
-        end
-    end
-    mean_val = mean_val / count;
-
-    %Calculate the standard deviation for the distribution of gray sacle values
-    variance = double(0);
-    for y = 1:size(out,1)
-        for x = 1:size(out,2)
-            variance = variance + power((mean_val - double(out(y, x))), 2);
-        end
-    end
-    stddev = sqrt(variance / count);
-
-    %From the mean and std dev calculate the threshold as one stddev
-    threshold = mean_val + (stddev * .6);
-
-    fout = im2bw(out);
+    %Bottom Hat Filter   
+    se = strel('square', round(width/50));
+    Ibot = imbothat(Ifilt, se);
     
     %Threshold this badboy
-    for x=1:size(out,2)
-        for y = 1:size(out,1)
-            pixel = out(y, x);
-            if(pixel < threshold)
-                fout(y, x) = 0;
-            else
-                fout(y, x) = 1;
-            end
-        end
-    end
-     
-    %Calculate the skeleton on the image
-    out = bwareaopen(fout, 500);
-    out = imclose(out, strel('disk',5));
-    out = bwmorph(out, 'spur');
-    out = bwmorph(out, 'bridge');
-    out = bwmorph(out, 'thin', Inf);
-    out = bwmorph(out, 'clean');
-    out = bwareaopen(out, 200);
+    threshold = graythresh(Ibot);
+    BWout = im2bw(Ibot, threshold*.75);
     
-    %Return the image
-    image = out;
+    %Get the skeleton of the image      
+    BWout = bwareaopen(BWout, 500); 
+    BWout = imclose(BWout, strel('disk', round(width/500)));
+    BWout = bwmorph(BWout, 'skel', Inf);
+    BWout = bwmorph(BWout, 'bridge');
+    BWout = bwmorph(BWout, 'spur', 20);
+    BWout = bwmorph(BWout, 'clean');
+    BWout = bwareaopen(BWout, 100);
+
+    
+
+   
 end
 
 

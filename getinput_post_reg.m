@@ -6,7 +6,7 @@
     imgDoc = xmlread('images.xml');
     images = imgDoc.getElementsByTagName('image');
     
-    for i=7:length(list)
+    for i=1:length(list)
         
         if isdir(list{i})
             id=list{i};

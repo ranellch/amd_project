@@ -12,7 +12,7 @@ function [ data ] = compare_maculas_best(type, varargin)
 
  
      p = struct('fovea', [0 0], 'optic', [0 0]);
-     if ~isempty(varargin) && length(varargin) ~=4
+     if ~isempty(varargin) && length(varargin) ~=5
          disp('Invalid arguments entered');
          return
      end
@@ -22,7 +22,8 @@ function [ data ] = compare_maculas_best(type, varargin)
         visit1 = varargin{1};
         visit2 = varargin{2};
         patid = varargin{3};
-        trialname = varargin{4};    
+        trialname = varargin{4};
+        directory = varargin{5};
         filename1 = visit1;
         filename2 = visit2;
      end
@@ -42,7 +43,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         end
         fullpath = fullfile(path1,filename1);
     else % use visit arguments
-        fullpath = fullfile('./Reg Set/',patid, visit1);
+        fullpath = fullfile(directory,patid, visit1);
     end
      
 
@@ -56,8 +57,6 @@ function [ data ] = compare_maculas_best(type, varargin)
         img1=imgRGB;
     end
     
-    % Crop footer
-     img1 = crop_footer(img1);
 
         
     
@@ -77,7 +76,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         fullpath = fullfile(path2,filename2);
     else %use visit arguments  
 
-        fullpath = fullfile('./Reg Set/',patid, visit2);
+        fullpath = fullfile(directory,patid, visit2);
         
         
         output_dir = strcat('./Output Images/', patid);
@@ -99,8 +98,8 @@ function [ data ] = compare_maculas_best(type, varargin)
         else
             img2=imgRGB;
         end
-    % Crop footer
-     img2 = crop_footer(img2);
+
+
          
 
     
@@ -182,8 +181,8 @@ function [ data ] = compare_maculas_best(type, varargin)
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
     
     % Run gaussian filter
-     r = round(5/768*img_sz(1)); %scale filter size---5 by 5 pixs for 768 by 768 res (standard res - footer)
-     c = round(5/768*img_sz(2));
+     r = round(img_sz(1)/200); %scale filter size
+     c = round(img_sz(2)/200);
      
      H = fspecial('gaussian', [r c], 5);
      proc2=imfilter(img2,H);
@@ -193,56 +192,56 @@ function [ data ] = compare_maculas_best(type, varargin)
      if strcmpi(type,'AF')
          
          
+% 
+%          Adjust contrasts/center pix distribution on mean intensity of ring between
+%          macula and optic disk
 
-         % Adjust contrasts/center pix distribution on mean intensity of ring between
-         % macula and optic disk
-% 
-%          % create ring mask
-%          [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
-%           x = xgrd - p.fovea(1);    % offset the origin
-%           y = ygrd - p.fovea(2);
-%          ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.8;
-%          ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
-%          ob = x.^2 + y.^2 <= ro.^2; %outer bound   
-%          ib = x.^2 + y.^2 >= ri.^2; %inner bound
-%          ring = logical(ib.*ob);
-% 
-%     %      %show ring
-%     %      figure()
-%     %      imshow(mat2gray(double(proc1).*double(ring)))
-% 
-%          rep1 = mean(proc1(ring));
-%           if rep1 < 64
-%               gamma1 = 0.5;
-%           elseif rep1 >= 64 && rep1 < 96
-%               gamma1 = 0.75;
-%           elseif rep1 >=96 && rep1 < 160
-%               gamma1 = 1.0;
-%           elseif rep1 >= 160 && rep1 < 192
-%               gamma1 = 1.25;
-%           elseif rep1 >=192
-%               gamma1 = 1.5;
-%           end
-% 
-% 
-%            proc1 = imadjust(proc1,[],[],gamma1);
-% 
-%            rep2 = mean(proc2(ring));
-%           if rep2 < 64
-%               gamma2 = 0.5;
-%           elseif rep2 >= 64 && rep2 < 96
-%               gamma2 = 0.75;
-%           elseif rep2 >=96 && rep2 < 160
-%               gamma2 = 1.0;
-%           elseif rep2 >= 160 && rep2 < 192
-%               gamma2 = 1.25;
-%           elseif rep2 >=192
-%               gamma2 = 1.5;
-%           end
-% 
-%           proc2 = imadjust(proc2,[],[],gamma2);
+         % create ring mask
+         [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
+          x = xgrd - p.fovea(1);    % offset the origin
+          y = ygrd - p.fovea(2);
+         ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.8;
+         ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
+         ob = x.^2 + y.^2 <= ro.^2; %outer bound   
+         ib = x.^2 + y.^2 >= ri.^2; %inner bound
+         ring = logical(ib.*ob);
+
+    %      %show ring
+    %      figure()
+    %      imshow(mat2gray(double(proc1).*double(ring)))
+
+         rep1 = mean(proc1(ring));
+          if rep1 < 64
+              gamma1 = 0.5;
+          elseif rep1 >= 64 && rep1 < 96
+              gamma1 = 0.75;
+          elseif rep1 >=96 && rep1 < 160
+              gamma1 = 1.0;
+          elseif rep1 >= 160 && rep1 < 192
+              gamma1 = 1.25;
+          elseif rep1 >=192
+              gamma1 = 1.5;
+          end
+
+
+           proc1 = imadjust(proc1,[],[],gamma1);
+
+           rep2 = mean(proc2(ring));
+          if rep2 < 64
+              gamma2 = 0.5;
+          elseif rep2 >= 64 && rep2 < 96
+              gamma2 = 0.75;
+          elseif rep2 >=96 && rep2 < 160
+              gamma2 = 1.0;
+          elseif rep2 >= 160 && rep2 < 192
+              gamma2 = 1.25;
+          elseif rep2 >=192
+              gamma2 = 1.5;
+          end
+
+          proc2 = imadjust(proc2,[],[],gamma2);
           
-          proc2 = scale_intensities(proc1,proc2,p.fovea,p.optic);
+          [proc2, vessels] = adjust_intensity(proc2, proc1);
 
      
      elseif strcmpi(type,'FA')
@@ -257,21 +256,34 @@ function [ data ] = compare_maculas_best(type, varargin)
          proc2=imtophat(proc2,se1);
          proc2=imtophat(proc2,se2);
          proc2=imadjust(proc2, [],[],gamma);
+                 
          
      end
-
+    %Show vessel dectection
+     if test
+        h = figure('Name','Vessels','visible','off');
+    else
+        figure('Name','Vessels');
+     end
+        imshow(vessels); title(strcat('Image 1 ', filename1));
+    if test
+        saveas(h, strcat(data_filename, '-vessels'),'png');
+        close(h)
+    end
+    
       
+     
     % Create a figure for the images before and after processing
     if test
         h = figure('Name','Processing Results','visible','off');
         subplot(2,2,1);
         imshow(img1); title(strcat('Original', filename1));
         subplot(2,2,2);
-        imshow(proc1); title(strcat('Processed', filename1));
+        imshow(proc1); title(strcat('Processed ', filename1));
         subplot(2,2,3);
         imshow(img2); title(strcat('Original', filename2));
         subplot(2,2,4);
-        imshow(proc2); title(strcat('Processed', filename2));
+        imshow(proc2); title(strcat('Processed ', filename2));
         saveas(h, strcat(data_filename, '-processing'),'png');
         close(h)
     else
@@ -287,15 +299,12 @@ function [ data ] = compare_maculas_best(type, varargin)
     end
     
        
-%     %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
-%     % Create circle mask to ignore macula
-%     r=sqrt((p.optic1(1)-p.fovea1(1))^2+(p.optic1(2)-p.fovea1(2))^2)/2;
-%     circlemask = x1.^2 + y1.^2 <= r.^2;
-%     
-%     % Get standard deviation of pixel inensity outside macula for img1
-%     periph = double(proc1(~circlemask));
-%     hypr_thrsh = 1*std(periph(:));
-%     hypo_thrsh = -1*std(periph(:));
+    %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
+    
+    % Get standard deviation of pixel inensity outside macula for img1
+    periph = double(proc1(ring));
+    hypr_thrsh = 2*std(periph(:));
+    hypo_thrsh = -2*std(periph(:));
 
   
    
@@ -343,30 +352,6 @@ function [ data ] = compare_maculas_best(type, varargin)
         colormap(gray), imagesc(win2);
     end
     
-    % Show surfaces
-    if test
-        h = figure('Name', '3D Surfaces','visible', 'off');
-        subplot(1,2,1);   
-        surf(fliplr(double(win1)),'EdgeColor', 'none'); 
-        title(strcat('Previous Visit: ',filename1)); 
-        view(153, 78);
-        subplot(1,2,2);
-        surf(fliplr(double(win2)),'EdgeColor', 'none');   
-        title(strcat('Current Visit:',filename2));
-        view(153, 78);
-        saveas(h, strcat(data_filename, '-3D'),'png');
-        close(h)
-    else
-        figure('Name', '3D Surfaces');
-        subplot(1,2,1);   
-        surf(fliplr(double(win1)),'EdgeColor', 'none'); 
-        title(strcat('Previous Visit: ',filename1)); 
-        view(153, 78);
-        subplot(1,2,2);
-        surf(fliplr(double(win2)),'EdgeColor', 'none');   
-        title(strcat('Current Visit:',filename2));
-        view(153, 78);
-    end
    
     %~~~~Show Disease Progress~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     if test
@@ -383,8 +368,8 @@ function [ data ] = compare_maculas_best(type, varargin)
     h5=gca;
     
 %     prog=win1-win2;
-    hypo_thrsh = -40;
-    hypr_thrsh = 40;
+%     hypo_thrsh = -40;
+%     hypr_thrsh = 40;
 % 
 %         
 %     redx=ones(1,1000);

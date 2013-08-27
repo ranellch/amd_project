@@ -14,16 +14,11 @@ I=imadjust(Iorg);
 se=strel('disk',round(size(I,1)/100));
 Iclose = imclose(I,se);
 
- figure, imshow(Iclose)
-
 %tophat
 se=strel('line',round(size(I,1)/5), 90);
 Itop = imtophat(Iclose,se);
 se=strel('line',round(size(I,2)/5), 0);
 Itop = imtophat(Itop,se);
-
-figure, imshow(Itop)
-
 
 
 %apply multiple thresholds to further refine hypo mask using original
@@ -60,10 +55,7 @@ end
 BWhyper = Itop>thresh1;
 clear Itop
 
-BWgrad = edge(I,'canny', thresh1/255);
-figure, imshow(BWgrad)
-
-%clean up final hypo mask
+%clean up final hyper mask
 BWhyper = bwmorph(BWhyper,'majority');
 
 % %clean up regions with less than 100 pixels 
