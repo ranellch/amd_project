@@ -66,7 +66,7 @@ end
 switch lower(type) % Make pointers into C
     case 'a'
         nindex = 1;
-        start = 1;  stop = elements(1);  ntst = nmax;
+        start = 1;  stop = elements(1);  ntst = nmax; 
     case {'h', 'v', 'd'}
         switch type
             case 'h', offset = 0; % Offset to details
