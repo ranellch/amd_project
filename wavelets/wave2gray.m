@@ -69,7 +69,7 @@ end
 absflag = scale < 0;
 scale = abs(scale);
 
-[cd, w] = wavework('cut', 'a', c, s);
+[cd, w] = wavework('cut', 'a', c, s);   w = mat2gray(w);
 cdx = max(abs(cd(:))) / scale;
 if absflag 
     cd = mat2gray(abs(cd), [0, cdx]); fill = 0;
