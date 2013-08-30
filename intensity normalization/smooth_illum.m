@@ -35,7 +35,11 @@ for i = 1:3
 end
 background = logical(background);
 figure, imshow(background)
-        
+
+back = I(background);
+mu_back = mean2(back);
+sig_back = std(double(back(:)));
+
 %Sample background
 Icenterx = round(Iwidth/2);
 Icentery = round(Iheight/2);
@@ -89,8 +93,8 @@ for i = 1:6
       window = I(dims(1):dims(2),dims(3):dims(4));
       mask = background(dims(1):dims(2), dims(3):dims(4));
       data = window(mask);
-      L(point(1), point(2)) = mean2(data);
-      C(point(1), point(2)) = std(double(data(:)));
+      L(point(1), point(2)) = mean2(data)-mu_back;
+      C(point(1), point(2)) = std(double(data(:)))-sig_back;
   end
 end
 
@@ -99,26 +103,26 @@ end
 window = I(1:halfwinsz,1:halfwinsz);
 mask = background(1:halfwinsz,1:halfwinsz);
 data = window(mask);
-L(1,1) = mean2(data);
-C(1,1) = std(double(data(:)));
+L(1,1) = mean2(data)-mu_back;
+C(1,1) = std(double(data(:)))-sig_back;
 
 window = I(1:halfwinsz,Iwidth-halfwinsz:Iwidth);
 mask = background(1:halfwinsz,Iwidth-halfwinsz:Iwidth);
 data = window(mask);
-L(1,Iwidth) = mean2(data);
-C(1,Iwidth) = std(double(data(:)));
+L(1,Iwidth) = mean2(data)-mu_back;
+C(1,Iwidth) = std(double(data(:)))-sig_back;
 
 window = I(Iheight-halfwinsz:Iheight, 1:halfwinsz);
 mask = background(Iheight-halfwinsz:Iheight, 1:halfwinsz);
 data = window(mask);
-L(Iheight,1) = mean2(data);
-C(Iheight,1) = std(double(data(:)));
+L(Iheight,1) = mean2(data)-mu_back;
+C(Iheight,1) = std(double(data(:)))-sig_back;
 
 window = I(Iheight-halfwinsz:Iheight,Iwidth-halfwinsz:Iwidth);
 mask = background(Iheight-halfwinsz:Iheight,Iwidth-halfwinsz:Iwidth);
 data = window(mask);
-L(Iheight,Iwidth) = mean2(data);
-C(Iheight,Iwidth) = std(double(data(:)));
+L(Iheight,Iwidth) = mean2(data)-mu_back;
+C(Iheight,Iwidth) = std(double(data(:)))-sig_back;
 
 figure, imshow(L)
 
@@ -126,26 +130,18 @@ figure, imshow(L)
 [y, x, L] = find(L);
 y=flipud(y);
 [xq, yq] = meshgrid(1:Iwidth, 1:Iheight);
-L2 = griddata(x, y, L, xq, yq,'cubic');
-figure
-mesh(xq,yq,L2);
-hold on
-plot3(x,y,L,'o');
+L = griddata(x, y, L, xq, yq,'cubic');
+figure, imshow(L)
 
 [y, x, C] = find(C);
 y =flipud(y);
-C2 = griddata(x, y, C, xq, yq,'cubic');
-figure
-mesh(xq,yq,C2);
-hold on
-plot3(x,y,C,'o');
+C = griddata(x, y, C, xq, yq,'cubic');
+figure, imshow(C)
 
 %Smooth
-mu_original = mean2(I)
-sig_original = std(double(I(:)))
-mean2(C2)
-mean2(L2)
-Iout = ((double(I)-k1*L2)./(k2*C2))+mu_original;
+mean2(C)
+mean2(L)
+Iout = ((double(I)-k1*L)./(k2*C)).*sig_back+mu_back;
 % Iout = im2uint8(mat2gray(Iout));
 figure, imshow(Iout)
       
