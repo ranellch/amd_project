@@ -48,8 +48,8 @@ L = zeros(size(I));
 C = zeros(size(I));
 
 for i = 1:6
-% create sampling rings
- [xgrid, ygrid] = meshgrid(1:Iwidth, 1:Iheight);   
+  % create sampling rings
+  [xgrid, ygrid] = meshgrid(1:Iwidth, 1:Iheight);
   x = xgrid - Icenterx; %place origin at center of image
   y = ygrid - Icentery;
   ring = x.^2 + y.^2 <= (rcoeffs(i)*r)^2;

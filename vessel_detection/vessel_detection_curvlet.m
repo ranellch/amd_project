@@ -1,37 +1,32 @@
 function [out] = vessel_detection_curvlet(I)
+    addpath('../curvlet/fdct_wrapping_matlab/');
+    
     pctg = 0.1;
     
     if length(size(I)) > 2
         I = rgb2gray(I);
     end
     
+    I = double(I);
+    
     height = size(I,1);
     width = size(I,2);
     
-    C = fdct_wrapping(double(I), 0);
+    %Calculate the Curvlet coefficients
+    C = fdct_wrapping(I, 0);
     
-    % Get threshold value
-    cfs =[];
-    for s=1:length(C)
-      for w=1:length(C{s})
-        cfs = [cfs; abs(C{s}{w}(:))];
-      end
-    end
-    cfs = sort(cfs); cfs = cfs(end:-1:1);
-    nb = round(pctg*length(cfs));
-    cutoff = cfs(nb);
-    
-    % Set small coefficients to zero
-    for s=1:length(C)
-        for w=1:length(C{s})
-            C{s}{w} = C{s}{w} .* (abs(C{s}{w}) > cutoff);
-        end
-    end
-    
+    %Modify the Curvlet coefficients using the reserach paper described in
+    %the function in the comments
     C = modify_coefficients(C, I);
     
     %Rebuild the image using the modified coefficient values
-    Y = real(ifdct_wrapping(C));
+    disp('Ready to combine the modified Coefficients.');
+    Y = real(ifdct_wrapping(C, 0));
+    
+    figure(3);
+    imshow(Y);
+    
+    return;
     
     %Get a 5x5 structuring elements that are a line with 22.5 degrees of resolution
     zeroline = [0,0,0,0,0;...
@@ -89,64 +84,90 @@ function [newCoeff] = modify_coefficients(C, img)
     for j=1:number_of_bands
         %Each sub-band can have one or more matricies of coefficients
         number_of_coefficients = length(C{1, j});
+        disp(['Modifying Sub-Band: ', num2str(j), ' with ', num2str(number_of_coefficients), ' lists of coefficients.']);
         for k=1:number_of_coefficients
         	CoeffMatrix = C{1, j}{1, k};
-            process_subband_matrix(CoeffMatrix, sigma);
+            temp = process_subband_matrix(CoeffMatrix, sigma);
+            C{1, j}{1, k} = temp;
         end
     end
+    
+    %Return the Coefficient Matrix
+    newCoeff = C;
 end
 
 function [sigma] = img_stddev(img)
     %This method was developed using the following paper
     % WAVELET IMAGE DE-NOISING METHOD BASED ON NOISE STANDARD DEVIATION ESTIMATION
+    
+    %Define the noise estimation template as the difference between two
+    %LaPlace templates
     M = [ 1,-2, 1;
          -2, 4,-2;
-          1,-2, 1];    
+          1,-2, 1];
+      
+    %Convolve the noise estimation matrix with the image
     convolve = conv2(img, M);
+    
+    %Get the sum of the absolutue value of the matrix from the convolution
     convoluve_abs = abs(convolve);
     summation = sum(convoluve_abs(:));
     
+    %k and l is the image height and image width
     k = size(img, 2);
     l = size(img, 1);
-    sigma = sqrt((pi / 2) * (1 / (6 * (k - 2) * (l - 2))) * summation);
+    
+    %Calculate the standard deviation from the main 
+    sigma = sqrt(pi / 2) * (1 / (6 * (k - 2) * (l - 2))) * summation;
+    disp(['This image standard deviation is: ', num2str(sigma)]);
 end
 
 function [result] = process_subband_matrix(CoeffMatrix, sigma)
     %For each sub matrix find the maximum value and use it to calculate
     %variable m (lowercase), this is based upon the following paper.
-    % WAVELET IMAGE DE-NOISING METHOD BASED ON NOISE STANDARD DEVIATION ESTIMATION 
+    %Fast and automatic algorithm for optic disc extraction in
+    %   retinal images using principle-component-analysis-based
+    %   preprocessing and curvelet transform
+    
+    %calculate the m value for the peacewise function shown in equation(7)
     Mij = max(CoeffMatrix(:));
     K = 1;
     m = K*(Mij - sigma);
     
-    %Loop on each value within the CoeffMatrix and apply the yalpha
-    %function to each value and then multiply the results by the output
+    %Loop on each value within the CoeffMatrix and apply the yalpha function
+    %the yalpha function returns a multiplication value
     CoeffMatrixSize = size(CoeffMatrix);
     for y=1:CoeffMatrixSize(1)
         for x=1:CoeffMatrixSize(2)
             CoeffValue = CoeffMatrix(y, x);
-            new_CoeffValue = yalpha(CoeffValue, sigma, m);
-            CoeffMatrix(y, x) = CoeffValue * new_CoeffValue;
+            modify_coeff = yalpha(CoeffValue, sigma, m);
+            CoeffMatrix(y, x) = CoeffValue * modify_coeff;
         end
     end
     
+    %set output variable to the results from the modified matrix
     result = CoeffMatrix;
 end
 
 function [result] = yalpha(x, sigma, m)
+    %These three variables must be tuned to modify the output
     a = 3;
     p = 1;
-    q = 1;
+    q = 0;
+    K1 = 1;
+    K2 = 1;
+    
+    % cis equal to the standard deviation of the image
     c = sigma;
     
-    if(abs(x) < (a*c))
+    if (abs(x) < (a*c))
         result = 1;
-    elseif((a*c) <= abs(x) && abs(x) < (2*a*c))
+    elseif ((a*c) <= abs(x) && abs(x) < (2*a*c))
         result = ((abs(x) - (a*c) / (a*c)) * ((m / (a*c))^p)) + (((2*a*c) - abs(x)) / (a*c));
-    elseif((2*a*c) <= abs(x) && abs(x) < m)
-        result = ((m / abs(x))^p);
-    elseif(m <= abs(x))
-        result = ((m / abs(x))^q);
+    elseif ((2*a*c) <= abs(x) && abs(x) < m)
+        result = K1 * ((m / abs(x))^p);
+    elseif (m <= abs(x))
+        result = K2 * ((m / abs(x))^q);
     else
         disp('Error in yalpha');
     end
