@@ -10,19 +10,31 @@ function [out] = vessel_detection_curvlet(I)
     height = size(I,1);
     width = size(I,2);
     
-    %Calculate the Curvlet coefficients
-    C = fdct_wrapping(I, 0);
-    
-    %Modify the Curvlet coefficients using the reserach paper described in
-    %the function in the comments
-    C = modify_coefficients(C, I);
-    
-    %Rebuild the image using the modified coefficient values
-    disp('Ready to combine the modified Coefficients.');
-    Y = mat2gray(real(ifdct_wrapping(C, 0)));
-    
-    figure(3);
-    imshow(Y);
+    K = 1;
+    p = 0;
+    a = 4;
+    q = .6;
+        
+    for i=1:11
+        %Calculate the Curvlet coefficients
+        C = fdct_wrapping(I, 0);
+
+        %Modify the Curvlet coefficients using the reserach paper described in
+        %the function in the comments
+        
+        C = modify_coefficients(C, K, a, p, q);
+
+        %Rebuild the image using the modified coefficient values
+        disp('Ready to combine the modified Coefficients.');
+        Y = mat2gray(real(ifdct_wrapping(C, 0)));
+
+        %figure(i);
+        %imshow(Y);
+        
+        imwrite(Y, ['ppoint', num2str(i), '.jpg'], 'jpg');
+        
+        p = p + .1;
+    end
     
     return;
     
@@ -65,7 +77,7 @@ function [out] = vessel_detection_curvlet(I)
     final_img = add_img(apply_morph(Y, fliplr(sixtysevenpointfive)), M, final_img);
     final_img = add_img(apply_morph(Y, vertline), M, final_img);
     
-    figure(1);
+    figure(11);
     imshow(final_img);
     
     figure(2);
@@ -73,40 +85,62 @@ function [out] = vessel_detection_curvlet(I)
     subplot(1,2,2); colormap gray; imagesc(real(Y)); axis('image'); title('partial reconstruction');
 end
 
-function [newCoeff] = modify_coefficients(C, img)
-    %Estimate the noise image standard deviation
-    sigma = img_stddev(img);
+function [newCoeff] = modify_coefficients(C, K, a, p, q)
+    newCoeff = C;
     
     %Loop through each sub-band
     number_of_bands = length(C);
+    disp(['A total of: ', num2str(number_of_bands), ' to run!']);
     for j=1:number_of_bands
         %Each sub-band can have one or more matricies of coefficients
-        number_of_coefficients = length(C{1, j});
-        disp(['Modifying Sub-Band: ', num2str(j), ' with ', num2str(number_of_coefficients), ' list(s) of coefficients.']);
+        disp(['Modifying Sub-Band: ', num2str(j), ' with ', num2str(length(C{j})), ' angle(s).']);
         
-        %Find the maximum value within this sub-band by iterating over results
+        %Find the maximum value within this sub-band by iterating over angles
         Mij = 0;
-        for k=1:number_of_coefficients
-            temp = max(C{1, j}{1, k}(:));
+        for k=1:length(C{j})
+            temp = max(C{j}{k}(:));
             if (Mij < temp)
                 Mij = temp;
             end
         end
+        disp(['Mij: ', num2str(Mij)]);
+        
+        %Get the coefficients of only the current subband
+        ctemp = C;
+        for j1=1:length(ctemp)
+            if j1 ~= j
+                for k1=1:length(ctemp{j1})
+                    for y=1:size(ctemp{j1}{k1}, 1)
+                        for x=1:size(ctemp{j1}{k1}, 2)
+                            ctemp{j1}{k1}(y, x) = 0;
+                        end
+                    end
+                end
+            end
+        end
+        
+        %Rebuild the image using only one sub0-band at a time
+        %figure(j);
+        ctempimg = real(ifdct_wrapping(ctemp, 0));
+        %imshow(ctempimg);
+        
+        %Estimate the noise image standard deviation for this sub-band
+    	sigma = img_stddev(ctempimg);
+        disp(['Noise standard deviation: ', num2str(sigma)]);
         
         %calculate the m value for the peacewise function shown in equation(7)
-        K = 1;
         m = K * (Mij - sigma);
+        disp(['m: ', num2str(m), ' = ', num2str(K), ' * (Mij - sigma)']);
         
         %Foreach sub-band 
-        for k=1:number_of_coefficients
-        	CoeffMatrix = C{1, j}{1, k};
-            temp = process_subband_matrix(CoeffMatrix, sigma, m);
-            C{1, j}{1, k} = temp;
+        for k=1:length(C{j})
+        	CoeffMatrix = C{j}{k};
+            temp = process_subband_matrix(CoeffMatrix, sigma, m, a, p, q);
+            newCoeff{j}{k} = temp;
         end
+        
+        disp('----------------------------------------------------------');
     end
-    
-    %Return the Coefficient Matrix
-    newCoeff = C;
 end
 
 function [sigma] = img_stddev(img)
@@ -132,10 +166,9 @@ function [sigma] = img_stddev(img)
     
     %Calculate the standard deviation from the main 
     sigma = sqrt(pi / 2) * (1 / (6 * (k - 2) * (l - 2))) * summation;
-    disp(['This image standard deviation is: ', num2str(sigma)]);
 end
 
-function [result] = process_subband_matrix(CoeffMatrix, sigma, m)
+function [result] = process_subband_matrix(CoeffMatrix, sigma, m, a, p, q)
     %For each sub matrix find the maximum value and use it to calculate
     %variable m (lowercase), this is based upon the following paper.
     %Fast and automatic algorithm for optic disc extraction in
@@ -147,7 +180,7 @@ function [result] = process_subband_matrix(CoeffMatrix, sigma, m)
     for y=1:size(CoeffMatrix, 1)
         for x=1:size(CoeffMatrix, 2)
             CoeffValue = CoeffMatrix(y, x);
-            modify_coeff = yalpha(abs(CoeffValue), sigma, m);
+            modify_coeff = yalpha(abs(CoeffValue), sigma, m, a, p, q);
             CoeffMatrix(y, x) = CoeffValue * modify_coeff;
         end
     end
@@ -156,11 +189,8 @@ function [result] = process_subband_matrix(CoeffMatrix, sigma, m)
     result = CoeffMatrix;
 end
 
-function [result] = yalpha(x, sigma, m)
-    %These three variables must be tuned to modify the output
-    a = 3;
-    p = 1;
-    q = 1;
+function [result] = yalpha(x, sigma, m, a, p, q)
+    %These three variables must be tuned to gain desierable results
     K1 = 1;
     K2 = 1;
     
