@@ -1,4 +1,4 @@
-function [ Iout ] = smooth_illum(I, varargin )
+function [ Iout ] = smooth_illum_extracontrast(I, varargin )
 %SMOOTH_ILLUM removes illumination and contrast drifts from principal component image
 %   IOUT = SMOOTH_ILLUM(I, k1, k2)
 %   This function uses Mahalanobis distances to classify the most likely
@@ -30,7 +30,7 @@ for i = 1:3
         window = I(dims(1):dims(2),dims(3):dims(4));
         mu = mean2(window);
         sigma = std(window(:));
-        background(dims(1):dims(2),dims(3):dims(4)) = abs((window-mu)./sigma)<=.7;
+        background(dims(1):dims(2),dims(3):dims(4)) = abs((window-mu)./sigma)<=1;
            
     end
 end
@@ -140,14 +140,9 @@ figure, imshow(C)
 
 %Smooth
 Iout = ((double(I)-k1*L)./(k2*C)).*std(I(:))+mean2(I);
-
-%Normalize output to original histogram using least squares fitting
-Y = [Iout(:),ones(length(Iout(:)),1)];
-X = I(:);
-b = Y\X;
-Iout = Iout.*b(1)+b(2);
 Iout = mat2gray(Iout, [0 1]);
 figure, imshow(Iout)
+
 
       
       
