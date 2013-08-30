@@ -1,8 +1,6 @@
 function [out] = vessel_detection_curvlet(I)
     addpath('../curvlet/fdct_wrapping_matlab/');
     
-    pctg = 0.1;
-    
     if length(size(I)) > 2
         I = rgb2gray(I);
     end
@@ -21,7 +19,7 @@ function [out] = vessel_detection_curvlet(I)
     
     %Rebuild the image using the modified coefficient values
     disp('Ready to combine the modified Coefficients.');
-    Y = real(ifdct_wrapping(C, 0));
+    Y = mat2gray(real(ifdct_wrapping(C, 0)));
     
     figure(3);
     imshow(Y);
@@ -84,10 +82,25 @@ function [newCoeff] = modify_coefficients(C, img)
     for j=1:number_of_bands
         %Each sub-band can have one or more matricies of coefficients
         number_of_coefficients = length(C{1, j});
-        disp(['Modifying Sub-Band: ', num2str(j), ' with ', num2str(number_of_coefficients), ' lists of coefficients.']);
+        disp(['Modifying Sub-Band: ', num2str(j), ' with ', num2str(number_of_coefficients), ' list(s) of coefficients.']);
+        
+        %Find the maximum value within this sub-band by iterating over results
+        Mij = 0;
+        for k=1:number_of_coefficients
+            temp = max(C{1, j}{1, k}(:));
+            if (Mij < temp)
+                Mij = temp;
+            end
+        end
+        
+        %calculate the m value for the peacewise function shown in equation(7)
+        K = 1;
+        m = K * (Mij - sigma);
+        
+        %Foreach sub-band 
         for k=1:number_of_coefficients
         	CoeffMatrix = C{1, j}{1, k};
-            temp = process_subband_matrix(CoeffMatrix, sigma);
+            temp = process_subband_matrix(CoeffMatrix, sigma, m);
             C{1, j}{1, k} = temp;
         end
     end
@@ -122,25 +135,19 @@ function [sigma] = img_stddev(img)
     disp(['This image standard deviation is: ', num2str(sigma)]);
 end
 
-function [result] = process_subband_matrix(CoeffMatrix, sigma)
+function [result] = process_subband_matrix(CoeffMatrix, sigma, m)
     %For each sub matrix find the maximum value and use it to calculate
     %variable m (lowercase), this is based upon the following paper.
     %Fast and automatic algorithm for optic disc extraction in
     %   retinal images using principle-component-analysis-based
     %   preprocessing and curvelet transform
     
-    %calculate the m value for the peacewise function shown in equation(7)
-    Mij = max(CoeffMatrix(:));
-    K = 1;
-    m = K*(Mij - sigma);
-    
     %Loop on each value within the CoeffMatrix and apply the yalpha function
     %the yalpha function returns a multiplication value
-    CoeffMatrixSize = size(CoeffMatrix);
-    for y=1:CoeffMatrixSize(1)
-        for x=1:CoeffMatrixSize(2)
+    for y=1:size(CoeffMatrix, 1)
+        for x=1:size(CoeffMatrix, 2)
             CoeffValue = CoeffMatrix(y, x);
-            modify_coeff = yalpha(CoeffValue, sigma, m);
+            modify_coeff = yalpha(abs(CoeffValue), sigma, m);
             CoeffMatrix(y, x) = CoeffValue * modify_coeff;
         end
     end
@@ -153,11 +160,11 @@ function [result] = yalpha(x, sigma, m)
     %These three variables must be tuned to modify the output
     a = 3;
     p = 1;
-    q = 0;
+    q = 1;
     K1 = 1;
     K2 = 1;
     
-    % cis equal to the standard deviation of the image
+    %c is equal to the standard deviation of the image
     c = sigma;
     
     if (abs(x) < (a*c))
