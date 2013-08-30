@@ -6,34 +6,42 @@ function [out] = vessel_detection_curvlet(I)
     end
     
     I = double(I);
-    
-    height = size(I,1);
-    width = size(I,2);
-    
+
     K = 1;
-    p = 0;
     a = 4;
-    q = .6;
+    p = 0;
+    q = 0;
         
     for i=1:11
-        %Calculate the Curvlet coefficients
-        C = fdct_wrapping(I, 0);
+        p = 0;
+        for f=1:11
+            %Calculate the Curvlet coefficients
+            C = fdct_wrapping(I, 0);
+            
+            %Get a zeroed out version of the Coefficients matrix
+            ctemp = C;
+            for j=1:length(ctemp)
+                for l=1:length(ctemp{j})
+                    for y=1:size(ctemp{j}{l}, 1)
+                        for x=1:size(ctemp{j}{l}, 2)
+                           ctemp{j}{l}(y, x) = 0;                         
+                        end
+                    end
+                end
+            end
 
-        %Modify the Curvlet coefficients using the reserach paper described in
-        %the function in the comments
-        
-        C = modify_coefficients(C, K, a, p, q);
+            %Modify the Curvlet coefficients using the reserach paper described in
+            %the function in the comments
+            C = modify_coefficients(C, ctemp, K, a, p, q);
 
-        %Rebuild the image using the modified coefficient values
-        disp('Ready to combine the modified Coefficients.');
-        Y = mat2gray(real(ifdct_wrapping(C, 0)));
-
-        %figure(i);
-        %imshow(Y);
-        
-        imwrite(Y, ['ppoint', num2str(i), '.jpg'], 'jpg');
-        
-        p = p + .1;
+            %Rebuild the image using the modified coefficient values
+            Y = mat2gray(real(ifdct_wrapping(C, 0)));
+            imwrite(Y, ['TestDir/ppoint', num2str(f-1),'qpoint', num2str(i-1), '.jpg'], 'jpg');
+            
+            p = p + .1;
+            disp('----------------------------------------------------------');
+        end
+        q = q + .1;
     end
     
     return;
@@ -66,7 +74,10 @@ function [out] = vessel_detection_curvlet(I)
                 0,0,1,0,0;];
      
     %Combine all the images into a final image using each structuring element
+    height = size(I,1);
+    width = size(I,2);
     final_img = zeros(height, width);
+    
     M = 8;
     final_img = add_img(apply_morph(Y, zeroline), M, final_img);
     final_img = add_img(apply_morph(Y, twentytwopointfive), M, final_img);
@@ -85,61 +96,42 @@ function [out] = vessel_detection_curvlet(I)
     subplot(1,2,2); colormap gray; imagesc(real(Y)); axis('image'); title('partial reconstruction');
 end
 
-function [newCoeff] = modify_coefficients(C, K, a, p, q)
+function [newCoeff] = modify_coefficients(C, ctemp, K, a, p, q)
     newCoeff = C;
-    
-    %Loop through each sub-band
-    number_of_bands = length(C);
-    disp(['A total of: ', num2str(number_of_bands), ' to run!']);
-    for j=1:number_of_bands
-        %Each sub-band can have one or more matricies of coefficients
-        disp(['Modifying Sub-Band: ', num2str(j), ' with ', num2str(length(C{j})), ' angle(s).']);
-        
-        %Find the maximum value within this sub-band by iterating over angles
-        Mij = 0;
-        for k=1:length(C{j})
-            temp = max(C{j}{k}(:));
-            if (Mij < temp)
-                Mij = temp;
-            end
-        end
-        disp(['Mij: ', num2str(Mij)]);
-        
-        %Get the coefficients of only the current subband
-        ctemp = C;
-        for j1=1:length(ctemp)
-            if j1 ~= j
-                for k1=1:length(ctemp{j1})
-                    for y=1:size(ctemp{j1}{k1}, 1)
-                        for x=1:size(ctemp{j1}{k1}, 2)
-                            ctemp{j1}{k1}(y, x) = 0;
-                        end
-                    end
+          
+    %Loop through each scale|angle
+    disp(['A total of: ', num2str(length(C)), ' scale(s) to run!']);
+    for j=1:length(C)
+        for l=1:length(C{j})
+            %Set the empty coefficient array to current scale|angle
+            for y=1:size(C{j}{l}, 1)
+                for x=1:size(C{j}{l}, 2)
+                    ctemp{j}{l}(y, x) = C{j}{l}(y, x);
                 end
             end
+
+            %Rebuild the image using only one angle and scale at a time
+            ctempimg = real(ifdct_wrapping(ctemp, 0));
+
+            %Reset the coefficient array to empty
+            for y=1:size(C{j}{l}, 1)
+                for x=1:size(C{j}{l}, 2)
+                    ctemp{j}{l}(y, x) = 0;
+                end
+            end
+            
+            %Estimate the noise image standard deviation for this sub-band
+            sigma = img_stddev(ctempimg);
+            
+            %Find the maximum value within this scale and angle
+            Mij = max(C{j}{l}(:));
+
+            %calculate the m value for the peacewise function shown in equation(7)
+            m = K * (Mij - sigma);
+            
+            %Apply the yalpha function to each coefficient in this scale and angle wedge
+            newCoeff{j}{l} = process_subband_matrix(C{j}{l}, sigma, m, a, p, q);
         end
-        
-        %Rebuild the image using only one sub0-band at a time
-        %figure(j);
-        ctempimg = real(ifdct_wrapping(ctemp, 0));
-        %imshow(ctempimg);
-        
-        %Estimate the noise image standard deviation for this sub-band
-    	sigma = img_stddev(ctempimg);
-        disp(['Noise standard deviation: ', num2str(sigma)]);
-        
-        %calculate the m value for the peacewise function shown in equation(7)
-        m = K * (Mij - sigma);
-        disp(['m: ', num2str(m), ' = ', num2str(K), ' * (Mij - sigma)']);
-        
-        %Foreach sub-band 
-        for k=1:length(C{j})
-        	CoeffMatrix = C{j}{k};
-            temp = process_subband_matrix(CoeffMatrix, sigma, m, a, p, q);
-            newCoeff{j}{k} = temp;
-        end
-        
-        disp('----------------------------------------------------------');
     end
 end
 
