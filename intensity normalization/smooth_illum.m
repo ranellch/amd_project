@@ -21,19 +21,47 @@ end
 I=double(I)./255;
 Iwidth = size(I, 2);
 Iheight = size(I, 1);
-background = zeros(size(I));
+mu = zeros(size(I));
+sigma = zeros(size(I));
 
-%Get background using standard deviations in 3 by 3 grid
-for i = 1:3
-    for j = 1:3
-        dims = [1+round((i-1)*Iheight/3), round(i*Iheight/3), 1+round((j-1)*Iwidth/3), round(j*Iwidth/3)];
-        window = I(dims(1):dims(2),dims(3):dims(4));
-        mu = mean2(window);
-        sigma = std(window(:));
-        background(dims(1):dims(2),dims(3):dims(4)) = abs((window-mu)./sigma)<=.7;
-           
+%Pad image by 1/8 and tesselate with gridboxes 1/4 height and width of image
+%Get mean and standard deviation at the center of each gridbox
+boxh = Iheight/4;
+boxw = Iwidth/4;
+paddedI = padarray(I,[round(boxh/2) round(boxw/2)], 'symmetric', 'both');
+for i = 1:5
+    for j = 1:5
+        dims = [1+round((i-1)*boxh), round(i*boxh), 1+round((j-1)*boxw), round(j*boxw)];
+        window = paddedI(dims(1):dims(2),dims(3):dims(4));
+        if i == 5
+            dims(1) = Iheight;
+        end
+        if j == 5
+            dims(3) = Iwidth;          
+        end
+        mu(dims(1),dims(3)) = mean2(window);
+        sigma(dims(1),dims(3)) = std(window(:));
     end
 end
+
+
+%Interpolate to get mean and standard deviation of every pixel
+[y, x, mu1] = find(mu);
+[xq, yq] = meshgrid(1:Iwidth, 1:Iheight);
+mu = griddata(x, y, mu1, xq, yq,'cubic');
+
+figure
+mesh(xq,yq,mu);
+hold on
+plot3(x,y,mu1,'o');
+
+
+[y, x, sigma] = find(sigma);
+sigma = griddata(x, y, sigma, xq, yq,'cubic');
+
+
+%Get background by thresholding Mahalanobis distance of every pixel
+background = abs((I-mu)./sigma)<=1;
 background = logical(background);
 figure, imshow(background)
 
