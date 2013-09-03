@@ -39,7 +39,6 @@ function [none] = manual_detect(pid, time1, time2)
     if ~isempty(path1) && ~isempty(path2)
         base = crop_footer(rgb2gray(imread(path1)));
         next = crop_footer(rgb2gray(imread(path2)));
-
         
         [img1, img2] = match_sizing(base, next);
         

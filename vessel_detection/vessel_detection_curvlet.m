@@ -1,108 +1,68 @@
-function [out] = vessel_detection_curvlet(I)
-    addpath('../curvlet/fdct_wrapping_matlab/');
-    
+function [out] = vessel_detection_curvlet(I)    
     if length(size(I)) > 2
         I = rgb2gray(I);
     end
     
     I = double(I);
 
-    K = 1;
-    a = 4;
-    p = 0;
-    q = 0;
-        
-    for i=1:11
-        p = 0;
-        for f=1:11
-            %Calculate the Curvlet coefficients
-            C = fdct_wrapping(I, 0);
-            
-            %Get a zeroed out version of the Coefficients matrix
-            ctemp = C;
-            for j=1:length(ctemp)
-                for l=1:length(ctemp{j})
-                    for y=1:size(ctemp{j}{l}, 1)
-                        for x=1:size(ctemp{j}{l}, 2)
-                           ctemp{j}{l}(y, x) = 0;                         
-                        end
-                    end
+    %Calculate the Curvlet coefficients
+    C = fdct_wrapping(I, 0);
+
+    %Get a zeroed out version of the Coefficients matrix
+    ctemp = C;
+    for j=1:length(ctemp)
+        for l=1:length(ctemp{j})
+            for y=1:size(ctemp{j}{l}, 1)
+                for x=1:size(ctemp{j}{l}, 2)
+                   ctemp{j}{l}(y, x) = 0;                         
                 end
             end
-
-            %Modify the Curvlet coefficients using the reserach paper described in
-            %the function in the comments
-            C = modify_coefficients(C, ctemp, K, a, p, q);
-
-            %Rebuild the image using the modified coefficient values
-            Y = mat2gray(real(ifdct_wrapping(C, 0)));
-            imwrite(Y, ['TestDir/ppoint', num2str(f-1),'qpoint', num2str(i-1), '.jpg'], 'jpg');
-            
-            p = p + .1;
-            disp('----------------------------------------------------------');
         end
-        q = q + .1;
+    end
+
+    %Curvlet coefficients that must be modified
+    lemma = .5;
+    c = 3;
+    p = .5;
+    s = 0;
+    
+    %Modify the Curvlet coefficients
+    C = modify_coefficients(C, ctemp, lemma, c, p, s);
+
+    %Rebuild the image using the modified coefficient values
+    Y = mat2gray(real(ifdct_wrapping(C, 0)));
+    disp('----------------------------------------------------------');
+    
+    %Allocate the output image to sum up morpholocigcal filters
+    final_img = zeros(size(I,1), size(I,2));
+    
+    %Combine all the images into a final image using each structuring element
+    M = 8;
+    length_element = 5;
+    wedge = 180 / M;
+    for i=1:M
+        line = strel('line', length_element, i * wedge);
+        final_img = add_img(apply_morph(Y, line), M, final_img);
     end
     
-    return;
-    
-    %Get a 5x5 structuring elements that are a line with 22.5 degrees of resolution
-    zeroline = [0,0,0,0,0;...
-                0,0,0,0,0;...
-                1,1,1,1,1;...
-                0,0,0,0,0;...
-                0,0,0,0,0;];
-    twentytwopointfive = [0,0,0,0,0;...
-                          0,0,0,0,1;...
-                          0,0,1,0,0;...
-                          1,0,0,0,0;...
-                          0,0,0,0,0;];
-    fortyfive = [0,0,0,0,1;...
-                 0,0,0,1,0;...
-                 0,0,1,0,0;...
-                 0,1,0,0,0;...
-                 1,0,0,0,0;];
-    sixtysevenpointfive = [0,0,0,1,0;...
-                           0,0,0,0,0;...
-                           0,0,1,0,0;...
-                           0,0,0,0,0;...
-                           0,1,0,0,0;];
-    vertline = [0,0,1,0,0;...
-                0,0,1,0,0;...
-                0,0,1,0,0;...
-                0,0,1,0,0;...
-                0,0,1,0,0;];
-     
-    %Combine all the images into a final image using each structuring element
-    height = size(I,1);
-    width = size(I,2);
-    final_img = zeros(height, width);
-    
-    M = 8;
-    final_img = add_img(apply_morph(Y, zeroline), M, final_img);
-    final_img = add_img(apply_morph(Y, twentytwopointfive), M, final_img);
-    final_img = add_img(apply_morph(Y, fliplr(twentytwopointfive)), M, final_img);
-    final_img = add_img(apply_morph(Y, fortyfive), M, final_img);
-    final_img = add_img(apply_morph(Y, fliplr(fortyfive)), M, final_img);
-    final_img = add_img(apply_morph(Y, sixtysevenpointfive), M, final_img);
-    final_img = add_img(apply_morph(Y, fliplr(sixtysevenpointfive)), M, final_img);
-    final_img = add_img(apply_morph(Y, vertline), M, final_img);
-    
-    figure(11);
+    figure(1);
     imshow(final_img);
     
     figure(2);
     subplot(1,2,1); colormap gray; imagesc(real(I)); axis('image'); title('original image');
     subplot(1,2,2); colormap gray; imagesc(real(Y)); axis('image'); title('partial reconstruction');
+
+    out = final_img;
 end
 
-function [newCoeff] = modify_coefficients(C, ctemp, K, a, p, q)
+function [newCoeff] = modify_coefficients(C, ctemp, lemma, c, p, s)
     newCoeff = C;
-          
+    
     %Loop through each scale|angle
-    disp(['A total of: ', num2str(length(C)), ' scale(s) to run!']);
     for j=1:length(C)
         for l=1:length(C{j})
+            disp(['Scale: ', num2str(j), ' Angle: ', num2str(l)]);
+            
             %Set the empty coefficient array to current scale|angle
             for y=1:size(C{j}{l}, 1)
                 for x=1:size(C{j}{l}, 2)
@@ -127,10 +87,11 @@ function [newCoeff] = modify_coefficients(C, ctemp, K, a, p, q)
             Mij = max(C{j}{l}(:));
 
             %calculate the m value for the peacewise function shown in equation(7)
-            m = K * (Mij - sigma);
+            %m = lemma * (Mij - sigma);
+            m = Mij * lemma;
             
             %Apply the yalpha function to each coefficient in this scale and angle wedge
-            newCoeff{j}{l} = process_subband_matrix(C{j}{l}, sigma, m, a, p, q);
+            newCoeff{j}{l} = process_subband_matrix(C{j}{l}, sigma, m, c, p, s);
         end
     end
 end
@@ -160,7 +121,7 @@ function [sigma] = img_stddev(img)
     sigma = sqrt(pi / 2) * (1 / (6 * (k - 2) * (l - 2))) * summation;
 end
 
-function [result] = process_subband_matrix(CoeffMatrix, sigma, m, a, p, q)
+function [result] = process_subband_matrix(CoeffMatrix, sigma, m, c, p, s)
     %For each sub matrix find the maximum value and use it to calculate
     %variable m (lowercase), this is based upon the following paper.
     %Fast and automatic algorithm for optic disc extraction in
@@ -172,7 +133,7 @@ function [result] = process_subband_matrix(CoeffMatrix, sigma, m, a, p, q)
     for y=1:size(CoeffMatrix, 1)
         for x=1:size(CoeffMatrix, 2)
             CoeffValue = CoeffMatrix(y, x);
-            modify_coeff = yalpha(abs(CoeffValue), sigma, m, a, p, q);
+            modify_coeff = yalpha(abs(CoeffValue), sigma, m, c, p, s);
             CoeffMatrix(y, x) = CoeffValue * modify_coeff;
         end
     end
@@ -181,24 +142,21 @@ function [result] = process_subband_matrix(CoeffMatrix, sigma, m, a, p, q)
     result = CoeffMatrix;
 end
 
-function [result] = yalpha(x, sigma, m, a, p, q)
-    %These three variables must be tuned to gain desierable results
-    K1 = 1;
-    K2 = 1;
-    
-    %c is equal to the standard deviation of the image
-    c = sigma;
-    
-    if (abs(x) < (a*c))
+function [result] = yalpha(x, sigma, m, c, p, s)
+    %This is the definition of the peacewise function as described in
+    %"Gray and Color Image Contrast Enhancement by the Curvelet Transform"
+    %Authors: Jean-Luc Starck, Fionn Murtagh, Emmanuel J. Candès, and David L. Donoho
+    if (abs(x) < (c*sigma))
         result = 1;
-    elseif ((a*c) <= abs(x) && abs(x) < (2*a*c))
-        result = ((abs(x) - (a*c) / (a*c)) * ((m / (a*c))^p)) + (((2*a*c) - abs(x)) / (a*c));
-    elseif ((2*a*c) <= abs(x) && abs(x) < m)
-        result = K1 * ((m / abs(x))^p);
+    elseif ((c*sigma) <= abs(x) && abs(x) < (2*c*sigma))
+        result = (((abs(x) - (c*sigma)) / (c*sigma)) * ((m / (c*sigma))^p)) + (((2*c*sigma) - abs(x)) / (c*sigma));
+    elseif ((2*c*sigma) <= abs(x) && abs(x) < m)
+        result = ((m / abs(x))^p);
     elseif (m <= abs(x))
-        result = K2 * ((m / abs(x))^q);
+        result = ((m / abs(x))^s);
     else
-        disp('Error in yalpha');
+        result = 0;
+        disp('Error in yalpha peacewise function');
     end
 end
 
