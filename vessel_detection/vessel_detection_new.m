@@ -1,4 +1,8 @@
 function [bimg] = vessel_detection_new(I)
+    addpath('..');
+    
+    I = crop_footer(I);
+    
     %Allocate the output image to sum up morpholocigcal filters
     bimg = zeros(size(I,1), size(I,2));
 

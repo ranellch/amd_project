@@ -1,4 +1,4 @@
-function [none] = manual_detect(pid, time1, time2)
+function [none] = manually_register_images(pid, time1, time2)
     %Add the location of the images
     addpath('..');
     addpath(genpath('../Test Set'));
@@ -66,4 +66,6 @@ function [none] = manual_detect(pid, time1, time2)
             end
         end
     end
+    
+    none = 'done';
 end

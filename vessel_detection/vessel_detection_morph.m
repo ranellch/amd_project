@@ -1,4 +1,7 @@
-function [BWout] = vessel_detection(I)
+function [BWout] = vessel_detection_morph(I)
+    addpath('..');
+    
+    I = crop_footer(I);
 
     height = size(I,1);
     width = size(I,2);
