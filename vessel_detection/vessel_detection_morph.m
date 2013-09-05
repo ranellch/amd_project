@@ -22,10 +22,6 @@ function [BWout] = vessel_detection(I)
     BWout = bwmorph(BWout, 'spur', 20);
     BWout = bwmorph(BWout, 'clean');
     BWout = bwareaopen(BWout, 100);
-
-    
-
-   
 end
 
 

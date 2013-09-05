@@ -1,24 +1,18 @@
-function [out] = vessel_detection_curvlet(I)    
+function [out] = contrast_curvlet(I)
+    %Convert image to gray scale if it is not
     if length(size(I)) > 2
         I = rgb2gray(I);
     end
     
+    %Convert the datatype to double
     I = double(I);
 
     %Calculate the Curvlet coefficients
     C = fdct_wrapping(I, 0);
 
     %Get a zeroed out version of the Coefficients matrix
-    ctemp = C;
-    for j=1:length(ctemp)
-        for l=1:length(ctemp{j})
-            for y=1:size(ctemp{j}{l}, 1)
-                for x=1:size(ctemp{j}{l}, 2)
-                   ctemp{j}{l}(y, x) = 0;                         
-                end
-            end
-        end
-    end
+    disp('Calculate scale|angle stddev:');
+    cstddev = band_stddev(C);
 
     %Curvlet coefficients that must be modified
     lemma = .5;
@@ -27,40 +21,37 @@ function [out] = vessel_detection_curvlet(I)
     s = 0;
     
     %Modify the Curvlet coefficients
-    C = modify_coefficients(C, ctemp, lemma, c, p, s);
+    Cout = modify_coefficients(C, cstddev, lemma, c, p, s);
 
     %Rebuild the image using the modified coefficient values
-    Y = mat2gray(real(ifdct_wrapping(C, 0)));
+    Y = mat2gray(real(ifdct_wrapping(Cout, 0)));
     disp('----------------------------------------------------------');
-    
-    %Allocate the output image to sum up morpholocigcal filters
-    final_img = zeros(size(I,1), size(I,2));
-    
-    %Combine all the images into a final image using each structuring element
-    M = 8;
-    length_element = 5;
-    wedge = 180 / M;
-    for i=1:M
-        line = strel('line', length_element, i * wedge);
-        final_img = add_img(apply_morph(Y, line), M, final_img);
-    end
-    
-    figure(1);
-    imshow(final_img);
-    
+       
     figure(2);
     subplot(1,2,1); colormap gray; imagesc(real(I)); axis('image'); title('original image');
     subplot(1,2,2); colormap gray; imagesc(real(Y)); axis('image'); title('partial reconstruction');
 
-    out = final_img;
+    out = Y;
 end
 
-function [newCoeff] = modify_coefficients(C, ctemp, lemma, c, p, s)
-    newCoeff = C;
+function [imgbandstddev] = band_stddev(C)
+    %Create empty coefficients array
+    ctemp = C;
+    for j=1:length(ctemp)
+        for l=1:length(ctemp{j})
+            for y=1:size(C{j}{l}, 1)
+                for x=1:size(C{j}{l}, 2)
+                    ctemp{j}{l}(y, x) = 0;
+                end
+            end
+        end
+    end
     
-    %Loop through each scale|angle
-    for j=1:length(C)
-        for l=1:length(C{j})
+    %allocate the output cell array
+    imgbandstddev = cell(length(ctemp));
+    for j=1:length(ctemp)
+        imgbandstddev{j} = cell(length(ctemp{j}));
+        for l=1:length(ctemp{j})
             disp(['Scale: ', num2str(j), ' Angle: ', num2str(l)]);
             
             %Set the empty coefficient array to current scale|angle
@@ -81,7 +72,19 @@ function [newCoeff] = modify_coefficients(C, ctemp, lemma, c, p, s)
             end
             
             %Estimate the noise image standard deviation for this sub-band
-            sigma = img_stddev(ctempimg);
+            imgbandstddev{j}{l} = img_stddev(ctempimg);
+        end
+    end
+end
+
+function [newCoeff] = modify_coefficients(C, cstddev, lemma, c, p, s)
+    newCoeff = C;
+    
+    %Loop through each scale|angle
+    for j=1:length(C)
+        for l=1:length(C{j})
+            %Get the sigma for this band
+            sigma = cstddev{j}{l};
             
             %Find the maximum value within this scale and angle
             Mij = max(C{j}{l}(:));
