@@ -1,4 +1,4 @@
-function [] = getinput()
+function [] = get_input()
     xDoc= xmlread('images.xml');
     
     newImage = xDoc.createElement('image');
