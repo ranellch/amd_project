@@ -1,4 +1,7 @@
 function [out] = contrast_curvlet(I)
+    addpath('../curvlet/fdct_wrapping_matlab');
+    addpath('..');
+    
     %Convert image to gray scale if it is not
     if length(size(I)) > 2
         I = rgb2gray(I);
@@ -26,6 +29,7 @@ function [out] = contrast_curvlet(I)
     %Rebuild the image using the modified coefficient values
     Y = mat2gray(real(ifdct_wrapping(Cout, 0)));
     disp('----------------------------------------------------------');
+	
        
     figure(2);
     subplot(1,2,1); colormap gray; imagesc(real(I)); axis('image'); title('original image');
@@ -89,7 +93,9 @@ function [newCoeff] = modify_coefficients(C, cstddev, lemma, c, p, s)
             %Find the maximum value within this scale and angle
             Mij = max(C{j}{l}(:));
 
-            %calculate the m value for the peacewise function shown in equation(7)
+            %calculate the m value for the peacewise function 
+            %Two methods can be used as seen by two equations below while
+            %one is blocked out need to tune this.
             %m = lemma * (Mij - sigma);
             m = Mij * lemma;
             
@@ -101,7 +107,7 @@ end
 
 function [sigma] = img_stddev(img)
     %This method was developed using the following paper
-    % WAVELET IMAGE DE-NOISING METHOD BASED ON NOISE STANDARD DEVIATION ESTIMATION
+    %WAVELET IMAGE DE-NOISING METHOD BASED ON NOISE STANDARD DEVIATION ESTIMATION
     
     %Define the noise estimation template as the difference between two
     %LaPlace templates
@@ -163,26 +169,4 @@ function [result] = yalpha(x, sigma, m, c, p, s)
     end
 end
 
-function [finalimg] = add_img(inputimg, M, finalimg)
-    if size(inputimg, 1) == size(finalimg, 1) && ...
-       size(inputimg, 2) == size(finalimg, 2)
-        for y=1:size(inputimg, 1)
-            for x=1:size(inputimg, 2)
-                finalimg(y, x) = finalimg(y, x) + (inputimg(y, x) / M);
-            end
-        end
-    else
-        disp('Incorrect SIZE');
-    end
-end
-
-function [out] = apply_morph(img, strelement)
-    newimg = imclose(img, strelement);
-    newimg = imopen(newimg, strelement);
-    
-    newimg1 = imdilate(newimg, strelement);
-    newimg2 = imerode(newimg, strelement);
-    
-    out = imsubtract(newimg1, newimg2);
-end
 
