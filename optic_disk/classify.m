@@ -1,10 +1,5 @@
 function classify(image)
     load('svm_model.mat', 'SVMstruct');
-<<<<<<< HEAD
-=======
-
-    hogin = HOG(image);
->>>>>>> 7b886adbce1f95659ba8b11644fe8d1bb35ca30d
     
     window_size = size(image, 1) / 3;
     
