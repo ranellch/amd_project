@@ -3,7 +3,7 @@ function [bimg] = vessel_detection_new(I)
     addpath('..');
     
     %Remove the footer if necessary
-    I = crop_footer(I);
+    %I = crop_footer(I);
     
     %Allocate the output image to sum up morpholocigcal filters
     bimg = zeros(size(I,1), size(I,2));
@@ -14,7 +14,7 @@ function [bimg] = vessel_detection_new(I)
     wedge = 180 / M;
     for i=1:M
         line = strel('line', length_element, i * wedge);
-        bimg = add_img(apply_morph(Y, line), M, bimg);
+        bimg = add_img(apply_morph(I, line), M, bimg);
     end
 
     figure(1);
@@ -42,4 +42,5 @@ function [out] = apply_morph(img, strelement)
     newimg2 = imerode(newimg, strelement);
     
     out = imsubtract(newimg1, newimg2);
+    imshow(out);
 end

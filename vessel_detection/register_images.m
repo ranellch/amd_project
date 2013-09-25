@@ -11,7 +11,6 @@ function [new_base_filename, new_corr_filename] = register_images(...
 		mkdir(outputdir); 
     end
        
->>>>>>> 8ff24467bfb59e90301d6587b34631126d1cb69c
 	%Read in the files to attempt to register
 	base_img_real = imread(base_img_real_file);
 	next_img_real = imread(next_img_real_file);

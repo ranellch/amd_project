@@ -19,7 +19,7 @@ function [out] = contrast_curvlet(I)
 
     %Curvlet coefficients that must be modified
     lemma = .5;
-    c = 3;
+    c = 4;
     p = .5;
     s = 0;
     
