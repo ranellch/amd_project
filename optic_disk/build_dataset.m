@@ -66,7 +66,7 @@ for count=1:images.getLength
                     subimages_count = subimages_count - 1;
                 case 'No'
                     fileID = fopen('train.dataset','at');
-                    fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, hog_to_string(subimage));
+                    fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, hog_to_string(subimage), ',', lbp_to_string(subimage));
                     fclose(fileID);
                 case 'Cancel'
                     return;
@@ -103,7 +103,7 @@ for count=1:images.getLength
             case 'Yes'
                 found_optic_disk = found_optic_disk + 1;
                 fileID = fopen('train.dataset','at');
-                fprintf(fileID, '"%s" 11, 1, %s\n', the_path, hog_to_string(optic_disk_image));
+                fprintf(fileID, '"%s" 11, 1, %s\n', the_path, hog_to_string(optic_disk_image), ',', lbp_to_string(optic_disk_image));
                 fclose(fileID);
             case 'No'
                 
