@@ -27,6 +27,8 @@ end
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');
 
+blocks = 5;
+
 %Loop on the image field in the images tag
 for count=1:images.getLength
     image = images.item(count - 1);
@@ -50,11 +52,17 @@ for count=1:images.getLength
     maxx = size(image, 2);
     minimum_size = maxy / 3;
     
+    [xval, xsize, yval, ysize] = block_it_out(image, blocks);
+    
     subimages_count = 1;
     found_optic_disk = 0;
-    while subimages_count <= 10
+    while subimages_count <= (blocks * blocks)
         if mapObj(the_path) < subimages_count
-            [xs, xe, ys, ye] = random_box(maxx, maxy, minimum_size);
+            %[xs, xe, ys, ye] = random_box(maxx, maxy, minimum_size);
+            ys = yval(subimages_count);
+            ye = ys + ysize;
+            xs = xval(subimages_count);
+            xe = xs + xsize;
             subimage = image(ys:ye, xs:xe);
 
             figure(2);
@@ -63,10 +71,12 @@ for count=1:images.getLength
             switch yesnobutton
                 case 'Yes'
                     found_optic_disk = found_optic_disk + 1;
-                    subimages_count = subimages_count - 1;
+                    fileID = fopen('train.dataset','at');
+                    fprintf(fileID, '"%s" %d, 1, %s\n', the_path, subimages_count, [lbp_to_string(subimage)]);
+                    fclose(fileID);
                 case 'No'
                     fileID = fopen('train.dataset','at');
-                    fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, hog_to_string(subimage), ',', lbp_to_string(subimage));
+                    fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, [lbp_to_string(subimage)]);
                     fclose(fileID);
                 case 'Cancel'
                     return;
@@ -77,13 +87,13 @@ for count=1:images.getLength
         subimages_count = subimages_count + 1;
     end
     
-    if mapObj(the_path) < 11
+    if mapObj(the_path) < 0
         figure(1);
         imshow(image);
         [centerx, centery] = ginput(1);
         close 1;
         
-        xs = centerx(1) - (minimum_size / 2);
+        xs = centerx(1);
         if(xs <= 0)
             xs = 1;
         end
@@ -103,7 +113,7 @@ for count=1:images.getLength
             case 'Yes'
                 found_optic_disk = found_optic_disk + 1;
                 fileID = fopen('train.dataset','at');
-                fprintf(fileID, '"%s" 11, 1, %s\n', the_path, hog_to_string(optic_disk_image), ',', lbp_to_string(optic_disk_image));
+                fprintf(fileID, '"%s" 11, 1, %s\n', the_path, [lbp_to_string(optic_disk_image)]);
                 fclose(fileID);
             case 'No'
                 
