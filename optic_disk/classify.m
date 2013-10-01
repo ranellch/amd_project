@@ -1,25 +1,33 @@
 function classify(image)
     load('svm_model.mat', 'SVMstruct');
-    
-    blocks = 5;
-    
-    maxx = size(image, 2);
-    maxy = size(image, 1);
-    window_size = round(maxy / blocks);
-    
-    ystart = round(maxy / 5);
-    yend = ystart * 3;
+
+    bin_image = zeros(size(image, 1), size(image, 2));
+  
+    number_of_pixels = 16;
+    iterations = round(size(image, 1) / number_of_pixels);
     
     %Go down the left side of the image
-    for x=1:(maxx - window_size)
-        for y=ystart:yend    
-            subimage = image(y:y+window_size,x:x+window_size);
-            figure(1);
-            imshow(subimage);
-            grouping = class_image(subimage, SVMstruct);
-            if grouping == 1
-                disp([num2str(x), ', ', num2str(y), ': ', num2str(grouping)]);
+    for x=1:iterations
+        for y=1:iterations
+            ys = (y - 1) * number_of_pixels;
+            xs = (x - 1) * number_of_pixels;
+            if(xs + number_of_pixels <= size(image, 2) && ys + number_of_pixels <= size(image, 1)
+                subimage = image(ys:ys+number_of_pixels,xs:xs+number_of_pixels);
+                grouping = class_image(subimage, SVMstruct);
+                if grouping == 1
+                    bin_image = apply_bin_to_arr(bin_image, ys, xs, number_of_pixels, 0);
+                else
+		    bin_image = apply_bin_to_arr(bin_image, ys, xs, number_of_pixels, 1);
+                end  
             end
+        end
+    end
+end
+
+function output = apply_bin_to_arr(output, ys, xs, number_of_pixels, val)
+    for y=ys:ys+number_of_pixels
+        for x=xs:xs+number_of_pixels
+            output(y, x) = val;
         end
     end
 end
