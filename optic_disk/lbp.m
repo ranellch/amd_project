@@ -44,7 +44,7 @@ function result = lbp(varargin) % image,radius,neighbors,mapping,mode)
 
 
 % Check number of input arguments.
-error(nargchk(1,5,nargin));
+narginchk(1,5);
 
 image=varargin{1};
 d_image=double(image);
@@ -111,9 +111,7 @@ if (nargin > 1) && (length(varargin{2}) > 1)
 end
 
 % Determine the dimensions of the input image.
-[ysize xsize] = size(image);
-
-
+[ysize, xsize] = size(image);
 
 miny=min(spoints(:,1));
 maxy=max(spoints(:,1));

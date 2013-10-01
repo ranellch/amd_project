@@ -27,6 +27,8 @@ end
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');
 
+blocks = 5;
+
 %Loop on the image field in the images tag
 for count=1:images.getLength
     image = images.item(count - 1);
@@ -62,7 +64,10 @@ for count=1:images.getLength
         
     fileID = fopen('train.dataset','at');
     
+    [xval, xsize, yval, ysize] = block_it_out(image, blocks);
+    
     subimages_count = 1;
+<<<<<<< HEAD
     for x=1:subimage_size
         for y=1:subimage_size
             if mapObj(the_path) < subimages_count
@@ -90,11 +95,39 @@ for count=1:images.getLength
                     
                     mapObj(the_path) = subimages_count;
                 end
+=======
+    found_optic_disk = 0;
+    while subimages_count <= (blocks * blocks)
+        if mapObj(the_path) < subimages_count
+            %[xs, xe, ys, ye] = random_box(maxx, maxy, minimum_size);
+            ys = yval(subimages_count);
+            ye = ys + ysize;
+            xs = xval(subimages_count);
+            xe = xs + xsize;
+            subimage = image(ys:ye, xs:xe);
+
+            figure(2);
+            imshow(subimage);
+            yesnobutton = questdlg('Does this image contain an optic disc?', [the_path, ' - ', num2str(subimages_count)],'Yes','No', 'Cancel', 'Cancel');
+            switch yesnobutton
+                case 'Yes'
+                    found_optic_disk = found_optic_disk + 1;
+                    fileID = fopen('train.dataset','at');
+                    fprintf(fileID, '"%s" %d, 1, %s\n', the_path, subimages_count, [lbp_to_string(subimage)]);
+                    fclose(fileID);
+                case 'No'
+                    fileID = fopen('train.dataset','at');
+                    fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, [lbp_to_string(subimage)]);
+                    fclose(fileID);
+                case 'Cancel'
+                    return;
+>>>>>>> 2348e277caa9df1635496bdc065312a74eb5fa68
             end
             subimages_count = subimages_count + 1;
         end
     end
     
+<<<<<<< HEAD
     fileID = fopen('train.dataset','at');
     
 %     if mapObj(the_path) < 11
@@ -132,5 +165,42 @@ for count=1:images.getLength
 %         end
 %         close 3;
 %     end
+=======
+    if mapObj(the_path) < 0
+        figure(1);
+        imshow(image);
+        [centerx, centery] = ginput(1);
+        close 1;
+        
+        xs = centerx(1);
+        if(xs <= 0)
+            xs = 1;
+        end
+        xe = xs + minimum_size;
+        
+        ys = centery(1) - (minimum_size / 2);
+        if(ys <= 0)
+            ys = 1;
+        end
+        ye = ys + minimum_size;
+        
+        optic_disk_image = image(ys:ye, xs:xe);
+        figure(3);
+        imshow(optic_disk_image);
+        yesnobutton = questdlg('Does this image contain an optic disc?','Optic Disc?','Yes','No', 'Cancel', 'Cancel');
+        switch yesnobutton
+            case 'Yes'
+                found_optic_disk = found_optic_disk + 1;
+                fileID = fopen('train.dataset','at');
+                fprintf(fileID, '"%s" 11, 1, %s\n', the_path, [lbp_to_string(optic_disk_image)]);
+                fclose(fileID);
+            case 'No'
+                
+            case 'Cancel'
+                return;
+        end
+        close 3;
+    end
+>>>>>>> 2348e277caa9df1635496bdc065312a74eb5fa68
 end
 
