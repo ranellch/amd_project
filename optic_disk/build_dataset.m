@@ -27,8 +27,6 @@ end
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');
 
-blocks = 5;
-
 %Loop on the image field in the images tag
 for count=1:images.getLength
     image = images.item(count - 1);
@@ -38,7 +36,7 @@ for count=1:images.getLength
     image = imread(the_path);
     
     %Calculate the size of the 
-    number_of_pixels_per_box = 16;
+    number_of_pixels_per_box = 24;
     subimage_size = floor(size(image, 1) / number_of_pixels_per_box);
     
     if isKey(mapObjExclude, the_path)
