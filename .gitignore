@@ -8,3 +8,4 @@
 cpselect_database/run*
 .DS_Store
 *.mat
+train.dataset

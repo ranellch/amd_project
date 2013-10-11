@@ -1,20 +1,16 @@
-function [one, two] = build_dataset()
+function [out] = build_dataset()
 %Add the location of the XML file with patient information
 addpath('..');
 
-one = 'done';   
-two = 'donzo';
+number_of_pixels_per_box = 32;
 
-number_of_pixels_per_box = 48;
-if nargin == 1
-    number_of_pixels_per_box = str2double(varargin{1});
-end
+out = 'done';
 
 %Add the location of the images
 addpath(genpath('../Test Set'));
 
+%Get the images lready run
 mapObj = containers.Map('KeyType', 'char', 'ValueType', 'int32');
-
 fid = fopen('train.dataset');
 paths = textscan(fid,'%q %d %*[^\n]');
 fclose(fid);
@@ -23,6 +19,7 @@ for x=1:size(paths{1}, 1)
     mapObj(char(paths{1}{x})) = paths{2}(x);
 end
 
+%Get the images to exclude
 mapObjExclude = containers.Map('KeyType', 'char', 'ValueType', 'int32');
 fid = fopen('exclude.dataset');
 excludes = textscan(fid,'%q %*[^\n]');
@@ -32,7 +29,7 @@ for x=1:size(excludes{1}, 1)
     mapObjExclude(char(excludes{1}{x})) = 0;
 end
 
-
+%Start iterating through all the images to run
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');
 
@@ -91,9 +88,9 @@ for count=1:images.getLength
                     %Get the percentage of the disk included in this image
                     percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
                                         
-                    if(percentage_disk > 0.7)
+                    if(percentage_disk > 0.85)
                         fprintf(fileID, '"%s" %d, 1, %s\n', the_path, subimages_count, lbp_to_string(subimage));
-                    else
+                    else if(percentage_disk <.01)
                         fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, lbp_to_string(subimage));
                     end
                     
