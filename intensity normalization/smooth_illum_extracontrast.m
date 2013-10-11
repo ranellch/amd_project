@@ -50,10 +50,10 @@ end
 [xq, yq] = meshgrid(1:Iwidth, 1:Iheight);
 mu = griddata(x, y, mu1, xq, yq,'cubic');
 
-figure
-mesh(xq,yq,mu);
-hold on
-plot3(x,y,mu1,'o');
+%figure
+%mesh(xq,yq,mu);
+%hold on
+%plot3(x,y,mu1,'o');
 
 
 [y, x, sigma] = find(sigma);
@@ -63,7 +63,7 @@ sigma = griddata(x, y, sigma, xq, yq,'cubic');
 %Get background by thresholding Mahalanobis distance of every pixel
 background = abs((I-mu)./sigma)<=1;
 background = logical(background);
-figure, imshow(background)
+%figure, imshow(background)
 
 %Sample background
 Icenterx = round(Iwidth/2);
@@ -160,16 +160,16 @@ end
 [y, x, L1] = find(L);
 [xq, yq] = meshgrid(1:Iwidth, 1:Iheight);
 L = griddata(x, y, L1, xq, yq,'cubic');
-figure, imshow(L)
+%figure, imshow(L)
 
 [y, x, C] = find(C);
 C = griddata(x, y, C, xq, yq,'cubic');
-figure, imshow(C)
+%figure, imshow(C)
 
 %Smooth
 Iout = ((double(I)-k1*L)./(k2*C)).*std(I(:))+mean2(I);
 Iout = mat2gray(Iout, [0 1]);
-figure, imshow(Iout)
+%figure, imshow(Iout)
 
 
       
