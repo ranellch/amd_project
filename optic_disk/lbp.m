@@ -141,12 +141,13 @@ C = image(origy:origy+dy,origx:origx+dx);
 d_C = double(C);
 
 bins = 2^neighbors;
+bins_contrast = 8;
 
 % Initialize the result matrix with zeros.
 result=zeros(dy+1,dx+1);
+neighbor_intensity=zeros(neighbors, dy+1, dx+1);
 
 %Compute the LBP code image
-
 for i = 1:neighbors
   y = spoints(i,1)+origy;
   x = spoints(i,2)+origx;
@@ -172,10 +173,48 @@ for i = 1:neighbors
     N = w1*d_image(fy:fy+dy,fx:fx+dx) + w2*d_image(fy:fy+dy,cx:cx+dx) + ...
         w3*d_image(cy:cy+dy,fx:fx+dx) + w4*d_image(cy:cy+dy,cx:cx+dx);
     D = N >= d_C; 
-  end  
+  end
+  
+  %Get the matrix for contrast level
+  for yd=1:size(D, 1)
+      for xd=1:size(D, 2)
+          neighbor_intensity(i, yd, xd) = D(yd, xd);
+      end
+  end
+  
   % Update the result matrix.
   v = 2^(i-1);
   result = result + v*D;
+end
+
+%Calculate the contrasting
+result_contrast=zeros(dy+1,dx+1);
+for yd=1:size(neighbor_intensity, 2)
+	for xd=1:size(neighbor_intensity, 3)
+        %Get the summation of gray levels in neighbors to center pixel
+        above_sum = 0.0;
+        above_count = 0.0;
+        below_sum = 0.0;
+        below_count = 0.0;
+        for neig=1:size(neighbor_intensity, 1)
+            if(neighbor_intensity(neig, yd, xd) == 0)
+                below_count = below_count + 1.0;
+                below_sum = below_sum + image(yd, xd);
+            else
+                above_count = above_count + 1.0;
+                above_sum = above_sum + image(yd, xd);
+            end
+        end
+        
+        if(below_count == 0) 
+            below_count = 1;
+        end
+        if(above_count == 0) 
+            above_count = 1;
+        end
+            
+        result_contrast(yd, xd) = (double(above_sum)/above_count) - (double(below_sum)/below_count);
+	end
 end
 
 %Apply mapping if it is defined
@@ -184,13 +223,40 @@ if isstruct(mapping)
     for i = 1:size(result,1)
         for j = 1:size(result,2)
             result(i,j) = mapping.table(result(i,j)+1);
+            result_contrast(i, j) = mapping.table(result_contrast(i, j) + 1);
         end
     end
 end
 
 if (strcmp(mode,'h') || strcmp(mode,'hist') || strcmp(mode,'nh'))
+    %Calculate the distance between the bins
+    minval = min(result_contrast) - 1;
+    maxval = max(result_contrast) + 1;
+    step = ceil((maxval - minval) / bins_contrast);
+    
+    
+    ranges = zeros(bins_contrast+1,1);
+    for i=1:bins_contrast+1
+       ranges(i,1) = (minval) + (i * step);
+    end
+   
+    indexbin=zeros(size(result_contrast, 1), size(result_contrast, 2));
+    for y=1:size(result_contrast, 1)
+        [~,ind] = histc(result_contrast(y,:), ranges);
+        indexbin(y,:) = ind;
+    end
+    
+    disp(indexbin);
+    error('yolo');
+    
+    for y=1:size(result, 1)
+        for x=1:size(result, 2)
+            result(y,x) = result(x,y) * indexbin(y, x);
+        end
+    end
+    
     % Return with LBP histogram if mode equals 'hist'.
-    result=hist(result(:),0:(bins-1));
+    result=hist(result(:),0:((bins-1)));
     if (strcmp(mode,'nh'))
         result=result/sum(result);
     end

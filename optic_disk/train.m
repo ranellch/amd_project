@@ -51,7 +51,7 @@ while ischar(tline)
     %Get the category of this images HOG
     category = tline(comma_index(1, 1) + 1:comma_index(1, 2));
     svm_categories(cur_line, 1) = str2double(category);
-    
+
     if svm_categories(cur_line) == 0
         svm_zero = svm_zero + 1;
     else

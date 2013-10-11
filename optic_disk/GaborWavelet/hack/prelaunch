@@ -1,0 +1,29 @@
+#!/bin/sh
+# script for execution of deployed applications
+#
+# Sets up the MCR environment for the current $ARCH and executes 
+# the specified command.
+#
+exe_name=$0
+exe_dir=`dirname "$0"`
+
+
+  echo ------------Setting up environment variables----------------
+  MCRROOT=/Applications/MATLAB/MATLAB_Compiler_Runtime
+  echo ---
+  DYLD_LIBRARY_PATH=.:${MCRROOT}/v80/runtime/maci64 ;
+  DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:${MCRROOT}/v80/sys/os/maci64;
+  DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:${MCRROOT}/v80/bin/maci64;
+  DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:/System/Library/Frameworks/JavaVM.framework/JavaVM;
+  DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:/System/Library/Frameworks/JavaVM.framework/Libraries;
+
+  XAPPLRESDIR=${MCRROOT}/v80/X11/app-defaults ;
+  export DYLD_LIBRARY_PATH;
+  export XAPPLRESDIR;
+  echo DYLD_LIBRARY_PATH is ${DYLD_LIBRARY_PATH};
+ 
+  "${exe_dir}"/GaborWavelet
+ 
+#  GaborWavelet2
+
+exit
