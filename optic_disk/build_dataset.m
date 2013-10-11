@@ -8,6 +8,7 @@ out = 'done';
 
 %Add the location of the images
 addpath(genpath('../Test Set'));
+addpath('sfta');
 
 %Get the images lready run
 mapObj = containers.Map('KeyType', 'char', 'ValueType', 'int32');
@@ -89,9 +90,9 @@ for count=1:images.getLength
                     percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
                                         
                     if(percentage_disk > 0.85)
-                        fprintf(fileID, '"%s" %d, 1, %s\n', the_path, subimages_count, lbp_to_string(subimage));
+                        fprintf(fileID, '"%s" %d, 1, %s\n', the_path, subimages_count, sfta_to_string(subimage));
                     else if(percentage_disk <.01)
-                        fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, lbp_to_string(subimage));
+                        fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, sfta_to_string(subimage));
                     end
                     
                     mapObj(the_path) = subimages_count;
