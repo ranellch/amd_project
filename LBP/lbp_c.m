@@ -1,5 +1,5 @@
 %LBP returns the local binary pattern image or LBP histogram of an image.
-%  [J, C] = LBP_C(I,R,N,MAPPING,MODE) returns either a local binary pattern
+%  J = LBP_C(I,R,N,MAPPING,MODE) returns either a local binary pattern
 %  coded image or the local binary pattern histogram of an intensity
 %  image I. The LBP codes are computed using N sampling points on a 
 %  circle of radius R and using mapping table defined by MAPPING. 
@@ -9,10 +9,10 @@
 %       'nh'           to get a normalized histogram
 %       'i' specifies the return of an LBP image matrix
 %
-%  [J, C] = LBP_C(I) returns the original (basic) LBP histogram of image I
+%  J = LBP_C(I) returns the original (basic) LBP histogram of image I
 %  with 8 separate contrast bins in J
 %
-%  [J, C] = LBP_C(I,SP,MAPPING,MODE) computes the LBP codes using n sampling
+%  J = LBP_C(I,SP,MAPPING,MODE) computes the LBP codes using n sampling
 %  points defined in (n * 2) matrix SP. The sampling points should be
 %  defined around the origin (coordinates (0,0)).
 %
@@ -34,7 +34,7 @@
 %                           %and no mapping. Now H2 is equal to histogram
 %                           %of I2.
 
-function [result, contrast] = lbp_c(varargin) % image,radius,neighbors,mapping,mode)
+function [result] = lbp_c(varargin) % image,radius,neighbors,mapping,mode)
 % Version 0.3.2
 % Authors: Marko Heikkilä and Timo Ahonen
 
@@ -245,13 +245,10 @@ else
     %Otherwise return 2 matrices of unsigned integers
     if ((bins-1)<=intmax('uint8'))
         result=uint8(result);
-        contrast=uint8(contrast);
     elseif ((bins-1)<=intmax('uint16'))
         result=uint16(result);
-        contrast=uint16(contrast);
     else
         result=uint32(result);
-        contrast=uint32(contrast);
     end
 end
 
