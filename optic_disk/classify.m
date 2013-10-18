@@ -1,4 +1,5 @@
 function classify(pid, time, number_of_pixels)
+    %Add some paths to make this
     addpath('..');
     addpath('../Test Set');
 
@@ -15,7 +16,7 @@ function classify(pid, time, number_of_pixels)
     end
 
     %Load the svm_model variable from the current directory
-    load('svm_model.mat', 'SVMstruct');
+    load('prediction_struct.mat', 'prediction_struct');
 
     bin_image = zeros(size(image, 1), size(image, 2)); 
     iterations = floor(size(image, 1) / number_of_pixels);
@@ -27,15 +28,18 @@ function classify(pid, time, number_of_pixels)
             xs = ((x - 1) * number_of_pixels) + 1;
             if(xs + number_of_pixels <= size(image, 2) && ys + number_of_pixels <= size(image, 1))
                 subimage = image(ys:ys+number_of_pixels,xs:xs+number_of_pixels);
-                grouping = class_image_lbp(subimage, SVMstruct);
+                
+                grouping = class_img(subimage, prediction_struct);
+                
                 if grouping == 1
                     bin_image = apply_bin_to_arr(bin_image, ys, xs, number_of_pixels, 1);
                 else
                     bin_image = apply_bin_to_arr(bin_image, ys, xs, number_of_pixels, 0);
-                end  
+                end
             end
         end
     end
+    
     figure(2);
     imshow(bin_image);
 end
@@ -46,32 +50,4 @@ function output = apply_bin_to_arr(output, ys, xs, number_of_pixels, val)
             output(y, x) = val;
         end
     end
-end
-
-function grouping = class_image_lbp(img, SVMstruct)
-    desc = lbp(img);
-
-    final = zeros(1, size(desc, 2));
-    final_index = 1;
-    for x=1:size(desc, 2)
-        final(1, final_index) = desc(1, x);
-        final_index = final_index + 1;
-    end
-
-    grouping = svmclassify(SVMstruct, final);
-    return;
-end
-
-function grouping = class_image_hog(img, SVMstruct)
-    desc = HOG(img);
-    
-    final = zeros(1, size(desc, 1));
-    final_index = 1;
-    for x=1:size(desc, 1)
-        final(1, final_index) = desc(x, 1);
-        final_index = final_index + 1;
-    end
-
-    grouping = svmclassify(SVMstruct, final);
-    return;
 end

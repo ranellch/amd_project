@@ -1,18 +1,24 @@
-function [out] = build_dataset()
+function [out] = build_dataset(number_of_pixels_per_box)
+filename = 'train.classifier';
+filename_intenstiy = 'train_intensity.classifier';
+out = 'done';
+
 %Add the location of the XML file with patient information
 addpath('..');
-
-number_of_pixels_per_box = 32;
-out = 'done';
 
 %Add the location of the images
 addpath(genpath('../Test Set'));
 addpath('sfta');
+addpath('lbp');
+addpath('hog');
 
-%Get the images lready run
+%Get the images already run
 mapObj = containers.Map('KeyType', 'char', 'ValueType', 'int32');
 try
-    fid = fopen('train.dataset', 'r');
+    fidintensity = fopen(filename_intenstiy);
+    fclose(fidintensity);
+    
+    fid = fopen(filename, 'r');
     paths = textscan(fid,'%q %d %*[^\n]');
     fclose(fid);
     
@@ -20,19 +26,19 @@ try
         mapObj(char(paths{1}{x})) = paths{2}(x);
     end
 catch
-    
+    error('Error in opening and reading the file!');
 end
 
-%Get the images to exclude
+%Get the images to exclude 
 mapObjExclude = containers.Map('KeyType', 'char', 'ValueType', 'int32');
 fid = fopen('exclude.dataset');
 excludes = textscan(fid,'%q %*[^\n]');
 fclose(fid);
-
 for x=1:size(excludes{1}, 1)
     mapObjExclude(char(excludes{1}{x})) = 0;
 end
 
+%Get the xml document for the databsae
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');
 
@@ -42,29 +48,29 @@ for count=1:images.getLength
     
     %Get the path and load the image
     the_path = char(image.getAttribute('path'));
-    image = (imread(the_path));
+    img = (imread(the_path));
     
-    if(size(image, 3) > 1)
-        image = rgb2gray(image);
+    if(size(img, 3) > 1)
+        img = rgb2gray(img);
     end
-    
+        
     %Calculate the size of the 
-    %subimage_size = floor(size(image, 1) / number_of_pixels_per_box);
+    subimage_size = floor(size(img, 1) / number_of_pixels_per_box);
     
     %Should we skip this image
     if isKey(mapObjExclude, the_path)
         disp(['Skipping: ', the_path]);
         continue;
     else
-        disp(['Loading: ', the_path, ' - Box Count: ']);%, num2str(subimage_size)]);
+        disp(['Loading: ', the_path, ' - Box Count: ', num2str(subimage_size)]);
     end
-
-    %Does key exists
+    
+    %Does key exist in the map
     if isKey(mapObj, the_path) == 0
         mapObj(the_path) = 0.0;
     end
     
-   %Find the name of the file
+    %Find the name of the file
     last_part_in_path = strfind(the_path, '/');
     last_index = 1;
     if ~isempty(last_part_in_path)
@@ -75,36 +81,41 @@ for count=1:images.getLength
     snaked_file_name = ['snaked/', the_path(last_index:length(the_path))];
     snaked_image = im2bw(imread(snaked_file_name));
         
-    fileID = fopen('train.dataset','at');
+    fileID = fopen(filename,'at');
+    fidintensity = fopen(filename_intenstiy, 'at');
     
     subimages_count = 1;
     
-    for x=1:size(image, 2) - number_of_pixels_per_box
-        for y=1:size(image, 1) - number_of_pixels_per_box;
+    for x=1:subimage_size
+        for y=1:subimage_size
             if mapObj(the_path) < subimages_count
-                xs = x;
-                %xs = ((x - 1) * number_of_pixels_per_box) + 1;
+                xs = ((x - 1) * number_of_pixels_per_box) + 1;
                 xe = xs + number_of_pixels_per_box - 1;
                 
-                ys = y;
-                %ys = ((y - 1) * number_of_pixels_per_box) + 1;
+                ys = ((y - 1) * number_of_pixels_per_box) + 1;
                 ye = ys + number_of_pixels_per_box - 1;
 
-                if(ye <= size(image, 1) && xe <= size(image, 2))              
+                if(ye <= size(img, 1) && xe <= size(img, 2))              
                     %Get the original image
-                    subimage = image(ys:ye, xs:xe);
+                    subimage = img(ys:ye, xs:xe);
 
                     %Get the snake image
                     subimage_snake = snaked_image(ys:ye, xs:xe);
                     
                     %Get the percentage of the disk included in this image
                     percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
-                                        
+                    
+                    grouping = 0;
                     if(percentage_disk > 0.85)
-                        fprintf(fileID, '"%s" %d, 1, %s\n', the_path, subimages_count, sfta_to_string(subimage));
-                    else if(percentage_disk <.01)
-                        fprintf(fileID, '"%s" %d, 0, %s\n', the_path, subimages_count, sfta_to_string(subimage));
+                        grouping = 1;
+                    elseif(percentage_disk <.01)
+                        grouping = 0;
                     end
+                    
+                    fprintf(fileID, '"%s" %d, %d, %s\n', the_path, subimages_count, grouping, feature_to_string(subimage));
+                    
+                    [mean_val, var_val] = avg_intensity(subimage);
+                    fprintf(fidintensity, '"%s" %d, %d, %f,%f\n', the_path, subimages_count, grouping, mean_val, var_val);
                     
                     mapObj(the_path) = subimages_count;
                 end
@@ -112,7 +123,7 @@ for count=1:images.getLength
             subimages_count = subimages_count + 1;
         end
     end
-    
-    fclose(fileID);
     return;
+    fclose(fidintensity);
+    fclose(fileID);
 end

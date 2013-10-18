@@ -8,9 +8,6 @@ if size(img, 3) ~= 1
     img = rgb2gray(img);
 end
 
-%Smooth out the illumination
-%img = smooth_illum_extracontrast(img);
-
 %Run the mean shift algorithm
 ratio = 0.75;
 kernelsize = 2;
