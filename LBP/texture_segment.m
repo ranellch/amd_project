@@ -1,6 +1,5 @@
-function [ MI ] = texture_segment( I )
+function [  ] = texture_segment( I )
 %returns segmented image with uniform texture regions
-%fun must be a handle
 
 global  mindim maxdim
 
@@ -14,8 +13,8 @@ H = fspecial('gaussian',[5 5], 1.5);
 I=imfilter(I,H);
 
 %Pad image with zeros to guarantee that function qtdecomp will split
-%regions down to sizes  divisible by 2.
-Q = 2^nextpow2(max(size(I)));
+%regions down to sizes divisible by 16.
+Q = 2^nextpow2(max(size(I))/16)*16;
 [M, N] = size(I);
 I = padarray(I, [Q-M, Q-N], 'post');
 
@@ -32,8 +31,8 @@ for z = 1:numdims;
     dim = dims(z);
     [vals, r, c] = qtgetblk(I, S, dim);
     for j = 1:length(r)
-        hist = lbp_c(vals(:,:,j));
-        regions{idx,1} = hist+hist==0;
+        hist = lbp_c(vals(:,:,j),[-1 -1; -1 0; -1 1; 0 -1; -0 1; 1 -1; 1 0; 1 1], 0, 'nh');
+        regions{idx,1} = hist+double(hist==0); %add 1 to bins with 0 elements so log exists
         regions{idx,2} = [r(j),c(j)];
         regions{idx,3} = dim;
         idx=idx+1;
@@ -46,25 +45,29 @@ figure, imshow(Ihier,[])
 
 %***Perform Agglomerative Merging
 strt_regions = size(regions,1);
-MI = zeros(1000,1);
+MI_all = zeros(1000,1);
 count = 1;
 keep_merging = true;
+numregions = strt_regions;
 while keep_merging
-    numregions = size(regions,1);
     for j = 1:numregions
+        if isempty(regions{j,1})
+            continue
+        end
         hist1 = regions{j,1};
         corners1 = regions{j,2};
         extents1 = regions{j,3};
         MImin = 1e20;
         for k = 1:numregions
-            if k==j
+            if k==j || isempty(regions{k,1})
                 continue
             end
             corners2 = regions{k,2};
             extents2 = regions{k,3};
             %check if above region1
-             if any(corners2(:,1)+extents2 == corners1(:,1)-1 & ...
-                    (corners1(:,2) <= (corners2(:,2)+extents2) & corners1(:,2) >= corners2(:,2)))
+             if any(corners2(:,1)+extents2-1 == corners1(:,1)-1 & ...
+                    (((corners1(:,2) <= (corners2(:,2)+extents2-1) & corners1(:,2) >= corners2(:,2))) | ...
+                     ((corners2(:,2) <= (corners1(:,2)+extents1-1) & corners2(:,2) >= corners1(:,2)))))
                 hist2 = regions{k,1};
                 p = min([sum(extents1.^2), sum(extents2.^2)]);
                 MI = p*G_statistic(hist1,hist2);
@@ -75,8 +78,9 @@ while keep_merging
                 continue
              end                
             %check if below region1
-            if any(corners2(:,1) == corners1(:,1)+extents1+1 & ...
-                    (corners1(:,2) <= (corners2(:,2)+extents2) & corners1(:,2) >= corners2(:,2)))
+            if any(corners2(:,1) == corners1(:,1)+extents1 & ...
+                    (((corners1(:,2) <= (corners2(:,2)+extents2-1) & corners1(:,2) >= corners2(:,2))) | ...
+                     ((corners2(:,2) <= (corners1(:,2)+extents1-1) & corners2(:,2) >= corners1(:,2)))))
                 hist2 = regions{k,1};
                 p = min([sum(extents1.^2), sum(extents2.^2)]);
                 MI = p*G_statistic(hist1,hist2);
@@ -87,8 +91,9 @@ while keep_merging
                 continue
             end
             %check if to the left of region1
-             if any(corners2(:,2)+extents2 == corners1(:,2)-1 & ...
-                    (corners1(:,1) <= (corners2(:,1)+extents2) & corners1(:,1) >= corners2(:,1)))
+             if any(corners2(:,2)+extents2-1 == corners1(:,2)-1 & ...
+                    (((corners1(:,1) <= (corners2(:,1)+extents2-1) & corners1(:,1) >= corners2(:,1))) | ...
+                     ((corners2(:,1) <= (corners1(:,1)+extents1-1) & corners2(:,1) >= corners1(:,1)))))
                 hist2 = regions{k,1};
                 p = min([sum(extents1.^2), sum(extents2.^2)]);
                 MI = p*G_statistic(hist1,hist2);
@@ -99,8 +104,9 @@ while keep_merging
                 continue
             end
             %check if to the right of region1
-             if any(corners2(:,1) == corners1(:,2)+extents1+1 & ...
-                    (corners1(:,1) <= (corners2(:,1)+extents2) & corners1(:,1) >= corners2(:,1)))
+             if any(corners2(:,2) == corners1(:,2)+extents1 & ...
+                   (((corners1(:,1) <= (corners2(:,1)+extents2-1) & corners1(:,1) >= corners2(:,1))) | ...
+                     ((corners2(:,1) <= (corners1(:,1)+extents1-1) & corners2(:,1) >= corners1(:,1)))))
                 hist2 = regions{k,1};
                 p = min([sum(extents1.^2), sum(extents2.^2)]);
                 MI = p*G_statistic(hist1,hist2);
@@ -113,24 +119,60 @@ while keep_merging
         end
         %merge region with smallest merger importance (MI) provided stopping rule is not
         %invoked
-        MIR = MImin/max(MI);
-        if MIR > 2.0 && count > round(.1*(strt_regions/2))
+        MImin
+        MIR = MImin/max(MI_all);
+        if MIR > 1.2 && count > round(.1*(strt_regions-1))
             keep_merging = false;
         else
             regions{j,1} = hist1+regions{merge_idx,1};
+            regions{j,1} = regions{j,1}./repmat(sum(sum(regions{j,1})),256,8); %normalize
             regions{j,2} = [regions{j,2}; regions{merge_idx,2}];
             regions{j,3} = [regions{j,3}; regions{merge_idx,3}];
             regions{merge_idx,1} = [];
             regions{merge_idx,2} = [];
             regions{merge_idx,3} = [];
-            regions = regions(~cellfun('isempty',regions)); 
-            MI(count) = MImin;
+            MI_all(count) = MImin;
             count = count+1;
             keep_merging = true;
         end
     end
+    regions = regions(~cellfun('isempty',regions)); 
+    numregions = size(regions,1);
 end
 
+% %Get border pixels, set to white
+% new_regions = cell(numregions,4); %add cells to store border pixels
+% new_regions{:,1:3} = regions;
+% regions = new_regions;
+% Iseg = I
+% for i = 1:numregions
+%     blocks = sortrows([regions{i,2} regions{i,3}],1); %sort blocks by row, lowest to highest
+%     for j = 1:size(corners,1) %cycle through rows starting from top      
+%         row = blocks(blocks(:,1)==min(blocks(:,1)),:); 
+%         [rightmost, idx] = max(row(:,2));
+%         points = min(row(:,2)):(rightmost+row(idx,3)); %get row of pixels across current y coordinate of region
+%         previous_points = regions{i,4};
+%         if j == 1
+%             regions{i,4} = [repmat(j,[length(points),1]), points'];
+%             continue
+%         end
+%         if j == size(corners,1)
+%             regions{i,4} = [regions{i,4}; repmat(j,[length(points),1]), points'];
+%             continue
+%         end
+%         for k = 1:length(points)
+%             if points(k) <= min(previous_points(:,previous_points(:,2)==points(k))) 
+%               
+%             
+            
+        
+        
+        
+        
+    
+    
+    
+     
 
 %***Perform Pixelwise Classification
  
