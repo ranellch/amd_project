@@ -1,4 +1,4 @@
-function [x,y] = iterate_segments(filename, img, shift, num_of_pixels, nb_cutoff, text_prediction_struct, int_prediction_struct)
+function [x,y] = iterate_segments(filename, img, shift, num_of_pixels, text_prediction_struct, int_prediction_struct)
     %Gets the bin values in decsending order of magnitude
     bins=sort(unique(shift));
 

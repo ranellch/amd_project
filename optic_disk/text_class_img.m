@@ -14,6 +14,7 @@ function [desc] = class_image_sfta(img)
 end
 
 function [desc] = class_image_lbp(img)
+    addpath('lbp');
     desc = lbp_c(img, 5, 8, 'nh');
 
     final = zeros(1, size(desc, 2) * size(desc, 1));

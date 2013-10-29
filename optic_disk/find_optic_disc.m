@@ -1,4 +1,4 @@
-function [x,y,shift] = find_optic_disc(image, time, num_of_pixels)
+function [x,y] = find_optic_disc(image, time, num_of_pixels)
 %Add the path for the images
 addpath('..');
 addpath('../Test Set');
@@ -17,9 +17,9 @@ disp(['ID: ', image, ' - Time: ', time]);
 
 %Calculate the mean shift
 t=cputime;
-shift=mean_shift_segment(img);
+%shift=mean_shift_segment(img);
 e = cputime-t;
-disp(['Mean Shift (sec): ', num2str(e)]);
+%disp(['Mean Shift (sec): ', num2str(e)]);
 
 
 %Load the prediction structs
@@ -30,6 +30,10 @@ x=-1;
 y=-1;
 
 %iterate over each segement
-iterate_segments(filename, img, shift, num_of_pixels, 0.99, text_prediction_struct, int_prediction_struct);
+t=cputime;
+%iterate_segments(img, shift, num_of_pixels, text_prediction_struct, int_prediction_struct);
+iterate_one_segment(img, num_of_pixels, text_prediction_struct, int_prediction_struct);
+e = cputime-t;
+disp(['Classify (sec): ', num2str(e)]);
 
 end

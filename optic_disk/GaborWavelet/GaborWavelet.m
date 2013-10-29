@@ -1,16 +1,20 @@
-function res = GaborWavelet(x,y,m,n,k,l,param,phase)
+function GW = GaborWavelet (R, C, Kmax, f, u, v, Delt2);
+% Create the Gabor Wavelet Filter
+% Author : Chai Zhi  
+% e-mail : zh_chai@yahoo.cn
 
-% a0 = 2;
-% b0 = 0.8;
-% theta0 = pi / 8;
-a0 = param.a0;
-b0 = param.b0;
-theta0 = param.theta0;
+k = ( Kmax / ( f ^ v ) ) * exp( i * u * pi / 8 );% Wave Vector
 
-xx = a0^(-m)*x - n*b0;
-yy = a0^(-m)*y - k*b0;
+kn2 = ( abs( k ) ) ^ 2;
 
-rotX =  xx * cos(l*theta0) + yy * sin(l*theta0);
-rotY = -xx * sin(l*theta0) + yy * cos(l*theta0);
+GW = zeros ( R , C );
 
-res = a0^(-m) * motherWavelet(rotX, rotY,param,phase);
+for m = -R/2 + 1 : R/2
+    
+    for n = -C/2 + 1 : C/2
+        
+        GW(m+R/2,n+C/2) = ( kn2 / Delt2 ) * exp( -0.5 * kn2 * ( m ^ 2 + n ^ 2 ) / Delt2) * ( exp( i * ( real( k ) * m + imag ( k ) * n ) ) - exp ( -0.5 * Delt2 ) );
+    
+    end
+
+end
