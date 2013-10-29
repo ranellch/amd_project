@@ -1,10 +1,10 @@
 function train()
-    filename = 'train.classifier';
+    filename = 'train_text.classifier';
     filename_intenstiy = 'train_intensity.classifier';
     
     disp('======================Texture Classifier======================');
     [text_variables, text_categories] = run_through_file(filename);
-    text_prediction_struct = NaiveBayes.fit(text_variables, text_categories);
+    text_prediction_struct = NaiveBayes.fit(text_variables, text_categories, 'Distribution', 'mn');
     save('text_prediction_struct.mat', 'text_prediction_struct');
     
     disp('======================Intensity Classifier======================');

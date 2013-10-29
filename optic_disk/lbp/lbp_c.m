@@ -239,7 +239,7 @@ if (strcmp(mode,'h') || strcmp(mode,'hist') || strcmp(mode,'nh'))
     result = hist_out;
     
     if (strcmp(mode,'nh'))
-        result=result./repmat(sum(result),bins,1);
+        result=result./repmat(sum(sum(result)),bins,8);
     end
 else
     %Otherwise return 2 matrices of unsigned integers

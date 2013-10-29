@@ -1,5 +1,5 @@
 function [out, prob] = text_class_img(img, prediction_struct)
-    desc = class_image_sfta(img);
+    desc = class_image_lbp(img);
 
     [prob,out] = posterior(prediction_struct, desc);
 end
@@ -14,7 +14,7 @@ function [desc] = class_image_sfta(img)
 end
 
 function [desc] = class_image_lbp(img)
-    desc = lbp_c(img);
+    desc = lbp_c(img, 5, 8, 'nh');
 
     final = zeros(1, size(desc, 2) * size(desc, 1));
     final_index = 1;
@@ -24,6 +24,8 @@ function [desc] = class_image_lbp(img)
             final_index = final_index + 1;
         end
     end
+   
+    desc = final;
 end
 
 function [grouping,prob] = class_image_hog(img)

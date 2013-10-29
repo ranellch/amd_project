@@ -1,5 +1,5 @@
 function [out] = build_dataset(number_of_pixels_per_box)
-filename = 'train.classifier';
+filename = 'train_text.classifier';
 filename_intenstiy = 'train_intensity.classifier';
 out = 'done';
 
@@ -81,6 +81,7 @@ for count=1:images.getLength
     snaked_file_name = ['snaked/', the_path(last_index:length(the_path))];
     snaked_image = im2bw(imread(snaked_file_name));
         
+    %open the files to write
     fileID = fopen(filename,'at');
     fidintensity = fopen(filename_intenstiy, 'at');
     
@@ -95,35 +96,47 @@ for count=1:images.getLength
                 ys = ((y - 1) * number_of_pixels_per_box) + 1;
                 ye = ys + number_of_pixels_per_box - 1;
 
-                if(ye <= size(img, 1) && xe <= size(img, 2))              
-                    %Get the original image
-                    subimage = img(ys:ye, xs:xe);
-
-                    %Get the snake image
-                    subimage_snake = snaked_image(ys:ye, xs:xe);
-                    
-                    %Get the percentage of the disk included in this image
-                    percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
-                    
-                    grouping = 0;
-                    if(percentage_disk > 0.85)
-                        grouping = 1;
-                    elseif(percentage_disk <.01)
-                        grouping = 0;
-                    end
-                    
-                    fprintf(fileID, '"%s" %d, %d, %s\n', the_path, subimages_count, grouping, feature_to_string(subimage));
-                    
-                    [mean_val, var_val] = avg_intensity(subimage);
-                    fprintf(fidintensity, '"%s" %d, %d, %f,%f\n', the_path, subimages_count, grouping, mean_val, var_val);
-                    
-                    mapObj(the_path) = subimages_count;
+                if(ye > size(img, 1))
+                    ye = size(img, 1);
+                    ys = ye - number_of_pixels_per_box;
                 end
+                if(xe > size(img, 2))
+                    xe = size(img, 2);
+                    xs = xe - number_of_pixels_per_box;
+                end
+                                
+                %Get the original image
+                subimage = img(ys:ye, xs:xe);
+
+                %Get the snake image
+                subimage_snake = snaked_image(ys:ye, xs:xe);
+
+                %Get the percentage of the disk included in this image
+                percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
+
+                %Get the grouping associated with dis badboy
+                grouping = 0;
+                if(percentage_disk > 0.9)
+                    grouping = 1;
+                elseif(percentage_disk <.01)
+                    grouping = 0;
+                end
+
+                %Write to the output file the texture feature vector
+                fprintf(fileID, '"%s" %d, %d, %s\n', the_path, subimages_count, grouping, feature_to_string(subimage));
+
+                %Calculate the intensity with mean and variance
+                [mean_val, var_val] = avg_intensity(subimage);
+
+                %Write to the output file the intensity feature vecotr
+                fprintf(fidintensity, '"%s" %d, %d, %f,%f\n', the_path, subimages_count, grouping, mean_val, var_val);
+
+                mapObj(the_path) = subimages_count;
             end
             subimages_count = subimages_count + 1;
         end
     end
-    return;
+    
     fclose(fidintensity);
     fclose(fileID);
 end

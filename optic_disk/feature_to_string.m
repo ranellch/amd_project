@@ -1,5 +1,5 @@
 function [line] = feature_to_string(image)
-    line = sfta_to_string(image);
+    line = lbp_to_string(image);
 end
 
 function line = sfta_to_string(img)
@@ -25,7 +25,7 @@ function line = hog_to_string(image)
 end
 
 function line = lbp_to_string(img)
-    output = lbp_c(img);
+    output = lbp_c(img, 4, 8, 'nh');
     
     line=num2str(output(1,1));
 

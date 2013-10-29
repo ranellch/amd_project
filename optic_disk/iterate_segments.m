@@ -31,7 +31,7 @@ function [x,y] = iterate_segments(filename, img, shift, num_of_pixels, nb_cutoff
         S=regionprops(CC,'Centroid');
 
         %build a window to do more refiend segmentation
-        wind = size(img, 1) / 3;
+        wind = floor(size(img, 1) / 3);
 
         %Get the centroids for each one of these bad boys
         for i=1:length(S)
@@ -68,7 +68,7 @@ function [x,y] = iterate_segments(filename, img, shift, num_of_pixels, nb_cutoff
             count_high_prob = 0;
             for x=1:size(prob_matrix, 1)
                 for y=1:size(prob_matrix, 2)
-                    if(prob_matrix(y,x,1) == 1)
+                    if(prob_matrix(y,x,1) == 1 && prob_matrix(y,x,2) == 1)
                         count_high_prob = count_high_prob + 1;
                     end
                 end
@@ -76,7 +76,55 @@ function [x,y] = iterate_segments(filename, img, shift, num_of_pixels, nb_cutoff
             
             %Are there any high probability squares with similar texture
             if(count_high_prob > 1)
-                figure(possible_matches), imshowpair(classed_img, subimage), title([num2str(b), '-', num2str(i), '-classed']);
+                %Get the center of all classified boxes
+                xsum=0.0;
+                ysum=0.0;
+                xycount=0;
+                for ycor=1:size(subimage,1)
+                    for xcor=1:size(subimage,2)
+                        if(classed_img(ycor,xcor) == 1)
+                            xsum=xsum+double(xcor);
+                            ysum=ysum+double(ycor);
+                            xycount=xycount+1;
+                        end
+                    end
+                end
+                
+                x=round(xsum/xycount);
+                y=round(ysum/xycount);
+                
+                %Get the mean value of all items in this region
+                sum=0.0;
+                count=0;
+                for ycor=1:size(subimage,1)
+                    for xcor=1:size(subimage,2)
+                        if(classed_img(ycor,xcor) == 1)
+                            sum=sum+double(subimage(ycor,xcor));
+                            count=count+1;
+                        end
+                    end
+                end
+
+                mean = sum/double(count);
+
+                %Get the variance and then the standard deviation from this
+                variance=0.0;
+                for ycor=1:size(subimage,1)
+                    for xcor=1:size(subimage,2)
+                        if(classed_img(ycor,xcor) == 1)
+                            diff = double(subimage(ycor,xcor)) - mean;
+                            variance=variance+(diff * diff);
+                            count=count+1;
+                        end
+                    end
+                end
+
+                stddev=sqrt(variance/double(count));
+                
+                [~, J] = regionGrowing(subimage, [y,x], mean, stddev*2.326);
+
+                figure(possible_matches),imshowpair(subimage, J);
+                %figure(possible_matches), imshowpair(classed_img, subimage), title([num2str(b), '-', num2str(i), '-classed']);
                 possible_matches=possible_matches+1;
             end
         end
