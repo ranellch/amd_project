@@ -1,5 +1,4 @@
 function build_dataset(number_of_pixels_per_box)
-%
 filename_text = 'train_text.classifier';
 filename_intenstiy = 'train_intensity.classifier';
 
