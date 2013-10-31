@@ -16,9 +16,9 @@ end
 disp(['ID: ', image, ' - Time: ', time]);
 
 %Calculate the mean shift
-t=cputime;
+%t=cputime;
 %shift=mean_shift_segment(img);
-e = cputime-t;
+%e = cputime-t;
 %disp(['Mean Shift (sec): ', num2str(e)]);
 
 

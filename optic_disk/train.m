@@ -2,15 +2,33 @@ function train()
     filename = 'train_text.classifier';
     filename_intenstiy = 'train_intensity.classifier';
     
+    %Run through the file and get the variables for texture classification
     disp('======================Texture Classifier======================');
     [text_variables, text_categories] = run_through_file(filename);
-    text_prediction_struct = NaiveBayes.fit(text_variables, text_categories, 'Distribution', 'mn');
-    save('text_prediction_struct.mat', 'text_prediction_struct');
     
+    text_prediction_bayesstruct = NaiveBayes.fit(text_variables, text_categories, 'Distribution', 'mn');
+    save('text_prediction_bayesstruct.mat', 'text_prediction_bayesstruct');
+    
+    try
+        text_prediction_svmstruct = svmtrain(text_variables, text_categories);
+        save('text_prediction_svmstruct.mat', 'text_prediction_svmstruct');
+    catch
+        disp('Unable to train svm classifier on texture training set!');
+    end
+    
+    %Get the variables for intensity classification
     disp('======================Intensity Classifier======================');
     [int_variables, int_categories] = run_through_file(filename_intenstiy);
-    int_prediction_struct = NaiveBayes.fit(int_variables, int_categories);
-    save('int_prediction_struct.mat', 'int_prediction_struct');
+    
+    int_prediction_bayesstruct = NaiveBayes.fit(int_variables, int_categories);
+    save('int_prediction_bayesstruct.mat', 'int_prediction_bayesstruct');
+    
+    try
+        int_prediction_svmstruct = svmtrain(int_variables, int_categories);
+        save('int_prediction_svmstruct.mat', 'int_prediction_svmstruct');
+    catch
+        disp('Unable to train svm classifier on intensity training set!');
+    end
 end
 
 function [variables, categories] = run_through_file(filename)

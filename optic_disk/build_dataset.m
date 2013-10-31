@@ -1,7 +1,7 @@
-function [out] = build_dataset(number_of_pixels_per_box)
-filename = 'train_text.classifier';
+function build_dataset(number_of_pixels_per_box)
+%
+filename_text = 'train_text.classifier';
 filename_intenstiy = 'train_intensity.classifier';
-out = 'done';
 
 %Add the location of the XML file with patient information
 addpath('..');
@@ -12,13 +12,15 @@ addpath('sfta');
 addpath('lbp');
 addpath('hog');
 
-%Get the images already run
+%Get the images already run in the 
 mapObj = containers.Map('KeyType', 'char', 'ValueType', 'int32');
 try
+    %Make sure that the file exists
     fidintensity = fopen(filename_intenstiy);
     fclose(fidintensity);
     
-    fid = fopen(filename, 'r');
+    %Open the file 
+    fid = fopen(filename_text, 'r');
     paths = textscan(fid,'%q %d %*[^\n]');
     fclose(fid);
     
@@ -29,7 +31,7 @@ catch
     error('Error in opening and reading the file!');
 end
 
-%Get the images to exclude 
+%Get the images to exclude from this list
 mapObjExclude = containers.Map('KeyType', 'char', 'ValueType', 'int32');
 fid = fopen('exclude.dataset');
 excludes = textscan(fid,'%q %*[^\n]');
@@ -54,7 +56,7 @@ for count=1:images.getLength
         img = rgb2gray(img);
     end
         
-    %Calculate the size of the 
+    %Calculate the size of the box that grids the image
     subimage_size = floor(size(img, 1) / number_of_pixels_per_box);
     
     %Should we skip this image
@@ -69,20 +71,12 @@ for count=1:images.getLength
     if isKey(mapObj, the_path) == 0
         mapObj(the_path) = 0.0;
     end
-    
-    %Find the name of the file
-    last_part_in_path = strfind(the_path, '/');
-    last_index = 1;
-    if ~isempty(last_part_in_path)
-        last_index = last_part_in_path(length(last_part_in_path));
-    end
-    
-    %Get the snaked file
-    snaked_file_name = ['snaked/', the_path(last_index:length(the_path))];
-    snaked_image = im2bw(imread(snaked_file_name));
+        
+    %Get the snaked image
+    snaked_image = im2bw(get_snaked_img(the_path));
         
     %open the files to write
-    fileID = fopen(filename,'at');
+    fileID = fopen(filename_text,'at');
     fidintensity = fopen(filename_intenstiy, 'at');
     
     subimages_count = 1;
@@ -105,10 +99,10 @@ for count=1:images.getLength
                     xs = xe - number_of_pixels_per_box;
                 end
                                 
-                %Get the original image
+                %Get the original image square
                 subimage = img(ys:ye, xs:xe);
 
-                %Get the snake image
+                %Get the snake image square
                 subimage_snake = snaked_image(ys:ye, xs:xe);
 
                 %Get the percentage of the disk included in this image
@@ -121,9 +115,13 @@ for count=1:images.getLength
                 elseif(percentage_disk <.01)
                     grouping = 0;
                 end
-
+                
+                %Calculate the texture string
+                texture_vector = text_algorithm(subimage);
+                texture_string = feature_to_string(texture_vector);
+                
                 %Write to the output file the texture feature vector
-                fprintf(fileID, '"%s" %d, %d, %s\n', the_path, subimages_count, grouping, feature_to_string(subimage));
+                fprintf(fileID, '"%s" %d, %d, %s\n', the_path, subimages_count, grouping, texture_string);
 
                 %Calculate the intensity with mean and variance
                 [mean_val, var_val] = avg_intensity(subimage);

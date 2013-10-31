@@ -4,7 +4,7 @@ function [bin_image, prob_matrix] = apply_segment_classify(subimg, number_of_pix
     
     %Get the binary image
     bin_image = zeros(size(subimg,1), size(subimg, 2));
-    prob_matrix = zeros(iterations, iterations, 4);
+    prob_matrix = zeros(iterations, iterations, 6);
     
     %Break the image into grid boxes and classify each box
     for x=1:iterations
@@ -30,6 +30,8 @@ function [bin_image, prob_matrix] = apply_segment_classify(subimg, number_of_pix
             prob_matrix(y,x,2) = grouping_int;
             prob_matrix(y,x,3) = prob_text(1);
             prob_matrix(y,x,4) = prob_text(2);
+            prob_matrix(y,x,5) = prob_int(1);
+            prob_matrix(y,x,6) = prob_int(2);
             
             %Depending on the classification 
             if grouping_text == 1 && grouping_int == 1
