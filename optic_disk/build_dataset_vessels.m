@@ -39,36 +39,45 @@ function build_dataset_vessels()
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
-            orig_wavelets = apply_gabor_wavlet(original_img);
+            [orig_wavelets, comb] = apply_gabor_wavlet(original_img);
             
-            imshow(orig_wavelets(:,:,1));
-            return;
+            figure(1), imshow(comb);
+            figure(2), imshow(vesselized_img_binary);
+            
+            every_third = 1;
             
             %For each pixel build a classifier
-            for y=1:size(orig_wavelets, 1)
-                for x=1:size(orig_wavelets, 2)
+            for y=1:size(orig_wavelets,1)
+                for x=1:size(orig_wavelets,2)
                     feature_vector=zeros(size(orig_wavelets, 3), 1);
+                    sum = 0;
                     for wave=1:size(orig_wavelets, 3)
                         feature_vector(wave, 1) = orig_wavelets(y,x,wave);
+                        sum = sum + orig_wavelets(y,x,wave);
                     end
                     
                     %Get the grouping for this particular pixel
                     grouping = 0;
-                    if(y <= size(vesselized_img, 1) && x <= size(vesselized_img, 2))
-                        if(vesselized_img(y,x) == 1)
+                    if(y <= size(vesselized_img_binary, 1) && x <= size(vesselized_img_binary, 2))
+                        if(vesselized_img_binary(y,x) == 1)
                             grouping = 1;
                         end
                     end
                     
-                    %Write to the output file the feature string
-                    feature_string=feature_to_string(feature_vector);
-                    fprintf(fout, '%d, %s\n', grouping, feature_string);
+                    if(sum ~= 0 && (grouping == 1 || every_third == 3))
+                        %Write to the output file the feature string
+                        feature_string=feature_to_string(feature_vector);
+                        fprintf(fout, '%d,%s\n', grouping, feature_string);
+                        every_third = 1;
+                    else
+                        every_third = every_third + 1;
+                    end
                 end
             end
         end
         
         fclose(fout);
-    catch
-        error('Unknown!');
+    catch err
+        disp(err);
     end
 end

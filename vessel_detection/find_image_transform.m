@@ -79,6 +79,7 @@ function [out] = find_image_transform(pid)
             
             %Register the images and save in output directory (image_string)
             register_images(base_img_real, basetrans, next_img_real, nextrans, output_path);
+            return;
         end
     end
 end
