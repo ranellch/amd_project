@@ -133,137 +133,67 @@ function [ data ] = compare_maculas_best(type, varargin)
         close(h)
   end
  
-%    %~~~~~~~~~~~~~~~~~~Image Registration~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-%    
-%    if test % get control points from xml
-%         for count = 1:images.getLength  
-%             image = images.item(count - 1);
-%             path = char(image.getAttribute('path'));
-%             if all(strcmpi(path, visit1))
-%                 input_points(:,1) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('x').item(0).getTextContent));
-%                 input_points(:,2) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('y').item(0).getTextContent));
-%             end
-%         end
-%         for count = 1:images.getLength  
-%             image = images.item(count - 1);
-%             path = char(image.getAttribute('path'));
-%             if all(strcmpi(path, visit2))
-%                 base_points(:,1) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('x').item(0).getTextContent));
-%                 base_points(:,2) = str2double(char(image.getElementsByTagName('bifurs').item(0).getElementsByTagName('y').item(0).getTextContent));
-%             end
-%         end
-%         
-%    else % get control points from user
-%        [input_points, base_points] = cpselect(img1,img2,'Wait', true);
-%    end
-%    
-%    tform = cp2tform(input_points,base_points,'affine');
-%    img1 = imtransform(img1, tform, 'XData',[1 size(img2,2)],'YData', [1 size(img2,1)]);
-%    
-%    
-%    if test
-%     h = figure('Name', 'Registration Results', 'visible','off');
-%    else
-%     figure('Name', 'Registration Results')
-%    end
-%        subplot(1,2,1)
-%        imshow(img2), title('Base Image (Past Visit)')
-%        subplot(1,2,2)
-%        imshow(img1), title('Co-Registered Image (Recent Visit)')
-%     if test
-%         saveas(h, strcat(data_filename, '-Registration'),'png');
-%         close(h)
-%     end
-%     
-    % Store the new sizes/dimensions of the images (should be the same)
+
     img_sz = size(img1);
    
     %~~~~~~~~~~~Image Processing~~~~~~~~~~~~~~~~~~~ 
-    
+    %Gaussian blur
+    H = fspecial('gaussian',[5 5],1.0);
+    proc1 = imfilter(img1,H);
+    proc2 = imfilter(img2,H);
      
      
      if strcmpi(type,'AF')
          
-         
-% 
-%          Adjust contrasts/center pix distribution on mean intensity of ring between
-%          macula and optic disk
-
-         % create ring mask
-         [xgrd, ygrd] = meshgrid(1:img_sz(2), 1:img_sz(1));   
-          x = xgrd - p.fovea(1);    % offset the origin
-          y = ygrd - p.fovea(2);
-         ro= sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.8;
-         ri = sqrt((p.optic(1)-p.fovea(1))^2+(p.optic(2)-p.fovea(2))^2)*.5;
-         ob = x.^2 + y.^2 <= ro.^2; %outer bound   
-         ib = x.^2 + y.^2 >= ri.^2; %inner bound
-         ring = logical(ib.*ob);
-
-    %      %show ring
-    %      figure()
-    %      imshow(mat2gray(double(proc1).*double(ring)))
-
-         rep1 = mean(proc1(ring));
-          if rep1 < 64
-              gamma1 = 0.5;
-          elseif rep1 >= 64 && rep1 < 96
-              gamma1 = 0.75;
-          elseif rep1 >=96 && rep1 < 160
-              gamma1 = 1.0;
-          elseif rep1 >= 160 && rep1 < 192
-              gamma1 = 1.25;
-          elseif rep1 >=192
-              gamma1 = 1.5;
-          end
-
-
-           proc1 = imadjust(proc1,[],[],gamma1);
-
-           rep2 = mean(proc2(ring));
-          if rep2 < 64
-              gamma2 = 0.5;
-          elseif rep2 >= 64 && rep2 < 96
-              gamma2 = 0.75;
-          elseif rep2 >=96 && rep2 < 160
-              gamma2 = 1.0;
-          elseif rep2 >= 160 && rep2 < 192
-              gamma2 = 1.25;
-          elseif rep2 >=192
-              gamma2 = 1.5;
-          end
-
-          proc2 = imadjust(proc2,[],[],gamma2);
-          
-          [proc2, vessels] = adjust_intensity(proc2, proc1);
-
-     
-     elseif strcmpi(type,'FA')
-         se1 = strel('line',img_sz(2)/2,0);
-         se2 = strel('line',img_sz(1)/2,90);
-         gamma = 0.75;
-         
-         proc1=imtophat(proc1,se1);
-         proc1=imtophat(proc1,se2);
-         proc1=imadjust(proc1,[],[],gamma);
-         
-         proc2=imtophat(proc2,se1);
-         proc2=imtophat(proc2,se2);
-         proc2=imadjust(proc2, [],[],gamma);
-                 
-         
-     end
-    %Show vessel dectection
-     if test
-        h = figure('Name','Vessels','visible','off');
-    else
-        figure('Name','Vessels');
-     end
-        imshow(vessels); title(strcat('Image 1 ', filename1));
-    if test
-        saveas(h, strcat(data_filename, '-vessels'),'png');
+        %Run smooth_illum to remove illumination and contrast drifts
+        %Get segmented backgrounds for linear histogram matching
+        
+        [proc1,background1] = smooth_illum_getbackground(proc1);
+        [proc2,background2] = smooth_illum_getbackground(proc2);
+        
+        %Create a figure for the segmented backgrounds
+      if test
+        h = figure('Name','Processing Results','visible','off');
+      else
+        figure('Name','Processing Results');
+      end
+        subplot(1,2,1);
+        imshow(background1); title(strcat('Background of Img1: ', filename1));
+        subplot(1,2,2);
+        imshow(background2); title(strcat('Background Img2: ', filename2));
+      if test
+        saveas(h, strcat(data_filename, '-backgrounds'),'png');
         close(h)
-    end
-    
+      end
+
+        
+        %Shift mean of img2 histogram to mean of img1 histogram based on background pixels
+        
+        
+%         Y = [proc2(background2&background1),ones(length(proc2(background2&background1)),1)];
+%         X = proc1(background1&background2);
+%         numpoints = min([size(Y,1), length(X)]);      
+%         Y = Y(1:numpoints,:);
+%         X = X(1:numpoints);
+%         b = Y\X;
+%         proc2 = proc2.*b(1)+b(2); 
+%         proc2 = mat2gray(proc2, [0 1]);
+%         
+%         proc1(proc1~=0) = im2uint8(proc1(proc1~=0));
+%         proc2(proc2~=0) = im2uint8(proc2(proc2~=0));
+
+        
+        corr_factor = mean(proc2(background2&background1)) - mean(proc1(background1&background2));
+
+        proc1 = im2uint8(proc1);
+        proc2 = im2uint8(proc2-corr_factor);
+        
+
+     elseif strcmpi(type,'FA')
+            error('functionality not available');
+            
+     end
+           
       
      
     % Create a figure for the images before and after processing
@@ -294,8 +224,8 @@ function [ data ] = compare_maculas_best(type, varargin)
        
     %~~~~~~~~Determine Thresholds for MAQ calculation~~~~~~~~~~~
     
-    % Get standard deviation of pixel inensity outside macula for img1
-    periph = double(proc1(ring));
+    % Get standard deviation of pixel inensity in background
+    periph = double(proc1(background1));
     hypr_thrsh = 2*std(periph(:));
     hypo_thrsh = -2*std(periph(:));
 
