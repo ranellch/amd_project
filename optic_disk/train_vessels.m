@@ -9,7 +9,7 @@ function train_vessels()
     
     %Get the first line of the file
     tline = fgetl(fid);
-    if(isnumeric(tline) == TRUE && tline == -1)
+    if(isnumeric(tline) == 1 && tline == -1)
         disp(['Check the contents of ', filename, ' it appears to be empty!']);
         return;
     end

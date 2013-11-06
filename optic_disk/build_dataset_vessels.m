@@ -1,4 +1,4 @@
-function [grouping_one, grouping_zero] = build_dataset_vessels()
+function build_dataset_vessels()
     filename = 'gabor.classifier';
 
     addpath(genpath('../Test Set'));
@@ -18,10 +18,10 @@ function [grouping_one, grouping_zero] = build_dataset_vessels()
         
         fout = fopen(filename, 'at');
         
-        for x=1:size(paths, 1)
-            pid = char(paths{x,1});
-            time = num2str((paths{x,2}));
-            vessel_image = char(paths{x,3});
+        for k=1:size(paths, 1)
+            pid = char(paths{k,1});
+            time = num2str((paths{k,2}));
+            vessel_image = char(paths{k,3});
             
             %Get the vesselized image and convert it to a binary image
             vesselized_img = imread(['vessel_draw/', vessel_image]);
@@ -39,12 +39,10 @@ function [grouping_one, grouping_zero] = build_dataset_vessels()
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
-            [orig_wavelets, comb] = apply_gabor_wavelet(original_img);
-            
-            figure(1), imshow(comb);
-            figure(2), imshow(vesselized_img_binary);
-                        
-            every_third = 1;
+            orig_wavelets = apply_gabor_wavelet(original_img, 0);
+                              
+            %Init some of the variables for the building of svm machine
+            random_sample = 1;
             border_ignore = 5;
             grouping_one = 0;
             grouping_zero = 0;
@@ -67,22 +65,22 @@ function [grouping_one, grouping_zero] = build_dataset_vessels()
                         end
                     end
                     
-                    %Ignore the border and then either grouping is one or
-                    %is every third
+                    %Ignore the border and then either grouping is one or is some proportion 
                     if(x > border_ignore && x < (size(orig_wavelets,2) - border_ignore) && ...
                        y > border_ignore && y < (size(orig_wavelets,1) - border_ignore) && ...
-                       (grouping == 1 || every_third == 3))
+                       (grouping == 1 || random_sample == 4))
                         %Write to the output file the feature string
                         feature_string=feature_to_string(feature_vector);
                         fprintf(fout, '%d,%s\n', grouping, feature_string);
-                        every_third = 1;
+                        
+                        random_sample = 1;
                         if(grouping == 1)
                             grouping_one=grouping_one+1;
                         else
                             grouping_zero=grouping_zero+1;
                         end
                     else
-                        every_third = every_third + 1;
+                        random_sample = random_sample + 1;
                     end
                 end
             end
@@ -90,6 +88,8 @@ function [grouping_one, grouping_zero] = build_dataset_vessels()
         
         fclose(fout);
     catch err
-        disp(err.Message);
+        disp(err);
     end
+    
+    disp(['Ones: ', num2str(grouping_one), ' - Zeros: ', num2str(grouping_zero)]);
 end

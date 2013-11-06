@@ -20,7 +20,7 @@ load('vessel_classifier.mat', 'vessel_classifier');
 t=cputime;
 
 %Apply the gabor function to the image
-[gw_image,comb] = apply_gabor_wavelet(img);
+[gw_image] = apply_gabor_wavelet(img);
 %figure(1), imshow(comb);
 
 %Create variables for classification
