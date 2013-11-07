@@ -1,6 +1,16 @@
 function train_vessels()
-    %Open the file and get the file handle
-    filename = 'gabor.classifier';
+    %Train classifier using gabor information
+    filename_gabor = 'gabor.classifier';
+    gabor_vessel_classifier = readin_classfile(filename_gabor);
+    save('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
+
+    %Train classifier using orthogonal line operators
+    filename_lineop = 'lineop.classifier';
+    lineop_vessel_classifier = readin_classfile(filename_lineop);
+    save('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
+end
+
+function [outfile] = readin_classfile(filename)
     fid = fopen(filename);
     
     %Initialize the variables for counting the matricies
@@ -12,6 +22,8 @@ function train_vessels()
     if(isnumeric(tline) == 1 && tline == -1)
         disp(['Check the contents of ', filename, ' it appears to be empty!']);
         return;
+    else
+        disp(['Reading: ', filename]);
     end
     
     %Count the number of variables
@@ -73,6 +85,5 @@ function train_vessels()
     disp(['Done loading...Positive: ', num2str(positive_count),' - Negative: ', num2str(negative_count)]);
 
     %Build the vessel classifier
-    vessel_classifier = NaiveBayes.fit(variable_data, variable_categories);
-    save('vessel_classifier.mat', 'vessel_classifier');
+    outfile = NaiveBayes.fit(variable_data, variable_categories);
 end

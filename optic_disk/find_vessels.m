@@ -14,7 +14,8 @@ end
 disp(['ID: ', image, ' - Time: ', time, ' - Path: ', filename]);
 
 %Load the classifier struct for this bad boy
-load('vessel_classifier.mat', 'vessel_classifier');
+load('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
+loaD('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
 
 %Time how long it takes to apply gabor and classify
 t=cputime;
@@ -31,7 +32,7 @@ vector_test = zeros(1, size(gw_image, 3));
 disp('Running Pixelwise Classification ');
 for y=1:size(binary_img, 1)
     temp_vec = squeeze(gw_image(y,:,:));
-    [~, out] = posterior(vessel_classifier, temp_vec);
+    [~, out] = posterior(gabor_vessel_classifier, temp_vec);
 
     for x=1:size(out, 1)
         %Apply the classification to the binary image

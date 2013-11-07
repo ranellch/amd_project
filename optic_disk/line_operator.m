@@ -4,9 +4,10 @@ function [feature_vector] = line_operator(img, yin, xin, l, norien)
         error('The length(l) must be odd for this to work');
     end
     if(norien <= 0)
-        error('the number of orientations(norien) must be greater than 0');
+        error('The number of orientations(norien) must be greater than 0');
     end
 
+    feature_vector = zeros(1, 3);
     each_direction = floor(l / 2.0);
 
     %Get the average gray scale intensity within the square window over the xurrent pixel under investigation
@@ -22,7 +23,7 @@ function [feature_vector] = line_operator(img, yin, xin, l, norien)
         deg = (theta / norien) * 180.0;
 
         %Create a line matrix that is lengthxlength
-        sub_line_matrix = create_line(length, angle);
+        sub_line_matrix = create_line(l, deg);
 
         %Count the number of values in the line
         sub_line_sum = 0;
@@ -37,40 +38,43 @@ function [feature_vector] = line_operator(img, yin, xin, l, norien)
         if(sub_line_sum ~= l)
             error([num2str(sub_line_sum), ' ~= ', num2str(l)]);
         end
- 
+
         %Calculate the current line strength       
         [line_sum, line_count] = iterate_mask(img, yin, xin, each_direction, sub_line_matrix);
-        line_avg = line_sum / line_count;
+        line_avg = line_sum / double(line_count);
         current_line_strength = line_avg - square_avg;
 
         %Keep track of greatest line strength
         if(current_line_strength > max_line_strength)
-            current_line_strength = max_line_strength;
+            max_line_strength = current_line_strength;
             max_line_str_deg = deg;
         end
     end
 
     %Get the line strength of the pixel perpendicular to the maximum line strength
     nindeg = max_line_str_deg + 90.0;
-    nindeg_matrix = create_line(3, nindeg);
-    [nine_sum, nine_count] = iterate_mask(img, yin, xin, each_direction, nindef_matrix);
+    ninlen = 3;
+    nindeg_matrix = create_line(ninlen, nindeg);
+    [nine_sum, nine_count] = iterate_mask(img, yin, xin, floor(ninlen / 2.0), nindeg_matrix);
     nine_avg = nine_sum / double(nine_count);
     nine_line_strength = nine_avg - square_avg;
- 
-    feature_vector = [max_line_strength nine_line_strength img(y,x)];
+
+    feature_vector(1,1) = max_line_strength;
+    feature_vector(1,2) = nine_line_strength;
+    feature_vector(1,3) = img(y,x);
 end
 
 function [line_matrix] = create_line(length, angle)
     %Create a line with at least l points that are the value one
     line_matrix_temp = strel('line', length, angle).getnhood();
     next_size_up=1;
-    while(size(line_matrix_temp, 1) < l && size(line_matrix_temp, 2) < l)
+    while(size(line_matrix_temp, 1) < length && size(line_matrix_temp, 2) < length)
         line_matrix_temp = strel('line', length + next_size_up, angle).getnhood();
         next_size_up = next_size_up+1;
     end
 
     %Pad array becuase we will later extract a square that is lengthxlength
-    ed = floor(length / 2 .0);
+    ed = floor(length / 2.0);
     line_matrix = padarray(line_matrix_temp, [ed,ed], 'both');
 
     %Calculate the index of the center of the matrix

@@ -1,23 +1,24 @@
 function build_dataset_vessels()
-    filename = 'gabor.classifier';
+    filename_input = 'vessel_draw.dataset';
+    filename_gabor = 'gabor.classifier';
+    filename_lineop = 'lineop.classifier';
 
     addpath(genpath('../Test Set'));
     addpath('..');
     
-    %Get the xml document for the databsae
-    xDoc= xmlread('images.xml');
-    images = xDoc.getElementsByTagName('image');
-    
     %Get the images already run in the 
     mapObj = containers.Map('KeyType', 'char', 'ValueType', 'int32');
     try
-        %Open the file 
-        fid = fopen('vessel_draw.dataset', 'r');
+        %Open the file to determine which images to use for training 
+        fid = fopen(filename_input, 'r');
         paths = textscan(fid,'%q %d %q %*[^\n]');
         fclose(fid);
-        
-        fout = fopen(filename, 'at');
-        
+       
+        %Open the output files for writing 
+        fout = fopen(filename_gabor, 'at');
+        flineop = fopen(filename_lineop, 'at');       
+
+        %Iterate over all images to use for training 
         for k=1:size(paths, 1)
             pid = char(paths{k,1});
             time = num2str((paths{k,2}));
@@ -50,13 +51,15 @@ function build_dataset_vessels()
             %For each pixel build a classifier
             for y=1:size(orig_wavelets,1)
                 for x=1:size(orig_wavelets,2)
-                    feature_vector=zeros(size(orig_wavelets, 3), 1);
-                    sum = 0;
+                    %Get the gabor wavelet feature vector
+                    feature_vector_gabor=zeros(size(orig_wavelets, 3), 1);
                     for wave=1:size(orig_wavelets, 3)
-                        feature_vector(wave, 1) = orig_wavelets(y,x,wave);
-                        sum = sum + orig_wavelets(y,x,wave);
+                        feature_vector_gabor(wave, 1) = orig_wavelets(y,x,wave);
                     end
-                    
+
+                    %Get the line operator feature vector
+                    feature_vector_lineop = line_operator(original_img, y, x, 15, 8)';
+ 
                     %Get the grouping for this particular pixel
                     grouping = 0;
                     if(y <= size(vesselized_img_binary, 1) && x <= size(vesselized_img_binary, 2))
@@ -69,10 +72,14 @@ function build_dataset_vessels()
                     if(x > border_ignore && x < (size(orig_wavelets,2) - border_ignore) && ...
                        y > border_ignore && y < (size(orig_wavelets,1) - border_ignore) && ...
                        (grouping == 1 || random_sample == 4))
-                        %Write to the output file the feature string
-                        feature_string=feature_to_string(feature_vector);
-                        fprintf(fout, '%d,%s\n', grouping, feature_string);
-                        
+                        %Write to the output file the gabor wavelet string
+                        feature_string_gabor=feature_to_string(feature_vector_gabor);
+                        fprintf(fout, '%d,%s\n', grouping, feature_string_gabor);
+
+                        %Write to the output file the line operator string
+                        feature_string_lineop=feature_to_string(feature_vector_lineop);
+                        fprintf(flineop, '%d %s\n', grouping, feature_string_lineop);
+
                         random_sample = 1;
                         if(grouping == 1)
                             grouping_one=grouping_one+1;
@@ -87,8 +94,9 @@ function build_dataset_vessels()
         end
         
         fclose(fout);
+        fclose(flineop);
     catch err
-        disp(err);
+        disp(err.message);
     end
     
     disp(['Ones: ', num2str(grouping_one), ' - Zeros: ', num2str(grouping_zero)]);
