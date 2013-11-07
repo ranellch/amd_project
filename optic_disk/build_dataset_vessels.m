@@ -40,7 +40,10 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
        
         %Open the output files for writing 
         if(gabor_bool == 1) fout = fopen(filename_gabor, 'w'); end
-        if(lineop_bool == 1) flineop = fopen(filename_lineop, 'w'); end    
+        if(lineop_bool == 1)
+            flineop = fopen(filename_lineop, 'w'); 
+            lineop_obj = line_operator(15, 8);
+        end
 
         %Iterate over all images to use for training 
         for k=1:size(paths, 1)
@@ -64,8 +67,10 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
-            orig_wavelets = apply_gabor_wavelet(original_img, 0);
-                              
+            if(gabor_bool == 1)
+                orig_wavelets = apply_gabor_wavelet(original_img, 0);
+            end
+              
             %Init some of the variables for the building of svm machine
             random_sample = 1;
             border_ignore = 5;
@@ -73,8 +78,8 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
             grouping_zero = 0;
             
             %For each pixel build a classifier
-            for y=1:size(orig_wavelets,1)
-                for x=1:size(orig_wavelets,2)
+            for y=1:size(original_img,1)
+                for x=1:size(original_img,2)
                     if(gabor_bool == 1)
                         %Get the gabor wavelet feature vector
                         feature_vector_gabor=zeros(size(orig_wavelets, 3), 1);
@@ -85,7 +90,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
 
                     if(lineop_bool == 1)
                         %Get the line operator feature vector
-                        feature_vector_lineop = line_operator(original_img, y, x, 15, 8)';
+                        feature_vector_lineop = lineop_obj.get_fv(original_img,y,x);
                     end
 
                     %Get the grouping for this particular pixel
@@ -95,10 +100,10 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                             grouping = 1;
                         end
                     end
-                    
+
                     %Ignore the border and then either grouping is one or is some proportion 
-                    if(x > border_ignore && x < (size(orig_wavelets,2) - border_ignore) && ...
-                       y > border_ignore && y < (size(orig_wavelets,1) - border_ignore) && ...
+                    if(x > border_ignore && x < (size(original_img,2) - border_ignore) && ...
+                       y > border_ignore && y < (size(original_img,1) - border_ignore) && ...
                        (grouping == 1 || random_sample == 4))
         
                         %Write to the output file the gabor wavelet string
@@ -108,7 +113,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                         end
 
                         %Write to the output file the line operator string
-                        if(lineop_bool == 1)
+                        if(lineop_bool == 1)  
                             feature_string_lineop=feature_to_string(feature_vector_lineop);
                             fprintf(flineop, '%d,%s\n', grouping, feature_string_lineop);
                         end 
@@ -130,6 +135,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         if(lineop_bool == 1) fclose(flineop); end
     catch err
         disp(err.message);
+        disp([getfield(err.stack, 'file'), '\nError on line: ', num2str(getfield(err.stack, 'line'))]);
     end
     
     disp(['Ones: ', num2str(grouping_one), ' - Zeros: ', num2str(grouping_zero)]);
