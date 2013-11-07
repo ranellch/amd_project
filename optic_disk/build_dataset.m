@@ -39,6 +39,7 @@ for x=1:size(excludes{1}, 1)
     mapObjExclude(char(excludes{1}{x})) = 0;
 end
 
+addpath('../Test Set');
 %Get the xml document for the databsae
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');

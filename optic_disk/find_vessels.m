@@ -1,4 +1,4 @@
-function [gw_image, comb] = find_vessels(image, time)
+function [binary_img] = find_vessels(image, time)
 %Add the path for the images
 addpath('..');
 addpath('../Test Set');
@@ -11,7 +11,7 @@ if(size(img,3) ~= 1)
 end
 
 %Print to the console the output
-disp(['ID: ', image, ' - Time: ', time]);
+disp(['ID: ', image, ' - Time: ', time, ' - Path: ', filename]);
 
 %Load the classifier struct for this bad boy
 load('vessel_classifier.mat', 'vessel_classifier');
@@ -20,34 +20,27 @@ load('vessel_classifier.mat', 'vessel_classifier');
 t=cputime;
 
 %Apply the gabor function to the image
-[gw_image] = apply_gabor_wavelet(img);
-%figure(1), imshow(comb);
+[gw_image] = apply_gabor_wavelet(img, 0);
+disp('Done Running Gabor Wavelets!');
 
 %Create variables for classification
 binary_img = im2bw(img, 1.0);
 vector_test = zeros(1, size(gw_image, 3));
 
 %Do pixelwise classification
+disp('Running Pixelwise Classification ');
 for y=1:size(binary_img, 1)
-    for x=1:size(binary_img, 2)
-        %Get the vector from the gabor wavelets
-        for wave=1:size(gw_image, 3)
-            vector_test(1,wave) = gw_image(y,x,wave);
-        end
+    temp_vec = squeeze(gw_image(y,:,:));
+    [~, out] = posterior(vessel_classifier, temp_vec);
 
-        %Get the classification
-        [~, out] = posterior(vessel_classifier, vector_test);
-        
+    for x=1:size(out, 1)
         %Apply the classification to the binary image
-        binary_img(y,x) = out;
+        binary_img(y,x) = out(x,1);
     end
 end
 
 %Output how long it took to do this
 e = cputime-t;
-disp(['Classify (sec): ', num2str(e)]);
-
-%Show the binary map
-figure(2), imshow(binary_img);
+disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 
 end
