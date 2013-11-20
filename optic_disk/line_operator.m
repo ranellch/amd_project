@@ -85,12 +85,16 @@ methods
 
         %Get the line strength of the pixel perpendicular to the maximum line strength
         nindeg = max_line_str_deg + 90.0;
-        ninlen = 3;
+        ninlen = 5;
         nindeg_matrix = create_line(ninlen, nindeg);
         [nine_sum, nine_count] = iterate_mask(img, yin, xin, floor(ninlen / 2.0), nindeg_matrix);
         nine_avg = nine_sum / double(nine_count);
         nine_line_strength = nine_avg - square_avg;
 
+        if(max_line_strength < 0)
+            disp(['max_line_strength:', num2str(max_line_strength)]);
+        end
+        
         fv(1,1) = max_line_strength;
         fv(1,2) = nine_line_strength;
         fv(1,3) = img(yin,xin);

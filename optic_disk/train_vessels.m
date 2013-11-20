@@ -1,13 +1,24 @@
-function train_vessels()
+function train_vessels(gabor_bool, lineop_bool)
+
+    if(gabor_bool == 1)
     %Train classifier using gabor information
+    t = cputime;
     filename_gabor = 'gabor.classifier';
     gabor_vessel_classifier = readin_classfile(filename_gabor);
     save('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
-
+    e = cputime - t;
+    disp(['Time (', filename_gabor, ') minutes: ', num2str(e / 60.0)]);
+    end
+ 
+    if(lineop_bool == 1)
     %Train classifier using orthogonal line operators
+    t = cputime;
     filename_lineop = 'lineop.classifier';
     lineop_vessel_classifier = readin_classfile(filename_lineop);
     save('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
+    e = cputime - t;
+    disp(['Time (', filename_lineop, ') minutes: ', num2str(e / 60.0)]);
+    end
 end
 
 function [outfile] = readin_classfile(filename)

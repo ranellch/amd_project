@@ -9,6 +9,12 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
     else
         error('Input variables must be the value 0 or 1.');
     end
+    
+    if(gabor_bool == 1)
+        disp('Building the Gabor Wavelet Dataset');
+    elseif(lineop_bool == 1)
+        disp('Building the Line Operator Dataset');
+    end
 
     %Filename constants
     filename_input = 'vessel_draw.dataset';
@@ -53,17 +59,21 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
             
             %Get the vesselized image and convert it to a binary image
             vesselized_img = imread(['vessel_draw/', vessel_image]);
-            vesselized_img = rgb2gray(vesselized_img);
-            vesselized_img_binary = im2bw(vesselized_img,1);
-            for y=1:size(vesselized_img, 1)
-                for x=1:size(vesselized_img, 2)
-                    if(vesselized_img(y,x) < 255)
-                        vesselized_img_binary(y,x) = 1;
-                    else
-                        vesselized_img_binary(y,x) = 0;
-                    end
-                end
+            if(size(vesselized_img, 3) > 1)
+                vesselized_img = rgb2gray(vesselized_img);
             end
+            vesselized_img_binary = vesselized_img;
+%             vesselized_img_binary = im2bw(vesselized_img,1);
+%             for y=1:size(vesselized_img, 1)
+%                 for x=1:size(vesselized_img, 2)
+%                     if(vesselized_img(y,x) < 255)
+%                         vesselized_img_binary(y,x) = 1;
+%                     else
+%                         vesselized_img_binary(y,x) = 0;
+%                     end
+%                 end
+%             end
+            
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
@@ -71,7 +81,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                 orig_wavelets = apply_gabor_wavelet(original_img, 0);
             end
               
-            %Init some of the variables for the building of svm machine
+            %Init some of the variables for the building of the classifier
             random_sample = 1;
             border_ignore = 5;
             grouping_one = 0;
@@ -108,8 +118,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         
                         %Write to the output file the gabor wavelet string
                         if(gabor_bool == 1)
-                            feature_string_gabor=feature_to_string(feature_vector_gabor);
-                            fprintf(fout, '%d,%s\n', grouping, feature_string_gabor);
+                            feature_string_gabor=feature_to_string(feature_vector_gabor);                            fprintf(fout, '%d,%s\n', grouping, feature_string_gabor);
                         end
 
                         %Write to the output file the line operator string
@@ -128,17 +137,22 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                         random_sample = random_sample + 1;
                     end
                 end
+
+                %disp(['Row: ', num2str(y), ' / ', num2str(size(original_img, 1))]); %Watch Progress
             end
         end
         
+        %Close the appropiate files when neccessary
         if(gabor_bool == 1) fclose(fout); end
         if(lineop_bool == 1) fclose(flineop); end
     catch err
         disp(err.message);
-        disp([getfield(err.stack, 'file'), '\nError on line: ', num2str(getfield(err.stack, 'line'))]);
+        disp([getfield(err.stack, 'file')]);
+        disp(['Error on line: ', num2str(getfield(err.stack, 'line'))]);
     end
     
     disp(['Ones: ', num2str(grouping_one), ' - Zeros: ', num2str(grouping_zero)]);
     e = cputime - t;
-    disp(['Time to build dataset (min): ', num2str(3 / 60.0)]);
+    disp(['Time to build dataset (min): ', num2str(e / 60.0)]);
+
 end

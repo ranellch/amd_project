@@ -8,8 +8,8 @@ function [WaveletPieces] = apply_gabor_wavelet(img, debug)
     end
 
     npeaks = 1;
-    theta = [0 30 60 90 120 150];
-    lambda = [2 3 4];
+    theta = [0 20 40 60 80 100 120 140 160];
+    lambda = [1 2 3];
 
     %Get the size of the input image
     [m,n] = size(img);
