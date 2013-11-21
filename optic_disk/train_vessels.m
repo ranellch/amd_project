@@ -1,43 +1,59 @@
-function train_vessels(gabor_bool, lineop_bool)
-    if(gabor_bool == 1)
+function train_vessels()
         %Train classifier using gabor wavelets
         t = cputime;
         filename_gabor = 'gabor.classifier';
-        [variable_data, variable_categories] = readin_classfile(filename_gabor);
-        
+        [variable_data_gabor, variable_categories_gabor] = readin_classfile(filename_gabor);
+
+        %Normalize the data from the training set
+        variable_data_gabor = normalize_data(variable_data_gabor);
+
         %Build the vessel classifier
-        gabor_vessel_classifier = NaiveBayes.fit(variable_data, variable_categories);
+        gabor_vessel_classifier = NaiveBayes.fit(variable_data_gabor, variable_categories_gabor);
         save('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
         
         %Disp some informaiton to the user
         e = cputime - t;
         disp(['Time (', filename_gabor, ') minutes: ', num2str(e / 60.0)]);
-    end
  
-    if(lineop_bool == 1)
         %Train classifier using orthogonal line operators
         t = cputime;
         filename_lineop = 'lineop.classifier';
-        [variable_data, variable_categories] = readin_classfile(filename_lineop);
+        [variable_data_lineop, variable_categories_lineop] = readin_classfile(filename_lineop);
 
-        %Get descriptive statistics of the values of the variables
-        themean = mean(variable_data);
-        stddev = std(variable_data);
+        %Normalize the data from the training set
+        variable_data_lineop = normalize_data(variable_data_lineop);
         
-        %Apply normalization factor to all values of the variables
-        for x=1:size(variable_data, 1)
-            for z=1:size(variable_data, 2)
-                variable_data(x,z) = (variable_data(x,z) - themean(z)) / stddev(z);
-            end
-        end
-
         %Build the vessel classifier
-        lineop_vessel_classifier = NaiveBayes.fit(variable_data, variable_categories);
+        lineop_vessel_classifier = NaiveBayes.fit(variable_data_lineop, variable_categories_lineop);
         save('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
         
         %Disp some informaiton to the user
         e = cputime - t;
         disp(['Time (', filename_lineop, ') minutes: ', num2str(e / 60.0)]);
+
+	%Try to create a combined classifier
+	if(size(variable_categories_lineop, 1) == size(variable_categories_gabor, 1))
+		combined_matricies = horzcat(variable_data_gabor, variable_data_lineop);
+		combined_vessel_classifier = NaiveBayes.fit(combined_matricies, variable_categories);
+		save('combined_vessel_classifier.mat', 'combined_vessel_classifier');
+	else
+		disp('UNABLE to create combined matricies becuase these categories do not match!');
+	end
+end
+
+function [dataout] = normalize_data(data)
+    %Get descriptive statistics of the values of the variables
+    themean = mean(data);
+    stddev = std(data);
+
+    %Create output array to hold the results
+    dataout = zeros(size(data, 1), size(data, 2));
+
+    %Apply normalization factor to all values of the variables
+    for x=1:size(data, 1)
+        for z=1:size(data, 2)
+            dataout(x,z) = (data(x,z) - themean(z)) / stddev(z);
+        end
     end
 end
 

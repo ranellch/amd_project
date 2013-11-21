@@ -6,7 +6,6 @@ filename_intenstiy = 'train_intensity.classifier';
 addpath('..');
 
 %Add the location of the images
-addpath(genpath('../Test Set'));
 addpath('sfta');
 addpath('lbp');
 addpath('hog');

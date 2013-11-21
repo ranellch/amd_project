@@ -58,7 +58,7 @@ function analyze(rebuild_classifier)
         vessel_image = char(paths{3}{k});
        
         %Get the image run by the algorithm
-        calced_img = find_vessels(pid, time, 1);
+        calced_img = find_vessels(pid, time, 0);
         
         %Get the image traced by hand
         super_img = imread(vessel_image);
