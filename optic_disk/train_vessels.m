@@ -1,27 +1,47 @@
 function train_vessels(gabor_bool, lineop_bool)
-
     if(gabor_bool == 1)
-    %Train classifier using gabor information
-    t = cputime;
-    filename_gabor = 'gabor.classifier';
-    gabor_vessel_classifier = readin_classfile(filename_gabor);
-    save('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
-    e = cputime - t;
-    disp(['Time (', filename_gabor, ') minutes: ', num2str(e / 60.0)]);
+        %Train classifier using gabor wavelets
+        t = cputime;
+        filename_gabor = 'gabor.classifier';
+        [variable_data, variable_categories] = readin_classfile(filename_gabor);
+        
+        %Build the vessel classifier
+        gabor_vessel_classifier = NaiveBayes.fit(variable_data, variable_categories);
+        save('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
+        
+        %Disp some informaiton to the user
+        e = cputime - t;
+        disp(['Time (', filename_gabor, ') minutes: ', num2str(e / 60.0)]);
     end
  
     if(lineop_bool == 1)
-    %Train classifier using orthogonal line operators
-    t = cputime;
-    filename_lineop = 'lineop.classifier';
-    lineop_vessel_classifier = readin_classfile(filename_lineop);
-    save('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
-    e = cputime - t;
-    disp(['Time (', filename_lineop, ') minutes: ', num2str(e / 60.0)]);
+        %Train classifier using orthogonal line operators
+        t = cputime;
+        filename_lineop = 'lineop.classifier';
+        [variable_data, variable_categories] = readin_classfile(filename_lineop);
+
+        %Get descriptive statistics of the values of the variables
+        themean = mean(variable_data);
+        stddev = std(variable_data);
+        
+        %Apply normalization factor to all values of the variables
+        for x=1:size(variable_data, 1)
+            for z=1:size(variable_data, 2)
+                variable_data(x,z) = (variable_data(x,z) - themean(z)) / stddev(z);
+            end
+        end
+
+        %Build the vessel classifier
+        lineop_vessel_classifier = NaiveBayes.fit(variable_data, variable_categories);
+        save('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
+        
+        %Disp some informaiton to the user
+        e = cputime - t;
+        disp(['Time (', filename_lineop, ') minutes: ', num2str(e / 60.0)]);
     end
 end
 
-function [outfile] = readin_classfile(filename)
+function [variable_data, variable_categories] = readin_classfile(filename)
     fid = fopen(filename);
     
     %Initialize the variables for counting the matricies
@@ -94,7 +114,4 @@ function [outfile] = readin_classfile(filename)
     
     %Display some stats from reading of the file
     disp(['Done loading...Positive: ', num2str(positive_count),' - Negative: ', num2str(negative_count)]);
-
-    %Build the vessel classifier
-    outfile = NaiveBayes.fit(variable_data, variable_categories);
 end

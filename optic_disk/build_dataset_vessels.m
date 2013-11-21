@@ -1,5 +1,5 @@
 function build_dataset_vessels(gabor_bool, lineop_bool)
-    %Test the values of the input variables
+    %Test the values of the input variables for this function
     if((gabor_bool == 0 || gabor_bool == 1) && ...
        (lineop_bool == 0 || lineop_bool == 1))
         if((gabor_bool == 0 && lineop_bool == 0) || ...
@@ -10,6 +10,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         error('Input variables must be the value 0 or 1.');
     end
     
+    %Disp to user the current operation about to be done
     if(gabor_bool == 1)
         disp('Building the Gabor Wavelet Dataset');
     elseif(lineop_bool == 1)
@@ -31,8 +32,10 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         delete(filename_lineop);
     end
 
+    %Add paths for the running of this function
     addpath(genpath('../Test Set'));
     addpath('..');
+    addpath('vessel_draw');
 
     t = cputime;   
  
@@ -43,44 +46,51 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         fid = fopen(filename_input, 'r');
         paths = textscan(fid,'%q %d %q %*[^\n]');
         fclose(fid);
+        
+        %Make sure that all images and paths exist
+        for k=1:size(paths, 2)
+            pid = char(paths{1}{k});
+            time = num2str((paths{2}(k)));
+            vessel_image = char(paths{3}{k});
+            
+            image_exists = get_path(pid, time);
+            image_real = imread(image_exists);
+            
+            image_real_vessel = imread(vessel_image);
+        end
        
-        %Open the output files for writing 
-        if(gabor_bool == 1) fout = fopen(filename_gabor, 'w'); end
+        %Open the gabor output file for writing 
+        if(gabor_bool == 1) 
+            fout = fopen(filename_gabor, 'w');
+        end
+        
+        %Open the line operator file for writing
         if(lineop_bool == 1)
             flineop = fopen(filename_lineop, 'w'); 
             lineop_obj = line_operator(15, 8);
         end
-
+        
         %Iterate over all images to use for training 
-        for k=1:size(paths, 1)
-            pid = char(paths{k,1});
-            time = num2str((paths{k,2}));
-            vessel_image = char(paths{k,3});
+        for k=1:size(paths, 2)
+            pid = char(paths{1}{k});
+            time = num2str((paths{2}(k)));
+            vessel_image = char(paths{3}{k});
             
             %Get the vesselized image and convert it to a binary image
-            vesselized_img = imread(['vessel_draw/', vessel_image]);
+            vesselized_img = imread(vessel_image);
             if(size(vesselized_img, 3) > 1)
                 vesselized_img = rgb2gray(vesselized_img);
             end
             vesselized_img_binary = vesselized_img;
-%             vesselized_img_binary = im2bw(vesselized_img,1);
-%             for y=1:size(vesselized_img, 1)
-%                 for x=1:size(vesselized_img, 2)
-%                     if(vesselized_img(y,x) < 255)
-%                         vesselized_img_binary(y,x) = 1;
-%                     else
-%                         vesselized_img_binary(y,x) = 0;
-%                     end
-%                 end
-%             end
-            
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
             if(gabor_bool == 1)
                 orig_wavelets = apply_gabor_wavelet(original_img, 0);
             end
-              
+            
+            disp(['Extracting Info: ', pid, '(', time, ') Ref: ', vessel_image]);
+            
             %Init some of the variables for the building of the classifier
             random_sample = 1;
             border_ignore = 5;
@@ -114,18 +124,19 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                     %Ignore the border and then either grouping is one or is some proportion 
                     if(x > border_ignore && x < (size(original_img,2) - border_ignore) && ...
                        y > border_ignore && y < (size(original_img,1) - border_ignore) && ...
-                       (grouping == 1 || random_sample == 4))
+                       (grouping == 1 || random_sample >= 4))
         
                         %Write to the output file the gabor wavelet string
                         if(gabor_bool == 1)
-                            feature_string_gabor=feature_to_string(feature_vector_gabor);                            fprintf(fout, '%d,%s\n', grouping, feature_string_gabor);
+                            feature_string_gabor=feature_to_string(feature_vector_gabor);
+                            fprintf(fout, '%d,%s\n', grouping, feature_string_gabor);
                         end
 
                         %Write to the output file the line operator string
                         if(lineop_bool == 1)  
                             feature_string_lineop=feature_to_string(feature_vector_lineop);
                             fprintf(flineop, '%d,%s\n', grouping, feature_string_lineop);
-                        end 
+                        end
 
                         random_sample = 1;
                         if(grouping == 1)
@@ -137,14 +148,17 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                         random_sample = random_sample + 1;
                     end
                 end
-
-                %disp(['Row: ', num2str(y), ' / ', num2str(size(original_img, 1))]); %Watch Progress
             end
         end
         
         %Close the appropiate files when neccessary
-        if(gabor_bool == 1) fclose(fout); end
-        if(lineop_bool == 1) fclose(flineop); end
+        if(gabor_bool == 1)
+            fclose(fout);
+        end
+        
+        if(lineop_bool == 1)
+            fclose(flineop); 
+        end
     catch err
         disp(err.message);
         disp([getfield(err.stack, 'file')]);
