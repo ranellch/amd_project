@@ -11,7 +11,7 @@ function [img1re] = match_sizing(img1, minx, miny)
         %Add padding to the images so that they are now the same
         img1re = pad_to_size(img1re, minx, miny);
 
-        if(size(img1re, 1) ~= miny || size(img2re, 2) ~= minx)
+        if(size(img1re, 1) ~= miny || size(img1re, 2) ~= minx)
             error('match_sizing did not work!');
         end
     else
