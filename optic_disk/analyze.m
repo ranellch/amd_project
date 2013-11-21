@@ -9,8 +9,7 @@ function analyze(rebuild_classifier)
         build_dataset_vessels(0,1);
 
         %Train the classifier
-        train_vessels(1,0);
-        train_vessels(0,1);
+        train_vessels();
     end
     
     %Open the file to test all of this against
