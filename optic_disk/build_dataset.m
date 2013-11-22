@@ -1,6 +1,15 @@
+function [one, two] = build_dataset()
 %Add the location of the XML file with patient information
 addpath('..');
-    
+
+one = 'done';   
+two = 'donzo';
+
+number_of_pixels_per_box = 48;
+if nargin == 1
+    number_of_pixels_per_box = str2double(varargin{1});
+end
+
 %Add the location of the images
 addpath(genpath('../Test Set'));
 
@@ -36,7 +45,6 @@ for count=1:images.getLength
     image = imread(the_path);
     
     %Calculate the size of the 
-    number_of_pixels_per_box = 24;
     subimage_size = floor(size(image, 1) / number_of_pixels_per_box);
     
     if isKey(mapObjExclude, the_path)
@@ -61,8 +69,6 @@ for count=1:images.getLength
     snaked_image = im2bw(imread(snaked_file_name));
         
     fileID = fopen('train.dataset','at');
-    
-    [xval, xsize, yval, ysize] = block_it_out(image, blocks);
     
     subimages_count = 1;
     
@@ -134,4 +140,4 @@ for count=1:images.getLength
 %         close 3;
 %     end
 end
-
+end
