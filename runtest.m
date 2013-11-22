@@ -55,7 +55,7 @@ list=dir(directory);
                              continue
                          end
                             trialname = strcat('-', time1, 'v', time2);
-                            data = compare_maculas_smooth('AF',visit1, visit2, id, trialname, directory);
+                            data = compare_maculas_best('AF',visit1, visit2, id, trialname, directory);
                             data=struct2cell(data)';
                             results(index,:) = data;
                             index = index+1;

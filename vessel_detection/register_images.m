@@ -36,8 +36,11 @@ function [new_base_filename, new_corr_filename] = register_images(...
     disp(['Prepare Base: ', base_prepare, ' - Prepare Next: ', next_prepare]);
     
 	%Get the vessel outline of each image
-	base_img = vessel_detection(base_img_vd);
-	next_img = vessel_detection(next_img_vd);
+	base_img = vessel_detection_old(base_img_vd);
+	next_img = vessel_detection_old(next_img_vd);
+    
+    imwrite(base_img, 'start_img.tif');
+    imwrite(next_img, 'end_img.tif');
     
 	%Find the correspondence between the two sets of images
 	skip_quad = zeros(1,1);

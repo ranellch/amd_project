@@ -42,8 +42,8 @@ function [pointsA, pointsB] = align_images_coor(img1, img2, quad_count, skip_qua
     temp = most_common(cc.corresps, quad_count, skip_quad, minx, miny);
     
     %Display the original set of matched points
-    %figure(1);
-    %correspDisplay(temp, image1);
+    figure(1);
+    correspDisplay(temp, image1);
     %figure(2);
     %correspDisplay(temp, image2);
     

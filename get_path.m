@@ -1,7 +1,4 @@
 function [path] = get_path(pid, time)
-    %Add the location of the images
-    addpath(genpath('Test Set'));
-
     %Parse XML document and find this pictures information
     xDoc= xmlread('images.xml');
     images = xDoc.getElementsByTagName('image');

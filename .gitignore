@@ -5,6 +5,8 @@
 *.png
 *.asv
 *~
+*.out
 cpselect_database/run*
 .DS_Store
 *.mat
+*.classifier
