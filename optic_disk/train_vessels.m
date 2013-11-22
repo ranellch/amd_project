@@ -13,7 +13,7 @@ function train_vessels()
         
         %Disp some informaiton to the user
         e = cputime - t;
-        disp(['Time (', filename_gabor, ') minutes: ', num2str(e / 60.0)]);
+        disp(['Time (min): ', num2str(e / 60.0)]);
  
         %Train classifier using orthogonal line operators
         t = cputime;
@@ -29,12 +29,20 @@ function train_vessels()
         
         %Disp some informaiton to the user
         e = cputime - t;
-        disp(['Time (', filename_lineop, ') minutes: ', num2str(e / 60.0)]);
+        disp(['Time (min): ', num2str(e / 60.0)]);
 
 	%Try to create a combined classifier
 	if(size(variable_categories_lineop, 1) == size(variable_categories_gabor, 1))
 		combined_matricies = horzcat(variable_data_gabor, variable_data_lineop);
-		combined_vessel_classifier = NaiveBayes.fit(combined_matricies, variable_categories);
+                combined_categories = zeros(size(variable_categories_lineop,1), 1)
+                for cat=1:size(variable_categories_gabor,1)
+                    if(variable_categories_lineop(cat,1) == variable_categories_gabor(cat,1))
+                        combined_categories(cat,1) = variable_categories_gabor(cat,1);
+                    else
+                        error('Your categories labels does not match and therefore cannot create combined matrix!');
+                    end
+                end
+		combined_vessel_classifier = NaiveBayes.fit(combined_matricies, combined_categories);
 		save('combined_vessel_classifier.mat', 'combined_vessel_classifier');
 	else
 		disp('UNABLE to create combined matricies becuase these categories do not match!');
