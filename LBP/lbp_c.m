@@ -211,44 +211,48 @@ if isstruct(mapping)
     end
 end
 
+%separate results matrix by contrast ranges
+%contrast bin cutoffs: 3.8571    5.8000    7.4286   9.1667   11.3333   14.8000   24.4667
+hist_layers = logical(zeros([size(result), 4]));
+edges = [3.8571    9.1667    24.4667];
+hist_out = zeros(bins,4);
+
+for i = 1:4;
+    if i == 1
+        ubound = edges(i); 
+        hist_layers(:,:,i) = contrast <= ubound;
+    elseif i == 4
+        lbound = edges(i-1);
+        hist_layers(:,:,i) = contrast > lbound;
+    else
+        ubound = edges(i); lbound = edges(i-1);
+        hist_layers(:,:,i) = contrast > lbound & contrast <= ubound;
+    end
+end
+
 if (strcmp(mode,'h') || strcmp(mode,'hist') || strcmp(mode,'nh'))
     % Return with LBP histogram if mode equals 'hist'.
-    
-    %separate results matrix by contrast ranges
-    %contrast bin cutoffs: 3.8571    5.8000    7.4286   9.1667   11.3333   14.8000   24.4667
-    hist_layers = logical(zeros([size(result) 8]));
-    edges = [3.8571    5.8000    7.4286   9.1667   11.3333   14.8000   24.4667];
-    hist_out = zeros(bins,8);
-    
-    for i = 1:8;
-        if i == 1
-            ubound = edges(i); 
-            hist_layers(:,:,i) = contrast <= ubound;
-            hist_out(:,i) = hist(result(hist_layers(:,:,i)),0:(bins-1))';
-        elseif i == 8
-            lbound = edges(i-1);
-            hist_layers(:,:,i) = contrast > lbound;
-            hist_out(:,i) = hist(result(hist_layers(:,:,i)),0:(bins-1))';
-        else
-            ubound = edges(i); lbound = edges(i-1);
-            hist_layers(:,:,i) = contrast > lbound & contrast <= ubound;
-            hist_out(:,i) = hist(result(hist_layers(:,:,i)),0:(bins-1))';
-        end
-    end
-    
+        
+for i = 1:4;
+        hist_out(:,i) = hist(result(hist_layers(:,:,i)),0:(bins-1))';
+end
     result = hist_out;
     
     if (strcmp(mode,'nh'))
-        result=result./repmat(sum(sum(result)),bins,8);
+        result=result./repmat(sum(sum(result)),bins,4);
     end
 else
-    %Otherwise return 2 matrices of unsigned integers
+    %Otherwise return a size(result) by 8 matrix of unsigned integer images
+    Iout=zeros([size(result), 4]); 
+    for i = 1:4;
+        Iout(:,:,i) = result.*hist_layers(:,:,i);
+    end
     if ((bins-1)<=intmax('uint8'))
-        result=uint8(result);
+        result=uint8(Iout);
     elseif ((bins-1)<=intmax('uint16'))
-        result=uint16(result);
+        result=uint16(Iout);
     else
-        result=uint32(result);
+        result=uint32(Iout);
     end
 end
 

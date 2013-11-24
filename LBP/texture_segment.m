@@ -9,8 +9,8 @@ maxdim = 128;
 dims = [128 64 32 16]; 
 
 %Smooth noise
-H = fspecial('gaussian',[5 5], 1.5);
-I=imfilter(I,H);
+% H = fspecial('gaussian',[5 5], 1.5);
+% I=imfilter(I,H);
 
 %Pad image with zeros to guarantee that function qtdecomp will split
 %regions down to sizes divisible by 16.
@@ -31,8 +31,8 @@ for z = 1:numdims;
     dim = dims(z);
     [vals, r, c] = qtgetblk(I, S, dim);
     for j = 1:length(r)
-        hist = lbp_c(vals(:,:,j),[-1 -1; -1 0; -1 1; 0 -1; -0 1; 1 -1; 1 0; 1 1], 0, 'nh');
-        regions{idx,1} = hist+double(hist==0); %add 1 to bins with 0 elements so log exists
+        hist = lbp(vals(:,:,j),4,8, 0, 'nh');
+        regions{idx,1} = hist;
         regions{idx,2} = [r(j),c(j)];
         regions{idx,3} = dim;
         idx=idx+1;
@@ -42,135 +42,88 @@ end
 
 Ihier = Ihier(1:M,1:N); %crop out padding
 figure, imshow(Ihier,[])
+colormap(gray)
 
 %***Perform Agglomerative Merging
 strt_regions = size(regions,1);
 MI_all = zeros(1000,1);
+MIR_all = [];
 count = 1;
 keep_merging = true;
 numregions = strt_regions;
-while keep_merging
+while keep_merging && numregions > 1
     for j = 1:numregions
+        if keep_merging==false 
+            break
+        end
         if isempty(regions{j,1})
             continue
         end
         hist1 = regions{j,1};
-        corners1 = regions{j,2};
         extents1 = regions{j,3};
-        MImin = 1e20;
+        MImin = 0;
+        start = true;
         for k = 1:numregions
             if k==j || isempty(regions{k,1})
                 continue
             end
-            corners2 = regions{k,2};
             extents2 = regions{k,3};
-            %check if above region1
-             if any(corners2(:,1)+extents2-1 == corners1(:,1)-1 & ...
-                    (((corners1(:,2) <= (corners2(:,2)+extents2-1) & corners1(:,2) >= corners2(:,2))) | ...
-                     ((corners2(:,2) <= (corners1(:,2)+extents1-1) & corners2(:,2) >= corners1(:,2)))))
-                hist2 = regions{k,1};
-                p = min([sum(extents1.^2), sum(extents2.^2)]);
-                MI = p*G_statistic(hist1,hist2);
-                if MI < MImin                    
-                   MImin = MI;
-                   merge_idx = k;
-                end
-                continue
-             end                
-            %check if below region1
-            if any(corners2(:,1) == corners1(:,1)+extents1 & ...
-                    (((corners1(:,2) <= (corners2(:,2)+extents2-1) & corners1(:,2) >= corners2(:,2))) | ...
-                     ((corners2(:,2) <= (corners1(:,2)+extents1-1) & corners2(:,2) >= corners1(:,2)))))
-                hist2 = regions{k,1};
-                p = min([sum(extents1.^2), sum(extents2.^2)]);
-                MI = p*G_statistic(hist1,hist2);
-                if MI < MImin                   
-                   MImin = MI;
-                   merge_idx = k;
-                end
-                continue
+            hist2 = regions{k,1};
+            p = min([sum(extents1.^2), sum(extents2.^2)]);
+            MI = p*G_statistic(hist1,hist2);
+            if MI < MImin || start==true                  
+               MImin = MI;
+               merge_idx = k;
             end
-            %check if to the left of region1
-             if any(corners2(:,2)+extents2-1 == corners1(:,2)-1 & ...
-                    (((corners1(:,1) <= (corners2(:,1)+extents2-1) & corners1(:,1) >= corners2(:,1))) | ...
-                     ((corners2(:,1) <= (corners1(:,1)+extents1-1) & corners2(:,1) >= corners1(:,1)))))
-                hist2 = regions{k,1};
-                p = min([sum(extents1.^2), sum(extents2.^2)]);
-                MI = p*G_statistic(hist1,hist2);
-                if MI < MImin                    
-                   MImin = MI;
-                   merge_idx = k;
-                end
-                continue
-            end
-            %check if to the right of region1
-             if any(corners2(:,2) == corners1(:,2)+extents1 & ...
-                   (((corners1(:,1) <= (corners2(:,1)+extents2-1) & corners1(:,1) >= corners2(:,1))) | ...
-                     ((corners2(:,1) <= (corners1(:,1)+extents1-1) & corners2(:,1) >= corners1(:,1)))))
-                hist2 = regions{k,1};
-                p = min([sum(extents1.^2), sum(extents2.^2)]);
-                MI = p*G_statistic(hist1,hist2);
-                if MI < MImin                
-                   MImin = MI;
-                   merge_idx = k;
-                end
-                continue
-             end                        
-        end
+            start=false;
+         end                
         %merge region with smallest merger importance (MI) provided stopping rule is not
         %invoked
-        MImin
-        MIR = MImin/max(MI_all);
-        if MIR > 1.2 && count > round(.1*(strt_regions-1))
+        MIR = abs(MImin/max(MI_all));
+        if MIR > 2 && count > round(.1*(strt_regions-1))
             keep_merging = false;
         else
             regions{j,1} = hist1+regions{merge_idx,1};
-            regions{j,1} = regions{j,1}./repmat(sum(sum(regions{j,1})),256,8); %normalize
+            regions{j,1} = regions{j,1}./repmat(sum(sum(regions{j,1})),1,256); %normalize
             regions{j,2} = [regions{j,2}; regions{merge_idx,2}];
             regions{j,3} = [regions{j,3}; regions{merge_idx,3}];
-            regions{merge_idx,1} = [];
-            regions{merge_idx,2} = [];
-            regions{merge_idx,3} = [];
+            regions{merge_idx,1} = []; %mark for deletion
             MI_all(count) = MImin;
+            MIR_all(count) = MIR;
             count = count+1;
             keep_merging = true;
         end
     end
-    regions = regions(~cellfun('isempty',regions)); 
+    regions(any(cellfun('isempty',regions),2),:)=[];
     numregions = size(regions,1);
 end
 
-% %Get border pixels, set to white
-% new_regions = cell(numregions,4); %add cells to store border pixels
-% new_regions{:,1:3} = regions;
-% regions = new_regions;
-% Iseg = I
-% for i = 1:numregions
-%     blocks = sortrows([regions{i,2} regions{i,3}],1); %sort blocks by row, lowest to highest
-%     for j = 1:size(corners,1) %cycle through rows starting from top      
-%         row = blocks(blocks(:,1)==min(blocks(:,1)),:); 
-%         [rightmost, idx] = max(row(:,2));
-%         points = min(row(:,2)):(rightmost+row(idx,3)); %get row of pixels across current y coordinate of region
-%         previous_points = regions{i,4};
-%         if j == 1
-%             regions{i,4} = [repmat(j,[length(points),1]), points'];
-%             continue
-%         end
-%         if j == size(corners,1)
-%             regions{i,4} = [regions{i,4}; repmat(j,[length(points),1]), points'];
-%             continue
-%         end
-%         for k = 1:length(points)
-%             if points(k) <= min(previous_points(:,previous_points(:,2)==points(k))) 
-%               
-%             
-            
-        
-        
-        
-        
-    
-    
+%Get border pixels, set to different colors
+cmap = colormap(jet);
+Iout = cat(3,I,I,I);
+ for i = 1:numregions
+     binmask = zeros(size(I));
+     allcorners = regions{i,2};
+     alldims = regions{i,3};
+     for j = 1:length(alldims)
+         corner_x = allcorners(j,2);
+         corner_y = allcorners(j,1);
+         dim = alldims(j);
+         binmask(corner_y:corner_y+dim-1, corner_x:corner_x+dim-1) = 1;
+     end
+     binmask = logical(binmask);
+     bordermask = bwperim(binmask);
+     for j = 1:3
+        bordermask(bordermask) = cmap(i,j);
+        Iout(:,:,j) = bordermask;
+     end
+ end
+
+Iout = Iout(1:M,1:N,:);
+ figure, imshow(Iout);
+ colormap(jet)
+ 
+ figure, plot(MIR_all)
     
      
 
@@ -225,19 +178,18 @@ function [ flag ] = splitpred_texture(blk_regions)
 %SPLITPRED_TEXTURE Contains the predicate used to determine whether to split
 %or merge regions during the hierarchal splitting phase of texture based segmentation.
 
-hists=zeros(256,8,4);
+hists=zeros(256,4);
 
 for i = 1:4
-    hists(:,:,i) =lbp_c(blk_regions(:,:,i));
+    hists(:,i) =lbp(blk_regions(:,:,i),4,8,0,'nh');
 end
 
 index = 1;
 G=zeros(6,1);
 for m = 1:3
-    hist1 = hists(:,:,m);
-    hist1(hist1==0) = 1;
+    hist1 = hists(:,m);
     for n = m+1:4 
-        hist2 = hists(:,:,n);
+        hist2 = hists(:, n);
         hist2(hist2==0) = 1;        
         G(index) = G_statistic(hist1,hist2);       
     index=index+1;   
@@ -246,7 +198,7 @@ end
 
 R=max(G)/min(G);
 
-if R > 1.08
+if R > 1.05
     flag = true;
 else 
     flag = false;
