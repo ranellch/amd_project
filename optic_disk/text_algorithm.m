@@ -3,7 +3,7 @@ function [vector] = text_algorithm(img)
 end
 
 function [final] = image_sfta(img)
-    desc = sfta(img, 8);
+    desc = sfta(img, 4);
     final = zeros(1, size(desc, 2));
     
     for i=1:size(desc, 2)

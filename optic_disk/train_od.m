@@ -6,12 +6,13 @@ function train_od()
     disp('======================Texture Classifier======================');
     [text_variables, text_categories] = readin_classfile(filename);
     
-    text_prediction_bayesstruct = NaiveBayes.fit(text_variables, text_categories);
-    save('text_prediction_bayesstruct.mat', 'text_prediction_bayesstruct');
+    text_od_bayesstruct = NaiveBayes.fit(text_variables, text_categories);
+    save('text_od_bayesstruct.mat', 'text_od_bayesstruct');
     
     try
-        text_prediction_svmstruct = svmtrain(text_variables, text_categories);
-        save('text_prediction_svmstruct.mat', 'text_prediction_svmstruct');
+        maxiter_inc = statset('MaxIter', 30000);
+        text_od_svmstruct = svmtrain(text_variables, text_categories, 'options', maxiter_inc);
+        save('text_od_svmstruct.mat', 'text_od_svmstruct');
     catch
         disp('Unable to train svm classifier on texture training set!');
     end
@@ -20,14 +21,32 @@ function train_od()
     disp('======================Intensity Classifier======================');
     [int_variables, int_categories] = readin_classfile(filename_intenstiy);
     
-    int_prediction_bayesstruct = NaiveBayes.fit(int_variables, int_categories);
-    save('int_prediction_bayesstruct.mat', 'int_prediction_bayesstruct');
+    int_od_bayesstruct = NaiveBayes.fit(int_variables, int_categories);
+    save('int_od_bayesstruct.mat', 'int_od_bayesstruct');
     
     try
-        int_prediction_svmstruct = svmtrain(int_variables, int_categories);
-        save('int_prediction_svmstruct.mat', 'int_prediction_svmstruct');
+        int_od_svmstruct = svmtrain(int_variables, int_categories);
+        save('int_od_svmstruct.mat', 'int_od_svmstruct');
     catch
         disp('Unable to train svm classifier on intensity training set!');
+    end
+    
+    if(size(text_variables, 1) == size(int_variables, 1) && size(text_categories, 1) == size(int_categories, 1))
+        combined_variables = horzcat(text_variables, int_variables);
+        
+        cont = 1;
+        for x=1:size(int_categories, 1)
+            if(int_categories(x,1) ~= text_categories(x,1))
+                cont = 0;
+            end
+        end
+        
+        if(cont == 1)
+            combined_od_bayesstruct = NaiveBayes.fit(int_variables, int_categories);
+            save('combined_od_bayesstruct.mat', 'combined_od_bayesstruct');
+        else
+            disp('The categories from intensity and texture do not match!');
+        end
     end
 end
 
@@ -82,7 +101,7 @@ function [variable_data, variable_categories] = readin_classfile(filename)
         splitline = strsplit(tline, ',');
         
         %Get the category of the following feature vector
-        variable_group=str2double(splitline(1));
+        variable_group = str2double(splitline(1));
         if(variable_group == 1)
             positive_count=positive_count + 1;
         else
