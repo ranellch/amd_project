@@ -61,13 +61,14 @@ disp('Completed Classification with Gabor Wavelets!');
 %Init the orthogonal line operator class
 lineop_obj = line_operator(15, 8);
 fv_image = zeros(size(img, 2), size(img, 1), 3);
+angle_img = zeros(size(img, 2), size(img, 1), 1);
 
 disp('Running Line Operator!');
 
 %Get the line operator feature vector for every pixel value
 for y=1:size(fv_image, 1)
     for x=1:size(fv_image, 2)
-        fv_image(y,x,:) = lineop_obj.get_fv(img, y, x);
+        [fv_image(y,x,:), angle_img(y,x)] = lineop_obj.get_fv(img, y, x);
     end
     
     if(debug == 1 && mod(y, 50) == 0)
