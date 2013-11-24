@@ -28,6 +28,7 @@ disp(['ID: ', image, ' - Time: ', time, ' - Path: ', filename]);
 %Load the classifier struct for this bad boy
 load('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
 load('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
+load('combined_vessel_classifier.mat','combined_vessel_classifier');
 
 %Time how long it takes to apply gabor and classify
 t=cputime;
@@ -36,6 +37,7 @@ disp('Building Gabor Wavelets!');
 
 %Apply the gabor function to the image
 [gw_image] = apply_gabor_wavelet(img, 0);
+gw_image = normalize_image_fv(gw_image);
 
 binary_img_gabor = im2bw(img, 1.0);
 for y=1:size(binary_img_gabor, 1)
@@ -99,8 +101,14 @@ disp('Running Pixelwise Classification ');
 
 binary_img = im2bw(img, 1.0);
 for y=1:size(binary_img,1)
-    for x=1:size(binary_img,2)
-        if(binary_img_gabor(y,x) == 1 && binary_img_lineop(y,x) == 1)
+    gabor_list = squeeze(gw_image(y,:,:));
+    fv_list = squeeze(fv_image(y,:,:));
+    final_fv = horzcat(gabor_list, fv_list);
+
+    [~, out_final] = posterior(combined_vessel_classifier, final_fv);
+
+    for x=1:size(out_final, 1)
+        if(out_final(x,1) == 1)
             binary_img(y,x) = 1;
         else
             binary_img(y,x) = 0;
@@ -112,9 +120,23 @@ end
 e = cputime-t;
 disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 
-%Apply some morphological operations to clean up the small stuff
+%Remove the border because it tends to not be that clean
+border_remove = 10;
+for y=1:size(binary_img,1)
+    for x=1:size(binary_img, 2)
+        if(y < border_remove || x < border_remove || ...
+           y > (size(binary_img, 1) - border_remove) || ...
+           x > (size(binary_img, 2) - border_remove))
+            binary_img(y,x) = 0;
+        end
+    end
+end
+
+%Apply morolgical operation to smooth out the edges
 binary_img = bwmorph(binary_img, 'majority');
-binary_img = bwareaopen(binary_img,25);
+
+%Apply morphological operations to clean up the small stuff
+binary_img = bwareaopen(binary_img,60);
 
 if(debug == 1)
     figure(3), imshow(binary_img);

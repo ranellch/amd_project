@@ -34,7 +34,7 @@ function train_vessels()
 	%Try to create a combined classifier
 	if(size(variable_categories_lineop, 1) == size(variable_categories_gabor, 1))
 		combined_matricies = horzcat(variable_data_gabor, variable_data_lineop);
-                combined_categories = zeros(size(variable_categories_lineop,1), 1)
+                combined_categories = zeros(size(variable_categories_lineop,1), 1);
                 for cat=1:size(variable_categories_gabor,1)
                     if(variable_categories_lineop(cat,1) == variable_categories_gabor(cat,1))
                         combined_categories(cat,1) = variable_categories_gabor(cat,1);
