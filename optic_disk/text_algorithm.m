@@ -1,5 +1,5 @@
 function [vector] = text_algorithm(img)
-    vector = image_lbp(img);
+    vector = image_sfta(img);
 end
 
 function [final] = image_sfta(img)
@@ -12,7 +12,7 @@ function [final] = image_sfta(img)
 end
 
 function [final] = image_lbp(img)
-    desc = lbp_c(img, 5, 8, 'nh');
+    desc = lbp(img);
     
     final = zeros(1, size(desc, 2) * size(desc, 1));
     final_index = 1;

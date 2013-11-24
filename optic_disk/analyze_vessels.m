@@ -1,4 +1,4 @@
-function analyze(rebuild_classifier)
+function analyze_vessels(rebuild_classifier)
     addpath('vessel_draw');
     
     results_file = 'analyze_results.txt';
