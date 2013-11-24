@@ -32,11 +32,12 @@ function [bin_image, prob_matrix] = apply_segment_classify(img, number_of_pixels
             prob_matrix(y,x,4) = prob_text(2);
             
             %Depending on the classification 
-            if grouping_int == 1
+            if grouping_text == 1 && grouping_int == 1
                 bin_image = apply_bin_to_arr(bin_image, ys, xs, number_of_pixels, 1);
             else
                 bin_image = apply_bin_to_arr(bin_image, ys, xs, number_of_pixels, 0);
             end
+            figure(1), imshow(bin_image);
         end
     end
     

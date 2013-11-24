@@ -6,7 +6,7 @@ function train_od()
     disp('======================Texture Classifier======================');
     [text_variables, text_categories] = readin_classfile(filename);
     
-    text_prediction_bayesstruct = NaiveBayes.fit(text_variables, text_categories, 'Distribution', 'mn');
+    text_prediction_bayesstruct = NaiveBayes.fit(text_variables, text_categories);
     save('text_prediction_bayesstruct.mat', 'text_prediction_bayesstruct');
     
     try
@@ -92,7 +92,11 @@ function [variable_data, variable_categories] = readin_classfile(filename)
         
         %Get the values of the information at differeing orientations and scale
         for i=2:length(splitline);
-            variable_data(current_count, i-1) = str2double(splitline(i));
+            the_val = str2double(splitline(i));
+            if(isnan(the_val) == 1)
+                the_val = 0;
+            end
+            variable_data(current_count, i-1) = the_val;
         end
 
         current_count=current_count+1;
