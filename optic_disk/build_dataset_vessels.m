@@ -25,8 +25,8 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
 
     %Filename constants
     filename_input = 'vessel_draw.dataset';
-    filename_gabor = 'gabor.classifier';
-    filename_lineop = 'lineop.classifier';
+    filename_gabor = 'vessel_gabor.classifier';
+    filename_lineop = 'vessel_lineop.classifier';
 
     %Remove gabor file is already exists
     if(gabor_bool == 1 && exist(filename_gabor, 'file') == 2)

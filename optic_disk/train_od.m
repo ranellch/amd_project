@@ -1,6 +1,5 @@
 function train_od()
-    filename = 'train_text.classifier';
-    filename_intenstiy = 'train_intensity.classifier';
+    filename = 'od_texture.classifier';
     
     %Run through the file and get the variables for texture classification
     disp('======================Texture Classifier======================');
@@ -15,41 +14,6 @@ function train_od()
         save('text_od_svmstruct.mat', 'text_od_svmstruct');
     catch
         disp('Unable to train svm classifier on texture training set!');
-    end
-    
-    %Get the variables for intensity classification
-    disp('======================Intensity Classifier======================');
-    [int_variables, int_categories] = readin_classfile(filename_intenstiy);
-    
-    int_od_bayesstruct = NaiveBayes.fit(int_variables, int_categories);
-    save('int_od_bayesstruct.mat', 'int_od_bayesstruct');
-    
-    try
-        maxiter_inc = statset('MaxIter', 30000);
-        int_od_svmstruct = svmtrain(int_variables, int_categories, 'options', maxiter_inc, 'Method', 'QP');
-        save('int_od_svmstruct.mat', 'int_od_svmstruct');
-    catch
-        disp('Unable to train svm classifier on intensity training set!');
-    end
-    
-    if(size(text_variables, 1) == size(int_variables, 1) && size(text_categories, 1) == size(int_categories, 1))
-        combined_variables = text_variables;
-        combined_categories = zeros(size(text_categories, 1), 1);
-        cont = 1;
-        for x=1:size(int_categories, 1)
-            if(int_categories(x,1) ~= text_categories(x,1))
-                cont = 0;
-            else
-                combined_categories(x, 1) = text_categories(x,1);
-            end
-        end
-        
-        if(cont == 1)
-            combined_od_bayesstruct = NaiveBayes.fit(combined_variables, combined_categories);
-            save('combined_od_bayesstruct.mat', 'combined_od_bayesstruct');
-        else
-            disp('The categories from intensity and texture do not match!');
-        end
     end
 end
 

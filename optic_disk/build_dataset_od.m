@@ -4,7 +4,7 @@ std_img_size = 768;
 number_of_pixels_per_box = 8;
 
 %Constants for the output file name
-filename_text = 'train_text.classifier';
+filename_text = 'od_texture.classifier';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
@@ -55,6 +55,8 @@ for x=1:size(includes{1}, 1)
     time = num2str(includes{2}(x));
     disp(['Running: ', pid, ' - ', time]);
     
+    try
+        
     %Get the path and load the image
     the_path = get_path(pid, time);
     img = imread(the_path);
@@ -85,8 +87,9 @@ for x=1:size(includes{1}, 1)
     
     %open the files to write
     fileID = fopen(filename_text,'at');
-    
+        
     if(1)
+    %This is a pixel based classification
     orig_wavelets = apply_gabor_wavelet(img, 0);
     random_sample = 1;
     border_ignore = 5;
@@ -127,6 +130,7 @@ for x=1:size(includes{1}, 1)
         end
     end
     else
+    %This is a window based feature descriptor
     for x=1:subimage_size
         for y=1:subimage_size
             xs = ((x - 1) * number_of_pixels_per_box) + 1;
@@ -172,7 +176,9 @@ for x=1:size(includes{1}, 1)
         end
     end
     end
-    
+    catch
+        disp(['Could not deal with: ', pid, '(', time, ')']);
+    end
     fclose(fileID);
 end
 
