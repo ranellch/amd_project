@@ -11,7 +11,7 @@ function train_od()
     
     try
         maxiter_inc = statset('MaxIter', 30000);
-        text_od_svmstruct = svmtrain(text_variables, text_categories, 'options', maxiter_inc);
+        text_od_svmstruct = svmtrain(text_variables, text_categories, 'options', maxiter_inc, 'Method', 'QP');
         save('text_od_svmstruct.mat', 'text_od_svmstruct');
     catch
         disp('Unable to train svm classifier on texture training set!');
@@ -25,24 +25,27 @@ function train_od()
     save('int_od_bayesstruct.mat', 'int_od_bayesstruct');
     
     try
-        int_od_svmstruct = svmtrain(int_variables, int_categories);
+        maxiter_inc = statset('MaxIter', 30000);
+        int_od_svmstruct = svmtrain(int_variables, int_categories, 'options', maxiter_inc, 'Method', 'QP');
         save('int_od_svmstruct.mat', 'int_od_svmstruct');
     catch
         disp('Unable to train svm classifier on intensity training set!');
     end
     
     if(size(text_variables, 1) == size(int_variables, 1) && size(text_categories, 1) == size(int_categories, 1))
-        combined_variables = horzcat(text_variables, int_variables);
-        
+        combined_variables = text_variables;
+        combined_categories = zeros(size(text_categories, 1), 1);
         cont = 1;
         for x=1:size(int_categories, 1)
             if(int_categories(x,1) ~= text_categories(x,1))
                 cont = 0;
+            else
+                combined_categories(x, 1) = text_categories(x,1);
             end
         end
         
         if(cont == 1)
-            combined_od_bayesstruct = NaiveBayes.fit(int_variables, int_categories);
+            combined_od_bayesstruct = NaiveBayes.fit(combined_variables, combined_categories);
             save('combined_od_bayesstruct.mat', 'combined_od_bayesstruct');
         else
             disp('The categories from intensity and texture do not match!');

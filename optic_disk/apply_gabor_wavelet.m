@@ -17,7 +17,7 @@ function [WaveletPieces] = apply_gabor_wavelet(img, debug)
     %Sum up all the transformations 
     WaveletPieces = zeros(m, n, size(theta, 2) * size(lambda, 2));
     piece_count = 1;
-        
+    
     %Iterate over all gabor wavelets
     for v=1:size(theta, 2)
         t = theta(1,v);
@@ -41,7 +41,7 @@ function [WaveletPieces] = apply_gabor_wavelet(img, debug)
                 figure(1);
                 subplot(size(theta,2), size(lambda,2), piece_count);
                 imshow(real(GW), []);
-            
+                
                 figure(2);
                 subplot(size(theta,2), size(lambda,2), piece_count);
                 imshow(convolved_img);

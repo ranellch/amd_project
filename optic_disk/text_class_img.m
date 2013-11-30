@@ -1,6 +1,4 @@
-function [out, prob] = text_class_img(img, prediction_struct)
-    desc = text_algorithm(img);
-
-    [prob,out] = posterior(prediction_struct, desc);
+function [out, prob] = text_class_img(fv, prediction_struct)
+    [prob,out] = posterior(prediction_struct, fv);
 end
 

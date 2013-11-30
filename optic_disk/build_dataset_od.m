@@ -2,33 +2,29 @@ function build_dataset_od()
 %constant for standard image sizes
 std_img_size = 768;
 number_of_pixels_per_box = 8;
-    
-filename_text = 'train_text.classifier';
-filename_intenstiy = 'train_intensity.classifier';
 
+%Constants for the output file name
+filename_text = 'train_text.classifier';
+
+%Get the time of the start of this function to get how long it took to run.
 t = cputime;
 
-%Remove texture file is already exists
+%Remove texture file if already exists
 if(exist(filename_text, 'file') == 2)
     delete(filename_text);
 end
     
-%Remove intensity file is already exists
-if(exist(filename_intenstiy, 'file') == 2)
-    delete(filename_intenstiy);
-end
-
-%Add texture algorithm paths
+%Add texture algorithm path
 addpath('sfta');
 
 %Add the location of the get_path script
 addpath('..');
 
-%Add the location of the images
+%Add the location of the images resultant from get_path
 addpath('../Test Set');
 
-%Get the images to exclude from this list
-fid = fopen('include.dataset');
+%Get the images to include from this list
+fid = fopen('include.dataset', 'r');
 includes = textscan(fid,'%q %d %*[^\n]');
 fclose(fid);
 
@@ -51,7 +47,7 @@ for x=1:size(includes{1}, 1)
         disp(['Could not load image: ', pid , ' - ', time]);
     end
 end
-disp('----------Done Check Files---------');
+disp('-------Done Checking Files-------');
 
 for x=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
@@ -89,8 +85,48 @@ for x=1:size(includes{1}, 1)
     
     %open the files to write
     fileID = fopen(filename_text,'at');
-    fidintensity = fopen(filename_intenstiy, 'at');
     
+    if(1)
+    orig_wavelets = apply_gabor_wavelet(img, 0);
+    random_sample = 1;
+    border_ignore = 5;
+	grouping_one = 0;
+    grouping_zero = 0;
+    
+    for y=1:size(img,1)
+        for x=1:size(img,2)
+            %Get the gabor wavelet feature vector
+            feature_vector_gabor = zeros(size(orig_wavelets, 3), 1);
+            for wave=1:size(orig_wavelets, 3)
+            	feature_vector_gabor(wave, 1) = orig_wavelets(y,x,wave);
+            end
+            
+            %Get the grouping for this particular pixel
+            grouping = 0;
+            if(snaked_image(y,x) == 1)
+                grouping = 1;
+            end
+            
+            %Ignore the border and then either grouping is one or is some proportion 
+            if(x > border_ignore && x < (size(img,2) - border_ignore) && ...
+               y > border_ignore && y < (size(img,1) - border_ignore) && ...
+               (grouping == 1 || random_sample >= 6))
+                %Write to the output file the gabor wavelet string
+                feature_string_gabor = feature_to_string(feature_vector_gabor);
+                fprintf(fileID, '%d,%s\n', grouping, feature_string_gabor);
+
+                random_sample = 1;
+                if(grouping == 1)
+                    grouping_one=grouping_one+1;
+                else
+                    grouping_zero=grouping_zero+1;
+                end
+            else
+                random_sample = random_sample + 1;
+            end
+        end
+    end
+    else
     for x=1:subimage_size
         for y=1:subimage_size
             xs = ((x - 1) * number_of_pixels_per_box) + 1;
@@ -132,17 +168,11 @@ for x=1:size(includes{1}, 1)
 
                 %Write to the output file the texture feature vector
                 fprintf(fileID, '%d,%s\n', grouping, texture_string);
-
-                %Calculate the intensity with mean and variance
-                [mean_val, var_val] = avg_intensity(subimage);
-
-                %Write to the output file the intensity feature vecotr
-                fprintf(fidintensity, '%d,%f,%f\n', grouping, mean_val, var_val);
             end
         end
     end
+    end
     
-    fclose(fidintensity);
     fclose(fileID);
 end
 
