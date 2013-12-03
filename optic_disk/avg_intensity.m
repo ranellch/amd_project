@@ -10,13 +10,14 @@ function [mean, var] = avg_intensity(img)
     end
     
     %Calculate avg value
-    mean = double(the_sum) / double(count);
+    mean = the_sum / double(count);
     
     %calculate the variance
     var = 0.0;
     for y=1:size(img,1)
         for x=1:size(img,2)
-            var = var + double((img(y,x) - mean) * (img(y,x) - mean));
+            diff = double(img(y,x)) - mean;
+            var = var + (diff^2);
         end
     end
 end

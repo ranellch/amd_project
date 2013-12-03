@@ -5,6 +5,7 @@
 *.png
 *.asv
 *~
+*.swp
 *.out
 cpselect_database/run*
 .DS_Store

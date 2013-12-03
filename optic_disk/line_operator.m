@@ -53,7 +53,7 @@ methods
         obj.ready_to_go = 1;
     end
 
-    function fv=get_fv(obj, img, yin, xin)
+    function [fv, mx_ang]=get_fv(obj, img, yin, xin)
         if(obj.ready_to_go ~= 1)
             error('Before calling this method you must init(length, norien) the class!');
         end
@@ -83,6 +83,9 @@ methods
             end
         end
 
+        %Return the angle of the max line strength
+        mx_ang = max_line_str_deg;
+        
         %Get the line strength of the pixel perpendicular to the maximum line strength
         nindeg = max_line_str_deg + 90.0;
         ninlen = 3;
@@ -100,7 +103,6 @@ methods
         fv(1,3) = img(yin,xin);
     end
 end
-
 end
 
 %Helper functions

@@ -1,4 +1,10 @@
 function build_dataset_vessels(gabor_bool, lineop_bool)
+    %constant for standard image sizes
+    std_img_size = 768;
+    
+    lineop_len = 15;
+    lineop_angcnt = 8;
+    
     %Test the values of the input variables for this function
     if((gabor_bool == 0 || gabor_bool == 1) && ...
        (lineop_bool == 0 || lineop_bool == 1))
@@ -17,13 +23,10 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         disp('Building the Line Operator Dataset');
     end
 
-    %constant for standard image sizes
-    std_img_size = 768;
-
     %Filename constants
     filename_input = 'vessel_draw.dataset';
-    filename_gabor = 'gabor.classifier';
-    filename_lineop = 'lineop.classifier';
+    filename_gabor = 'vessel_gabor.classifier';
+    filename_lineop = 'vessel_lineop.classifier';
 
     %Remove gabor file is already exists
     if(gabor_bool == 1 && exist(filename_gabor, 'file') == 2)
@@ -70,7 +73,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         %Open the line operator file for writing
         if(lineop_bool == 1)
             flineop = fopen(filename_lineop, 'w'); 
-            lineop_obj = line_operator(15, 8);
+            lineop_obj = line_operator(lineop_len, lineop_angcnt);
         end
         
         %Iterate over all images to use for training 

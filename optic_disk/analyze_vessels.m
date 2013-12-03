@@ -1,4 +1,4 @@
-function analyze(rebuild_classifier)
+function analyze_vessels(rebuild_classifier)
     addpath('vessel_draw');
     
     results_file = 'analyze_results.txt';
@@ -47,7 +47,7 @@ function analyze(rebuild_classifier)
         super_img = imread(vessel_image);
     end
     
-    output_results = zeros(size(paths, 1), 5);
+    output_results = zeros(size(paths, 1), 6);
         
     
     %Iterate over all images to use for training 
@@ -61,13 +61,24 @@ function analyze(rebuild_classifier)
         
         %Get the image traced by hand
         super_img = imread(vessel_image);
+        total_positive_count = 0;
+        total_negative_count = 0;
+        for y=1:size(super_img,1)
+            for x=1:size(super_img,2)
+                if(super_img(y,x) == 1)
+                    total_positive_count = total_positive_count + 1;
+                else
+                    total_negative_count = total_negative_count + 1;
+                end
+            end
+        end
         
         %Check the sizing of the images compared to each other
         if(size(calced_img, 1) ~= size(super_img, 1) || size(calced_img, 2) ~= size(super_img, 2))
             disp(['Images Not Same Size: ', pid, ' - ', time]);
             continue;
         end
-        
+
         %Get some statistics about the quality of the pixel classification
         total_count = 0;
         true_positive = 0;
@@ -88,20 +99,27 @@ function analyze(rebuild_classifier)
                 total_count = total_count + 1;
             end
         end
-                
+        
+        if(total_count ~= (total_negative_count + total_positive_count))
+            disp(['total_count (', num2str(total_count),') and total_negative + total_positive_count (', num2str(total_negative_count + total_positive_count),') Do not match']);
+            continue;
+        end
+        
         output_results(k,1) = true_positive;
         output_results(k,2) = true_negative;
         output_results(k,3) = false_positive;
         output_results(k,4) = false_negative;
-        output_results(k,5) = total_count;
+        output_results(k,5) = total_positive_count;
+        output_results(k,6) = total_negative_count;
         disp('--------------------------------------');
     end
 
     fout = fopen(results_file, 'w');
     
     disp('----------Results----------');
-    disp('True Positive, True Negative, False Positive, False Negative, Total Count');
-    fprintf(fout, '%s', 'True Positive, True Negative, False Positive, False Negative, Total Count');
+    line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count';
+    disp(line);
+    fprintf(fout, '%s', line);
     %Disp to user the results from this badboy
     for k=1:size(paths, 2)
         pid = char(paths{1}{k});
@@ -112,8 +130,9 @@ function analyze(rebuild_classifier)
             numline = [numline, ', ', num2str(output_results(k,l));];
         end
         
-        disp([pid, '(', time, '): ', numline]);
-        fprintf(fout, '%s', [pid, '(', time, '): ', numline]);
+        line = [pid, '(', time, '), ', numline];
+        disp(line);
+        fprintf(fout, '%s\n', line);
     end
     
     fclose(fout);
