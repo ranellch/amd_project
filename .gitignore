@@ -8,5 +8,6 @@
 *.out
 cpselect_database/run*
 .DS_Store
+.__*
 *.mat
 *.classifier
