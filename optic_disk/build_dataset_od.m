@@ -24,7 +24,7 @@ addpath('..');
 addpath('../Test Set');
 
 %Get the images to include from this list
-fid = fopen('include.dataset', 'r');
+fid = fopen('od_draw.dataset', 'r');
 includes = textscan(fid,'%q %d %*[^\n]');
 fclose(fid);
 
@@ -81,7 +81,7 @@ for x=1:size(includes{1}, 1)
         continue;
     end
     
-    %Resize image to a standard sizing
+    %Resize images to a standard sizing
     img = match_sizing(img, std_img_size, std_img_size);
     snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
     
@@ -116,7 +116,7 @@ for x=1:size(includes{1}, 1)
                (grouping == 1 || random_sample >= 6))
                 %Write to the output file the gabor wavelet string
                 feature_string_gabor = feature_to_string(feature_vector_gabor);
-                fprintf(fileID, '%d,%s\n', grouping, feature_string_gabor);
+                fprintf(fileID, '%d,%s,%d\n', grouping, feature_string_gabor, img(y,x));
 
                 random_sample = 1;
                 if(grouping == 1)

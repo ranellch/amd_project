@@ -10,6 +10,7 @@ end
 %Get the path name for the image and time
 filename = get_path(image, time);
 img = imread(filename);
+img = im2double(img);
 if(size(img,3) ~= 1)
     img=rgb2gray(img);
 end
@@ -26,9 +27,9 @@ img = gaussian_filter(img);
 disp(['ID: ', image, ' - Time: ', time, ' - Path: ', filename]);
 
 %Load the classifier struct for this bad boy
-load('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
-load('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
-load('combined_vessel_classifier.mat','combined_vessel_classifier');
+load('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
+load('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
+load('vessel_combined_classifier.mat','vessel_combined_classifier');
 
 %Time how long it takes to apply gabor and classify
 t=cputime;
@@ -43,7 +44,7 @@ binary_img_gabor = im2bw(img, 1.0);
 for y=1:size(binary_img_gabor, 1)
     %Run the batched gabor wavelet classifier
     gabor_list = squeeze(gw_image(y,:,:));
-    [~, out_gabor] = posterior(gabor_vessel_classifier, gabor_list);
+    [~, out_gabor] = posterior(vessel_gabor_classifier, gabor_list);
     
     %Write to output image the vessel pixels
     for x=1:size(out_gabor, 1)
@@ -83,7 +84,7 @@ binary_img_lineop = im2bw(img, 1.0);
 for y=1:size(binary_img_lineop, 1)
     %Run the batched line operator classification
     fv_list = squeeze(fv_image(y,:,:));
-    [~, out_lineop] = posterior(lineop_vessel_classifier, fv_list);
+    [~, out_lineop] = posterior(vessel_lineop_classifier, fv_list);
 
     %Write to output image the vessel pixels
     for x=1:size(out_lineop, 1)
@@ -106,7 +107,7 @@ for y=1:size(binary_img,1)
     fv_list = squeeze(fv_image(y,:,:));
     final_fv = horzcat(gabor_list, fv_list);
 
-    [~, out_final] = posterior(combined_vessel_classifier, final_fv);
+    [~, out_final] = posterior(vessel_combined_classifier, final_fv);
 
     for x=1:size(out_final, 1)
         if(out_final(x,1) == 1)

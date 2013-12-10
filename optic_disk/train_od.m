@@ -5,13 +5,13 @@ function train_od()
     disp('======================Texture Classifier======================');
     [text_variables, text_categories] = readin_classfile(filename);
     
-    text_od_bayesstruct = NaiveBayes.fit(text_variables, text_categories);
-    save('text_od_bayesstruct.mat', 'text_od_bayesstruct');
+    od_text_bayesstruct = NaiveBayes.fit(text_variables, text_categories);
+    save('od_text_bayesstruct.mat', 'od_text_bayesstruct');
     
     try
         maxiter_inc = statset('MaxIter', 30000);
-        text_od_svmstruct = svmtrain(text_variables, text_categories, 'options', maxiter_inc, 'Method', 'QP');
-        save('text_od_svmstruct.mat', 'text_od_svmstruct');
+        od_text_vmstruct = svmtrain(text_variables, text_categories, 'options', maxiter_inc, 'Method', 'QP');
+        save('od_text_vmstruct.mat', 'od_text_vmstruct');
     catch
         disp('Unable to train svm classifier on texture training set!');
     end

@@ -1,5 +1,6 @@
 function analyze_vessels(rebuild_classifier)
     addpath('vessel_draw');
+    addpath('..');
     
     results_file = 'analyze_results.txt';
     
@@ -39,7 +40,7 @@ function analyze_vessels(rebuild_classifier)
         pid = char(paths{1}{k});
         time = num2str((paths{2}(k)));
         vessel_image = char(paths{3}{k});
-    
+            
         %See if original image exists
         img_path_exists = get_path(pid, time);
         
@@ -76,6 +77,7 @@ function analyze_vessels(rebuild_classifier)
         %Check the sizing of the images compared to each other
         if(size(calced_img, 1) ~= size(super_img, 1) || size(calced_img, 2) ~= size(super_img, 2))
             disp(['Images Not Same Size: ', pid, ' - ', time]);
+            disp([num2str(size(super_img, 1)), ',', num2str(size(super_img, 2)), ' : ', num2str(size(calced_img, 1)), ',', num2str(size(calced_img, 2))]);
             continue;
         end
 

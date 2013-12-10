@@ -1,15 +1,15 @@
 function train_vessels()
         %Train classifier using gabor wavelets
         t = cputime;
-        filename_gabor = 'gabor.classifier';
+        filename_gabor = 'vessel_gabor.classifier';
         [variable_data_gabor, variable_categories_gabor] = readin_classfile(filename_gabor);
 
         %Normalize the data from the training set
         variable_data_gabor = normalize_data(variable_data_gabor);
 
         %Build the vessel classifier
-        gabor_vessel_classifier = NaiveBayes.fit(variable_data_gabor, variable_categories_gabor);
-        save('gabor_vessel_classifier.mat', 'gabor_vessel_classifier');
+        vessel_gabor_classifier = NaiveBayes.fit(variable_data_gabor, variable_categories_gabor);
+        save('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
         
         %Disp some informaiton to the user
         e = cputime - t;
@@ -17,15 +17,15 @@ function train_vessels()
  
         %Train classifier using orthogonal line operators
         t = cputime;
-        filename_lineop = 'lineop.classifier';
+        filename_lineop = 'vessel_lineop.classifier';
         [variable_data_lineop, variable_categories_lineop] = readin_classfile(filename_lineop);
 
         %Normalize the data from the training set
         variable_data_lineop = normalize_data(variable_data_lineop);
         
         %Build the vessel classifier
-        lineop_vessel_classifier = NaiveBayes.fit(variable_data_lineop, variable_categories_lineop);
-        save('lineop_vessel_classifier.mat', 'lineop_vessel_classifier');
+        vessel_lineop_classifier = NaiveBayes.fit(variable_data_lineop, variable_categories_lineop);
+        save('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
         
         %Disp some informaiton to the user
         e = cputime - t;
@@ -42,8 +42,8 @@ function train_vessels()
                         error('Your categories labels does not match and therefore cannot create combined matrix!');
                     end
                 end
-		combined_vessel_classifier = NaiveBayes.fit(combined_matricies, combined_categories);
-		save('combined_vessel_classifier.mat', 'combined_vessel_classifier');
+		vessel_combined_classifier = NaiveBayes.fit(combined_matricies, combined_categories);
+		save('vessel_combined_classifier.mat', 'vessel_combined_classifier');
 	else
 		disp('UNABLE to create combined matricies becuase these categories do not match!');
 	end

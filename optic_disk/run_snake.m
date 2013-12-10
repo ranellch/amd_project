@@ -17,15 +17,6 @@ for x=1:size(paths{1}, 1)
     mapObj(char(paths{1}{x})) = 1;
 end
 
-mapObjExclude = containers.Map('KeyType', 'char', 'ValueType', 'int32');
-fid = fopen('exclude.dataset');
-excludes = textscan(fid,'%q %*[^\n]');
-fclose(fid);
-
-for x=1:size(excludes{1}, 1)
-    mapObjExclude(char(excludes{1}{x})) = 0;
-end
-
 xDoc= xmlread('images.xml');
 images = xDoc.getElementsByTagName('image');
 
@@ -37,7 +28,7 @@ for count=1:images.getLength
     the_path = char(image.getAttribute('path'));
     img = imread(the_path);
     
-    if isKey(mapObjExclude, the_path) || isKey(mapObj, the_path)
+    if isKey(mapObj, the_path)
         disp(['Skipping: ', the_path]);
         continue;
     else

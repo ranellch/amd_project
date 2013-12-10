@@ -1,4 +1,4 @@
-function [bin_image] = apply_segment_classify(img, number_of_pixels, text_od_struct, int_od_struct, comb_od_struct, debug)
+function [bin_image] = apply_segment_classify(img, number_of_pixels, od_text_struct, debug)
     %Get the number of boxes
     iterations = floor(size(img, 1) / number_of_pixels);
     
@@ -52,13 +52,8 @@ function [bin_image] = apply_segment_classify(img, number_of_pixels, text_od_str
             fv = transpose(squeeze(fv_img(y,x,:)));
             
             %Classify the subimage based upon breaking it up
-            %[grouping_text, ~] = text_class_img(fv(1:24), text_od_struct);
-            %[grouping_int, ~] = int_class_img(fv(25:26), int_od_struct);
-            [grouping_total] = comb_class_img(fv, comb_od_struct);    
+            [grouping_total] = comb_class_img(fv, od_text_struct);
                         
-            %text_image = apply_bin_to_arr(text_image, box_coord(y,x,2), box_coord(y,x,1), number_of_pixels, grouping_text);
-            %int_image = apply_bin_to_arr(int_image, box_coord(y,x,2), box_coord(y,x,1), number_of_pixels, grouping_int);
-            
             %Depending on the classification 
             if grouping_total == 1
                 bin_image = apply_bin_to_arr(bin_image, box_coord(y,x,2), box_coord(y,x,1), number_of_pixels, 1);
