@@ -24,19 +24,19 @@ Iheight = size(I, 1);
 mu = zeros(size(I));
 sigma = zeros(size(I));
 
-%Pad image by 1/8 and tesselate with gridboxes 1/4 height and width of image
-%Get mean and standard deviation at the center of each gridbox (5 x 5 grid)
-boxh = Iheight/4;
-boxw = Iwidth/4;
-paddedI = padarray(I,[round(boxh/2) round(boxw/2)], 'symmetric', 'both');
-for i = 1:5
-    for j = 1:5
-        dims = [1+round((i-1)*boxh), round(i*boxh), 1+round((j-1)*boxw), round(j*boxw)];
+%Mirror pad image by 1/6 and tesselate with gridboxes 1/3 height and width of image
+%Get mean and standard deviation at the center of each gridbox (4 x 4 grid)
+boxh = round(Iheight/8);
+boxw = round(Iwidth/8);
+paddedI = padarray(I,[boxh boxw], 'symmetric', 'both');
+for i = 1:4
+    for j = 1:4
+        dims = [1+(i-1)*2*boxh, i*2*boxh, 1+(j-1)*2*boxw, j*2*boxw];
         window = paddedI(dims(1):dims(2),dims(3):dims(4));
-        if i == 5
+        if i == 4
             dims(1) = Iheight;
         end
-        if j == 5
+        if j == 4
             dims(3) = Iwidth;          
         end
         if nnz(window)/numel(window) > .5 %if greater than 50% of the window is nonzero
@@ -62,7 +62,7 @@ sigma = griddata(x, y, sigma, xq, yq,'cubic');
 
 
 %Get background by thresholding Mahalanobis distance of every pixel
-background = abs((I-mu)./sigma)<=1;
+background = abs((I-mu)./sigma)<=0.7;
 background = logical(background);
 %   figure, imshow(background)
 
@@ -115,7 +115,7 @@ for i = 1:5
       window = I(dims(1):dims(2),dims(3):dims(4));
       mask = background(dims(1):dims(2), dims(3):dims(4));
       data = window(mask);
-      if nnz(data)/numel(data) > .9
+      if nnz(data)/numel(data) > .75
           L(point(1), point(2)) = mean2(data);
           C(point(1), point(2)) = std(data(:));
       end
