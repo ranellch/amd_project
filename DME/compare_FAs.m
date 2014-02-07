@@ -66,11 +66,11 @@ function [ Iout, pixcount ] = compare_FAs(path1,path2,patid)
         %insignificance
         dists1 = (smooth1 - mean(I1))./std(I1);
         dists2 = (smooth2 - mean(I2))./std(I2);
-        
-        %Get binary maps showing areas in each image at least 2 standard
+      
+        %Get binary maps showing areas in each image at least 1.5 standard
         %deviations above background mean
-        sig_dists1 = dists1>2;
-        sig_dists2 = dists2>2;
+        sig_dists1 = dists1>1.5;
+        sig_dists2 = dists2>1.5;
         
         %Create single binary mask of difference between previous two images
         init_estimate = sig_dists2;
@@ -111,7 +111,7 @@ function [ Iout, pixcount ] = compare_FAs(path1,path2,patid)
       int_centers = sort(int_centers,'descend');
       
       brightest = zeros(size(Icenters));
-      for i = 1:8
+      for i = 1:6
         brightest(Icenters==int_centers(i))=1;
       end
       brightest=logical(brightest);

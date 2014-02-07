@@ -1,11 +1,11 @@
-function [ Iseg, Icenters, centers ] = gabor_intensity_cluster( I,k )
+function [ Iseg, Icenters, centers ] = gabor_intensity_cluster( I, k )
 %GABOR_CLUSTER(I, k) Turns N-dimensional Gabor wavelet filtered image, plus original intensity map, into
 %standard 2D image with values normalized from 0 to k where 
 %k clusters are determined using k-Means. Recolored image 'Iseg' is
 %provided as output, along with cluster centroids in 'centers'
 
 %run gabor on image
-J = cat(3,apply_gabor_wavelet(I,0),I);
+J = cat(3,apply_gabor_wavelet(I,0), I);
 num_rows = size(I,1);
 num_cols = size(I,2);
 numVecs= num_rows*num_cols;
