@@ -9,12 +9,8 @@ function [ Iout, class_estimates ] = classify_pixels( I, model )
 if length(size(I))==3
        I=rgb2gray(I);
 end
-
 I=im2double(I);
 I = crop_footer(I);
-
-%Get center of image for now
-% I=I(floor(size(I,1)/4):3*floor(size(I,1)/4),floor(size(I,2)/4):3*floor(size(I,2)/4));
 
 H=fspecial('Gaussian',[5 5], 1);
 Iblurred=imfilter(I,H);
@@ -37,6 +33,7 @@ end
 
 % Classify the datafeatures with the trained model
   class_estimates=adaboost('apply',datafeatures,model);
+ 
 %    class_estimates = Classify(Learners, Weights, datafeatures');
   %Put class back into image 
 
@@ -47,7 +44,7 @@ for i = 1:h
         classes(i,j)= class_estimates(index);
     end
 end
-     
+    
 
  % Show result
 [Iind,map] = gray2ind(I,256);

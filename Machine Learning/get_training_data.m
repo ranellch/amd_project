@@ -18,10 +18,6 @@ I=im2double(I);
 I = crop_footer(I);
 Icolored = crop_footer(Icolored);
 
-% %Get center of image for now
-% I=I(floor(size(I,1)/4):3*floor(size(I,1)/4),floor(size(I,2)/4):3*floor(size(I,2)/4));
-% Icolored=Icolored(floor(size(Icolored,1)/4):3*floor(size(Icolored,1)/4),floor(size(Icolored,2)/4):3*floor(size(Icolored,2)/4),:);
-
 % %Gabor filter input image
 H=fspecial('Gaussian',[5 5], 1);
 I=imfilter(I,H);

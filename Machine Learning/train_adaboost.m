@@ -31,7 +31,6 @@ if test
     end
 
     I = crop_footer(I);
-%     I=I(floor(size(I,1)/4):3*floor(size(I,1))/4,size(I,2)/4:floor(3*size(I,2))/4);
     
     [h,w]=size(I);
     
