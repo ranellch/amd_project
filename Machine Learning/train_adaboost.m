@@ -1,4 +1,4 @@
-function [ estimateclass, model ] = train_adaboost( filenames, itt, test )
+function [ model ] = train_adaboost( filenames, itt, test )
 %REQUIRES: filenames is a numimages x 2 cell array of strings consisting of: [original image file,  colored counterpart]
 %           itt is the number of training iterations used to build
 %           classifier model
@@ -31,7 +31,7 @@ if test
     end
 
     I = crop_footer(I);
-    I=I(floor(size(I,1)/4):3*floor(size(I,1))/4,size(I,2)/4:floor(3*size(I,2))/4);
+%     I=I(floor(size(I,1)/4):3*floor(size(I,1))/4,size(I,2)/4:floor(3*size(I,2))/4);
     
     [h,w]=size(I);
     

@@ -14,7 +14,7 @@ I=im2double(I);
 I = crop_footer(I);
 
 %Get center of image for now
-I=I(floor(size(I,1)/4):3*floor(size(I,1)/4),floor(size(I,2)/4):3*floor(size(I,2)/4));
+% I=I(floor(size(I,1)/4):3*floor(size(I,1)/4),floor(size(I,2)/4):3*floor(size(I,2)/4));
 
 H=fspecial('Gaussian',[5 5], 1);
 Iblurred=imfilter(I,H);
@@ -61,8 +61,9 @@ satImage(classes==1) = .8; %semi transparent
 Ihsv(:,:,2) = satImage;
 Iout = hsv2rgb(Ihsv);
 
-figure, imshow(Iout)
+% figure, imshow(Iout)
 
+clear gabors
 
 end
 
