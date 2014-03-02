@@ -1,4 +1,4 @@
-function [ Iout, class_estimates ] = classify_pixels( I, model )
+function [ Iout, class_estimates ] = classify_pixels( I, model, resize)
 %REQUIRES: I is an image matrix, model is a previously generated adaboost
 %          classifier model
 %EFFECTS: Returns Iout - colored image showing pixels in class of interest
@@ -11,6 +11,9 @@ if length(size(I))==3
 end
 I=im2double(I);
 I = crop_footer(I);
+if resize
+     I=imresize(I, [768 768]);
+end
 
 H=fspecial('Gaussian',[5 5], 1);
 Iblurred=imfilter(I,H);

@@ -1,6 +1,7 @@
-function [ datafeatures, dataclass ] = get_training_data( I, Icolored )
+function [ datafeatures, dataclass ] = get_training_data( I, Icolored, resize )
 %REQUIRES: I is an image matrix, Icolored is the 
-%          same image as I with pixels in class of interest colored red
+%          same image as I with pixels in class of interest colored red,
+%          resize is bool for 768 by 768 scaling
 %EFFECTS: Returns datafeatures - array of feature vectors size numpixels x
 %                   length of feature vectors
 %                 dataclass - array of pixel classes -1 or 1 of size numpixels x 1
@@ -17,6 +18,11 @@ end
 I=im2double(I);
 I = crop_footer(I);
 Icolored = crop_footer(Icolored);
+if resize
+    I=imresize(I, [768 768]);
+    Icolored=imresize(Icolored, [768 768]);
+end
+
 
 % %Gabor filter input image
 H=fspecial('Gaussian',[5 5], 1);

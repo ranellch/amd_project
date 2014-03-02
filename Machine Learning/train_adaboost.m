@@ -1,9 +1,11 @@
-function [ model ] = train_adaboost( filenames, itt, test )
+function [ model ] = train_adaboost( filenames, itt, test, resize )
 %REQUIRES: filenames is a numimages x 2 cell array of strings consisting of: [original image file,  colored counterpart]
 %           itt is the number of training iterations used to build
 %           classifier model
 %           test is bool determining whether or not to show training
 %           results on single image
+%           resize is bool determining whether or not to scale to 768 by
+%           768
 %EFFECTS: Returns model - struct consisting of weighted feature classifier
 %           model using adaboost
 
@@ -12,14 +14,21 @@ all_classes = [];
 %parse filenames, build dataset
 for i = 1:size(filenames,1)
     I = imread(filenames{i,1});
-    Icolored = imread(filenames{i,2});    
-    [datafeatures, dataclass] = get_training_data(I, Icolored);    
+    Icolored = imread(filenames{i,2}); 
+    disp(['Obtaining feature vectors for image ', filenames{i,1}])
+    tic
+    [datafeatures, dataclass] = get_training_data(I, Icolored, resize);
+    toc
     dataset = [dataset; datafeatures];
     all_classes = [all_classes; dataclass];
 end
 
 %build model with adaboost
+disp('===============================================================');
+disp('Building adaboost model')
+tic
 [estimateclass,model] = adaboost('train', dataset, all_classes, itt);
+toc
 % weak_learner = tree_node_w(3);
 % [Learners, Weights, final_hyp] = ModestAdaBoost(weak_learner, dataset', all_classes', itt);
     
