@@ -1,4 +1,4 @@
-function [ model ] = train_adaboost( filenames, itt, test, resize )
+function [ model ] = train_adaboost( modelname, filenames, itt, test, resize )
 %REQUIRES: filenames is a numimages x 2 cell array of strings consisting of: [original image file,  colored counterpart]
 %           itt is the number of training iterations used to build
 %           classifier model
@@ -31,15 +31,21 @@ tic
 toc
 % weak_learner = tree_node_w(3);
 % [Learners, Weights, final_hyp] = ModestAdaBoost(weak_learner, dataset', all_classes', itt);
+
+%Save model
+save([modelname,'.mat'], 'model','filenames');
     
 if test 
-    %look at first image in filenames array
-    I=imread(filenames{1,1});
+    %look at last image
     if length(size(I))==3
        I=rgb2gray(I);
     end
 
     I = crop_footer(I);
+    
+    if resize
+        I=imresize(I, [768 768]);
+    end
     
     [h,w]=size(I);
     
