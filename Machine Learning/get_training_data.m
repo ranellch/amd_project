@@ -16,9 +16,6 @@ if size(Icolored,3)>3
 end
 
 I=im2double(I);
-if size(I,2) ~= 768
-  I=imresize(I,[868, 768]);
-end
 I = crop_footer(I);
 Icolored = crop_footer(Icolored);
 if resize
