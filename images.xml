@@ -861,7 +861,44 @@
     <image id="JDRF-007 BASELINE" path="DME quantification - 1st trial - JDRF-007 BASELINE LATE.jpg" time="2" transform="invert">
     </image>     
 
+    <image id="JDRF 01" path="Original--Dr.J---JDRF-1-BASELINE---Late-filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 01" path="Outline-Dr.J---JDRF-1-BASELINE---Early.jpg" time="2" transform="invert">
+    </image>
     
- 
+    <image id="JDRF 02 Baseline" path="ORIGINAL-DrComer---JDRF-2-Baseline---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 02 Baseline" path="Outline DrComer - JDRF 2 Baseline - Early.jpg" time="2" transform="invert">
+    </image>
+
+    <image id="JDRF 02 6M" path="ORIGINAL-DrComer---JDRF-2-6M---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 02 6M" path="Outline DrComer - JDRF 2 6M - Early.jpg" time="2" transform="invert">
+    </image>
+    
+    <image id="JDRF 02 1Y" path="ORIGINAL-DrComer---JDRF-2--1Y---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 02 1Y" path="Outline DrComer - JDRF 2 - 1Y - Early.jpg" time="2" transform="invert">
+    </image>
+    
+    <image id="JDRF 03 Baseline" path="ORIGINAL-DrComer---JDRF-3---Baseline---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 03 Baseline" path="Outline DrComer - JDRF 3 - Baseline - Early.jpg" time="2" transform="invert">
+    </image>
+   
+    <image id="JDRF 03 6M" path="ORIGINAL-DrComer---JDRF-3---6M---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 03 6M" path="Outline DrComer - JDRF 3 - 6M - Early.jpg" time="2" transform="invert">
+    </image>
+    
+    <image id="JDRF 04 Baseline" path="ORIGINAL-DrComer----JDRF-4---Baseline---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 04 Baseline" path="Outline DrComer  - JDRF 4 - Baseline - Early.jpg" time="2" transform="invert">
+    </image>    
+   
+    <image id="JDRF 04 6M" path="ORIGINAL-DrComer----JDRF-4---6M---Late-Filled.jpg" time="1" transform="invert">
+    </image>
+    <image id="JDRF 04 6M" path="Outline DrComer  - JDRF 4 - 6M - Early.jpg" time="2" transform="invert">
+    </image> 
     
 </images>

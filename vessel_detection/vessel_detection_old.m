@@ -1,9 +1,7 @@
 function [image] = vessel_detection_old(img)
-    %Get the image and convert to graysacle
-	original = img;
      
     %Run Gaussian filter
-    g_filter = imfilter(original, fspecial('gaussian', [5 5], 1.2), 'same');
+    g_filter = imfilter(img, fspecial('gaussian', [5 5], 1.2), 'same');
 
     %Run closure on the image
     close_filter = imclose(g_filter, strel('square', 3));

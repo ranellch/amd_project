@@ -10,6 +10,9 @@ function [new_base_filename, new_corr_filename] = register_images(...
 	if exist(outputdir, 'dir') == false
 		mkdir(outputdir); 
     end
+    
+    %Add the location of the images
+    addpath(genpath('../Test Set'));
        
 	%Read in the files to attempt to register
 	base_img_real = imread(base_img_real_file);
