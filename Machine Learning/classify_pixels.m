@@ -10,6 +10,9 @@ if length(size(I))==3
        I=rgb2gray(I);
 end
 I=im2double(I);
+if size(I,2) ~= 768
+  I=imresize(I,[868, 768]);
+end
 I = crop_footer(I);
 
 H=fspecial('Gaussian',[5 5], 1);
