@@ -11,7 +11,7 @@ Iearly=im2double(Iearly);
 
 
 %Gaussian filter early and late images
-H=fspecial('Gaussian',[5 5], 1);
+H=fspecial('Gaussian',[3 3], 1);
 I=imfilter(I,H);
 Iearly=imfilter(Iearly,H);
 
@@ -20,9 +20,9 @@ gabors = apply_gabor_wavelet(I,0);
 
 %Get difference image
 %normalize intensities
-I = (I-mean2(I))./std(I(:));
+Inorm = (I-mean2(I))./std(I(:));
 Iearly(Iearly~=0) = (Iearly(Iearly~=0)-mean(Iearly(Iearly~=0)))./std(Iearly(Iearly~=0));
-Idiff = I-Iearly;
+Idiff = Inorm-Iearly;
 %flag pixels for which no early stage exists
 Idiff(Iearly==0) = -1000;
 
