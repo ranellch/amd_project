@@ -1,26 +1,20 @@
 function [ datafeatures, dataclass ] = get_training_data( I, Icolored, Iearly, resize )
-%REQUIRES: I is an image matrix, Icolored is the 
+%REQUIRES: I and Iearly are registered late and early stage FAs, respectively, Icolored is the 
 %          same image as I with pixels in class of interest colored red,
-%          Iearly is an early phase FA spatially registered to I
-%          resize is bool for 768 by 768 scaling
+%          resize is bool for 768 by 768 scaling of Icolored
 %EFFECTS: Returns datafeatures - array of feature vectors size numpixels x
 %                   length of feature vectors
 %                 dataclass - array of pixel classes -1 or 1 of size numpixels x 1
 
 addpath(genpath('../ML Library'));
 
-if length(size(I))==3
-       I=rgb2gray(I);
-end
 
 if size(Icolored,3)>3
     Icolored=Icolored(:,:,1:3);
 end
 
 I=im2double(I);
-I = crop_footer(I);
 Iearly = im2double(Iearly);
-Iearly = crop_footer(Iearly);
 
 Icolored = crop_footer(Icolored);
 if resize
@@ -28,7 +22,7 @@ if resize
 end
 
 
-%Gabor filter early and late images
+%Gaussian filter early and late images
 H=fspecial('Gaussian',[5 5], 1);
 I=imfilter(I,H);
 Iearly=imfilter(Iearly,H);
@@ -41,11 +35,13 @@ gabors = apply_gabor_wavelet(I,0);
 I = (I-mean2(I))./std(I(:));
 Iearly(Iearly~=0) = (Iearly(Iearly~=0)-mean(Iearly(Iearly~=0)))./std(Iearly(Iearly~=0));
 Idiff = I-Iearly;
+%flag pixels for which no early stage exists
+Idiff(Iearly==0) = -1000;
 
 %assign pixels their classes
 classes = Icolored(:,:,1)>Icolored(:,:,2);
 classes = double(classes);
-classes(classes==0)=-1;
+classes(classes==0 | Iearly==0)=-1;
 
 [h,w]=size(I);
 numPixels = h*w;
