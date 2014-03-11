@@ -41,11 +41,11 @@ function [pointsA, pointsB] = align_images_coor(img1, img2, quad_count, skip_qua
     %Get the most common points in each quad
     temp = most_common(cc.corresps, quad_count, skip_quad, minx, miny);
     
-    %Display the original set of matched points
-    figure(1);
-    correspDisplay(temp, image1);
-    %figure(2);
-    %correspDisplay(temp, image2);
+%     %Display the original set of matched points
+%     figure(1);
+%     correspDisplay(temp, image1);
+%     %figure(2);
+%     %correspDisplay(temp, image2);
     
     %Form arry in the correct manner
     pointsA = temp(1:2,:)';
