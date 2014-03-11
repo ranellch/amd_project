@@ -1,11 +1,13 @@
-function [ datafeatures, dataclass ] = get_training_data( I, Icolored, resize )
+function [ datafeatures, dataclass ] = get_training_data( I, Icolored, Iearly, resize )
 %REQUIRES: I is an image matrix, Icolored is the 
 %          same image as I with pixels in class of interest colored red,
+%          Iearly is an early phase FA spatially registered to I
 %          resize is bool for 768 by 768 scaling
 %EFFECTS: Returns datafeatures - array of feature vectors size numpixels x
 %                   length of feature vectors
 %                 dataclass - array of pixel classes -1 or 1 of size numpixels x 1
 
+addpath(genpath('../ML Library'));
 
 if length(size(I))==3
        I=rgb2gray(I);
@@ -17,27 +19,34 @@ end
 
 I=im2double(I);
 I = crop_footer(I);
+Iearly = im2double(Iearly);
+Iearly = crop_footer(Iearly);
+
 Icolored = crop_footer(Icolored);
 if resize
-    I=imresize(I, [768 768]);
     Icolored=imresize(Icolored, [768 768]);
 end
 
 
-% %Gabor filter input image
+%Gabor filter early and late images
 H=fspecial('Gaussian',[5 5], 1);
 I=imfilter(I,H);
+Iearly=imfilter(Iearly,H);
 
-%Run Gabor Filtering
+%Run Gabor Filtering on late image
 gabors = apply_gabor_wavelet(I,0);
+
+%Get difference image
+%normalize intensities
+I = (I-mean2(I))./std(I(:));
+Iearly(Iearly~=0) = (Iearly(Iearly~=0)-mean(Iearly(Iearly~=0)))./std(Iearly(Iearly~=0));
+Idiff = I-Iearly;
 
 %assign pixels their classes
 classes = Icolored(:,:,1)>Icolored(:,:,2);
 classes = double(classes);
 classes(classes==0)=-1;
 
-stdI=std(I(:));
-meanI=mean2(I);
 [h,w]=size(I);
 numPixels = h*w;
 datafeatures = zeros(numPixels,size(gabors,3)+1);
@@ -46,7 +55,7 @@ for i= 1:h
     for j= 1:w
         index= (i-1)*w+j;
         datafeatures(index,1:size(gabors,3)) = gabors(i,j,:);
-        datafeatures(index,size(gabors,3)+1) = (I(i,j)-meanI)./stdI;
+        datafeatures(index,size(gabors,3)+1) = Idiff(i,j);
         dataclass(index) = classes(i,j);
     end
 end

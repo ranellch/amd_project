@@ -8,6 +8,8 @@ function [ model ] = train_adaboost( modelname, filenames, itt, test, resize )
 %           768
 %EFFECTS: Returns model - struct consisting of weighted feature classifier
 %           model using adaboost
+addpath(genpath('../ML Library'));
+addpath(genpath('./pics'));
 
 dataset = [];
 all_classes = [];

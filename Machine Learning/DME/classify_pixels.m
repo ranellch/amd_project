@@ -1,10 +1,10 @@
-function [ Iout, class_estimates ] = classify_pixels( I, model, resize)
+function [ Iout, Ibin ] = classify_pixels( I, model, resize)
 %REQUIRES: I is an image matrix, model is a previously generated adaboost
 %          classifier model
 %EFFECTS: Returns Iout - colored image showing pixels in class of interest
 %                       highlighted in red
-%                 class_estimates - array of pixel classes -1 or 1 of size numpixels x 1
-
+%                 Ibin - binary image showing 1 for positive 0 for negative
+addpath(genpath('../ML Library'));
 
 if length(size(I))==3
        I=rgb2gray(I);
@@ -62,7 +62,7 @@ Ihsv(:,:,2) = satImage;
 Iout = hsv2rgb(Ihsv);
 
 % figure, imshow(Iout)
-
+Ibin = classes;
 clear gabors
 
 end
