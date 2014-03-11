@@ -12,3 +12,4 @@ cpselect_database/run*
 .__*
 *.mat
 *.classifier
+*.psd
