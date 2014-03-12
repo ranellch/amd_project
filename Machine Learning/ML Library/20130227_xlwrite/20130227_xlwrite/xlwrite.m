@@ -49,11 +49,11 @@ function [status, message]=xlwrite(filename,A,sheet, range)
 %   * This function requires the POI library to be in your javapath.
 %     To add the Apache POI Library execute commands: 
 %     (This assumes the POI lib files are in folder 'poi_library')
-      javaaddpath('./20130227_xlwrite/20130227_xlwrite/poi_library/poi-3.8-20120326.jar');
-      javaaddpath('./20130227_xlwrite/20130227_xlwrite/poi_library/poi-ooxml-3.8-20120326.jar');
-      javaaddpath('./20130227_xlwrite/20130227_xlwrite/poi_library/poi-ooxml-schemas-3.8-20120326.jar');
-      javaaddpath('./20130227_xlwrite/20130227_xlwrite/poi_library/xmlbeans-2.3.0.jar');
-      javaaddpath('./20130227_xlwrite/20130227_xlwrite/poi_library/dom4j-1.6.1.jar');
+      javaaddpath('../ML Library/20130227_xlwrite/20130227_xlwrite/poi_library/poi-3.8-20120326.jar');
+      javaaddpath('../ML Library/20130227_xlwrite/20130227_xlwrite/poi_library/poi-ooxml-3.8-20120326.jar');
+      javaaddpath('../ML Library/20130227_xlwrite/20130227_xlwrite/poi_library/poi-ooxml-schemas-3.8-20120326.jar');
+      javaaddpath('../ML Library/20130227_xlwrite/20130227_xlwrite/poi_library/xmlbeans-2.3.0.jar');
+      javaaddpath('../ML Library/20130227_xlwrite/20130227_xlwrite/poi_library/dom4j-1.6.1.jar');
 %   * Excel converts Inf values to 65535. XLWRITE converts NaN values to
 %     empty cells.
 %
