@@ -11,4 +11,5 @@ cpselect_database/run*
 .DS_Store
 .__*
 *.classifier
-
+*.psd
+*.mat
