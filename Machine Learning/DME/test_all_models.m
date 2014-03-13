@@ -1,9 +1,9 @@
-[~,allimages,~] = xlsread('usable FA list.xlsx');
-testname = '10 Image Model - DME Abstract Results';
+[~,allimages,~] = xlsread('Usable FA list - Jayasundera.xlsx');
+testname = '9 Image Model - Dr. J - DME Abstract Results v2';
 allimages = allimages(2:end,:); %ignore header
 numimages = size(allimages,1);
 itt = 30;
-for i = 2:numimages
+for i = 6:numimages
    
     tester=allimages(i,:);
     modelname=tester{1}; %name each model after image that will be tested
@@ -14,7 +14,7 @@ for i = 2:numimages
     
     disp('New model with images:')
     disp(trainers(:,1))
-    model = train_adaboost( modelname, trainers, itt, 0, 1 );
+    model = train_adaboost( modelname, testname, trainers, itt, 0, 1 );
     test_classifier( tester, model, testname, i-1, 1 );
 
     disp(['Trial ', int2str(i), ' complete'])	

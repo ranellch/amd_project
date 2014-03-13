@@ -1,5 +1,6 @@
-function [ model ] = train_adaboost( modelname, filenames, itt, test, resize )
-%REQUIRES: modelname is a string specifying what to save the model as
+function [ model ] = train_adaboost( modelname, testname, filenames, itt, test, resize )
+%REQUIRES: modelname is a string specifying what to save the model as,
+%           testname is also a string
 %   filenames is a numimages x 4 cell array of strings consisting of: [identifier, late image filename,  labeled image filename, early image filename]
 %           itt is the number of training iterations used to build
 %           classifier model
@@ -11,6 +12,7 @@ function [ model ] = train_adaboost( modelname, filenames, itt, test, resize )
 %           model using adaboost
 addpath(genpath('../ML Library'));
 addpath(genpath('./pics'));
+addpath(genpath('./models'));
 
 dataset = [];
 all_classes = [];
@@ -37,7 +39,10 @@ toc
 % [Learners, Weights, final_hyp] = ModestAdaBoost(weak_learner, dataset', all_classes', itt);
 
 %Save model
-save([modelname,'.mat'], 'model','filenames');
+if ~isdir(['./models/', testname])
+    mkdir(['./models/',testname]);
+end
+save(['./models/', testname, '/', modelname,'.mat'], 'model','filenames');
     
 if test 
     %look at last image
