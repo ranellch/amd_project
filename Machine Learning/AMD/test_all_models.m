@@ -1,5 +1,5 @@
 [~,allimages,~] = xlsread('AMD Control List.xlsx');
-testname = '9 Image Model - Dr. J - DME Abstract Results v2';
+testname = 'Control Images - Hyperfluorescence';
 allimages = allimages(2:end,:); %ignore header
 numimages = size(allimages,1);
 itt = 30;
