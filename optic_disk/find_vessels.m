@@ -2,15 +2,16 @@ function [binary_img] = find_vessels(image, time, debug)
 if(isnumeric(debug))
     %Add the path for the images
     addpath('..');
-    addpath('../Test Set');
+    addpath(genpath('../Test Set'));
 else
-    error('debug parameters must b e anumber 0 or 1');
+    error('debug parameters must be a number 0 or 1');
 end
 
 %Get the path name for the image and time
 filename = get_path(image, time);
 img = imread(filename);
 img = im2double(img);
+img = crop_footer(img);
 if(size(img,3) ~= 1)
     img=rgb2gray(img);
 end

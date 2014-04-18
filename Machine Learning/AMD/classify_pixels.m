@@ -1,28 +1,25 @@
-function [ Iout, class_estimates ] = classify_pixels( I, model, resize)
-%REQUIRES: I is an image matrix, model is a previously generated adaboost
+function [ Iout, Ibin ] = classify_pixels( I, model)
+%REQUIRES: I is an AF image, model is a previously generated adaboost
 %          classifier model
 %EFFECTS: Returns Iout - colored image showing pixels in class of interest
 %                       highlighted in red
-%                 class_estimates - array of pixel classes -1 or 1 of size numpixels x 1
+%                 Ibin - binary image showing 1 for positive 0 for negative
+addpath(genpath('../ML Library'));
 
-
-if length(size(I))==3
-       I=rgb2gray(I);
-end
 I=im2double(I);
-I = crop_footer(I);
-if resize
-     I=imresize(I, [768 768]);
-end
 
-H=fspecial('Gaussian',[5 5], 1);
-Iblurred=imfilter(I,H);
 
-%Run Gabor Filtering
-gabors = apply_gabor_wavelet(Iblurred,0);
+%Gaussian filter 
+H=fspecial('Gaussian',[3 3], 1);
+I=imfilter(I,H);
 
-stdI=std(I(:));
-meanI=mean2(I);
+%Run Gabor Filtering 
+gabors = apply_gabor_wavelet(I,0);
+
+%normalize intensities
+Inorm = (I-mean2(I))./std(I(:));
+
+
 [h,w]=size(I);
 numPixels = h*w;
 datafeatures = zeros(numPixels,size(gabors,3)+1);
@@ -30,7 +27,7 @@ for i= 1:h
     for j= 1:w
         index= (i-1)*w+j;
         datafeatures(index,1:size(gabors,3)) = gabors(i,j,:);
-        datafeatures(index,size(gabors,3)+1) = (I(i,j)-meanI)./stdI;
+        datafeatures(index,size(gabors,3)+1) = Inorm(i,j);
     end
 end
 
@@ -62,7 +59,7 @@ Ihsv(:,:,2) = satImage;
 Iout = hsv2rgb(Ihsv);
 
 % figure, imshow(Iout)
-
+Ibin = classes;
 clear gabors
 
 end

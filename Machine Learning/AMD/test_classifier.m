@@ -1,5 +1,5 @@
 function [ output ] = test_classifier( filenames, model, testname, row, resize )
-%REQUIRES: filenames is a numimages x 2 cell array of strings consisting of: [original image filename,  colored counterpart]
+%REQUIRES: filenames is a numimages x 4 cell array of strings consisting of: [identifier, late image filename,  labeled image filename]
 %          model is a previously generated adaboost model
 %          testname is the name of the output image folder and excel file specifying where test results will be written
 %          row is the line below header where writing begins in excel
@@ -9,6 +9,8 @@ function [ output ] = test_classifier( filenames, model, testname, row, resize )
 %EFFECTS: return output - array of filenames and associated sensitivities
 %(true positive rates tp/p), specificities (true negative rates tn/n),
 %accuracies (tp+tn)/(p+n), and precision tp/(tp+fp)
+addpath(genpath('../ML Library'));
+addpath(genpath('./pics'));
 
 testdir=testname;
 if ~isdir(testdir)
@@ -17,15 +19,15 @@ end
 
 xlname=['./',testname, '/', testname, '.xlsx'];
 if row == 0
-    header={'File','Sensitivity','Specificity','Accuracy', 'Precision'};
+    header={'Image','Sensitivity','Specificity','Accuracy', 'Precision'};
     xlwrite(xlname, header);
 end
 
 output=cell(size(filenames,1),5);
 
 for i=1:size(filenames,1)
-    I=imread(filenames{i,1});
-    Ilabeled = imread(filenames{i,2});
+    I=imread(filenames{i,2});
+    Ilabeled = imread(filenames{i,3});
     if size(Ilabeled,3)>3
         Ilabeled=Ilabeled(:,:,1:3);
     end
@@ -36,17 +38,19 @@ for i=1:size(filenames,1)
     disp('======================================================');
     disp(['Classifying image ', filenames{i,1}]);
     tic
-    [Iout,~] = classify_pixels(I,model,resize);
+    [Iout,Ibin] = classify_pixels(I,model);
     toc
-    %Save output image and run stats
-    imwrite(Iout,['./',testdir,'/classified ', filenames{i,1}],'tiff');
+    %Save output images 
+    imwrite(Iout,['./',testdir,'/classified ', filenames{i,1}, '.tif'],'tiff');
+    imwrite(Ibin,['./',testdir,'/binary ', filenames{i,1}, '.tif'],'tiff'); 
+    %Run stats
     testpos=Iout(:,:,1)>Iout(:,:,2);
     pos = Ilabeled(:,:,1)>Ilabeled(:,:,2);
-    %get number of red pixels in user colored image
+    %Get number of red pixels in user colored image
     numpos = nnz(pos); 
-    %get number of negative pixels
+    %Get number of negative pixels
     numneg = nnz(~pos); 
-    %compare red pixels in user labeled image and classified images
+    %Compare red pixels in user labeled image and classified images
     truepos = pos & testpos; 
     falsepos = ~pos & testpos;
     trueneg = ~pos & ~testpos;
