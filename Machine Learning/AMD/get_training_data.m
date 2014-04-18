@@ -17,6 +17,7 @@ I=im2double(I);
 
 Icolored = crop_footer(Icolored);
 if resize
+    I = imresize(I, [768 768]);
     Icolored=imresize(Icolored, [768 768]);
 end
 
@@ -34,7 +35,7 @@ Inorm = (I-mean2(I))./std(I(:));
 %assign pixels their classes
 classes = Icolored(:,:,1)>Icolored(:,:,2);
 classes = double(classes);
-classes(classes==0 | Iearly==0)=-1;
+classes(classes==0)=-1;
 
 [h,w]=size(I);
 numPixels = h*w;

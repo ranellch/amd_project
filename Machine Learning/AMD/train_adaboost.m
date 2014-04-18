@@ -1,7 +1,7 @@
 function [ model ] = train_adaboost( modelname, testname, filenames, itt, test, resize )
 %REQUIRES: modelname is a string specifying what to save the model as,
 %           testname is also a string
-%   filenames is a numimages x 4 cell array of strings consisting of: [identifier, late image filename,  labeled image filename]
+%   filenames is a numimages x 3 cell array of strings consisting of: [identifier, image filename,  labeled image filename]
 %           itt is the number of training iterations used to build
 %           classifier model
 %           test is bool determining whether or not to show training
@@ -20,7 +20,6 @@ all_classes = [];
 for i = 1:size(filenames,1)
     I = imread(filenames{i,2});
     Icolored = imread(filenames{i,3});
-    Iearly = imread(filenames{i,4});
     disp(['Obtaining feature vectors for image ', filenames{i,1}])
     tic
     [datafeatures, dataclass] = get_training_data(I, Icolored, resize);

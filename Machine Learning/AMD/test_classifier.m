@@ -1,5 +1,5 @@
 function [ output ] = test_classifier( filenames, model, testname, row, resize )
-%REQUIRES: filenames is a numimages x 4 cell array of strings consisting of: [identifier, late image filename,  labeled image filename]
+%REQUIRES: filenames is a numimages x 3 cell array of strings consisting of: [identifier, late image filename,  labeled image filename]
 %          model is a previously generated adaboost model
 %          testname is the name of the output image folder and excel file specifying where test results will be written
 %          row is the line below header where writing begins in excel
@@ -33,6 +33,7 @@ for i=1:size(filenames,1)
     end
     Ilabeled = crop_footer(Ilabeled);
     if resize
+	I = imresize(I, [768 768]);
         Ilabeled=imresize(Ilabeled, [768 768]);
     end
     disp('======================================================');
