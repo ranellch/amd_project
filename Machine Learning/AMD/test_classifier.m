@@ -10,7 +10,7 @@ function [ output ] = test_classifier( filenames, model, testname, row, resize )
 %(true positive rates tp/p), specificities (true negative rates tn/n),
 %accuracies (tp+tn)/(p+n), and precision tp/(tp+fp)
 addpath(genpath('../ML Library'));
-addpath('./pics');
+addpath(genpath('./pics'));
 
 testdir=testname;
 if ~isdir(testdir)
