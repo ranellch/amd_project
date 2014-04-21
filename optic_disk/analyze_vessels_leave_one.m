@@ -9,9 +9,10 @@ function analyze_vessels_leave_one()
     fid = fopen(filename_input, 'r');
     paths = textscan(fid,'%q %d %q %*[^\n]');
     fclose(fid);
+    numimages = size(paths{1},1);
     
     %Loop through and test classifiers using the "leave one out" method
-    for k = 1:size(paths,2)
+    for k = 1:numimages
         
         %Specify test image info
         pid = char(paths{1}{k});
@@ -19,9 +20,12 @@ function analyze_vessels_leave_one()
         vessel_image = char(paths{3}{k});
         
         %Specify training images
-         rowindex=ones(size(paths,2),1);
+         rowindex=ones(numimages,1);
          rowindex(k)=0;
-         training_paths = paths(rowindex~=0,:);
+         training_paths = cell(1,3);
+         training_paths{1} = paths{1}{rowindex~=0};
+         training_paths{2} = paths{2}(rowindex~=0);
+         training_paths{3} = paths{3}{rowindex~=0};
         
         %Build training set
         build_dataset_vessels_leave_one(1,0, training_paths);
@@ -102,7 +106,7 @@ function analyze_vessels_leave_one()
     disp(line);
     fprintf(fout, '%s', line);
     %Disp to user the results from this badboy
-    for k=1:size(paths, 2)
+    for k=1:numimages
         pid = char(paths{1}{k});
         time = num2str((paths{2}(k)));
         

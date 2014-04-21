@@ -5,6 +5,8 @@ function build_dataset_vessels_leave_one(gabor_bool, lineop_bool, paths)
     lineop_len = 15;
     lineop_angcnt = 8;
     
+    numimages = size(paths{1},1);
+    
     %Test the values of the input variables for this function
     if((gabor_bool == 0 || gabor_bool == 1) && ...
        (lineop_bool == 0 || lineop_bool == 1))
@@ -49,7 +51,7 @@ function build_dataset_vessels_leave_one(gabor_bool, lineop_bool, paths)
     try
         
         %Make sure that all images and paths exist
-        for k=1:size(paths, 2)
+        for k=1:numimages
             pid = char(paths{1}{k});
             time = num2str((paths{2}(k)));
             vessel_image = char(paths{3}{k});
@@ -72,7 +74,7 @@ function build_dataset_vessels_leave_one(gabor_bool, lineop_bool, paths)
         end
         
         %Iterate over all images to use for training 
-        for k=1:size(paths, 2)
+        for k=1:numimages
             pid = char(paths{1}{k});
             time = num2str((paths{2}(k)));
             vessel_image = char(paths{3}{k});
