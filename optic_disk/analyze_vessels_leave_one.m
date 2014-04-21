@@ -23,9 +23,9 @@ function analyze_vessels_leave_one()
          rowindex=ones(numimages,1);
          rowindex(k)=0;
          training_paths = cell(1,3);
-         training_paths{1} = paths{1}{rowindex~=0};
+         training_paths{1} = paths{1}(rowindex~=0);
          training_paths{2} = paths{2}(rowindex~=0);
-         training_paths{3} = paths{3}{rowindex~=0};
+         training_paths{3} = paths{3}(rowindex~=0);
         
         %Build training set
         build_dataset_vessels_leave_one(1,0, training_paths);
