@@ -11,6 +11,8 @@ function analyze_vessels_leave_one()
     fclose(fid);
     numimages = size(paths{1},1);
     
+    output_results = zeros(numimages, 8);
+    
     %Loop through and test classifiers using the "leave one out" method
     for k = 1:numimages
         
@@ -34,8 +36,7 @@ function analyze_vessels_leave_one()
         %Train the classifier
         train_vessels();
 
-        %Test all of this against left out image
-        output_results = zeros(size(paths, 1), 8);
+     %--Test all of this against left out image----
 
         %Get the image run by the algorithm
         calced_img = find_vessels(pid, time, 0);
