@@ -43,3 +43,5 @@ for j = 1:3
     %update text file 
     fprintf(fout, '%s\n', line);
 end
+
+fclose(fout);

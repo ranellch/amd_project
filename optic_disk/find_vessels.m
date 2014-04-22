@@ -19,7 +19,7 @@ end
 %Resize the image for optimal vessel detection
 orig_y = size(img, 1);
 orig_x = size(img, 2);
-img = match_sizing(img, 768, 768);
+img = imresize(img, [768, 768]);
 
 %Apply a gaussian filter to the image
 img = gaussian_filter(img);

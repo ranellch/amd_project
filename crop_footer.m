@@ -15,7 +15,6 @@ while cont == 1
     end
 end
 
-cropped_img = imcrop(img, [1, 1, (i-1), size(img, 2)]);
-
+cropped_img = imcrop(img, [1, 1, size(img,2), (i-1)]);
 end
 

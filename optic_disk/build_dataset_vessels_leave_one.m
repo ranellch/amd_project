@@ -81,14 +81,16 @@ function build_dataset_vessels_leave_one(gabor_bool, lineop_bool, paths)
             
             %Get the vesselized image and convert it to a binary image
             vesselized_img = imread(vessel_image);
+            vesselized_img = crop_footer(vesselized_img);
             if(size(vesselized_img, 3) > 1)
                 vesselized_img = rgb2gray(vesselized_img);
             end
-            vesselized_img_binary = match_sizing(vesselized_img, std_img_size, std_img_size);
+            vesselized_img_binary = imresize(vesselized_img, [std_img_size, std_img_size]);
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
-            original_img = match_sizing(original_img, std_img_size, std_img_size);
+            original_img = crop_footer(original_img);
+            original_img = imresize(original_img, [std_img_size, std_img_size]);
             original_img = gaussian_filter(original_img);
             if(gabor_bool == 1)
                 orig_wavelets = apply_gabor_wavelet(original_img, 0);

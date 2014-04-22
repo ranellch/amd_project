@@ -4,6 +4,11 @@ function [ output_results ] = determine_stats( calced_img, vessel_image, pid, ti
 
         %Get the image traced by hand      
         super_img = imread(vessel_image);
+        super_img = crop_footer(super_img);
+
+        %Resize the image to match calced_img
+        super_img = imresize(super_img, [768, 768]);
+        
         total_positive_count = 0;
         total_negative_count = 0;
         for y=1:size(super_img,1)
