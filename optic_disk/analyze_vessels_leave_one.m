@@ -46,9 +46,9 @@ function analyze_vessels_leave_one()
         imwrite(combined_bin,['./results/', pid, '-', time '-combined vessels','.tif'],'tiff');
         
         %Calculate some stats about the quality of each pixel classification
-        output_results(k, :, 1) = determine_stats(gabor_bin, vessel_img, pid, time);
-        output_results(k, :, 2) = determine_stats(lineop_bin, vessel_img, pid, time);
-        output_results(k, :, 3) = determine_stats(combined_bin, vessel_img, pid, time);
+        output_results(k, :, 1) = determine_stats(gabor_bin, vessel_image, pid, time);
+        output_results(k, :, 2) = determine_stats(lineop_bin, vessel_image, pid, time);
+        output_results(k, :, 3) = determine_stats(combined_bin, vessel_image, pid, time);
         
         %Disp to user the results from this badboy
     
@@ -65,8 +65,7 @@ function analyze_vessels_leave_one()
         test{1} = 'gabor';
         test{2} = 'lineop';
         test{3}='combined';
-
-        
+   
         for j = 1:3
             numline = num2str(output_results(k,1,j));
             for l=2:size(output_results,2)
