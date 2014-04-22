@@ -5,6 +5,8 @@ if ~isdir('./results')
     mkdir('./results');
 end
 
+results_file='results.txt';
+
 output_results = zeros(3,8);
 
 imwrite(gabor_bin,['./results/', pid, '-', time '-gabor vessels','.tif'],'tiff');
