@@ -50,6 +50,7 @@ function analyze_vessels_leave_one()
         output_results(k, :, 2) = determine_stats(lineop_bin, vessel_img);
         output_results(k, :, 3) = determine_stats(combined_bin, vessel_img);
         
+        %Disp to user the results from this badboy
     
         fout = fopen(results_file, 'a');
         
@@ -60,10 +61,6 @@ function analyze_vessels_leave_one()
             fprintf(fout, '%s', line);
         end
 
-        %Disp to user the results from this badboy
-
-        pid = char(paths{1}{k});
-        time = num2str((paths{2}(k)));
         test = cell(1,3);
         test{1} = 'gabor';
         test{2} = 'lineop';
