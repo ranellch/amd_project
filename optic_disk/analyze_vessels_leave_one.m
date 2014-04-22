@@ -58,7 +58,7 @@ function analyze_vessels_leave_one()
         line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision';
         disp(line);
         if k==1
-            fprintf(fout, '%s', line);
+            fprintf(fout, '%s\n', line);
         end
 
         test = cell(1,3);
