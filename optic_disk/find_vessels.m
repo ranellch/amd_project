@@ -1,4 +1,4 @@
-function [binary_img] = find_vessels(image, time, debug)
+function [binary_img_gabor, binary_img_lineop, binary_img] = find_vessels(image, time, debug)
 if(isnumeric(debug))
     %Add the path for the images
     addpath('..');
@@ -123,29 +123,29 @@ end
 e = cputime-t;
 disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 
-%Remove the border because it tends to not be that clean
-border_remove = 10;
-for y=1:size(binary_img,1)
-    for x=1:size(binary_img, 2)
-        if(y < border_remove || x < border_remove || ...
-           y > (size(binary_img, 1) - border_remove) || ...
-           x > (size(binary_img, 2) - border_remove))
-            binary_img(y,x) = 0;
-        end
-    end
-end
-
-%Apply morolgical operation to smooth out the edges
-binary_img = bwmorph(binary_img, 'majority');
-
-%Apply morphological operations to clean up the small stuff
-binary_img = bwareaopen(binary_img,60);
-
-if(debug == 1)
-    figure(3), imshow(binary_img);
-end
+% %Remove the border because it tends to not be that clean
+% border_remove = 10;
+% for y=1:size(binary_img,1)
+%     for x=1:size(binary_img, 2)
+%         if(y < border_remove || x < border_remove || ...
+%            y > (size(binary_img, 1) - border_remove) || ...
+%            x > (size(binary_img, 2) - border_remove))
+%             binary_img(y,x) = 0;
+%         end
+%     end
+% end
+% 
+% %Apply morolgical operation to smooth out the edges
+% binary_img = bwmorph(binary_img, 'majority');
+% 
+% %Apply morphological operations to clean up the small stuff
+% binary_img = bwareaopen(binary_img,60);
+% 
+% if(debug == 1)
+%     figure(3), imshow(binary_img);
+% end
 
 %Resize the image back to original proportions
-binary_img = match_sizing(binary_img, orig_x, orig_y);
+% binary_img = match_sizing(binary_img, orig_x, orig_y);
 
 end
