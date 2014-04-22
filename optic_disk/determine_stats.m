@@ -1,4 +1,4 @@
-function [ output_results ] = determine_stats( calced_img, vessel_image )        
+function [ output_results ] = determine_stats( calced_img, vessel_image, pid, time )        
 
         output_results = zeros(1,8);
 

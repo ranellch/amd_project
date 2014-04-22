@@ -46,9 +46,9 @@ function analyze_vessels_leave_one()
         imwrite(combined_bin,['./results/', pid, '-', time '-combined vessels','.tif'],'tiff');
         
         %Calculate some stats about the quality of each pixel classification
-        output_results(k, :, 1) = determine_stats(gabor_bin, vessel_img);
-        output_results(k, :, 2) = determine_stats(lineop_bin, vessel_img);
-        output_results(k, :, 3) = determine_stats(combined_bin, vessel_img);
+        output_results(k, :, 1) = determine_stats(gabor_bin, vessel_img, pid, time);
+        output_results(k, :, 2) = determine_stats(lineop_bin, vessel_img, pid, time);
+        output_results(k, :, 3) = determine_stats(combined_bin, vessel_img, pid, time);
         
         %Disp to user the results from this badboy
     
