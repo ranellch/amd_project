@@ -83,6 +83,8 @@ function analyze_vessels_leave_one()
             end
         end
 
+        imwrite(calced_img,['./results/', pid,'-vessels','.tif'],'tiff');
+        
         if(total_count ~= (total_negative_count + total_positive_count))
             disp(['total_count (', num2str(total_count),') and total_negative + total_positive_count (', num2str(total_negative_count + total_positive_count),') Do not match']);
             continue;
@@ -97,29 +99,34 @@ function analyze_vessels_leave_one()
         output_results(k,7) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,8) = true_positive/(true_positive+false_positive); %precision
         disp('--------------------------------------');
-    end
-
-
-    fout = fopen(results_file, 'w');
     
-    disp('----------Results----------');
-    line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision';
-    disp(line);
-    fprintf(fout, '%s', line);
-    %Disp to user the results from this badboy
-    for k=1:numimages
+        fout = fopen(results_file, 'a');
+        if k==1
+            disp('----------Results----------');
+            line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision';
+            disp(line);
+            fprintf(fout, '%s', line);
+        end
+
+        %Disp to user the results from this badboy
+
         pid = char(paths{1}{k});
         time = num2str((paths{2}(k)));
-        
+
         numline = num2str(output_results(k,1));
         for l=2:size(output_results,2)
             numline = [numline, ', ', num2str(output_results(k,l));];
         end
-        
+
         line = [pid, '(', time, '), ', numline];
         disp(line);
+        %update text file 
         fprintf(fout, '%s\n', line);
+
+        fclose(fout);
+
     end
-    
-    fclose(fout);
+
+
+
 end
