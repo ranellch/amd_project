@@ -1,0 +1,7 @@
+Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision
+JDRF 04 Baseline(2) - gabor 62443, 403866, 106371, 17144, 79587, 510237, 0.79059, 0.36989
+JDRF 04 Baseline(2) - lineop 54700, 429423, 80814, 24887, 79587, 510237, 0.82079, 0.40365
+JDRF 04 Baseline(2) - combined 62247, 404939, 105298, 17340, 79587, 510237, 0.79208, 0.37152
+JDRF 04 Baseline(1) - gabor 34057, 459335, 85282, 11150, 45207, 544617, 0.83651, 0.28538
+JDRF 04 Baseline(1) - lineop 29999, 476444, 68173, 15208, 45207, 544617, 0.85863, 0.30558
+JDRF 04 Baseline(1) - combined 33847, 459522, 85095, 11360, 45207, 544617, 0.83647, 0.28457
