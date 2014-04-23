@@ -3,7 +3,7 @@ function [ binary_img ] = vessel_detection_lineop( img )
     addpath('../optic_disk');
     addpath('..');
     addpath(genpath('../Test Set'));
-    load('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
+    load('./classifiers/vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
     
     %Apply a gaussian filter to the image
     img = gaussian_filter(img);
