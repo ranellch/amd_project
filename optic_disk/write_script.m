@@ -5,6 +5,10 @@ if ~isdir('./results')
     mkdir('./results');
 end
 
+pid = 'JDRF 04 Baseline';
+time = num2str(1);
+vessel_img = 'ORIGINAL-Dr.J---JDRF-4-BASELINE---Late-filled-bin.png';
+
 results_file='results.txt';
 
 output_results = zeros(3,8);
@@ -22,10 +26,10 @@ output_results(3, :) = determine_stats(combined_bin, vessel_img, pid, time);
 
 fout = fopen(results_file, 'a');
 
-disp('----------Results----------');
-line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision';
-disp(line);
-fprintf(fout, '%s', line);
+% disp('----------Results----------');
+% line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision';
+% disp(line);
+% fprintf(fout, '%s', line);
 
 test{1} = 'gabor';
 test{2} = 'lineop';

@@ -87,11 +87,13 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
             if(size(vesselized_img, 3) > 1)
                 vesselized_img = rgb2gray(vesselized_img);
             end
-            vesselized_img_binary = match_sizing(vesselized_img, std_img_size, std_img_size);
+           % vesselized_img_binary = match_sizing(vesselized_img, std_img_size, std_img_size);
+            vesselized_img_binary = imresize(vesselized_img, [std_img_size, std_img_size]);
             
             %Get the original image and perform a gabor wavelet transformation
             original_img = imread(get_path(pid, time));
-            original_img = match_sizing(original_img, std_img_size, std_img_size);
+            original_img = imresize(original_img, [std_img_size, std_img_size]);
+           % original_img = match_sizing(original_img, std_img_size, std_img_size);
             original_img = gaussian_filter(original_img);
             if(gabor_bool == 1)
                 orig_wavelets = apply_gabor_wavelet(original_img, 0);
