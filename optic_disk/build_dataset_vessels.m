@@ -53,8 +53,10 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         paths = textscan(fid,'%q %d %q %*[^\n]');
         fclose(fid);
         
+        numimages = size(paths{1}, 1);
+        
         %Make sure that all images and paths exist
-        for k=1:size(paths, 2)
+        for k=1:numimages
             pid = char(paths{1}{k});
             time = num2str((paths{2}(k)));
             vessel_image = char(paths{3}{k});
@@ -77,7 +79,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         end
         
         %Iterate over all images to use for training 
-        for k=1:size(paths, 2)
+        for k=1:numimages
             pid = char(paths{1}{k});
             time = num2str((paths{2}(k)));
             vessel_image = char(paths{3}{k});
