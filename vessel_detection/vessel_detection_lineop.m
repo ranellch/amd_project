@@ -20,10 +20,6 @@ function [ binary_img ] = vessel_detection_lineop( img )
         for x=1:size(fv_image, 2)
             [fv_image(y,x,:), angle_img(y,x)] = lineop_obj.get_fv(img, y, x);
         end
-
-        if(debug == 1 && mod(y, 50) == 0)
-            disp(['Rows: ', num2str(y), ' / ', num2str(size(binary_img_gabor, 1))]);
-        end
     end
 
     %normalize the line operator feature vectors
