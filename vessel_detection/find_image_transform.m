@@ -81,7 +81,9 @@ function [out] = find_image_transform(pid)
             nextrans = char(the_list_transform.get(index2));
             
             %Register the images and save in output directory (image_string)
-            register_images_ML(base_img_real, basetrans, next_img_real, nextrans, output_path, resize);
+        %    register_images(base_img_real, basetrans, next_img_real, nextrans, output_path, resize);
+        %    register_images_ML(base_img_real, basetrans, next_img_real, nextrans, output_path, resize);
+            register_images_MLdataset(base_img_real, next_img_real, pid, output_path, resize);
             return;
         end
     end
