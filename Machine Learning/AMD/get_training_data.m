@@ -32,8 +32,8 @@ gabors = apply_gabor_wavelet(I,0);
 %normalize intensities
 Inorm = (I-mean2(I))./std(I(:));
 
-%assign pixels their classes
-classes = Icolored(:,:,1)>Icolored(:,:,2);
+%assign pixels to their classes
+classes = Icolored(:,:,3)>Icolored(:,:,2);
 classes = double(classes);
 classes(classes==0)=-1;
 

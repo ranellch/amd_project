@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<images>
+    <image id="BARR" original="\Originals\Barr OD\BARR OD 1.tif" 
+		AMD="Labeled\AMD Controls\BARR OD 1.tif"  "time="1">
+    </image>
+    <image id="BARR" original="\Originals\Barr OD\BARR OD 2.tif" 
+		AMD="Labeled\AMD Controls\BARR OD 2.tif" time="2">
+    </image>
+    <image id="BARR" original="\Originals\Barr OD\BARR OD 3 (poor quality).tif" 
+		AMD="Labeled\AMD Controls\BARR OD 3 (poor quality)" time="3">
+    </image>
+    <image id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 1.tif" 
+		AMD="Labeled\AMD Controls\BIGNALL OD 1.tif"  "time="1">
+    </image>
+    <image id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 2.tif" 
+		AMD="Labeled\AMD Controls\BIGNALL OD 2.tif"  "time="2">
+    </image>
+    <image id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 3 (poor quality).tif" 
+		AMD="Labeled\AMD Controls\BIGNALL OD 3 (poor quality)" time="3">
+    </image>
+    <image id="BORON" original="\Originals\Boron OD\BORON OD 1 (bright).tif" 
+		AMD="Labeled\AMD Controls\BORON OD 1 (bright).tif"  "time="1">
+    </image>
+    <image id="BORON" original="\Originals\Boron OD\BORON OD 2.tif" 
+		AMD="Labeled\AMD Controls\BORON OD 2.tif" time="2">
+    </image>
+    <image id="BORON" original="\Originals\Boron OD\BORON OD 3.tif" 
+		AMD="Labeled\AMD Controls\BORON OD 3.tif" time="3">
+    </image>
+    <image id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 1.tif" 
+		AMD="Labeled\AMD Controls\BUCHANAN OD 1.tif"  "time="1">
+    </image>
+    <image id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 2.tif" 
+		AMD="Labeled\AMD Controls\BUCHANAN OD 2.tif" time="2">
+    </image>
+    <image id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 3.tif" 
+		AMD="Labeled\AMD Controls\BUCHANAN OD 3.tif" time="3">
+    </image>
+    <image id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 1.tif" 
+		AMD="Labeled\AMD Controls\CERVENKA OD 1.tif"  "time="1">
+    </image>
+    <image id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 2.tif" 
+		AMD="Labeled\AMD Controls\CERVENKA OD 2.tif"  "time="2">
+    </image>
+    <image id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 3.tif" 
+		AMD="Labeled\AMD Controls\CERVENKA OD 3.tif"  "time="3">
+    </image>
+    <image id="COMBS" original="\Originals\Combs OS\COMBS OS 1 (poor image).tif" 
+		AMD="Labeled\AMD Controls\COMBS OS 1 (poor image).tif"  "time="1">
+    </image>
+    <image id="COMBS" original="\Originals\Combs OS\COMBS OS 2.tif" 
+		AMD="Labeled\AMD Controls\COMBS OS 2.tif"  "time="2">
+    </image>
+    <image id="COMBS" original="\Originals\Combs OS\COMBS OS 3.tif" 
+		AMD="Labeled\AMD Controls\COMBS OS 3.tif"  "time="3">
+    </image>
+    <image id="COMISKY" original="\Originals\Comiskey OS\COMISKEY OS 1.tif" 
+		AMD="Labeled\AMD Controls\COMISKEY OS 1.tif"  "time="1">
+    </image>
+    <image id="COMISKY" original="\Originals\Comiskey OS\COMISKY OS 2.tif" 
+		AMD="Labeled\AMD Controls\COMISKY OS 2.tif"  "time="2">
+    </image>
+    <image id="COMISKY" original="\Originals\Comiskey OS\COMISKY OS 3.tif" 
+		AMD="Labeled\AMD Controls\COMISKY OS 3.tif"  "time="3">
+    </image>
+    <image id="GETTEL" original="\Originals\Getel OD\GETEL OD 1.tif" 
+		AMD="Labeled\AMD Controls\GETEL OD 1.tif"  "time="1">
+    </image>
+    <image id="GETTEL" original="\Originals\Getel OD\GETTEL OD 2.tif" 
+		AMD="Labeled\AMD Controls\GETTEL OD 2.tif"  "time="2">
+    </image>
+    <image id="GETTEL" original="\Originals\Getel OD\GETTEL OD 3.tif" 
+		AMD="Labeled\AMD Controls\GETTEL OD 3.tif"  "time="3">
+    </image>
+    <image id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 1 (poor image).tif" 
+		AMD="Labeled\AMD Controls\KUKLA OS 1 (poor image).tif"  "time="1">
+    </image>
+    <image id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 2 (poor image).tif" 
+		AMD="Labeled\AMD Controls\KUKLA OS 2 (poor image).tif"  "time="2">
+    </image>
+    <image id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 3 (poor image).tif" 
+		AMD="Labeled\AMD Controls\KUKLA OS 3 (poor image).tif"  "time="3">
+    </image>
+    <image id="LEMAY" original="\Originals\Lemay OS\LEMAY OS 1.tif" 
+		AMD="Labeled\AMD Controls\LEMAY OS 1.tif"  "time="1">
+    </image>
+    <image id="LEMAY" original="\Originals\Lemay OS\LEMAY OS 2.tif" 
+		AMD="Labeled\AMD Controls\LEMAY OS 2.tif"  "time="2">
+    </image>
+    <image id="MASSIMILLA" original="\Originals\Massimilla OD 3\MASSIMILLA OD 3.tif" 
+		AMD="Labeled\AMD Controls\MASSIMILLA OD 3.tif"  "time="3">
+    </image>
+   <image id="REAM" original="\Originals\Ream OS\REAM OS 1.tif" 
+		AMD="Labeled\AMD Controls\REAM OS 1.tif"  "time="1">
+    </image>
+   <image id="REAM" original="\Originals\Ream OS\REAM OS 2.tif" 
+		AMD="Labeled\AMD Controls\REAM OS 2.tif"  "time="2">
+    </image>
+   <image id="REAM" original="\Originals\Ream OS\REAM OS 3.tif" 
+		AMD="Labeled\AMD Controls\REAM OS 3.tif"  "time="3">
+    </image>
+   <image id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 1.tif" 
+		AMD="Labeled\AMD Controls\RHOADES OS 1.tif"  "time="1">
+    </image>
+   <image id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 2.tif" 
+		AMD="Labeled\AMD Controls\RHOADES OS 2.tif"  "time="2">
+    </image>
+   <image id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 3.tif" 
+		AMD="Labeled\AMD Controls\RHOADES OS 3.tif"  "time="3">
+    </image>
+   <image id="VINCENT" original="\Originals\Vincent OS\VINCENT OS 1.tif" 
+		AMD="Labeled\AMD Controls\VINCENT OS 1.tif"  "time="1">
+    </image>
+   <image id="VINCENT" original="\Originals\Vincent OS\VINCENT OS 2.tif" 
+		AMD="Labeled\AMD Controls\VINCENT OS 2.tif"  "time="2">
+    </image>
+   <image id="VINCENT" original="\Originals\Vincent OS\VINCENT OD 3 (funny iamge).tif" 
+		AMD="Labeled\AMD Controls\VINCENT OD 3 (funny iamge)"  "time="3">
+    </image>
+   <image id="WHITE" original="\Originals\White OD\White OD 1.tif" 
+		AMD="Labeled\AMD Controls\White OD 1.tif"  "time="1">
+    </image>
+   <image id="WHITE" original="\Originals\White OD\White OD 2.tif" 
+		AMD="Labeled\AMD Controls\White OD 2.tif"  "time="2">
+    </image>
+   <image id="WHITE" original="\Originals\White OD\White OD 3 (poor image).tif" 
+		AMD="Labeled\AMD Controls\White OD 3 (poor image).tif"  "time="3">
+    </image>
+<images>

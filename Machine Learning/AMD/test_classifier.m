@@ -46,7 +46,7 @@ for i=1:size(filenames,1)
     imwrite(Ibin,['./',testdir,'/binary ', filenames{i,1}, '.tif'],'tiff'); 
     %Run stats
     testpos=Iout(:,:,1)>Iout(:,:,2);
-    pos = Ilabeled(:,:,1)>Ilabeled(:,:,2);
+    pos = Ilabeled(:,:,3)>Ilabeled(:,:,2);
     %Get number of red pixels in user colored image
     numpos = nnz(pos); 
     %Get number of negative pixels
