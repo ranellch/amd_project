@@ -1,10 +1,10 @@
-[~,~,nums] = xlsread('Database of all images.xlsx', 'All images', 'A2:A172');
-[~,patients,~] = xlsread('Database of all images.xlsx', 'All images', 'B2:B172');
-[~,files,~] = xlsread('Database of all images.xlsx', 'All images', 'C2:C172');
-[~,eyes,~] = xlsread('Database of all images.xlsx', 'All images', 'O2:O172');
-[~,dates,~] = xlsread('Database of all images.xlsx', 'All images', 'K2:K172');
+[~,~,nums] = xlsread('Database of all images.xlsx', 'All images', 'A2:A154');
+[~,patients,~] = xlsread('Database of all images.xlsx', 'All images', 'B2:B154');
+[~,files,~] = xlsread('Database of all images.xlsx', 'All images', 'C2:C154');
+[~,eyes,~] = xlsread('Database of all images.xlsx', 'All images', 'O2:O154');
+[~,dates,~] = xlsread('Database of all images.xlsx', 'All images', 'K2:K154');
 data = [nums, patients, files, eyes, dates];
-numpatients = 26;
+numpatients = 25;
 
 for i = 1:numpatients
     patimgs = [];

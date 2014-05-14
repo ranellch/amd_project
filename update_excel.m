@@ -1,11 +1,11 @@
     %Updates time column in excel sheet
 
-    [~,patients,~] = xlsread('Database of all images.xlsx', 'All images', 'B2:B172');
-    [~,files,~] = xlsread('Database of all images.xlsx', 'All images', 'C2:C172');
+    [~,patients,~] = xlsread('Database of all images.xlsx', 'All images', 'B2:B154');
+    [~,files,~] = xlsread('Database of all images.xlsx', 'All images', 'C2:C154');
     
     xDoc= xmlread('AMD images.xml');
     images = xDoc.getElementsByTagName('image');
-    times = []
+    times = [];
   
     for i = 1:length(patients)
         patient = patients(i);
@@ -17,7 +17,7 @@
 
             if strcmp(patient, char(image.getAttribute('id'))) 
                 fullpath = char(image.getAttribute('original'));
-                xmlfilename = fullpath((end-6):(end-4))
+                xmlfilename = fullpath((end-6):(end-4));
                 if strcmp(file, xmlfilename) 
                     time = char(image.getAttribute('time'));
                 end
@@ -26,6 +26,6 @@
         times = [times; time];
     end
     
-    xlswrite('Database of all images.xlsx', times, 'S2:S172');
+    xlswrite('Database of all images.xlsx', times, 'S2:S154');
     
         

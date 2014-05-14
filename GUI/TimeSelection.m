@@ -79,11 +79,16 @@ axes = {'axes1';
 
 % Show images
 for i=1:handles.numimages
-    handles.images(i) = imshow(handles.files{i}, 'Parent', handles.(axes{i}));
+    image = imread(handles.files{i});
+    image = crop_footer(image);
+    handles.images(i) = imshow(image, 'Parent', handles.(axes{i}));
     set(handles.images(i), 'ButtonDownFcn', {@update_clicks, i} );
 end
   
   guidata(hObject, handles);
+  
+  %wait for 'Done' button to be pressed
+    uiwait
 
  function update_clicks(src, evnt, image)
 % image: image number
@@ -105,9 +110,6 @@ function varargout = TimeSelection_OutputFcn(hObject, eventdata, handles)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-    %wait for 'Done' button to be pressed
-    uiwait
     
     %Get numbers stored in text boxes
     text_boxes = {'edit1';
@@ -307,6 +309,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.end = true;
-uiresume
+    handles.end = true;
+    guidata(hObject, handles);
+    uiresume
 end
