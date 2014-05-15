@@ -22,7 +22,7 @@ function varargout = TimeSelection(varargin)
 
 % Edit the above text to modify the response to help TimeSelection
 
-% Last Modified by GUIDE v2.5 12-May-2014 14:57:37
+% Last Modified by GUIDE v2.5 15-May-2014 15:06:52
  
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -84,7 +84,7 @@ for i=1:handles.numimages
     handles.images(i) = imshow(image, 'Parent', handles.(axes{i}));
     set(handles.images(i), 'ButtonDownFcn', {@update_clicks, i} );
 end
-  
+  set(handles.edit12, 'String', [num2str(varargin{2}), '/36']);
   guidata(hObject, handles);
   
   %wait for 'Done' button to be pressed
@@ -127,7 +127,8 @@ function varargout = TimeSelection_OutputFcn(hObject, eventdata, handles)
     end
     varargout{1} = handles.order;
     varargout{2} = handles.end;
-    
+    varargout{3} = handles.output;
+ 
     close
 end
 
@@ -312,4 +313,28 @@ function pushbutton2_Callback(hObject, eventdata, handles)
     handles.end = true;
     guidata(hObject, handles);
     uiresume
+end
+
+
+
+function edit12_Callback(hObject, eventdata, handles)
+% hObject    handle to edit12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit12 as text
+%        str2double(get(hObject,'String')) returns contents of edit12 as a double
+end
+
+% --- Executes during object creation, after setting all properties.
+function edit12_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 end
