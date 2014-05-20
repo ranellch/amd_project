@@ -28,7 +28,6 @@ col_letter = char(xlsColNum2Str(col));
 eye_nums = randperm(numeyes);
 count = 1;
 for i = eye_nums
-    disp(i)
     %get current patient
     for j = 1:numrows-1
         if nums(j) == i
