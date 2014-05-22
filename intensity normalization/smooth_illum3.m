@@ -141,9 +141,12 @@ b = Y\X;
 Iout = Iout.*b(1)+b(2);
 Iout(isnan(Iout)) = 0;
 Iout = mat2gray(Iout, [0 1]);
+% Iout = (Iout - mean2(Iout))./std(Iout(:));
 
 H = fspecial('gaussian', [3 3], 1);
 Iout = imfilter(Iout, H);
+
+
 
 % figure, imshow(Iout)
 
