@@ -14,7 +14,7 @@ while cont == 1
        cont = 0;
     end
 end
-
-cropped_img = imcrop(img, [1, 1, size(img,2), (i-1)]);
+i = i - 2; %-1 for extra increment, -1 to exclude first row of 0s
+cropped_img = imcrop(img, [0, 0, size(img,2), i]);
 end
 

@@ -1,127 +1,92 @@
-function [binary_img_gabor, binary_img_lineop, binary_img] = find_vessels(image, time, debug)
-if(isnumeric(debug))
-    %Add the path for the images
-    addpath('..');
-    addpath(genpath('../Test Set'));
-else
-    error('debug parameters must be a number 0 or 1');
-end
+function [binary_img] = find_vessels(img)
+addpath('..');
+addpath(genpath('../Test Set'));
+addpath(genpath('../intensity normalization'))
 
-%Get the path name for the image and time
-filename = get_path(image, time);
-img = imread(filename);
-img = im2double(img);
+%Pre-process
+if (size(img, 3) > 1)
+    img = rgb2gray(img);
+end
 img = crop_footer(img);
-if(size(img,3) ~= 1)
-    img=rgb2gray(img);
-end
-
-%Resize the image for optimal vessel detection
-orig_y = size(img, 1);
-orig_x = size(img, 2);
-img = imresize(img, [768, 768]);
-
-%Apply a gaussian filter to the image
+img = imresize(img, [768 768]);
 img = gaussian_filter(img);
+[img, ~] = smooth_illum3(img,0.7);
+img = imcomplement(img);
 
-%Print to the console the output
-disp(['ID: ', image, ' - Time: ', time, ' - Path: ', filename]);
+% %Print to the console the output
+% disp(['ID: ', image, ' ', eye,' - Time: ', time, ' - Path: ', filename]);
 
 %Load the classifier struct for this bad boy
-load('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
-load('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
-load('vessel_combined_classifier.mat','vessel_combined_classifier');
+% load('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
+% load('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
+classifier = load('vessel_combined_classifier.mat','vessel_combined_classifier');
 
-%Time how long it takes to apply gabor and classify
+%Time how long it takes to apply gabor 
 t=cputime;
+disp('Building Gabor Features!');
 
-disp('Building Gabor Wavelets!');
-
-%Apply the gabor function to the image
-[gw_image] = apply_gabor_wavelet(img, 0);
-gw_image = normalize_image_fv(gw_image);
-
-binary_img_gabor = im2bw(img, 1.0);
-for y=1:size(binary_img_gabor, 1)
-    %Run the batched gabor wavelet classifier
-    gabor_list = squeeze(gw_image(y,:,:));
-    [~, out_gabor] = posterior(vessel_gabor_classifier, gabor_list);
-    
-    %Write to output image the vessel pixels
-    for x=1:size(out_gabor, 1)
-        binary_img_gabor(y,x) = out_gabor(x,1);
+%Run Gabor, save max at each scale, normalize via zero_m_unit_std 
+if(gabor_bool == 1)  
+    bigimg = padarray(original_img, [50 50], 'symmetric');
+    fimg = fft2(bigimg);
+    k0x = 0;
+    k0y = 3;
+    epsilon = 4;
+    step = 10;
+    gabor_image = [];
+    for a = [1 2 3 4 5]
+        trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
+        trans = trans(51:(50+sizey), (51:50+sizex));
+        gabor_image = cat(3, gabor_image, zero_m_unit_std(trans));
     end
 end
 
-if(debug == 1)
-    figure(1), imshow(binary_img_gabor);
-end
-
-disp('Completed Classification with Gabor Wavelets!');
+%Disp some information to the user
+e = cputime - t;
+disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
 
 
 %Init the orthogonal line operator class
-lineop_obj = line_operator(15, 8);
+lineop_obj = line_operator(15, 12);
 fv_image = zeros(size(img, 2), size(img, 1), 3);
-angle_img = zeros(size(img, 2), size(img, 1), 1);
 
+%Time how long it takes 
+t=cputime;
 disp('Running Line Operator!');
-
 %Get the line operator feature vector for every pixel value
 for y=1:size(fv_image, 1)
     for x=1:size(fv_image, 2)
-        [fv_image(y,x,:), angle_img(y,x)] = lineop_obj.get_fv(img, y, x);
-    end
-    
-    if(debug == 1 && mod(y, 50) == 0)
-        disp(['Rows: ', num2str(y), ' / ', num2str(size(binary_img_gabor, 1))]);
+        [fv_image(y,x,:), ~] = lineop_obj.get_fv(img, y, x);
     end
 end
-
-%normalize the line operator feature vectors
-fv_image = normalize_image_fv(fv_image);
-
-binary_img_lineop = im2bw(img, 1.0);
-for y=1:size(binary_img_lineop, 1)
-    %Run the batched line operator classification
-    fv_list = squeeze(fv_image(y,:,:));
-    [~, out_lineop] = posterior(vessel_lineop_classifier, fv_list);
-
-    %Write to output image the vessel pixels
-    for x=1:size(out_lineop, 1)
-        binary_img_lineop(y,x) = out_lineop(x,1);
-    end
+%Normalize 
+for i = 1:3
+    lineop_image(:,:,i) = zero_m_unit_std(fv_image(:,:,i));
 end
 
-if(debug == 1)
-    figure(2), imshow(binary_img_lineop);
-end
+e = cputime - t;
+disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 
-disp('Completed Classification with Line Operator!');
+%Combine features
+gabor_vectors = matstack2array(gabor_image);
+lineop_vectors = matstack2array(lineop_image);
+combined_vectors = [gabor_vectors, lineop_vectors];
 
 %Do pixelwise classification
 disp('Running Pixelwise Classification ');
+t=cputime;
 
-binary_img = im2bw(img, 1.0);
-for y=1:size(binary_img,1)
-    gabor_list = squeeze(gw_image(y,:,:));
-    fv_list = squeeze(fv_image(y,:,:));
-    final_fv = horzcat(gabor_list, fv_list);
+binary_img = zeros(size(img));
+class_estimates=adaboost('apply',combined_vectors,classifier.model);
 
-    [~, out_final] = posterior(vessel_combined_classifier, final_fv);
-
-    for x=1:size(out_final, 1)
-        if(out_final(x,1) == 1)
-            binary_img(y,x) = 1;
-        else
-            binary_img(y,x) = 0;
-        end    
-    end
-end
 
 %Output how long it took to do this
 e = cputime-t;
 disp(['Classify (min): ', num2str(double(e) / 60.0)]);
+
+binary_img = zeros(size(img));
+binary_img(:) = class_estimates;
+binary_img(binary_image==-1) = 0;
 
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;
