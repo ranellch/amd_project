@@ -61,7 +61,8 @@ methods
         %Variables for output
         fv = zeros(1, 3);
         ed = floor(obj.len / 2.0);
-
+        %ones(21)
+        %ed = 10
         %Get the average gray scale intensity within the square window over the xurrent pixel under investigation
         [square_sum, square_count] = iterate_mask(img, yin, xin, ed, ones(obj.len));
         square_avg = square_sum / double(square_count);

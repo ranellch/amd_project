@@ -40,7 +40,7 @@ function train_vessels()
     t = cputime;
     disp('Building adaboost classifier...Please Wait')
 	[~, vessel_combined_classifier] = adaboost('train', combined_matrices, categories, itt);
-	save('vessel_combined_classifier.mat', vessel_combined_classifier);
+	save('vessel_combined_classifier.mat', 'vessel_combined_classifier');
     
      %Disp some informaiton to the user
      e = cputime - t;

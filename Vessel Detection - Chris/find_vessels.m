@@ -19,15 +19,16 @@ img = imcomplement(img);
 %Load the classifier struct for this bad boy
 % load('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
 % load('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
-classifier = load('vessel_combined_classifier.mat','vessel_combined_classifier');
+classifier = load('vessel_combined_classifier.mat');
+classifier = classifier.vessel_combined_classifier;
 
 %Time how long it takes to apply gabor 
 t=cputime;
 disp('Building Gabor Features!');
 
 %Run Gabor, save max at each scale, normalize via zero_m_unit_std 
-if(gabor_bool == 1)  
-    bigimg = padarray(original_img, [50 50], 'symmetric');
+    [sizey, sizex] = size(img);
+    bigimg = padarray(img, [50 50], 'symmetric');
     fimg = fft2(bigimg);
     k0x = 0;
     k0y = 3;
@@ -39,7 +40,7 @@ if(gabor_bool == 1)
         trans = trans(51:(50+sizey), (51:50+sizex));
         gabor_image = cat(3, gabor_image, zero_m_unit_std(trans));
     end
-end
+
 
 %Disp some information to the user
 e = cputime - t;
@@ -77,7 +78,7 @@ disp('Running Pixelwise Classification ');
 t=cputime;
 
 binary_img = zeros(size(img));
-class_estimates=adaboost('apply',combined_vectors,classifier.model);
+class_estimates=adaboost('apply',combined_vectors,classifier);
 
 
 %Output how long it took to do this
@@ -86,7 +87,7 @@ disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 
 binary_img = zeros(size(img));
 binary_img(:) = class_estimates;
-binary_img(binary_image==-1) = 0;
+binary_img(binary_img==-1) = 0;
 
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;

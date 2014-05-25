@@ -90,7 +90,8 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                 if(size(vesselized_img, 3) > 1)
                     vesselized_img = rgb2gray(vesselized_img);
                 end
-                vesselized_img_binary = imresize(vesselized_img, [std_img_size, std_img_size]);
+                vesselized_img_binary = double(imresize(vesselized_img, [std_img_size, std_img_size]));
+                vesselized_img_binary(vesselized_img_binary==0) = -1;
 
                 %Get the original image 
                 original_img = imread(get_pathv2(pid, eye, time, 'original'));
