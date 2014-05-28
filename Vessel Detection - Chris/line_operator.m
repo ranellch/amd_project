@@ -5,7 +5,6 @@ properties
     norien
     line_matricies
     degrees
-    summation
     ready_to_go
 end
 
@@ -31,8 +30,7 @@ methods
 
         %Init the line_matricies variable
         obj.line_matricies = zeros(obj.len,obj.len,obj.norien);
-        obj.degrees = zeros(obj.len, 1);
-        obj.summation = zeros(obj.len, 1);
+        obj.degrees = zeros(obj.norien, 1);
 
         for theta=1:obj.norien
             %Get the current degree orientation of the line
@@ -46,64 +44,52 @@ methods
                 end
             end
             
-            obj.summation(theta, 1) = sum(sub_line_matrix(:));
             obj.degrees(theta, 1) = deg;
         end
 
         obj.ready_to_go = 1;
     end
 
-    function [fv, mx_ang]=get_fv(obj, img, yin, xin)
+    function [str, mx_ang, square_avg]=get_strength_img(obj, img)
         if(obj.ready_to_go ~= 1)
             error('Before calling this method you must init(length, norien) the class!');
         end
-
-        %Variables for output
-        fv = zeros(1, 3);
-        ed = floor(obj.len / 2.0);
-        %ones(21)
-        %ed = 10
-        %Get the average gray scale intensity within the square window over the xurrent pixel under investigation
-        [square_sum, square_count] = iterate_mask(img, yin, xin, ed, ones(obj.len));
-        square_avg = square_sum / double(square_count);
+        
+        %Get the average gray scale intensity within a square window over
+        %every pixel
+        square_avg = imfilter(img, ones(obj.len)/(obj.len*obj.len), 'symmetric');
 
         %Find line orientation with maximum line strength
-        max_line_strength = 0.0;
-        max_line_str_deg = 0.0;
+        all_line_strengths = zeros([size(img), obj.norien]);
 
+        %Get line strengths for all orientations
         for theta=1:obj.norien
-            %Calculate the current line strength
-            [line_sum, line_count] = iterate_mask(img, yin, xin, ed, obj.line_matricies(:,:,theta));
-            line_avg = line_sum / double(line_count);
-            current_line_strength = line_avg - square_avg;
-
-            %Keep track of greatest line strength
-            if(current_line_strength > max_line_strength)
-                max_line_strength = current_line_strength;
-                max_line_str_deg = obj.degrees(theta, 1);
+            all_line_strengths(:,:,theta) = imfilter(img, obj.line_matricies(:,:,theta)/obj.len,'symmetric') - square_avg;
+        end
+        
+        %Find maximum for every pixel
+        [max_line_strength, max_thetas] = max(all_line_strengths,[],3); 
+        str = max_line_strength;
+        mx_ang = zeros(size(img));
+        for y = 1:size(img,1)
+            for x = 1:size(img,2)
+                mx_ang(y,x) = obj.degrees(max_thetas(y,x));
             end
         end
 
-        %Return the angle of the max line strength
-        mx_ang = max_line_str_deg;
-        
-        %Get the line strength of the pixel perpendicular to the maximum line strength
-        nindeg = max_line_str_deg + 90.0;
+    end
+
+    function ortho_str = get_ortho_str(obj, img, mx_ang, square_avg, yin, xin)
+        %Calculate strength along line orthogonal to max line at (y, x)
+        nindeg = mx_ang + 90.0;
         ninlen = 3;
         nindeg_matrix = create_line(ninlen, nindeg);
         [nine_sum, nine_count] = iterate_mask(img, yin, xin, floor(ninlen / 2.0), nindeg_matrix);
         nine_avg = nine_sum / double(nine_count);
-        nine_line_strength = nine_avg - square_avg;
+        ortho_str = nine_avg - square_avg;
 
-        if(max_line_strength < 0)
-            disp(['max_line_strength:', num2str(max_line_strength)]);
         end
-        
-        fv(1,1) = max_line_strength;
-        fv(1,2) = nine_line_strength;
-        fv(1,3) = img(yin,xin);
     end
-end
 end
 
 %Helper functions
@@ -128,6 +114,7 @@ function [line_matrix] = create_line(length, angle)
     line_matrix = line_matrix(middle_y-ed:middle_y+ed, middle_x-ed:middle_x+ed);
 end
 
+
 function [sumval, count] = iterate_mask(img, yin, xin, each_direction, matrix_in)
     %Initialize variables for summation and counting
     sumval = 0.0;
@@ -148,3 +135,4 @@ function [sumval, count] = iterate_mask(img, yin, xin, each_direction, matrix_in
         end
     end
 end
+

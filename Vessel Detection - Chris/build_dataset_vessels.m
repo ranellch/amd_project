@@ -127,16 +127,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
             
                 if (lineop_bool == 1)                
                     %Build lineop feature vectors
-                    feature_image = zeros([size(original_img) 3]);
-                    for y=1:size(original_img,1)
-                        for x=1:size(original_img,2)
-                            [feature_image(y,x,:),~] = lineop_obj.get_fv(original_img,y,x);
-                        end
-                    end
-                    %normalize features
-                    for i = 1:3
-                        feature_image(:,:,i) = zero_m_unit_std(feature_image(:,:,i));
-                    end
+                    feature_image = get_fv_lineop( original_img );
                 end
                 
                 %Save feature vectors and pixel classes for current image in .mat file generated above

@@ -47,24 +47,11 @@ e = cputime - t;
 disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
 
 
-%Init the orthogonal line operator class
-lineop_obj = line_operator(15, 12);
-fv_image = zeros(size(img, 2), size(img, 1), 3);
-
+%Build lineop features
 %Time how long it takes 
 t=cputime;
 disp('Running Line Operator!');
-%Get the line operator feature vector for every pixel value
-for y=1:size(fv_image, 1)
-    for x=1:size(fv_image, 2)
-        [fv_image(y,x,:), ~] = lineop_obj.get_fv(img, y, x);
-    end
-end
-%Normalize 
-for i = 1:3
-    lineop_image(:,:,i) = zero_m_unit_std(fv_image(:,:,i));
-end
-
+lineop_image = get_fv_lineop( img );
 e = cputime - t;
 disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 
@@ -77,9 +64,12 @@ combined_vectors = [gabor_vectors, lineop_vectors];
 disp('Running Pixelwise Classification ');
 t=cputime;
 
-binary_img = zeros(size(img));
-class_estimates=adaboost('apply',combined_vectors,classifier);
-
+% class_estimates=adaboost('apply',combined_vectors,classifier);
+class_estimates = [];
+increment = length(combined_vectors)/512;
+for start = 1:increment:length(combined_vectors)
+    class_estimates = [class_estimates; svmclassify(classifier, combined_vectors(start:start+increment-1,:))];
+end
 
 %Output how long it took to do this
 e = cputime-t;

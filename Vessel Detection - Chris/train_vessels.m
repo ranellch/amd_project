@@ -38,8 +38,9 @@ function train_vessels()
     combined_matrices = [variable_data_gabor, variable_data_lineop];
     
     t = cputime;
-    disp('Building adaboost classifier...Please Wait')
-	[~, vessel_combined_classifier] = adaboost('train', combined_matrices, categories, itt);
+    disp('Building SVM classifier...Please Wait')
+% 	[~, vessel_combined_classifier] = adaboost('train', combined_matrices, categories, itt);
+    vessel_combined_classifier = svmtrain(combined_matrices(1:32:end,:), categories(1:32:end),'kktviolationlevel',0.5, 'boxconstraint', 0.8);
 	save('vessel_combined_classifier.mat', 'vessel_combined_classifier');
     
      %Disp some informaiton to the user
