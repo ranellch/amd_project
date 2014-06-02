@@ -3,77 +3,94 @@ function build_dataset_od()
 std_img_size = 768;
 number_of_pixels_per_box = 8;
 
-%Constants for the output file name
-filename_text = 'od_texture.classifier';
+%Constants for file names
+od_file = 'od_classify.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
 
 %Remove texture file if already exists
-if(exist(filename_text, 'file') == 2)
-    delete(filename_text);
+if(exist(od_file, 'file') == 2)
+    delete(od_file);
 end
-    
-%Add texture algorithm path
-addpath('sfta');
+file_obj = matfile(od_file,'Writable',true);
+file_obj.dataset = [];
 
 %Add the location of the get_path script
 addpath('..');
 
 %Add the location of the images resultant from get_path
-addpath('../Test Set');
+addpath(genpath('../Test Set'));
+
+addpath(genpath('../sfta'));
+addpath(genpath('../hog'));
+run('../vlfeat/toolbox/vl_setup');
 
 %Get the images to include from this list
 fid = fopen('od_draw.dataset', 'r');
-includes = textscan(fid,'%q %d %*[^\n]');
+includes = textscan(fid,'%q %q %d %*[^\n]');
 fclose(fid);
 
 %Test to make sure that all the appropiate images are available
 disp('----------Checking Files---------');
 pid = 'none';
-time = 'none';
+eye = 'none';
+time = -1;
+err_cnt = 0;
 for x=1:size(includes{1}, 1)
     try
         pid = char(includes{1}{x});
-        time = num2str(includes{2}(x));
-
+        eye = char(includes{2}{x});
+        time = num2str(includes{3}(x));
+      
         %Check to see that the path to the image is readable
-        the_path = get_path(pid, time);
+        the_path = get_pathv2(pid, eye, time, 'original');
         img = imread(the_path);
-
-        %Check to make sure that the snaked image is readable
-        snaked_image = im2bw(get_snaked_img(the_path));
+        
+        try
+            %Check to make sure that the snaked image is readable
+            snaked_path = get_snaked_path(the_path);
+            snaked_image = im2bw(imread(snaked_path));
+        catch
+            disp(['Could not load snaked image: ', pid , ' - ', time]);
+            err_cnt = err_cnt + 1;
+        end
     catch
-        disp(['Could not load image: ', pid , ' - ', time]);
+        disp(['Could not load original image: ', pid , ' - ', time]);
+        err_cnt = err_cnt + 1;
     end
 end
+if err_cnt == 0
+    disp('All Files Look Ready To Rumble');
+end
 disp('-------Done Checking Files-------');
+
+file_obj = matfile(od_file,'Writable',true);
+file_obj.dataset = [];
 
 for x=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
     pid = char(includes{1}{x});
-    time = num2str(includes{2}(x));
+    eye = char(includes{2}{x});
+    time = num2str(includes{3}(x));
     disp(['Running: ', pid, ' - ', time]);
     
     try
-        
     %Get the path and load the image
-    the_path = get_path(pid, time);
+    the_path = get_pathv2(pid, eye, time, 'original');
     img = imread(the_path);
     img = im2double(img);
     
+    %Convert the image to a grayscale image if need be
     if(size(img, 3) > 1)
         img = rgb2gray(img);
     end
     
     %Apply a gaussian filter to the img
     img = gaussian_filter(img);
-            
-    %Calculate the size of the box that grids the image
-    subimage_size = floor(size(img, 1) / number_of_pixels_per_box);
     
     %Get the snaked image
-    snaked_image = im2bw(get_snaked_img(the_path));
+    snaked_image = im2bw(imread(get_snaked_path(the_path)));
     
     %Check that the images are the same size
     if(size(img,1) ~= size(snaked_image,1) || size(img,2) ~= size(snaked_image,2))
@@ -85,51 +102,9 @@ for x=1:size(includes{1}, 1)
     img = match_sizing(img, std_img_size, std_img_size);
     snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
     
-    %open the files to write
-    fileID = fopen(filename_text,'at');
-        
-    if(1)
-    %This is a pixel based classification
-    orig_wavelets = apply_gabor_wavelet(img, 0);
-    random_sample = 1;
-    border_ignore = 5;
-	grouping_one = 0;
-    grouping_zero = 0;
+    subimage_size = floor(std_img_size / number_of_pixels_per_box);
+    windowed_snaked_image = zeros(subimage_size, subimage_size);
     
-    for y=1:size(img,1)
-        for x=1:size(img,2)
-            %Get the gabor wavelet feature vector
-            feature_vector_gabor = zeros(size(orig_wavelets, 3), 1);
-            for wave=1:size(orig_wavelets, 3)
-            	feature_vector_gabor(wave, 1) = orig_wavelets(y,x,wave);
-            end
-            
-            %Get the grouping for this particular pixel
-            grouping = 0;
-            if(snaked_image(y,x) == 1)
-                grouping = 1;
-            end
-            
-            %Ignore the border and then either grouping is one or is some proportion 
-            if(x > border_ignore && x < (size(img,2) - border_ignore) && ...
-               y > border_ignore && y < (size(img,1) - border_ignore) && ...
-               (grouping == 1 || random_sample >= 6))
-                %Write to the output file the gabor wavelet string
-                feature_string_gabor = feature_to_string(feature_vector_gabor);
-                fprintf(fileID, '%d,%s,%d\n', grouping, feature_string_gabor, img(y,x));
-
-                random_sample = 1;
-                if(grouping == 1)
-                    grouping_one=grouping_one+1;
-                else
-                    grouping_zero=grouping_zero+1;
-                end
-            else
-                random_sample = random_sample + 1;
-            end
-        end
-    end
-    else
     %This is a window based feature descriptor
     for x=1:subimage_size
         for y=1:subimage_size
@@ -148,9 +123,6 @@ for x=1:size(includes{1}, 1)
                 xs = xe - number_of_pixels_per_box;
             end
 
-            %Get the original image window
-            subimage = img(ys:ye, xs:xe);
-            
             %Get the snake image window
             subimage_snake = snaked_image(ys:ye, xs:xe);
 
@@ -158,28 +130,70 @@ for x=1:size(includes{1}, 1)
             percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
 
             %Get the grouping associated with dis badboy
-            grouping = -1;
-            if(percentage_disk > 0.9)
+            grouping = 0;
+            cutoff = 0.9;
+            if(percentage_disk >= cutoff)
                 grouping = 1;
-            elseif(percentage_disk <.01)
-                grouping = 0;
             end
-
-            if(grouping >= 0)
-                %Calculate the texture string
-                texture_vector = text_algorithm(subimage);
-                texture_string = feature_to_string(texture_vector);
-
-                %Write to the output file the texture feature vector
-                fprintf(fileID, '%d,%s\n', grouping, texture_string);
-            end
+            
+            %Log the results for the windowed image
+            windowed_snaked_image(y,x) = grouping;
         end
     end
+    
+    if 0
+        disp('Running Texture Windowing');
+        %Divide the image up into equal sized boxes
+        subimage_size = std_img_size / number_of_pixels_per_box;
+
+        %This is a window based feature descriptor
+        for x=1:subimage_size
+            for y=1:subimage_size              
+                %Save feature vectors and pixel classes for current image in .mat file generated above
+                feature_vectors = text_algorithm(subimage);
+                [nrows,~] = size(file_obj, 'dataset');
+                file_obj.dataset(nrows+1,1:size(feature_vectors,2)) = feature_vectors;
+                file_obj.classes(nrows+1,1) = windowed_snaked_image(y,x);
+            end
+        end
+    elseif 1
+        disp('Running Gabor Wavelets');
+        [sizey, sizex] = size(img);
+        bigimg = padarray(img, [50 50], 'symmetric');
+        fimg = fft2(bigimg);
+        k0x = 0;
+        k0y = 3;
+        epsilon = 1;
+        step = 10;
+        feature_image = [];
+        for a = [1 2 3 4 5]
+            trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
+            trans = trans(51:(50+sizey), (51:50+sizex));
+            feature_image = cat(3, feature_image, zero_m_unit_std(trans));
+        end
+        
+        %Save feature vectors and pixel classes for current image in .mat file generated above
+        feature_vectors = matstack2array(feature_image);
+        [nrows,~] = size(file_obj, 'dataset');
+        file_obj.dataset(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
+        file_obj.classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+    elseif 0
+        %Get lbp results over the image
+        texture_results = vl_lbp(single(img), number_of_pixels_per_box);
+
+        %Get the HOG results over the image
+        %texture_results = vl_hog(single(img), number_of_pixels_per_box, 'verbose') ;
+        
+        %Save feature vectors and pixel classes for current image in .mat file generated above
+        feature_vectors = matstack2array(texture_results);
+        [nrows,~] = size(file_obj, 'dataset');
+        file_obj.dataset(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
+        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = windowed_snaked_image(:);
     end
-    catch
+    catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
+        disp(getReport(e));
     end
-    fclose(fileID);
 end
 
 e = cputime - t;

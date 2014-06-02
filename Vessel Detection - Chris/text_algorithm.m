@@ -1,5 +1,5 @@
 function [vector] = text_algorithm(img)
-    vector = image_sfta(img);
+    vector = image_hog(img);
 end
 
 function [final] = image_sfta(img)

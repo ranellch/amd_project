@@ -1,77 +1,133 @@
-function [od_image] = find_od(image, time, debug)
+function [od_image] = find_od()
 %Standardize variables
 std_img_size = 768;
-num_of_pixels = 8;
+number_of_pixels_per_box = 8;
 
 %Add the path for the images
 addpath('..');
 addpath('../Test Set');
 addpath('../intensity normalization');
-addpath('sfta');
+addpath(genpath('../sfta'));
+run('../vlfeat/toolbox/vl_setup');
 
-%Get the path name from the image and time and then read in the image.
-filename = get_path(image, time);
-img = imread(filename);
-img = im2double(img);
+%Get the images to include from this list
+fid = fopen('od_draw_test.dataset', 'r');
+includes = textscan(fid,'%q %q %d %*[^\n]');
+fclose(fid);
 
-%Convert the image to gray scale if not already
-if(size(img,3) ~= 1)
-    img=rgb2gary(img);
-end
+pid = 'none';
+eye = 'none';
+time = -1;
+for x=1:size(includes{1}, 1)
+    pid = char(includes{1}{x});
+    eye = char(includes{2}{x});
+    time = num2str(includes{3}(x));  
+        
+    %Get the path name from the image and time and then read in the image.
+    filename = get_pathv2(pid, eye, time, 'original');
+    img = imread(filename);
+    img = im2double(img);
 
-%Apply a gaussian filter to the image
-img = gaussian_filter(img);
+    %Convert the image to gray scale if not already
+    if(size(img,3) ~= 1)
+        img=rgb2gary(img);
+    end
 
-%Resize the image to a standard size
-origy = size(img, 1);
-origx = size(img, 2);
-img = match_sizing(img, std_img_size, std_img_size);
+    %Apply a gaussian filter to the image
+    img = gaussian_filter(img);
 
-%Print to the console the output
-disp(['ID: ', image, ' - Time: ', time]);
+    %Resize the image to a standard size
+    origy = size(img, 1);
+    origx = size(img, 2);
+    img = match_sizing(img, std_img_size, std_img_size);
 
-%Load the prediction structs
-load('od_text_bayesstruct.mat', 'od_text_bayesstruct');
+    %Print to the console the output
+    disp(['ID: ', pid, ' - Time: ', time]);
 
-x=-1;
-y=-1;
+    %Load the prediction structs
+    load('od_classify_svmstruct.mat', 'od_classify_svmstruct');
 
-%iterate over each segement
-t=cputime;
+    x=-1;
+    y=-1;
 
-od_image = zeros(size(img, 1), size(img, 2));
+    od_image = zeros(size(img, 1), size(img, 2));
 
-%Get the gabor wavelet for this image
-orig_wavelets = apply_gabor_wavelet(img, debug);
+    %Divide the image up into equal sized boxes
+    subimage_size = floor(std_img_size / number_of_pixels_per_box);
+    
+    if 0
+        %This is a window based feature descriptor
+        for x=1:subimage_size
+            for y=1:subimage_size
+                xs = ((x - 1) * number_of_pixels_per_box) + 1;
+                xe = xs + number_of_pixels_per_box - 1;
 
-%Create the img pixel feature vector
-img_fv = zeros(size(orig_wavelets, 1), size(orig_wavelets, 2), size(orig_wavelets, 3) + 1);
+                ys = ((y - 1) * number_of_pixels_per_box) + 1;
+                ye = ys + number_of_pixels_per_box - 1;
 
-for y=1:size(orig_wavelets, 1)
-    for x=1:size(orig_wavelets, 2)
-        for wv=1:size(orig_wavelets, 3)
-            img_fv(y,x,wv) = orig_wavelets(y,x,wv);
+                if(ye > size(img, 1))
+                    ye = size(img, 1);
+                    ys = ye - number_of_pixels_per_box;
+                end
+                if(xe > size(img, 2))
+                    xe = size(img, 2);
+                    xs = xe - number_of_pixels_per_box;
+                end
+
+                %Get the original image window
+                subimage = img(ys:ye, xs:xe);
+
+                feature_vectors = text_algorithm(subimage);
+                grouping = svmclassify(od_classify_svmstruct, feature_vectors);
+
+                for xt=xs:xe
+                    for yt=ys:ye
+                        od_image(yt,xt) = grouping;
+                    end
+                end
+            end
+        end        
+    elseif 1
+        %Run the gabor stuff
+        [sizey, sizex] = size(img);
+        bigimg = padarray(img, [50 50], 'symmetric');
+        fimg = fft2(bigimg);
+        k0x = 0;
+        k0y = 3;
+        epsilon = 1;
+        step = 10;
+        gabor_image = [];
+        for a = [1 2 3 4 5]
+            trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
+            trans = trans(51:(50+sizey), (51:50+sizex));
+            gabor_image = cat(3, gabor_image, zero_m_unit_std(trans));
+        end 
+        
+        gabor_vectors = matstack2array(gabor_image);
+        
+        class_estimates = [];
+        increment = length(gabor_vectors)/512;
+        for start = 1:increment:length(gabor_vectors)
+            class_estimates = [class_estimates; svmclassify(od_classify_svmstruct, gabor_vectors(start:start+increment-1,:))];
         end
-        size(size(orig_wavelets, 3));
-        disp(wv);
-        img_fv(y,x,wv) = img(y,x);
+        
+        od_image(:) = class_estimates;
+    elseif 0
+        texture_results = vl_hog(single(img), number_of_pixels_per_box, 'verbose') ;
+        
+        for y=1:size(texture_results,1)
+            for x=1:size(texture_results,2)
+                class_estimates = svmclassify(od_classify_svmstruct, squeeze(texture_results(y,x,:)).');
+                
+                od_image(((y-1)*number_of_pixels_per_box)+1:y*number_of_pixels_per_box, ((x-1)*number_of_pixels_per_box)+1:x*number_of_pixels_per_box) = class_estimates;
+            end
+        end
     end
+    
+    figure(1), imshowpair(od_image, img);
+
+    %Resize the image to its original size
+    od_image = match_sizing(od_image, origx, origy);
 end
-
-for y=1:size(orig_wavelets, 1)
-    row_fv = squeeze(img_fv(y,:,:));
-    grouping = predict(od_text_bayesstruct, row_fv);
-    for x=1:size(orig_wavelets, 2)
-        od_image(y,x) = grouping(x,1);
-    end
-end
-
-figure(1), imshowpair(od_image, img);
-
-%Resize the image to its original size
-od_image = match_sizing(od_image, origx, origy);
-
-e = cputime-t;
-disp(['Classify (min): ', num2str(e / 60.0)]);
 
 end

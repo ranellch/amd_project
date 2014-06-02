@@ -172,7 +172,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BIGNALL OD 1.tif" id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\BIGNALL OD 1.tif" eye="OD" id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 1.tif" time="1"> </image>
 
 
    
@@ -196,7 +196,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BORON OD 1 (bright).tif" id="BORON" original="\Originals\Boron OD\BORON OD 1 (bright).tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\BORON OD 1 (bright).tif" id="BORON" eye="OD" original="\Originals\Boron OD\BORON OD 1 (bright).tif" time="1"> </image>
 
 
    
@@ -204,7 +204,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BORON OD 2.tif" id="BORON" original="\Originals\Boron OD\BORON OD 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\BORON OD 2.tif" eye="OD" id="BORON" original="\Originals\Boron OD\BORON OD 2.tif" time="2"> </image>
 
 
    
@@ -212,7 +212,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BORON OD 3.tif" id="BORON" original="\Originals\Boron OD\BORON OD 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\BORON OD 3.tif" eye="OD" id="BORON" original="\Originals\Boron OD\BORON OD 3.tif" time="3"> </image>
 
 
    
@@ -220,7 +220,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BUCHANAN OD 1.tif" id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\BUCHANAN OD 1.tif" eye="OD" id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 1.tif" time="1"> </image>
 
 
    
@@ -228,7 +228,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BUCHANAN OD 2.tif" id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\BUCHANAN OD 2.tif" eye="OD" id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 2.tif" time="2"> </image>
 
 
    
@@ -236,7 +236,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BUCHANAN OD 3.tif" id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\BUCHANAN OD 3.tif" eye="OD" id="BUCHANAN" original="\Originals\Buchanan OD\BUCHANAN OD 3.tif" time="3"> </image>
 
 
    
@@ -244,7 +244,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\CERVENKA OD 1.tif" id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\CERVENKA OD 1.tif" eye="OD" id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 1.tif" time="1"> </image>
 
 
    
@@ -252,7 +252,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\CERVENKA OD 2.tif" id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\CERVENKA OD 2.tif" eye="OD" id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 2.tif" time="2"> </image>
 
 
    
@@ -260,7 +260,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\CERVENKA OD 3.tif" id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\CERVENKA OD 3.tif" eye="OD" id="CERVENKA" original="\Originals\Cervenka OD\CERVENKA OD 3.tif" time="3"> </image>
 
 
    
@@ -268,7 +268,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\COMBS OS 1 (poor image).tif" id="COMBS" original="\Originals\Combs OS\COMBS OS 1 (poor image).tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\COMBS OS 1 (poor image).tif" eye="OS" id="COMBS" original="\Originals\Combs OS\COMBS OS 1 (poor image).tif" time="1"> </image>
 
 
    
@@ -276,7 +276,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\COMBS OS 2.tif" id="COMBS" original="\Originals\Combs OS\COMBS OS 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\COMBS OS 2.tif" eye="OS" id="COMBS" original="\Originals\Combs OS\COMBS OS 2.tif" time="2"> </image>
 
 
    
@@ -284,7 +284,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\COMBS OS 3.tif" id="COMBS" original="\Originals\Combs OS\COMBS OS 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\COMBS OS 3.tif" eye="OS" id="COMBS" original="\Originals\Combs OS\COMBS OS 3.tif" time="3"> </image>
 
 
    
@@ -292,7 +292,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\COMISKEY OS 1.tif" id="COMISKY" original="\Originals\Comiskey OS\COMISKEY OS 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\COMISKY OS 1.tif" eye="OS" id="COMISKY" original="\Originals\Comisky OS\COMISKY OS 1.tif" time="1"> </image>
 
 
    
@@ -300,7 +300,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\COMISKY OS 2.tif" id="COMISKY" original="\Originals\Comiskey OS\COMISKY OS 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\COMISKY OS 2.tif" eye="OS" id="COMISKY" original="\Originals\Comisky OS\COMISKY OS 2.tif" time="2"> </image>
 
 
    
@@ -308,7 +308,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\COMISKY OS 3.tif" id="COMISKY" original="\Originals\Comiskey OS\COMISKY OS 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\COMISKY OS 3.tif" eye="OS" id="COMISKY" original="\Originals\Comisky OS\COMISKY OS 3.tif" time="3"> </image>
 
 
    
@@ -316,7 +316,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\GETEL OD 1.tif" id="GETTEL" original="\Originals\Getel OD\GETEL OD 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\GETTEL OD 1.tif" eye="OD" id="GETTEL" original="\Originals\Gettel OD\GETTEL OD 1.tif" time="1"> </image>
 
 
    
@@ -324,7 +324,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\GETTEL OD 2.tif" id="GETTEL" original="\Originals\Getel OD\GETTEL OD 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\GETTEL OD 2.tif" eye="OD" id="GETTEL" original="\Originals\Gettel OD\GETTEL OD 2.tif" time="2"> </image>
 
 
    
@@ -332,7 +332,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\GETTEL OD 3.tif" id="GETTEL" original="\Originals\Getel OD\GETTEL OD 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\GETTEL OD 3.tif" eye="OD" id="GETTEL" original="\Originals\Gettel OD\GETTEL OD 3.tif" time="3"> </image>
 
 
    
@@ -340,7 +340,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\KUKLA OS 1 (poor image).tif" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 1 (poor image).tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\KUKLA OS 1 (poor image).tif" eye="OS" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 1 (poor image).tif" time="1"> </image>
 
 
    
@@ -348,7 +348,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\KUKLA OS 2 (poor image).tif" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 2 (poor image).tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\KUKLA OS 2 (poor image).tif" eye="OS" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 2 (poor image).tif" time="2"> </image>
 
 
    
@@ -356,7 +356,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\KUKLA OS 3 (poor image).tif" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 3 (poor image).tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\KUKLA OS 3 (poor image).tif" eye="OS" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 3 (poor image).tif" time="3"> </image>
 
 
    
@@ -364,7 +364,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\LEMAY OS 1.tif" id="LEMAY" original="\Originals\Lemay OS\LEMAY OS 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\LEMAY OS 1.tif" id="LEMAY" eye="OS" original="\Originals\Lemay OS\LEMAY OS 1.tif" time="1"> </image>
 
 
    
@@ -372,7 +372,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\LEMAY OS 2.tif" id="LEMAY" original="\Originals\Lemay OS\LEMAY OS 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\LEMAY OS 2.tif" eye="OS" id="LEMAY" original="\Originals\Lemay OS\LEMAY OS 2.tif" time="2"> </image>
 
 
    
@@ -380,7 +380,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\MASSIMILLA OD 3.tif" id="MASSIMILLA" original="\Originals\Massimilla OD 3\MASSIMILLA OD 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\MASSIMILLA OD 3.tif" eye="OD" id="MASSIMILLA" original="\Originals\Massimilla OD\MASSIMILLA OD 3.tif" time="3"> </image>
 
 
    
@@ -388,7 +388,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\REAM OS 1.tif" id="REAM" original="\Originals\Ream OS\REAM OS 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\REAM OS 1.tif" eye="OS" id="REAM" original="\Originals\Ream OS\REAM OS 1.tif" time="1"> </image>
 
 
    
@@ -396,7 +396,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\REAM OS 2.tif" id="REAM" original="\Originals\Ream OS\REAM OS 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\REAM OS 2.tif" eye="OS" id="REAM" original="\Originals\Ream OS\REAM OS 2.tif" time="2"> </image>
 
 
    
@@ -404,7 +404,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\REAM OS 3.tif" id="REAM" original="\Originals\Ream OS\REAM OS 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\REAM OS 3.tif" eye="OS" id="REAM" original="\Originals\Ream OS\REAM OS 3.tif" time="3"> </image>
 
 
    
@@ -412,7 +412,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\RHOADES OS 1.tif" id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\RHOADES OS 1.tif" eye="OS" id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 1.tif" time="1"> </image>
 
 
    
@@ -420,7 +420,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\RHOADES OS 2.tif" id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\RHOADES OS 2.tif" eye="OS" id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 2.tif" time="2"> </image>
 
 
    
@@ -428,7 +428,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\RHOADES OS 3.tif" id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 3.tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\RHOADES OS 3.tif" eye="OS" id="RHOADES" original="\Originals\Rhoades OS\RHOADES OS 3.tif" time="3"> </image>
 
 
    
@@ -436,7 +436,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\VINCENT OS 1.tif" id="VINCENT" original="\Originals\Vincent OS\VINCENT OS 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\VINCENT OS 1.tif" eye="OS" id="VINCENT" original="\Originals\Vincent OS\VINCENT OS 1.tif" time="1"> </image>
 
 
    
@@ -444,7 +444,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\VINCENT OS 2.tif" id="VINCENT" original="\Originals\Vincent OS\VINCENT OS 2.tif" time="2"> </image>
+   <image AMD="Labeled\AMD Controls\VINCENT OS 2.tif" eye="OS" id="VINCENT" original="\Originals\Vincent OS\VINCENT OS 2.tif" time="2"> </image>
 
 
    
@@ -452,7 +452,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\VINCENT OD 3 (funny iamge)" id="VINCENT" original="\Originals\Vincent OS\VINCENT OD 3 (funny iamge).tif" time="3"> </image>
+   <image AMD="Labeled\AMD Controls\VINCENT OD 3 (funny iamge)" eye="OD" id="VINCENT" original="\Originals\Vincent OS\VINCENT OD 3 (funny iamge).tif" time="3"> </image>
 
 
    
@@ -460,7 +460,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\White OD 1.tif" id="WHITE" original="\Originals\White OD\White OD 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\White OD 1.tif" eye="OD" id="WHITE" original="\Originals\White OD\White OD 1.tif" time="1"> </image>
 
 
    
@@ -468,7 +468,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\White OD 2.tif" id="WHITE" original="\Originals\White OD\White OD 2.tif" time="2"> </image>  
+   <image AMD="Labeled\AMD Controls\White OD 2.tif" eye="OD" id="WHITE" original="\Originals\White OD\White OD 2.tif" time="2"> </image>  
    
    
    
