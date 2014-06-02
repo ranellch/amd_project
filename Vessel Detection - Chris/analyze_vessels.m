@@ -1,8 +1,12 @@
 function analyze_vessels(rebuild_classifier)
-    addpath('vessel_draw');
     addpath('..');
+    addpath(genpath('../Test Set'))
     
-    results_file = 'analyze_results.txt';
+    if ~isdir('.\results')
+        mkdir('.\results');
+    end
+    
+    results_file = '.\results\analyze_results.txt';
     
     if(rebuild_classifier == 1)
         %Build training set
@@ -13,8 +17,8 @@ function analyze_vessels(rebuild_classifier)
         train_vessels();
     end
     
-    %Open the file to test all of this against
-    test_file = 'vessel_draw_test.dataset';
+    %Open the file with test images
+    test_file = 'vessel_draw.testing';
     fid = fopen(test_file);
         
     %Get the first line of the file
@@ -32,33 +36,38 @@ function analyze_vessels(rebuild_classifier)
     
     %Open the file to determine which images to use for testing 
     fid = fopen(test_file, 'r');
-    paths = textscan(fid,'%q %d %q %*[^\n]');
+    paths = textscan(fid,'%q %q %d %*[^\n]');
     fclose(fid);
     
     %Run through the images and make sure that they exist
-    for k=1:size(paths, 2)
-        pid = char(paths{1}{k});
-        time = num2str((paths{2}(k)));
-        vessel_image = char(paths{3}{k});
+    for k=1:size(paths, 1)
+       pid = char(paths{1}{k});
+       eye = char(paths{2}{k});
+       time = num2str((paths{3}(k)));
+       
+       image_exists = get_pathv2(pid, eye, time, 'original');
+       imread(image_exists);
             
-        %See if original image exists
-        img_path_exists = get_path(pid, time);
-        
-        %Get the image traced by hand
-        super_img = imread(vessel_image);
+       vessel_image = get_pathv2(pid, eye, time, 'vessels');
+       imread(vessel_image);
     end
     
-    output_results = zeros(size(paths, 1), 8);
+    output_results = zeros(size(paths, 1), 4);
         
     
-    %Iterate over all images to use for training 
-    for k=1:size(paths, 2)
-        pid = char(paths{1}{k});
-        time = num2str((paths{2}(k)));
-        vessel_image = char(paths{3}{k});
+    %Iterate over all images to use for testing 
+    for k=1:size(paths, 1)
+       pid = char(paths{1}{k});
+       eye = char(paths{2}{k});
+       time = num2str((paths{3}(k)));
        
+        %Get the original image 
+        original_path = get_pathv2(pid, eye, time, 'original');
+        original_img = imread(original_path);
+        
         %Get the image run by the algorithm
-        calced_img = find_vessels(pid, time, 0);
+        [calced_img,~] = find_vessels(original_img);
+        imwrite(calced_img, ['.\results',pid,eye,'_',time,'-bin.tif'], 'tiff');
         
         %Get the image traced by hand
         super_img = imread(vessel_image);
@@ -74,12 +83,6 @@ function analyze_vessels(rebuild_classifier)
             end
         end
         
-        %Check the sizing of the images compared to each other
-        if(size(calced_img, 1) ~= size(super_img, 1) || size(calced_img, 2) ~= size(super_img, 2))
-            disp(['Images Not Same Size: ', pid, ' - ', time]);
-            disp([num2str(size(super_img, 1)), ',', num2str(size(super_img, 2)), ' : ', num2str(size(calced_img, 1)), ',', num2str(size(calced_img, 2))]);
-            continue;
-        end
 
         %Get some statistics about the quality of the pixel classification
         total_count = 0;
@@ -106,35 +109,32 @@ function analyze_vessels(rebuild_classifier)
             disp(['total_count (', num2str(total_count),') and total_negative + total_positive_count (', num2str(total_negative_count + total_positive_count),') Do not match']);
             continue;
         end
-        
-        output_results(k,1) = true_positive;
-        output_results(k,2) = true_negative;
-        output_results(k,3) = false_positive;
-        output_results(k,4) = false_negative;
-        output_results(k,5) = total_positive_count;
-        output_results(k,6) = total_negative_count;
-        output_results(k,7) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
-        output_results(k,8) = true_positive/(true_positive+false_positive); %precision
+       
+        output_results(k,1) = true_positive/total_positive_count; %sensitivity
+        output_results(k,2) = true_negative/total_negative_count; %specificity
+        output_results(k,3) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
+        output_results(k,4) = true_positive/(true_positive+false_positive); %precision
         disp('--------------------------------------');
     end
 
     fout = fopen(results_file, 'w');
     
     disp('----------Results----------');
-    line = 'Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count, Accuracy, Precision';
+    line = 'Img, Sensitivity, Sensitivity, Accuracy, Precision';
     disp(line);
     fprintf(fout, '%s', line);
     %Disp to user the results from this badboy
     for k=1:size(paths, 2)
         pid = char(paths{1}{k});
-        time = num2str((paths{2}(k)));
+        eye = char(paths{2}{k});
+        time = num2str((paths{3}(k)));
         
         numline = num2str(output_results(k,1));
         for l=2:size(output_results,2)
             numline = [numline, ', ', num2str(output_results(k,l));];
         end
         
-        line = [pid, '(', time, '), ', numline];
+        line = [pid,' ', eye, ' (', time, '), ', numline];
         disp(line);
         fprintf(fout, '%s\n', line);
     end

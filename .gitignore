@@ -13,3 +13,7 @@ cpselect_database/run*
 *.classifier
 *.psd
 *.mat
+*.dataset
+*.subset
+*.scale
+*.range
