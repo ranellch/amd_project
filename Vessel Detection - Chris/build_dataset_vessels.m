@@ -25,7 +25,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
     end
 
     %Filename constants
-    filename_input = 'vessel_draw.dataset';
+    filename_input = 'vessel_draw.training';
     filename_gabor = 'vessel_gabor.mat';
     filename_lineop = 'vessel_lineop.mat';
 
@@ -40,9 +40,9 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
     end
 
     %Add paths for the running of this function
-    addpath(genpath('../Test Set'));
+    addpath(genpath('..\Test Set'));
     addpath('..');
-    addpath(genpath('../intensity normalization'))
+    addpath(genpath('..\intensity normalization'))
 
     t = cputime;   
 
@@ -122,13 +122,13 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                     for a = [1 2 3 4 5]
                         trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
                         trans = trans(51:(50+sizey), (51:50+sizex));
-                        feature_image = cat(3, feature_image, zero_m_unit_std(trans));
+                        feature_image = cat(3, feature_image, trans);
                     end
                 end
             
                 if (lineop_bool == 1)                
                     %Build lineop feature vectors
-                    feature_image = get_fv_lineop( original_img );
+                    [feature_image,~] = get_fv_lineop( original_img );
                 end
                 
                 %Save feature vectors and pixel classes for current image in .mat file generated above

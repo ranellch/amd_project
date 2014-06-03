@@ -1,7 +1,8 @@
-function [binary_img] = find_vessels(img)
+function [binary_img, mx_angs] = find_vessels(img)
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath(genpath('../intensity normalization'))
+addpath(genpath('../libsvm-3.18'))
 
 %Pre-process
 if (size(img, 3) > 1)
@@ -38,7 +39,7 @@ disp('Building Gabor Features!');
     for a = [1 2 3 4 5]
         trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
         trans = trans(51:(50+sizey), (51:50+sizex));
-        gabor_image = cat(3, gabor_image, zero_m_unit_std(trans));
+        gabor_image = cat(3, gabor_image, trans);
     end
 
 
@@ -51,7 +52,7 @@ disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
 %Time how long it takes 
 t=cputime;
 disp('Running Line Operator!');
-lineop_image = get_fv_lineop( img );
+[lineop_image, mx_angs] = get_fv_lineop( img );
 e = cputime - t;
 disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 
@@ -59,17 +60,17 @@ disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 gabor_vectors = matstack2array(gabor_image);
 lineop_vectors = matstack2array(lineop_image);
 combined_vectors = [gabor_vectors, lineop_vectors];
+libsvmwrite('vessel_test.dataset',zeros(length(combined_vectors),1),sparse(combined_vectors));
+
+%Scale vectors using svm-scale.exe and range used for training
+ system('..\libsvm-3.18\windows\svm-scale -r vessel_training.subset.range vessel_test.dataset > vessel_test.dataset.scale');
+ [~, scaled_vectors] = libsvmread('vessel_test.dataset.scale');
 
 %Do pixelwise classification
 disp('Running Pixelwise Classification ');
 t=cputime;
 
-% class_estimates=adaboost('apply',combined_vectors,classifier);
-class_estimates = [];
-increment = length(combined_vectors)/512;
-for start = 1:increment:length(combined_vectors)
-    class_estimates = [class_estimates; svmclassify(classifier, combined_vectors(start:start+increment-1,:))];
-end
+class_estimates = libsvmpredict(zeros(length(combined_vectors),1), scaled_vectors, classifier);
 
 %Output how long it took to do this
 e = cputime-t;

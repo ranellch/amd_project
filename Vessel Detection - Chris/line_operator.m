@@ -50,7 +50,7 @@ methods
         obj.ready_to_go = 1;
     end
 
-    function [str, mx_ang, square_avg]=get_strength_img(obj, img)
+    function [str, ortho_str, mx_ang]=get_line_strengths(obj, img)
         if(obj.ready_to_go ~= 1)
             error('Before calling this method you must init(length, norien) the class!');
         end
@@ -59,36 +59,32 @@ methods
         %every pixel
         square_avg = imfilter(img, ones(obj.len)/(obj.len*obj.len), 'symmetric');
 
-        %Find line orientation with maximum line strength
+        %Run lineops
         all_line_strengths = zeros([size(img), obj.norien]);
+        ortho_line_strengths = zeros([size(img), obj.norien]);
 
-        %Get line strengths for all orientations
+        %Get long line strengths for all orientations
         for theta=1:obj.norien
             all_line_strengths(:,:,theta) = imfilter(img, obj.line_matricies(:,:,theta)/obj.len,'symmetric') - square_avg;
         end
-        
-        %Find maximum for every pixel
+        %Get ortho line strengths for all orginal orientations
+        for theta=1:obj.norien
+            ortho_line_strengths(:,:,theta) = imfilter(img, create_line(3,obj.degrees(theta)+90.0)/3, 'symmetric') - square_avg;
+        end
+                
+        %Find maximum line strength, angle, and ortho line strength for every pixel
         [max_line_strength, max_thetas] = max(all_line_strengths,[],3); 
         str = max_line_strength;
         mx_ang = zeros(size(img));
+        ortho_str = zeros(size(img));
         for y = 1:size(img,1)
             for x = 1:size(img,2)
                 mx_ang(y,x) = obj.degrees(max_thetas(y,x));
+                ortho_str(y,x) = ortho_line_strengths(y,x,max_thetas(y,x));
             end
         end
-
+        
     end
-
-    function ortho_str = get_ortho_str(obj, img, mx_ang, square_avg, yin, xin)
-        %Calculate strength along line orthogonal to max line at (y, x)
-        nindeg = mx_ang + 90.0;
-        ninlen = 3;
-        nindeg_matrix = create_line(ninlen, nindeg);
-        [nine_sum, nine_count] = iterate_mask(img, yin, xin, floor(ninlen / 2.0), nindeg_matrix);
-        nine_avg = nine_sum / double(nine_count);
-        ortho_str = nine_avg - square_avg;
-
-        end
     end
 end
 
@@ -112,27 +108,5 @@ function [line_matrix] = create_line(length, angle)
 
     %Get the subset martix
     line_matrix = line_matrix(middle_y-ed:middle_y+ed, middle_x-ed:middle_x+ed);
-end
-
-
-function [sumval, count] = iterate_mask(img, yin, xin, each_direction, matrix_in)
-    %Initialize variables for summation and counting
-    sumval = 0.0;
-    count = 0;
-
-    start_y = 0;
-    for y = yin - each_direction:yin + each_direction
-        start_y = start_y + 1;
-        start_x = 0;
-        for x = xin - each_direction:xin + each_direction
-            start_x = start_x + 1;
-            if(y >= 1 && y<=size(img, 1) && x >= 1 && x <= size(img, 2))
-                if(matrix_in(start_y, start_x) == 1)
-                    count = count + 1;
-                    sumval = sumval + double(img(y, x));
-                end
-            end
-        end
-    end
 end
 

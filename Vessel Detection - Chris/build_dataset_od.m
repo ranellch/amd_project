@@ -158,18 +158,25 @@ for x=1:size(includes{1}, 1)
         end
     elseif 1
         disp('Running Gabor Wavelets');
-        [sizey, sizex] = size(img);
-        bigimg = padarray(img, [50 50], 'symmetric');
-        fimg = fft2(bigimg);
-        k0x = 0;
-        k0y = 3;
-        epsilon = 1;
-        step = 10;
-        feature_image = [];
-        for a = [1 2 3 4 5]
-            trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
-            trans = trans(51:(50+sizey), (51:50+sizex));
-            feature_image = cat(3, feature_image, zero_m_unit_std(trans));
+
+        %Get the pixelwise feature vectors of the input image
+        feature_image_g = gabor_image_fv(img);
+        feature_image_e = entropyfilt(img,true(9));
+        
+        feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_e,3));
+        
+        for y=1:size(feature_image, 1)
+            for x=1:size(feature_image, 2)
+                temp = 1;
+                for z1=1:size(feature_image_g,3)
+                    feature_image(y,x,temp) = feature_image_g(y,x,z1);
+                    temp = temp + 1;
+                end
+                for z2=1:size(feature_image_e,3)
+                    feature_image(y,x,temp) = feature_image_e(y,x,z2);
+                    temp = temp + 1;
+                end
+            end
         end
         
         %Save feature vectors and pixel classes for current image in .mat file generated above
@@ -197,4 +204,4 @@ for x=1:size(includes{1}, 1)
 end
 
 e = cputime - t;
-disp(['Optic Disc Classifier Time (sec): ', num2str(e)]);
+disp(['Optic Disc Build Classifier Time (min): ', num2str(e/60.0)]);

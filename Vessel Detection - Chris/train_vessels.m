@@ -1,6 +1,6 @@
 function train_vessels()
     addpath(genpath('../ML Library'))
-    itt = 30;
+    addpath(genpath('../libsvm-3.18'))
 
     t = cputime;
     %Get gabor wavelet feature vectors
@@ -25,13 +25,19 @@ function train_vessels()
     %get category for every pixel
     categories = lineop_file.classes;
         
-	%Create a combined classifier
+	%Combine features, write to text for libsvm 
     combined_matrices = [variable_data_gabor, variable_data_lineop];
+    libsvmwrite('vessel_training.dataset',categories,sparse(combined_matrices));
+    
+    %Create subset of 100,000 vectors, scale
+    system('python ..\libsvm-3.18\tools\subset.py vessel_training.dataset 100000 vessel_training.subset');
+    system('..\libsvm-3.18\windows\svm-scale -s vessel_training.subset.range vessel_training.subset > vessel_training.subset.scale');
+    [label_vector, instance_matrix] = libsvmread('vessel_training.subset.scale');
     
     t = cputime;
     disp('Building SVM classifier...Please Wait')
 % 	[~, vessel_combined_classifier] = adaboost('train', combined_matrices, categories, itt);
-    vessel_combined_classifier = svmtrain(combined_matrices(1:32:end,:), categories(1:32:end),'kktviolationlevel',0.5, 'boxconstraint', 0.8);
+    vessel_combined_classifier = libsvmtrain(label_vector, instance_matrix, '-c 0.5 -g 8');
 	save('vessel_combined_classifier.mat', 'vessel_combined_classifier');
     
     %Disp some informaiton to the user

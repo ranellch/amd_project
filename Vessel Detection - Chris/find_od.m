@@ -5,7 +5,7 @@ number_of_pixels_per_box = 8;
 
 %Add the path for the images
 addpath('..');
-addpath('../Test Set');
+addpath(genpath('../Test Set'));
 addpath('../intensity normalization');
 addpath(genpath('../sfta'));
 run('../vlfeat/toolbox/vl_setup');
@@ -88,30 +88,36 @@ for x=1:size(includes{1}, 1)
             end
         end        
     elseif 1
-        %Run the gabor stuff
-        [sizey, sizex] = size(img);
-        bigimg = padarray(img, [50 50], 'symmetric');
-        fimg = fft2(bigimg);
-        k0x = 0;
-        k0y = 3;
-        epsilon = 1;
-        step = 10;
-        gabor_image = [];
-        for a = [1 2 3 4 5]
-            trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
-            trans = trans(51:(50+sizey), (51:50+sizex));
-            gabor_image = cat(3, gabor_image, zero_m_unit_std(trans));
-        end 
+        disp('Running Gabor Wavelets');
         
-        gabor_vectors = matstack2array(gabor_image);
+        %Get feature vectors for each pixel in image
+        feature_image_g = gabor_image_fv(img);
+        feature_image_e = entropyfilt(img,true(9));
         
-        class_estimates = [];
-        increment = length(gabor_vectors)/512;
-        for start = 1:increment:length(gabor_vectors)
-            class_estimates = [class_estimates; svmclassify(od_classify_svmstruct, gabor_vectors(start:start+increment-1,:))];
+        feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_e,3));
+        
+        for y=1:size(feature_image, 1)
+            for x=1:size(feature_image, 2)
+                temp = 1;
+                for z1=1:size(feature_image_g,3)
+                    feature_image(y,x,temp) = feature_image_g(y,x,z1);
+                    temp = temp + 1;
+                end
+                for z2=1:size(feature_image_e,3)
+                    feature_image(y,x,temp) = feature_image_e(y,x,z2);
+                    temp = temp + 1;
+                end
+            end
         end
         
-        od_image(:) = class_estimates;
+        %Classify the feature vectors for each pixel
+        for y=1:size(feature_image, 1)
+            temp_rearrange = squeeze(feature_image(y,:,:));
+            class_estimates = svmclassify(od_classify_svmstruct, temp_rearrange);
+            for x=1:size(feature_image, 2)
+                od_image(y,x) = class_estimates(x);
+            end
+        end
     elseif 0
         texture_results = vl_hog(single(img), number_of_pixels_per_box, 'verbose') ;
         
@@ -125,6 +131,7 @@ for x=1:size(includes{1}, 1)
     end
     
     figure(1), imshowpair(od_image, img);
+    return;
 
     %Resize the image to its original size
     od_image = match_sizing(od_image, origx, origy);
