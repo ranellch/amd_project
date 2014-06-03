@@ -172,7 +172,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\BIGNALL OD 1.tif" eye="OD" id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 1.tif" time="1"> </image>
+   <image AMD="Labeled\AMD Controls\BIGNALL OD 1.tif" eye="OD" id="BIGNALL" original="\Originals\Bignall OD\BIGNALL OD 1.tif" time="1" vessels="Labeled\AMD Vessels\BIGNALL OD 1_vessel.tif"> </image>
 
 
    

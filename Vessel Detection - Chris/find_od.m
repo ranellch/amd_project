@@ -28,6 +28,9 @@ for x=1:size(includes{1}, 1)
     img = imread(filename);
     img = im2double(img);
 
+    filename_vessel = get_pathv2(pid, eye, time, 'vessels');
+    img_vessel = im2double(imread(filename_vessel));
+
     %Convert the image to gray scale if not already
     if(size(img,3) ~= 1)
         img=rgb2gary(img);
@@ -129,12 +132,16 @@ for x=1:size(includes{1}, 1)
             end
         end
     end
+        
     
-    figure(1), imshowpair(od_image, img);
-    return;
+    final_od_image = refine_od(od_image, img_vessel);
+    
+    figure(1), imshowpair(final_od_image, img);
 
     %Resize the image to its original size
     od_image = match_sizing(od_image, origx, origy);
+    
+    return;
 end
 
 end
