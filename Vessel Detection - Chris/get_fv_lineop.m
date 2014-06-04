@@ -30,7 +30,10 @@ for y = 1:size(img,1)
     end
 end
 
-fv_image = cat(3, fv_max, fv_ortho, img);
+%Use average grayscale valeus in 3 by 3 window as feature
+fv_avg = imfilter(img,ones(3)/9, 'symmetric');
+
+fv_image = cat(3, fv_max, fv_ortho, fv_avg);
 
 end
 
