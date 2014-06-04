@@ -1,4 +1,4 @@
-function [imgout] = gabor_image_fv(imgin)
+function [imgout] = get_fv_gabor(imgin)
     %Run the gabor stuff
     [sizey, sizex] = size(imgin);
     bigimg = padarray(imgin, [50 50], 'symmetric');

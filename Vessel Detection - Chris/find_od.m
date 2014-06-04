@@ -49,7 +49,7 @@ subimage_size = floor(std_img_size / number_of_pixels_per_box);
 
 
 %Get feature vectors for each pixel in image
-feature_image_g = gabor_image_fv(img);
+feature_image_g = get_fv_gabor(img);
 feature_image_e = entropyfilt(img,true(9));
 
 feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_e,3));
