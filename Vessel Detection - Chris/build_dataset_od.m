@@ -91,7 +91,7 @@ for x=1:size(includes{1}, 1)
         [img, ~] = smooth_illum3(img, 0.7);
 
         %Get the snaked image
-        snaked_image = im2bw(imread(get_snaked_path(the_path)));
+        snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
 
         %Check that the images are the same size
         if(size(img,1) ~= size(snaked_image,1) || size(img,2) ~= size(snaked_image,2))
@@ -102,45 +102,6 @@ for x=1:size(includes{1}, 1)
         %Resize images to a standard sizing
         img = match_sizing(img, std_img_size, std_img_size);
         snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
-
-        subimage_size = floor(std_img_size / number_of_pixels_per_box);
-        windowed_snaked_image = zeros(subimage_size, subimage_size);
-
-        %This is a window based feature descriptor
-        for x=1:subimage_size
-            for y=1:subimage_size
-                xs = ((x - 1) * number_of_pixels_per_box) + 1;
-                xe = xs + number_of_pixels_per_box - 1;
-
-                ys = ((y - 1) * number_of_pixels_per_box) + 1;
-                ye = ys + number_of_pixels_per_box - 1;
-
-                if(ye > size(img, 1))
-                    ye = size(img, 1);
-                    ys = ye - number_of_pixels_per_box;
-                end
-                if(xe > size(img, 2))
-                    xe = size(img, 2);
-                    xs = xe - number_of_pixels_per_box;
-                end
-
-                %Get the snake image window
-                subimage_snake = snaked_image(ys:ye, xs:xe);
-
-                %Get the percentage of the disk included in this image
-                percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
-
-                %Get the grouping associated with dis badboy
-                grouping = 0;
-                cutoff = 0.9;
-                if(percentage_disk >= cutoff)
-                    grouping = 1;
-                end
-
-                %Log the results for the windowed image
-                windowed_snaked_image(y,x) = grouping;
-            end
-        end
 
         %Get the pixelwise feature vectors of the input image
         feature_image_g = gabor_image_fv(img);
@@ -178,6 +139,45 @@ disp(['Optic Disc Build Classifier Time (min): ', num2str(e/60.0)]);
 end
 
 function other()
+    subimage_size = floor(std_img_size / number_of_pixels_per_box);
+    windowed_snaked_image = zeros(subimage_size, subimage_size);
+
+    %This is a window based feature descriptor
+    for x=1:subimage_size
+        for y=1:subimage_size
+            xs = ((x - 1) * number_of_pixels_per_box) + 1;
+            xe = xs + number_of_pixels_per_box - 1;
+
+            ys = ((y - 1) * number_of_pixels_per_box) + 1;
+            ye = ys + number_of_pixels_per_box - 1;
+
+            if(ye > size(img, 1))
+                ye = size(img, 1);
+                ys = ye - number_of_pixels_per_box;
+            end
+            if(xe > size(img, 2))
+                xe = size(img, 2);
+                xs = xe - number_of_pixels_per_box;
+            end
+
+            %Get the snake image window
+            subimage_snake = snaked_image(ys:ye, xs:xe);
+
+            %Get the percentage of the disk included in this image
+            percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
+
+            %Get the grouping associated with dis badboy
+            grouping = 0;
+            cutoff = 0.9;
+            if(percentage_disk >= cutoff)
+                grouping = 1;
+            end
+
+            %Log the results for the windowed image
+            windowed_snaked_image(y,x) = grouping;
+        end
+    end
+        
     if 0
         disp('Running Texture Windowing');
         %Divide the image up into equal sized boxes
