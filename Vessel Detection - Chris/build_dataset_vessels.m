@@ -1,4 +1,4 @@
-function build_dataset_vessels(gabor_bool, lineop_bool)    
+function build_dataset_vessels(gabor_bool, lineop_bool)        
     %constant for standard image sizes
     std_img_size = 768;
     
@@ -40,9 +40,9 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
     end
 
     %Add paths for the running of this function
-    addpath(genpath('..\Test Set'));
+    addpath(genpath('../Test Set'));
     addpath('..');
-    addpath(genpath('..\intensity normalization'))
+    addpath(genpath('../intensity normalization'))
 
     t = cputime;   
 
