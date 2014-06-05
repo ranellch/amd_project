@@ -32,7 +32,32 @@ function train_vessels()
                  
 
 	%Combine features
-    instance_matrix = [variable_data_gabor, variable_data_lineop];    
+    instance_matrix = [variable_data_gabor, variable_data_lineop];
+    
+    %Try to get at least 20% positive instances by discarding a certain
+    %percentage of negatives
+    numneg = sum(label_vector==-1);
+    numpos = sum(label_vector==1);
+    if numpos/(numneg+numpos) < .2
+        numdiscard = numneg - 4*numpos;
+        discard_vector = zeros(length(label_vector),1);
+        indices = randperm(length(label_vector),length(label_vector));
+        discard_count = 0;
+        for i = indices
+            if label_vector(i) == -1 
+                discard_vector(i) = 1;
+                discard_count = discard_count + 1;
+
+            end
+            if discard_count == numdiscard
+                break
+            end
+        end
+        discard_vector = logical(discard_vector);
+        label_vector(discard_vector) = [];
+        instance_matrix(discard_vector,:) = [];
+    end
+    disp(sum(label_vector==1)/numel(label_vector))  
     
     %Scale all features to [0 1] (x'=(x-mi)/(Mi-mi))
      %find max and min of each column

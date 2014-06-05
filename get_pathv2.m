@@ -14,4 +14,8 @@ function [path] = get_pathv2(pid, eye, time, type)
         	path = char(image.getAttribute(type));
         end
     end
+    
+    if ispc ~= 1
+       path = strrep(path, '\', '/');
+    end
 end

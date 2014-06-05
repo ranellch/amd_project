@@ -1,7 +1,8 @@
-function build_dataset_vessels(gabor_bool, lineop_bool)
+function build_dataset_vessels(gabor_bool, lineop_bool)    
     %constant for standard image sizes
     std_img_size = 768;
     
+    %Constants for the line operator
     lineop_len = 15;
     lineop_angcnt = 12;
     
@@ -93,7 +94,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                 vesselized_img_binary = double(imresize(vesselized_img, [std_img_size, std_img_size]));
                 vesselized_img_binary(vesselized_img_binary==0) = -1;
 
-                %Get the original image 
+                %Get the original image
                 original_img = imread(get_pathv2(pid, eye, time, 'original'));
 
                 %Pre-process
