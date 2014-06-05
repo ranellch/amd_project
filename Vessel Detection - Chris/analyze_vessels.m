@@ -39,8 +39,10 @@ function analyze_vessels(rebuild_classifier)
     paths = textscan(fid,'%q %q %d %*[^\n]');
     fclose(fid);
     
+    numimages = size(paths{1}, 1);
+    
     %Run through the images and make sure that they exist
-    for k=1:size(paths, 1)
+    for k=1:numimages
        pid = char(paths{1}{k});
        eye = char(paths{2}{k});
        time = num2str((paths{3}(k)));
@@ -56,10 +58,11 @@ function analyze_vessels(rebuild_classifier)
         
     
     %Iterate over all images to use for testing 
-    for k=1:size(paths, 1)
+    for k=1:numimages
        pid = char(paths{1}{k});
        eye = char(paths{2}{k});
        time = num2str((paths{3}(k)));
+       vessel_image = get_pathv2(pid, eye, time, 'vessels');
        
         %Get the original image 
         original_path = get_pathv2(pid, eye, time, 'original');
@@ -67,10 +70,11 @@ function analyze_vessels(rebuild_classifier)
         
         %Get the image run by the algorithm
         [calced_img,~] = find_vessels(original_img);
-        imwrite(calced_img, ['.\results',pid,eye,'_',time,'-bin.tif'], 'tiff');
+        imwrite(calced_img, ['.\results\',pid,'_',eye,'_',time,'-bin.tif'], 'tiff');
         
         %Get the image traced by hand
         super_img = imread(vessel_image);
+        super_img = imresize(super_img, [768 768]);
         total_positive_count = 0;
         total_negative_count = 0;
         for y=1:size(super_img,1)
@@ -114,17 +118,18 @@ function analyze_vessels(rebuild_classifier)
         output_results(k,2) = true_negative/total_negative_count; %specificity
         output_results(k,3) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,4) = true_positive/(true_positive+false_positive); %precision
+        disp(output_results(k,:))
         disp('--------------------------------------');
     end
 
     fout = fopen(results_file, 'w');
     
     disp('----------Results----------');
-    line = 'Img, Sensitivity, Sensitivity, Accuracy, Precision';
+    line = 'Img, Sensitivity, Specificity, Accuracy, Precision';
     disp(line);
-    fprintf(fout, '%s', line);
+    fprintf(fout, '%s\n', line);
     %Disp to user the results from this badboy
-    for k=1:size(paths, 2)
+    for k=1:numimages
         pid = char(paths{1}{k});
         eye = char(paths{2}{k});
         time = num2str((paths{3}(k)));

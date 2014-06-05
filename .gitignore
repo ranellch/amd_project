@@ -17,3 +17,4 @@ cpselect_database/run*
 *.subset
 *.scale
 *.range
+*.remainder
