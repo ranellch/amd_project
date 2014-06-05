@@ -8,6 +8,7 @@ addpath(genpath('../Test Set'));
 addpath('../intensity normalization');
 addpath(genpath('../sfta'));
 run('../vlfeat/toolbox/vl_setup');
+addpath(genpath('../liblinear-1.94'))
         
 %Get the path name from the image and time and then read in the image.
 filename = get_pathv2((pid), (eye), num2str(time), 'original');
@@ -36,19 +37,20 @@ img = match_sizing(img, std_img_size, std_img_size);
 disp(['ID: ', pid, ' - Time: ', num2str(time)]);
 
 %Load the prediction structs
-load('od_classify_svmstruct.mat', 'od_classify_svmstruct');
+model = load('od_classify_svmstruct.mat');
+scaling_factors = model.scaling_factors;
+classifier = model.od_classify_svmstruct;
 
 x=-1;
 y=-1;
 
 od_image = zeros(size(img, 1), size(img, 2));
 
-
 %Get feature vectors for each pixel in image
 feature_image_g = get_fv_gabor(img);
-feature_image_e = entropyfilt(img,true(9));
+feature_image_r = rangefilt(img);
 
-feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_e,3));
+feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_r,3));
 
 for y=1:size(feature_image, 1)
     for x=1:size(feature_image, 2)
@@ -57,22 +59,43 @@ for y=1:size(feature_image, 1)
             feature_image(y,x,temp) = feature_image_g(y,x,z1);
             temp = temp + 1;
         end
-        for z2=1:size(feature_image_e,3)
-            feature_image(y,x,temp) = feature_image_e(y,x,z2);
+        for z2=1:size(feature_image_r,3)
+            feature_image(y,x,temp) = feature_image_r(y,x,z2);
             temp = temp + 1;
         end
     end
 end
 
-%Classify the feature vectors for each pixel
-for y=1:size(feature_image, 1)
-    temp_rearrange = squeeze(feature_image(y,:,:));
-    class_estimates = svmclassify(od_classify_svmstruct, temp_rearrange);
-    for x=1:size(feature_image, 2)
-        od_image(y,x) = class_estimates(x);
-    end
+%convert this feature image into a flat array of feature vectos
+instance_matrix = matstack2array(feature_image);
+
+%Scale vectors
+for i = 1:size(instance_matrix,2)
+    fmin = scaling_factors(1,i);
+    fmax = scaling_factors(2,i);
+    instance_matrix(:,i) = (instance_matrix(:,i)-fmin)/(fmax-fmin);
 end
 
+%Run the classification algorithm
+class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier);
+
+%Classify the feature vectors for each pixel
+%for y=1:size(feature_image, 1)
+%    temp_rearrange = squeeze(feature_image(y,:,:));
+%    class_estimates = svmclassify(od_classify_svmstruct, temp_rearrange);
+%    for x=1:size(feature_image, 2)
+%        od_image(y,x) = class_estimates(x);
+%    end
+%end
+
+od_image(:) = class_estimates;
+
+%Close the image so that all the little pices close together become connected
+od_image = imclose(od_image, strel('disk',5));
+
+%Remove the smaller disconnected regions as they are not likely to be an optic disc
+od_image = imopen(od_image, strel('disk', 5));
+    
 %Refine the possibilites of the optic disc
 final_od_image = refine_od(od_image, img_vessel);
 

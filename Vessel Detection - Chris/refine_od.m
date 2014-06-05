@@ -8,12 +8,8 @@ function [finalized] = refine_od(bw_image, vessel_image_in)
     vessel_image = bwmorph(vessel_image, 'endpoints');
     vessel_image = imclearborder(vessel_image);
 
-    %Remove the smaller disconnected regions as they are not likely to be
-    %an optic disc
-    od_image = imopen(bw_image, strel('disk', 5));
-
     %Find connected components and mark them as possible optic discs
-    CC = bwconncomp(od_image);
+    CC = bwconncomp(bw_image);
     CCPixels = regionprops(CC, 'PixelList');
     
     max_cluster_index = 0;
@@ -22,7 +18,7 @@ function [finalized] = refine_od(bw_image, vessel_image_in)
     for dil=0:10
         for cluster_index=1:size(CCPixels,1)
             %Get the possible optic disc's as a separate binary images
-            possible_od = zeros(size(od_image,1), size(od_image,2));
+            possible_od = zeros(size(bw_image,1), size(bw_image,2));
             for i=1:size(CCPixels(cluster_index,1).PixelList,1)
                 x = CCPixels(cluster_index,1).PixelList(i,1);
                 y = CCPixels(cluster_index,1).PixelList(i,2);
@@ -59,7 +55,7 @@ function [finalized] = refine_od(bw_image, vessel_image_in)
     end
 
     %Find the pixels associated with this cluster and draw them out
-    finalized = zeros(size(od_image,1), size(od_image,2));
+    finalized = zeros(size(bw_image,1), size(bw_image,2));
     
     if(max_cluster_index > 0 && max_cluster_vote > 0)
         disp(['Located the optic disc with ', num2str(max_cluster_vote), ' vote(s). Had to thicken: n=', num2str(dil*dilation_step)]);

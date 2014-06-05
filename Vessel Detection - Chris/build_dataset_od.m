@@ -21,10 +21,6 @@ addpath('..');
 %Add the location of the images resultant from get_path
 addpath(genpath('../Test Set'));
 
-addpath(genpath('../sfta'));
-addpath(genpath('../hog'));
-run('../vlfeat/toolbox/vl_setup');
-
 %Get the images to include from this list
 fid = fopen('od_draw.training', 'r');
 includes = textscan(fid,'%q %q %d %*[^\n]');
@@ -64,9 +60,8 @@ if err_cnt == 0
 end
 disp('-------Done Checking Files-------');
 
-file_obj = matfile(od_file,'Writable',true);
-file_obj.dataset = [];
 
+%Time to start iterating over all the images in the 
 for x=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
     pid = char(includes{1}{x});
@@ -107,9 +102,9 @@ for x=1:size(includes{1}, 1)
 
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor(img);
-        feature_image_e = entropyfilt(img,true(9));
+        feature_image_r = rangefilt(img);
         
-        feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_e,3));
+        feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_r, 3));
         
         for y=1:size(feature_image, 1)
             for x=1:size(feature_image, 2)
@@ -118,8 +113,8 @@ for x=1:size(includes{1}, 1)
                     feature_image(y,x,temp) = feature_image_g(y,x,z1);
                     temp = temp + 1;
                 end
-                for z2=1:size(feature_image_e,3)
-                    feature_image(y,x,temp) = feature_image_e(y,x,z2);
+                for z2=1:size(feature_image_r,3)
+                    feature_image(y,x,temp) = feature_image_r(y,x,z2);
                     temp = temp + 1;
                 end
             end

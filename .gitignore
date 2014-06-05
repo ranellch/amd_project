@@ -18,3 +18,4 @@ cpselect_database/run*
 *.scale
 *.range
 *.remainder
+liblinear-1.94
