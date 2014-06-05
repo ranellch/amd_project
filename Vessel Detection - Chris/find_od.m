@@ -1,12 +1,14 @@
 function [final_od_image] = find_od(pid, eye, time)
 %Standardize variables
 std_img_size = 768;
+ t = cputime;
 
 %Add the path for the useful directories
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath('../intensity normalization');
 addpath(genpath('../sfta'));
+addpath('../snake');
 run('../vlfeat/toolbox/vl_setup');
 addpath(genpath('../liblinear-1.94'))
         
@@ -92,19 +94,33 @@ od_image(:) = class_estimates;
 
 %Close the image so that all the little pices close together become connected
 od_image = imclose(od_image, strel('disk',5));
+od_image = imfill(od_image,'holes');
 
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
 od_image = imopen(od_image, strel('disk', 5));
     
 %Refine the possibilites of the optic disc
-final_od_image = refine_od(od_image, img_vessel);
+pre_snaked_img = refine_od(od_image, img_vessel);
 
-%Show the overlay of the results
-figure(2), imshowpair(final_od_image, img);
+%Use snaking algorithm to get smooth outline of the optic disc
+Options=struct;
+Options.Verbose=false;
+Options.Iterations=200;
+Options.Wedge=3;
+Points = get_box_coordinates(pre_snaked_img);
+[~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
 %Resize the image to its original size
-final_od_image = match_sizing(final_od_image, origx, origy);
+snaked_optic_disc = match_sizing(snaked_optic_disc, origx, origy);
 
+imshowpair(snaked_optic_disc, img);
+
+%return the final image to the function caller
+final_od_image = snaked_optic_disc;
+
+e = cputime - t;
+disp(['Optic Disc Classification Time (sec): ', num2str(e)]);
+    
 end
 
 function other()

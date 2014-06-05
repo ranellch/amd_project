@@ -4,6 +4,9 @@ function [instance_matrix, label_vector, scaling_factors] = downsample(instance_
     negative_label = 0;
     positive_label = 1;
     cutoff = 0.2;
+    
+    %Make this number larger to get more negative samples
+    %Make this number smaller to get less negative samples
     numposmulti = 2;
     
     numneg = sum(label_vector==negative_label);
