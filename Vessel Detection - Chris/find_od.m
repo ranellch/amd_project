@@ -1,7 +1,6 @@
 function [final_od_image] = find_od(pid, eye, time)
 %Standardize variables
 std_img_size = 768;
-number_of_pixels_per_box = 8;
 
 %Add the path for the useful directories
 addpath('..');
@@ -43,9 +42,6 @@ x=-1;
 y=-1;
 
 od_image = zeros(size(img, 1), size(img, 2));
-
-%Divide the image up into equal sized boxes
-subimage_size = floor(std_img_size / number_of_pixels_per_box);
 
 
 %Get feature vectors for each pixel in image
@@ -89,6 +85,10 @@ final_od_image = match_sizing(final_od_image, origx, origy);
 end
 
 function other()
+number_of_pixels_per_box = 8;
+%Divide the image up into equal sized boxes
+subimage_size = floor(std_img_size / number_of_pixels_per_box);
+
 if 0
     %This is a window based feature descriptor
     for x=1:subimage_size

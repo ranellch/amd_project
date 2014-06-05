@@ -10,7 +10,7 @@ function train_od()
     od_text_classes = od_text_file.classes;
 
     try
-        od_classify_svmstruct = svmtrain(od_text_variables(1:32:end,:), od_text_classes(1:32:end), 'kktviolationlevel', 0.5, 'boxconstraint', 0.8);
+        od_classify_svmstruct = svmtrain(od_text_variables(1:56:end,:), od_text_classes(1:56:end), 'kktviolationlevel', 0.5, 'boxconstraint', 0.8);
         save('od_classify_svmstruct.mat', 'od_classify_svmstruct');
     catch e
         disp('Unable to train svm classifier on texture training set!');

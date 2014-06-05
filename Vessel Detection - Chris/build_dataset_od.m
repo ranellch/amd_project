@@ -1,7 +1,6 @@
 function build_dataset_od()
 %constant for standard image sizes
 std_img_size = 768;
-number_of_pixels_per_box = 8;
 
 %Constants for file names
 od_file = 'od_classify.mat';
@@ -27,7 +26,7 @@ addpath(genpath('../hog'));
 run('../vlfeat/toolbox/vl_setup');
 
 %Get the images to include from this list
-fid = fopen('od_draw.dataset', 'r');
+fid = fopen('od_draw.training', 'r');
 includes = textscan(fid,'%q %q %d %*[^\n]');
 fclose(fid);
 
@@ -102,9 +101,12 @@ for x=1:size(includes{1}, 1)
         %Resize images to a standard sizing
         img = match_sizing(img, std_img_size, std_img_size);
         snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
+        
+        %Calculate the circularity of the image
+        
 
         %Get the pixelwise feature vectors of the input image
-        feature_image_g = gabor_image_fv(img);
+        feature_image_g = get_fv_gabor(img);
         feature_image_e = entropyfilt(img,true(9));
         
         feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_e,3));
@@ -139,6 +141,8 @@ disp(['Optic Disc Build Classifier Time (min): ', num2str(e/60.0)]);
 end
 
 function other()
+    number_of_pixels_per_box = 8;
+
     subimage_size = floor(std_img_size / number_of_pixels_per_box);
     windowed_snaked_image = zeros(subimage_size, subimage_size);
 
