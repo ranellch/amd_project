@@ -19,7 +19,7 @@ file_obj.dataset = [];
 addpath('..');
 
 %Add the location of the images resultant from get_path
-addpath(genpath('../Test Set'));
+addpath(genpath('..\Test Set'));
 
 %Get the images to include from this list
 fid = fopen('od_draw.training', 'r');
@@ -79,13 +79,17 @@ for x=1:size(includes{1}, 1)
         if(size(img, 3) > 1)
             img = rgb2gray(img);
         end
+        
+        %Get the snaked image
+        snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
+        
+         %Resize images to a standard sizing
+         img = match_sizing(img, std_img_size, std_img_size);
+         snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
         [img, ~] = smooth_illum3(img, 0.7);
-
-        %Get the snaked image
-        snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
 
         %Check that the images are the same size
         if(size(img,1) ~= size(snaked_image,1) || size(img,2) ~= size(snaked_image,2))
@@ -93,9 +97,6 @@ for x=1:size(includes{1}, 1)
             continue;
         end
 
-        %Resize images to a standard sizing
-        img = match_sizing(img, std_img_size, std_img_size);
-        snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
         
         %Calculate the circularity of the image
         

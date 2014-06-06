@@ -69,7 +69,7 @@ function analyze_vessels(rebuild_classifier)
         original_img = imread(original_path);
         
         %Get the image run by the algorithm
-        [calced_img,~] = find_vessels(original_img);
+        [calced_img,~] = find_vessels(pid, eye, time);
         imwrite(calced_img, ['.\results\',pid,'_',eye,'_',time,'-bin.tif'], 'tiff');
         
         %Get the image traced by hand

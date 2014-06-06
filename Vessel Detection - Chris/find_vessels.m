@@ -1,9 +1,13 @@
-function [binary_img, mx_angs] = find_vessels(img)
+function [binary_img, mx_angs] = find_vessels(pid, eye, time)
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath(genpath('../intensity normalization'))
 addpath(genpath('../libsvm-3.18'))
 addpath(genpath('../liblinear-1.94'))
+
+%get image
+path = get_pathv2(pid, eye, time, 'original');
+img = imread(path);
 
 %Pre-process
 if (size(img, 3) > 1)
