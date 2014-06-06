@@ -1,7 +1,7 @@
 function [final_od_image] = find_od(pid, eye, time)
 %Standardize variables
 std_img_size = 768;
- t = cputime;
+t = cputime;
 
 %Add the path for the useful directories
 addpath('..');
@@ -9,6 +9,7 @@ addpath(genpath('../Test Set'));
 addpath('../intensity normalization');
 addpath('../snake');
 addpath(genpath('../liblinear-1.94'))
+addpath('../Skeleton');
         
 %Load the prediction structs
 model = load('od_classify_svmstruct.mat');
@@ -21,26 +22,35 @@ img = imread(filename);
 img = im2double(img);
 
 %Get the vesselized image for now (need to change to find_vessels at some time)
-filename_vessel = get_pathv2(pid, eye, num2str(time), 'vessels');
-img_vessel = im2double(imread(filename_vessel));
+disp('[VESSELS] Run Vessel Detection Algorithm');
+img_vessel = find_vessels(pid,eye,time);
+img_vessel = bwareaopen(img_vessel, 100);
 
 %Convert the image to gray scale if not already
 if(size(img,3) ~= 1)
     img=rgb2gary(img);
 end
 
-%Resize the image to a standard size
+%Get the longest dimension of the original image
+origaxis = 0;
 origy = size(img, 1);
 origx = size(img, 2);
-img = match_sizing(img, std_img_size, std_img_size);
-img_vessel = match_sizing(img_vessel, std_img_size, std_img_size);
+if origy >= origx
+    origaxis = origy;
+else
+    origaxis = origx;
+end
+
+%Resize the images to a standard size
+img = match_sizing(img, std_img_size);
+img_vessel = match_sizing(img_vessel, std_img_size);
 
 %Apply a gaussian filter to the image and the smooth out the illumination
 img = gaussian_filter(img);
 [img, ~] = smooth_illum3(img, 0.7);
 
 %Print to the console the output
-disp(['ID: ', pid, ' - Time: ', num2str(time)]);
+disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
 
 %Initiate the results image
 od_image = zeros(size(img, 1), size(img, 2));
@@ -79,19 +89,42 @@ end
 
 %Run the classification algorithm
 disp('[SVM] Running the classification algorithm');
-class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier);
+class_estimates = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
 od_image(:) = class_estimates;
 
-%Close the image so that all the little pieces close together become connected
-od_image = imclose(od_image, strel('disk',5));
+%User morphological cleaning to get wholly connected regions
+od_image = bwareaopen(od_image, 200);
 od_image = imfill(od_image,'holes');
+od_image = imclose(od_image, strel('disk',5));
+
+%Use canny edge detector to smooth out the edges of the possible optic discs
+od_image = edge(od_image, 'canny', [], sqrt(100));
+od_image = imdilate(od_image, strel('disk',5));
+
+%Fill in all the holes by adding a border and then removing it
+od_image(1:size(od_image,1), 1) = 1;
+od_image = imfill(od_image, 'holes');
+od_image(1:size(od_image,1), 1) = 0;
+
+od_image(1:size(od_image,1), size(od_image,2)) = 1;
+od_image = imfill(od_image, 'holes');
+od_image(1:size(od_image,1), size(od_image,2)) = 0;
+
+od_image(1, 1:size(od_image,2)) = 1;
+od_image = imfill(od_image, 'holes');
+od_image(1, 1:size(od_image,2)) = 0;
+
+od_image(size(od_image,1), 1:size(od_image,2)) = 1;
+od_image = imfill(od_image, 'holes');
+od_image(size(od_image,1), 1:size(od_image,2)) = 0;
 
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
-od_image = imopen(od_image, strel('disk', 5));
-    
+figure(1), imshowpair(od_image, img_vessel);
+
 %Refine the possibilites of the optic disc using a voting algorithm
 disp('[VOTING] Using vessel endpoint voting to find the true optic disc');
 pre_snaked_img = refine_od(od_image, img_vessel);
+figure(2), imshow(pre_snaked_img);
 
 %Use snaking algorithm to get smooth outline of the optic disc
 disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
@@ -102,17 +135,18 @@ Options.Wedge=3;
 Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
+%Show the image result
+figure(3), imshowpair(snaked_optic_disc, img);
+
 %Resize the image to its original size
-snaked_optic_disc = snaked_optic_disc(1:origx, 1:origy);
+snaked_optic_disc = match_sizing(snaked_optic_disc, origaxis);
 
 %return the final image to the function caller
 final_od_image = snaked_optic_disc;
 
 %Report the time it took to classify to the user
 e = cputime - t;
-disp(['[TIME] Optic Disc Classification Time (sec): ', num2str(e)]);
-
-imshowpair(snaked_optic_disc, img);
+disp(['[TIME] Optic Disc Classification Time (min): ', num2str(e/60.0)]);
 
 end
 
