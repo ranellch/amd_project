@@ -38,8 +38,7 @@ function [img1] = pad_to_size(img1, minx, miny)
 end
 
 function [imgcorr] = find_factor(img, minx, miny)
-    %Find the factor of the largest edge to make it the same size at the
-    %minx of miny
+    %Find the factor of the largest edge to make it the same size at the minx of miny
     if(size(img,1) >= size(img,2))
         imgcorr = miny / size(img, 1);
     else

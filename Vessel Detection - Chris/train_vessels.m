@@ -64,6 +64,7 @@ function train_vessels()
     mins = min(instance_matrix);
     maxs = max(instance_matrix);
     scaling_factors = [mins; maxs];
+    
     %scale each column
     for i = 1:size(instance_matrix,2)
         instance_matrix(:,i) = (instance_matrix(:,i)-mins(i))/(maxs(i)-mins(i));
