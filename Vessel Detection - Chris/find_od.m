@@ -139,11 +139,7 @@ Points = get_box_coordinates(pre_snaked_img);
 figure(3), imshowpair(snaked_optic_disc, img);
 
 %Resize the image to its original size
-<<<<<<< HEAD
-snaked_optic_disc = match_sizing(snaked_optic_disc, origx, origy);
-=======
 snaked_optic_disc = match_sizing(snaked_optic_disc, origaxis);
->>>>>>> cdb0cc2d7eee01514eaf2027183f9eae13016fb7
 
 %return the final image to the function caller
 final_od_image = snaked_optic_disc;
