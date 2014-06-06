@@ -83,9 +83,9 @@ for x=1:size(includes{1}, 1)
         %Get the snaked image
         snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
         
-         %Resize images to a standard sizing
-         img = match_sizing(img, std_img_size, std_img_size);
-         snaked_image = match_sizing(snaked_image, std_img_size, std_img_size);
+        %Resize images to a standard sizing
+        img = match_sizing(img, std_img_size);
+        snaked_image = match_sizing(snaked_image, std_img_size);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
@@ -96,10 +96,6 @@ for x=1:size(includes{1}, 1)
             disp('Oringal Img and Snaked Img do not have the same size');
             continue;
         end
-
-        
-        %Calculate the circularity of the image
-        
 
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor(img);
