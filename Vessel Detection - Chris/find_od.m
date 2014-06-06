@@ -103,7 +103,7 @@ Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
 %Resize the image to its original size
-snaked_optic_disc = snaked_optic_disc(1:origx, 1:origy);
+snaked_optic_disc = match_sizing(snaked_optic_disc, origx, origy);
 
 %return the final image to the function caller
 final_od_image = snaked_optic_disc;
