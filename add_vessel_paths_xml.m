@@ -1,14 +1,15 @@
 function add_vessel_paths_xml(pid)
     %Edit this line below to add new images to the xml
-    image_type = 'optic_disc';
+    image_type = 'vessels';
     
     %Have user select an image and then get the relative path
     try
-        [filename,pathuser,~] = uigetfile('Test Set/*.*');
-        rel_path = strsplit(pathuser,'Test Set/');
+        [filename,pathuser,~] = uigetfile('Test Set\*.*');
+        rel_path = strsplit(pathuser,'Test Set\');
         path = ([rel_path{1,2}, filename]);
         path = strrep(path, '/','\');
-    catch
+    catch err
+        getReport(err)
         disp('Error in selecting a file');
         return;
     end

@@ -57,7 +57,8 @@ function train_vessels()
         label_vector(discard_vector) = [];
         instance_matrix(discard_vector,:) = [];
     end
-    disp(sum(label_vector==1)/numel(label_vector))  
+    disp(['Number of Positive Instances: ', num2str(sum(label_vector==1)), ' Number of Negative Instances: ', ... 
+        num2str(sum(label_vector==-1)), ' Total: ', num2str(numel(label_vector))]);  
     
     %Scale all features to [0 1] (x'=(x-mi)/(Mi-mi))
      %find max and min of each column

@@ -29,14 +29,15 @@ if(size(img,3) ~= 1)
     img=rgb2gary(img);
 end
 
-%Apply a gaussian filter to the image and the smooth out the illumination
-img = gaussian_filter(img);
-[img, ~] = smooth_illum3(img, 0.7);
-
 %Resize the image to a standard size
 origy = size(img, 1);
 origx = size(img, 2);
 img = match_sizing(img, std_img_size, std_img_size);
+img_vessel = match_sizing(img_vessel, std_img_size, std_img_size);
+
+%Apply a gaussian filter to the image and the smooth out the illumination
+img = gaussian_filter(img);
+[img, ~] = smooth_illum3(img, 0.7);
 
 %Print to the console the output
 disp(['ID: ', pid, ' - Time: ', num2str(time)]);
@@ -102,7 +103,7 @@ Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
 %Resize the image to its original size
-snaked_optic_disc = match_sizing(snaked_optic_disc, origx, origy);
+snaked_optic_disc = snaked_optic_disc(1:origx, 1:origy);
 
 %return the final image to the function caller
 final_od_image = snaked_optic_disc;
