@@ -1,4 +1,5 @@
 *.db
+*.xcf
 *.jpg
 *.tif
 *.tiff
