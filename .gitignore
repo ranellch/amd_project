@@ -1,4 +1,7 @@
 *.db
+*.mexmaci64
+*.mexw32
+*.xcf
 *.jpg
 *.tif
 *.tiff

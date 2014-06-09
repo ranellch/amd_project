@@ -10,6 +10,7 @@ addpath('../intensity normalization');
 addpath('../snake');
 addpath(genpath('../liblinear-1.94'))
 addpath('../Skeleton');
+addpath('../Vessel Detection - Chris');
         
 %Load the prediction structs
 model = load('od_classify_svmstruct.mat');

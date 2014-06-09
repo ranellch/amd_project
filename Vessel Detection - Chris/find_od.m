@@ -1,6 +1,5 @@
 function [final_od_image] = find_od(pid, eye, time)
 %Standardize variables
-std_img_size = 768;
 t = cputime;
 
 %Add the path for the useful directories
@@ -21,29 +20,23 @@ filename = get_pathv2((pid), (eye), num2str(time), 'original');
 img = imread(filename);
 img = im2double(img);
 
-%Get the vesselized image for now (need to change to find_vessels at some time)
-disp('[VESSELS] Run Vessel Detection Algorithm');
-img_vessel = find_vessels(pid,eye,time);
-img_vessel = bwareaopen(img_vessel, 100);
-
 %Convert the image to gray scale if not already
 if(size(img,3) ~= 1)
     img=rgb2gary(img);
 end
 
+%Run vessel detection algorithm on the input image and remove the smallest connected components
+disp('[VESSELS] Run Vessel Detection Algorithm');
+img_vessel = find_vessels(pid,eye,time);
+img_vessel = bwareaopen(img_vessel, 100);
+
 %Get the longest dimension of the original image
-origaxis = 0;
 origy = size(img, 1);
 origx = size(img, 2);
-if origy >= origx
-    origaxis = origy;
-else
-    origaxis = origx;
-end
 
 %Resize the images to a standard size
-img = match_sizing(img, std_img_size);
-img_vessel = match_sizing(img_vessel, std_img_size);
+img = imresize(img, [768 768]);
+img_vessel = imresize(img_vessel, [768 768]);
 
 %Apply a gaussian filter to the image and the smooth out the illumination
 img = gaussian_filter(img);
@@ -89,42 +82,21 @@ end
 
 %Run the classification algorithm
 disp('[SVM] Running the classification algorithm');
-class_estimates = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
-od_image(:) = class_estimates;
+od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
 
-%User morphological cleaning to get wholly connected regions
-od_image = bwareaopen(od_image, 200);
-od_image = imfill(od_image,'holes');
-od_image = imclose(od_image, strel('disk',5));
+figure(1), imshow(od_image);
 
-%Use canny edge detector to smooth out the edges of the possible optic discs
-od_image = edge(od_image, 'canny', [], sqrt(100));
-od_image = imdilate(od_image, strel('disk',5));
+%Clean the image morphologically
+od_image = morph_clean(od_image);
 
-%Fill in all the holes by adding a border and then removing it
-od_image(1:size(od_image,1), 1) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(1:size(od_image,1), 1) = 0;
-
-od_image(1:size(od_image,1), size(od_image,2)) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(1:size(od_image,1), size(od_image,2)) = 0;
-
-od_image(1, 1:size(od_image,2)) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(1, 1:size(od_image,2)) = 0;
-
-od_image(size(od_image,1), 1:size(od_image,2)) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(size(od_image,1), 1:size(od_image,2)) = 0;
+figure(3), imshow(od_image);
 
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
-figure(1), imshowpair(od_image, img_vessel);
+figure(2), imshowpair(od_image, img_vessel);
 
 %Refine the possibilites of the optic disc using a voting algorithm
 disp('[VOTING] Using vessel endpoint voting to find the true optic disc');
 pre_snaked_img = refine_od(od_image, img_vessel);
-figure(2), imshow(pre_snaked_img);
 
 %Use snaking algorithm to get smooth outline of the optic disc
 disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
@@ -139,7 +111,7 @@ Points = get_box_coordinates(pre_snaked_img);
 figure(3), imshowpair(snaked_optic_disc, img);
 
 %Resize the image to its original size
-snaked_optic_disc = match_sizing(snaked_optic_disc, origaxis);
+snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);
 
 %return the final image to the function caller
 final_od_image = snaked_optic_disc;
@@ -150,52 +122,38 @@ disp(['[TIME] Optic Disc Classification Time (min): ', num2str(e/60.0)]);
 
 end
 
-function other()
-number_of_pixels_per_box = 8;
-%Divide the image up into equal sized boxes
-subimage_size = floor(std_img_size / number_of_pixels_per_box);
+function result = morph_clean(img_in)
+    %User opening to remove disconnected points of a cerntain pixel size or smaller
+    img_out = bwareaopen(img_in, 200);
+    
+    %Fill in all the holes in the image
+    img_out = imfill(img_out,'holes');
+    
+    %Then close the image using a disc structure to fill in regions
+    img_out = imclose(img_out, strel('disk',5));
 
-if 0
-    %This is a window based feature descriptor
-    for x=1:subimage_size
-        for y=1:subimage_size
-            xs = ((x - 1) * number_of_pixels_per_box) + 1;
-            xe = xs + number_of_pixels_per_box - 1;
+    %Use canny edge detector to smooth out the edges of the possible optic discs
+    img_out = edge(img_out, 'canny', [], sqrt(70));
+    %Use dilation to connected the edges that sometimes weren't conncected
+    %   by the canny edge detector
+    img_out = imdilate(img_out, strel('disk',5));
 
-            ys = ((y - 1) * number_of_pixels_per_box) + 1;
-            ye = ys + number_of_pixels_per_box - 1;
+    %Fill in all the holes by adding a border and then removing it
+    img_out(1:size(img_out,1), 1) = 1;
+    img_out = imfill(img_out, 'holes');
+    img_out(1:size(img_out,1), 1) = 0;
 
-            if(ye > size(img, 1))
-                ye = size(img, 1);
-                ys = ye - number_of_pixels_per_box;
-            end
-            if(xe > size(img, 2))
-                xe = size(img, 2);
-                xs = xe - number_of_pixels_per_box;
-            end
+    img_out(1:size(img_out,1), size(img_out,2)) = 1;
+    img_out = imfill(img_out, 'holes');
+    img_out(1:size(img_out,1), size(img_out,2)) = 0;
 
-            %Get the original image window
-            subimage = img(ys:ye, xs:xe);
+    img_out(1, 1:size(img_out,2)) = 1;
+    img_out = imfill(img_out, 'holes');
+    img_out(1, 1:size(img_out,2)) = 0;
 
-            feature_vectors = text_algorithm(subimage);
-            grouping = svmclassify(od_classify_svmstruct, feature_vectors);
-
-            for xt=xs:xe
-                for yt=ys:ye
-                    od_image(yt,xt) = grouping;
-                end
-            end
-        end
-    end        
-elseif 0
-    texture_results = vl_hog(single(img), number_of_pixels_per_box, 'verbose') ;
-
-    for y=1:size(texture_results,1)
-        for x=1:size(texture_results,2)
-            class_estimates = svmclassify(od_classify_svmstruct, squeeze(texture_results(y,x,:)).');
-
-            od_image(((y-1)*number_of_pixels_per_box)+1:y*number_of_pixels_per_box, ((x-1)*number_of_pixels_per_box)+1:x*number_of_pixels_per_box) = class_estimates;
-        end
-    end
-end
+    img_out(size(img_out,1), 1:size(img_out,2)) = 1;
+    img_out = imfill(img_out, 'holes');
+    img_out(size(img_out,1), 1:size(img_out,2)) = 0;
+    
+    result = img_out;
 end
