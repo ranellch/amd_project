@@ -2,16 +2,30 @@ function add_vessel_paths_xml(pid)
     %Edit this line below to add new images to the xml
     image_type = 'optic_disc';
     
-    %Have user select an image and then get the relative path
-    try
-        [filename,pathuser,~] = uigetfile('Test Set/*.*');
-        rel_path = strsplit(pathuser,'Test Set/');
-        path = ([rel_path{1,2}, filename]);
-        path = strrep(path, '/','\');
-    catch err
-        getReport(err)
-        disp('Error in selecting a file');
-        return;
+    if ispc
+        %Have user select an image and then get the relative path
+        try
+            [filename,pathuser,~] = uigetfile('Test Set\*.*');
+            rel_path = strsplit(pathuser,'Test Set\');
+            path = ([rel_path{1,2}, filename]);
+            path = strrep(path, '/','\');
+        catch err
+            getReport(err)
+            disp('Error in selecting a file');
+            return;
+        end
+    else
+        %Have user select an image and then get the relative path
+        try
+            [filename,pathuser,~] = uigetfile('Test Set/*.*');
+            rel_path = strsplit(pathuser,'Test Set/');
+            path = ([rel_path{1,2}, filename]);
+            path = strrep(path, '/','\');
+        catch err
+            getReport(err)
+            disp('Error in selecting a file');
+            return;
+        end
     end
 
     %Get the user input for eye side
