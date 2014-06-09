@@ -1,6 +1,4 @@
 function [finalized] = refine_od(bw_image, vessel_image_in)
-    std_img_size = 768;
-    
     if size(bw_image,1) ~= size(vessel_image_in,1) || ...
        size(bw_image,2) ~= size(vessel_image_in,2)
         disp('Input of vessel image and possible optic disc images are not the same size');
@@ -17,10 +15,6 @@ function [finalized] = refine_od(bw_image, vessel_image_in)
     for i=1:size(exy,2)
         vessel_image(exy(2,i),exy(1,i)) = 1;
     end
-    %Remove any end points that occur on the edge of the image
-    %vessel_image = imclearborder(vessel_image);
-
-    figure(10), imshowpair(vessel_image_in, vessel_image);
     
     %Find connected components and mark them as possible optic discs
     CC = bwconncomp(bw_image);
@@ -48,6 +42,7 @@ function [finalized] = refine_od(bw_image, vessel_image_in)
             % ended in the previous possible optic disc region
             if(dil > 0)
                 possible_od = imdilate(possible_od, strel('disk', dil*dilation_step));
+                possible_od = imfill(possible_od, 'holes');
             end
             
             %Count the endpoints that end near the possible optic disc
