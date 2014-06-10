@@ -83,7 +83,7 @@ end
 disp('Running Pixelwise Classification ');
 t=cputime;
 
-class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier);
+class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
 % chunk_size = 512;
 % class_estimates = [];
 % for i = 1:chunk_size:length(combined_vectors)
