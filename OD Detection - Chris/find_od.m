@@ -90,6 +90,14 @@ disp('[SVM] Running the classification algorithm');
 od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
 clear instance_matrix
 
+for y=1:size(od_image)
+    for x=1:size(od_image)
+        if(img_vessel(y,x) == 1)
+            od_image(y,x) = 0;
+        end
+    end
+end
+
 figure(1), imshow(od_image);
 
 %User morphological cleaning to get wholly connected regions
