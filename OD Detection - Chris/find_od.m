@@ -20,7 +20,12 @@ classifier = model.od_classify_svmstruct;
 %Get the path name from the image and time and then read in the image.
 filename = get_pathv2((pid), (eye), num2str(time), 'original');
 img = imread(filename);
+
+%Convert the image to gray scale double if not already
 img = im2double(img);
+if(size(img,3) ~= 1)
+    img=rgb2gary(img);
+end
 
 %Get the vesselized image for now (need to change to find_vessels at some time)
 disp('[VESSELS] Run Vessel Detection Algorithm');
@@ -30,20 +35,9 @@ stats = regionprops(CC,'Eccentricity','Area');
 idx = find([stats.Area] > 50 & [stats.Eccentricity] > 0.9);
 img_vessel = ismember(labelmatrix(CC), idx);
 
-%Convert the image to gray scale if not already
-if(size(img,3) ~= 1)
-    img=rgb2gary(img);
-end
-
 %Get the longest dimension of the original image
-origaxis = 0;
 origy = size(img, 1);
 origx = size(img, 2);
-if origy >= origx
-    origaxis = origy;
-else
-    origaxis = origx;
-end
 
 %Resize the images to a standard size
 img = imresize(img, [std_img_size, std_img_size]);
@@ -93,20 +87,18 @@ end
 
 %Run the classification algorithm
 disp('[SVM] Running the classification algorithm');
-class_estimates = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
+od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
 clear instance_matrix
-od_image(:) = class_estimates;
+
+figure(1), imshow(od_image);
 
 %User morphological cleaning to get wholly connected regions
 od_image = bwareaopen(od_image, 200);
 od_image = imfill(od_image,'holes');
 od_image = imclose(od_image, strel('disk',5));
 
-2figure(1), imshow(od_image);
-return;
-
 %Use canny edge detector to smooth out the edges of the possible optic discs
-od_image = edge(od_image, 'canny', [], sqrt(100));
+od_image = edge(od_image, 'canny', [], sqrt(25));
 od_image = imdilate(od_image, strel('disk',5));
 
 %Fill in all the holes by adding a border and then removing it
@@ -127,7 +119,9 @@ od_image = imfill(od_image, 'holes');
 od_image(size(od_image,1), 1:size(od_image,2)) = 0;
 
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
-figure(1), imshowpair(od_image, img_vessel);
+figure(2), imshowpair(od_image, img_vessel);
+
+return;
 
 %Refine the possibilites of the optic disc using a vessel angle filter
 pre_snaked_img = choose_od(od_image, img_vessel, img_angles);
@@ -155,54 +149,4 @@ final_od_image = snaked_optic_disc;
 e = cputime - t;
 disp(['[TIME] Optic Disc Classification Time (min): ', num2str(e/60.0)]);
 
-end
-
-function other()
-number_of_pixels_per_box = 8;
-%Divide the image up into equal sized boxes
-subimage_size = floor(std_img_size / number_of_pixels_per_box);
-
-if 0
-    %This is a window based feature descriptor
-    for x=1:subimage_size
-        for y=1:subimage_size
-            xs = ((x - 1) * number_of_pixels_per_box) + 1;
-            xe = xs + number_of_pixels_per_box - 1;
-
-            ys = ((y - 1) * number_of_pixels_per_box) + 1;
-            ye = ys + number_of_pixels_per_box - 1;
-
-            if(ye > size(img, 1))
-                ye = size(img, 1);
-                ys = ye - number_of_pixels_per_box;
-            end
-            if(xe > size(img, 2))
-                xe = size(img, 2);
-                xs = xe - number_of_pixels_per_box;
-            end
-
-            %Get the original image window
-            subimage = img(ys:ye, xs:xe);
-
-            feature_vectors = text_algorithm(subimage);
-            grouping = svmclassify(od_classify_svmstruct, feature_vectors);
-
-            for xt=xs:xe
-                for yt=ys:ye
-                    od_image(yt,xt) = grouping;
-                end
-            end
-        end
-    end        
-elseif 0
-    texture_results = vl_hog(single(img), number_of_pixels_per_box, 'verbose') ;
-
-    for y=1:size(texture_results,1)
-        for x=1:size(texture_results,2)
-            class_estimates = svmclassify(od_classify_svmstruct, squeeze(texture_results(y,x,:)).');
-
-            od_image(((y-1)*number_of_pixels_per_box)+1:y*number_of_pixels_per_box, ((x-1)*number_of_pixels_per_box)+1:x*number_of_pixels_per_box) = class_estimates;
-        end
-    end
-end
 end

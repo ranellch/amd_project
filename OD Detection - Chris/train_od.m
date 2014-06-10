@@ -1,5 +1,9 @@
 function train_od()
-    addpath(genpath('../liblinear-1.94'))
+    if ispc
+        addpath(genpath('..\liblinear-1.94'))
+    else
+        addpath(genpath('../liblinear-1.94'))
+    end
 
     t = cputime;
 
