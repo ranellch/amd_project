@@ -1,6 +1,6 @@
 function add_vessel_paths_xml(pid)
     %Edit this line below to add new images to the xml
-    image_type = 'vessels';
+    image_type = 'optic_disc';
     
     if ispc
         %Have user select an image and then get the relative path

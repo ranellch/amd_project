@@ -121,8 +121,6 @@ od_image(size(od_image,1), 1:size(od_image,2)) = 0;
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
 figure(2), imshowpair(od_image, img_vessel);
 
-return;
-
 %Refine the possibilites of the optic disc using a vessel angle filter
 pre_snaked_img = choose_od(od_image, img_vessel, img_angles);
 
