@@ -99,6 +99,9 @@ od_image = bwareaopen(od_image, 200);
 od_image = imfill(od_image,'holes');
 od_image = imclose(od_image, strel('disk',5));
 
+2figure(1), imshow(od_image);
+return;
+
 %Use canny edge detector to smooth out the edges of the possible optic discs
 od_image = edge(od_image, 'canny', [], sqrt(100));
 od_image = imdilate(od_image, strel('disk',5));
