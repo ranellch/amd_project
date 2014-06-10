@@ -34,7 +34,7 @@ yesnobutton = questdlg('Does this snaking look good?...Bwhahahaha!', the_path,'Y
 switch yesnobutton
     case 'Yes'
         [~,name,~] = fileparts(the_path);
-        imwrite(J, [name, '.jpg'], 'jpg');
+        imwrite(J, [name, '.tif'], 'tif');
     case 'No'
 
     case 'Cancel'

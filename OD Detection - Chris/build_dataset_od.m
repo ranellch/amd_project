@@ -1,7 +1,4 @@
 function build_dataset_od()
-%constant for standard image sizes
-std_img_size = 768;
-
 %Constants for file names
 od_file = 'od_classify.mat';
 
@@ -19,7 +16,15 @@ file_obj.dataset = [];
 addpath('..');
 
 %Add the location of the images resultant from get_path
+if ispc
 addpath(genpath('..\Test Set'));
+addpath(genpath('..\Vessel Detection - Chris'));
+addpath(genpath('..\intensity normalization'));
+else
+addpath(genpath('../Test Set'));
+addpath(genpath('../Vessel Detection - Chris'));
+addpath(genpath('../intensity normalization'));
+end
 
 %Get the images to include from this list
 fid = fopen('od_draw.training', 'r');
@@ -84,18 +89,12 @@ for x=1:size(includes{1}, 1)
         snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
         
         %Resize images to a standard sizing
-        img = match_sizing(img, std_img_size);
-        snaked_image = match_sizing(snaked_image, std_img_size);
+        img = imresize(img, [768 768]);
+        snaked_image = imresize(snaked_image, [768 768]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
         [img, ~] = smooth_illum3(img, 0.7);
-
-        %Check that the images are the same size
-        if(size(img,1) ~= size(snaked_image,1) || size(img,2) ~= size(snaked_image,2))
-            disp('Oringal Img and Snaked Img do not have the same size');
-            continue;
-        end
 
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor(img);
@@ -130,76 +129,4 @@ end
 
 e = cputime - t;
 disp(['Optic Disc Build Classifier Time (min): ', num2str(e/60.0)]);
-end
-
-function other()
-    number_of_pixels_per_box = 8;
-
-    subimage_size = floor(std_img_size / number_of_pixels_per_box);
-    windowed_snaked_image = zeros(subimage_size, subimage_size);
-
-    %This is a window based feature descriptor
-    for x=1:subimage_size
-        for y=1:subimage_size
-            xs = ((x - 1) * number_of_pixels_per_box) + 1;
-            xe = xs + number_of_pixels_per_box - 1;
-
-            ys = ((y - 1) * number_of_pixels_per_box) + 1;
-            ye = ys + number_of_pixels_per_box - 1;
-
-            if(ye > size(img, 1))
-                ye = size(img, 1);
-                ys = ye - number_of_pixels_per_box;
-            end
-            if(xe > size(img, 2))
-                xe = size(img, 2);
-                xs = xe - number_of_pixels_per_box;
-            end
-
-            %Get the snake image window
-            subimage_snake = snaked_image(ys:ye, xs:xe);
-
-            %Get the percentage of the disk included in this image
-            percentage_disk = sum(subimage_snake(:)) / (number_of_pixels_per_box * number_of_pixels_per_box);
-
-            %Get the grouping associated with dis badboy
-            grouping = 0;
-            cutoff = 0.9;
-            if(percentage_disk >= cutoff)
-                grouping = 1;
-            end
-
-            %Log the results for the windowed image
-            windowed_snaked_image(y,x) = grouping;
-        end
-    end
-        
-    if 0
-        disp('Running Texture Windowing');
-        %Divide the image up into equal sized boxes
-        subimage_size = std_img_size / number_of_pixels_per_box;
-
-        %This is a window based feature descriptor
-        for x=1:subimage_size
-            for y=1:subimage_size              
-                %Save feature vectors and pixel classes for current image in .mat file generated above
-                feature_vectors = text_algorithm(subimage);
-                [nrows,~] = size(file_obj, 'dataset');
-                file_obj.dataset(nrows+1,1:size(feature_vectors,2)) = feature_vectors;
-                file_obj.classes(nrows+1,1) = windowed_snaked_image(y,x);
-            end
-        end
-    elseif 0
-        %Get lbp results over the image
-        texture_results = vl_lbp(single(img), number_of_pixels_per_box);
-
-        %Get the HOG results over the image
-        %texture_results = vl_hog(single(img), number_of_pixels_per_box, 'verbose') ;
-        
-        %Save feature vectors and pixel classes for current image in .mat file generated above
-        feature_vectors = matstack2array(texture_results);
-        [nrows,~] = size(file_obj, 'dataset');
-        file_obj.dataset(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = windowed_snaked_image(:);
-    end
 end
