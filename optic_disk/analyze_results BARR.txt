@@ -1,4 +1,0 @@
-Img, True Positive, True Negative, False Positive, False Negative, Total Positive Count, Total Negative Count
-BARR(1), 18816, 511893, 48295, 10820, 29636, 560188
-BARR(2), 131865, 2079144, 121247, 27040, 158905, 2200391
-BARR(3), 25114, 527576, 31075, 6059, 31173, 558651
