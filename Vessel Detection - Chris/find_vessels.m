@@ -99,6 +99,15 @@ binary_img(:) = class_estimates;
 binary_img(binary_img==-1) = 0;
 binary_img = logical(binary_img);
 
+%Clean up
+CC = bwconncomp(binary_img);
+stats = regionprops(CC,'Extent','Eccentricity');
+for i = 1:length(stats)
+    if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.95
+        binary_img(CC.PixelIdxList{i}) = 0;
+    end
+end
+
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;
 % for y=1:size(binary_img,1)
