@@ -16,16 +16,16 @@ for child in root:
         id[inid] = dict()
         id[inid][time] = dict()
         id[inid][time][eye] = dict()
-	id[inid][time][eye][1] = child
+        id[inid][time][eye][1] = child
     else:
         if time not in id[inid]:
             id[inid][time] = dict()
 	    id[inid][time][eye] = dict()
 	    id[inid][time][eye][1] = child
-	else:
+        else:
             if eye not in id[inid][time]:
                 id[inid][time][eye] = dict()
-		id[inid][time][eye][1] = child
+                id[inid][time][eye][1] = child
             else:
                 maxkey = 0
                 for key in id[inid][time][eye]:
