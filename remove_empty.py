@@ -1,4 +1,4 @@
-f = open('images.xml')
+f = open('AMD Images.xml')
 fout = open('images_out.xml', 'w')
 
 for line in f:

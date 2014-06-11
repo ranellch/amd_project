@@ -50,7 +50,7 @@ methods
         obj.ready_to_go = 1;
     end
 
-    function [str, ortho_str, mx_ang]=get_line_strengths(obj, img)
+    function [str, delta_str, ortho_str, mx_ang]=get_line_strengths(obj, img)
         if(obj.ready_to_go ~= 1)
             error('Before calling this method you must init(length, norien) the class!');
         end
@@ -58,6 +58,7 @@ methods
         %Get the average gray scale intensity within a square window over
         %every pixel
         square_avg = imfilter(img, ones(obj.len)/(obj.len*obj.len), 'symmetric');
+        
 
         %Run lineops
         all_line_strengths = zeros([size(img), obj.norien]);
@@ -67,14 +68,17 @@ methods
         for theta=1:obj.norien
             all_line_strengths(:,:,theta) = imfilter(img, obj.line_matricies(:,:,theta)/obj.len,'symmetric') - square_avg;
         end
+        
         %Get ortho line strengths for all orginal orientations
         for theta=1:obj.norien
             ortho_line_strengths(:,:,theta) = imfilter(img, create_line(3,obj.degrees(theta)+90.0)/3, 'symmetric') - square_avg;
         end
                 
-        %Find maximum line strength, angle, and ortho line strength for every pixel
+        %Find maximum line strength, angle of max, normalized difference between max and min line strength, and ortho line strength for every pixel
         [max_line_strength, max_thetas] = max(all_line_strengths,[],3); 
+        min_line_strength = min(all_line_strengths,[],3);
         str = max_line_strength;
+        delta_str = (str - min_line_strength);
         mx_ang = zeros(size(img));
         ortho_str = zeros(size(img));
         for y = 1:size(img,1)
