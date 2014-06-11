@@ -99,7 +99,7 @@ binary_img(:) = class_estimates;
 binary_img(binary_img==-1) = 0;
 binary_img = logical(binary_img);
 
-%Clean up
+%Clean up image
 CC = bwconncomp(binary_img);
 stats = regionprops(CC,'Extent','Eccentricity');
 for i = 1:length(stats)

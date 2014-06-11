@@ -78,7 +78,7 @@ methods
         [max_line_strength, max_thetas] = max(all_line_strengths,[],3); 
         min_line_strength = min(all_line_strengths,[],3);
         str = max_line_strength;
-        delta_str = (str - min_line_strength);
+        delta_str = str - min_line_strength;
         mx_ang = zeros(size(img));
         ortho_str = zeros(size(img));
         for y = 1:size(img,1)

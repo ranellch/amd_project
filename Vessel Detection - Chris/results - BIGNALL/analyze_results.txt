@@ -1,0 +1,4 @@
+Img, Sensitivity, Specificity, Accuracy, Precision
+BIGNALL OD (1), 0.79243, 0.99298, 0.97703, 0.90706
+BIGNALL OD (2), 0.729, 0.97722, 0.9651, 0.62168
+BIGNALL OD (3), 0.74739, 0.98468, 0.97322, 0.71239
