@@ -30,10 +30,6 @@ end
 %Get the vesselized image for now (need to change to find_vessels at some time)
 disp('[VESSELS] Run Vessel Detection Algorithm');
 [img_vessel, img_angles] = find_vessels(pid,eye,time);
-CC = bwconncomp(img_vessel);
-stats = regionprops(CC,'Eccentricity','Area');
-idx = find([stats.Area] > 50 & [stats.Eccentricity] > 0.9);
-img_vessel = ismember(labelmatrix(CC), idx);
 
 %Get the longest dimension of the original image
 origy = size(img, 1);
