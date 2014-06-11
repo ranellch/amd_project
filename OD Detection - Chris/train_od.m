@@ -17,7 +17,7 @@ function train_od()
 
     try
         %Downsample to get less bias towards the negative samples
-        [od_downsample_variables, od_downsample_classes] = downsample(od_variables, double(od_classes));
+        [od_downsample_variables, od_downsample_classes] = downsample_od(od_variables, double(od_classes));
         
         %Get the minumum for each columns
         mins = min(od_downsample_variables);

@@ -1,4 +1,4 @@
-function [final_od_image] = find_od(pid, eye, time)
+function [od_image] = find_od(pid, eye, time)
 %Standardize variables
 std_img_size = 768;
 t = cputime;
@@ -30,10 +30,6 @@ end
 %Get the vesselized image for now (need to change to find_vessels at some time)
 disp('[VESSELS] Run Vessel Detection Algorithm');
 [img_vessel, img_angles] = find_vessels(pid,eye,time);
-CC = bwconncomp(img_vessel);
-stats = regionprops(CC,'Eccentricity','Area');
-idx = find([stats.Area] > 50 & [stats.Eccentricity] > 0.9);
-img_vessel = ismember(labelmatrix(CC), idx);
 
 %Get the longest dimension of the original image
 origy = size(img, 1);
@@ -98,7 +94,9 @@ for y=1:size(od_image)
     end
 end
 
+figure(2), imshow(img_vessel);
 figure(1), imshow(od_image);
+return;
 
 %User morphological cleaning to get wholly connected regions
 od_image = bwareaopen(od_image, 200);
