@@ -5,9 +5,9 @@ function [instance_matrix, label_vector, scaling_factors] = downsample_od(instan
     positive_label = 1;
     cutoff = 0.2;
     
-    %Make this number larger to get less negative samples to be more selective
-    %Make this number smaller to get more negative samples to be less selective
-    numposmulti = 1;
+    %Make this number larger to get more negative samples to be more selective
+    %Make this number smaller to get less negative samples to be less selective
+    numposmulti = 8;
     
     numneg = sum(label_vector==negative_label);
     numpos = sum(label_vector==positive_label);

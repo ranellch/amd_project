@@ -1,4 +1,4 @@
-function [od_image] = find_od(pid, eye, time)
+function [final_od_image, img_vessel] = find_od(pid, eye, time)
 %Standardize variables
 std_img_size = 768;
 t = cputime;
@@ -83,7 +83,7 @@ end
 
 %Run the classification algorithm
 disp('[SVM] Running the classification algorithm');
-od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
+od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
 clear instance_matrix
 
 for y=1:size(od_image)
@@ -94,9 +94,9 @@ for y=1:size(od_image)
     end
 end
 
-figure(2), imshow(img_vessel);
-figure(1), imshow(od_image);
-return;
+% figure(2), imshow(img_vessel);
+% figure(1), imshow(od_image);
+
 
 %User morphological cleaning to get wholly connected regions
 od_image = bwareaopen(od_image, 200);
@@ -125,7 +125,7 @@ od_image = imfill(od_image, 'holes');
 od_image(size(od_image,1), 1:size(od_image,2)) = 0;
 
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
-figure(2), imshowpair(od_image, img_vessel);
+% figure(2), imshowpair(od_image, img_vessel);
 
 %Refine the possibilites of the optic disc using a vessel angle filter
 pre_snaked_img = choose_od(od_image, img_vessel, img_angles);
@@ -141,7 +141,7 @@ Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
 %Show the image result
-figure(3), imshowpair(snaked_optic_disc, img);
+% figure(3), imshowpair(snaked_optic_disc, img);
 
 %Resize the image to its original size
 snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);
