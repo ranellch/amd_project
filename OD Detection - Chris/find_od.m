@@ -1,4 +1,4 @@
-function [od_image] = find_od(pid, eye, time)
+function [final_od_image] = find_od(pid, eye, time)
 %Standardize variables
 std_img_size = 768;
 t = cputime;
@@ -86,6 +86,7 @@ disp('[SVM] Running the classification algorithm');
 od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier);
 clear instance_matrix
 
+%Remove all classified datapoints that were already classified as a vessel
 for y=1:size(od_image)
     for x=1:size(od_image)
         if(img_vessel(y,x) == 1)
@@ -94,35 +95,21 @@ for y=1:size(od_image)
     end
 end
 
-figure(2), imshow(img_vessel);
-figure(1), imshow(od_image);
-return;
+%Cluster the datapoints into regions using agglomerative clustering
+disp('[CLUSTERING] Running the clustering algorithm');
+[final_clusters, final_clusters_mask] = cluster_texture_regions(od_image);
+figure(1), imagesc(final_clusters);
 
-%User morphological cleaning to get wholly connected regions
-od_image = bwareaopen(od_image, 200);
-od_image = imfill(od_image,'holes');
-od_image = imclose(od_image, strel('disk',5));
-
-%Use canny edge detector to smooth out the edges of the possible optic discs
-od_image = edge(od_image, 'canny', [], sqrt(25));
-od_image = imdilate(od_image, strel('disk',5));
-
-%Fill in all the holes by adding a border and then removing it
-od_image(1:size(od_image,1), 1) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(1:size(od_image,1), 1) = 0;
-
-od_image(1:size(od_image,1), size(od_image,2)) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(1:size(od_image,1), size(od_image,2)) = 0;
-
-od_image(1, 1:size(od_image,2)) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(1, 1:size(od_image,2)) = 0;
-
-od_image(size(od_image,1), 1:size(od_image,2)) = 1;
-od_image = imfill(od_image, 'holes');
-od_image(size(od_image,1), 1:size(od_image,2)) = 0;
+%Translate the cluster mask to the od_image
+for y=1:size(final_clusters_mask,1)
+    for x=1:size(final_clusters_mask,2)
+        if (final_clusters_mask(y,x) > 0)
+            od_image(y,x) = 1;
+        else
+            od_image(y,x) = 0;
+        end
+    end
+end
 
 %Remove the smaller disconnected regions as they are not likely to be an optic disc
 figure(2), imshowpair(od_image, img_vessel);
