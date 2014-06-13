@@ -150,10 +150,10 @@ if(debug == 1)
     disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
 end
 Options=struct;
-Options.Verbose=false;
+Options.Verbose=true;
 Options.Iterations=200;
 Options.Wedge=5;
-Options.Wline = -0.04;
+Options.Wline = 0.04;
 Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
