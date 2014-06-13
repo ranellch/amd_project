@@ -31,7 +31,7 @@ filename = get_pathv2((pid), (eye), num2str(time), 'original');
 img = imread(filename);
 
 %Print to the console the output
-if(debug == 1)
+if(debug == 1 || debug == 0)
     disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
 end
 
@@ -122,8 +122,10 @@ end
 if(debug == 1)
     disp(['[CLUSTERING] Running the clustering algorithm (', num2str(positive_count), ')']);
 end
-[final_clusters, final_clusters_mask] = cluster_texture_regions(od_image);
-figure(2), imagesc(final_clusters);
+[final_clusters, final_clusters_mask] = cluster_texture_regions(od_image, debug);
+if(debug == 1)
+    figure(2), imagesc(final_clusters);
+end
 
 %Translate the cluster mask to the od_image
 for y=1:size(final_clusters_mask,1)
@@ -136,10 +138,12 @@ for y=1:size(final_clusters_mask,1)
     end
 end
 
-figure(3), imshowpair(od_image, img_vessel);
+if(debug == 1)
+    figure(3), imshowpair(od_image, img_vessel);
+end
 
 %Refine the possibilites of the optic disc using a vessel angle filter
-pre_snaked_img = choose_od(od_image, img_vessel, img_angles);
+pre_snaked_img = choose_od(od_image, img_vessel, img_angles, debug);
 
 %Use snaking algorithm to get smooth outline of the optic disc
 if(debug == 1)
@@ -153,8 +157,10 @@ Options.Wline = -0.04;
 Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
-%Show the image result
-figure(4), imshowpair(snaked_optic_disc, img);
+if(debug == 1)
+    %Show the image result
+    figure(4), imshowpair(snaked_optic_disc, img);
+end
 
 %Resize the image to its original size
 snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);

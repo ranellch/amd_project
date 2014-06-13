@@ -86,7 +86,9 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
     out = clusterdata(output_list, 'cutoff', cutoffval, 'distance', 'euclidean', 'criterion', 'distance');
     cluster_count = histc(out, unique(out));
 
-    disp(cluster_count);
+    if(debug == 1)
+        disp(cluster_count);
+    end
     
     %Remap the clustered output to a results image
     final_clusters = zeros(size(img,1), size(img,2));

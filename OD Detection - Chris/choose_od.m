@@ -1,4 +1,13 @@
-function [ candidate_region ] = choose_od( od_img, vessels, angles )
+function [ candidate_region ] = choose_od( od_img, vessels, angles,varargin )
+debug = -1;
+if length(varargin) == 1
+    debug = varargin{1};
+elseif isempty(varargin)
+    debug = 1;
+else
+    throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
+end
+    
 % Finds optic disk region of interest
 
 addpath('..');
@@ -31,7 +40,10 @@ angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
 od_img = labelmatrix(bwconncomp(od_img));
 od_filter = load('od_masks', 'mask200', 'mask300', 'mask400');
 
-disp('Running correlation')
+if(debug == 1)
+    disp('Running correlation')
+end
+
 e = cputime;
 scales = [200 300 400];
 diff_img = zeros(origy, origx,length(scales));
@@ -69,7 +81,9 @@ for k = 1:length(scales)
     end
 end
 t = (cputime-e)/60.0;
-disp(['Time to run correlation: ' num2str(t)])
+if(debug == 1)
+    disp(['Time to run correlation: ' num2str(t)])
+end
 
 %Only keep region containing max correlation
 diff_img = max(diff_img,[],3);
