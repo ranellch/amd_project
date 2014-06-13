@@ -42,7 +42,6 @@ img_vessel = imresize(img_vessel,[std_img_size, std_img_size]);
 
 %Apply a gaussian filter to the image and the smooth out the illumination
 img = gaussian_filter(img);
-[img, ~] = smooth_illum3(img, 0.7);
 
 %Print to the console the output
 disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
@@ -99,7 +98,7 @@ end
 %Cluster the datapoints into regions using agglomerative clustering
 disp('[CLUSTERING] Running the clustering algorithm');
 [final_clusters, final_clusters_mask] = cluster_texture_regions(od_image);
-figure(1), imagesc(final_clusters);
+% figure(1), imagesc(final_clusters);
 
 %Translate the cluster mask to the od_image
 for y=1:size(final_clusters_mask,1)

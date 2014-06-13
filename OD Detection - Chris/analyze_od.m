@@ -23,6 +23,12 @@ function analyze_od(rebuild_classifier)
 
     numimages = size(includes{1}, 1);
     
+    fout = fopen(results_file, 'w');
+    
+    disp('----------Results----------');
+    line = 'Img, Sensitivity, Specificity, Accuracy, Precision';
+    fprintf(fout, '%s\n', line);
+    
     
    %Run through the images and make sure that they exist
     for k=1:numimages
@@ -113,23 +119,10 @@ function analyze_od(rebuild_classifier)
         output_results(k,2) = true_negative/total_negative_count; %specificity
         output_results(k,3) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,4) = true_positive/(true_positive+false_positive); %precision
-        disp(output_results(k,:))
-        disp('--------------------------------------');
-    end
+  
+        %Write the results from this badboy
 
-    fout = fopen(results_file, 'w');
-    
-    disp('----------Results----------');
-    line = 'Img, Sensitivity, Specificity, Accuracy, Precision';
-    disp(line);
-    fprintf(fout, '%s\n', line);
-    %Disp to user the results from this badboy
-    for k=1:numimages
-        pid = char(includes{1}{k});
-        eye = char(includes{2}{k});
-        time = num2str((includes{3}(k)));
-        
-        numline = num2str(output_results(k,1));
+         numline = num2str(output_results(k,1));
         for l=2:size(output_results,2)
             numline = [numline, ', ', num2str(output_results(k,l));];
         end
@@ -137,7 +130,9 @@ function analyze_od(rebuild_classifier)
         line = [pid,' ', eye, ' (', time, '), ', numline];
         disp(line);
         fprintf(fout, '%s\n', line);
+        disp('--------------------------------------');
     end
+
     line = ['Optic Disk not found in ',num2str(od_notfound),'/',num2str(numimages),' (', num2str(od_notfound/numimages*100), '% of images)'];
     fprintf(fout, '%s\n', line);
     fclose(fout);

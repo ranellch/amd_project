@@ -1,0 +1,3 @@
+Img, Sensitivity, Specificity, Accuracy, Precision
+CERVENKA OD (1), 0, 0.97824, 0.97498, 0
+CERVENKA OD (2), 0, 0.98322, 0.98248, 0
