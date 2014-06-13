@@ -125,6 +125,7 @@ L = reshape(L, [Iheight Iwidth]);
 C = griddata(x, y, o, xq, yq,'cubic');
 C = C(yq>0 & yq<=Iheight & xq>0 & xq<=Iwidth);
 C = reshape(C, [Iheight Iwidth]);
+% figure, imshow(mat2gray(C))
 
 %Smooth
 Iout = (I-k1*L)./(k2*C);
