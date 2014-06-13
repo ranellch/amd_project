@@ -44,7 +44,6 @@ img_vessel = imresize(img_vessel,[std_img_size, std_img_size]);
 
 %Apply a gaussian filter to the image and the smooth out the illumination
 img = gaussian_filter(img);
-[img, ~] = smooth_illum3(img, 0.7);
 
 %Initiate the results image
 od_image = zeros(size(img, 1), size(img, 2));

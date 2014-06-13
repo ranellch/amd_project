@@ -5,8 +5,8 @@ addpath('..');
 addpath('../Skeleton');
 
 %Get vessels and angles of greatest lineop strength
-vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
-angles(~vskel) = 0;
+% vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
+angles(~vessels) = 0;
 
 [origy, origx] = size(angles);
 angles = mod(angles,180);
@@ -25,7 +25,7 @@ angles = mod(angles,180);
 [xq, yq] = meshgrid(1:size(angles,2), 1:size(angles,1));
 angle_map = griddata(x, y, angs, xq, yq,'cubic');
 angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
-%  figure, imshow(mat2gray(angle_map))
+  figure, imshow(mat2gray(angle_map))
 
 %Run correlation on this mofo
 od_img = labelmatrix(bwconncomp(od_img));
