@@ -1,7 +1,9 @@
 function [final_clusters, final_clusters_mask] = cluster_texture_regions(img)
-    %Clean up the really small regions
+    %Clean up the really small regions and holes in mostly clustered areas
     cleaned = imfill(img, 'holes');
-    cleaned = bwareaopen(cleaned, 20);
+    cleaned = bwareaopen(cleaned, 9);
+    
+    %Get the count of the connected components
     conn_regions = bwconncomp(cleaned);
     max_num_regions = conn_regions.NumObjects;
     
@@ -52,20 +54,23 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img)
         end
     end
         
-    
+    %Create the final clusters mask
     final_clusters_mask = zeros(size(final_clusters, 1), size(final_clusters, 2));
         
     %Estimate an ellipses function and then draw it
     for i=1:numel(cluster_count)
-        %Ignore this cluster if it is really tiny
-        if(cluster_count(i) < 30)
+        %Ignore any cluster if it is really tiny
+        if(cluster_count(i) < 20)
             continue;
         end
 
+        %Get the x,y coordinates for a given cluster
         xs = output_list(out(:) == i, 1);
         ys = output_list(out(:) == i, 2);
         
+        %Calculate the mean of each value
         Mu = mean(horzcat(xs, ys));
+        %Calculate the distance of each datapoint from the mean in euclidean space
         X0 = bsxfun(@minus, horzcat(xs, ys), Mu);
         
         %Get an ellipse that covers 2 standard deviations of all datapoints
@@ -85,7 +90,7 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img)
         VV = V*sqrt(D);               %# scale eigenvectors
         e = bsxfun(@plus, VV*e, Mu'); %#' project circle back to orig space
         
-        %Create a ROI mask from datapoints create from ellipses estimation
+        %Create a ROI mask from datapoints that form an ellipse estimation
         ellipse_mask = roipoly(final_clusters, e(1,:), e(2,:));
         
         %Trasnpose this mask onto another image

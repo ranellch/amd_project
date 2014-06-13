@@ -24,7 +24,7 @@ function analyze_od(rebuild_classifier)
     numimages = size(includes{1}, 1);
     
     
-   %Run through the images and make sure that they exist
+    %Run through the images and make sure that they exist
     for k=1:numimages
        pid = char(includes{1}{k});
        eye = char(includes{2}{k});

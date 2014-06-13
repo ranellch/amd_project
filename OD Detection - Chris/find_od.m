@@ -1,5 +1,4 @@
 function [final_od_image, img_vessel] = find_od(pid, eye, time)
-
 %Standardize variables
 std_img_size = 768;
 t = cputime;
@@ -22,6 +21,9 @@ classifier = model.od_classify_svmstruct;
 filename = get_pathv2((pid), (eye), num2str(time), 'original');
 img = imread(filename);
 
+%Print to the console the output
+disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
+
 %Convert the image to gray scale double if not already
 img = im2double(img);
 if(size(img,3) ~= 1)
@@ -43,9 +45,6 @@ img_vessel = imresize(img_vessel,[std_img_size, std_img_size]);
 %Apply a gaussian filter to the image and the smooth out the illumination
 img = gaussian_filter(img);
 [img, ~] = smooth_illum3(img, 0.7);
-
-%Print to the console the output
-disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
 
 %Initiate the results image
 od_image = zeros(size(img, 1), size(img, 2));
@@ -96,10 +95,12 @@ for y=1:size(od_image)
     end
 end
 
+figure(1), imshow(od_image);
+
 %Cluster the datapoints into regions using agglomerative clustering
 disp('[CLUSTERING] Running the clustering algorithm');
 [final_clusters, final_clusters_mask] = cluster_texture_regions(od_image);
-figure(1), imagesc(final_clusters);
+figure(2), imagesc(final_clusters);
 
 %Translate the cluster mask to the od_image
 for y=1:size(final_clusters_mask,1)
@@ -111,11 +112,8 @@ for y=1:size(final_clusters_mask,1)
         end
     end
 end
-% figure(2), imshow(img_vessel);
-% figure(1), imshow(od_image);
 
-%Remove the smaller disconnected regions as they are not likely to be an optic disc
-% figure(2), imshowpair(od_image, img_vessel);
+figure(3), imshowpair(od_image, img_vessel);
 
 %Refine the possibilites of the optic disc using a vessel angle filter
 pre_snaked_img = choose_od(od_image, img_vessel, img_angles);
@@ -131,7 +129,7 @@ Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 
 %Show the image result
-% figure(3), imshowpair(snaked_optic_disc, img);
+figure(4), imshowpair(snaked_optic_disc, img);
 
 %Resize the image to its original size
 snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);
