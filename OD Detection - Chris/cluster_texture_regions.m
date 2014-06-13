@@ -16,7 +16,7 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
     total_samples = sum(cleaned(:) == 1);
     maxsample = 20000;
     if(total_samples > maxsample)
-        if(debug == 1)
+        if(debug == 1 || 2)
             disp(['Downsampling an image to ', num2str(maxsample),' points from ', num2str(total_samples)]);
         end
         
@@ -79,14 +79,14 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
     if(cutoffval > 30)
         cutoffval = 30;
     end
-    if(debug == 1)
+    if(debug == 1 || 2)
         disp(['Cutoffval: ', num2str(cutoffval)]);
     end
 
     out = clusterdata(output_list, 'cutoff', cutoffval, 'distance', 'euclidean', 'criterion', 'distance');
     cluster_count = histc(out, unique(out));
 
-    if(debug == 1)
+    if(debug == 1 || 2)
         disp(cluster_count);
     end
     

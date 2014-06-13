@@ -34,13 +34,15 @@ angles = mod(angles,180);
 [xq, yq] = meshgrid(1:size(angles,2), 1:size(angles,1));
 angle_map = griddata(x, y, angs, xq, yq,'cubic');
 angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
-%figure, imshow(mat2gray(angle_map))
+if(debug==2)
+    figure(5), imshow(mat2gray(angle_map))
+end
 
 %Run correlation on this mofo
 od_img = labelmatrix(bwconncomp(od_img));
 od_filter = load('od_masks', 'mask200', 'mask300', 'mask400');
 
-if(debug == 1)
+if(debug == 1 || debug == 2)
     disp('Running correlation')
 end
 
@@ -81,7 +83,7 @@ for k = 1:length(scales)
     end
 end
 t = (cputime-e)/60.0;
-if(debug == 1)
+if(debug == 1 || debug == 2)
     disp(['Time to run correlation: ' num2str(t)])
 end
 

@@ -41,7 +41,7 @@ classifier = model.vessel_combined_classifier;
 
 %Time how long it takes to apply gabor 
 t=cputime;
-if(debug == 1)
+if(debug == 1 || 2)
     disp('Building Gabor Features!');
 end
 
@@ -62,7 +62,7 @@ end
 
 %Disp some information to the user
 e = cputime - t;
-if(debug == 1)
+if(debug == 1 || 2)
     disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
 end
 
@@ -70,12 +70,12 @@ end
 %Build lineop features
 %Time how long it takes 
 t=cputime;
-if(debug == 1)
+if(debug == 1 || 2)
     disp('Running Line Operator!');
 end
 [lineop_image, mx_angs] = get_fv_lineop( img );
 e = cputime - t;
-if(debug == 1)
+if(debug == 1 || 2)
     disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 end
 
@@ -97,7 +97,7 @@ end
 %   [~, scaled_vectors] = libsvmread('vessel_test.dataset.scale');
 
 %Do pixelwise classification
-if(debug == 1)
+if(debug == 1 || 2)
     disp('Running Pixelwise Classification ');
 end
 t=cputime;
@@ -111,7 +111,7 @@ class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_m
     
 %Output how long it took to do this
 e = cputime-t;
-if(debug == 1)
+if(debug == 1 || 2)
     disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 end
 
