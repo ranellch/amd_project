@@ -2,11 +2,11 @@ function analyze_od(rebuild_classifier)
     addpath('..');
     addpath(genpath('../Test Set'))
 
-    if ~isdir('.\results')
-        mkdir('.\results');
+    if ~isdir('./results')
+        mkdir('./results');
     end
 
-    results_file = '.\results\analyze_results.txt';
+    results_file = './results/analyze_results.txt';
 
     if(rebuild_classifier == 1)
         %Build training set
@@ -30,7 +30,7 @@ function analyze_od(rebuild_classifier)
     fprintf(fout, '%s\n', line);
     
     
-   %Run through the images and make sure that they exist
+    %Run through the images and make sure that they exist
     for k=1:numimages
        pid = char(includes{1}{k});
        eye = char(includes{2}{k});
@@ -68,9 +68,9 @@ function analyze_od(rebuild_classifier)
         original_img = imread(original_path);
         
         %Get the image run by the algorithm
-        [calced_img, vessel_img] = find_od(pid, eye, time);
-        imwrite(vessel_img,['.\results\',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');
-        imwrite(display_mask(original_img,calced_img,'purple'), ['.\results\',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
+        [calced_img, vessel_img] = find_od(pid, eye, time, 0);
+        imwrite(vessel_img,['./results/',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');
+        imwrite(display_mask(original_img,calced_img,'purple'), ['./results/',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
         
         %Get the image snaked by hand
         super_img = im2bw(imread(od_image));

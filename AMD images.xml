@@ -1309,7 +1309,7 @@
    
    
    
-   <image AMD="Labeled\AMD Controls\White OD 3 (poor image).tif" eye="OD" id="WHITE" optic_disc="Labeled\AMD Vessels\White OD 3 (poor image)_vessel.tif" original="\Originals\White OD\White OD 3 (poor image).tif" time="3" vessels="Labeled\AMD Vessels\White OD 3 (poor image)_vessel.tif"> </image>  
+   <image AMD="Labeled\AMD Controls\White OD 3 (poor image).tif" eye="OD" id="WHITE"  original="\Originals\White OD\White OD 3 (poor image).tif" time="3" vessels="Labeled\AMD Vessels\White OD 3 (poor image)_vessel.tif"> </image>  
    
    
    
