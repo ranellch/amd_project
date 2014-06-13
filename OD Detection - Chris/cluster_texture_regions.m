@@ -1,7 +1,48 @@
-function [final_clusters, final_clusters_mask] = cluster_texture_regions(img)
+function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, varargin)
+    debug = -1;
+    if length(varargin) == 1
+        debug = varargin{1};
+    elseif isempty(varargin)
+        debug = 1;
+    else
+        throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
+    end
+
     %Clean up the really small regions and holes in mostly clustered areas
     cleaned = imfill(img, 'holes');
     cleaned = bwareaopen(cleaned, 9);
+    
+    %Downsample if necessary to maxsamples
+    total_samples = sum(cleaned(:) == 1);
+    maxsample = 20000;
+    if(total_samples > maxsample)
+        if(debug == 1)
+            disp(['Downsampling an image to ', num2str(maxsample),' points from ', num2str(total_samples)]);
+        end
+        
+        %Get an indexable list of x,y coordinates to downsample
+        rand_list_xy = zeros(total_samples,2);
+        rand_list_index = 1;
+        for y=1:size(cleaned, 1)
+            for x=1:size(cleaned,2)
+                if(cleaned(y,x) == 1)
+                    rand_list_xy(rand_list_index,:) = [y x];
+                    rand_list_index = rand_list_index + 1;
+                end
+            end
+        end
+         
+        %Uniform random sample coordinate points from an image
+        rand_list = randsample(total_samples, maxsample);
+        clean_tmp = zeros(size(cleaned, 1), size(cleaned, 2));
+        for i=1:numel(rand_list)
+            y = rand_list_xy(rand_list(i),1);
+            x = rand_list_xy(rand_list(i),2);
+            clean_tmp(y,x) = 1;
+        end
+        
+        cleaned = clean_tmp;
+    end
     
     %Get the count of the connected components
     conn_regions = bwconncomp(cleaned);
@@ -33,8 +74,13 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img)
     %Cluster the output data
     cutoffval = round(max_num_regions / 2);
     if(cutoffval <= 2)
-        cutoffval = 4;
-        disp('Resized the cutoff val');
+        cutoffval = 6;
+    end
+    if(cutoffval > 30)
+        cutoffval = 30;
+    end
+    if(debug == 1)
+        disp(['Cutoffval: ', num2str(cutoffval)]);
     end
 
     out = clusterdata(output_list, 'cutoff', cutoffval, 'distance', 'euclidean', 'criterion', 'distance');

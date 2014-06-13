@@ -1,4 +1,13 @@
-function [final_od_image, img_vessel] = find_od(pid, eye, time)
+function [final_od_image, img_vessel] = find_od(pid, eye, time, varargin)
+debug = -1;
+if length(varargin) == 1
+    debug = varargin{1};
+elseif isempty(varargin)
+    debug = 1;
+else
+    throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
+end
+
 %Standardize variables
 std_img_size = 768;
 t = cputime;
@@ -22,7 +31,9 @@ filename = get_pathv2((pid), (eye), num2str(time), 'original');
 img = imread(filename);
 
 %Print to the console the output
-disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
+if(debug == 1)
+    disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
+end
 
 %Convert the image to gray scale double if not already
 img = im2double(img);
@@ -31,8 +42,10 @@ if(size(img,3) ~= 1)
 end
 
 %Get the vesselized image for now (need to change to find_vessels at some time)
-disp('[VESSELS] Run Vessel Detection Algorithm');
-[img_vessel, img_angles] = find_vessels(pid,eye,time);
+if(debug == 1)
+    disp('[VESSELS] Run Vessel Detection Algorithm');
+end
+[img_vessel, img_angles] = find_vessels(pid,eye,time,debug);
 
 %Get the longest dimension of the original image
 origy = size(img, 1);
@@ -49,7 +62,9 @@ img = gaussian_filter(img);
 od_image = zeros(size(img, 1), size(img, 2));
 
 %Get feature vectors for each pixel in image
-disp('[FV] Building the pixelwise feature vectors');
+if(debug == 1)
+    disp('[FV] Building the pixelwise feature vectors');
+end
 feature_image_g = get_fv_gabor(img);
 feature_image_r = rangefilt(img);
 
@@ -81,23 +96,32 @@ for i = 1:size(instance_matrix,2)
 end
 
 %Run the classification algorithm
-disp('[SVM] Running the classification algorithm');
+if(debug == 1)
+    disp('[SVM] Running the classification algorithm');
+end
 od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
 clear instance_matrix
 
 %Remove all classified datapoints that were already classified as a vessel
+positive_count = 0;
+img_vessels_negatve = bwmorph(img_vessel, 'thicken', 5);
 for y=1:size(od_image)
     for x=1:size(od_image)
-        if(img_vessel(y,x) == 1)
+        if(img_vessels_negatve(y,x) == 1)
             od_image(y,x) = 0;
+        end
+        if(od_image(y,x) == 1)
+            positive_count = positive_count + 1;
         end
     end
 end
 
-figure(1), imshow(od_image);
+%figure(1), imshow(od_image);
 
 %Cluster the datapoints into regions using agglomerative clustering
-disp('[CLUSTERING] Running the clustering algorithm');
+if(debug == 1)
+    disp(['[CLUSTERING] Running the clustering algorithm (', num2str(positive_count), ')']);
+end
 [final_clusters, final_clusters_mask] = cluster_texture_regions(od_image);
 figure(2), imagesc(final_clusters);
 
@@ -118,7 +142,9 @@ figure(3), imshowpair(od_image, img_vessel);
 pre_snaked_img = choose_od(od_image, img_vessel, img_angles);
 
 %Use snaking algorithm to get smooth outline of the optic disc
-disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
+if(debug == 1)
+    disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
+end
 Options=struct;
 Options.Verbose=false;
 Options.Iterations=200;
@@ -138,6 +164,8 @@ final_od_image = snaked_optic_disc;
 
 %Report the time it took to classify to the user
 e = cputime - t;
-disp(['[TIME] Optic Disc Classification Time (min): ', num2str(e/60.0)]);
+if(debug == 1)
+    disp(['[TIME] Optic Disc Classification Time (min): ', num2str(e/60.0)]);
+end
 
 end

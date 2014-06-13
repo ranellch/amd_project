@@ -1,4 +1,13 @@
-function [binary_img, mx_angs] = find_vessels(pid, eye, time)
+function [binary_img, mx_angs] = find_vessels(pid, eye, time, varargin)
+debug = -1;
+if length(varargin) == 1
+    debug = varargin{1};
+elseif isempty(varargin)
+    debug = 1;
+else
+    throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
+end
+    
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath(genpath('../intensity normalization'))
@@ -32,7 +41,9 @@ classifier = model.vessel_combined_classifier;
 
 %Time how long it takes to apply gabor 
 t=cputime;
-disp('Building Gabor Features!');
+if(debug == 1)
+    disp('Building Gabor Features!');
+end
 
 %Run Gabor, save max at each scale, take absolute maximums
 [sizey, sizex] = size(img);
@@ -51,16 +62,22 @@ end
 
 %Disp some information to the user
 e = cputime - t;
-disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
+if(debug == 1)
+    disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
+end
 
 
 %Build lineop features
 %Time how long it takes 
 t=cputime;
-disp('Running Line Operator!');
+if(debug == 1)
+    disp('Running Line Operator!');
+end
 [lineop_image, mx_angs] = get_fv_lineop( img );
 e = cputime - t;
-disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
+if(debug == 1)
+    disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
+end
 
 %Combine features
 gabor_vectors = matstack2array(gabor_image);
@@ -80,7 +97,9 @@ end
 %   [~, scaled_vectors] = libsvmread('vessel_test.dataset.scale');
 
 %Do pixelwise classification
-disp('Running Pixelwise Classification ');
+if(debug == 1)
+    disp('Running Pixelwise Classification ');
+end
 t=cputime;
 
 class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
@@ -92,7 +111,9 @@ class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_m
     
 %Output how long it took to do this
 e = cputime-t;
-disp(['Classify (min): ', num2str(double(e) / 60.0)]);
+if(debug == 1)
+    disp(['Classify (min): ', num2str(double(e) / 60.0)]);
+end
 
 binary_img = zeros(size(img));
 binary_img(:) = class_estimates;
