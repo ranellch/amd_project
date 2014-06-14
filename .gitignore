@@ -11,7 +11,7 @@
 *.swp
 *.out
 cpselect_database/run*
-OD Detection Chris/results/*
+OD Detection - Chris/results/*
 .DS_Store
 .__*
 *.classifier
