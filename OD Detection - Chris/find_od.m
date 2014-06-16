@@ -1,4 +1,4 @@
-function [final_od_image, img_vessel] = find_od(pid, eye, time, varargin)
+function [final_od_image, img_vessel, rcoeff] = find_od(pid, eye, time, varargin)
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -57,6 +57,8 @@ img_vessel = imresize(img_vessel,[std_img_size, std_img_size]);
 
 %Apply a gaussian filter to the image and the smooth out the illumination
 img = gaussian_filter(img);
+img = correct_illum(img, 0.7);
+norm_img = zero_m_unit_std(img);
 
 %Initiate the results image
 od_image = zeros(size(img, 1), size(img, 2));
@@ -65,8 +67,8 @@ od_image = zeros(size(img, 1), size(img, 2));
 if(debug == 1 || debug == 2)
     disp('[FV] Building the pixelwise feature vectors');
 end
-feature_image_g = get_fv_gabor(img);
-feature_image_r = rangefilt(img);
+feature_image_g = get_fv_gabor_od(norm_img);
+feature_image_r = rangefilt(norm_img);
 
 %Build the finalized feature vector
 feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_r,3));
@@ -143,7 +145,7 @@ if(debug == 2)
 end
 
 %Refine the possibilites of the optic disc using a vessel angle filter
-pre_snaked_img = choose_od(od_image, img_vessel, img_angles, debug);
+[pre_snaked_img, rcoeff] = choose_od(od_image, img_vessel, img_angles, debug);
 
 %Use snaking algorithm to get smooth outline of the optic disc
 if(debug == 1 || debug == 2)
@@ -151,14 +153,14 @@ if(debug == 1 || debug == 2)
 end
 
 Options=struct;
-Options.Verbose=false;
+Options.Verbose=true;
 Options.Iterations=100;
 Options.Wedge=20;
 Options.Wline = 0.4;
 Options.Wterm = 20;
-Options.Alpha = 5;
-Options.Beta = 2;
-Options.Delta = 2;
+Options.Alpha = 6;
+Options.Beta = 3;
+Options.Delta = 5;
 Points = get_box_coordinates(pre_snaked_img);
 [~,snaked_optic_disc] = Snake2D(img, Points, Options); 
 

@@ -59,14 +59,21 @@ end
 polymodel = polyfitn(indepvar,depvar,3);
 
 %Create surface spanning entire image
-[y,x,~] = find(I>-1); %get coordinates of entire image
-estimates = polyvaln(polymodel,[y,x]);  
+[y,x,~] = find(I>=0); %get coordinates of entire image
+estimates = polyvaln(polymodel,[x,y]);  
  C = zeros(size(I));
  C(:) = estimates;
-  figure , imshow(mat2gray(C))     
+%    figure , imshow(mat2gray(C))     
 
 %Divide out surface (i.e. "camera function)
 Iout = I./C;
+
+%Supress extreme outliers
+ Iout(Iout>2) = 2;
+ Iout(Iout<0) = 0;
+
+H = fspecial('gaussian', [3 3], 1);
+Iout = imfilter(Iout, H);
 
 end
 

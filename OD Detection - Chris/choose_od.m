@@ -1,4 +1,4 @@
-function [ candidate_region ] = choose_od( od_img, vessels, angles,varargin )
+function [ candidate_region, rcoeff ] = choose_od( od_img, vessels, angles,varargin )
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -11,7 +11,6 @@ end
 % Finds optic disk region of interest
 
 addpath('..');
-addpath('../Skeleton');
 
 %Get vessels and angles of greatest lineop strength
 % vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
@@ -40,14 +39,14 @@ end
 
 %Run correlation on this mofo
 od_img = labelmatrix(bwconncomp(od_img));
-od_filter = load('od_masks', 'mask200', 'mask300', 'mask400');
+od_filter = load('od_masks', 'mask100', 'mask200', 'mask300');
 
 if(debug == 1 || debug == 2)
     disp('Running correlation')
 end
 
 e = cputime;
-scales = [200 300 400];
+scales = [100 200 300];
 diff_img = zeros(origy, origx,length(scales));
 for k = 1:length(scales)
     full_mask = od_filter.(['mask',num2str(scales(k))]);
@@ -89,7 +88,7 @@ end
 
 %Only keep region containing max correlation
 diff_img = max(diff_img,[],3);
-[max_y, max_x, ~] = find(diff_img==max(diff_img(:)));
+[max_y, max_x, rcoeff] = find(diff_img==max(diff_img(:)));
 candidate_region = od_img == od_img(max_y,max_x);
 
 end

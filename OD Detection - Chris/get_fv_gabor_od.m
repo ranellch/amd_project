@@ -1,11 +1,11 @@
-function [imgout] = get_fv_gabor(imgin)
+function [imgout] = get_fv_gabor_od(imgin)
     %Run the gabor stuff
     [sizey, sizex] = size(imgin);
     bigimg = padarray(imgin, [50 50], 'symmetric');
     fimg = fft2(bigimg);
     k0x = 0;
     k0y = 3;
-    epsilon = 4;
+    epsilon = 1;
     step = 10;
     gabor_image_temp = [];
     for a = [1 2 3 4 5]
