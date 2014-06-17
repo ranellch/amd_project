@@ -99,7 +99,7 @@ for x=1:size(includes{1}, 1)
         
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor_od(norm_img);
-        feature_image_r = rangefilt(norm_img);
+        feature_image_r = imfilter(norm_img,ones(3)/9, 'symmetric');
         
         feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_r, 3));
         

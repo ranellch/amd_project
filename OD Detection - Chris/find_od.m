@@ -68,7 +68,7 @@ if(debug == 1 || debug == 2)
     disp('[FV] Building the pixelwise feature vectors');
 end
 feature_image_g = get_fv_gabor_od(norm_img);
-feature_image_r = rangefilt(norm_img);
+feature_image_r = imfilter(norm_img,ones(3)/9, 'symmetric');
 
 %Build the finalized feature vector
 feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_r,3));
@@ -122,17 +122,17 @@ for y=1:size(od_image)
     end
 end
 
-border_clear = 4;
-for y=1:size(od_image,1)
-    for x=1:size(od_image,2)
-        if(y <= border_clear || y >= (size(od_image, 1) - border_clear))
-            od_image(y,x) = 0;
-        end
-        if(x <= border_clear || x >= (size(od_image,2) - border_clear))
-            od_image(y,x) = 0;
-        end
-    end
-end
+% border_clear = 4;
+% for y=1:size(od_image,1)
+%     for x=1:size(od_image,2)
+%         if(y <= border_clear || y >= (size(od_image, 1) - border_clear))
+%             od_image(y,x) = 0;
+%         end
+%         if(x <= border_clear || x >= (size(od_image,2) - border_clear))
+%             od_image(y,x) = 0;
+%         end
+%     end
+% end
 
 %Cluster the datapoints into regions using agglomerative clustering
 if(debug == 1 || debug == 2)
