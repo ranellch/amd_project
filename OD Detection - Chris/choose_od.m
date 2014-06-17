@@ -46,7 +46,7 @@ if(debug == 1 || debug == 2)
 end
 
 e = cputime;
-scales = [100 200 300];
+scales = [150 200 250];
 diff_img = zeros(origy, origx,length(scales));
 for k = 1:length(scales)
     full_mask = od_filter.(['mask',num2str(scales(k))]);
