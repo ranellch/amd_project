@@ -39,7 +39,7 @@ end
 
 %Run correlation on this mofo
 od_img = labelmatrix(bwconncomp(od_img));
-od_filter = load('od_masks', 'mask100', 'mask200', 'mask300');
+od_filter = load('od_masks', 'mask150', 'mask200', 'mask250');
 
 if(debug == 1 || debug == 2)
     disp('Running correlation')
