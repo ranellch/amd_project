@@ -155,9 +155,9 @@ if(debug == 1 || debug == 2)
 end
 
 Options=struct;
-Options.Verbose=true;
+Options.Verbose=false;
 Options.Iterations=100;
-Options.Wedge=30;
+Options.Wedge=20;
 Options.Wline = 0.4;
 Options.Wterm = 20;
 Options.Alpha = 5;
