@@ -5,7 +5,8 @@ function add_patient_image(pid, varargin)
     end
 
     %Edit this line below to add new images to the xml
-    image_type = 'optic_disc';
+    image_type = 'original';
+    disp(['You are entereing image type => ', image_type]);
     
     if ispc
         %Have user select an image and then get the relative path
