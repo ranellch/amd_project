@@ -1,8 +1,14 @@
- mask100 = ones(100);
- [xcorr, ycorr] = meshgrid(-49:50,49:-1:-50);
- for y = 1:100
-    for x = 1:100
-         mask100(y,x) = atan2d(ycorr(y,x),xcorr(y,x));
+function [mask] = create_angle_filter(size) 
+mask = ones(size);
+if mod(size,2) == 1
+    [xcorr, ycorr] = meshgrid(-floor(size/2):floor(size/2),floor(size/2):-1:-floor(size/2));
+else
+    [xcorr, ycorr] = meshgrid(-size/2+1:size/2,size/2-1:-1:-size/2);
+end
+ for y = 1:size
+    for x = 1:size
+         mask(y,x) = atan2d(ycorr(y,x),xcorr(y,x));
     end
  end
-  mask100=mod(mask100,180);
+  mask=mod(mask,180);
+end
