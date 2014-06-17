@@ -1,4 +1,4 @@
-function [ candidate_region, rcoeff ] = choose_od( od_img, vessels, angles,varargin )
+function [ candidate_region, max_rcoeff ] = choose_od( od_img, vessels, angles,varargin )
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -88,7 +88,8 @@ end
 
 %Only keep region containing max correlation
 diff_img = max(diff_img,[],3);
-[max_y, max_x, rcoeff] = find(diff_img==max(diff_img(:)));
+max_rcoeff = max(diff_img(:));
+[max_y, max_x, ~] = find(diff_img==max_rcoeff);
 candidate_region = od_img == od_img(max_y,max_x);
 
 end

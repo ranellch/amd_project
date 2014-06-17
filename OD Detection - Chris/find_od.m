@@ -153,16 +153,16 @@ if(debug == 1 || debug == 2)
 end
 
 Options=struct;
-Options.Verbose=true;
+Options.Verbose=false;
 Options.Iterations=100;
 Options.Wedge=20;
 Options.Wline = 0.4;
 Options.Wterm = 20;
-Options.Alpha = 6;
-Options.Beta = 3;
-Options.Delta = 5;
+Options.Alpha = 3;
+Options.Beta = 2;
+Options.Delta = 4;
 Points = get_box_coordinates(pre_snaked_img);
-[~,snaked_optic_disc] = Snake2D(img, Points, Options); 
+[~,snaked_optic_disc] = Snake2D(mat2gray(img), Points, Options); 
 
 if(debug == 2)
     %Show the image result
