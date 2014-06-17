@@ -76,10 +76,10 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
     if(cutoffval <= 2)
         cutoffval = 6;
     end
-    if(cutoffval > 30)
-        cutoffval = 30;
+    if(cutoffval > 25)
+        cutoffval = 25;
     end
-    if(debug == 1 || 2)
+    if(debug == 1 || debug == 2)
         disp(['Cutoffval: ', num2str(cutoffval)]);
     end
 

@@ -38,7 +38,7 @@ end
 %Convert the image to gray scale double if not already
 img = im2double(img);
 if(size(img,3) ~= 1)
-    img=rgb2gary(img);
+    img=rgb2gray(img);
 end
 
 %Get the vesselized image for now (need to change to find_vessels at some time)
@@ -102,6 +102,10 @@ end
 od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
 clear instance_matrix
 
+if(debug == 2)
+    figure(1), imshow(od_image);
+end
+
 %Remove all classified datapoints that were already classified as a vessel
 positive_count = 0;
 img_vessels_negatve = bwmorph(img_vessel, 'thicken', 5);
@@ -115,8 +119,6 @@ for y=1:size(od_image)
         end
     end
 end
-
-%figure(1), imshow(od_image);
 
 %Cluster the datapoints into regions using agglomerative clustering
 if(debug == 1 || debug == 2)
@@ -152,7 +154,7 @@ end
 
 Options=struct;
 Options.Verbose=false;
-Options.Iterations=100;
+Options.Iterations=50;
 Options.Wedge=20;
 Options.Wline = 0.4;
 Options.Wterm = 20;

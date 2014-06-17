@@ -11,6 +11,7 @@ the_path = get_pathv2(pid,eye,time,'original');
 img = imread(the_path);
 img = im2double(img);
 
+disp(the_path);
 figure, imshow(img);
 [ycoord, xcoord] = ginput(8);
 
@@ -24,8 +25,13 @@ end
 
 Options=struct;
 Options.Verbose=true;
-Options.Iterations=100;
-Options.Wedge=3;
+Options.Iterations=50;
+Options.Wedge=20;
+Options.Wline = 0.4;
+Options.Wterm = 20;
+Options.Alpha = 5;
+Options.Beta = 2;
+Options.Delta = 2;
 
 [~,J] = Snake2D(img, P, Options);
 
