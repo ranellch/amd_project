@@ -25,7 +25,7 @@ end
 
 Options=struct;
 Options.Verbose=true;
-Options.Iterations=50;
+Options.Iterations=30;
 Options.Wedge=20;
 Options.Wline = 0.4;
 Options.Wterm = 20;

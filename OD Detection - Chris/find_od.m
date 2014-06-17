@@ -122,11 +122,31 @@ for y=1:size(od_image)
     end
 end
 
+border_clear = 4;
+for y=1:size(od_image,1)
+    for x=1:size(od_image,2)
+        if(y <= border_clear || y >= (size(od_image, 1) - border_clear))
+            od_image(y,x) = 0;
+        end
+        if(x <= border_clear || x >= (size(od_image,2) - border_clear))
+            od_image(y,x) = 0;
+        end
+    end
+end
+
 %Cluster the datapoints into regions using agglomerative clustering
 if(debug == 1 || debug == 2)
     disp(['[CLUSTERING] Running the clustering algorithm (', num2str(positive_count), ')']);
 end
-[final_clusters, final_clusters_mask] = cluster_texture_regions(od_image, debug);
+
+%Run the clustering algorithm if there are regions to cluster
+if(positive_count > 10)
+    [final_clusters, final_clusters_mask] = cluster_texture_regions(od_image, debug);
+else
+    final_od_image = od_image;
+    return;
+end
+
 if(debug == 2)
     figure(2), imagesc(final_clusters);
 end
@@ -155,7 +175,7 @@ if(debug == 1 || debug == 2)
 end
 
 Options=struct;
-Options.Verbose=true;
+Options.Verbose=false;
 Options.Iterations=100;
 Options.Wedge=30;
 Options.Wline = 0.4;
