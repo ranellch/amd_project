@@ -68,7 +68,7 @@ function analyze_od(rebuild_classifier)
         original_img = imread(original_path);
         
         %Get the image run by the algorithm
-        [calced_img, vessel_img, rcoeff] = find_od(pid, eye, time, 1);
+        [calced_img, vessel_img, r] = find_od(pid, eye, time, 1);
         imwrite(vessel_img,['./results/',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');
         imwrite(display_mask(original_img,calced_img,'purple'), ['./results/',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
         
@@ -119,7 +119,7 @@ function analyze_od(rebuild_classifier)
         output_results(k,2) = true_negative/total_negative_count; %specificity
         output_results(k,3) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,4) = true_positive/(true_positive+false_positive); %precision
-        output_results(k,5) = rcoeff;
+        output_results(k,5) = r; % best angle matching correlation 
   
         %Write the results from this badboy
 

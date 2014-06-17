@@ -1,4 +1,4 @@
-function [final_od_image, img_vessel, rcoeff] = find_od(pid, eye, time, varargin)
+function [final_od_image, img_vessel, correlation] = find_od(pid, eye, time, varargin)
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -27,8 +27,8 @@ scaling_factors = model.scaling_factors;
 classifier = model.od_classify_svmstruct;
 
 %Get the path name from the image and time and then read in the image.
-filename = get_pathv2((pid), (eye), num2str(time), 'original');
-img = imread(filename);
+% filename = get_pathv2((pid), (eye), num2str(time), 'original');
+% img = imread(filename);
 
 %Print to the console the output
 if(debug == 1 || debug == 0)
@@ -36,28 +36,26 @@ if(debug == 1 || debug == 0)
 end
 
 %Convert the image to gray scale double if not already
-img = im2double(img);
-if(size(img,3) ~= 1)
-    img=rgb2gray(img);
-end
+% img = im2double(img);
+% if(size(img,3) ~= 1)
+%     img=rgb2gray(img);
+% end
 
 %Get the vesselized image for now (need to change to find_vessels at some time)
 if(debug == 1 || debug == 2)
     disp('[VESSELS] Run Vessel Detection Algorithm');
 end
-[img_vessel, img_angles] = find_vessels(pid,eye,time,debug);
+[img_vessel, img_angles, corrected_img] = find_vessels(pid,eye,time,debug);
 
 %Get the longest dimension of the original image
-origy = size(img, 1);
-origx = size(img, 2);
+origy = size(corrected_img, 1);
+origx = size(corrected_img, 2);
 
 %Resize the images to a standard size
-img = imresize(img, [std_img_size, std_img_size]);
+img = imresize(corrected_img, [std_img_size, std_img_size]);
 img_vessel = imresize(img_vessel,[std_img_size, std_img_size]);
 
-%Apply a gaussian filter to the image and the smooth out the illumination
-img = gaussian_filter(img);
-img = correct_illum(img, 0.7);
+%Normalize intensities
 norm_img = zero_m_unit_std(img);
 
 %Initiate the results image
@@ -167,7 +165,12 @@ if(debug == 2)
 end
 
 %Refine the possibilites of the optic disc using a vessel angle filter
-[pre_snaked_img, rcoeff] = choose_od(od_image, img_vessel, img_angles, debug);
+[pre_snaked_img, correlation] = choose_od(od_image, img_vessel, img_angles, debug);
+if correlation < .15
+    final_od_image = zeros([origy origx]);
+    disp('Optic Disk Not Found!')
+    return
+end
 
 %Use snaking algorithm to get smooth outline of the optic disc
 if(debug == 1 || debug == 2)
@@ -175,7 +178,11 @@ if(debug == 1 || debug == 2)
 end
 
 Options=struct;
-Options.Verbose=false;
+if debug == 2
+    Options.Verbose=true;
+else 
+    Options.Verbose=false;
+end
 Options.Iterations=100;
 Options.Wedge=20;
 Options.Wline = 0.4;

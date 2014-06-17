@@ -1,4 +1,4 @@
-function [binary_img, mx_angs] = find_vessels(pid, eye, time, varargin)
+function [binary_img, mx_angs, corrected_img] = find_vessels(pid, eye, time, varargin)
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -23,9 +23,14 @@ if (size(img, 3) > 1)
     img = rgb2gray(img);
 end
 img = crop_footer(img);
+[origy, origx] = size(img);
+
 img = imresize(img, [768 768]);
 img = gaussian_filter(img);
 [img, ~] = correct_illum(img,0.7);
+
+corrected_img = imresize(img,[origy, origx]);
+
 img = imcomplement(img);
 img = zero_m_unit_std(img);
 
@@ -128,6 +133,9 @@ for i = 1:length(stats)
         binary_img(CC.PixelIdxList{i}) = 0;
     end
 end
+
+%Resize to orginal image dimensions
+binary_img = imresize(binary_img, [origy, origx]);
 
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;

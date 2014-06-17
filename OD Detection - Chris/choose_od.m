@@ -17,23 +17,22 @@ addpath('..');
 angles(~vessels) = 0;
 
 [origy, origx] = size(angles);
-angles = mod(angles,180);
- maxpad = 100;
- angles = padarray(angles, [maxpad maxpad], 'symmetric', 'both');
+angle_map = mod(angles,180);
+%  maxpad = 100;
+%  angles = padarray(angles, [maxpad maxpad], 'symmetric', 'both');
 % 
  %adjust "mirroring" so angles translate over
-angles(1:maxpad,maxpad:2*maxpad-1) = 180 - angles(1:maxpad,maxpad:2*maxpad-1);
-angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1) = 180 - angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1);
-angles(maxpad:2*maxpad-1,1:maxpad) = 180 - angles(maxpad:2*maxpad-1,1:maxpad);
-angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1) = 180 - angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1); 
+% angles(1:maxpad,maxpad:2*maxpad-1) = 180 - angles(1:maxpad,maxpad:2*maxpad-1);
+% angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1) = 180 - angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1);
+% angles(maxpad:2*maxpad-1,1:maxpad) = 180 - angles(maxpad:2*maxpad-1,1:maxpad);
+% angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1) = 180 - angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1); 
 
-angle_map = mod(angles,180);
 
 %Interpolate
 % [y, x, angs] = find(angles);
 % [xq, yq] = meshgrid(1:size(angles,2), 1:size(angles,1));
 % angle_map = griddata(x, y, angs, xq, yq,'cubic');
-angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
+% angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
 % if(debug==2)
 %     figure(5), imshow(mat2gray(angle_map))
 % end
@@ -43,7 +42,7 @@ od_img = labelmatrix(bwconncomp(od_img));
 od_filter = load('od_masks', 'mask150', 'mask200', 'mask250');
 
 if(debug == 1 || debug == 2)
-    disp('Running correlation')
+    disp('Running angle filtering')
 end
 
 e = cputime;
@@ -55,7 +54,7 @@ for k = 1:length(scales)
         tb = y - scales(k)/2;
         bb = y + scales(k)/2-1;
         ymask = full_mask;
-        if y < scales(k)/2
+        if y <= scales(k)/2
             ymask = full_mask(scales(k)/2+1-(y-1):end,:);
             tb = 1;
         end
@@ -67,7 +66,7 @@ for k = 1:length(scales)
             lb = x - scales(k)/2;
             rb = x + scales(k)/2-1;
             mask = ymask;
-            if x < scales(k)/2
+            if x <= scales(k)/2
                 mask = ymask(:,scales(k)/2+1-(x-1):end);
                 lb = 1;
             end
@@ -84,14 +83,22 @@ for k = 1:length(scales)
 end
 t = (cputime-e)/60.0;
 if(debug == 1 || debug == 2)
-    disp(['Time to run correlation: ' num2str(t)])
+    disp(['Time to run angle filtering (min): ' num2str(t)])
 end
 
 %Only keep region containing max correlation
 diff_img = max(diff_img,[],3);
 max_rcoeff = max(diff_img(:));
 [max_y, max_x, ~] = find(diff_img==max_rcoeff);
-candidate_region = od_img == od_img(max_y,max_x);
+candidate_region = zeros(size(od_img)); 
+for y = 1:size(od_img,1)
+    for x = 1:size(od_img,2)
+        if od_img(y,x) == od_img(max_y,max_x);
+            candidate_region(y,x) = 1;
+        end
+    end
+end
+candidate_region = logical(candidate_region);
 
 end
 
