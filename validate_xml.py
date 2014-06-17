@@ -1,7 +1,9 @@
 import pprint
 import xml.etree.ElementTree as ET
+
 original_file = 'AMD Images.xml'
 output_file = 'temp.xml'
+
 tree = ET.parse(original_file)
 root = tree.getroot()
 
