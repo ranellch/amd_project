@@ -104,7 +104,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                 original_img = crop_footer(original_img);
                 original_img = imresize(original_img, [768 768]);
                 original_img = gaussian_filter(original_img);
-                [original_img, ~] = smooth_illum3(original_img,0.7);
+                [original_img, ~] = correct_illum(original_img,0.7);
                 original_img = imcomplement(original_img);
                 original_img = zero_m_unit_std(original_img);
                 

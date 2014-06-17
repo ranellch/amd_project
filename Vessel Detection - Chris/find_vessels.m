@@ -25,7 +25,7 @@ end
 img = crop_footer(img);
 img = imresize(img, [768 768]);
 img = gaussian_filter(img);
-[img, ~] = smooth_illum3(img,0.7);
+[img, ~] = correct_illum(img,0.7);
 img = imcomplement(img);
 img = zero_m_unit_std(img);
 
