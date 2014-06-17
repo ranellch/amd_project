@@ -2351,7 +2351,7 @@
    
    
    
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_002.tif" eye="OD" id="00270567" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_002.tif" time="5"/>
+   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_002.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_002.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_002.tif" time="5"/>
    
    
    
