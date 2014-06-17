@@ -26,16 +26,17 @@ angles(1:maxpad,maxpad:2*maxpad-1) = 180 - angles(1:maxpad,maxpad:2*maxpad-1);
 angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1) = 180 - angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1);
 angles(maxpad:2*maxpad-1,1:maxpad) = 180 - angles(maxpad:2*maxpad-1,1:maxpad);
 angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1) = 180 - angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1); 
-angles = mod(angles,180);
+
+angle_map = mod(angles,180);
 
 %Interpolate
-[y, x, angs] = find(angles);
-[xq, yq] = meshgrid(1:size(angles,2), 1:size(angles,1));
-angle_map = griddata(x, y, angs, xq, yq,'cubic');
+% [y, x, angs] = find(angles);
+% [xq, yq] = meshgrid(1:size(angles,2), 1:size(angles,1));
+% angle_map = griddata(x, y, angs, xq, yq,'cubic');
 angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
-if(debug==2)
-    figure(5), imshow(mat2gray(angle_map))
-end
+% if(debug==2)
+%     figure(5), imshow(mat2gray(angle_map))
+% end
 
 %Run correlation on this mofo
 od_img = labelmatrix(bwconncomp(od_img));
