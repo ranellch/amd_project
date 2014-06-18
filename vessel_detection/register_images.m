@@ -1,7 +1,7 @@
 function [new_base_filename, new_corr_filename] = register_images(...
                                                 base_img_real_file, transformbase, ...
                                                 next_img_real_file, transformnext, ...
-                                                outputdir)
+                                                outputdir, resize)
 	%Update console and user with information about image registration
 	disp('==============================================================');
 	disp([base_img_real_file, ' - ', next_img_real_file, ' => ', outputdir]);
@@ -10,6 +10,9 @@ function [new_base_filename, new_corr_filename] = register_images(...
 	if exist(outputdir, 'dir') == false
 		mkdir(outputdir); 
     end
+    
+    %Add the location of the images
+    addpath(genpath('../Test Set'));
        
 	%Read in the files to attempt to register
 	base_img_real = imread(base_img_real_file);
@@ -25,6 +28,12 @@ function [new_base_filename, new_corr_filename] = register_images(...
     %Remove the footer from the image
     base_img_real = crop_footer(base_img_real);
     next_img_real = crop_footer(next_img_real);
+    
+    %Resize to 768 by 768 if specified
+    if resize
+        base_img_real = imresize(base_img_real, [768 768]);
+        next_img_real = imresize(next_img_real, [768 768]);
+    end
     
     %Scale and add border to images so that they match up in size
     [base_img_real, next_img_real] = match_sizing(base_img_real, next_img_real);

@@ -1,4 +1,7 @@
 *.db
+*.mexmaci64
+*.mexw32
+*.xcf
 *.jpg
 *.tif
 *.tiff
@@ -8,7 +11,15 @@
 *.swp
 *.out
 cpselect_database/run*
+OD Detection - Chris/results/*
 .DS_Store
 .__*
-*.mat
 *.classifier
+*.psd
+*.mat
+*.dataset
+*.subset
+*.scale
+*.range
+*.remainder
+liblinear-1.94

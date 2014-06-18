@@ -1,0 +1,219 @@
+Some directions and helpful hints on how to work with the region extraction/
+shape classification system.
+
+NEW FEATURES:
+- region comparison now gives additional info, i.e. ratios of areas,
+volumes, and average intensities.
+- pixels are now removed according to regions, not to colors.
+- labeling of the image is now possible. Please read below under "place a label"
+- it is possible to change colors of regions ("Region" menu, "Color" submenu).
+- it is now possible to pick regions not from their lists but by simply
+clicking and using "(un)select 1-st/2-nd region".  This is equivalent to
+using the pop-up menus which remain.
+- lines with which the region boundaries are drawn could be made thinner
+and thicker ("Region" menu, "Thin next line"/"Thicken next line" submenus).
+- images are now saved in "low" and "high" quality formats - with different
+resolutions and sizes of files.
+
+
+- To start the system:  type in "Biomed_demo" at Matlab prompt.
+
+- To read in an image:  "Image" menu "Open" submenu ("Alt-I" and "Alt-O", or
+"Ctrl-O") either in the start window or in any window containing an image.
+In any case the image will appear in a separate window, not overwriting an 
+existing image.  Currently only "tiff", "jpeg", and "bmp" formats are supported.
+It is preferrable to crop the part of the image you will work with first in
+some other editor, as Matlab seems to take much memory to process it when
+reading, even without any processing.
+
+- To smooth an opened image:  "Image" menu "Smooth" submenu ("Alt-I" and
+"Alt-M", or "Ctrl-M").  Available filters are: "Circle-5" - averaging over a
+"circular" window of diameter 5 (a matrix of size 5 by 5 is taken first, 3
+corner elements in each of the 4 corners are set to 0, and all others are set
+to 1/(sum of elts)); "Symlet" - each color component is smoothed by means of
+the particular wavelet family in the usual fashion; "Avg-3" - square 3x3
+matrix of 1/(sum of elts) is taken as a filter).  I prefer the first filter as
+it provides quick and sufficiently good results.  The wavelet-based one seems
+to need some debugging (as of 11/25/98).
+
+- To crop a part of an image: "Image" menu "Crop" submenu ("Alt-I" and
+"Alt-C", or "Ctrl-C").  Then pick a vertex of the future rectangular window
+by clicking once on the image with the mouse and select a rectangle that will 
+become a new image.  When rectangle is completed a prompt whether to crop or 
+not appears.  If "Yes" is pressed, the cropped part appears in a separate 
+window, while blue rectangle in the original image indicates where the part
+came from.  To get rid of the rectangle use "Image"/"Refresh".
+
+- To refresh an image (get rid of various extraneous dots and lines): "Image" 
+menu "Refresh" submenu ("Alt-I" and "Alt-E", or "Ctrl-E").
+
+- (NEW) To place a label on the image click on the place where the label
+should begin first.  Then go to "Image" menu "Label" submenu ("Alt-I" and
+"Alt-L", or "Ctrl-L").  A menu offering the title for the label, the font
+size, type, and color will pop up.  When the label is entered, it will be
+first tentatively placed on the image upon which a confirmation dialogue will
+pop up.  If "No" is chosen the label will not be placed.  To edit an existing
+label, click with the mouse close to the starting point of the label (leftmost
+character) and again select "Label" submenu of "Image" menu.  To erase an
+existing label this step can be followed - entering in the editing mode first
+and blanking the label second.
+
+- To save an image:  "Image" menu "Save as" submenu ("Alt-I" and "Alt-S", or
+"Ctrl-S").  Currently only "tiff", "jpeg", "bmp", "eps" formats are supported.
+The figures are saved along with all the lines they may contain.  The saved
+figures are usually stored in two files ("file_low.xxx" and "file_high.xxx")
+where the first file is of low quality and the latter file (of usually
+much bigger size) is of high quality.  "Eps" is the Encapsulated PostScript
+and there is just one version of it.  For "bmp" the low-quality image is
+placed in the file "file.bmp" while the high quality one into "file.jpg".
+
+- To segment an image (MAIN OPERATION): "Image" menu "Segment" submenu
+("Alt-I" and "Alt-G", or "Ctrl-G").  Segmentation means splitting the image
+pixels into color clusters first (as prescribed by the "Mean Shift Algorithm")
+and into connected regions second (as is usually done in case of images).
+The segmentation parameters (appear in the parameter setting window):
+	- Window size: determines the radius of the search window used by the 
+	segmentation algorithm.  The smaller the window size the more likely the
+	search for the maximum density location will end up in a local maximum, and
+	therefore the bigger number of initial color clusters will be.  It also
+	affects the value of the "cluster diameter", i.e. the value by which 
+	two colors of the same color cluster could differ.
+	- Color components to use: determines the number of "principal components"
+	to use when segmenting the image.  Since a color image consists of 3 color
+	components in any color system, there is a possibility to use 1-3 principal
+	ones for segmentation purpose.  When 1 component is used, it is equivalent
+	to using just intensity info, while 3 components uses full color info.
+	The fewer color components are used, the faster the segmentation is.
+	The parameter is automatically set to 1 in case of grey-scale images.
+	- Color group size: determines the minimum number of pixels in a color
+	group for it to be considered a "color cluster".  This parameter usually has
+	little effect on the final segmentation due to the fact that the number 
+	of pixels of nearly the same color is fairly high in a typical image.
+	- Min region size: determines the minimum number of 8-connected pixels
+	to be considered as a separate connected region.  Thus to find only
+	sufficiently big and regular regions (as opposed to small specks) the
+	number must be set to a sufficiently high value.
+	- Separate layers: determines whether to show ("yes") or not ("no") all 
+	color clusters at once as "layers" of the original image, i.e. nearly all 
+	the image pixels are placed into one of the layers.  The white color of a 
+	particular pixel in the produced black and white figures is interpreted 
+	as "the particular pixels is placed in the particular layer", and vice 
+	versa.  Some pixels not belonging to any color clusters (due to
+	their color deviation) will not belong to any of the layers.
+	NOTE: the regions handling which will now follow is based on the layers. 
+
+Having segmented the image (the operation may be repeated if necessary) we
+now can apply various operations to the resulting segments.  Segments are
+always connected (unless obtained by explicit merging of two disconnected
+ones).
+
+- To find a region's boundary: click on a point belonging to the desired region,
+then "Region" menu, "Find boundary" submenu ("Alt-R" and "Alt-F", or "Ctrl-F").
+
+NOTE: the following operations will require selecting one or two regions.  The
+selection window is basically the same for all the operations.  A list of
+regions (with their numbers) is presented.  Upon (tentatively) selecting a
+region the region's color changes from a non-white to white.  Upon deselecting
+a region the region's color is changed back from white to a non-white.
+Selecting is done by clicking on the region's number in the list (which should
+hang down when the down arrow in right side is pressed).  Deselecting is done
+automatically when another region is selected or "cancel" button is pressed.
+
+NEW: now region selection can be done by clicking on the region and choosing
+"(un)select 1-st/2-nd region" from "Region" menu (or "Ctrl-1"/"Ctrl-2").
+The region chosen again becomes white and turns its usual color when another
+region is selected.  For most operations (e.g. Region save/Cut/Intensity 3-d)
+choose the region to be the 1-st.  The second region needs to be chosen only
+for binary operations, e.g. comparison or merge.  Thus to compare two regions
+in the same window one would click/select 1-st and 2-nd region and then choose
+"Compare...Image regions".  To compare two regions in different window one
+however needs to pick 1-st region in one window and select 
+"Compare...Window regions" in that window.  Then 2-nd region needs to be
+chosen in the second window and the same menu item "Compare...Window regions"
+needs to be selected, so that the system would know which two 1-st/2-nd
+pair of regions to compare.
+
+- To save a region (in a format that can be later used for shape comparison
+with other regions): "Region" menu, "Save as" submenu ("Alt-R" and "Alt-V", 
+or "Ctrl-V").  The files have extension ".rgn" (for "ReGioN").
+
+- To compare two regions in terms of their shapes (as described in the
+article) and obtain some additional info:
+"Compare to" submenu of "Region menu".  A region can be compared with a 
+region of the same image ("Image region" submenu of "Compare to" submenu 
+("Alt-R" and "Alt-C" and "Alt-I", or "Ctrl-I"), or a region in a 
+different window ("Window region" submenu of "Compare to" submenu ("Alt-R" 
+and "Alt-C" and "Alt-W", or "Ctrl-W"), or a region previously saved on disk
+("Disk region" submenu of "Compare to" submenu ("Alt-R" and "Alt-C" and 
+"Alt-D", or "Ctrl-D").  In the first case the choice of the two regions is
+done in the same dialogue.  In the second case the action of choosing the
+regions must be done in the two windows (same sequence of keys must be
+repeated in both windows, and windows may coincide).  In the third case after
+the image region is chosen a prompt to choose a saved region is given.
+
+- To merge two regions (which may be disconnected): "Merge" submenu of
+"Region" menu ("Alt-R" and "Alt-R", or "Ctrl-R").  The region is then treated
+as a single entity, while the regions from which it was formed "disappear" 
+from various menus (e.g. "Compare", "Merge", etc).
+
+- To cut a region into two pieces: "Cut" submenu of "Region" menu ("Alt-R" 
+and "Alt-U", or "Ctrl-U").  Upon choosing the region a prompt to draw the
+separating line appears.  Please be very careful drawing the line as the
+algorithm for separating the region is quite unstable and must be improved.
+The line must start and end a little bit outside the region.  Upon successful
+splitting 2 new regions will appear while the old one will disappear.
+
+- To visualize a region and obtain some basic info: "Intensity 3-d"  submenu
+of "Region" menu ("Alt-R" and "Alt-3", or "Ctrl-3").  As of today (11/29/98)
+the region is shown correctly, not flipped.  In the image the horizontal axes
+correspond to image dimensions, while the vertical one corresponds to image
+intensity.  The 3-dimensional graph can be rotated left and right, and up and
+down by means of "Ctrl-L", "Ctrl-R", "Ctrl-U", and "Ctrl-D" keys while the 
+window is active.  The amount by which the graph is rotated could be 
+increased/decreased by means of "Ctrl-A" and "Ctrl-V" keys.  While these
+operations don't allow to choose an arbitrary point of view, large flexibility
+is achieved.  To obtain some relevant to the region information use "Values"
+menu of the graph window.
+
+- To exclude some regions from further consideration (will be shown usefulness
+of later): "Background"  submenu of "Region" menu ("Alt-R" and "Alt-K", 
+or "Ctrl-K").  Now the pixels are removed according to the found regions,
+not underlying colors. Thus the background should preferrably consist of
+one or few regions.
+
+- To change the color of a region's boundary, first select the region, and
+second click on "Region"/"Color" submenu (or "Ctrl-L").  A list of possible
+colors to choose from will be presented.
+
+- To thicken/thin the next boundary use "Thicken/Thin next line" submenu of
+"Region" menu.  This could be useful if the lines are too thin for printing
+purposes.  If the next line is still not thick enough, try to do it several
+times.
+
+A typical use of the system:
+- read in an image ("jpeg", "tiff", "bmp" formats only) (Image/Open)
+- select a rectangular region to work with (Image/Crop)
+- segment with the initially given parameters (Image/Segment)
+	- if the resulting regions are too small (oversegmentation), increase the
+	window size in Segmentation parameters window and resegment;
+	- if the resulting regions are too large (undersegmentation), reduce the
+	window size in Segmentation parameters window and resegment;
+- if there is large uniformity in "the background": 
+	- first segment the image with a small window size but large enough 
+	to capture most of the background into one or few regions;
+	- second use "Background" operation from "Region" menu to exclude the 
+	corresponding regions from further processing (pixel removal);
+	- third resegment the image with a larger window size so that to capture
+	less uniform foreground;
+- if a region is best obtained as a result of merge of two fairly different
+(in color respect) regions that are adjacent, use "Region/Merge" operation.
+- if a region has some extraneous parts (may be from other similar regions
+as in case of cells), use "Region/Cut" operation.
+- having obtained a suitable region it can be visualized in terms of its
+intensity (Region/Intensity-3d).
+- having obtained two regions (in the same window or different ones) they can
+be compared in terms of their shapes and some other respects (e.g. areas or
+average intensities) (Region/Compare to/[Disk/Window/Region])
+- an exemplary region can be saved (shape info only, no intensity info) for
+future comparisons.
+- an image with or without lines could be saved for future work (Image/Save).

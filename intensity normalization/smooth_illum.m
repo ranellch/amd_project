@@ -1,4 +1,4 @@
-function [ Iout ] = smooth_illum(I, varargin )
+function [ Iout,background ] = smooth_illum(I, varargin )
 %SMOOTH_ILLUM removes illumination and contrast drifts from principal component image
 %   IOUT = SMOOTH_ILLUM(I, k1, k2)
 %   This function uses Mahalanobis distances to classify the most likely
@@ -24,39 +24,30 @@ Iheight = size(I, 1);
 mu = zeros(size(I));
 sigma = zeros(size(I));
 
-%Pad image by 1/8 and tesselate with gridboxes 1/4 height and width of image
-%Get mean and standard deviation at the center of each gridbox (5 x 5 grid)
-boxh = Iheight/4;
-boxw = Iwidth/4;
-paddedI = padarray(I,[round(boxh/2) round(boxw/2)], 'symmetric', 'both');
-for i = 1:5
-    for j = 1:5
-        dims = [1+round((i-1)*boxh), round(i*boxh), 1+round((j-1)*boxw), round(j*boxw)];
-        window = paddedI(dims(1):dims(2),dims(3):dims(4));
-        if i == 5
-            dims(1) = Iheight;
-        end
-        if j == 5
-            dims(3) = Iwidth;          
-        end
-        if nnz(window)/numel(window) > .1 %if greater than 10% of the window is nonzero
-            mu(dims(1),dims(3)) = mean2(window);
-            sigma(dims(1),dims(3)) = std(window(:));
-        end
+%Mirror pad image by 1/6 and tesselate with gridboxes 1/3 height and width of image
+%Get mean and standard deviation at the center of each gridbox (4 x 4 grid)
+boxh = Iheight/3;
+boxw = Iwidth/3;
+paddedI = padarray(I,[boxh/2 boxw/2], 'symmetric', 'both');
+for i = 1:4
+    for j = 1:4
+        cx = 1+(j-1)*boxw;
+        cy = 1+(i-1)*boxh;
+        window = paddedI(1+(i-1)*boxh:i*boxh, 1+(j-1)*boxw:j*boxw);
+        mu(cy,cx) = mean2(window);
+        sigma(cy,cx) = std(window(:));
     end
 end
-
 
 %Interpolate to get mean and standard deviation of every pixel
 [y, x, mu1] = find(mu);
 [xq, yq] = meshgrid(1:Iwidth, 1:Iheight);
 mu = griddata(x, y, mu1, xq, yq,'cubic');
 
-figure
-mesh(xq,yq,mu);
-hold on
-plot3(x,y,mu1,'o');
-
+% figure
+% mesh(xq,yq,mu);
+% hold on
+% plot3(x,y,mu1,'o');
 
 [y, x, sigma] = find(sigma);
 sigma = griddata(x, y, sigma, xq, yq,'cubic');
@@ -65,12 +56,12 @@ sigma = griddata(x, y, sigma, xq, yq,'cubic');
 %Get background by thresholding Mahalanobis distance of every pixel
 background = abs((I-mu)./sigma)<=1;
 background = logical(background);
-%  figure, imshow(background)
+%   figure, imshow(background)
 
 %Sample background 
 Icenterx = round(Iwidth/2);
 Icentery = round(Iheight/2);
-rcoeffs = [.05 .2 .5 .75 .9];
+rcoeffs = [.05 .2 .5 .75 .95];
 r = Iwidth/2;
 
 halfwinsz = floor((Iwidth/20)/2); %size of square sampling windows/2
@@ -98,28 +89,26 @@ for i = 1:5
       point = allpoints(index, 1:2);
       r = point(1);
       c = point(2);
-      dims = [r-halfwinsz,r+halfwinsz, c-halfwinsz,c+halfwinsz];
-      if dims(1) < 1 || dims(2)<1 
-          dims(1) = 1; dims(2) = 1+halfwinsz;
+      bounds = [r-halfwinsz,r+halfwinsz, c-halfwinsz,c+halfwinsz];
+      if bounds(1) < 1 || bounds(2)<1 
+          bounds(1) = 1; bounds(2) = 1+halfwinsz;
           point(1) = 1;
-      elseif dims(1) >Iheight || dims(2)>Iheight
-          dims(2) = Iheight; dims(1) = Iheight - halfwinsz;
+      elseif bounds(1) >Iheight || bounds(2)>Iheight
+          bounds(2) = Iheight; bounds(1) = Iheight - halfwinsz;
           point(1) = Iheight;
       end
-      if dims(3) < 1 || dims(4) < 1
-          dims(3) = 1; dims(4) = 1+halfwinsz;
+      if bounds(3) < 1 || bounds(4) < 1
+          bounds(3) = 1; bounds(4) = 1+halfwinsz;
           point(2) = 1;
-      elseif dims(3) > Iwidth || dims(4)>Iwidth
-          dims(4) = Iwidth; dims(3) = Iwidth - halfwinsz;
+      elseif bounds(3) > Iwidth || bounds(4)>Iwidth
+          bounds(4) = Iwidth; bounds(3) = Iwidth - halfwinsz;
           point(2) = Iwidth;
       end          
-      window = I(dims(1):dims(2),dims(3):dims(4));
-      mask = background(dims(1):dims(2), dims(3):dims(4));
+      window = I(bounds(1):bounds(2),bounds(3):bounds(4));
+      mask = background(bounds(1):bounds(2), bounds(3):bounds(4));
       data = window(mask);
-      if nnz(data)/numel(data) > .1
-          L(point(1), point(2)) = mean2(data);
-          C(point(1), point(2)) = std(data(:));
-      end
+      L(point(1), point(2)) = mean2(data);
+      C(point(1), point(2)) = std(data(:));
   end
 end
 
@@ -128,34 +117,30 @@ end
 window = I(1:halfwinsz,1:halfwinsz);
 mask = background(1:halfwinsz,1:halfwinsz);
 data = window(mask);
-if nnz(data)/numel(data) > .1
-    L(1,1) = mean2(data);
-    C(1,1) = std(data(:));
-end
+L(1,1) = mean2(data);
+C(1,1) = std(data(:));
+
 
 window = I(1:halfwinsz,Iwidth-halfwinsz:Iwidth);
 mask = background(1:halfwinsz,Iwidth-halfwinsz:Iwidth);
 data = window(mask);
-if nnz(data)/numel(data) > .1
-    L(1,Iwidth) = mean2(data);
-    C(1,Iwidth) = std(data(:));
-end
+L(1,Iwidth) = mean2(data);
+C(1,Iwidth) = std(data(:));
+
 
 window = I(Iheight-halfwinsz:Iheight, 1:halfwinsz);
 mask = background(Iheight-halfwinsz:Iheight, 1:halfwinsz);
 data = window(mask);
-if nnz(data)/numel(data) > .1
-    L(Iheight,1) = mean2(data);
-    C(Iheight,1) = std(data(:));
-end
+L(Iheight,1) = mean2(data);
+C(Iheight,1) = std(data(:));
+
 
 window = I(Iheight-halfwinsz:Iheight,Iwidth-halfwinsz:Iwidth);
 mask = background(Iheight-halfwinsz:Iheight,Iwidth-halfwinsz:Iwidth);
 data = window(mask);
-if nnz(data)/numel(data) > .1
-    L(Iheight,Iwidth) = mean2(data);
-    C(Iheight,Iwidth) = std(data(:));
-end
+L(Iheight,Iwidth) = mean2(data);
+C(Iheight,Iwidth) = std(data(:));
+
 
 
 %Interpolate
@@ -163,15 +148,22 @@ end
 [xq, yq] = meshgrid(1:Iwidth, 1:Iheight);
 L = griddata(x, y, L1, xq, yq,'cubic');
 
+% figure
+% mesh(xq,yq,mu);
+% hold on
+% plot3(x,y,L1,'o');
+
 [y, x, C] = find(C);
 C = griddata(x, y, C, xq, yq,'cubic');
 
 %Smooth
-Iout = ((double(I)-k1*L)./(k2*C)).*std(I(:))+mean2(I);
+Iout = ((double(I)-k1*L)./(k2*C));
+%.*std(I(:))+mean2(I);
 
 %Ignore NaNs
 Idefined = Iout(~isnan(Iout));
 Idefined_orig = I(~isnan(Iout));
+background = logical(background.*~isnan(Iout));
 
 %Normalize output to original histogram using least squares fitting
 Y = [Idefined(:),ones(length(Idefined(:)),1)];
