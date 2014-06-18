@@ -12,6 +12,7 @@
 *.out
 cpselect_database/run*
 OD Detection - Chris/results*
+Vessel\ Detection\ -\ Chris/results*
 .DS_Store
 .__*
 *.classifier

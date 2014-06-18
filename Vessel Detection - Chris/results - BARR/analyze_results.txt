@@ -1,4 +1,0 @@
-Img, Sensitivity, Specificity, Accuracy, Precision
-BARR OD (1), 0.57255, 0.94457, 0.92497, 0.36489
-BARR OD (2), 0.67563, 0.97491, 0.9544, 0.6645
-BARR OD (3), 0.76852, 0.97434, 0.96293, 0.63727
