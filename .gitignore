@@ -22,4 +22,6 @@ OD Detection - Chris/results*
 *.scale
 *.range
 *.remainder
-liblinear-1.94
+*.a
+*.o
+*.exe
