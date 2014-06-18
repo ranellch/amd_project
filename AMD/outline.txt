@@ -1,0 +1,6 @@
+Hypo Segmentation Steps:
+classify pixels using gabor + intensity
+localize fovea
+run clusterdata
+choose cluster(s) at or closest to estimated fovea
+regiongrow from centroid of said cluster maybe in intensity + texture space idk

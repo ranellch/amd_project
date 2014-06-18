@@ -25,6 +25,7 @@ end
 img = crop_footer(img);
 [origy, origx] = size(img);
 
+img = im2double(img);
 img = imresize(img, [768 768]);
 img = gaussian_filter(img);
 [img, ~] = correct_illum(img,0.7);

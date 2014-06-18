@@ -6,7 +6,9 @@ if size(I,3) ~= 1
     I=rgb2gray(I);
 end
 
-I=double(I)./255;
+if ~isa(I,'double')
+    I=im2double(I);
+end
 Iwidth = size(I, 2);
 Iheight = size(I, 1);
 mu = zeros(size(I));
