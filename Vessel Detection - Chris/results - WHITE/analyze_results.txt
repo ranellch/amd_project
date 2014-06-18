@@ -1,4 +1,0 @@
-Img, Sensitivity, Specificity, Accuracy, Precision
-WHITE OD (1), 0.78122, 0.9925, 0.96874, 0.92956
-WHITE OD (2), 0.80875, 0.98409, 0.96469, 0.86354
-WHITE OD (3), 0.70141, 0.99436, 0.97298, 0.90724
