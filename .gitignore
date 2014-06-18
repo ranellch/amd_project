@@ -1,6 +1,7 @@
 *.db
 *.mexmaci64
 *.mexw32
+*.mexw64
 *.mexa64
 *.xcf
 *.jpg
