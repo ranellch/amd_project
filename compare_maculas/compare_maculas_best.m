@@ -1,4 +1,6 @@
 function [ data ] = compare_maculas_best(type, varargin)
+addpath('../intensity normalization');
+
 % Process Image
     %type = 'FA' or 'AF'
 
@@ -190,8 +192,7 @@ function [ data ] = compare_maculas_best(type, varargin)
         
 
      elseif strcmpi(type,'FA')
-            error('functionality not available');
-            
+            error('functionality not available');            
      end
            
       
@@ -375,14 +376,14 @@ function [ data ] = compare_maculas_best(type, varargin)
     hold off
     
    % ~~~~~~~Show changes in hypo/hyper regions~~~~~~~~~~~~~~~~~~~~~~~~~
-    
     redx=ones(4,250);
     yellx=ones(4,250);
     redy=ones(4,250);
     yelly=ones(4,250);
 
-    
-    m = 1; 
+    boxes_above = 0;
+    boxes_below = 0;
+    m = 1;
     p1 = 1;
     p2 = 1;
     for i = 0.5:yln:winsz(1)-rem(winsz(1),yln)-yln+0.5
@@ -392,17 +393,23 @@ function [ data ] = compare_maculas_best(type, varargin)
             yelly(:,p1) = [i;i;i+yln;i+yln]; %specify vertices of patches
             yellx(:,p1) = [j;j+xln;j+xln;j];
             p1=p1+1;
+            boxes_above=boxes_above+1;
          elseif DWB(m,k) < hypo_thrsh
             redy(:,p2) = [i;i;i+yln;i+yln];
             redx(:,p2) = [j;j+xln;j+xln;j];
             p2=p2+1;
+            boxes_below=boxes_below+1;
          end
          k=k+1;
         end
         m=m+1;
     end
 
+    disp(['Boxes Dimensions: ', num2str(xln), ', ', num2str(yln)]);
+    disp(['Boxes above the Threshold: ', num2str(boxes_above)]);
+    disp(['Boxes below the Threshold: ', num2str(boxes_below)]);
  
+    
    % Remove zeros  
         redx = reshape(redx(redx~=1),4,[]);
         yellx = reshape(yellx(yellx~=1),4,[]);

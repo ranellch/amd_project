@@ -1,6 +1,8 @@
 *.db
 *.mexmaci64
 *.mexw32
+*.mexw64
+*.mexa64
 *.xcf
 *.jpg
 *.tif
@@ -11,7 +13,8 @@
 *.swp
 *.out
 cpselect_database/run*
-OD Detection - Chris/results/*
+OD Detection - Chris/results*
+Vessel\ Detection\ -\ Chris/results*
 .DS_Store
 .__*
 *.classifier
@@ -22,4 +25,6 @@ OD Detection - Chris/results/*
 *.scale
 *.range
 *.remainder
-liblinear-1.94
+*.a
+*.o
+*.exe

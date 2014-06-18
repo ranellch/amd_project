@@ -66,7 +66,10 @@ function analyze_od(rebuild_classifier)
         %Get the original image 
         original_path = get_pathv2(pid, eye, time, 'original');
         original_img = imread(original_path);
-        
+        if(size(original_img, 3) > 1)
+            original_img = rgb2gray(original_img);
+        end
+                
         %Get the image run by the algorithm
         [calced_img, vessel_img, r] = find_od(pid, eye, time, 1);
         imwrite(vessel_img,['./results/',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');

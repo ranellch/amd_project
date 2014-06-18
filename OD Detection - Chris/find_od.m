@@ -26,20 +26,10 @@ model = load('od_classify_svmstruct.mat');
 scaling_factors = model.scaling_factors;
 classifier = model.od_classify_svmstruct;
 
-%Get the path name from the image and time and then read in the image.
-% filename = get_pathv2((pid), (eye), num2str(time), 'original');
-% img = imread(filename);
-
 %Print to the console the output
 if(debug == 1 || debug == 0)
     disp(['[ID] ', pid, ' - Time: ', num2str(time)]);
 end
-
-%Convert the image to gray scale double if not already
-% img = im2double(img);
-% if(size(img,3) ~= 1)
-%     img=rgb2gray(img);
-% end
 
 %Get the vesselized image for now (need to change to find_vessels at some time)
 if(debug == 1 || debug == 2)
@@ -119,18 +109,6 @@ for y=1:size(od_image)
         end
     end
 end
-
-% border_clear = 4;
-% for y=1:size(od_image,1)
-%     for x=1:size(od_image,2)
-%         if(y <= border_clear || y >= (size(od_image, 1) - border_clear))
-%             od_image(y,x) = 0;
-%         end
-%         if(x <= border_clear || x >= (size(od_image,2) - border_clear))
-%             od_image(y,x) = 0;
-%         end
-%     end
-% end
 
 %Cluster the datapoints into regions using agglomerative clustering
 if(debug == 1 || debug == 2)
