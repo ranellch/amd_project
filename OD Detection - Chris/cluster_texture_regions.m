@@ -150,7 +150,4 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
             end
         end
     end
-    
-    %figure(1), imagesc(final_clusters);
-    %figure(2), imagesc(final_clusters_mask);
 end
