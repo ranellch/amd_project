@@ -840,7 +840,20 @@
     </image>
     <image id="09323896_OS" path="09323896/OS/09_32_38_960_001.tif" time="6">
     </image>
-    
- 
-    
+    <image id="AMANI1" path="amani/1-early.jpg" time="1" transform="invert">
+    </image>
+	<image id="AMANI1" path="amani/1-late.jpg" time="2" transform="invert">
+    </image>
+    <image id="AMANI2" path="amani/2-early.jpg" time="1" transform="invert">
+    </image>
+    <image id="AMANI2" path="amani/2-late.jpg" time="2" transform="invert">
+    </image>
+    <image id="AMANI3" path="amani/3-early.jpg" time="1" transform="invert">
+    </image>
+    <image id="AMANI3" path="amani/3-late.jpg" time="2" transform="invert">
+    </image>
+	<image id="AMANI4" path="amani/4-early.jpg" time="1" transform="invert">
+    </image>
+    <image id="AMANI4" path="amani/4-late.jpg" time="2" transform="invert">
+    </image>
 </images>

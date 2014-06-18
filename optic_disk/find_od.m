@@ -52,9 +52,7 @@ for y=1:size(orig_wavelets, 1)
         for wv=1:size(orig_wavelets, 3)
             img_fv(y,x,wv) = orig_wavelets(y,x,wv);
         end
-        size(size(orig_wavelets, 3));
-        disp(wv);
-        img_fv(y,x,wv) = img(y,x);
+        img_fv(y,x,wv+1) = img(y,x);
     end
 end
 
@@ -66,7 +64,7 @@ for y=1:size(orig_wavelets, 1)
     end
 end
 
-figure(1), imshowpair(od_image, img);
+%figure(1), imshowpair(od_image, img);
 
 %Resize the image to its original size
 od_image = match_sizing(od_image, origx, origy);
