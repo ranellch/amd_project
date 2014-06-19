@@ -62,7 +62,9 @@ polymodel = polyfitn(indepvar,depvar,3);
 
 %Create surface spanning entire image
 [y,x,~] = find(I>=0); %get coordinates of entire image
-estimates = polyvaln(polymodel,[x,y]);  
+estimates = polyvaln(polymodel,[x,y]);
+disp(size(estimates));
+disp(size(I));
  C = zeros(size(I));
  C(:) = estimates;
 %    figure , imshow(mat2gray(C))     

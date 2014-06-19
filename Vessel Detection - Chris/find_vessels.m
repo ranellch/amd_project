@@ -28,6 +28,8 @@ img = crop_footer(img);
 img = im2double(img);
 img = imresize(img, [768 768]);
 img = gaussian_filter(img);
+imshow(img);
+disp(size(img));
 [img, ~] = correct_illum(img,0.7);
 
 corrected_img = imresize(img,[origy, origx]);
