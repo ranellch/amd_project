@@ -18,4 +18,4 @@ function [dirmap,exy,jxy] = anaskel(wsk);
 % See also SKELETON
 
 disp('Compiling...  (You may need to execute ''mex -setup'' first.)');
-mex 'G:\Projects\Matlab\anaskel.cpp'
+mex 'C:\Users\Chris\Documents\GitHub\amd_project\Skeleton\anaskel.cpp'

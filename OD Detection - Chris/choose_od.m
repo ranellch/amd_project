@@ -1,4 +1,4 @@
-function [ candidate_region, max_rcoeff ] = choose_od( od_img, vessels, angles,varargin )
+function [ candidate_region, max_od_strength ] = choose_od( od_img, vessels, angles,varargin )
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -9,11 +9,9 @@ else
 end
     
 % Finds optic disk region of interest
-
 addpath('..');
 
 %Get vessels and angles of greatest lineop strength
-% vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 angles(~vessels) = 0;
 
 [origy, origx] = size(angles);
@@ -47,7 +45,7 @@ end
 
 e = cputime;
 scales = [150 200 250];
-diff_img = zeros(origy, origx,length(scales));
+strength_img = zeros(origy, origx,length(scales));
 for k = 1:length(scales)
     full_mask = od_filter.(['mask',num2str(scales(k))]);
     for y = 1:16:768
@@ -76,7 +74,7 @@ for k = 1:length(scales)
             end
             %check if in texture of interest
             if od_img(y,x) > 0
-                diff_img(y,x,k) = corr2(angle_map(tb:bb,lb:rb),mask);
+                strength_img = corr2(angle_map(tb:bb,lb:rb),mask);
             end
         end
     end
@@ -87,9 +85,15 @@ if(debug == 1 || debug == 2)
 end
 
 %Only keep region containing max correlation
-diff_img = max(diff_img,[],3);
-max_rcoeff = max(diff_img(:));
-[max_y, max_x, ~] = find(diff_img==max_rcoeff);
+strength_img = max(strength_img,[],3);
+max_od_strength = max(strength_img(:));
+[max_y, max_x, ~] = find(strength_img==max_od_strength);
+if debug == 2
+    figure(5), imshow(mat2gray(strength_img))
+    hold on
+    plot(max_x,max_y,'gx')
+    hold off
+end
 candidate_region = zeros(size(od_img)); 
 for y = 1:size(od_img,1)
     for x = 1:size(od_img,2)
