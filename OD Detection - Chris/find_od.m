@@ -35,15 +35,12 @@ end
 if(debug == 1 || debug == 2)
     disp('[VESSELS] Run Vessel Detection Algorithm');
 end
-[img_vessel, img_angles, corrected_img] = find_vessels(pid,eye,time,debug);
+[img_vessel, img_angles, ~] = find_vessels(pid,eye,time,debug);
 
 %Get the longest dimension of the original image
-origy = size(corrected_img, 1);
-origx = size(corrected_img, 2);
-
-%Resize the images to a standard size
-img = imresize(corrected_img, [std_img_size, std_img_size]);
-img_vessel = imresize(img_vessel,[std_img_size, std_img_size]);
+orig_img = imread(get_pathv2(pid,eye,time,'original'));
+origy = size(orig_img, 1);
+origx = size(orig_img, 2);
 
 %Normalize intensities
 norm_img = zero_m_unit_std(img);
@@ -173,7 +170,7 @@ Points = get_box_coordinates(pre_snaked_img);
 
 if(debug == 2)
     %Show the image result
-    figure(4), imshowpair(snaked_optic_disc, img);
+    figure(7), imshowpair(snaked_optic_disc, img);
 end
 
 %Resize the image to its original size
