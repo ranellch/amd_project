@@ -60,7 +60,6 @@ for y = 1:8:Iheight
 end
 polymodel = polyfitn(indepvar,depvar,3);
 
-%Create surface spanning entire image
 %get coordinates of entire image
 y=[];
 x=[];
@@ -70,8 +69,9 @@ for i = 1:Iwidth
         x = [x; i];
     end
 end
-estimates = polyvaln(polymodel,[x,y]);  
- C = zeros(size(I));
+%Create surface spanning entire image
+estimates = polyvaln(polymodel,[x,y]);
+C = zeros(size(I));
  C(:) = estimates;
 %    figure , imshow(mat2gray(C))     
 

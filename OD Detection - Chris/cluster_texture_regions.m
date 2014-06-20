@@ -73,7 +73,7 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
 
     %Cluster the output data
     cutoffval = round(max_num_regions / 2);
-    if(cutoffval <= 2)
+    if(cutoffval <= 5)
         cutoffval = 6;
     end
     if(cutoffval > 25)

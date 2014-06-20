@@ -33,12 +33,7 @@ img = gaussian_filter(img);
 img = imcomplement(corrected_img);
 img = zero_m_unit_std(img);
 
-% %Print to the console the output
-% disp(['ID: ', image, ' ', eye,' - Time: ', time, ' - Path: ', filename]);
-
 %Load the classifier struct for this bad boy
-% load('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
-% load('vessel_lineop_classifier.mat', 'vessel_lineop_classifier');
 model = load('vessel_combined_classifier.mat');
 scaling_factors = model.scaling_factors;
 classifier = model.vessel_combined_classifier;
@@ -107,11 +102,6 @@ end
 t=cputime;
 
 class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
-% chunk_size = 512;
-% class_estimates = [];
-% for i = 1:chunk_size:length(combined_vectors)
-%     class_estimates = [class_estimates; svmclassify(classifier, combined_vectors(i:i+chunk_size-1, :))]; 
-% end
     
 %Output how long it took to do this
 e = cputime-t;
