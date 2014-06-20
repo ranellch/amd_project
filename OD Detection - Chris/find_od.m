@@ -35,18 +35,19 @@ end
 if(debug == 1 || debug == 2)
     disp('[VESSELS] Run Vessel Detection Algorithm');
 end
-[img_vessel, img_angles, ~] = find_vessels(pid,eye,time,debug);
+[img_vessel, img_angles, corrected_img] = find_vessels(pid,eye,time,debug);
 
-%Get the longest dimension of the original image
+%Get the dimensions of the original image
 orig_img = imread(get_pathv2(pid,eye,time,'original'));
+orig_img = crop_footer(orig_img);
 origy = size(orig_img, 1);
 origx = size(orig_img, 2);
 
 %Normalize intensities
-norm_img = zero_m_unit_std(img);
+norm_img = zero_m_unit_std(corrected_img);
 
 %Initiate the results image
-od_image = zeros(size(img, 1), size(img, 2));
+od_image = zeros(size(norm_img, 1), size(norm_img, 2));
 
 %Get feature vectors for each pixel in image
 if(debug == 1 || debug == 2)
@@ -90,7 +91,7 @@ od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix
 clear instance_matrix
 
 if(debug == 2)
-    figure(1), imshow(od_image);
+    figure(2), imshow(od_image);
 end
 
 %Remove all classified datapoints that were already classified as a vessel
@@ -121,7 +122,7 @@ else
 end
 
 if(debug == 2)
-    figure(2), imagesc(final_clusters);
+    figure(3), imagesc(final_clusters);
 end
 
 %Translate the cluster mask to the od_image
@@ -136,7 +137,7 @@ for y=1:size(final_clusters_mask,1)
 end
 
 if(debug == 2)
-    figure(3), imshowpair(od_image, img_vessel);
+    figure(4), imshowpair(od_image, img_vessel);
 end
 
 %Refine the possibilites of the optic disc using a vessel angle filter
@@ -153,11 +154,11 @@ if(debug == 1 || debug == 2)
 end
 
 Options=struct;
-if debug == 2
-    Options.Verbose=true;
-else 
+% if debug == 2
+%     Options.Verbose=true;
+% else 
     Options.Verbose=false;
-end
+% end
 Options.Iterations=100;
 Options.Wedge=20;
 Options.Wline = 0.4;
@@ -166,11 +167,11 @@ Options.Alpha = 5;
 Options.Beta = 2;
 Options.Delta = 2;
 Points = get_box_coordinates(pre_snaked_img);
-[~,snaked_optic_disc] = Snake2D(mat2gray(img), Points, Options); 
+[~,snaked_optic_disc] = Snake2D(mat2gray(corrected_img), Points, Options); 
 
 if(debug == 2)
     %Show the image result
-    figure(7), imshowpair(snaked_optic_disc, img);
+    figure(7), imshowpair(snaked_optic_disc, corrected_img);
 end
 
 %Resize the image to its original size

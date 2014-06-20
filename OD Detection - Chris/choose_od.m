@@ -9,79 +9,80 @@ else
 end
     
 % Finds optic disk region of interest
+
 addpath('..');
+addpath('../Circle fit');
 
 %Get vessels and angles of greatest lineop strength
 angles(~vessels) = 0;
+angles = mod(angles,180);
 
-[origy, origx] = size(angles);
-angle_map = mod(angles,180);
-%  maxpad = 100;
-%  angles = padarray(angles, [maxpad maxpad], 'symmetric', 'both');
-% 
- %adjust "mirroring" so angles translate over
-% angles(1:maxpad,maxpad:2*maxpad-1) = 180 - angles(1:maxpad,maxpad:2*maxpad-1);
-% angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1) = 180 - angles(2*maxpad:2*maxpad+maxpad-1,maxpad:2*maxpad-1);
-% angles(maxpad:2*maxpad-1,1:maxpad) = 180 - angles(maxpad:2*maxpad-1,1:maxpad);
-% angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1) = 180 - angles(maxpad:2*maxpad-1,2*maxpad:2*maxpad+maxpad-1); 
-
-
-%Interpolate
-% [y, x, angs] = find(angles);
-% [xq, yq] = meshgrid(1:size(angles,2), 1:size(angles,1));
-% angle_map = griddata(x, y, angs, xq, yq,'cubic');
-% angle_map = angle_map(maxpad+1:maxpad+origy,maxpad+1:maxpad+origx);
-% if(debug==2)
-%     figure(5), imshow(mat2gray(angle_map))
-% end
-
-%Run correlation on this mofo
+%Find best region
 od_img = labelmatrix(bwconncomp(od_img));
-od_filter = load('od_masks', 'mask150', 'mask200', 'mask250');
 
 if(debug == 1 || debug == 2)
-    disp('Running angle filtering')
+    disp('Running region analysis')
 end
 
 e = cputime;
-scales = [150 200 250];
-strength_img = zeros(origy, origx,length(scales));
-for k = 1:length(scales)
-    full_mask = od_filter.(['mask',num2str(scales(k))]);
-    for y = 1:16:768
-        tb = y - scales(k)/2;
-        bb = y + scales(k)/2-1;
-        ymask = full_mask;
-        if y <= scales(k)/2
-            ymask = full_mask(scales(k)/2+1-(y-1):end,:);
-            tb = 1;
-        end
-        if y > origy - scales(k)/2
-            ymask = full_mask(1:scales(k)-(y+scales(k)/2-origy)+1,:);
-            bb = origy;
-        end
-        for x = 1:16:768
-            lb = x - scales(k)/2;
-            rb = x + scales(k)/2-1;
-            mask = ymask;
-            if x <= scales(k)/2
-                mask = ymask(:,scales(k)/2+1-(x-1):end);
-                lb = 1;
-            end
-            if x > origx - scales(k)/2
-                mask = ymask(:,1:scales(k)-(x+scales(k)/2-origx)+1);
-                rb = origx;
-            end
-            %check if in texture of interest
-            if od_img(y,x) > 0
-                strength_img = corr2(angle_map(tb:bb,lb:rb),mask);
-            end
-        end
-    end
+%Iterate over all elipses and calculate radial vessel density and
+%vessel angularity along border
+numelipses = max(od_img(:));
+border_density = zeros(numelipses,1);
+angle_diff = zeros(numelipses,1);
+if debug == 2
+    figure(6), imagesc(od_img)
+    hold on
 end
+
+for i = 1:numelipses
+    roi = od_img==i;
+    border_img  = bwperim(roi);
+    %get rid of pixels on image border
+    border_img(1,:) = 0;
+    border_img(:,1) = 0;
+    border_img(size(border_img,1),:) = 0;
+    border_img(:,size(border_img,2)) = 0;
+    %estimate circle from elipse border
+    [y,x] = find(border_img);
+    [xc,yc,R,~] = circfit(x,y);
+    circle_img = plot_circle(xc,yc,R+50, max_x, max_y);
+    circle_perim = bwperim(circle_img);
+    if debug == 2
+        [cy,cx] = find(circle_perim);
+        plot(cx,cy,'r.')
+    end
+    %get density of vessel pixels touching circle
+    border_density(i) = sum(sum(circle_perim&vessels))/sum(sum(circle_perim));
+    %for all vessel pixels between elipse border and circle border calculate estimated angles and see how
+    %vessels match up 
+    tb  = yc - R;
+    if tb < 1
+        tb = 1;
+    end
+    bb = yc + R;
+    if bb > size(border_img,1);
+        bb = size(border_img,1);
+    end
+    lb = xc - R;
+    if lb < 1
+        xc = 1;
+    end
+    rb = xc + R;
+    if rb > size(border_img,2);
+        rb = size(border_img,2);
+    end
+    roi_angles = circle_img(tb:bb,lb:rb) & angles(tb:bb,lb:rb);
+    expected_angles = estimate_angles(R, roi_angles);
+    angle_diff(i) = sum(sum(roi_angles - expected_angles())/((bb-tb)*(rb-lb));
+end
+if debug == 2
+    hold off
+end
+
 t = (cputime-e)/60.0;
 if(debug == 1 || debug == 2)
-    disp(['Time to run angle filtering (min): ' num2str(t)])
+    disp(['Time to analyze classified regions (min): ' num2str(t)])
 end
 
 %Only keep region containing max correlation
@@ -104,5 +105,33 @@ for y = 1:size(od_img,1)
 end
 candidate_region = logical(candidate_region);
 
+end
+
+function circle_img = plot_circle(xc,yc,R, max_x, max_y)
+circle_img = zeros(max_y,max_x);
+for y  = 1:max_y
+    for x = 1:max_x
+        if (x-xc)^2+(y-yc)^2 <= R
+            circle_img(y,x) = 1; 
+        end
+    end
+end
+end
+
+function [mask] = estimate_angles(size) 
+mask = zeros(size);
+if mod(size,2) == 1
+    [xcorr, ycorr] = meshgrid(-floor(size/2):floor(size/2),floor(size/2):-1:-floor(size/2));
+else
+    [xcorr, ycorr] = meshgrid(-size/2+1:size/2,size/2-1:-1:-size/2);
+end
+ for y = 1:size
+    for x = 1:size
+        if sqrt(xcorr(y,x)^2+ycorr(y,x)^2) > floor(size/3)
+         mask(y,x) = atan2d(ycorr(y,x),xcorr(y,x));
+        end
+    end
+ end
+  mask=mod(mask,180);
 end
 

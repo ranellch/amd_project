@@ -28,9 +28,9 @@ img = crop_footer(img);
 img = im2double(img);
 img = imresize(img, [768 768]);
 img = gaussian_filter(img);
-[img, ~] = correct_illum(img,0.7);
+[corrected_img, ~] = correct_illum(img,0.7);
 
-img = imcomplement(img);
+img = imcomplement(corrected_img);
 img = zero_m_unit_std(img);
 
 % %Print to the console the output

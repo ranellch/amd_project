@@ -1,6 +1,8 @@
-function [ thickness_map ] = map_thickness( vessels, angles )
-addpath('../Skeleton');
+function [ thickness_map ] = plot_vthickness( vessels, angles )
+addpath('../Skeleton')
 
+disp('Generating vessel thickness plot')
+e = cputime;
 vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 [sky,skx] = find(vskel);
 %get junctions to ignore
@@ -10,7 +12,7 @@ vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 angles = mod(angles,180);
 %get vessel thickness interpolated over entire image
 thickness_map = zeros(size(vessels));
-for i = 1:length(sky)
+for i = 1:4:length(sky)
     y = sky(i);
     x = skx(i);
     %check if within 10 pixels of junction, if so skip this point
@@ -56,13 +58,16 @@ for i = 1:length(sky)
         end 
     end
 end
-% figure, imshow(thickness_map)
+%  figure, imshow(thickness_map)
     %interpolate
-    thickness_map = padarray(thickness_map,[200 200], 'symmetric');
+    thickness_map = padarray(thickness_map,[150 150], 'symmetric');
     [y, x, T] = find(thickness_map);
-    [xq, yq] = meshgrid(1:size(thickness_map,1), 1:size(thickness_map,2));
-    thickness_map = griddata(x, y, T, xq, yq, 'cubic');
-    thickness_map = thickness_map(201:origy+200,201:origx+200);
+    y = y - 150; %adjust for padding
+    x = x - 150;
+    [xq, yq] = meshgrid(1:size(vessels,1), 1:size(vessels,2));
+    thickness_map = griddata(x, y, T, xq, yq, 'natural');
+    t = (cputime - e)/60.0;
+    disp(['Time to generate thickness plot (min): ', num2str(t)])
 
 end
 

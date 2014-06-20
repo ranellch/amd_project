@@ -37,11 +37,11 @@ pid = 'none';
 eye = 'none';
 time = -1;
 err_cnt = 0;
-for x=1:size(includes{1}, 1)
+for k=1:size(includes{1}, 1)
     try
-        pid = char(includes{1}{x});
-        eye = char(includes{2}{x});
-        time = num2str(includes{3}(x));
+        pid = char(includes{1}{k});
+        eye = char(includes{2}{k});
+        time = num2str(includes{3}(k));
       
         %Check to see that the path to the image is readable
         the_path = get_pathv2(pid, eye, time, 'original');
@@ -67,11 +67,11 @@ disp('-------Done Checking Files-------');
 
 
 %Time to start iterating over all the images in the 
-for x=1:size(includes{1}, 1)
+for k=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
-    pid = char(includes{1}{x});
-    eye = char(includes{2}{x});
-    time = num2str(includes{3}(x));
+    pid = char(includes{1}{k});
+    eye = char(includes{2}{k});
+    time = num2str(includes{3}(k));
     disp(['Running: ', pid, ' - ', time]);
     
     try
@@ -104,7 +104,7 @@ for x=1:size(includes{1}, 1)
         feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_r, 3));
         
         for y=1:size(feature_image, 1)
-            for x=1:size(feature_image, 2)
+            for x=1:size(feature_image,2)
                 temp = 1;
                 for z1=1:size(feature_image_g,3)
                     feature_image(y,x,temp) = feature_image_g(y,x,z1);
