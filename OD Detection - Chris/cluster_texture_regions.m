@@ -101,6 +101,17 @@ function [final_clusters] = cluster_texture_regions(img, varargin)
             end
         end
     end
+    
+    %Get rid of really small regions
+    only_big_clusters = zeros(size(final_clusters));
+    cluster_count = 1;
+    for i = 1:max(final_clusters(:))
+        if sum(sum(final_clusters==i)) > 50
+            only_big_clusters(final_clusters==i) = cluster_count;
+        end
+    end
+    
+    final_clusters = only_big_clusters;
         
 %     %Create the final clusters mask
 %     final_clusters_mask = zeros(size(final_clusters, 1), size(final_clusters, 2));
