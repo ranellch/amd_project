@@ -61,21 +61,27 @@ for i = 1:numclusters
     weighted_count = 0;
     border_angs = angles(circle_img&vessels);
     numcrossings = sum(sum(circle_img&vskel));
-    for j = 1:length(border_angs)
-        [y,x] = ind2sub(size(angles),j);
-        ang1 = border_angs(j);
-        ang2 = atan2d(yc-y,x-xc);
-        diff = min([abs(ang1 - ang2), 180 - abs(ang1 - ang2)]);
-        correlation = 1 - diff/180.0;
-        weighted_count = weighted_count + correlation;
+    if numcrossings == 0 
+        radial_normal_density = 0;
+        radial_normal_thickness = 0;
+    else
+        for j = 1:length(border_angs)
+            [y,x] = ind2sub(size(angles),j);
+            ang1 = border_angs(j);
+            ang2 = atan2d(yc-y,x-xc);
+            diff = min([abs(ang1 - ang2), 180 - abs(ang1 - ang2)]);
+            correlation = 1 - diff/180.0;
+            weighted_count = weighted_count + correlation;
+        end
+        radial_normal_density = weighted_count/sum(sum(circle_img));
+        radial_normal_thickness = weighted_count/numcrossings;
     end
-    radial_normal_density = weighted_count/sum(sum(circle_img));
-    radial_normal_thickness = weighted_count/numcrossings;
     feature_vector = [R,radial_normal_density,radial_normal_thickness];
     [post,class] = posterior(classifier,feature_vector);
     if class == 1
         index = i;
-        od_probability = post;
+        %get probability of being in class "1"
+        od_probability = post(2); 
         break
     elseif class == 0 && i == numclusters
         index = -1;

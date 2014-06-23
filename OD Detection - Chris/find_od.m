@@ -1,4 +1,4 @@
-function [final_od_image, img_vessel, correlation] = find_od(pid, eye, time, varargin)
+function [final_od_image, img_vessel, probability] = find_od(pid, eye, time, varargin)
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -141,7 +141,7 @@ end
 % end
 
 %Find optic disk region using another classifier
-[pre_snaked_img, correlation] = choose_od(final_clusters, img_vessel, img_angles, debug);
+[pre_snaked_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
 if ~any(pre_snaked_img(:))
     disp('Optic Disk Not Found!')
     return
