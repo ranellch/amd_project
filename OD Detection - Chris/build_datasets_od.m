@@ -1,16 +1,23 @@
-function build_dataset_od()
+function build_datasets_od()
 %Constants for file names
 od_file = 'od_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
 
-%Remove texture file if already exists
+%Check if training file already exists
 if(exist(od_file, 'file') == 2)
-    delete(od_file);
+    button = questdlg('Training dataset aready exists.  Overwrite?');
+    if strcmp(button,'Yes')
+        delete(od_file);
+    else
+        disp('Please move file to new directory for safekeeping')
+        return
+    end
 end
 file_obj = matfile(od_file,'Writable',true);
-file_obj.dataset = [];
+file_obj.pixel_features = [];
+file_obj.region_features = [];
 
 %Add the location of the get_path script
 addpath('..');
@@ -85,6 +92,9 @@ for k=1:size(includes{1}, 1)
             img = rgb2gray(img);
         end
         
+        %Crop footer if need be
+        img = crop_footer(img);
+        
         %Get the snaked image
         snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
         
@@ -119,9 +129,12 @@ for k=1:size(includes{1}, 1)
         
         %Save feature vectors and pixel classes for current image in .mat file generated above
         feature_vectors = matstack2array(feature_image);
-        [nrows,~] = size(file_obj, 'dataset');
-        file_obj.dataset(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+        [nrows,~] = size(file_obj, 'pixel_features');
+        file_obj.pixel_features(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
+        file_obj.pixel_classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+        
+        %Get od texture region feature vectors of the input image
+        
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));

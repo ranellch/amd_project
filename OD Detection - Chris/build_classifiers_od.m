@@ -1,16 +1,26 @@
-function build_dataset_od()
+function build_classifiers_od()
+
+std_img_size = 768;
+
 %Constants for file names
 od_file = 'od_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
 
-%Remove texture file if already exists
+%Check if training file already exists
 if(exist(od_file, 'file') == 2)
-    delete(od_file);
+    button = questdlg('Training dataset aready exists.  Overwrite?');
+    if strcmp(button,'Yes')
+        delete(od_file);
+    else
+        disp('Please move file to new directory for safekeeping')
+        return
+    end
 end
 file_obj = matfile(od_file,'Writable',true);
-file_obj.dataset = [];
+file_obj.pixel_features = [];
+file_obj.region_features = [];
 
 %Add the location of the get_path script
 addpath('..');
@@ -66,13 +76,14 @@ end
 disp('-------Done Checking Files-------');
 
 
-%Time to start iterating over all the images in the 
+%Time to start iterating over all the images in the file
+disp('Building pixel classifier')
 for k=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
     pid = char(includes{1}{k});
     eye = char(includes{2}{k});
     time = num2str(includes{3}(k));
-    disp(['Running: ', pid, ' - ', time]);
+    disp(['Running: ', pid, ' - ', time, ' pixels']);
     
     try
         %Get the path and load the image
@@ -85,12 +96,15 @@ for k=1:size(includes{1}, 1)
             img = rgb2gray(img);
         end
         
+        %Crop footer if need be
+        img = crop_footer(img);
+        
         %Get the snaked image
         snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
         
         %Resize images to a standard sizing
-        img = imresize(img, [768 768]);
-        snaked_image = imresize(snaked_image, [768 768]);
+        img = imresize(img, [std_img_size std_img_size]);
+        snaked_image = imresize(snaked_image, [std_img_size std_img_size]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
@@ -119,9 +133,45 @@ for k=1:size(includes{1}, 1)
         
         %Save feature vectors and pixel classes for current image in .mat file generated above
         feature_vectors = matstack2array(feature_image);
-        [nrows,~] = size(file_obj, 'dataset');
-        file_obj.dataset(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+        [nrows,~] = size(file_obj, 'pixel_features');
+        file_obj.pixel_features(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
+        file_obj.pixel_classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+        
+        %Train classifier 1
+        train_od('pixel');
+               
+    catch e
+        disp(['Could not deal with: ', pid, '(', time, ')']);
+        disp(getReport(e));
+    end
+end
+
+%Build texture region classifier
+disp('Building region classifier')
+for k=1:size(includes{1}, 1)
+    %Get the patient_id and time of the image to run
+    pid = char(includes{1}{k});
+    eye = char(includes{2}{k});
+    time = num2str(includes{3}(k));
+    disp(['Running: ', pid, ' - ', time, ' texture regions']);
+    
+    try
+        %Run texture classification on pixels/feature vectors corresponding
+        %to this image
+        od_texture_image = zeros(std_img_size, std_img_size);
+        feature_vectors = file_obj.pixel_features((k-1)*std_img_size^2+1:k*std_img_size^2,:);
+        od_image(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
+
+        [feature_vectors,classes] = get_fv_od_regions(od_texture_img,pid,eye,time);
+
+        %Save region feature vectors
+        [nrows,~] = size(file_obj, 'region_features');
+        file_obj.region_features(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
+        file_obj.region_classes(nrows+1:nrows+numel(img),1) = classes;
+        
+        %Train classifier 2
+        train_od('region')        
+                       
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));

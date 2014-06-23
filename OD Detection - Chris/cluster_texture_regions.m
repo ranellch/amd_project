@@ -1,4 +1,4 @@
-function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, varargin)
+function [final_clusters] = cluster_texture_regions(img, varargin)
     debug = -1;
     if length(varargin) == 1
         debug = varargin{1};
@@ -102,52 +102,51 @@ function [final_clusters, final_clusters_mask] = cluster_texture_regions(img, va
         end
     end
         
-    %Create the final clusters mask
-    final_clusters_mask = zeros(size(final_clusters, 1), size(final_clusters, 2));
-        
-    %Estimate an ellipses function and then draw it
-    for i=1:numel(cluster_count)
+%     %Create the final clusters mask
+%     final_clusters_mask = zeros(size(final_clusters, 1), size(final_clusters, 2));
+%         
+    for i=1:max(final_clusters(:))
         %Ignore any cluster if it is really tiny
-        if(cluster_count(i) < 20)
-            continue;
-        end
-
-        %Get the x,y coordinates for a given cluster
-        xs = output_list(out(:) == i, 1);
-        ys = output_list(out(:) == i, 2);
-        
-        %Calculate the mean of each value
-        Mu = mean(horzcat(xs, ys));
-        %Calculate the distance of each datapoint from the mean in euclidean space
-        X0 = bsxfun(@minus, horzcat(xs, ys), Mu);
-        
-        %Get an ellipse that covers 2 standard deviations of all datapoints
-        STD = 2;                     %# 2 standard deviations
-        conf = 2*normcdf(STD)-1;     %# covers around 95% of population
-        scale = chi2inv(conf,2);
-        
-        Cov = cov(X0) * scale;
-        [V, D] = eig(Cov);
-        
-        [D, order] = sort(diag(D), 'descend');
-        D = diag(D);
-        V = V(:, order);
-        
-        t = linspace(0,2*pi,100);
-        e = [cos(t) ; sin(t)];        %# unit circle
-        VV = V*sqrt(D);               %# scale eigenvectors
-        e = bsxfun(@plus, VV*e, Mu'); %#' project circle back to orig space
-        
-        %Create a ROI mask from datapoints that form an ellipse estimation
-        ellipse_mask = roipoly(final_clusters, e(1,:), e(2,:));
-        
-        %Trasnpose this mask onto another image
-        for y=1:size(ellipse_mask, 1)
-            for x=1:size(ellipse_mask, 2)
-                if(ellipse_mask(y,x) == 1)
-                    final_clusters_mask(y,x) = i;
-                end
-            end
+        if sum(sum(final_clusters==i)) < 20
+            final_clusters(final_clusters==i) = 0;
         end
     end
+% 
+%         %Get the x,y coordinates for a given cluster
+%         xs = output_list(out(:) == i, 1);
+%         ys = output_list(out(:) == i, 2);
+%         
+%         %Calculate the mean of each value
+%         Mu = mean(horzcat(xs, ys));
+%         %Calculate the distance of each datapoint from the mean in euclidean space
+%         X0 = bsxfun(@minus, horzcat(xs, ys), Mu);
+%         
+%         %Get an ellipse that covers 2 standard deviations of all datapoints
+%         STD = 2;                     %# 2 standard deviations
+%         conf = 2*normcdf(STD)-1;     %# covers around 95% of population
+%         scale = chi2inv(conf,2);
+%         
+%         Cov = cov(X0) * scale;
+%         [V, D] = eig(Cov);
+%         
+%         [D, order] = sort(diag(D), 'descend');
+%         D = diag(D);
+%         V = V(:, order);
+%         
+%         t = linspace(0,2*pi,100);
+%         e = [cos(t) ; sin(t)];        %# unit circle
+%         VV = V*sqrt(D);               %# scale eigenvectors
+%         e = bsxfun(@plus, VV*e, Mu'); %#' project circle back to orig space
+%         
+%         %Create a ROI mask from datapoints that form an ellipse estimation
+%         ellipse_mask = roipoly(final_clusters, e(1,:), e(2,:));
+%         
+%         %Trasnpose this mask onto another image
+%         for y=1:size(ellipse_mask, 1)
+%             for x=1:size(ellipse_mask, 2)
+%                 if(ellipse_mask(y,x) == 1)
+%                     final_clusters_mask(y,x) = i;
+%                 end
+%             end
+%         end
 end

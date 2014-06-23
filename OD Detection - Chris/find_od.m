@@ -22,9 +22,9 @@ addpath('../Skeleton');
 addpath('../Vessel Detection - Chris');
         
 %Load the prediction structs
-model = load('od_classify_svmstruct.mat');
+model = load('od_classifiers.mat', 'scaling_factors','pixel_classifier');
 scaling_factors = model.scaling_factors;
-classifier = model.od_classify_svmstruct;
+classifier = model.pixel_classifier;
 
 %Print to the console the output
 if(debug == 1 || debug == 0)
@@ -91,7 +91,7 @@ od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix
 clear instance_matrix
 
 if(debug == 2)
-    figure(2), imshow(od_image);
+    figure(1), imshow(od_image);
 end
 
 %Remove all classified datapoints that were already classified as a vessel
@@ -115,37 +115,39 @@ end
 
 %Run the clustering algorithm if there are regions to cluster
 if(positive_count > 10)
-    [final_clusters, final_clusters_mask] = cluster_texture_regions(od_image, debug);
+    final_clusters = cluster_texture_regions(od_image, debug);
 else
     final_od_image = od_image;
     return;
 end
 
 if(debug == 2)
-    figure(3), imagesc(final_clusters);
+    figure(2), imagesc(final_clusters);
 end
 
-%Translate the cluster mask to the od_image
-for y=1:size(final_clusters_mask,1)
-    for x=1:size(final_clusters_mask,2)
-        if (final_clusters_mask(y,x) > 0)
-            od_image(y,x) = 1;
-        else
-            od_image(y,x) = 0;
-        end
-    end
-end
+% %Translate the cluster mask to the od_image
+% for y=1:size(final_clusters_mask,1)
+%     for x=1:size(final_clusters_mask,2)
+%         if (final_clusters_mask(y,x) > 0)
+%             od_image(y,x) = 1;
+%         else
+%             od_image(y,x) = 0;
+%         end
+%     end
+% end
+% 
+% if(debug == 2)
+%     figure(4), imshowpair(od_image, img_vessel);
+% end
 
-if(debug == 2)
-    figure(4), imshowpair(od_image, img_vessel);
-end
-
-%Refine the possibilites of the optic disc using a vessel angle filter
-[pre_snaked_img, correlation] = choose_od(od_image, img_vessel, img_angles, debug);
-if correlation < .15
-    final_od_image = zeros([origy origx]);
+%Find optic disk region using another classifier
+[pre_snaked_img, correlation] = choose_od(final_clusters, img_vessel, img_angles, debug);
+if ~any(pre_snaked_img(:))
     disp('Optic Disk Not Found!')
     return
+end
+if (debug == 2)
+    figure(4), imshowpair(pre_snaked_img,img_vessel)
 end
 
 %Use snaking algorithm to get smooth outline of the optic disc
@@ -171,7 +173,7 @@ Points = get_box_coordinates(pre_snaked_img);
 
 if(debug == 2)
     %Show the image result
-    figure(7), imshowpair(snaked_optic_disc, corrected_img);
+    figure(5), imshowpair(snaked_optic_disc, corrected_img);
 end
 
 %Resize the image to its original size

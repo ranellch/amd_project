@@ -9,11 +9,8 @@ function analyze_od(rebuild_classifier)
     results_file = './results/analyze_results.txt';
 
     if(rebuild_classifier == 1)
-        %Build training set
-        build_dataset_od();
-    
-        %Train the classifier
-        train_od();
+        %Build machine learning models
+        build_classifiers_od(); 
     end
 
     %Get the images to include from this list
@@ -69,6 +66,7 @@ function analyze_od(rebuild_classifier)
         if(size(original_img, 3) > 1)
             original_img = rgb2gray(original_img);
         end
+        original_img = crop_footer(original_img);
                 
         %Get the image run by the algorithm
         [calced_img, vessel_img, r] = find_od(pid, eye, time, 1);

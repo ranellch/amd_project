@@ -1,4 +1,4 @@
-function train_od()
+function train_od(classifier)
     if ispc
         addpath(genpath('..\liblinear-1.94'))
     else
@@ -7,38 +7,56 @@ function train_od()
 
     t = cputime;
 
-    filename = 'od_classify.mat';
+    filename = 'od_training_data.mat';
     
     %Run through the file and get the variables for texture classification
     disp('======================Texture Classifier======================');
     od_file = matfile(filename);
-    od_variables = od_file.dataset;
-    od_classes = od_file.classes;
 
     try
-        %Downsample to get less bias towards the negative samples
-        [od_downsample_variables, od_downsample_classes] = downsample_od(od_variables, double(od_classes));
         
-        %Get the minumum for each columns
-        mins = min(od_downsample_variables);
-        maxs = max(od_downsample_variables);
-        scaling_factors = [mins; maxs];
-        
-        %scale each column
-        for i = 1:size(od_downsample_variables,2)
-            od_downsample_variables(:,i) = (od_downsample_variables(:,i)-mins(i))/(maxs(i)-mins(i));
-        end
+        switch classifier
+            
+            case 'pixel'
                 
-        disp('Building SVM classifier...Please Wait')
+                 pixel_variables = od_file.pixel_features;
+                 pixel_classes = od_file.pixel_classes;
+                 
+                %Downsample to get less bias towards the negative samples
+                [od_downsample_variables, od_downsample_classes] = downsample_od(pixel_variables, double(pixel_classes));
+
+                %Get the minumum for each columns
+                mins = min(od_downsample_variables);
+                maxs = max(od_downsample_variables);
+                scaling_factors = [mins; maxs];
+
+                %scale each column
+                for i = 1:size(od_downsample_variables,2)
+                    od_downsample_variables(:,i) = (od_downsample_variables(:,i)-mins(i))/(maxs(i)-mins(i));
+                end
+
+                disp('Building SVM classifier...Please Wait')
+
+                pixel_classifier =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2 -B 1');
+                
+                save('od_classifiers.mat','pixel_classifier', 'scaling_factors'); 
+                
+            case 'region'
+                
+                region_variables = od_file.region_features;
+                region_classes = od_file.region_classes;
         
-        od_classify_svmstruct =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2 -B 1');
-    
-        save('od_classify_svmstruct.mat', 'od_classify_svmstruct', 'scaling_factors');
+                disp('Building Naive Bayes classifier...Please Wait')
+
+                region_classifier = NaiveBayes.fit(region_variables, region_classes);
+
+                save('od_classifiers.mat', 'region_classifier');
+        end
     catch e
-        disp('Unable to train svm classifier on texture training set!');
+        disp('Unable to train classifier on training set!');
         disp(getReport(e));
     end
     
     e = cputime - t;
-    disp(['Optic Disc Train Classifier Time (sec): ', num2str(e)]);
+    disp(['Train Classifier Time (sec): ', num2str(e)]);
 end
