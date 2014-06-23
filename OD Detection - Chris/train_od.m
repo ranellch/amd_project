@@ -51,7 +51,7 @@ function train_od(classifier)
 
                 region_classifier = NaiveBayes.fit(region_variables, region_classes);
 
-                save('od_classifiers.mat', 'region_classifier');
+                save('od_classifiers.mat', 'region_classifier','-append');
         end
     catch e
         disp('Unable to train classifier on training set!');

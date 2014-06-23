@@ -186,7 +186,7 @@ for k=1:size(includes{1}, 1)
         %Save region feature vectors
         [nrows,~] = size(file_obj, 'region_features');
         file_obj.region_features(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.region_classes(nrows+1:nrows+size(feature_vectors,1)) = classes;      
+        file_obj.region_classes(nrows+1:nrows+size(feature_vectors,1),1) = classes;      
                        
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
