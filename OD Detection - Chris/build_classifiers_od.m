@@ -77,13 +77,13 @@ disp('-------Done Checking Files-------');
 
 
 %Time to start iterating over all the images in the file
-disp('Building pixel classifier')
+disp('Building pixel dataset')
 for k=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
     pid = char(includes{1}{k});
     eye = char(includes{2}{k});
     time = num2str(includes{3}(k));
-    disp(['Running: ', pid, ' - ', time, ' pixels']);
+    disp(['Running: ', pid, ' - ', time]);
     
     try
         %Get the path and load the image
@@ -136,9 +136,6 @@ for k=1:size(includes{1}, 1)
         [nrows,~] = size(file_obj, 'pixel_features');
         file_obj.pixel_features(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
         file_obj.pixel_classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
-        
-        %Train classifier 1
-        train_od('pixel');
                
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
@@ -146,31 +143,50 @@ for k=1:size(includes{1}, 1)
     end
 end
 
+%--------------Train classifier 1-------------
+train_od('pixel');
+%---------------------------------------------
+
+e = cputime - t;
+disp(['Total Optic Disc Build Pixel Classifier Time (min): ', num2str(e/60.0)]);
+
+t = cputime;
+
 %Build texture region classifier
-disp('Building region classifier')
+disp('Building region dataset')
+model = load('od_classifiers.mat', 'scaling_factors','pixel_classifier');
+scaling_factors = model.scaling_factors;
+classifier = model.pixel_classifier;
+
 for k=1:size(includes{1}, 1)
     %Get the patient_id and time of the image to run
     pid = char(includes{1}{k});
     eye = char(includes{2}{k});
     time = num2str(includes{3}(k));
-    disp(['Running: ', pid, ' - ', time, ' texture regions']);
+    disp(['Running: ', pid, ' - ', time]);
     
     try
         %Run texture classification on pixels/feature vectors corresponding
         %to this image
-        od_texture_image = zeros(std_img_size, std_img_size);
+        od_texture_img = zeros(std_img_size, std_img_size);
         feature_vectors = file_obj.pixel_features((k-1)*std_img_size^2+1:k*std_img_size^2,:);
-        od_image(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
+        
+        %Scale the vectors for input into the pixel classifier
+        for i = 1:size(feature_vectors,2)
+            fmin = scaling_factors(1,i);
+            fmax = scaling_factors(2,i);
+            feature_vectors(:,i) = (feature_vectors(:,i)-fmin)/(fmax-fmin);
+        end
+        
+        %Get texture segmented image
+        od_texture_img(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
 
         [feature_vectors,classes] = get_fv_od_regions(od_texture_img,pid,eye,time);
 
         %Save region feature vectors
         [nrows,~] = size(file_obj, 'region_features');
         file_obj.region_features(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.region_classes(nrows+1:nrows+numel(img),1) = classes;
-        
-        %Train classifier 2
-        train_od('region')        
+        file_obj.region_classes(nrows+1:nrows+size(feature_vectors,1)) = classes;      
                        
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
@@ -178,6 +194,11 @@ for k=1:size(includes{1}, 1)
     end
 end
 
+%--------------Train classifier 2-------------
+train_od('region');
+%---------------------------------------------
+
 e = cputime - t;
-disp(['Optic Disc Build Classifier Time (min): ', num2str(e/60.0)]);
+disp(['Total Optic Disc Build Region Classifier Time (min): ', num2str(e/60.0)]);
+
 end

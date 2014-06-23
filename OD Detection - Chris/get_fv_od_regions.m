@@ -3,11 +3,14 @@ function [ feature_vectors, classes ] = get_fv_od_regions( od_texture_img, pid, 
 %input to classify regions and build feature vectors based on radial vessel
 %thickness and density features found in choose_od
 
+addpath('../Circle fit')
+
+disp('---Running Vessel Detection---')
 [vessels, angles, ~] = find_vessels(pid, eye, time);
 
 %Remove all classified datapoints that were already classified as a vessel
 positive_count = 0;
-img_vessels_negatve = bwmorph(img_vessel, 'thicken', 5);
+img_vessels_negatve = bwmorph(vessels, 'thicken', 5);
 for y=1:size(od_texture_img,1)
     for x=1:size(od_texture_img,2)
         if(img_vessels_negatve(y,x) == 1)
@@ -21,7 +24,7 @@ end
 
 %Run the clustering algorithm if there are regions to cluster
 if(positive_count > 10)
-    cluster_img = cluster_texture_regions(od_image, debug);
+    cluster_img = cluster_texture_regions(od_texture_img);
 else
     cluster_img = zeros(size(od_texture_img));
 end
@@ -33,14 +36,16 @@ classes = [];
 angles = mod(angles,180);
 
 vskel = bwmorph(vessels,'skel',Inf);
+
+%Get original image for displaying ROIs
+img = imread(get_pathv2(pid,eye,time,'original'));
+img = crop_footer(img);
+img = imresize(img,[size(cluster_img,1),size(cluster_img,2)]);
+
 for i = 1:numclusters
     roi = cluster_img==i;
     roi = imfill(roi,'holes');
-    img = imread(get_pathv2(pi,eye,time,'original');
-    img = rgb2gray(img);
-    img = crop_footer(img);
-    img = imresize(img,[size(roi,1),size(roi,2)]);
-    h=figure; imshowpair(img,roi)
+    h=figure; imshowpair(roi,img)
     button = questdlg('Select Class','User Input', 'Positive','Negative', 'Skip','Positive');
     close(h)
     switch button
@@ -83,12 +88,6 @@ for i = 1:numclusters
     feature_vector = [R,radial_normal_density,radial_normal_thickness];
     feature_vectors = [feature_vectors; feature_vector];
 end
-
-t = (cputime-e)/60.0;
-if(debug == 1 || debug == 2)
-    disp(['Time to analyze classified regions (min): ' num2str(t)])
-end
-
 
 end
 

@@ -105,12 +105,6 @@ function [final_clusters] = cluster_texture_regions(img, varargin)
 %     %Create the final clusters mask
 %     final_clusters_mask = zeros(size(final_clusters, 1), size(final_clusters, 2));
 %         
-    for i=1:max(final_clusters(:))
-        %Ignore any cluster if it is really tiny
-        if sum(sum(final_clusters==i)) < 20
-            final_clusters(final_clusters==i) = 0;
-        end
-    end
 % 
 %         %Get the x,y coordinates for a given cluster
 %         xs = output_list(out(:) == i, 1);

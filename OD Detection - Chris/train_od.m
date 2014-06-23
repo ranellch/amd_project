@@ -8,9 +8,7 @@ function train_od(classifier)
     t = cputime;
 
     filename = 'od_training_data.mat';
-    
-    %Run through the file and get the variables for texture classification
-    disp('======================Texture Classifier======================');
+
     od_file = matfile(filename);
 
     try
@@ -18,6 +16,7 @@ function train_od(classifier)
         switch classifier
             
             case 'pixel'
+                disp('======================Creating Pixelwise Texture Classifier======================');
                 
                  pixel_variables = od_file.pixel_features;
                  pixel_classes = od_file.pixel_classes;
@@ -42,6 +41,8 @@ function train_od(classifier)
                 save('od_classifiers.mat','pixel_classifier', 'scaling_factors'); 
                 
             case 'region'
+                
+                disp('======================Creating OD Region Classifier=============================');
                 
                 region_variables = od_file.region_features;
                 region_classes = od_file.region_classes;
