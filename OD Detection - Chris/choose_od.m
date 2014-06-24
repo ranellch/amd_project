@@ -92,10 +92,10 @@ for i = 1:numclusters
     feature_vector = [R,radial_normal_density,radial_normal_thickness, ppv, fnr];
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
-    od_probability = post(2)
+    od_probability = post(2);
     if class == 1 && od_probability >= 0.9
         index = i;
-       
+        break
     elseif (class == 0 || od_probability < 0.9) && i == numclusters
         index = -1;
         od_probability = -1;
