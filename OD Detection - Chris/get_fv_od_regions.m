@@ -45,47 +45,51 @@ img = imresize(img,[size(cluster_img,1),size(cluster_img,2)]);
 for i = 1:numclusters
     roi = cluster_img==i;
     roi = imfill(roi,'holes');
-    h=figure; imshowpair(roi,img)
-    button = questdlg('Select Class','User Input', 'Positive','Negative', 'Skip','Positive');
-    close(h)
-    switch button
-        case 'Positive'
-            class = 1;
-        case 'Negative'
-            class = 0;
-        case 'Skip'
-            continue
-    end
-    classes = [classes; class];
     border_img  = bwperim(roi);
     %get rid of pixels on image border
     border_img(1,:) = 0;
     border_img(:,1) = 0;
     border_img(size(border_img,1),:) = 0;
     border_img(:,size(border_img,2)) = 0;
-    %estimate circle from elipse border
+    %estimate circle from region border
     [y,x] = find(border_img);
     Par = CircleFitByTaubin([x,y]);
     xc = Par(1);
     yc = Par(2);
     R = Par(3);
     circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
+    %calculate portion of circle filled by roi
+    ppv = sum(sum(circle_img&roi))/sum(sum(circle_img));
+    %calculate portion of roi outside of circle
+    fnr = sum(sum(~circle_img&roi))/sum(sum(circle_img));
+    %get circle perimeter
+    circle_img = bwperim(circle_img);
+    %get rid of pixels on image border
+    circle_img(1,:) = 0;
+    circle_img(:,1) = 0;
+    circle_img(size(circle_img,1),:) = 0;
+    circle_img(:,size(circle_img,2)) = 0;
     %for all vessel pixels along circle border calculate estimated angles based on circle geometry
     %weight pixels by angle correlation (1-abs[(actual angle)-(estimated_angle)]/180) before summing to obtain density
     weighted_count = 0;
     border_angs = angles(circle_img&vessels);
     numcrossings = sum(sum(circle_img&vskel));
-    for j = 1:length(border_angs)
-        [y,x] = ind2sub(size(angles),j);
-        ang1 = border_angs(j);
-        ang2 = atan2d(yc-y,x-xc);
-        diff = min([abs(ang1 - ang2), 180 - abs(ang1 - ang2)]);
-        correlation = 1 - diff/180.0;
-        weighted_count = weighted_count + correlation;
+    if numcrossings == 0 
+        radial_normal_density = 0;
+        radial_normal_thickness = 0;
+    else
+        for j = 1:length(border_angs)
+            [y,x] = ind2sub(size(angles),j);
+            ang1 = border_angs(j);
+            ang2 = atan2d(yc-y,x-xc);
+            diff = min([abs(ang1 - ang2), 180 - abs(ang1 - ang2)]);
+            correlation = 1 - diff/180.0;
+            weighted_count = weighted_count + correlation;
+        end
+        radial_normal_density = weighted_count/sum(sum(circle_img));
+        radial_normal_thickness = weighted_count/numcrossings;
     end
-    radial_normal_density = weighted_count/sum(sum(circle_img));
-    radial_normal_thickness = weighted_count/numcrossings;
-    feature_vector = [R,radial_normal_density,radial_normal_thickness];
+    feature_vector = [R,radial_normal_density,radial_normal_thickness, ppv, fnr];
     feature_vectors = [feature_vectors; feature_vector];
 end
 
@@ -95,12 +99,14 @@ function circle_img = plot_circle(xc,yc,R, max_x, max_y)
 circle_img = zeros(max_y,max_x);
 for y  = 1:max_y
     for x = 1:max_x
-        if (x-xc)^2+(y-yc)^2 < (R+.5)^2 && (x-xc)^2+(y-yc)^2 > (R-.5)^2
+        if (x-xc)^2+(y-yc)^2 < R^2
             circle_img(y,x) = 1; 
         end
     end
 end
+circle_img = bwperim(circle_img);
 end
+
 
 
 

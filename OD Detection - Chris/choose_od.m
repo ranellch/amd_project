@@ -34,6 +34,7 @@ if debug == 2
 end
 
 vskel = bwmorph(vessels,'skel',Inf);
+index = -1;
 for i = 1:numclusters
     roi = cluster_img==i;
     roi = imfill(roi,'holes');
@@ -43,13 +44,24 @@ for i = 1:numclusters
     border_img(:,1) = 0;
     border_img(size(border_img,1),:) = 0;
     border_img(:,size(border_img,2)) = 0;
-    %estimate circle from elipse border
+    %estimate circle from region border
     [y,x] = find(border_img);
     Par = CircleFitByTaubin([x,y]);
     xc = Par(1);
     yc = Par(2);
     R = Par(3);
     circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
+    %calculate portion of circle filled by roi
+    ppv = sum(sum(circle_img&roi))/sum(sum(circle_img));
+    %calculate portion of roi outside of circle
+    fnr = sum(sum(~circle_img&roi))/sum(sum(circle_img));
+    %get circle perimeter
+    circle_img = bwperim(circle_img);
+    %get rid of pixels on image border
+    circle_img(1,:) = 0;
+    circle_img(:,1) = 0;
+    circle_img(size(circle_img,1),:) = 0;
+    circle_img(:,size(circle_img,2)) = 0;
     if debug == 2
         [cy,cx] = find(circle_img);
         [by,bx] = find(border_img);
@@ -76,14 +88,14 @@ for i = 1:numclusters
         radial_normal_density = weighted_count/sum(sum(circle_img));
         radial_normal_thickness = weighted_count/numcrossings;
     end
-    feature_vector = [R,radial_normal_density,radial_normal_thickness];
+    feature_vector = [R,radial_normal_density,radial_normal_thickness, ppv, fnr];
     [post,class] = posterior(classifier,feature_vector);
-    if class == 1
+    %get probability of being in class "1"
+    od_probability = post(2)
+    if class == 1 && od_probability >= 0.9
         index = i;
-        %get probability of being in class "1"
-        od_probability = post(2); 
-        break
-    elseif class == 0 && i == numclusters
+       
+    elseif (class == 0 || od_probability < 0.9) && i == numclusters
         index = -1;
         od_probability = -1;
     end
@@ -113,7 +125,7 @@ function circle_img = plot_circle(xc,yc,R, max_x, max_y)
 circle_img = zeros(max_y,max_x);
 for y  = 1:max_y
     for x = 1:max_x
-        if (x-xc)^2+(y-yc)^2 < (R+.5)^2 && (x-xc)^2+(y-yc)^2 > (R-.5)^2
+        if (x-xc)^2+(y-yc)^2 < R^2
             circle_img(y,x) = 1; 
         end
     end
