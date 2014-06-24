@@ -50,12 +50,13 @@ for i = 1:numclusters
     xc = Par(1);
     yc = Par(2);
     R = Par(3);
-    circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
+    circle_img = plot_circle(xc,yc,R, size(cluster_img,2), size(cluster_img,1));
     %calculate portion of circle filled by roi
     ppv = sum(sum(circle_img&roi))/sum(sum(circle_img));
     %calculate portion of roi outside of circle
     fnr = sum(sum(~circle_img&roi))/sum(sum(circle_img));
-    %get circle perimeter
+    %get circle perimeter for dilated circle
+	circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
     circle_img = bwperim(circle_img);
     %get rid of pixels on image border
     circle_img(1,:) = 0;
@@ -121,15 +122,5 @@ candidate_region = logical(candidate_region);
 
 end
 
-function circle_img = plot_circle(xc,yc,R, max_x, max_y)
-circle_img = zeros(max_y,max_x);
-for y  = 1:max_y
-    for x = 1:max_x
-        if (x-xc)^2+(y-yc)^2 < R^2
-            circle_img(y,x) = 1; 
-        end
-    end
-end
-end
 
 

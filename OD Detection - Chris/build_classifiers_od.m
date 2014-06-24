@@ -182,6 +182,9 @@ for k=1:size(includes{1}, 1)
         od_texture_img(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
 
         [feature_vectors,classes] = get_fv_od_regions(od_texture_img,pid,eye,time);
+        if isempty(classes)
+            continue
+        end
 
         %Save region feature vectors
         [nrows,~] = size(file_obj, 'region_features');
