@@ -112,24 +112,28 @@ function analyze_od(rebuild_classifier)
             disp(['total_count (', num2str(total_count),') and total_negative + total_positive_count (', num2str(total_negative_count + total_positive_count),') Do not match']);
             continue;
         end
-       
+        
+       %Write the results from this badboy
         output_results(k,1) = true_positive/total_positive_count; %sensitivity
-        if output_results(k,1) == 0
-            od_notfound = od_notfound + 1;
-        end
         output_results(k,2) = true_negative/total_negative_count; %specificity
         output_results(k,3) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,4) = true_positive/(true_positive+false_positive); %precision
         output_results(k,5) = probability; % best angle matching correlation 
-  
-        %Write the results from this badboy
-
-         numline = num2str(output_results(k,1));
-        for l=2:size(output_results,2)
-            numline = [numline, ', ', num2str(output_results(k,l));];
+       
+        if output_results(k,1) == 0 
+            od_notfound = od_notfound + 1;
+            line = 'ERROR: OD not found';
+        elseif isnan(output_results(k,1)) && isnan(output_results(k,4))
+            line = 'OD not present, and correctly identified as not present';
+        elseif isnan(output_results(k,1)) && ~isnan(output_results(k,4))
+            line = 'ERROR: OD not present, but incorrectly identified';
+        else
+             numline = num2str(output_results(k,1));
+            for l=2:size(output_results,2)
+                numline = [numline, ', ', num2str(output_results(k,l));];
+            end
+            line = [pid,' ', eye, ' (', time, '), ', numline];
         end
-        
-        line = [pid,' ', eye, ' (', time, '), ', numline];
         disp(line);
         fprintf(fout, '%s\n', line);
         disp('--------------------------------------');
