@@ -143,7 +143,7 @@ end
 %Find optic disk region using another classifier
 [pre_snaked_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
 if ~any(pre_snaked_img(:))
-    final_od_image = pre_snaked_img;
+    final_od_image = imresize(pre_snaked_img,[origy,origx]);
     disp('Optic Disk Not Found!')
     return
 end

@@ -122,11 +122,11 @@ function analyze_od(rebuild_classifier)
        
         if output_results(k,1) == 0 
             od_notfound = od_notfound + 1;
-            line = 'ERROR: OD not found';
+            line = [pid,' ', eye, ' (', time, '), ERROR: OD not found, Probability: ', num2str(output_results(k,5))];
         elseif isnan(output_results(k,1)) && isnan(output_results(k,4))
-            line = 'OD not present, and correctly identified as not present';
+            line = [pid,' ', eye, ' (', time, '), OD not present, and correctly identified as not present'];
         elseif isnan(output_results(k,1)) && ~isnan(output_results(k,4))
-            line = 'ERROR: OD not present, but incorrectly identified';
+            line = [pid,' ', eye, ' (', time, '), ERROR: OD not present, but incorrectly identified, Probability: ',num2str(output_results(k,5))];
         else
              numline = num2str(output_results(k,1));
             for l=2:size(output_results,2)
