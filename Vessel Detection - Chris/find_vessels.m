@@ -123,6 +123,12 @@ for i = 1:length(stats)
     end
 end
 
+%clean up vessel image borders
+binary_img(1:5,:) = 0;
+binary_img(:,1:5) = 0;
+binary_img(size(binary_img,1)-4:end,:) = 0;
+binary_img(:,size(binary_img,2)-4:end) = 0;
+
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;
 % for y=1:size(binary_img,1)

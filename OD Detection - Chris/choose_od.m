@@ -24,7 +24,6 @@ end
 e = cputime;
 %Iterate over all clusters and calculate radial features
 numclusters = max(cluster_img(:));
-od_strength = zeros(numclusters,1); 
 angles = mod(angles,180);
 if debug == 2
     feature_img = cluster_img;
@@ -101,10 +100,10 @@ for i = 1:numclusters
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
-    if class == 1 
+    if class == 1 && od_probability >= 0.9
         index = i;
          break
-    elseif class == 0  && i == numclusters
+    elseif i == numclusters 
         index = -1;
         od_probability = -1;
     end

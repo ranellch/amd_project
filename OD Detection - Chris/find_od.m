@@ -164,13 +164,13 @@ Options=struct;
 % end
 Options.Iterations=100;
 Options.Wedge=20;
-Options.Wline = 0.4;
+Options.Wline = -.4;
 Options.Wterm = 20;
 Options.Alpha = 5;
 Options.Beta = 2;
 Options.Delta = 2;
 Points = get_box_coordinates(pre_snaked_img);
-[~,snaked_optic_disc] = Snake2D(mat2gray(corrected_img), Points, Options); 
+[~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
 
 if(debug == 2)
     %Show the image result
