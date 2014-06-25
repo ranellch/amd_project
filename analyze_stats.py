@@ -1,4 +1,4 @@
 import sys
 
-print(sys.argv)
-print(sys.argv[1])
+filename = sys.argv[1]
+f = open("test.txt", "r")
