@@ -24,6 +24,8 @@ function register_set(pid, eye)
         first_image_mask = find_roi(pid,eye,num2str(times(1,1)));
         first_image_roi = apply_roi_mask(first_image, first_image_mask);
         
+        registered_images = uint8(zeros(2, size(times,2), size(first_image_roi, 1), size(first_image_roi,2)));
+        
         for i=2:size(times,2)
             %Get the image to register to the first image
             time = num2str(times(1, i));
