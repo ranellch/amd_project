@@ -33,11 +33,11 @@ if debug == 2
     hold on
 end
 
-vskel = bwmorph(vessels,'skel',Inf);
 index = -1;
 for i = 1:numclusters
     roi = cluster_img==i;
-    roi = imfill(roi,'holes');
+    se = strel('disk',10);
+    roi = imclose(roi,se);
     border_img  = bwperim(roi);
     %get rid of pixels on image border
     border_img(1,:) = 0;
@@ -63,6 +63,13 @@ for i = 1:numclusters
     circle_border(:,1) = 0;
     circle_border(size(circle_border,1),:) = 0;
     circle_border(:,size(circle_border,2)) = 0;
+    %show circles if specified
+    if debug == 2
+        [cy,cx] = find(circle_border);
+        plot(cx,cy,'r.')
+        [by,bx] = find(border_img);
+        plot(bx,by,'w.')
+    end 
     %for all vessel pixels along circle border calculate estimated angles based on circle geometry
     %weight pixels by angle correlation (1-abs[(actual angle)-(estimated_angle)]/90) before summing to obtain density
     weighted_count = 0;
@@ -94,10 +101,10 @@ for i = 1:numclusters
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
-    if class == 1 && od_probability >= 0.9
+    if class == 1 
         index = i;
-        break;
-    elseif (class == 0 || od_probability < .9) && i == numclusters
+         break
+    elseif class == 0  && i == numclusters
         index = -1;
         od_probability = -1;
     end

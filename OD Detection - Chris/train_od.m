@@ -49,7 +49,7 @@ function train_od(classifier)
         
                 disp('Building Naive Bayes classifier...Please Wait')
 
-                region_classifier = NaiveBayes.fit(region_variables, region_classes);
+                region_classifier = NaiveBayes.fit(region_variables, region_classes, 'Distribution','kernel');
 
                 save('od_classifiers.mat', 'region_classifier','-append');
         end

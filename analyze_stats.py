@@ -1,1 +1,4 @@
-def average_stats(fname):
+import sys
+
+print(sys.argv)
+print(sys.argv[1])

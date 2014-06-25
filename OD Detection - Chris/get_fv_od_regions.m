@@ -35,27 +35,20 @@ feature_vectors = [];
 classes = [];
 angles = mod(angles,180);
 
-vskel = bwmorph(vessels,'skel',Inf);
-
-%Get original image for displaying ROIs
-img = imread(get_pathv2(pid,eye,time,'original'));
-img = crop_footer(img);
-img = imresize(img,[size(cluster_img,1),size(cluster_img,2)]);
+%Get snaked image for labeling roi class
+labeled_od  = im2bw(imread(get_pathv2(pid,eye,time,'optic_disc')));
+labeled_od = imresize(labeled_od,[size(cluster_img,1),size(cluster_img,2)]);
 
 for i = 1:numclusters
     roi = cluster_img==i;
-    roi = imfill(roi,'holes');
-    %get user input to label region class
-    h = figure; imshowpair(roi,img)
-    button = questdlg('Select Class', 'User Input','Positive','Negative','Skip','Positive');
-    close(h)
-    switch button
-        case 'Positive'
-            classes = [classes; 1];
-        case 'Negative'
-            classes = [classes; 0];
-        case 'Skip'
-            continue
+    se = strel('disk',10);
+    roi = imclose(roi,se);
+    %see if region overlaps snaked image to choose class
+    overlap = labeled_od & roi;
+    if any(overlap(:))
+        classes = [classes; 1];
+    else
+        classes = [classes; 0];
     end
     border_img  = bwperim(roi);
     %get rid of pixels on image border
