@@ -143,7 +143,7 @@ end
 %Find optic disk region using another classifier
 [pre_snaked_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
 if ~any(pre_snaked_img(:))
-    final_od_image = pre_snaked_img;
+    final_od_image = imresize(pre_snaked_img,[origy,origx]);
     disp('Optic Disk Not Found!')
     return
 end
@@ -163,14 +163,14 @@ Options=struct;
     Options.Verbose=false;
 % end
 Options.Iterations=100;
-Options.Wedge=20;
-Options.Wline = 0.4;
+Options.Wedge=30;
+Options.Wline = -.1;
 Options.Wterm = 20;
 Options.Alpha = 5;
 Options.Beta = 2;
-Options.Delta = 2;
+Options.Delta = 4;
 Points = get_box_coordinates(pre_snaked_img);
-[~,snaked_optic_disc] = Snake2D(mat2gray(corrected_img), Points, Options); 
+[~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
 
 if(debug == 2)
     %Show the image result

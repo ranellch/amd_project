@@ -24,7 +24,6 @@ end
 e = cputime;
 %Iterate over all clusters and calculate radial features
 numclusters = max(cluster_img(:));
-od_strength = zeros(numclusters,1); 
 angles = mod(angles,180);
 if debug == 2
     feature_img = cluster_img;
@@ -33,11 +32,11 @@ if debug == 2
     hold on
 end
 
-vskel = bwmorph(vessels,'skel',Inf);
 index = -1;
 for i = 1:numclusters
     roi = cluster_img==i;
-    roi = imfill(roi,'holes');
+    se = strel('disk',10);
+    roi = imclose(roi,se);
     border_img  = bwperim(roi);
     %get rid of pixels on image border
     border_img(1,:) = 0;
@@ -56,47 +55,55 @@ for i = 1:numclusters
     %calculate portion of roi outside of circle
     fnr = sum(sum(~circle_img&roi))/sum(sum(circle_img));
     %get circle perimeter for dilated circle
-	circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
-    circle_img = bwperim(circle_img);
+	circle_img = plot_circle(xc,yc,R+R/2, size(cluster_img,2), size(cluster_img,1));
+    circle_border = bwperim(circle_img);
     %get rid of pixels on image border
-    circle_img(1,:) = 0;
-    circle_img(:,1) = 0;
-    circle_img(size(circle_img,1),:) = 0;
-    circle_img(:,size(circle_img,2)) = 0;
+    circle_border(1,:) = 0;
+    circle_border(:,1) = 0;
+    circle_border(size(circle_border,1),:) = 0;
+    circle_border(:,size(circle_border,2)) = 0;
+    %show circles if specified
     if debug == 2
-        [cy,cx] = find(circle_img);
-        [by,bx] = find(border_img);
+        [cy,cx] = find(circle_border);
         plot(cx,cy,'r.')
+        [by,bx] = find(border_img);
         plot(bx,by,'w.')
-    end
+    end 
     %for all vessel pixels along circle border calculate estimated angles based on circle geometry
-    %weight pixels by angle correlation (1-abs[(actual angle)-(estimated_angle)]/180) before summing to obtain density
+    %weight pixels by angle correlation (1-abs[(actual angle)-(estimated_angle)]/90) before summing to obtain density
     weighted_count = 0;
-    border_angs = angles(circle_img&vessels);
-    numcrossings = sum(sum(circle_img&vskel));
-    if numcrossings == 0 
-        radial_normal_density = 0;
-        radial_normal_thickness = 0;
-    else
-        for j = 1:length(border_angs)
-            [y,x] = ind2sub(size(angles),j);
-            ang1 = border_angs(j);
-            ang2 = atan2d(yc-y,x-xc);
+    [y,x,~] = find(circle_border&vessels);
+    for j = 1:length(y)
+            ang1 = angles(y(j),x(j));
+            ang2 = atan2d(yc-y(j),x(j)-xc);
             diff = min([abs(ang1 - ang2), 180 - abs(ang1 - ang2)]);
-            correlation = 1 - diff/180.0;
+            correlation = 1 - diff/90.0;
             weighted_count = weighted_count + correlation;
-        end
-        radial_normal_density = weighted_count/sum(sum(circle_img));
-        radial_normal_thickness = weighted_count/numcrossings;
     end
-    feature_vector = [R,radial_normal_density,radial_normal_thickness, ppv, fnr];
+    radial_normal_density = weighted_count/sum(sum(circle_border));
+    if isnan(radial_normal_density)
+        radial_normal_density = 0;
+    end
+    [y,x,~] = find(circle_img&vessels&~circle_border);
+    for j = 1:length(y)
+            ang1 = angles(y(j),x(j));
+            ang2 = atan2d(yc-y(j),x(j)-xc);
+            diff = min([abs(ang1 - ang2), 180 - abs(ang1 - ang2)]);
+            correlation = 1 - diff/90.0;
+            weighted_count = weighted_count + correlation;
+    end     
+     interior_alignment= weighted_count/sum(sum(circle_img&vessels));
+     if isnan(interior_alignment)
+         interior_alignment=0;
+     end
+    feature_vector = [R,radial_normal_density,interior_alignment, ppv, fnr];
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
     if class == 1 && od_probability >= 0.9
         index = i;
-        break
-    elseif (class == 0 || od_probability < 0.9) && i == numclusters
+         break
+    elseif i == numclusters 
         index = -1;
         od_probability = -1;
     end

@@ -14,7 +14,7 @@ function [final_clusters] = cluster_texture_regions(img, varargin)
     
     %Downsample if necessary to maxsamples
     total_samples = sum(cleaned(:) == 1);
-    maxsample = 20000;
+    maxsample = 10000;
     if(total_samples > maxsample)
         if(debug == 1 || 2)
             disp(['Downsampling an image to ', num2str(maxsample),' points from ', num2str(total_samples)]);
