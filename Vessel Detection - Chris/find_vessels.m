@@ -133,20 +133,18 @@ for i = 1:length(stats)
     end
 end
 
-<<<<<<< HEAD
 %Resize the image to the original image size
 binary_img = imresize(binary_img, [origy origx]);
 
 if debug == 2
     figure, imshow(binary_img);
 end
-=======
+
 %clean up vessel image borders
 binary_img(1:5,:) = 0;
 binary_img(:,1:5) = 0;
 binary_img(size(binary_img,1)-4:end,:) = 0;
 binary_img(:,size(binary_img,2)-4:end) = 0;
->>>>>>> cc5dd63b1ffa16117763243e54a07598dda8bb0a
 
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;
