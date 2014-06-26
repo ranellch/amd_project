@@ -1,10 +1,15 @@
 function [binary_img, mx_angs, corrected_img] = find_vessels(pid, eye, time, varargin)
 %***ALL OUTPUT IMAGES 768 X 768
 debug = -1;
+imcomp = -1;
 if length(varargin) == 1
     debug = varargin{1};
+elseif length(varargin) == 2
+    imcomp = varargin{1};
+    debug = varargin{2};
 elseif isempty(varargin)
     debug = 1;
+    imcomp = 0;
 else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
 end
@@ -26,10 +31,15 @@ end
 img = crop_footer(img);
 
 img = im2double(img);
+if strcmp(imcomp, 'complement') == 1
+    img = imcomplement(img);
+end
+
+origy = size(img,1);
+origx = size(img,2);
 img = imresize(img, [768 768]);
 img = gaussian_filter(img);
 [corrected_img, ~] = correct_illum(img,0.7);
-
 img = imcomplement(corrected_img);
 img = zero_m_unit_std(img);
 
@@ -40,7 +50,7 @@ classifier = model.vessel_combined_classifier;
 
 %Time how long it takes to apply gabor 
 t=cputime;
-if(debug == 1 || 2)
+if(debug == 1 || debug == 2)
     disp('Building Gabor Features!');
 end
 
@@ -61,7 +71,7 @@ end
 
 %Disp some information to the user
 e = cputime - t;
-if(debug == 1 || 2)
+if(debug == 1 || debug == 2)
     disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
 end
 
@@ -69,12 +79,12 @@ end
 %Build lineop features
 %Time how long it takes 
 t=cputime;
-if(debug == 1 || 2)
+if(debug == 1 || debug == 2)
     disp('Running Line Operator!');
 end
 [lineop_image, mx_angs] = get_fv_lineop( img );
 e = cputime - t;
-if(debug == 1 || 2)
+if(debug == 1 || debug == 2)
     disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 end
 
@@ -96,7 +106,7 @@ end
 %   [~, scaled_vectors] = libsvmread('vessel_test.dataset.scale');
 
 %Do pixelwise classification
-if(debug == 1 || 2)
+if(debug == 1 || debug == 2)
     disp('Running Pixelwise Classification ');
 end
 t=cputime;
@@ -105,7 +115,7 @@ class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_m
     
 %Output how long it took to do this
 e = cputime-t;
-if(debug == 1 || 2)
+if(debug == 1 || debug == 2)
     disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 end
 
@@ -121,6 +131,13 @@ for i = 1:length(stats)
     if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.95
         binary_img(CC.PixelIdxList{i}) = 0;
     end
+end
+
+%Resize the image to the original image size
+binary_img = imresize(binary_img, [origy origx]);
+
+if debug == 2
+    figure, imshow(binary_img);
 end
 
 % %Remove the border because it tends to not be that clean
