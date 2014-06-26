@@ -1,5 +1,6 @@
 import sys
 
 filename = sys.argv[1]
-file = open("test.txt", "a+")
-while 
+file = open(filename, "a+")
+for line in file:
+    print(line[0:3]) 
