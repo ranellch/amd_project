@@ -37,12 +37,12 @@ avg_acc = sum_acc/numpos
 avg_prec = sum_prec/numpos
 avg_prob = sum_prob/numpos
 
-file.write('\nAverage Sensitivity: %.2f\n' % avg_sens)
-file.write('Average Specificity: %.2f\n' % avg_spec)
-file.write('Average Accuracy: %.2f\n' % avg_acc)
-file.write('Average Precision: %.2f\n' % avg_prec)
-file.write('Average Probability: %.2f\n\n' % avg_prob)
+file.write('\nAverage Sensitivity: %.4f\n' % avg_sens)
+file.write('Average Specificity: %.4f\n' % avg_spec)
+file.write('Average Accuracy: %.4f\n' % avg_acc)
+file.write('Average Precision: %.4f\n' % avg_prec)
+file.write('Average Probability: %.4f\n\n' % avg_prob)
 file.write('Error cases: \n')
-for i in range(0,len(error_pats)/2):
+for i in range(0,len(error_pats),2):
 	file.write(error_pats[i] + ': ' + error_pats[i+1] + '\n')
 		
