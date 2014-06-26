@@ -1,4 +1,18 @@
-function build_dataset_vessels(gabor_bool, lineop_bool)        
+function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
+    debug = -1;
+    imcomp = -1;
+    if length(varargin) == 1
+        debug = varargin{1};
+    elseif length(varargin) == 2
+        imcomp = varargin{1};
+        debug = varargin{2};
+    elseif isempty(varargin)
+        debug = 1;
+        imcomp = 0;
+    else
+        throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
+    end
+
     %constant for standard image sizes
     std_img_size = 768;
     
@@ -18,14 +32,14 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
     end
     
     %Disp to user the current operation about to be done
-    if(gabor_bool == 1)
+    if(gabor_bool == 1 && debug == 1)
         disp('Building the Gabor Wavelet Dataset');
-    elseif(lineop_bool == 1)
+    elseif(lineop_bool == 1 && debug == 1)
         disp('Building the Line Operator Dataset');
     end
 
     %Filename constants
-    filename_input = 'vessel_draw.training';
+    filename_input = 'vessel_dme.training';
     filename_gabor = 'vessel_gabor.mat';
     filename_lineop = 'vessel_lineop.mat';
 
@@ -54,6 +68,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
         
         numimages = size(paths{1}, 1);
         
+        try
         %Make sure that all images and paths exist
         for k=1:numimages
             pid = char(paths{1}{k});
@@ -65,6 +80,9 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
             
             vessel_image = get_pathv2(pid, eye, time, 'vessels');
             imread(vessel_image);
+        end
+        catch E
+            error('Could not load all images in the list of images to train');
         end
        
         %Open the gabor output file for writing 
@@ -101,14 +119,21 @@ function build_dataset_vessels(gabor_bool, lineop_bool)
                 if (size(original_img, 3) > 1)
                     original_img = rgb2gray(original_img);
                 end
-                original_img = crop_footer(original_img);
+                
+                %Imcomplement the file if a angiogram
+                if strcmp(imcomp,'complement') == 1
+                    original_img = imcomplement(original_img);
+                end
+                
                 original_img = imresize(original_img, [768 768]);
                 original_img = gaussian_filter(original_img);
                 [original_img, ~] = correct_illum(original_img,0.7);
                 original_img = imcomplement(original_img);
                 original_img = zero_m_unit_std(original_img);
                 
-                disp(['Extracting Info: ', pid, ' ', eye, ' (', time, ') Ref: ', vessel_image]);
+                if(debug == 1)
+                    disp(['Extracting Info: ', pid, ' ', eye, ' (', time, ') Ref: ', vessel_image]);
+                end
                 
                 %Run Gabor, save max at each scale, normalize via zero_m_unit_std 
                 if(gabor_bool == 1)  

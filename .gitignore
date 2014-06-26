@@ -5,6 +5,7 @@
 *.mexa64
 *.xcf
 *.jpg
+*.jpeg
 *.tif
 *.tiff
 *.png
@@ -15,6 +16,7 @@
 cpselect_database/run*
 OD Detection - Chris/results*
 Vessel\ Detection\ -\ Chris/results*
+non_perfusion/results*
 .DS_Store
 .__*
 *.classifier
