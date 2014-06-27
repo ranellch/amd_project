@@ -4,9 +4,13 @@ debug = -1;
 imcomp = -1;
 if length(varargin) == 1
     debug = varargin{1};
+    valid_debug(debug);
 elseif length(varargin) == 2
     imcomp = varargin{1};
+    valid_imcomp(imcomp);
+    
     debug = varargin{2};
+    valid_debug(debug);
 elseif isempty(varargin)
     debug = 1;
     imcomp = 0;
@@ -17,7 +21,6 @@ end
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath(genpath('../intensity normalization'))
-addpath(genpath('../libsvm-3.18'))
 addpath(genpath('../liblinear-1.94'))
 
 %get image
@@ -26,7 +29,7 @@ img = imread(path);
 
 %Pre-process
 if (size(img, 3) > 1)
-    img = rgb2gray(img);
+    img = rgb2gray(img(:,:,1:3));
 end
 img = crop_footer(img);
 
@@ -75,7 +78,6 @@ if(debug == 1 || debug == 2)
     disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
 end
 
-
 %Build lineop features
 %Time how long it takes 
 t=cputime;
@@ -94,23 +96,20 @@ lineop_vectors = matstack2array(lineop_image);
 instance_matrix = [gabor_vectors, lineop_vectors];
 clear gabor_vectors
 clear lineop_vectors
-%  libsvmwrite('vessel_test.dataset',zeros(length(combined_vectors),1),sparse(combined_vectors));
-% 
+
 % %Scale vectors
 for i = 1:size(instance_matrix,2)
     fmin = scaling_factors(1,i);
     fmax = scaling_factors(2,i);
     instance_matrix(:,i) = (instance_matrix(:,i)-fmin)/(fmax-fmin);
 end
-%   system('..\libsvm-3.18\windows\svm-scale -r vessel_training.subset.range vessel_test.dataset > vessel_test.dataset.scale');
-%   [~, scaled_vectors] = libsvmread('vessel_test.dataset.scale');
 
-%Do pixelwise classification
 if(debug == 1 || debug == 2)
     disp('Running Pixelwise Classification ');
 end
 t=cputime;
 
+%Do pixelwise classification
 class_estimates = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
     
 %Output how long it took to do this
@@ -129,7 +128,7 @@ CC = bwconncomp(binary_img);
 stats = regionprops(CC,'Extent','Eccentricity');
 for i = 1:length(stats)
     if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.95
-        binary_img(CC.PixelIdxList{i}) = 0;
+        %binary_img(CC.PixelIdxList{i}) = 0;
     end
 end
 
@@ -146,29 +145,30 @@ if debug == 2
      figure(6), imshow(binary_img);
 end
 
-% %Remove the border because it tends to not be that clean
-% border_remove = 10;
-% for y=1:size(binary_img,1)
-%     for x=1:size(binary_img, 2)
-%         if(y < border_remove || x < border_remove || ...
-%            y > (size(binary_img, 1) - border_remove) || ...
-%            x > (size(binary_img, 2) - border_remove))
-%             binary_img(y,x) = 0;
-%         end
-%     end
-% end
-% 
-% %Apply morolgical operation to smooth out the edges
-% binary_img = bwmorph(binary_img, 'majority');
-% 
-% %Apply morphological operations to clean up the small stuff
-% binary_img = bwareaopen(binary_img,60);
-% 
-% if(debug == 1)
-%     figure(3), imshow(binary_img);
-% end
+end
 
-%Resize the image back to original proportions
-% binary_img = match_sizing(binary_img, orig_x, orig_y);
+function valid_debug(debug)
+    try
+        debug_isnum = num2str(debug);
 
+        if(debug ~= 0 && debug ~= 1 && debug ~= 2)
+            error('Varagin input from debug is not a valid number');
+        end
+    catch err
+        error(err.message);
+    end
+end
+
+function valid_imcomp(imcomp)
+    gtg = 0;
+    if(strcmp(imcomp, 'complement') == 1)
+        gtg = 1;
+    end
+    if(strcmp(imcomp, 'none') == 1)
+        gtg = 1;
+    end
+
+    if gtg == 0
+        error('Varargin input for imcomp is incorrect');
+    end
 end
