@@ -45,7 +45,7 @@ function register_set(pid, eye, ref_eye)
         ref_image = imread(imgpath);
         
         %Calculate the roi mask
-        ref_image_mask = find_roi(pid,eye,cur_phase);
+        ref_image_mask = find_roi(pid,eye,cur_phase,'original',1);
         
         %Apply the roi mask to the original image
         ref_image_roi = apply_roi_mask(ref_image, ref_image_mask);
@@ -81,7 +81,7 @@ function register_set(pid, eye, ref_eye)
             img = imread(imgpath);
             
             %Calculate the roi mask
-            img_mask = find_roi(pid,eye,time);
+            img_mask = find_roi(pid,eye,time,'original',1);
             
             %Apply the roi mask to the original image
             img_roi = apply_roi_mask(img, img_mask);

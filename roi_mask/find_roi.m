@@ -1,4 +1,4 @@
-function [finalroimask] = find_roi(pid, eye, time, varargin)
+function [finalroimask] = find_roi(pid, eye, time, type, varargin)
     debug = -1;
     if length(varargin) == 1
         debug = varargin{1};
@@ -17,8 +17,10 @@ function [finalroimask] = find_roi(pid, eye, time, varargin)
     run('../vlfeat/toolbox/vl_setup');
     
     %Check XML for path of the input image
-    path = get_pathv2(pid, eye, time, 'original');
-    disp(['ID: ', pid, ' Time: ', time, ' Eye: ', eye, ' Path: ', path]);
+    path = get_pathv2(pid, eye, time, type);
+    if(debug == 1 || debug == 2)
+        disp(['[ID] ', pid, ' Time: ', time, ' Eye: ', eye, ' Path: ', path]);
+    end
     
     %Load the image
     img = imread(path);
@@ -52,6 +54,6 @@ function [finalroimask] = find_roi(pid, eye, time, varargin)
     
     if(debug == 1 || debug == 2)
         e = cputime - t;
-        disp(['ROI Run Classifier Time (sec): ', num2str(e)]);
+        disp(['[ROI] Run Classifier Time (sec): ', num2str(e)]);
     end
 end

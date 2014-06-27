@@ -2,13 +2,18 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
     debug = -1;
     imcomp = -1;
     if length(varargin) == 1
+        imcomp = 'none';
         debug = varargin{1};
+        valid_debug(debug);
     elseif length(varargin) == 2
         imcomp = varargin{1};
+        valid_imcomp(imcomp);
+        
         debug = varargin{2};
+        valid_debug(debug);
     elseif isempty(varargin)
         debug = 1;
-        imcomp = 0;
+        imcomp = 'none';
     else
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
     end
@@ -82,7 +87,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
             imread(vessel_image);
         end
         catch E
-            error('Could not load all images in the list of images to train');
+            error(E.message);
         end
        
         %Open the gabor output file for writing 
@@ -107,7 +112,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
                 %Get the vesselized image and convert it to a binary image
                 vesselized_img = imread(vessel_image);
                 if(size(vesselized_img, 3) > 1)
-                    vesselized_img = rgb2gray(vesselized_img);
+                    vesselized_img = rgb2gray(vesselized_img(:,:,1:3));
                 end
                 vesselized_img_binary = double(imresize(vesselized_img, [std_img_size, std_img_size]));
                 vesselized_img_binary(vesselized_img_binary==0) = -1;
@@ -117,7 +122,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
 
                 %Pre-process
                 if (size(original_img, 3) > 1)
-                    original_img = rgb2gray(original_img);
+                    original_img = rgb2gray(original_img(:,:,1:3));
                 end
                 
                 %Imcomplement the file if a angiogram
@@ -164,9 +169,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
                 file_obj.classes(nrows+1:nrows+numel(original_img),1) = vesselized_img_binary(:);
         end              
     catch err
-        disp(err.message);
-        disp([getfield(err.stack, 'file')]);
-        disp(['Error on line: ', num2str(getfield(err.stack, 'line'))]);
+        error(err.message);
     end
     
     e = cputime - t;
@@ -175,6 +178,29 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
 end
 
 
+function valid_debug(debug)
+    try
+        debug_isnum = num2str(debug);
 
-        
+        if(debug ~= 0 && debug ~= 1 && debug ~= 2)
+            error('Varagin input from debug is not a valid number');
+        end
+    catch err
+        error(err.message);
+    end
+end
+
+function valid_imcomp(imcomp)
+    gtg = 0;
+    if(strcmp(imcomp, 'complement') == 1)
+        gtg = 1;
+    end
+    if(strcmp(imcomp, 'none') == 1)
+        gtg = 1;
+    end
+
+    if gtg == 0
+        error('Varargin input for imcomp is incorrect');
+    end
+end
         
