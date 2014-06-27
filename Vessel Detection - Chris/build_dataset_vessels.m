@@ -180,12 +180,13 @@ end
 
 function valid_debug(debug)
     try
-        debug_num = num2str(debug);
-        if(debug_num ~= 0 && debug_num ~= 1 && debug_num ~= 2)
-            error('Varagin inpuit from debug is not a valid number');
+        debug_isnum = num2str(debug);
+
+        if(debug ~= 0 && debug ~= 1 && debug ~= 2)
+            error('Varagin input from debug is not a valid number');
         end
-    catch
-        error('Varargin input from debug is incorrect');
+    catch err
+        error(err.message);
     end
 end
 
