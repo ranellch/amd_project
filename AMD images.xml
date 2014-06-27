@@ -215,8 +215,12 @@
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_23.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_15.tif" time="15"/>
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_24.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_16.tif" time="16"/>
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_25.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_17.tif" time="17"/>
-   <image eye="OD" id="JDRF" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early-bin.tif"/>
-   <image eye="OD" id="JDRF" original="Originals\DME\JDRF\ORIGINAL-Dr.J---JDRF-4-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\ORIGINAL-Dr.J---JDRF-4-BASELINE---Late-filled-bin.tif"/>
+   <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early-bin.tif"/>
+   <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled-bin.tif"/>
+   <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early-bin.tif"/>
+   <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled-bin.tif"/>
+   <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early-bin.tif"/>
+   <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_4.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_1.tif" time="1"/>
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_5.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_2.tif" time="2"/>
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_6.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_3.tif" time="3"/>

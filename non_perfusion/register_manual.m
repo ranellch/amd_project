@@ -8,12 +8,12 @@ function register_manual(pid, eye, ref, time)
     ref_path = get_pathv2(pid, eye, ref_string, 'original');
     ref_image = imread(ref_path);
     ref_image_mask = find_roi(pid, eye, ref_string);
-    ref_image_roi = apply_roi_mask(ref_image, ref_image_mask);
+    ref_image_roi = apply_roi_mask(ref_image, ref_image_mask, 'original', 1);
     
     time_string = num2str(time);
     time_path = get_pathv2(pid, eye, time_string, 'original');
     time_image = imread(time_path);
-    time_image_mask = find_roi(pid, eye, time_string);
+    time_image_mask = find_roi(pid, eye, time_string, 'original', 1);
     time_image_roi = apply_roi_mask(time_image, time_image_mask);
     
     [aerial_points,ortho_points] = cpselect(time_image_roi, ref_image_roi, 'Wait', true);
