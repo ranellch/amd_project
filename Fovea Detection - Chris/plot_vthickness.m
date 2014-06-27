@@ -1,13 +1,10 @@
-function [ thickness_map ] = plot_vthickness( vessels, angles )
-addpath('../Skeleton')
+function [ thickness_map ] = plot_vthickness( vessels, vskel, angles )
 
 disp('Generating vessel thickness plot')
 e = cputime;
-vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 [sky,skx] = find(vskel);
 %get junctions to ignore
 [~,~,jxy] = anaskel(vskel);
-[origy, origx] = size(vessels);
 
 angles = mod(angles,180);
 %get vessel thickness interpolated over entire image
