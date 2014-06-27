@@ -14,6 +14,7 @@ function [finalroimask] = find_roi(pid, eye, time, varargin)
     addpath(genpath('../liblinear-1.94'))
     addpath('..');
     addpath(genpath('../Test Set'));
+    run('../vlfeat/toolbox/vl_setup');
     
     %Check XML for path of the input image
     path = get_pathv2(pid, eye, time, 'original');
