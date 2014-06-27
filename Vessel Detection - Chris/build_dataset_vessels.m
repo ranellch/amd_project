@@ -2,13 +2,18 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
     debug = -1;
     imcomp = -1;
     if length(varargin) == 1
+        imcomp = 'none';
         debug = varargin{1};
+        valid_debug(debug);
     elseif length(varargin) == 2
         imcomp = varargin{1};
+        valid_imcomp(imcomp);
+        
         debug = varargin{2};
+        valid_debug(debug);
     elseif isempty(varargin)
         debug = 1;
-        imcomp = 0;
+        imcomp = 'none';
     else
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
     end
@@ -173,6 +178,28 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
 end
 
 
+function valid_debug(debug)
+    try
+        debug_num = num2str(debug);
+        if(debug_num ~= 0 && debug_num ~= 1 && debug_num ~= 2)
+            error('Varagin inpuit from debug is not a valid number');
+        end
+    catch
+        error('Varargin input from debug is incorrect');
+    end
+end
 
-        
+function valid_imcomp(imcomp)
+    gtg = 0;
+    if(strcmp(imcomp, 'complement') == 1)
+        gtg = 1;
+    end
+    if(strcmp(imcomp, 'none') == 1)
+        gtg = 1;
+    end
+
+    if gtg == 0
+        error('Varargin input for imcomp is incorrect');
+    end
+end
         
