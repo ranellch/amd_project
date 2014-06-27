@@ -150,6 +150,8 @@ end
 if (debug == 2)
     figure(4), imshowpair(pre_snaked_img,img_vessel)
 end
+se = strel('disk',10);
+pre_snaked_img = imclose(pre_snaked_img,se);
 
 %Use snaking algorithm to get smooth outline of the optic disc
 if(debug == 1 || debug == 2)
@@ -164,12 +166,14 @@ Options=struct;
 % end
 Options.Iterations=100;
 Options.Wedge=30;
-Options.Wline = -.1;
+Options.Wline = .6;
 Options.Wterm = 20;
 Options.Alpha = 5;
 Options.Beta = 2;
-Options.Delta = 4;
+Options.Delta = 3.5;
 Points = get_box_coordinates(pre_snaked_img);
+pre_snaked_img = mat2gray(corrected_img);
+pre_snaked_img(img_vessel) = 1;
 [~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
 
 if(debug == 2)
