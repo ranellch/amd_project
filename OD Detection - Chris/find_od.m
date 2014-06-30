@@ -1,15 +1,18 @@
-function [final_od_image, img_vessel, probability] = find_od(pid, eye, time, varargin)
+function [final_od_image, img_vessel, img_angles, probability] = find_od(pid, eye, time, varargin)
 debug = -1;
+resize = 'on';
 if length(varargin) == 1
     debug = varargin{1};
 elseif isempty(varargin)
     debug = 1;
+elseif length(varargin) == 2
+    debug = varargin{1};
+    resize = varargin{2};
 else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
 end
 
 %Standardize variables
-std_img_size = 768;
 t = cputime;
 
 %Add the path for the useful directories
@@ -182,8 +185,10 @@ if(debug == 2)
 end
 
 %Resize the image to its original size
-snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);
-
+if strcmp(resize,'on')
+    snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);
+end
+    
 %return the final image to the function caller
 final_od_image = snaked_optic_disc;
 

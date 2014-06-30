@@ -69,7 +69,7 @@ function analyze_od(rebuild_classifier)
         original_img = crop_footer(original_img);
                 
         %Get the image run by the algorithm
-        [calced_img, vessel_img, probability] = find_od(pid, eye, time, 1);
+        [calced_img, vessel_img, ~, probability] = find_od(pid, eye, time, 1);
         imwrite(vessel_img,['./results/',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');
         imwrite(display_mask(original_img,calced_img,'purple'), ['./results/',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
         
