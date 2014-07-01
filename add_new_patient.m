@@ -36,7 +36,7 @@ function add_new_patient(pid)
     end
     
     if inserted == 1
-        disp(['Error: the following pid:',  pid, ' time: ', time, ' eye: ',  eye, 'already exists']); 
+        disp(['Error: the following pid: ',  pid, ' time: ', time, ' eye: ',  eye, ' already exists']); 
     else
         image_insert = xDoc.createElement('image');
         image_insert.setAttribute('id', pid);

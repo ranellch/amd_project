@@ -5,7 +5,7 @@ function add_patient_image(pid, varargin)
     end
 
     %Edit this line below to add new images to the xml
-    image_type = 'registered';
+    image_type = 'original';
     disp(['You are entereing image type => ', image_type]);
     
     if ispc
