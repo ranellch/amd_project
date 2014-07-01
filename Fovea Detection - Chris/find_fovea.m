@@ -39,8 +39,8 @@ yc = Par(2);
 %Put image in normal coordinates centered at optic disk
 [xcorr,ycorr] = meshgrid((1:size(vessels,2)) - xc, yc - (1:size(vessels,1)));
 
-%find all points of thick vessels (>6 pixels)
-% figure, imshow(v_thicknesses>6)
+%find all points of thick vessels (>7 pixels)
+% figure, imshow(v_thicknesses>7)
 points = find(v_thicknesses>7);
 x = xcorr(points);
 y = ycorr(points);
@@ -72,11 +72,11 @@ end
 
 
 %plot parabola
+y_domain = min(yprime(:)):max(yprime(:));
+f_y = zeros(length(y_domain),2);
+f_y(:,1) = round(a*y_domain.^2); %right facing parabola
+f_y(:,2) = round(-1*a*y_domain.^2); %left facing parabola
 if debug == 2
-    y_domain = min(yprime(:)):max(yprime(:));
-    f_y = zeros(length(y_domain),2);
-    f_y(:,1) = round(a*y_domain.^2);
-    f_y(:,2) = round(-1*a*y_domain.^2);
     figure(8);
     imshow(vessels);
      hold on
@@ -109,6 +109,37 @@ density_map = plot_vdensity(vessels);
 if debug == 2
     figure(9), imagesc(density_map)
 end
+
+%Combine density and thickness, and use moving average filter along raphe
+%line to find minimum as most likely fovea location
+combined_map = density_map.*thickness_map;
+
+%count votes for what side to start on
+move_right = sum(f_y(:,1)<max(xprime(:))&f_y(:,1)>min(xprime(:)));
+move_left = sum(f_y(:,2)<max(xprime(:))&f_y(:,2)>min(xprime(:)));
+if move_right > move_left
+    move_right = true;
+    if debug == 1 || debug == 2
+        disp('Fovea is to the right of the optic disk')
+    end
+else
+    move_left = true;
+    if debug == 1 || debug ==2
+        disp('Fovea is to the left of the optic disk')
+    end
+end
+
+winsiz = 200;
+if move_right
+    x_raphe = x_raphe(x_raphe>xc);
+    y_raphe = y_raphe(x_raphe>xc);
+    indices = [x_raphe,y_raphe];
+    indices = sortrows(indices,1);
+    for i = 1:length(y_raphe)
+        
+end
+
+
 
 if debug == 1|| debug == 2
     e = cputime-t;
