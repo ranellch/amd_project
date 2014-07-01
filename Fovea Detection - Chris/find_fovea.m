@@ -37,15 +37,15 @@ xc = Par(1);
 yc = Par(2);
 
 %find all points of thick vessels (>6 pixels)
-figure, imshow(thickness_map>8)
-[y,x] = find(thickness_map>8);
+figure, imshow(v_thicknesses>6)
+[y,x] = find(v_thicknesses>6);
 
 %find parameters a and b to best fit parabola
-a0 = 0.0032;
+a0 = 0.002;
 B0 = 0;
 options = optimoptions('lsqnonlin');
 options.Algorithm = 'levenberg-marquardt';
-options.TolFun = 1e-9;
+options.TolFun = 1e-12;
 params = lsqnonlin(@parabola_criterion,[a0,B0],[],[],options);
 a = params(1)
 B = params(2)
@@ -55,14 +55,24 @@ xprime = zeros(size(vessels));
 yprime = zeros(size(vessels));
 for y = 1:size(vessels,1)
     for x = 1:size(vessels,2)
-        xprime(y,x) = (x*cosd(B)+y*sind(B))/(cosd(B)^2+sind(B)^2);
-        yprime(y,x) = (xprime(y,x)*cosd(B)-x)/sind(B);
+        if B == 0
+            xprime(y,x) = x;
+            yprime(y,x) = y;
+        else
+            xprime(y,x) = (x*cosd(B)+y*sind(B))/(cosd(B)^2+sind(B)^2);
+            yprime(y,x) = (xprime(y,x)*cosd(B)-x)/sind(B);
+        end
     end
 end
 
 %center at optic disk
-xcprime = (xc*cosd(B)+yc*sind(B))/(cosd(B)^2+sind(B)^2);
-ycprime = (xcprime*cosd(B)-xc)/sind(B);
+if B == 0
+    xcprime = xc;
+    ycprime = yc;
+else
+    xcprime = (xc*cosd(B)+yc*sind(B))/(cosd(B)^2+sind(B)^2);
+    ycprime = (xcprime*cosd(B)-xc)/sind(B);
+end
 xprime = xprime - xcprime;
 yprime = yprime - ycprime;
 
