@@ -121,6 +121,7 @@ if move_right > move_left
         disp('Fovea is to the right of the optic disk')
     end
 else
+    move_right = false;
     %get x,y coordinates along raphe line pointing towards fovea
     [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<0);
     if debug == 1 || debug ==2
@@ -154,11 +155,13 @@ if debug == 2
 end
 
 %Find all minima
-[~,MinIdx] = findpeaks(max(combined_avg) - smooth(combined_avg));
+threshold = min(combined_avg) + 0.5*(max(combined_avg)-min(combined_avg));
+combined_avg = smooth(combined_avg,20,'lowess');
+[~,MinIdx] = findpeaks(max(combined_avg) - combined_avg,'MinPeakHeight',threshold)
 
 %Take first one (points ordered from distance away from OD) as the location of the fovea
-x_fov = indices(MinIdx(1),1);
-y_fov = indices(MinIdx(1),2);
+x_fov = indices(MinIdx(1),1)
+y_fov = indices(MinIdx(1),2)
 
 if debug == 2
     figure(8)
