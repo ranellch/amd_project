@@ -1,4 +1,4 @@
-function [ y,x ] = find_fovea( vessels, angles, od, varargin )
+function [ x_fov,y_fov ] = find_fovea( vessels, angles, od, varargin )
 
 if nargin == 3
     debug = 1;
@@ -21,7 +21,7 @@ vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 [thickness_map, v_thicknesses] = plot_vthickness( vessels, vskel, angles );
 
 if debug == 2
-    figure(7), imagesc(thickness_map)
+    figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
 end
 
 %fit circle to od border and get estimated center coordinate to define
@@ -93,53 +93,79 @@ if debug == 2
     end
      [r,c] = ind2sub(size(vessels),points);
      plot(c,r,'mx')
-end
- 
-
-%get x,y coordinates along raphe line
-[y_raphe,x_raphe] = find(round(yprime)==0);
-if debug == 2
-    plot(x_raphe,y_raphe,'b-');
-    hold off
+     hold off
 end
 
 
 %create vessel density map
 density_map = plot_vdensity(vessels);
 if debug == 2
-    figure(9), imagesc(density_map)
+    figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
 end
 
 %Combine density and thickness, and use moving average filter along raphe
 %line to find minimum as most likely fovea location
 combined_map = density_map.*thickness_map;
+if debug == 2
+    figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
+end
 
 %count votes for what side to start on
 move_right = sum(f_y(:,1)<max(xprime(:))&f_y(:,1)>min(xprime(:)));
 move_left = sum(f_y(:,2)<max(xprime(:))&f_y(:,2)>min(xprime(:)));
 if move_right > move_left
     move_right = true;
+    %get x,y coordinates along raphe line pointing towards fovea
+    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime>0);
     if debug == 1 || debug == 2
         disp('Fovea is to the right of the optic disk')
     end
 else
-    move_left = true;
+    %get x,y coordinates along raphe line pointing towards fovea
+    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<0);
     if debug == 1 || debug ==2
         disp('Fovea is to the left of the optic disk')
     end
 end
 
-winsiz = 200;
-if move_right
-    x_raphe = x_raphe(x_raphe>xc);
-    y_raphe = y_raphe(x_raphe>xc);
-    indices = [x_raphe,y_raphe];
-    indices = sortrows(indices,1);
-    for i = 1:length(y_raphe)
-        
+if debug == 2
+    figure(8)
+    hold on
+    plot(x_raphe,y_raphe,'b-');
+    hold off
 end
 
+winsiz = 200;
+padded_combined = padarray(combined_map,[winsiz/2 winsiz/2],'symmetric');
+indices = [x_raphe,y_raphe];
+combined_avg = zeros(size(indices,1),1);    
+if move_right
+    indices = sortrows(indices,1);
+else
+    indices = sortrows(indices,-1);
+end
+for i = 1:size(indices,1)
+    x = indices(i,1);
+    y = indices(i,2);
+    combined_avg(i) = mean2(padded_combined(y:y+winsiz-1,x:x+winsiz-1));
+end
+if debug == 2
+    figure(9), plot(1:length(combined_avg),combined_avg), title('Raphe Line Moving Average Values')
+end
 
+%Find all minima
+[~,MinIdx] = findpeaks(max(combined_avg) - smooth(combined_avg));
+
+%Take first one (points ordered from distance away from OD) as the location of the fovea
+x_fov = indices(MinIdx(1),1);
+y_fov = indices(MinIdx(1),2);
+
+if debug == 2
+    figure(8)
+    hold on
+    plot(x_fov,y_fov,'gd','MarkerSize',10)
+    hold off
+end
 
 if debug == 1|| debug == 2
     e = cputime-t;
