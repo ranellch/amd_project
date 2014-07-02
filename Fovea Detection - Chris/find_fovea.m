@@ -157,11 +157,11 @@ end
 %Find all minima
 threshold = min(combined_avg) + 0.5*(max(combined_avg)-min(combined_avg));
 combined_avg = smooth(combined_avg,20,'lowess');
-[~,MinIdx] = findpeaks(max(combined_avg) - combined_avg,'MinPeakHeight',threshold)
+[~,MinIdx] = findpeaks(max(combined_avg) - combined_avg,'MinPeakHeight',threshold);
 
 %Take first one (points ordered from distance away from OD) as the location of the fovea
-x_fov = indices(MinIdx(1),1)
-y_fov = indices(MinIdx(1),2)
+x_fov = indices(MinIdx(1),1);
+y_fov = indices(MinIdx(1),2);
 
 if debug == 2
     figure(8)

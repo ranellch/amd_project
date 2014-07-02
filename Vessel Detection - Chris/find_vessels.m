@@ -142,9 +142,9 @@ binary_img(:,1:5) = 0;
 binary_img(size(binary_img,1)-4:end,:) = 0;
 binary_img(:,size(binary_img,2)-4:end) = 0;
 
-if debug == 2
-     figure(6), imshow(binary_img);
-end
+% if debug == 2
+%      figure(6), imshow(binary_img);
+% end
 
 % %Remove the border because it tends to not be that clean
 % border_remove = 10;
