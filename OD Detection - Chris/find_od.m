@@ -153,8 +153,6 @@ end
 if (debug == 2)
     figure(4), imshowpair(pre_snaked_img,img_vessel)
 end
-se = strel('disk',10);
-pre_snaked_img = imclose(pre_snaked_img,se);
 
 %Use snaking algorithm to get smooth outline of the optic disc
 if(debug == 1 || debug == 2)
