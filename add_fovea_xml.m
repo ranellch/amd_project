@@ -1,8 +1,8 @@
 %Prompts user to click on the location of the fovea in every image listed
 %in the text file
 %Saves x and y coords in xml 
-fid = fopen('control images.txt', 'r');
-images = textscan(fid,'%q %q %d %*[^\n]');
+fid = fopen('mcw images.txt', 'r');
+images = textscan(fid,'%s %s %d %*[^\n]');
 fclose(fid);
 
 numimages = size(images{1},1);
@@ -17,6 +17,7 @@ for i = 1:numimages
     
     path = get_pathv2(pid,eye,time,'original');
     img = imread(path);
+    img = imresize(img,[768 768]);
     figure(1),imshow(img)
     [x,y] = ginput(1);
     %Loop on the image field in the images tag

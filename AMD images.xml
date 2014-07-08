@@ -1,323 +1,1592 @@
 <?xml version="1.0" encoding="utf-8"?>
 <images>
-   <image AMD="\Labeled\MCW\09323896\OS\09_32_38_960_009.tif" eye="OS" id="09323896" original="\Originals\MCW Pics (All)\09323896\OS\09_32_38_960_009.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09323896\OS\09_32_38_960_005.tif" eye="OS" id="09323896" original="\Originals\MCW Pics (All)\09323896\OS\09_32_38_960_005.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09323896\OD\09_32_38_960_008.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_008.tif" time="1"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_32_38_960_009.tif" eye="OS" id="09323896" original="\Originals\MCW Pics (All)\09323896\OS\09_32_38_960_009.tif" time="1">
+      <fovea x="396" y="414"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_32_38_960_005.tif" eye="OS" id="09323896" original="\Originals\MCW Pics (All)\09323896\OS\09_32_38_960_005.tif" time="2">
+      <fovea x="382" y="411"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_32_38_960_008.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_008.tif" time="1">
+      <fovea x="385" y="459"/>
+   </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BARR OD 1.tif" eye="OD" id="BARR" optic_disc="Labeled\AMD Snaked\BARR OD 1.tif" original="\Originals\Barr OD\BARR OD 1.tif" time="1" vessels="Labeled\AMD Vessels\BARR OD 1_vessel.tif"> 
-      <fovea x="352" y="382"/>
+      
+      
+      
+      <fovea x="363" y="382"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BARR OD 2.tif" eye="OD" id="BARR" optic_disc="Labeled\AMD Snaked\BARR OD 2.tif" original="\Originals\Barr OD\BARR OD 2.tif" time="2" vessels="Labeled\AMD Vessels\BARR OD 2_vessel.tif"> 
-      <fovea x="734" y="779"/>
+      
+      
+      
+      <fovea x="382" y="396"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BARR OD 3 (poor quality).tif" eye="OD" id="BARR" optic_disc="Labeled\AMD Snaked\BARR OD 3 (poor quality).tif" original="\Originals\Barr OD\BARR OD 3 (poor quality).tif" time="3" vessels="Labeled\AMD Vessels\BARR OD 3 (poor quality)_vessel.tif"> 
-      <fovea x="354" y="388"/>
+      
+      
+      
+      <fovea x="369" y="388"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BIGNALL OD 1.tif" eye="OD" id="BIGNALL" optic_disc="Labeled\AMD Snaked\BIGNALL OD 1.tif" original="\Originals\Bignall OD\BIGNALL OD 1.tif" time="1" vessels="Labeled\AMD Vessels\BIGNALL OD 1_vessel.tif"> 
-      <fovea x="349" y="394"/>
+      
+      
+      
+      <fovea x="372" y="391"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BIGNALL OD 2.tif" eye="OD" id="BIGNALL" optic_disc="Labeled\AMD Snaked\BIGNALL OD 2.tif" original="\Originals\Bignall OD\BIGNALL OD 2.tif" time="2" vessels="Labeled\AMD Vessels\BIGNALL OD 2_vessel.tif"> 
-      <fovea x="349" y="393"/>
+      
+      
+      
+      <fovea x="372" y="391"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BIGNALL OD 3 (poor image).tif" eye="OD" id="BIGNALL" optic_disc="Labeled\AMD Snaked\BIGNALL OD 3 (poor image).tif" original="\Originals\Bignall OD\BIGNALL OD 3 (poor image).tif" time="3" vessels="Labeled\AMD Vessels\BIGNALL OD 3 (poor image)_vessel.tif"> 
-      <fovea x="677" y="896"/>
+      
+      
+      
+      <fovea x="351" y="445"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BORON OD 1 (bright).tif" eye="OD" id="BORON" optic_disc="Labeled\AMD Snaked\BORON OD 1 (bright).tif" original="\Originals\Boron OD\BORON OD 1 (bright).tif" time="1"> 
-      <fovea x="360" y="388"/>
+      
+      
+      
+      <fovea x="382" y="387"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BORON OD 2.tif" eye="OD" id="BORON" optic_disc="Labeled\AMD Snaked\BORON OD 2.tif" original="\Originals\Boron OD\BORON OD 2.tif" time="2"> 
-      <fovea x="716" y="650"/>
+      
+      
+      
+      <fovea x="366" y="325"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BORON OD 3.tif" eye="OD" id="BORON" optic_disc="Labeled\AMD Snaked\BORON OD 3.tif" original="\Originals\Boron OD\BORON OD 3.tif" time="3"> 
-      <fovea x="815" y="824"/>
+      
+      
+      
+      <fovea x="418" y="414"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BUCHANAN OD 1.tif" eye="OD" id="BUCHANAN" optic_disc="Labeled\AMD Snaked\BUCHANAN OD 1.tif" original="\Originals\Buchanan OD\BUCHANAN OD 1.tif" time="1" vessels="Labeled\AMD Vessels\BUCHANAN OD 1_vessel.tif"> 
-      <fovea x="351" y="394"/>
+      
+      
+      
+      <fovea x="367" y="394"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BUCHANAN OD 2.tif" eye="OD" id="BUCHANAN" optic_disc="Labeled\AMD Snaked\BUCHANAN OD 2.tif" original="\Originals\Buchanan OD\BUCHANAN OD 2.tif" time="2" vessels="Labeled\AMD Vessels\BUCHANAN OD 2_vessel.tif"> 
-      <fovea x="734" y="788"/>
+      
+      
+      
+      <fovea x="373" y="393"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\BUCHANAN OD 3.tif" eye="OD" id="BUCHANAN" optic_disc="Labeled\AMD Snaked\BUCHANAN OD 3.tif" original="\Originals\Buchanan OD\BUCHANAN OD 3.tif" time="3" vessels="Labeled\AMD Vessels\BUCHANAN OD 3_vessel.tif"> 
-      <fovea x="346" y="409"/>
+      
+      
+      
+      <fovea x="363" y="414"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\CERVENKA OD 1.tif" eye="OD" id="CERVENKA" optic_disc="Labeled\AMD Snaked\CERVENKA OD 1.tif" original="\Originals\Cervenka OD\CERVENKA OD 1.tif" time="1"> 
-      <fovea x="355" y="397"/>
+      
+      
+      
+      <fovea x="364" y="388"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\CERVENKA OD 2.tif" eye="OD" id="CERVENKA" optic_disc="Labeled\AMD Snaked\CERVENKA OD 2.tif" original="\Originals\Cervenka OD\CERVENKA OD 2.tif" time="2"> 
-      <fovea x="343" y="385"/>
+      
+      
+      
+      <fovea x="360" y="384"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\CERVENKA OD 3.tif" eye="OD" id="CERVENKA" optic_disc="Labeled\AMD Snaked\CERVENKA OD 3.tif" original="\Originals\Cervenka OD\CERVENKA OD 3.tif" time="3"> 
-      <fovea x="352" y="393"/>
+      
+      
+      
+      <fovea x="369" y="385"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\COMBS OS 1 (poor image).tif" eye="OS" id="COMBS" optic_disc="Labeled\AMD Snaked\COMBS OS 1 (poor image).tif" original="\Originals\Combs OS\COMBS OS 1 (poor image).tif" time="1"> 
-      <fovea x="779" y="812"/>
+      
+      
+      
+      <fovea x="412" y="402"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\COMBS OS 2.tif" eye="OS" id="COMBS" optic_disc="Labeled\AMD Snaked\COMBS OS 2.tif" original="\Originals\Combs OS\COMBS OS 2.tif" time="2"> 
-      <fovea x="396" y="393"/>
+      
+      
+      
+      <fovea x="412" y="397"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\COMBS OS 3.tif" eye="OS" id="COMBS" optic_disc="Labeled\AMD Snaked\COMBS OS 3.tif" original="\Originals\Combs OS\COMBS OS 3.tif" time="3"> 
-      <fovea x="755" y="806"/>
+      
+      
+      
+      <fovea x="382" y="400"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\COMISKY OS 1.tif" eye="OS" id="COMISKY" optic_disc="Labeled\AMD Snaked\COMISKY OS 1.tif" original="\Originals\Comisky OS\COMISKY OS 1.tif" time="1"> 
-      <fovea x="378" y="396"/>
+      
+      
+      
+      <fovea x="396" y="400"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\COMISKY OS 2.tif" eye="OS" id="COMISKY" optic_disc="Labeled\AMD Snaked\COMISKY OS 2.tif" original="\Originals\Comisky OS\COMISKY OS 2.tif" time="2"> 
-      <fovea x="382" y="393"/>
+      
+      
+      
+      <fovea x="399" y="397"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\COMISKY OS 3.tif" eye="OS" id="COMISKY" optic_disc="Labeled\AMD Snaked\COMISKY OS 3.tif" original="\Originals\Comisky OS\COMISKY OS 3.tif" time="3"> 
-      <fovea x="388" y="394"/>
+      
+      
+      
+      <fovea x="400" y="396"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\GETTEL OD 1.tif" eye="OD" id="GETTEL" optic_disc="Labeled\AMD Snaked\GETTEL OD 1.tif" original="\Originals\Gettel OD\GETTEL OD 1.tif" time="1"> 
-      <fovea x="342" y="390"/>
+      
+      
+      
+      <fovea x="370" y="397"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\GETTEL OD 2.tif" eye="OD" id="GETTEL" optic_disc="Labeled\AMD Snaked\GETTEL OD 2.tif" original="\Originals\Gettel OD\GETTEL OD 2.tif" time="2"> 
-      <fovea x="354" y="396"/>
+      
+      
+      
+      <fovea x="385" y="402"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\GETTEL OD 3.tif" eye="OD" id="GETTEL" optic_disc="Labeled\AMD Snaked\GETTEL OD 3.tif" original="\Originals\Gettel OD\GETTEL OD 3.tif" time="3"> 
-      <fovea x="343" y="421"/>
+      
+      
+      
+      <fovea x="375" y="423"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\KUKLA OS 1 (poor image).tif" eye="OS" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 1 (poor image).tif" time="1"> 
-      <fovea x="626" y="1010"/>
+      
+      
+      
+      <fovea x="322" y="505"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\KUKLA OS 2 (poor image).tif" eye="OS" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 2 (poor image).tif" time="2"> 
-      <fovea x="394" y="402"/>
+      
+      
+      
+      <fovea x="421" y="403"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\KUKLA OS 3 (poor image).tif" eye="OS" id="KUKLA" original="\Originals\Kukla OS\KUKLA OS 3 (poor image).tif" time="3"> 
-      <fovea x="331" y="429"/>
+      
+      
+      
+      <fovea x="354" y="427"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\LEMAY OS 1.tif" eye="OS" id="LEMAY" optic_disc="Labeled\AMD Snaked\LEMAY OS 1.tif" original="\Originals\Lemay OS\LEMAY OS 1.tif" time="1"> 
-      <fovea x="396" y="394"/>
+      
+      
+      
+      <fovea x="417" y="393"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\LEMAY OS 2.tif" eye="OS" id="LEMAY" optic_disc="Labeled\AMD Snaked\LEMAY OS 2.tif" original="\Originals\Lemay OS\LEMAY OS 2.tif" time="2"> 
-      <fovea x="394" y="393"/>
+      
+      
+      
+      <fovea x="421" y="391"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\MASSIMILLA OD 3.tif" eye="OD" id="MASSIMILLA" optic_disc="Labeled\AMD Snaked\MASSIMILLA OD 3.tif" original="\Originals\Massimilla OD\MASSIMILLA OD 3.tif" time="3"> 
-      <fovea x="719" y="782"/>
+      
+      
+      
+      <fovea x="367" y="396"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\REAM OS 1.tif" eye="OS" id="REAM" optic_disc="Labeled\AMD Snaked\REAM OS 1.tif" original="\Originals\Ream OS\REAM OS 1.tif" time="1"> 
-      <fovea x="378" y="381"/>
+      
+      
+      
+      <fovea x="399" y="388"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\REAM OS 2.tif" eye="OS" id="REAM" optic_disc="Labeled\AMD Snaked\REAM OS 2.tif" original="\Originals\Ream OS\REAM OS 2.tif" time="2"> 
-      <fovea x="779" y="761"/>
+      
+      
+      
+      <fovea x="399" y="388"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\REAM OS 3.tif" eye="OS" id="REAM" optic_disc="Labeled\AMD Snaked\REAM OS 3.tif" original="\Originals\Ream OS\REAM OS 3.tif" time="3"> 
-      <fovea x="378" y="391"/>
+      
+      
+      
+      <fovea x="393" y="393"/>
+   
+   
+   
    </image>
+   
+   
+   
    <image AMD="Labeled\AMD Controls\RHOADES OS 1.tif" eye="OS" id="RHOADES" optic_disc="Labeled\AMD Snaked\RHOADES OS 1.tif" original="\Originals\Rhoades OS\RHOADES OS 1.tif" time="1"> 
+      
+      
+      
+      <fovea x="411" y="388"/>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\RHOADES OS 2.tif" eye="OS" id="RHOADES" optic_disc="Labeled\AMD Snaked\RHOADES OS 2.tif" original="\Originals\Rhoades OS\RHOADES OS 2.tif" time="2"> 
+      
+      
+      
+      <fovea x="399" y="397"/>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\RHOADES OS 3.tif" eye="OS" id="RHOADES" optic_disc="Labeled\AMD Snaked\RHOADES OS 3.tif" original="\Originals\Rhoades OS\RHOADES OS 3.tif" time="3"> 
+      
+      
+      
+      <fovea x="397" y="411"/>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\VINCENT OD 1.tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 1.tif" original="\Originals\Vincent OD\VINCENT OD 1.tif" time="1"> 
+      
+      
+      
+      <fovea x="361" y="402"/>
+   
+   
+   
+   </image>   
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\VINCENT OD 2.tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 2.tif" original="\Originals\Vincent OD\VINCENT OD 2.tif" time="2"> 
+      
+      
+      
+      <fovea x="384" y="400"/>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\VINCENT OD 3 (funny iamge).tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 3 (funny iamge).tif" original="\Originals\Vincent OD\VINCENT OD 3 (funny iamge).tif" time="3"> 
+      
+      
+      
+      <fovea x="364" y="403"/>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\White OD 1.tif" eye="OD" id="WHITE" optic_disc="Labeled\AMD Snaked\White OD 1.tif" original="\Originals\White OD\White OD 1.tif" time="1" vessels="Labeled\AMD Vessels\White OD 1_vessel.tif"> 
+      
+      
+      
+      <fovea x="402" y="396"/>
+   
+   
+   
+   </image>
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\White OD 2.tif" eye="OD" id="WHITE" optic_disc="Labeled\AMD Snaked\White OD 2.tif" original="\Originals\White OD\White OD 2.tif" time="2" vessels="Labeled\AMD Vessels\White OD 2_vessel.tif"> 
+      
+      
+      
+      <fovea x="394" y="399"/>
+   
+   
+   
+   </image> 
+   
+   
+   
+   <image AMD="Labeled\AMD Controls\White OD 3 (poor image).tif" eye="OD" id="WHITE" original="\Originals\White OD\White OD 3 (poor image).tif" time="3" vessels="Labeled\AMD Vessels\White OD 3 (poor image)_vessel.tif"> 
+      
+      
+      
+      <fovea x="405" y="408"/>
+   
+   
+   
+   </image>  
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_32_38_960_004.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_004.tif" time="2">
+      <fovea x="379" y="510"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_32_38_960_002.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_002.tif" time="3">
+      <fovea x="388" y="412"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_32_38_960_000.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_000.tif" time="4">
+      <fovea x="385" y="400"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_70_190_001.tif" eye="OD" id="09237019" original="\Originals\MCW Pics (All)\09237019\09_23_70_190_001.tif" time="1">
+      <fovea x="502" y="334"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_70_190_000.tif" eye="OD" id="09237019" original="\Originals\MCW Pics (All)\09237019\09_23_70_190_000.tif" time="2">
+      <fovea x="496" y="369"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_011.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_011.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_011.tif" time="1">
+      <fovea x="403" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_009.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_009.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_009.tif" time="2">
+      <fovea x="385" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_007.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_007.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_007.tif" time="3">
       <fovea x="387" y="384"/>
    </image>
-   <image AMD="Labeled\AMD Controls\RHOADES OS 2.tif" eye="OS" id="RHOADES" optic_disc="Labeled\AMD Snaked\RHOADES OS 2.tif" original="\Originals\Rhoades OS\RHOADES OS 2.tif" time="2"> 
-      <fovea x="758" y="803"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_005.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_005.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_005.tif" time="4">
+      <fovea x="382" y="388"/>
    </image>
-   <image AMD="Labeled\AMD Controls\RHOADES OS 3.tif" eye="OS" id="RHOADES" optic_disc="Labeled\AMD Snaked\RHOADES OS 3.tif" original="\Originals\Rhoades OS\RHOADES OS 3.tif" time="3"> 
-      <fovea x="378" y="412"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_003.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_003.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_003.tif" time="5">
+      <fovea x="384" y="387"/>
    </image>
-   <image AMD="Labeled\AMD Controls\VINCENT OD 1.tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 1.tif" original="\Originals\Vincent OD\VINCENT OD 1.tif" time="1"> 
-      <fovea x="331" y="400"/>
-   </image>   
-   <image AMD="Labeled\AMD Controls\VINCENT OD 2.tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 2.tif" original="\Originals\Vincent OD\VINCENT OD 2.tif" time="2"> 
-      <fovea x="761" y="791"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_001.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_001.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_001.tif" time="6">
+      <fovea x="384" y="384"/>
    </image>
-   <image AMD="Labeled\AMD Controls\VINCENT OD 3 (funny iamge).tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 3 (funny iamge).tif" original="\Originals\Vincent OD\VINCENT OD 3 (funny iamge).tif" time="3"> 
-      <fovea x="698" y="794"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_010.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_010.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_010.tif" time="1">
+      <fovea x="387" y="391"/>
    </image>
-   <image AMD="Labeled\AMD Controls\White OD 1.tif" eye="OD" id="WHITE" optic_disc="Labeled\AMD Snaked\White OD 1.tif" original="\Originals\White OD\White OD 1.tif" time="1" vessels="Labeled\AMD Vessels\White OD 1_vessel.tif"> 
-      <fovea x="776" y="788"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_008.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_008.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_008.tif" time="2">
+      <fovea x="393" y="391"/>
    </image>
-   <image AMD="Labeled\AMD Controls\White OD 2.tif" eye="OD" id="WHITE" optic_disc="Labeled\AMD Snaked\White OD 2.tif" original="\Originals\White OD\White OD 2.tif" time="2" vessels="Labeled\AMD Vessels\White OD 2_vessel.tif"> 
-      <fovea x="360" y="394"/>
-   </image> 
-   <image AMD="Labeled\AMD Controls\White OD 3 (poor image).tif" eye="OD" id="WHITE" original="\Originals\White OD\White OD 3 (poor image).tif" time="3" vessels="Labeled\AMD Vessels\White OD 3 (poor image)_vessel.tif"> 
-      <fovea x="770" y="812"/>
-   </image>  
-   <image AMD="\Labeled\MCW\09323896\OD\09_32_38_960_004.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09323896\OD\09_32_38_960_002.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09323896\OD\09_32_38_960_000.tif" eye="OD" id="09323896" original="\Originals\MCW Pics (All)\09323896\OD\09_32_38_960_000.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09237019\09_23_70_190_001.tif" eye="OD" id="09237019" original="\Originals\MCW Pics (All)\09237019\09_23_70_190_001.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09237019\09_23_70_190_000.tif" eye="OD" id="09237019" original="\Originals\MCW Pics (All)\09237019\09_23_70_190_000.tif" time="2"/>
-   <image AMD="\Labeled\MCW\07091810\OS\07_09_18_100_011.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_011.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_011.tif" time="1"/>
-   <image AMD="\Labeled\MCW\07091810\OS\07_09_18_100_009.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_009.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_009.tif" time="2"/>
-   <image AMD="\Labeled\MCW\07091810\OS\07_09_18_100_007.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_007.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_007.tif" time="3"/>
-   <image AMD="\Labeled\MCW\07091810\OS\07_09_18_100_005.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_005.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_005.tif" time="4"/>
-   <image AMD="\Labeled\MCW\07091810\OS\07_09_18_100_003.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_003.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_003.tif" time="5"/>
-   <image AMD="\Labeled\MCW\07091810\OS\07_09_18_100_001.tif" eye="OS" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OS\07_09_18_100_001.tif" original="\Originals\MCW Pics (All)\07091810\OS\07_09_18_100_001.tif" time="6"/>
-   <image AMD="\Labeled\MCW\07091810\OD\07_09_18_100_010.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_010.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_010.tif" time="1"/>
-   <image AMD="\Labeled\MCW\07091810\OD\07_09_18_100_008.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_008.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_008.tif" time="2"/>
-   <image AMD="\Labeled\MCW\07091810\OD\07_09_18_100_006.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_006.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_006.tif" time="3"/>
-   <image AMD="\Labeled\MCW\07091810\OD\07_09_18_100_004.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_004.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_004.tif" time="4"/>
-   <image AMD="\Labeled\MCW\07091810\OD\07_09_18_100_002.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_002.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_002.tif" time="5"/>
-   <image AMD="\Labeled\MCW\07091810\OD\07_09_18_100_000.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_000.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09198258\09_19_82_580_004.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_004.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09198258\09_19_82_580_003.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_003.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09198258\09_19_82_580_002.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09198258\09_19_82_580_001.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_001.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09198258\09_19_82_580_000.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_000.tif" time="5"/>
-   <image AMD="\Labeled\MCW\00270567\OS\00_27_05_670_012.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_012.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_012.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00270567\OS\00_27_05_670_009.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_009.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_009.tif" time="2"/>
-   <image AMD="\Labeled\MCW\00270567\OS\00_27_05_670_007.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_007.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_007.tif" time="3"/>
-   <image AMD="\Labeled\MCW\00270567\OS\00_27_05_670_005.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_005.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_005.tif" time="4"/>
-   <image AMD="\Labeled\MCW\00270567\OS\00_27_05_670_003.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_003.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_003.tif" time="5"/>
-   <image AMD="\Labeled\MCW\00270567\OS\00_27_05_670_001.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_001.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_001.tif" time="6"/>
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_011.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_011.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_011.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_008.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_008.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_008.tif" time="2"/>
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_006.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_006.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_006.tif" time="3"/>
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_004.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_004.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_004.tif" time="4"/>
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_002.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_002.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_002.tif" time="5"/>
-   <image AMD="\Labeled\MCW\00270567\OD\00_27_05_670_000.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_000.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_000.tif" time="6"/>    
-   <image AMD="\Labeled\MCW\00349225\OS\00_34_92_250_005.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_005.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_005.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00349225\OS\00_34_92_250_003.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_003.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_003.tif" time="2"/>
-   <image AMD="\Labeled\MCW\00349225\OS\00_34_92_250_001.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_001.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_001.tif" time="3"/>
-   <image AMD="\Labeled\MCW\00349225\OD\00_34_92_250_004.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_004.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_004.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00349225\OD\00_34_92_250_002.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_002.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_002.tif" time="2"/>
-   <image AMD="\Labeled\MCW\00349225\OD\00_34_92_250_000.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_000.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_000.tif" time="3"/>
-   <image AMD="\Labeled\MCW\00036771\00_03_67_710_005.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_005.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_005.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00036771\00_03_67_710_004.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_004.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\00036771\00_03_67_710_003.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_003.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\00036771\00_03_67_710_002.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_002.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_002.tif" time="4"/>
-   <image AMD="\Labeled\MCW\00036771\00_03_67_710_001.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_001.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_001.tif" time="5"/>
-   <image AMD="\Labeled\MCW\00036771\00_03_67_710_000.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_000.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09181670\OS\09_18_16_700_003.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_003.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09181670\OS\09_18_16_700_001.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_001.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09181670\OD\09_18_16_700_002.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_002.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09181670\OD\09_18_16_700_000.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_000.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09210105\OS\09_21_01_050_011.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_011.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09210105\OS\09_21_01_050_009.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_009.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09210105\OS\09_21_01_050_007.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_007.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09210105\OS\09_21_01_050_005.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_005.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09210105\OS\09_21_01_050_003.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_003.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09210105\OS\09_21_01_050_000.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09210105\OD\09_21_01_050_010.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_010.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09210105\OD\09_21_01_050_008.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_008.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09210105\OD\09_21_01_050_006.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_006.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09210105\OD\09_21_01_050_004.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_004.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09210105\OD\09_21_01_050_002.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_002.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09230622\OS\09_23_06_220_010.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_010.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09230622\OS\09_23_06_220_008.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_008.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09230622\OS\09_23_06_220_006.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_006.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09230622\OS\09_23_06_220_004.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_004.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09230622\OS\09_23_06_220_003.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_003.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09230622\OS\09_23_06_220_001.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_001.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09230622\OD\09_23_06_220_009.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_009.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09230622\OD\09_23_06_220_005.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_005.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09230622\OD\09_23_06_220_002.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09230622\OD\09_23_06_220_000.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_000.tif" time="4"/>
-   <image AMD="\Labeled\MCW\00518054\00_51_80_540_001.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_001.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_001.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00518054\00_51_80_540_000.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_000.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_000.tif" time="2"/>
-   <image AMD="\Labeled\MCW\07093874\OS\07_09_38_740_003.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_003.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_003.tif" time="1"/>
-   <image AMD="\Labeled\MCW\07093874\OS\07_09_38_740_001.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_001.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_001.tif" time="2"/>
-   <image AMD="\Labeled\MCW\07093874\OD\07_09_38_740_002.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_002.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_002.tif" time="1"/>
-   <image AMD="\Labeled\MCW\07093874\OD\07_09_38_740_000.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_000.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_000.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09186494\09_18_64_940_005.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_005.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09186494\09_18_64_940_004.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09186494\09_18_64_940_003.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09186494\09_18_64_940_002.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_002.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09186494\09_18_64_940_001.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_001.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09186494\09_18_64_940_000.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\00387531\00_38_75_310_001.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_001.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_001.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00387531\00_38_75_310_000.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_000.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_000.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09146686\09_14_66_860_004.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_004.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09146686\09_14_66_860_003.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_003.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09146686\09_14_66_860_002.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09146686\09_14_66_860_001.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_001.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09146686\09_14_66_860_000.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_000.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09306504\09_30_65_040_003.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_003.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09306504\09_30_65_040_002.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_002.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09306504\09_30_65_040_001.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_001.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09306504\09_30_65_040_000.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_000.tif" time="4"/>
-   <image AMD="\Labeled\MCW\00538530\00_53_85_300_004.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_004.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_004.tif" time="1"/>
-   <image AMD="\Labeled\MCW\00538530\00_53_85_300_003.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_003.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_003.tif" time="2"/>
-   <image AMD="\Labeled\MCW\00538530\00_53_85_300_002.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_002.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\00538530\00_53_85_300_001.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_001.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_001.tif" time="4"/>
-   <image AMD="\Labeled\MCW\00538530\00_53_85_300_000.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_000.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_000.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09227227\09_22_72_270_005.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_005.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09227227\09_22_72_270_004.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09227227\09_22_72_270_003.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09227227\09_22_72_270_002.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_002.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09227227\09_22_72_270_001.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_001.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09227227\09_22_72_270_000.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09362244\09_36_22_440_000.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_000.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09362244\09_36_22_440_001.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_001.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09317927\OS\09_31_79_270_007.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_007.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09317927\OS\09_31_79_270_005.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_005.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09317927\OS\09_31_79_270_003.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09317927\OS\09_31_79_270_001.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_001.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09317927\OD\09_31_79_270_006.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_006.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09317927\OD\09_31_79_270_004.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09317927\OD\09_31_79_270_002.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09317927\OD\09_31_79_270_000.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_000.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09291240\OS\09_29_12_400_007.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_007.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09291240\OS\09_29_12_400_005.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_005.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09291240\OS\09_29_12_400_003.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09291240\OS\09_29_12_400_001.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_001.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09291240\OD\09_29_12_400_006.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_006.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09291240\OD\09_29_12_400_004.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09291240\OD\09_29_12_400_002.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_002.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09291240\OD\09_29_12_400_000.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_000.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09228261\OS\09_22_82_610_011.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_011.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09228261\OS\09_22_82_610_009.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_009.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09228261\OS\09_22_82_610_007.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_007.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09228261\OS\09_22_82_610_005.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_005.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09228261\OS\09_22_82_610_003.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_003.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09228261\OS\09_22_82_610_001.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_001.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09228261\OD\09_22_82_610_010.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_010.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09228261\OD\09_22_82_610_008.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_008.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09228261\OD\09_22_82_610_006.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_006.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09228261\OD\09_22_82_610_004.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_004.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09228261\OD\09_22_82_610_002.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_002.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09228261\OD\09_22_82_610_000.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09055709\09_05_57_090_005.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_005.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09055709\09_05_57_090_004.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09055709\09_05_57_090_003.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09055709\09_05_57_090_002.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_002.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09055709\09_05_57_090_001.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_001.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09055709\09_05_57_090_000.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_000.tif" time="6"/>
-   <image AMD="\Labeled\MCW\09161204\09_16_12_040_002.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_002.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09161204\09_16_12_040_001.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_001.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09161204\09_16_12_040_000.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_000.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09140888\09_14_08_880_005.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_005.tif" time="1"/>
-   <image AMD="\Labeled\MCW\09140888\09_14_08_880_004.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_004.tif" time="2"/>
-   <image AMD="\Labeled\MCW\09140888\09_14_08_880_003.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_003.tif" time="3"/>
-   <image AMD="\Labeled\MCW\09140888\09_14_08_880_002.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_002.tif" time="4"/>
-   <image AMD="\Labeled\MCW\09140888\09_14_08_880_001.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_001.tif" time="5"/>
-   <image AMD="\Labeled\MCW\09140888\09_14_08_880_000.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_000.tif" time="6"/>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_006.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_006.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_006.tif" time="3">
+      <fovea x="405" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_004.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_004.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_004.tif" time="4">
+      <fovea x="390" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_002.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_002.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_002.tif" time="5">
+      <fovea x="397" y="387"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_18_100_000.tif" eye="OD" id="07091810" optic_disc="Labeled\AMD Snaked\07091810\OD\07_09_18_100_000.tif" original="\Originals\MCW Pics (All)\07091810\OD\07_09_18_100_000.tif" time="6">
+      <fovea x="399" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_19_82_580_004.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_004.tif" time="1">
+      <fovea x="390" y="382"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_19_82_580_003.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_003.tif" time="2">
+      <fovea x="390" y="387"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_19_82_580_002.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_002.tif" time="3">
+      <fovea x="388" y="384"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_19_82_580_001.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_001.tif" time="4">
+      <fovea x="354" y="411"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_19_82_580_000.tif" eye="OS" id="09198258" original="\Originals\MCW Pics (All)\09198258\09_19_82_580_000.tif" time="5">
+      <fovea x="381" y="396"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_012.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_012.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_012.tif" time="1">
+      <fovea x="376" y="400"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_009.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_009.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_009.tif" time="2">
+      <fovea x="378" y="396"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_007.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_007.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_007.tif" time="3">
+      <fovea x="394" y="381"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_005.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_005.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_005.tif" time="4">
+      <fovea x="390" y="382"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_003.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_003.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_003.tif" time="5">
+      <fovea x="379" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_001.tif" eye="OS" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OS\00_27_05_670_001.tif" original="Originals\MCW Pics (All)\00270567\OS\00_27_05_670_001.tif" time="6">
+      <fovea x="385" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_011.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_011.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_011.tif" time="1">
+      <fovea x="385" y="373"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_008.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_008.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_008.tif" time="2">
+      <fovea x="385" y="375"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_006.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_006.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_006.tif" time="3">
+      <fovea x="376" y="397"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_004.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_004.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_004.tif" time="4">
+      <fovea x="387" y="382"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_002.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_002.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_002.tif" time="5">
+      <fovea x="432" y="435"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_27_05_670_000.tif" eye="OD" id="00270567" optic_disc="Labeled\AMD Snaked\00270567\OD\00_27_05_670_000.tif" original="Originals\MCW Pics (All)\00270567\OD\00_27_05_670_000.tif" time="6">
+      <fovea x="393" y="381"/>
+   </image>    
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_005.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_005.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_005.tif" time="1">
+      <fovea x="396" y="387"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_003.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_003.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_003.tif" time="2">
+      <fovea x="382" y="435"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_001.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_001.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_001.tif" time="3">
+      <fovea x="388" y="406"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_004.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_004.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_004.tif" time="1">
+      <fovea x="405" y="379"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_002.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_002.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_002.tif" time="2">
+      <fovea x="399" y="408"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_000.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_000.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_000.tif" time="3">
+      <fovea x="400" y="397"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_005.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_005.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_005.tif" time="1">
+      <fovea x="339" y="415"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_004.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_004.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_004.tif" time="2">
+      <fovea x="343" y="418"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_003.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_003.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_003.tif" time="3">
+      <fovea x="336" y="418"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_002.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_002.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_002.tif" time="4">
+      <fovea x="343" y="411"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_001.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_001.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_001.tif" time="5">
+      <fovea x="370" y="306"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_000.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_000.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_000.tif" time="6">
+      <fovea x="381" y="460"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_003.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_003.tif" time="1">
+      <fovea x="462" y="418"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_001.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_001.tif" time="2">
+      <fovea x="360" y="322"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_002.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_002.tif" time="1">
+      <fovea x="447" y="328"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_000.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_000.tif" time="2">
+      <fovea x="465" y="304"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_011.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_011.tif" time="1">
+      <fovea x="394" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_009.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_009.tif" time="2">
+      <fovea x="388" y="378"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_007.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_007.tif" time="3">
+      <fovea x="450" y="343"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_005.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_005.tif" time="4">
+      <fovea x="345" y="340"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_003.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_003.tif" time="5">
+      <fovea x="376" y="352"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_000.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_000.tif" time="6">
+      <fovea x="462" y="448"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_010.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_010.tif" time="1">
+      <fovea x="391" y="381"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_008.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_008.tif" time="2">
+      <fovea x="399" y="373"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_006.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_006.tif" time="3">
+      <fovea x="390" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_004.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_004.tif" time="4">
+      <fovea x="382" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_002.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_002.tif" time="5">
+      <fovea x="384" y="283"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_010.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_010.tif" time="1">
+      <fovea x="285" y="439"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_008.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_008.tif" time="2">
+      <fovea x="384" y="406"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_006.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_006.tif" time="3">
+      <fovea x="381" y="399"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_004.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_004.tif" time="4">
+      <fovea x="385" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_003.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_003.tif" time="5">
+      <fovea x="372" y="397"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_001.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_001.tif" time="6">
+      <fovea x="378" y="397"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_009.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_009.tif" time="1">
+      <fovea x="364" y="370"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_005.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_005.tif" time="2">
+      <fovea x="394" y="421"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_002.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_002.tif" time="3">
+      <fovea x="396" y="357"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_000.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_000.tif" time="4">
+      <fovea x="391" y="370"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_51_80_540_001.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_001.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_001.tif" time="1">
+      <fovea x="394" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_51_80_540_000.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_000.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_000.tif" time="2">
+      <fovea x="387" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_003.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_003.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_003.tif" time="1">
+      <fovea x="376" y="378"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_001.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_001.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_001.tif" time="2">
+      <fovea x="402" y="469"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_002.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_002.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_002.tif" time="1">
+      <fovea x="384" y="387"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_000.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_000.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_000.tif" time="2">
+      <fovea x="390" y="420"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_005.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_005.tif" time="1">
+      <fovea x="385" y="397"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_004.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_004.tif" time="2">
+      <fovea x="394" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_003.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_003.tif" time="3">
+      <fovea x="390" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_002.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_002.tif" time="4">
+      <fovea x="388" y="382"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_001.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_001.tif" time="5">
+      <fovea x="388" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_000.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_000.tif" time="6">
+      <fovea x="426" y="421"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_38_75_310_001.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_001.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_001.tif" time="1">
+      <fovea x="337" y="337"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_38_75_310_000.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_000.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_000.tif" time="2">
+      <fovea x="369" y="327"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_004.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_004.tif" time="1">
+      <fovea x="372" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_003.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_003.tif" time="2">
+      <fovea x="384" y="379"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_002.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_002.tif" time="3">
+      <fovea x="390" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_001.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_001.tif" time="4">
+      <fovea x="390" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_000.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_000.tif" time="5">
+      <fovea x="385" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_003.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_003.tif" time="1">
+      <fovea x="390" y="384"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_002.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_002.tif" time="2">
+      <fovea x="366" y="424"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_001.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_001.tif" time="3">
+      <fovea x="375" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_000.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_000.tif" time="4">
+      <fovea x="385" y="402"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_004.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_004.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_004.tif" time="1">
+      <fovea x="387" y="408"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_003.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_003.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_003.tif" time="2">
+      <fovea x="384" y="426"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_002.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_002.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_002.tif" time="3">
+      <fovea x="360" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_001.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_001.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_001.tif" time="4">
+      <fovea x="357" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_000.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_000.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_000.tif" time="5">
+      <fovea x="354" y="384"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_005.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_005.tif" time="1">
+      <fovea x="382" y="376"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_004.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_004.tif" time="2">
+      <fovea x="384" y="390"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_003.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_003.tif" time="3">
+      <fovea x="384" y="390"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_002.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_002.tif" time="4">
+      <fovea x="384" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_001.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_001.tif" time="5">
+      <fovea x="388" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_000.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_000.tif" time="6">
+      <fovea x="388" y="393"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_36_22_440_000.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_000.tif" time="1">
+      <fovea x="399" y="430"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_36_22_440_001.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_001.tif" time="2">
+      <fovea x="390" y="387"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_007.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_007.tif" time="1">
+      <fovea x="358" y="511"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_005.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_005.tif" time="2">
+      <fovea x="384" y="378"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_003.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_003.tif" time="3">
+      <fovea x="394" y="336"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_001.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_001.tif" time="4">
+      <fovea x="397" y="342"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_006.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_006.tif" time="1">
+      <fovea x="378" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_004.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_004.tif" time="2">
+      <fovea x="387" y="403"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_002.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_002.tif" time="3">
+      <fovea x="370" y="351"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_000.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_000.tif" time="4">
+      <fovea x="361" y="327"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_007.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_007.tif" time="1">
+      <fovea x="393" y="375"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_005.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_005.tif" time="2">
+      <fovea x="364" y="367"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_003.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_003.tif" time="3">
+      <fovea x="475" y="279"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_001.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_001.tif" time="4">
+      <fovea x="381" y="370"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_006.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_006.tif" time="1">
+      <fovea x="378" y="369"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_004.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_004.tif" time="2">
+      <fovea x="391" y="331"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_002.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_002.tif" time="3">
+      <fovea x="390" y="247"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_000.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_000.tif" time="4">
+      <fovea x="436" y="318"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_011.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_011.tif" time="1">
+      <fovea x="393" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_009.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_009.tif" time="2">
+      <fovea x="397" y="384"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_007.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_007.tif" time="3">
+      <fovea x="391" y="387"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_005.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_005.tif" time="4">
+      <fovea x="387" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_003.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_003.tif" time="5">
+      <fovea x="381" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_001.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_001.tif" time="6">
+      <fovea x="375" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_010.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_010.tif" time="1">
+      <fovea x="379" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_008.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_008.tif" time="2">
+      <fovea x="394" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_006.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_006.tif" time="3">
+      <fovea x="382" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_004.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_004.tif" time="4">
+      <fovea x="393" y="400"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_002.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_002.tif" time="5">
+      <fovea x="358" y="351"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_000.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_000.tif" time="6">
+      <fovea x="384" y="388"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_005.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_005.tif" time="1">
+      <fovea x="391" y="385"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_004.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_004.tif" time="2">
+      <fovea x="394" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_003.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_003.tif" time="3">
+      <fovea x="388" y="390"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_002.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_002.tif" time="4">
+      <fovea x="385" y="391"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_001.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_001.tif" time="5">
+      <fovea x="393" y="390"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_000.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_000.tif" time="6">
+      <fovea x="355" y="427"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_16_12_040_002.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_002.tif" time="1">
+      <fovea x="379" y="487"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_16_12_040_001.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_001.tif" time="2">
+      <fovea x="414" y="469"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_16_12_040_000.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_000.tif" time="3">
+      <fovea x="391" y="417"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_005.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_005.tif" time="1">
+      <fovea x="390" y="375"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_004.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_004.tif" time="2">
+      <fovea x="397" y="406"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_003.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_003.tif" time="3">
+      <fovea x="474" y="315"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_002.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_002.tif" time="4">
+      <fovea x="387" y="375"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_001.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_001.tif" time="5">
+      <fovea x="396" y="370"/>
+   </image>
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_000.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_000.tif" time="6">
+      <fovea x="390" y="379"/>
+   </image>
+   
+   
+   
    <image eye="OD" id="FA_CUSTOM" original="Originals\FA_CUSTOM\FA1.png" time="1"/>
+   
+   
+   
    <image eye="OD" id="FA_CUSTOM" original="Originals\FA_CUSTOM\FA2.png" time="2"/>
+   
+   
+   
    <image eye="OD" id="FA_CUSTOM" original="Originals\FA_CUSTOM\FA3.png" time="3"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_9.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_1.tif" time="1"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_10.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_2.tif" time="2"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_11.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_3.tif" time="3"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_12.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_4.tif" time="4"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_13.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_5.tif" time="5"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_14.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_6.tif" time="6"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_15.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_7.tif" time="7"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_16.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_8.tif" time="8"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_17.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_9.tif" time="9"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_18.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_10.tif" time="10"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_19.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_11.tif" time="11"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_20.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_12.tif" time="12"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_21.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_13.tif" time="13"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_22.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_14.tif" time="14"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_23.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_15.tif" time="15"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_24.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_16.tif" time="16"/>
+   
+   
+   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_25.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_17.tif" time="17"/>
+   
+   
+   
    <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early-bin.tif"/>
+   
+   
+   
    <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled-bin.tif"/>
+   
+   
+   
    <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early-bin.tif"/>
+   
+   
+   
    <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled-bin.tif"/>
+   
+   
+   
    <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early-bin.tif"/>
+   
+   
+   
    <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_4.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_1.tif" time="1"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_5.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_2.tif" time="2"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_6.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_3.tif" time="3"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_7.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_4.tif" time="4"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_8.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_5.tif" time="5"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_9.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_6.tif" time="6"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_10.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_7.tif" time="7"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_11.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_8.tif" time="8"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_12.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_9.tif" time="9"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_13.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_10.tif" time="10"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_14.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_11.tif" time="11"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_15.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_12.tif" time="12"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_16.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_13.tif" time="13"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_17.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_14.tif" time="14"/>
+   
+   
+   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_18.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_15.tif" time="15"/>
+
+
+
 </images>
