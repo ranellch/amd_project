@@ -12,6 +12,7 @@ function time_lapse(pid, eye, varargin)
     addpath('..');
     addpath(genpath('../Test Set'));
     addpath('../roi_mask');
+    addpath('vessels');
     
     %Test to make sure that all the appropiate images are available
     disp('----------Checking Files---------');
@@ -26,6 +27,9 @@ function time_lapse(pid, eye, varargin)
             %Check to see that the path to the image is readable
             the_path = get_pathv2(pid, eye, time_string, 'registered');
             img = imread(the_path);
+            
+            vesselized = vesselDetect(img, 'matching');
+            figure, imshow(vesselized);
             
             %If this is the first image in the set then initialized the output variable
             if(cur_time == 1)
@@ -44,8 +48,9 @@ function time_lapse(pid, eye, varargin)
             %look for the next image in the set
             cur_time = cur_time + 1;
         end
-    catch
+    catch e
         disp(['Found ', num2str(size(image_times,2)), ' images in this set!']);
+        disp(e.message);
     end
     disp('-------Done Checking Files-------');
     
