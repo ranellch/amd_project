@@ -35,11 +35,7 @@ function [finalroimask] = find_roi(pid, eye, time, type, varargin)
     
     %From the image use the classifier to get image
     roimask = lbp_image(img, classifier, scaling_factors);
-    
-    if(debug == 2)
-        figure(1), imshow(roimask);
-    end
-    
+        
     %Find the largest connected component
     finalroimask = zeros(size(roimask,1), size(roimask,2));
     CC = bwconncomp(roimask);
@@ -49,7 +45,7 @@ function [finalroimask] = find_roi(pid, eye, time, type, varargin)
     finalroimask = bwmorph(finalroimask, 'majority');
     
     if(debug == 2)
-        figure(2), imshow(finalroimask);
+        figure(1), imshow(finalroimask);
     end
     
     if(debug == 1 || debug == 2)

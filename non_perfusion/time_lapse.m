@@ -1,4 +1,4 @@
-function time_lapse(pid, eye, varargin)
+function time_lapse(pid, eye, maxtime, varargin)
     debug = -1;
     if length(varargin) == 1
         debug = varargin{1};
@@ -20,9 +20,13 @@ function time_lapse(pid, eye, varargin)
     try
         cur_time = 1;
         while true
+            if(cur_time > maxtime)
+                break; 
+            end
+            
             %Convert integer to string to search XML
             time_string = num2str(cur_time);
-            
+                        
             %Check to see that the path to the image is readable
             the_path = get_pathv2(pid, eye, time_string, 'registered');
             img = imread(the_path);
@@ -38,6 +42,10 @@ function time_lapse(pid, eye, varargin)
             %And the roi mask for the current image with the running roi mask
             roi_mask = roi_mask & cur_mask;
             
+            if(debug == 2)
+                figure(1), imshow(roi_mask);
+            end
+            
             %Save the current time to output array
             image_times = [image_times, cur_time];
             
@@ -48,14 +56,7 @@ function time_lapse(pid, eye, varargin)
         disp(['Found ', num2str(size(image_times,2)), ' images in this set!']);
     end
     disp('-------Done Checking Files-------');
-    
-    if(debug == 2)
-        figure, imshow(roi_mask);
-    end
-    
-    %Output results
-    final_graph = double(zeros(size(roi_mask,1), size(roi_mask,2), size(image_times,2)));
-    
+            
     if(debug == 2)
         %Video writer for time lapse of intensity
         uncompressedVideo = VideoWriter([pid, '_', eye, '.avi'], 'Uncompressed AVI');
@@ -63,9 +64,42 @@ function time_lapse(pid, eye, varargin)
         open(uncompressedVideo);
     end
     
+    %Get the vesselized image
+    vessel_mask = zeros(size(roi_mask,1), size(roi_mask,2));
+    for k=1:size(image_times, 2)
+        try
+            if(image_times(1,k) > maxtime)
+                break; 
+            end
+            
+            time_str = num2str(image_times(1,k));
+    
+            if(debug == 1 || debug == 2)
+                disp(['[VESSEL] ID: ', pid, ' TIME: ', time_str]);
+            end
+            
+            vessel_img = find_vessels(pid, eye, time_str, debug);
+            
+            vessel_mask = vessel_mask | vessel_img;
+        catch e
+            error(e.message);
+        end
+    end
+    
+    if(debug == 2)
+        figure(2), imshow(vessel_mask);
+    end
+    
+    %Output results
+    final_graph = double(zeros(size(roi_mask,1), size(roi_mask,2), size(image_times,2)));
+    
     %Iterate over the files
     for k=1:size(image_times, 2)
         try
+            if(image_time(1,k)  > maxtime)
+                break;
+            end
+            
             %Get the current time
             time_str = num2str(image_times(1,k));
 
@@ -75,7 +109,8 @@ function time_lapse(pid, eye, varargin)
             if(size(img,3) > 1)
                 img = rgb2gray(img);
             end
-            
+            img = im2double(img);
+                        
             %Get the intensities over time
             for y=1:size(img,1)
                 for x=1:size(img,2)
