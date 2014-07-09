@@ -44,7 +44,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
     end
 
     %Filename constants
-    filename_input = 'vessel_dme.training';
+    filename_input = 'vessel_draw.training';
     filename_gabor = 'vessel_gabor.mat';
     filename_lineop = 'vessel_lineop.mat';
 

@@ -83,7 +83,7 @@ Iout = I./C;
  Iout(Iout<0) = 0;
 
 H = fspecial('gaussian', [3 3], 1);
-Iout = imfilter(Iout, H);
+Iout = imfilter(Iout, H, 'symmetric');
 
 end
 

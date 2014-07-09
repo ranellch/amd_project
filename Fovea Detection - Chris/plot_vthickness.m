@@ -1,17 +1,14 @@
-function [ thickness_map ] = plot_vthickness( vessels, angles )
-addpath('../Skeleton')
+function [ thickness_map, v_thicknesses ] = plot_vthickness( vessels, vskel, angles )
 
 disp('Generating vessel thickness plot')
 e = cputime;
-vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 [sky,skx] = find(vskel);
 %get junctions to ignore
 [~,~,jxy] = anaskel(vskel);
-[origy, origx] = size(vessels);
 
 angles = mod(angles,180);
 %get vessel thickness interpolated over entire image
-thickness_map = zeros(size(vessels));
+v_thicknesses = zeros(size(vessels));
 for i = 1:4:length(sky)
     y = sky(i);
     x = skx(i);
@@ -35,7 +32,7 @@ for i = 1:4:length(sky)
             on_vessel = false;
         else
             if vessels(y-delta_y,x+delta_x) == 1
-                thickness_map(y,x) = thickness_map(y,x) + 1;
+                v_thicknesses(y,x) = v_thicknesses(y,x) + 1;
             else
                 on_vessel = false;
             end
@@ -51,7 +48,7 @@ for i = 1:4:length(sky)
             on_vessel = false;
         else
             if vessels(y-delta_y,x+delta_x) == 1
-                thickness_map(y,x) = thickness_map(y,x) + 1;
+                v_thicknesses(y,x) = v_thicknesses(y,x) + 1;
             else
                 on_vessel = false;
             end
@@ -60,7 +57,7 @@ for i = 1:4:length(sky)
 end
 %  figure, imshow(thickness_map)
     %interpolate
-    thickness_map = padarray(thickness_map,[150 150], 'symmetric');
+    thickness_map = padarray(v_thicknesses,[150 150], 'symmetric');
     [y, x, T] = find(thickness_map);
     y = y - 150; %adjust for padding
     x = x - 150;
