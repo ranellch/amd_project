@@ -21,9 +21,13 @@ function time_lapse(pid, eye, maxtime, varargin)
     try
         cur_time = 1;
         while true
+            if(cur_time > maxtime)
+                break; 
+            end
+            
             %Convert integer to string to search XML
             time_string = num2str(cur_time);
-            
+                        
             %Check to see that the path to the image is readable
             the_path = get_pathv2(pid, eye, time_string, 'registered');
             img = imread(the_path);
@@ -38,6 +42,10 @@ function time_lapse(pid, eye, maxtime, varargin)
                         
             %And the roi mask for the current image with the running roi mask
             roi_mask = roi_mask & cur_mask;
+            
+            if(debug == 2)
+                figure(1), imshow(roi_mask);
+            end
             
             %Save the current time to output array
             image_times = [image_times, cur_time];
@@ -61,48 +69,31 @@ function time_lapse(pid, eye, maxtime, varargin)
     
     
     disp('----------Building Vessels---------');
-    
-    %Create the image for holding vessels
-    vessel_img = zeros(size(roi_mask,1), size(roi_mask,2));
-    
-    %Iterate over the files and find the vessels
+            
+    %Get the vesselized image
+    vessel_mask = zeros(size(roi_mask,1), size(roi_mask,2));
     for k=1:size(image_times, 2)
         try
-            %Break on the max image number
             if(image_times(1,k) > maxtime)
-                break;
+                break; 
             end
             
-            %Convert integer to string to search XML
-            time_string = num2str(image_times(1,k));
-            
-            %Load the image and convert it to the correct image type
-            path = get_pathv2(pid, eye, time_string, 'registered');
-            img = imread(path);
-            if(size(img,3) > 1)
-                img = rgb2gray(img);
+            time_str = num2str(image_times(1,k));
+    
+            if(debug == 1 || debug == 2)
+                disp(['[VESSEL] ID: ', pid, ' TIME: ', time_str]);
             end
-            img = im2double(img);
             
-            %Down scale the image to run through the vessel detection
-            origy = size(img,1);
-            imgsc = imresize(img, [768 NaN]);
+            vessel_img = find_vessels(pid, eye, time_str, debug);
             
-            %Run the vessel detection and then scale the image back to original size
-            disp(['[ID] ', pid, ' - time: ', time_string]);
-            vesselized_image = vesselDetect(imgsc, 'matching');
-            vesselized_image_orig = imresize(vesselized_image, [origy NaN]);
-            
-            %OR all of the vessel images
-            vessel_img = vessel_img | vesselized_image_orig;
-        catch Ex
-            error(Ex.message)
+            vessel_mask = vessel_mask | vessel_img;
+        catch e
+            error(e.message);
         end
     end
-    disp('----------Done Building Vessels---------');
     
-    if debug == 2
-        figure, imshow(vessel_img);
+    if(debug == 2)
+        figure(2), imshow(vessel_mask);
     end
     
     %Output results
@@ -132,7 +123,8 @@ function time_lapse(pid, eye, maxtime, varargin)
             if(size(img,3) > 1)
                 img = rgb2gray(img);
             end
-            
+            img = im2double(img);
+                        
             %Get the intensities over time
             for y=1:size(img,1)
                 for x=1:size(img,2)

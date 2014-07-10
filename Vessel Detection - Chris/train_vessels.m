@@ -1,6 +1,4 @@
 function train_vessels()
-        addpath(genpath('../ML Library'))
-        addpath(genpath('../libsvm-3.18'))
         addpath(genpath('../liblinear-1.94'))
         
         t = cputime;
@@ -12,10 +10,6 @@ function train_vessels()
         %Disp some informaiton to the user
         e = cputime - t;
         disp(['Time to load gabor features (min): ', num2str(e / 60.0)]);
-
-%         %Build the vessel classifier
-%         vessel_gabor_classifier = NaiveBayes.fit(variable_data_gabor, variable_categories_gabor);
-%         save('vessel_gabor_classifier.mat', 'vessel_gabor_classifier');
         
         t = cputime;
         %Get orthogonal line operator feaure vectors
@@ -57,6 +51,7 @@ function train_vessels()
         label_vector(discard_vector) = [];
         instance_matrix(discard_vector,:) = [];
     end
+    
     disp(['Number of Positive Instances: ', num2str(sum(label_vector==1)), ' Number of Negative Instances: ', ... 
         num2str(sum(label_vector==-1)), ' Total: ', num2str(numel(label_vector))]);  
     
@@ -73,15 +68,17 @@ function train_vessels()
          
     t = cputime;
     disp('Building SVM classifier...Please Wait')
+
 % 	[~, vessel_combined_classifier] = adaboost('train', combined_matrices, categories, itt);
 %     vessel_combined_classifier = libsvmtrain(label_vector, instance_matrix, '-t 0 -m 1000 -e 0.01');
 %     options_struct = statset('Display','iter','MaxIter',1000000);
 	vessel_combined_classifier =  train(label_vector, sparse(instance_matrix), '-s 2');
+
     save('vessel_combined_classifier.mat', 'vessel_combined_classifier', 'scaling_factors');
     
      %Disp some informaiton to the user
      e = cputime - t;
      disp(['Time to build classifier (min): ', num2str(e / 60.0)]);
-         
+     
 end
 

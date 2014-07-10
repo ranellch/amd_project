@@ -18,6 +18,7 @@ cpselect_database/run*
 OD Detection - Chris/results*
 Vessel\ Detection\ -\ Chris/results*
 non_perfusion/results*
+Test Set/*
 .DS_Store
 .__*
 *.classifier
