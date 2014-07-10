@@ -5,7 +5,7 @@ function [features] = vesselFeatures(img_cur, type)
 features = zero_m_unit_std(img_cur);
 
 if strcmpi(type, 'matching')
-    for o = 1:8
+    for o = 1:4
         for l = 7:2:11
             vesselResponse = matchingfiltering(img_cur, 15, o, l);
             features = cat(3, features, zero_m_unit_std(vesselResponse));

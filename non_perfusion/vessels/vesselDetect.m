@@ -14,7 +14,7 @@ else
 end
 
 vesselmap = bwmorph(vesselmap, 'fill');
-vesselmap = CCFilterRemoveSmallBlobs(vesselmap, 2);
+vesselmap = CCFilterRemoveSmallBlobs(vesselmap, 175);
 
 end
 
