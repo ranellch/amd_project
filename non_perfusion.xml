@@ -1,165 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <images>
+<!-- FA_CUSTOM sets of original images. -->
    <image eye="OD" id="FA_CUSTOM" original="Originals\FA_CUSTOM\FA1.png" time="1"/>
-   
-   
-   
    <image eye="OD" id="FA_CUSTOM" original="Originals\FA_CUSTOM\FA2.png" time="2"/>
-   
-   
-   
    <image eye="OD" id="FA_CUSTOM" original="Originals\FA_CUSTOM\FA3.png" time="3"/>
    
-   
-   
+<!-- 015443224 -->
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_9.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_1.tif" time="1"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_10.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_2.tif" time="2"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_11.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_3.tif" time="3"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_12.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_4.tif" time="4"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_13.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_5.tif" time="5"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_14.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_6.tif" time="6"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_15.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_7.tif" time="7"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_16.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_8.tif" time="8"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_17.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_9.tif" time="9"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_18.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_10.tif" time="10"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_19.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_11.tif" time="11"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_20.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_12.tif" time="12"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_21.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_13.tif" time="13"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_22.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_14.tif" time="14"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_23.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_15.tif" time="15"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_24.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_16.tif" time="16"/>
-   
-   
-   
    <image eye="OS" id="015443224" original="Originals\non_perfusion\015443224\SymphonyWeb32650_25.TIF" registered="Originals\non_perfusion\015443224\registered\015443224_17.tif" time="17"/>
-   
-   
-   
-   <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early-bin.tif"/>
-   
-   
-   
-   <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled-bin.tif"/>
-   
-   
-   
-   <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early-bin.tif"/>
-   
-   
-   
-   <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled-bin.tif"/>
-   
-   
-   
-   <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early.tif" time="1" vessels="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early-bin.tif"/>
-   
-   
-   
-   <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
-   
-   
-   
+
+<!-- 01436113 -->
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_4.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_1.tif" time="1"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_5.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_2.tif" time="2"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_6.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_3.tif" time="3"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_7.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_4.tif" time="4"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_8.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_5.tif" time="5"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_9.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_6.tif" time="6"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_10.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_7.tif" time="7"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_11.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_8.tif" time="8"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_12.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_9.tif" time="9"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_13.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_10.tif" time="10"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_14.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_11.tif" time="11"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_15.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_12.tif" time="12"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_16.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_13.tif" time="13"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_17.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_14.tif" time="14"/>
-   
-   
-   
    <image eye="OS" id="014361133" original="Originals\non_perfusion\014361133\SymphonyWeb26910_18.TIF" registered="Originals\non_perfusion\014361133\registered\014361133_15.tif" time="15"/>
+
+<!-- Testing/Training set for FA vessel detection -->
+   <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early.tif" time="1" vessels="Labeled\DME\vessels\JDRF\Outline-Dr.J---JDRF-1-BASELINE---Early-bin.tif"/>
+   <image eye="OD" id="JDRF_1" original="Originals\DME\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled.tif" time="2" vessels="Labeled\DME\vessels\JDRF\Original-Dr.J---JDRF-1-BASELINE---Late-filled-bin.tif"/>
+   <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early.tif" time="1" vessels="Labeled\DME\vessels\JDRF\Outline-Dr.J---JDRF-4-BASELINE---Early-bin.tif"/>
+   <image eye="OD" id="JDRF_4" original="Originals\DME\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled.tif" time="2" vessels="Labeled\DME\vessels\JDRF\Original-Dr.J---JDRF-4-BASELINE---Late-filled-bin.tif"/>
+   <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Outline-Dr.J---JDRF-10-6M---Early.tif" time="1" vessels="Labeled\DME\vessels\JDRF\Outline-Dr.J---JDRF-10-6M---Early-bin.tif"/>
+   <image eye="OD" id="JDRF_10" original="Originals\DME\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Labeled\DME\vessels\JDRF\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
+   
+<!-- JDRF_003 Video Image Sequence -->
+    <video eye="OS" id="JDRF_003" time="Baseline" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\video.xml" ></video>
+    <video eye="OS" id="JDRF_003" time="6M" seq_path="Originals\DME\JDRF\JDRF_003\6M\video.xml" ></video>
 
 </images>
