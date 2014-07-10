@@ -112,9 +112,9 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
                 %Get the vesselized image and convert it to a binary image
                 vesselized_img = imread(vessel_image);
                 if(size(vesselized_img, 3) > 1)
-                    vesselized_img = rgb2gray(vesselized_img(:,:,1:3));
+                    vesselized_img = vesselized_img(:,:,1);
                 end
-                vesselized_img_binary = double(imresize(vesselized_img, [std_img_size, std_img_size]));
+                vesselized_img_binary = double(im2bw(imresize(vesselized_img, [std_img_size, std_img_size])));
                 vesselized_img_binary(vesselized_img_binary==0) = -1;
 
                 %Get the original image

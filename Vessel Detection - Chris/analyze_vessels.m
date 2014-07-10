@@ -36,7 +36,7 @@ function analyze_vessels(rebuild_classifier)
     
     %Open the file to determine which images to use for testing 
     fid = fopen(test_file, 'r');
-    paths = textscan(fid,'%q %q %d %*[^\n]');
+    paths = textscan(fid,'%s %s %d %*[^\n]');
     fclose(fid);
     
     numimages = size(paths{1}, 1);
@@ -74,6 +74,7 @@ function analyze_vessels(rebuild_classifier)
         
         %Get the image traced by hand
         super_img = imread(vessel_image);
+        super_img = im2bw(super_img(:,:,1));
         super_img = imresize(super_img, [768 768]);
         total_positive_count = 0;
         total_negative_count = 0;
