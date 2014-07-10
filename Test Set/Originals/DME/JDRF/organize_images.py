@@ -57,16 +57,32 @@ def run_dir(basedir, subdir):
         except:
             print '\tXML timing info could not be found: ', ID, ' - ', parsed_path
 
+            
+    root = ET.Element("video_seq")
+    root.set('id', idrun);
+    root.set('timing', subdir)
+
     the_list = (sorted(timing_list.items()))
     sort_id = 0
-    for pairs in the_list:
+    for pairs in the_list:        
         time = str(pairs[0]).replace('.','_')
         id = pairs[1][0]
         path = dirname + '\\' + pairs[1][1]
         fileName, fileExtension = os.path.splitext(path)
-        output_name = output_dirname + '\\e' + str(sort_id) + '-t' + time + '-i' + id + fileExtension
-        copy2(path, output_name)
+        output_name = 'e' + str(sort_id) + '-t' + time + '-i' + id + fileExtension
+        copy2(path, output_dirname + '\\' + output_name)
+        
+        frame = ET.SubElement(root, 'frame')
+        frame.set('id', str(sort_id))
+        frame.set('orig_id', str(id))
+        frame.set('time', time.replace('_','.'))
+        frame.set('path', output_name);
+        
         sort_id += 1
+ 
+    tree = ET.ElementTree(root);
+    
+    tree.write(output_dirname + '\\video.xml');
  
 if len(sys.argv) != 2:
     print "must enter a directory name to align"
