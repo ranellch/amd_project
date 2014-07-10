@@ -90,7 +90,9 @@ end
 if(debug == 1 || debug == 2)
     disp('[SVM] Running the classification algorithm');
 end
+% probs=zeros(size(od_image));
 od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
+% figure(10), imshow(mat2gray(probs))
 clear instance_matrix
 
 if(debug == 2)

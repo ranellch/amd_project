@@ -8,13 +8,14 @@ function time_lapse(pid, eye, maxtime, varargin)
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
     end
     
-    %Add the location of the get_path script
+    %Add the location of the external scripts that we are going to call
     addpath('..');
     addpath(genpath('../Test Set'));
     addpath('../roi_mask');
+    addpath('vessels');
     
     %Test to make sure that all the appropiate images are available
-    disp('----------Checking Files---------');
+    disp('----------Building ROI---------');
     roi_mask = zeros(1);
     image_times = [];
     try
@@ -30,7 +31,7 @@ function time_lapse(pid, eye, maxtime, varargin)
             %Check to see that the path to the image is readable
             the_path = get_pathv2(pid, eye, time_string, 'registered');
             img = imread(the_path);
-            
+
             %If this is the first image in the set then initialized the output variable
             if(cur_time == 1)
                 roi_mask = ones(size(img,1), size(img,2));
@@ -38,7 +39,7 @@ function time_lapse(pid, eye, maxtime, varargin)
             
             %Get the roi mask for the current image
             cur_mask  = find_roi(pid, eye, time_string, 'registered', 1);
-            
+                        
             %And the roi mask for the current image with the running roi mask
             roi_mask = roi_mask & cur_mask;
             
@@ -49,21 +50,26 @@ function time_lapse(pid, eye, maxtime, varargin)
             %Save the current time to output array
             image_times = [image_times, cur_time];
             
+            if(maxtime == cur_time)
+                break;
+            end
+            
             %look for the next image in the set
             cur_time = cur_time + 1;
         end
-    catch
+    catch e
         disp(['Found ', num2str(size(image_times,2)), ' images in this set!']);
+        disp(e.message);
     end
-    disp('-------Done Checking Files-------');
-            
+    disp('-------Done Buildilng ROI-------');
+        
     if(debug == 2)
-        %Video writer for time lapse of intensity
-        uncompressedVideo = VideoWriter([pid, '_', eye, '.avi'], 'Uncompressed AVI');
-        uncompressedVideo.FrameRate = 1;
-        open(uncompressedVideo);
+        figure, imshow(roi_mask);
     end
     
+    
+    disp('----------Building Vessels---------');
+            
     %Get the vesselized image
     vessel_mask = zeros(size(roi_mask,1), size(roi_mask,2));
     for k=1:size(image_times, 2)
@@ -91,12 +97,20 @@ function time_lapse(pid, eye, maxtime, varargin)
     end
     
     %Output results
-    final_graph = double(zeros(size(roi_mask,1), size(roi_mask,2), size(image_times,2)));
+    final_graph = uint8(zeros(size(roi_mask,1), size(roi_mask,2), size(image_times,2)));
+    
+    if(debug == 2)
+        %Video writer for time lapse of intensity
+        uncompressedVideo = VideoWriter([pid, '_', eye, '.avi'], 'Uncompressed AVI');
+        uncompressedVideo.FrameRate = 1;
+        open(uncompressedVideo);
+    end
     
     %Iterate over the files
     for k=1:size(image_times, 2)
         try
-            if(image_time(1,k)  > maxtime)
+            %Break on the max image number
+            if(image_times(1,k) > maxtime)
                 break;
             end
             
@@ -114,16 +128,16 @@ function time_lapse(pid, eye, maxtime, varargin)
             %Get the intensities over time
             for y=1:size(img,1)
                 for x=1:size(img,2)
-                    if(roi_mask(y,x) == 1)
+                    if(roi_mask(y,x) == 1 && vessel_img(y,x) == 0)
                         final_graph(y,x,k) = img(y,x);
                     end
                 end
             end
             
-            if(debug == 2)
+            if(debug == 2)                
                 %Color the image into a heatmap
                 heatmap = ind2rgb(squeeze(final_graph(:,:,k)), jet(256));
-            
+                                
                 %Write the heatmap to an output video stream
                 writeVideo(uncompressedVideo, heatmap);
             end
