@@ -87,7 +87,7 @@ def run_dir(basedir, subdir):
 if len(sys.argv) != 2:
     print "must enter a directory name to align"
     
-idrun = sys.argv[1]
+idrun = '..\\Test Set\\Originals\\DME\\JDRF\\' + sys.argv[1]
 f1 = []
 print '=====', idrun, '====='
 for dirname in os.listdir(idrun):
