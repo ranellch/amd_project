@@ -5,14 +5,14 @@ function time_lapse(pid, eye, maxtime, varargin)
     elseif isempty(varargin)
         debug = 1;
     else
-        throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
+        throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arguments'));
     end
     
     %Add the location of the external scripts that we are going to call
     addpath('..');
     addpath(genpath('../Test Set'));
     addpath('../roi_mask');
-    addpath('vessels');
+    addpath('np_vessels');
     
     %Test to make sure that all the appropiate images are available
     disp('----------Building ROI---------');
