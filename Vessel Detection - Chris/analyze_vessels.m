@@ -10,9 +10,8 @@ function analyze_vessels(rebuild_classifier)
     
     if(rebuild_classifier == 1)
         %Build training set
-        build_dataset_vessels(1,0);
-        build_dataset_vessels(0,1);
-
+        build_dataset_vessels();
+        
         %Train the classifier
         train_vessels();
     end

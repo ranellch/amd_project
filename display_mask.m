@@ -2,7 +2,7 @@ function [ Iout ] = display_mask( I, mask, color, varargin )
 %Places semi-transparent red tint over image I at locations given by mask
 %If a solid mask is desired, use 'solid' argument, and make color a three
 %element vector specifying [r,g,b] values
-
+    solid = '';
     if nargin == 4
         solid = varargin{1};
     end

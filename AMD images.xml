@@ -12,6 +12,7 @@
    
    
    
+   
    <image AMD="\Labeled\MCW\09_32_38_960_009.tif" eye="OS" id="09323896" original="\Originals\MCW Pics (All)\09323896\OS\09_32_38_960_009.tif" time="1">
       
       
@@ -25,7 +26,9 @@
       
       
       
-      <fovea x="396" y="414"/>
+      
+      <fovea x="391" y="412"/>
+   
    
    
    
@@ -39,6 +42,7 @@
    
    
    </image>
+   
    
    
    
@@ -64,7 +68,9 @@
       
       
       
-      <fovea x="382" y="411"/>
+      
+      <fovea x="384" y="411"/>
+   
    
    
    
@@ -78,6 +84,7 @@
    
    
    </image>
+   
    
    
    
@@ -103,7 +110,9 @@
       
       
       
-      <fovea x="385" y="459"/>
+      
+      <fovea x="384" y="459"/>
+   
    
    
    
@@ -117,6 +126,7 @@
    
    
    </image>
+   
    
    
    
@@ -142,6 +152,7 @@
       
       
       
+      
       <fovea x="363" y="382"/>
    
    
@@ -155,7 +166,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -181,6 +194,7 @@
       
       
       
+      
       <fovea x="382" y="396"/>
    
    
@@ -194,7 +208,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -220,6 +236,7 @@
       
       
       
+      
       <fovea x="369" y="388"/>
    
    
@@ -233,7 +250,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -259,6 +278,7 @@
       
       
       
+      
       <fovea x="372" y="391"/>
    
    
@@ -272,7 +292,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -298,6 +320,7 @@
       
       
       
+      
       <fovea x="372" y="391"/>
    
    
@@ -311,7 +334,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -337,6 +362,7 @@
       
       
       
+      
       <fovea x="351" y="445"/>
    
    
@@ -350,7 +376,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -376,6 +404,7 @@
       
       
       
+      
       <fovea x="382" y="387"/>
    
    
@@ -389,7 +418,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -415,6 +446,7 @@
       
       
       
+      
       <fovea x="366" y="325"/>
    
    
@@ -428,7 +460,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -454,6 +488,7 @@
       
       
       
+      
       <fovea x="418" y="414"/>
    
    
@@ -467,7 +502,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -493,6 +530,7 @@
       
       
       
+      
       <fovea x="367" y="394"/>
    
    
@@ -506,7 +544,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -532,6 +572,7 @@
       
       
       
+      
       <fovea x="373" y="393"/>
    
    
@@ -545,7 +586,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -571,6 +614,7 @@
       
       
       
+      
       <fovea x="363" y="414"/>
    
    
@@ -584,7 +628,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -610,6 +656,7 @@
       
       
       
+      
       <fovea x="364" y="388"/>
    
    
@@ -623,7 +670,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -649,6 +698,7 @@
       
       
       
+      
       <fovea x="360" y="384"/>
    
    
@@ -662,7 +712,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -688,6 +740,7 @@
       
       
       
+      
       <fovea x="369" y="385"/>
    
    
@@ -701,7 +754,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -727,6 +782,7 @@
       
       
       
+      
       <fovea x="412" y="402"/>
    
    
@@ -740,7 +796,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -766,6 +824,7 @@
       
       
       
+      
       <fovea x="412" y="397"/>
    
    
@@ -779,7 +838,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -805,6 +866,7 @@
       
       
       
+      
       <fovea x="382" y="400"/>
    
    
@@ -818,7 +880,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -844,6 +908,7 @@
       
       
       
+      
       <fovea x="396" y="400"/>
    
    
@@ -857,7 +922,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -883,6 +950,7 @@
       
       
       
+      
       <fovea x="399" y="397"/>
    
    
@@ -896,7 +964,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -922,6 +992,7 @@
       
       
       
+      
       <fovea x="400" y="396"/>
    
    
@@ -935,7 +1006,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -961,6 +1034,7 @@
       
       
       
+      
       <fovea x="370" y="397"/>
    
    
@@ -974,7 +1048,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1000,6 +1076,7 @@
       
       
       
+      
       <fovea x="385" y="402"/>
    
    
@@ -1013,7 +1090,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1039,6 +1118,7 @@
       
       
       
+      
       <fovea x="375" y="423"/>
    
    
@@ -1052,7 +1132,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1078,6 +1160,7 @@
       
       
       
+      
       <fovea x="322" y="505"/>
    
    
@@ -1091,7 +1174,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1117,6 +1202,7 @@
       
       
       
+      
       <fovea x="421" y="403"/>
    
    
@@ -1130,7 +1216,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1156,6 +1244,7 @@
       
       
       
+      
       <fovea x="354" y="427"/>
    
    
@@ -1169,7 +1258,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1195,6 +1286,7 @@
       
       
       
+      
       <fovea x="417" y="393"/>
    
    
@@ -1208,7 +1300,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1234,6 +1328,7 @@
       
       
       
+      
       <fovea x="421" y="391"/>
    
    
@@ -1247,7 +1342,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1273,6 +1370,7 @@
       
       
       
+      
       <fovea x="367" y="396"/>
    
    
@@ -1286,7 +1384,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1312,6 +1412,7 @@
       
       
       
+      
       <fovea x="399" y="388"/>
    
    
@@ -1325,7 +1426,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1351,6 +1454,7 @@
       
       
       
+      
       <fovea x="399" y="388"/>
    
    
@@ -1364,7 +1468,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1390,6 +1496,7 @@
       
       
       
+      
       <fovea x="393" y="393"/>
    
    
@@ -1403,7 +1510,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1429,6 +1538,7 @@
       
       
       
+      
       <fovea x="411" y="388"/>
    
    
@@ -1442,7 +1552,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1468,6 +1580,7 @@
       
       
       
+      
       <fovea x="399" y="397"/>
    
    
@@ -1481,7 +1594,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1507,6 +1622,7 @@
       
       
       
+      
       <fovea x="397" y="411"/>
    
    
@@ -1520,7 +1636,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1546,7 +1664,9 @@
       
       
       
+      
       <fovea x="361" y="402"/>
+   
    
    
    
@@ -1572,7 +1692,9 @@
    
    
    
+   
    <image AMD="Labeled\AMD Controls\VINCENT OD 2.tif" eye="OD" id="VINCENT" optic_disc="Labeled\AMD Snaked\VINCENT OD 2.tif" original="\Originals\Vincent OD\VINCENT OD 2.tif" time="2"> 
+      
       
       
       
@@ -1598,7 +1720,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1624,6 +1748,7 @@
       
       
       
+      
       <fovea x="364" y="403"/>
    
    
@@ -1637,7 +1762,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1663,6 +1790,7 @@
       
       
       
+      
       <fovea x="402" y="396"/>
    
    
@@ -1676,7 +1804,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -1702,7 +1832,9 @@
       
       
       
+      
       <fovea x="394" y="399"/>
+   
    
    
    
@@ -1728,7 +1860,9 @@
    
    
    
+   
    <image AMD="Labeled\AMD Controls\White OD 3 (poor image).tif" eye="OD" id="WHITE" original="\Originals\White OD\White OD 3 (poor image).tif" time="3" vessels="Labeled\AMD Vessels\White OD 3 (poor image)_vessel.tif"> 
+      
       
       
       
@@ -1754,7 +1888,9 @@
    
    
    
+   
    </image>  
+   
    
    
    
@@ -1780,7 +1916,9 @@
       
       
       
-      <fovea x="379" y="510"/>
+      
+      <fovea x="382" y="502"/>
+   
    
    
    
@@ -1794,6 +1932,7 @@
    
    
    </image>
+   
    
    
    
@@ -1819,7 +1958,9 @@
       
       
       
-      <fovea x="388" y="412"/>
+      
+      <fovea x="394" y="403"/>
+   
    
    
    
@@ -1833,6 +1974,7 @@
    
    
    </image>
+   
    
    
    
@@ -1858,7 +2000,9 @@
       
       
       
-      <fovea x="385" y="400"/>
+      
+      <fovea x="387" y="393"/>
+   
    
    
    
@@ -1872,6 +2016,7 @@
    
    
    </image>
+   
    
    
    
@@ -1897,7 +2042,9 @@
       
       
       
-      <fovea x="502" y="334"/>
+      
+      <fovea x="522" y="330"/>
+   
    
    
    
@@ -1911,6 +2058,7 @@
    
    
    </image>
+   
    
    
    
@@ -1936,7 +2084,9 @@
       
       
       
-      <fovea x="496" y="369"/>
+      
+      <fovea x="502" y="384"/>
+   
    
    
    
@@ -1950,6 +2100,7 @@
    
    
    </image>
+   
    
    
    
@@ -1975,7 +2126,9 @@
       
       
       
-      <fovea x="403" y="385"/>
+      
+      <fovea x="405" y="381"/>
+   
    
    
    
@@ -1989,6 +2142,7 @@
    
    
    </image>
+   
    
    
    
@@ -2014,7 +2168,9 @@
       
       
       
-      <fovea x="385" y="393"/>
+      
+      <fovea x="387" y="390"/>
+   
    
    
    
@@ -2028,6 +2184,7 @@
    
    
    </image>
+   
    
    
    
@@ -2053,7 +2210,9 @@
       
       
       
-      <fovea x="387" y="384"/>
+      
+      <fovea x="390" y="388"/>
+   
    
    
    
@@ -2067,6 +2226,7 @@
    
    
    </image>
+   
    
    
    
@@ -2092,7 +2252,9 @@
       
       
       
-      <fovea x="382" y="388"/>
+      
+      <fovea x="381" y="396"/>
+   
    
    
    
@@ -2106,6 +2268,7 @@
    
    
    </image>
+   
    
    
    
@@ -2131,7 +2294,9 @@
       
       
       
-      <fovea x="384" y="387"/>
+      
+      <fovea x="378" y="384"/>
+   
    
    
    
@@ -2145,6 +2310,7 @@
    
    
    </image>
+   
    
    
    
@@ -2170,7 +2336,9 @@
       
       
       
-      <fovea x="384" y="384"/>
+      
+      <fovea x="396" y="390"/>
+   
    
    
    
@@ -2184,6 +2352,7 @@
    
    
    </image>
+   
    
    
    
@@ -2209,7 +2378,9 @@
       
       
       
-      <fovea x="387" y="391"/>
+      
+      <fovea x="391" y="387"/>
+   
    
    
    
@@ -2223,6 +2394,7 @@
    
    
    </image>
+   
    
    
    
@@ -2248,7 +2420,9 @@
       
       
       
-      <fovea x="393" y="391"/>
+      
+      <fovea x="393" y="394"/>
+   
    
    
    
@@ -2262,6 +2436,7 @@
    
    
    </image>
+   
    
    
    
@@ -2287,7 +2462,9 @@
       
       
       
-      <fovea x="405" y="391"/>
+      
+      <fovea x="399" y="388"/>
+   
    
    
    
@@ -2301,6 +2478,7 @@
    
    
    </image>
+   
    
    
    
@@ -2326,6 +2504,7 @@
       
       
       
+      
       <fovea x="390" y="393"/>
    
    
@@ -2339,7 +2518,9 @@
    
    
    
+   
    </image>
+   
    
    
    
@@ -2365,7 +2546,9 @@
       
       
       
-      <fovea x="397" y="387"/>
+      
+      <fovea x="390" y="393"/>
+   
    
    
    
@@ -2379,6 +2562,7 @@
    
    
    </image>
+   
    
    
    
@@ -2404,7 +2588,9 @@
       
       
       
-      <fovea x="399" y="388"/>
+      
+      <fovea x="393" y="396"/>
+   
    
    
    
@@ -2418,6 +2604,7 @@
    
    
    </image>
+   
    
    
    
@@ -2443,7 +2630,9 @@
       
       
       
-      <fovea x="390" y="382"/>
+      
+      <fovea x="391" y="388"/>
+   
    
    
    
@@ -2457,6 +2646,7 @@
    
    
    </image>
+   
    
    
    
@@ -2482,7 +2672,9 @@
       
       
       
-      <fovea x="390" y="387"/>
+      
+      <fovea x="385" y="393"/>
+   
    
    
    
@@ -2496,6 +2688,7 @@
    
    
    </image>
+   
    
    
    
@@ -2521,7 +2714,9 @@
       
       
       
-      <fovea x="388" y="384"/>
+      
+      <fovea x="390" y="391"/>
+   
    
    
    
@@ -2535,6 +2730,7 @@
    
    
    </image>
+   
    
    
    
@@ -2560,7 +2756,9 @@
       
       
       
-      <fovea x="354" y="411"/>
+      
+      <fovea x="348" y="418"/>
+   
    
    
    
@@ -2574,6 +2772,7 @@
    
    
    </image>
+   
    
    
    
@@ -2599,7 +2798,9 @@
       
       
       
-      <fovea x="381" y="396"/>
+      
+      <fovea x="373" y="399"/>
+   
    
    
    
@@ -2613,6 +2814,7 @@
    
    
    </image>
+   
    
    
    
@@ -2638,7 +2840,9 @@
       
       
       
-      <fovea x="376" y="400"/>
+      
+      <fovea x="378" y="399"/>
+   
    
    
    
@@ -2652,6 +2856,7 @@
    
    
    </image>
+   
    
    
    
@@ -2677,7 +2882,9 @@
       
       
       
-      <fovea x="378" y="396"/>
+      
+      <fovea x="381" y="400"/>
+   
    
    
    
@@ -2691,6 +2898,7 @@
    
    
    </image>
+   
    
    
    
@@ -2716,7 +2924,9 @@
       
       
       
-      <fovea x="394" y="381"/>
+      
+      <fovea x="385" y="388"/>
+   
    
    
    
@@ -2730,6 +2940,7 @@
    
    
    </image>
+   
    
    
    
@@ -2755,7 +2966,9 @@
       
       
       
-      <fovea x="390" y="382"/>
+      
+      <fovea x="381" y="378"/>
+   
    
    
    
@@ -2769,6 +2982,7 @@
    
    
    </image>
+   
    
    
    
@@ -2794,7 +3008,9 @@
       
       
       
-      <fovea x="379" y="388"/>
+      
+      <fovea x="384" y="390"/>
+   
    
    
    
@@ -2808,6 +3024,7 @@
    
    
    </image>
+   
    
    
    
@@ -2833,7 +3050,9 @@
       
       
       
-      <fovea x="385" y="391"/>
+      
+      <fovea x="399" y="384"/>
+   
    
    
    
@@ -2847,6 +3066,7 @@
    
    
    </image>
+   
    
    
    
@@ -2872,7 +3092,9 @@
       
       
       
-      <fovea x="385" y="373"/>
+      
+      <fovea x="393" y="390"/>
+   
    
    
    
@@ -2886,6 +3108,7 @@
    
    
    </image>
+   
    
    
    
@@ -2911,7 +3134,9 @@
       
       
       
-      <fovea x="385" y="375"/>
+      
+      <fovea x="375" y="384"/>
+   
    
    
    
@@ -2925,6 +3150,7 @@
    
    
    </image>
+   
    
    
    
@@ -2950,7 +3176,9 @@
       
       
       
-      <fovea x="376" y="397"/>
+      
+      <fovea x="379" y="408"/>
+   
    
    
    
@@ -2964,6 +3192,7 @@
    
    
    </image>
+   
    
    
    
@@ -2989,7 +3218,9 @@
       
       
       
-      <fovea x="387" y="382"/>
+      
+      <fovea x="387" y="388"/>
+   
    
    
    
@@ -3003,6 +3234,7 @@
    
    
    </image>
+   
    
    
    
@@ -3028,7 +3260,9 @@
       
       
       
-      <fovea x="432" y="435"/>
+      
+      <fovea x="447" y="441"/>
+   
    
    
    
@@ -3042,6 +3276,7 @@
    
    
    </image>
+   
    
    
    
@@ -3067,7 +3302,9 @@
       
       
       
-      <fovea x="393" y="381"/>
+      
+      <fovea x="415" y="373"/>
+   
    
    
    
@@ -3093,2698 +3330,9 @@
    
    
    
+   
    <image AMD="\Labeled\MCW\00_34_92_250_005.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_005.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_005.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="396" y="387"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_34_92_250_003.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_003.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_003.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="382" y="435"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_34_92_250_001.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_001.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_001.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="388" y="406"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_34_92_250_004.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_004.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_004.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="405" y="379"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_34_92_250_002.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_002.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_002.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="399" y="408"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_34_92_250_000.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_000.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_000.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="400" y="397"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_03_67_710_005.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_005.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_005.tif" time="1" vessels="Labeled\AMD Vessels\00_03_67_710_005_vessel.tif">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="339" y="415"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_03_67_710_004.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_004.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_004.tif" time="2" vessels="Labeled\AMD Vessels\00_03_67_710_004_vessel.tif">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="343" y="418"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_03_67_710_003.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_003.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_003.tif" time="3" vessels="Labeled\AMD Vessels\00_03_67_710_003_export.tif">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="336" y="418"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_03_67_710_002.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_002.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_002.tif" time="4" vessels="Labeled\AMD Vessels\00_03_67_710_002_vessel.tif">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="343" y="411"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_03_67_710_001.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_001.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_001.tif" time="5" vessels="Labeled\AMD Vessels\00_03_67_710_001_vessel.tif">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="370" y="306"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_03_67_710_000.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_000.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_000.tif" time="6" vessels="Labeled\AMD Vessels\00_03_67_710_000_vessel.tif">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="381" y="460"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_16_700_003.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_003.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="462" y="418"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_16_700_001.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_001.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="360" y="322"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_16_700_002.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_002.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="447" y="328"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_16_700_000.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_000.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="465" y="304"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_011.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_011.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="394" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_009.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_009.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="388" y="378"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_007.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_007.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="450" y="343"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_005.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_005.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="345" y="340"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_003.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_003.tif" time="5">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="376" y="352"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_000.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_000.tif" time="6">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="462" y="448"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_010.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_010.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="391" y="381"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_008.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_008.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="399" y="373"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_006.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_006.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="391"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_004.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_004.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="382" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_21_01_050_002.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_002.tif" time="5">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="283"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_010.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_010.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="285" y="439"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_008.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_008.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="406"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_006.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_006.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="381" y="399"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_004.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_004.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="385" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_003.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_003.tif" time="5">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="372" y="397"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_001.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_001.tif" time="6">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="378" y="397"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_009.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_009.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="364" y="370"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_005.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_005.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="394" y="421"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_002.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_002.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="396" y="357"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_23_06_220_000.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_000.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="391" y="370"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_51_80_540_001.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_001.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_001.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="394" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_51_80_540_000.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_000.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_000.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="387" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\07_09_38_740_003.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_003.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_003.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="376" y="378"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\07_09_38_740_001.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_001.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_001.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="402" y="469"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\07_09_38_740_002.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_002.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_002.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="387"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\07_09_38_740_000.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_000.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_000.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="420"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_64_940_005.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_005.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="385" y="397"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_64_940_004.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_004.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="394" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_64_940_003.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_003.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_64_940_002.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_002.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="388" y="382"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_64_940_001.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_001.tif" time="5">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="388" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_18_64_940_000.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_000.tif" time="6">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="426" y="421"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_38_75_310_001.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_001.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_001.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="337" y="337"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_38_75_310_000.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_000.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_000.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="369" y="327"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_66_860_004.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_004.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="372" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_66_860_003.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_003.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="379"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_66_860_002.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_002.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_66_860_001.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_001.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_66_860_000.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_000.tif" time="5">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="385" y="391"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_30_65_040_003.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_003.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="384"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_30_65_040_002.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_002.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="366" y="424"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_30_65_040_001.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_001.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="375" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_30_65_040_000.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_000.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="385" y="402"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_53_85_300_004.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_004.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_004.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="387" y="408"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_53_85_300_003.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_003.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_003.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="426"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_53_85_300_002.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_002.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_002.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="360" y="385"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_53_85_300_001.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_001.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_001.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="357" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\00_53_85_300_000.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_000.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_000.tif" time="5">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="354" y="384"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_72_270_005.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_005.tif" time="1">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="382" y="376"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_72_270_004.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_004.tif" time="2">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="390"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_72_270_003.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_003.tif" time="3">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="390"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_72_270_002.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_002.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="384" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_72_270_001.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_001.tif" time="5">
       
       
       
@@ -5810,44 +3358,6 @@
    
    
    
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_72_270_000.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_000.tif" time="6">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="388" y="393"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    
    </image>
    
@@ -5862,7 +3372,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_36_22_440_000.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_000.tif" time="1">
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_003.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_003.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_003.tif" time="2">
       
       
       
@@ -5875,7 +3386,9 @@
       
       
       
-      <fovea x="399" y="430"/>
+      
+      <fovea x="369" y="444"/>
+   
    
    
    
@@ -5901,7 +3414,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_36_22_440_001.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_001.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_001.tif" eye="OS" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OS\00_34_92_250_001.tif" original="\Originals\MCW Pics (All)\00349225\OS\00_34_92_250_001.tif" time="3">
       
       
       
@@ -5914,46 +3428,9 @@
       
       
       
-      <fovea x="390" y="387"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_31_79_270_007.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_007.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="358" y="511"/>
+      <fovea x="409" y="396"/>
+   
    
    
    
@@ -5979,7 +3456,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_31_79_270_005.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_005.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_004.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_004.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_004.tif" time="1">
       
       
       
@@ -5992,46 +3470,9 @@
       
       
       
-      <fovea x="384" y="378"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_31_79_270_003.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_003.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="394" y="336"/>
+      <fovea x="394" y="376"/>
+   
    
    
    
@@ -6057,7 +3498,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_31_79_270_001.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_001.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_002.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_002.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_002.tif" time="2">
       
       
       
@@ -6070,46 +3512,9 @@
       
       
       
-      <fovea x="397" y="342"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_31_79_270_006.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_006.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="378" y="388"/>
+      <fovea x="387" y="409"/>
+   
    
    
    
@@ -6135,7 +3540,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_31_79_270_004.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_004.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\00_34_92_250_000.tif" eye="OD" id="00349225" optic_disc="Labeled\AMD Snaked\00349225\OD\00_34_92_250_000.tif" original="\Originals\MCW Pics (All)\00349225\OD\00_34_92_250_000.tif" time="3">
       
       
       
@@ -6148,46 +3554,9 @@
       
       
       
-      <fovea x="387" y="403"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_31_79_270_002.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_002.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="370" y="351"/>
+      <fovea x="396" y="382"/>
+   
    
    
    
@@ -6213,7 +3582,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_31_79_270_000.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_000.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_005.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_005.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_005.tif" time="1" vessels="Labeled\AMD Vessels\00_03_67_710_005_vessel.tif">
       
       
       
@@ -6226,46 +3596,9 @@
       
       
       
-      <fovea x="361" y="327"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_29_12_400_007.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_007.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="393" y="375"/>
+      <fovea x="370" y="360"/>
+   
    
    
    
@@ -6291,7 +3624,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_29_12_400_005.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_005.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_004.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_004.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_004.tif" time="2" vessels="Labeled\AMD Vessels\00_03_67_710_004_vessel.tif">
       
       
       
@@ -6304,46 +3638,9 @@
       
       
       
-      <fovea x="364" y="367"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_29_12_400_003.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_003.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="475" y="279"/>
+      <fovea x="373" y="364"/>
+   
    
    
    
@@ -6369,7 +3666,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_29_12_400_001.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_001.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_003.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_003.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_003.tif" time="3" vessels="Labeled\AMD Vessels\00_03_67_710_003_export.tif">
       
       
       
@@ -6382,46 +3680,9 @@
       
       
       
-      <fovea x="381" y="370"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_29_12_400_006.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_006.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="378" y="369"/>
+      <fovea x="372" y="358"/>
+   
    
    
    
@@ -6447,7 +3708,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_29_12_400_004.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_004.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_002.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_002.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_002.tif" time="4" vessels="Labeled\AMD Vessels\00_03_67_710_002_vessel.tif">
       
       
       
@@ -6460,46 +3722,9 @@
       
       
       
-      <fovea x="391" y="331"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_29_12_400_002.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_002.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="390" y="247"/>
+      <fovea x="370" y="367"/>
+   
    
    
    
@@ -6525,7 +3750,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_29_12_400_000.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_000.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_001.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_001.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_001.tif" time="5" vessels="Labeled\AMD Vessels\00_03_67_710_001_vessel.tif">
       
       
       
@@ -6538,46 +3764,9 @@
       
       
       
-      <fovea x="436" y="318"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_82_610_011.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_011.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="393" y="388"/>
+      <fovea x="396" y="289"/>
+   
    
    
    
@@ -6603,7 +3792,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_22_82_610_009.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_009.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\00_03_67_710_000.tif" eye="OD" id="00036771" optic_disc="Labeled\AMD Snaked\00036771\00_03_67_710_000.tif" original="Originals\MCW Pics (All)\00036771\00_03_67_710_000.tif" time="6" vessels="Labeled\AMD Vessels\00_03_67_710_000_vessel.tif">
       
       
       
@@ -6616,46 +3806,9 @@
       
       
       
-      <fovea x="397" y="384"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_82_610_007.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_007.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="391" y="387"/>
+      <fovea x="396" y="421"/>
+   
    
    
    
@@ -6681,7 +3834,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_22_82_610_005.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_005.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_003.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_003.tif" time="1">
       
       
       
@@ -6694,46 +3848,9 @@
       
       
       
-      <fovea x="387" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_82_610_003.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_003.tif" time="5">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="381" y="385"/>
+      <fovea x="456" y="418"/>
+   
    
    
    
@@ -6759,7 +3876,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_22_82_610_001.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_001.tif" time="6">
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_001.tif" eye="OS" id="09181670" original="\Originals\MCW Pics (All)\09181670\OS\09_18_16_700_001.tif" time="2">
       
       
       
@@ -6772,46 +3890,9 @@
       
       
       
-      <fovea x="375" y="385"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_82_610_010.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_010.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="379" y="385"/>
+      <fovea x="339" y="319"/>
+   
    
    
    
@@ -6837,7 +3918,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_22_82_610_008.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_008.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_002.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_002.tif" time="1">
       
       
       
@@ -6850,46 +3932,9 @@
       
       
       
-      <fovea x="394" y="385"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_82_610_006.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_006.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="382" y="391"/>
+      <fovea x="465" y="346"/>
+   
    
    
    
@@ -6915,7 +3960,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_22_82_610_004.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_004.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\09_18_16_700_000.tif" eye="OD" id="09181670" original="\Originals\MCW Pics (All)\09181670\OD\09_18_16_700_000.tif" time="2">
       
       
       
@@ -6928,46 +3974,9 @@
       
       
       
-      <fovea x="393" y="400"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_22_82_610_002.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_002.tif" time="5">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="358" y="351"/>
+      <fovea x="462" y="333"/>
+   
    
    
    
@@ -6993,7 +4002,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_22_82_610_000.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_000.tif" time="6">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_011.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_011.tif" time="1">
       
       
       
@@ -7006,46 +4016,9 @@
       
       
       
-      <fovea x="384" y="388"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_05_57_090_005.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_005.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="391" y="385"/>
+      <fovea x="399" y="384"/>
+   
    
    
    
@@ -7071,7 +4044,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_05_57_090_004.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_004.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_009.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_009.tif" time="2">
       
       
       
@@ -7084,46 +4058,9 @@
       
       
       
-      <fovea x="394" y="391"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_05_57_090_003.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_003.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="388" y="390"/>
+      <fovea x="391" y="376"/>
+   
    
    
    
@@ -7149,7 +4086,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_05_57_090_002.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_002.tif" time="4">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_007.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_007.tif" time="3">
       
       
       
@@ -7162,46 +4100,9 @@
       
       
       
-      <fovea x="385" y="391"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_05_57_090_001.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_001.tif" time="5">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="393" y="390"/>
+      <fovea x="400" y="366"/>
+   
    
    
    
@@ -7227,7 +4128,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_05_57_090_000.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_000.tif" time="6">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_005.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_005.tif" time="4">
       
       
       
@@ -7240,46 +4142,9 @@
       
       
       
-      <fovea x="355" y="427"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_16_12_040_002.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_002.tif" time="1">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="379" y="487"/>
+      <fovea x="358" y="369"/>
+   
    
    
    
@@ -7305,7 +4170,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_16_12_040_001.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_001.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_003.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_003.tif" time="5">
       
       
       
@@ -7318,46 +4184,9 @@
       
       
       
-      <fovea x="414" y="469"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_16_12_040_000.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_000.tif" time="3">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="391" y="417"/>
+      <fovea x="394" y="360"/>
+   
    
    
    
@@ -7383,7 +4212,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_14_08_880_005.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_005.tif" time="1">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_000.tif" eye="OS" id="09210105" original="\Originals\MCW Pics (All)\09210105\OS\09_21_01_050_000.tif" time="6">
       
       
       
@@ -7396,7 +4226,9 @@
       
       
       
-      <fovea x="390" y="375"/>
+      
+      <fovea x="471" y="457"/>
+   
    
    
    
@@ -7422,7 +4254,8 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_14_08_880_004.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_004.tif" time="2">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_010.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_010.tif" time="1">
       
       
       
@@ -7435,7 +4268,9 @@
       
       
       
-      <fovea x="397" y="406"/>
+      
+      <fovea x="387" y="390"/>
+   
    
    
    
@@ -7461,85 +4296,9 @@
    
    
    
-   <image AMD="\Labeled\MCW\09_14_08_880_003.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_003.tif" time="3">
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_008.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_008.tif" time="2">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="474" y="315"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_08_880_002.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_002.tif" time="4">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <fovea x="387" y="375"/>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   </image>
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   <image AMD="\Labeled\MCW\09_14_08_880_001.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_001.tif" time="5">
       
       
       
@@ -7565,7 +4324,3831 @@
    
    
    
+   
    </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_006.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_006.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="391"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_004.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_004.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="402"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_21_01_050_002.tif" eye="OD" id="09210105" original="\Originals\MCW Pics (All)\09210105\OD\09_21_01_050_002.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="376" y="315"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_010.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_010.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="286" y="450"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_008.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_008.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="408"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_006.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_006.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="396"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_004.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_004.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="385" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_003.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_003.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="378" y="393"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_001.tif" eye="OS" id="09230622" original="\Originals\MCW Pics (All)\09230622\OS\09_23_06_220_001.tif" time="6">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="385" y="402"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_009.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_009.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="364" y="370"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_005.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_005.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="393" y="421"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_002.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_002.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="393" y="367"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_23_06_220_000.tif" eye="OD" id="09230622" original="\Originals\MCW Pics (All)\09230622\OD\09_23_06_220_000.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="390" y="367"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_51_80_540_001.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_001.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_001.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="403"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_51_80_540_000.tif" eye="OS" id="00518054" optic_disc="Labeled\AMD Snaked\00518054\00_51_80_540_000.tif" original="\Originals\MCW Pics (All)\00518054\00_51_80_540_000.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="370" y="396"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_003.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_003.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_003.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="381" y="375"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_001.tif" eye="OS" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OS\07_09_38_740_001.tif" original="\Originals\MCW Pics (All)\07093874\OS\07_09_38_740_001.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="408" y="480"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_002.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_002.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_002.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="391"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\07_09_38_740_000.tif" eye="OD" id="07093874" optic_disc="Labeled\AMD Snaked\07093874\OD\07_09_38_740_000.tif" original="\Originals\MCW Pics (All)\07093874\OD\07_09_38_740_000.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="420"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_005.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_005.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="387"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_004.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_004.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="390"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_003.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_003.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="391"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_002.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_002.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_001.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_001.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="381" y="393"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_18_64_940_000.tif" eye="OS" id="09186494" original="\Originals\MCW Pics (All)\09186494\09_18_64_940_000.tif" time="6">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="429" y="420"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_38_75_310_001.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_001.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_001.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="303" y="337"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_38_75_310_000.tif" eye="OS" id="00387531" optic_disc="Labeled\AMD Snaked\00387531\00_38_75_310_000.tif" original="\Originals\MCW Pics (All)\00387531\00_38_75_310_000.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="331"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_004.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_004.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="394"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_003.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_003.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_002.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_002.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="390" y="390"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_001.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_001.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="400" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_66_860_000.tif" eye="OD" id="09146686" original="\Originals\MCW Pics (All)\09146686\09_14_66_860_000.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="394" y="384"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_003.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_003.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="385" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_002.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_002.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="367" y="414"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_001.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_001.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="369" y="388"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_30_65_040_000.tif" eye="OS" id="09306504" original="\Originals\MCW Pics (All)\09306504\09_30_65_040_000.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="378" y="402"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_004.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_004.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_004.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="418"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_003.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_003.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_003.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="376" y="432"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_002.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_002.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_002.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="343" y="390"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_001.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_001.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_001.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="345" y="397"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\00_53_85_300_000.tif" eye="OS" id="00538530" optic_disc="Labeled\AMD Snaked\00538530\00_53_85_300_000.tif" original="\Originals\MCW Pics (All)\00538530\00_53_85_300_000.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="331" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_005.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_005.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="381" y="379"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_004.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_004.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="390"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_003.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_003.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="396"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_002.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_002.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="394"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_001.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_001.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="385" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_72_270_000.tif" eye="OD" id="09227227" original="\Originals\MCW Pics (All)\09227227\09_22_72_270_000.tif" time="6">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_36_22_440_000.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_000.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="393" y="447"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_36_22_440_001.tif" eye="OS" id="09362244" original="\Originals\MCW Pics (All)\09362244\09_36_22_440_001.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="408"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_007.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_007.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="330" y="517"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_005.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_005.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="375" y="370"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_003.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_003.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="331"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_001.tif" eye="OS" id="09317927" original="\Originals\MCW Pics (All)\09317927\OS\09_31_79_270_001.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="340"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_006.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_006.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="382" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_004.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_004.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="415"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_002.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_002.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="358" y="352"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_31_79_270_000.tif" eye="OD" id="09317927" original="\Originals\MCW Pics (All)\09317927\OD\09_31_79_270_000.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="358" y="333"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_007.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_007.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="381" y="379"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_005.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_005.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="360" y="366"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_003.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_003.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="450" y="276"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_001.tif" eye="OS" id="09291240" original="\Originals\MCW Pics (All)\09291240\OS\09_29_12_400_001.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="399" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_006.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_006.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="400" y="372"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_004.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_004.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="415" y="321"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_002.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_002.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="244"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_29_12_400_000.tif" eye="OD" id="09291240" original="\Originals\MCW Pics (All)\09291240\OD\09_29_12_400_000.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="433" y="309"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_011.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_011.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="390" y="387"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_009.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_009.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="393" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_007.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_007.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="387"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_005.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_005.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="390"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_003.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_003.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="385"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_001.tif" eye="OS" id="09228261" original="\Originals\MCW Pics (All)\09228261\OS\09_22_82_610_001.tif" time="6">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="381" y="388"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_010.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_010.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="384"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_008.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_008.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="393" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_006.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_006.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="387"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_004.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_004.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="396" y="402"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_002.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_002.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="361" y="354"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_22_82_610_000.tif" eye="OD" id="09228261" original="\Originals\MCW Pics (All)\09228261\OD\09_22_82_610_000.tif" time="6">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="390" y="379"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_005.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_005.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="388" y="376"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_004.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_004.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="390" y="387"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_003.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_003.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="396" y="396"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_002.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_002.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="381" y="394"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_001.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_001.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="384" y="394"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_05_57_090_000.tif" eye="OD" id="09055709" original="\Originals\MCW Pics (All)\09055709\09_05_57_090_000.tif" time="6">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="360" y="427"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_16_12_040_002.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_002.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="357" y="489"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_16_12_040_001.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_001.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="409" y="465"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_16_12_040_000.tif" eye="OS" id="09161204" original="\Originals\MCW Pics (All)\09161204\09_16_12_040_000.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="397" y="414"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_005.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_005.tif" time="1">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="391" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_004.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_004.tif" time="2">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="400" y="423"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_003.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_003.tif" time="3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="480" y="316"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_002.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_002.tif" time="4">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="387" y="369"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <image AMD="\Labeled\MCW\09_14_08_880_001.tif" eye="OS" id="09140888" original="\Originals\MCW Pics (All)\09140888\09_14_08_880_001.tif" time="5">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <fovea x="396" y="381"/>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </image>
+   
    
    
    
@@ -7591,7 +8174,8 @@
       
       
       
-      <fovea x="390" y="379"/>
+      
+      <fovea x="393" y="384"/>
 	
    
    
@@ -7599,7 +8183,9 @@
    
    
    
+   
    </image>
+
 
 
 

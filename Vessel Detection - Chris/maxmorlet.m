@@ -42,38 +42,38 @@ largecols = cols + 1 + mod(cols, 2);
 wtmodmax = - Inf * ones(lins,cols);
 
 for t = 0:step:179
-%   disp(['angle = ' num2str(t) ' degrees']);
-  % Transfers angle to rad.
-  theta= t * (pi/180);
-  
-  % Calculates wavelet in space domain
-  wvlt = morlet([largelins largecols], theta, a, epsilon, k0);
-  wvlt = wvlt(1:lins, 1:cols);
+    %   disp(['angle = ' num2str(t) ' degrees']);
+      % Transfers angle to rad.
+      theta= t * (pi/180);
 
-  % Takes the complex conjugate.
-  cwvlt = conj(wvlt);
-  
-  % Shifts.
-  cwvlt = fftshift (cwvlt);
+      % Calculates wavelet in space domain
+      wvlt = morlet([largelins largecols], theta, a, epsilon, k0);
+      wvlt = wvlt(1:lins, 1:cols);
 
-  % Transfers to the frequency domain.
-  fcwvlt = fft2 (cwvlt);
+      % Takes the complex conjugate.
+      cwvlt = conj(wvlt);
 
-  % Multiplies image by wavelet conjugate in frequency domain.  The
-  % conjugate below indicates correlation in space, instead of
-  % convolution.
-  fimgwv = fimg .* conj (fcwvlt);
+      % Shifts.
+      cwvlt = fftshift (cwvlt);
 
-  % Back to space domain.
-  imgwv = ifft2 (fimgwv);
+      % Transfers to the frequency domain.
+      fcwvlt = fft2 (cwvlt);
 
-  % Normalization (only by scale a)
-  imgwv = imgwv / a;
+      % Multiplies image by wavelet conjugate in frequency domain.  The
+      % conjugate below indicates correlation in space, instead of
+      % convolution.
+      fimgwv = fimg .* conj (fcwvlt);
 
-  % Get the modulus of the result.
-  modimgwv = abs (imgwv);
-  
-  % Updates the maximum.
-  wtmodmax = max( modimgwv, wtmodmax );
+      % Back to space domain.
+      imgwv = ifft2 (fimgwv);
+
+      % Normalization (only by scale a)
+      imgwv = imgwv / a;
+
+      % Get the modulus of the result.
+      modimgwv = abs (imgwv);
+
+      % Updates the maximum.
+      wtmodmax = max( modimgwv, wtmodmax );
 
 end

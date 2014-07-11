@@ -1,4 +1,4 @@
-function [ x_fov,y_fov ] = find_fovea( vessels, angles, od, varargin )
+function [ x_fov,y_fov,raphe ] = find_fovea( vessels, angles, od, varargin )
 
 if nargin == 3
     debug = 1;

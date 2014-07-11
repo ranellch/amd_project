@@ -167,16 +167,13 @@ Options=struct;
 % else 
     Options.Verbose=false;
 % end
-Options.Iterations=100;
+Options.Iterations=200;
 Options.Wedge=30;
-Options.Wline = .6;
+Options.Wline = 1;
 Options.Wterm = 20;
-Options.Alpha = 5;
-Options.Beta = 2;
-Options.Delta = 3.5;
+Options.Delta = .2;
 Points = get_box_coordinates(pre_snaked_img);
-pre_snaked_img = mat2gray(corrected_img);
-pre_snaked_img(img_vessel) = 1;
+pre_snaked_img = mat2gray(sum(feature_image_g,3)); %snake on superimposed textures
 [~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
 
 if(debug == 2)
