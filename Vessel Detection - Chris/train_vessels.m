@@ -17,27 +17,7 @@ function train_vessels()
     
     %Try to get at least 20% positive instances by discarding a certain
     %percentage of negatives
-    numneg = sum(label_vector==-1);
-    numpos = sum(label_vector==1);
-    if numpos/(numneg+numpos) < .2
-        numdiscard = numneg - 4*numpos;
-        discard_vector = zeros(length(label_vector),1);
-        indices = randperm(length(label_vector),length(label_vector));
-        discard_count = 0;
-        for i = indices
-            if label_vector(i) == -1 
-                discard_vector(i) = 1;
-                discard_count = discard_count + 1;
-
-            end
-            if discard_count == numdiscard
-                break
-            end
-        end
-        discard_vector = logical(discard_vector);
-        label_vector(discard_vector) = [];
-        instance_matrix(discard_vector,:) = [];
-    end
+    [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, 0.2);
     
     disp(['Number of Positive Instances: ', num2str(sum(label_vector==1)), ' Number of Negative Instances: ', ... 
         num2str(sum(label_vector==-1)), ' Total: ', num2str(numel(label_vector))]);  

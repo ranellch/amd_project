@@ -19,7 +19,7 @@ function train_hypo()
                  pixel_classes = od_file.pixel_classes;
                  
                 %Downsample to get less bias towards the negative samples
-                [od_downsample_variables, od_downsample_classes] = downsample_od(pixel_variables, double(pixel_classes));
+                [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, fraction_pos)
 
                 %Get the minumum for each columns
                 mins = min(od_downsample_variables);
