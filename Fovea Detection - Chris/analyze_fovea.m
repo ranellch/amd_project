@@ -1,3 +1,5 @@
+function analyze_fovea(debug)
+    
     addpath('..');
     addpath(genpath('../Test Set'))
     addpath('../OD Detection - Chris')
@@ -57,7 +59,7 @@
         if ~any(final_od_img(:))
             continue
         end
-        [ x,y ] = find_fovea( img_vessel, img_angles, final_od_img, 1 );
+        [ x,y ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
         t = (cputime - e)/60.0;
         disp(['TOTAL PROCESSING TIME (MIN): ', num2str(t)])
         if x == -1
@@ -93,6 +95,11 @@
                 combined_img(:,:,layer) = J;
             end
             imwrite(combined_img,['./results/',pid,'_',eye,'_',time,'-processed.tif'], 'tiff');
+            
+            if debug == 2
+                h = figure(8);
+                saveas(h,['./results/',pid,'_',eye,'_',time,'-lines.png']);
+            end
 
 
             %Get some statistics about the quality of the fovea estimation
@@ -107,3 +114,4 @@
     end
     
     fclose(fout);
+end
