@@ -77,23 +77,23 @@ f_y = zeros(length(y_domain),2);
 f_y(:,1) = round(a*y_domain.^2); %right facing parabola
 f_y(:,2) = round(-1*a*y_domain.^2); %left facing parabola
 if debug == 2
-    figure(8);
+    %h=figure(8)
+    h = figure('Visible','off');
     imshow(vessels);
-     hold on
+    hold(gca,'on')
     for y = 1:size(yprime,1)
         for x = 1:size(xprime,2)
             for i = 1:length(y_domain) 
                  if (round(xprime(y,x)) == f_y(i,1) || round(xprime(y,x)) == f_y(i,2)) ...
                         && round(yprime(y,x)) == round(y_domain(i))
-                    plot(x,y,'r.');
+                    plot(h,x,y,'r.');
                     break
                  end
             end
         end
     end
      [r,c] = ind2sub(size(vessels),points);
-     plot(c,r,'mx')
-     hold off
+     plot(h, c,r,'mx')
 end
 
 
@@ -130,10 +130,7 @@ else
 end
 
 if debug == 2
-    figure(8)
-    hold on
-    plot(x_raphe,y_raphe,'b-');
-    hold off
+    plot(h, x_raphe,y_raphe,'b-');
 end
 
 winsiz = 200;
@@ -170,10 +167,8 @@ x_fov = indices(MinIdx(1),1);
 y_fov = indices(MinIdx(1),2);
 
 if debug == 2
-    figure(8)
-    hold on
-    plot(x_fov,y_fov,'gd','MarkerSize',10)
-    hold off
+    plot(h,x_fov,y_fov,'gd','MarkerSize',10)
+    hold(gca,'off')
 end
 
 
