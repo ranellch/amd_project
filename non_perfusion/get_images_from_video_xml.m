@@ -1,10 +1,11 @@
-function [count, paths, times] = get_images_from_video_xml(video_path)
+function [counter, paths, times] = get_images_from_video_xml(video_path)
     xDoc= xmlread(video_path);
     frames = xDoc.getElementsByTagName('frame');
     
-    padding = 200;
+    path_padding = 200;
+    timing_padding = 50;
     
-    count = 0;
+    counter = 0;
     paths=[];
     times=[];
     
@@ -12,13 +13,29 @@ function [count, paths, times] = get_images_from_video_xml(video_path)
     for count=1:frames.getLength
         frame = frames.item(count - 1);
 
-        path = char(frame.getAttribute('registered'));
+        path = char(frame.getAttribute('path'));
         if ispc ~= 1
             newpath = strrep(path, '\', '/');
+        else
+            newpath = path;
+        end
+        
+        if length(newpath) ~= path_padding
+            topad = blanks(path_padding - length(newpath));
+            newpath = [newpath topad];
         end
         paths = [paths; newpath];
+
+        time = char(frame.getAttribute('time'));
+        if length(time) ~= timing_padding
+            topad = blanks(timing_padding - length(time));
+            time = [time topad];
+        end
+        times = [times; time];
         
-        times = [times; char(frame.getAttribute('time'))];
-        count = count + 1;
+        counter = counter + 1;
     end
+    
+    paths = cellstr(paths);
+    times = cellstr(times);
 end
