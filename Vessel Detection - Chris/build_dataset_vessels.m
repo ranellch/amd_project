@@ -1,4 +1,4 @@
-function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
+function build_dataset_vessels(varargin)
     debug = -1;
     imcomp = -1;
     if length(varargin) == 1
@@ -21,41 +21,17 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
     %constant for standard image sizes
     std_img_size = 768;
     
-    %Constants for the line operator
-    lineop_len = 15;
-    lineop_angcnt = 12;
-    
-    %Test the values of the input variables for this function
-    if((gabor_bool == 0 || gabor_bool == 1) && ...
-       (lineop_bool == 0 || lineop_bool == 1))
-        if((gabor_bool == 0 && lineop_bool == 0) || ...
-           (gabor_bool == 1 && lineop_bool == 1))
-            error('You must select one and only one feature to build training set.');
-        end
-    else
-        error('Input variables must be the value 0 or 1.');
-    end
     
     %Disp to user the current operation about to be done
-    if(gabor_bool == 1 && debug == 1)
-        disp('Building the Gabor Wavelet Dataset');
-    elseif(lineop_bool == 1 && debug == 1)
-        disp('Building the Line Operator Dataset');
-    end
+    disp('Building the vessel dataset')
 
     %Filename constants
     filename_input = 'vessel_draw.training';
-    filename_gabor = 'vessel_gabor.mat';
-    filename_lineop = 'vessel_lineop.mat';
+    filename_data = 'vessel_data.mat';
 
-    %Remove gabor file is already exists
-    if(gabor_bool == 1 && exist(filename_gabor, 'file') == 2)
-        delete(filename_gabor);
-    end
-
-    %Remove lineop file if already exists
-    if(lineop_bool == 1 && exist(filename_lineop, 'file') == 2)
-        delete(filename_lineop);
+    %Remove file is already exists
+    if exist(filename_data, 'file') == 2
+        delete(filename_data);
     end
 
     %Add paths for the running of this function
@@ -90,18 +66,11 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
             error(E.message);
         end
        
-        %Open the gabor output file for writing 
-        if(gabor_bool == 1) 
-             file_obj = matfile(filename_gabor,'Writable',true);
-        end
-        
-        %Open the line operator file for writing, create lineop object
-        if(lineop_bool == 1)
-            file_obj = matfile(filename_lineop, 'Writable', true);
-            lineop_obj = line_operator(lineop_len, lineop_angcnt);
-        end
+        %Open the output file for writing 
+        file_obj = matfile(filename_data,'Writable',true);
         file_obj.dataset = [];
-        
+        file_obj.classes = [];
+
         %Iterate over all images to use for training 
         for k=1:numimages
                 pid = char(paths{1}{k});
@@ -130,7 +99,7 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
                     original_img = imcomplement(original_img);
                 end
                 
-                original_img = imresize(original_img, [768 768]);
+                original_img = imresize(original_img, [std_img_size std_img_size]);
                 original_img = gaussian_filter(original_img);
                 [original_img, ~] = correct_illum(original_img,0.7);
                 original_img = imcomplement(original_img);
@@ -140,27 +109,14 @@ function build_dataset_vessels(gabor_bool, lineop_bool, varargin)
                     disp(['Extracting Info: ', pid, ' ', eye, ' (', time, ') Ref: ', vessel_image]);
                 end
                 
-                %Run Gabor, save max at each scale, normalize via zero_m_unit_std 
-                if(gabor_bool == 1)  
-                    [sizey, sizex] = size(original_img);
-                    bigimg = padarray(original_img, [50 50], 'symmetric');
-                    fimg = fft2(bigimg);
-                    k0x = 0;
-                    k0y = 3;
-                    epsilon = 4;
-                    step = 10;
-                    feature_image = [];
-                    for a = [1 2 3 4 5]
-                        trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
-                        trans = trans(51:(50+sizey), (51:50+sizex));
-                        feature_image = cat(3, feature_image, trans);
-                    end
-                end
-            
-                if (lineop_bool == 1)                
-                    %Build lineop feature vectors
-                    [feature_image,~] = get_fv_lineop( original_img );
-                end
+                %Build lineop feature vectors
+                [lineop_image,~] = get_fv_lineop( original_img );
+                
+                %Run Gabor, save max at each scale, normalize via zero_m_unit_std  
+                gabor_image = get_fv_gabor(original_img);
+                
+                %Build feature image
+                feature_image = cat(3,lineop_image, gabor_image);          
                 
                 %Save feature vectors and pixel classes for current image in .mat file generated above
                 feature_vectors = matstack2array(feature_image);

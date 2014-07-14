@@ -51,33 +51,6 @@ model = load('vessel_combined_classifier.mat');
 scaling_factors = model.scaling_factors;
 classifier = model.vessel_combined_classifier;
 
-%Time how long it takes to apply gabor 
-t=cputime;
-if(debug == 1 || debug == 2)
-    disp('Building Gabor Features!');
-end
-
-%Run Gabor, save max at each scale, take absolute maximums
-[sizey, sizex] = size(img);
-bigimg = padarray(img, [50 50], 'symmetric');
-fimg = fft2(bigimg);
-k0x = 0;
-k0y = 3;
-epsilon = 4;
-step = 10;
-gabor_image = [];
-for a = [1 2 3 4 5]
-    trans = maxmorlet(fimg, a, epsilon, [k0x k0y], step);
-    trans = trans(51:(50+sizey), (51:50+sizex));
-    gabor_image = cat(3, gabor_image, trans);
-end
-
-%Disp some information to the user
-e = cputime - t;
-if(debug == 1 || debug == 2)
-    disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
-end
-
 %Build lineop features
 %Time how long it takes 
 t=cputime;
@@ -90,10 +63,27 @@ if(debug == 1 || debug == 2)
     disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
 end
 
+%Time how long it takes to apply gabor 
+t=cputime;
+if(debug == 1 || debug == 2)
+    disp('Building Gabor Features!');
+end
+%Run Gabor on lineop, superimpose each orientation
+gabor_image = get_fv_gabor(img);
+
+
+%Disp some information to the user
+e = cputime - t;
+if(debug == 1 || debug == 2)
+    disp(['Time to build gabor features (min): ', num2str(e / 60.0)]);
+end
+
+
+
 %Combine features
 gabor_vectors = matstack2array(gabor_image);
 lineop_vectors = matstack2array(lineop_image);
-instance_matrix = [gabor_vectors, lineop_vectors];
+instance_matrix = [lineop_vectors, gabor_vectors];
 clear gabor_vectors
 clear lineop_vectors
 
