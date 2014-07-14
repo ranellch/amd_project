@@ -1,4 +1,4 @@
-function [finalroimask] = find_roi(pid, eye, time, type, varargin)
+function [finalroimask] = find_roi(img, varargin)
     debug = -1;
     if length(varargin) == 1
         debug = varargin{1};
@@ -13,17 +13,9 @@ function [finalroimask] = find_roi(pid, eye, time, type, varargin)
     %Add some sweet paths
     addpath(genpath('../liblinear-1.94'))
     addpath('..');
-    addpath(genpath('../Test Set'));
     run('../vlfeat/toolbox/vl_setup');
-    
-    %Check XML for path of the input image
-    path = get_pathv2(pid, eye, time, type);
-    if(debug == 1 || debug == 2)
-        disp(['[ID] ', pid, ' Time: ', time, ' Eye: ', eye, ' Path: ', path]);
-    end
-    
-    %Load the image
-    img = imread(path);
+        
+    %Convert the image to grayscale from color if necessary
     if(size(img,3) > 1)
         img = rgb2gray(img);
     end

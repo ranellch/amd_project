@@ -1,4 +1,4 @@
-function [vsl_img] = find_vessels(pid, eye, time, varargin)
+function [vsl_img] = find_vessels(img, varargin)
     debug = -1;
     if length(varargin) == 1
         debug = varargin{1};
@@ -11,8 +11,6 @@ function [vsl_img] = find_vessels(pid, eye, time, varargin)
     addpath('np_vessel');
     
     %Check to see that the path to the image is readable
-    the_path = get_pathv2(pid, eye, time, 'registered');
-    img = imread(the_path);
     if(size(img,3) > 1)
         img = rgb2gray(img);
     end
