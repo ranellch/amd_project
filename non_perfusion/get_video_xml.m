@@ -1,4 +1,4 @@
-function [path] = get_video_xml(pid, eye, time)
+function [path, directory] = get_video_xml(pid, eye, time, attr)
     addpath('..');
     xDoc= xmlread('non_perfusion.xml');
     videos = xDoc.getElementsByTagName('video');
@@ -11,7 +11,7 @@ function [path] = get_video_xml(pid, eye, time)
         if strcmp(pid, char(video.getAttribute('id'))) == 1 && ...
            strcmp(time, char(video.getAttribute('time'))) == 1 && ...
            strcmp(eye, char(video.getAttribute('eye'))) == 1
-        	path = char(video.getAttribute('seq_path'));
+        	path = char(video.getAttribute(attr));
             found_it = 1;
         end
     end
@@ -22,4 +22,5 @@ function [path] = get_video_xml(pid, eye, time)
     elseif ispc ~= 1
        path = strrep(path, '\', '/');
     end
+    [directory,~,~] = fileparts(path);
 end
