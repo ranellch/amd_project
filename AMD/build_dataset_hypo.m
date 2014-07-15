@@ -4,6 +4,7 @@ mat_file = 'hypo_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
+std_size = 768;
 
 %Remove texture file if already exists
 if(exist(mat_file, 'file') == 2)
@@ -51,11 +52,27 @@ for k=1:size(includes{1}, 1)
         img = imread(the_path);
         
         try
-            %Check to make sure that the labeled is readable
+            %Check to make sure that the labeled images are readable
             amd_path = get_pathv2(pid, eye, time, 'AMD');
-            amd_img =  imread(amd_path);
+            img =  imread(amd_path);
         catch
-            disp(['Could not load labeled image: ', pid , ' - ', time]);
+            disp(['Could not load AMD image: ', pid , ' - ', time]);
+            err_cnt = err_cnt + 1;
+        end
+        try
+            %Check to make sure that the labeled images are readable
+            vessel_path = get_pathv2(pid, eye, time, 'vessels');
+            img =  imread(vessel_path);
+        catch
+            disp(['Could not load vessel image: ', pid , ' - ', time]);
+            err_cnt = err_cnt + 1;
+        end
+        try
+            %Check to make sure that the labeled images are readable
+            od_path = get_pathv2(pid, eye, time, 'optic_disc');
+            img =  imread(od_path);
+        catch
+            disp(['Could not load optic disk image: ', pid , ' - ', time]);
             err_cnt = err_cnt + 1;
         end
     catch
@@ -93,8 +110,8 @@ for k=1:size(includes{1}, 1)
         labeled_img = labeled_img(:,:,3) > labeled_img(:,:,1);
         
         %Resize images to a standard sizing
-        img = imresize(img, [768 768]);
-        labeled_img = imresize(labeled_img, [768 768]);
+        img = imresize(img, [std_size std_size]);
+        labeled_img = imresize(labeled_img, [std_size std_size]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
@@ -109,11 +126,25 @@ for k=1:size(includes{1}, 1)
         
         feature_image = cat(3,feature_image_g,feature_image_i,feature_image_r);
         
+        %Create mask to exclude vessels and optic disk from training data
+        od = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
+        vessels = im2bw(imread(get_pathv2(pid, eye, time, 'vessels')));
+        
+        anatomy_mask = od || vessels;
+        
         %Save feature vectors and pixel classes for current image in .mat file generated above
-        feature_vectors = matstack2array(feature_image);
+        feature_vectors = [];
+        for i = 1:std_size
+            for j = 1:std_size
+                if anatomy_mask(j,i) ~= 1
+                    current_vector = feature_image(j,i,:);
+                    feature_vectors = [feature_vectors; current_vector];
+                end
+            end
+        end
         [nrows,~] = size(file_obj, 'dataset');
         file_obj.dataset(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+numel(img),1) = labeled_img(:);
+        file_obj.classes(nrows+1:nrows+numel(img),1) = labeled_img(~anatomy_mask);
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));

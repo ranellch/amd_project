@@ -37,7 +37,7 @@ function train_od(classifier)
 
                 disp('Building SVM classifier...Please Wait')
 
-                pixel_classifier =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2 -B 1');
+                pixel_classifier =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2');
                 
                 save('od_classifiers.mat','pixel_classifier', 'scaling_factors'); 
                 

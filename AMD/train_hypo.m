@@ -9,33 +9,34 @@ function train_hypo()
 
     filename = 'hypo_training_data.mat';
 
-    od_file = matfile(filename);
+    data_file = matfile(filename);
 
     try
         
                 disp('======================Creating Pixelwise Texture Classifier======================');
                 
-                 pixel_variables = od_file.pixel_features;
-                 pixel_classes = od_file.pixel_classes;
+                 instance_matrix = data_file.dataset;
+                 label_vector = data_file.pixel_classes;
                  
                 %Downsample to get less bias towards the negative samples
-                [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, fraction_pos)
+                 pos_cutoff = .1;
+                [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, pos_cutoff);
 
                 %Get the minumum for each columns
-                mins = min(od_downsample_variables);
-                maxs = max(od_downsample_variables);
+                mins = min(instance_matrix);
+                maxs = max(instance_matrix);
                 scaling_factors = [mins; maxs];
 
                 %scale each column
-                for i = 1:size(od_downsample_variables,2)
-                    od_downsample_variables(:,i) = (od_downsample_variables(:,i)-mins(i))/(maxs(i)-mins(i));
+                for i = 1:size(instance_matrix,2)
+                    instance_matrix(:,i) = (instance_matrix(:,i)-mins(i))/(maxs(i)-mins(i));
                 end
 
                 disp('Building SVM classifier...Please Wait')
 
-                pixel_classifier =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2 -B 1');
+                classifier =  libsvmtrain(labeled_vector, sparse(instance_matrix), '-s 2');
                 
-                save('od_classifiers.mat','pixel_classifier', 'scaling_factors'); 
+                save('hypo_classifier.mat','classifier', 'scaling_factors'); 
                 
  
     catch e

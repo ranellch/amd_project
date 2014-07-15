@@ -12,7 +12,6 @@ else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
 end
 
-%Standardize variables
 t = cputime;
 
 %Add the path for the useful directories
