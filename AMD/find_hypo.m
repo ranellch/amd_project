@@ -32,6 +32,9 @@ if debug == 1 || debug == 2
     disp('[HYPO] Finding areas of hypofluorescence');
 end
 
+original_img = imread(get_pathv2(pid, eye, time, 'original'));
+original_img = imresize(original_img, [768 768]);
+
 %Find optic disk and vessels
 [od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, resize);
 
@@ -40,7 +43,7 @@ end
 
 %Show the user what's been detected so far
 if debug == 2
-    combined_img = display_anatomy( corrected_img, od, vessels, x_fov, y_fov );
+    combined_img = display_anatomy( original_img, od, vessels, x_fov, y_fov );
     figure(10), imshow(combined_img)
 end
 
@@ -74,17 +77,34 @@ if(debug == 1 || debug == 2)
     disp('[SVM] Running the classification algorithm');
 end
 hypo_img = zeros(size(od));
-[hypo_img(:), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-b 1');
+[hypo_img(~anatomy_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-b 1');
 clear instance_matrix
 
 prob_img = zeros(size(hypo_img));
-prob_img(:) = probabilities(:,2);
+prob_img(~anatomy_mask) = probabilities(:,2);
 
 if(debug == 2)
-    figure(11), imshow(od_image);
+    figure(11), imshow(display_mask(original_img, hypo_img, [1 0 0], 'solid'))
     figure(12), imshow(mat2gray(prob_img));
 end
 
 %---Run graph cuts using initial classification as seed points---
+%Calculate pairwise costs
+unary = zeros(2,numel(hypo_img));
+pairwise = spalloc(numel(hypo_img),numel(hypo_img),numel(hypo_img)*8);
+[H,W] = size(hypo_img);
+for col = 1:W
+  for row = 1:H
+    pixel = (col-1)*H + row;
+    if row+1 <= H, pairwise(pixel, (col-1)*H+row+1) = 1; 
+        if col+1 
+    if row-1 > 0, pairwise(pixel, (col-1)*H+row-1) = 1; end 
+    if col+1 <= W, pairwise(pixel, col*H+row) = 1; end
+    if col-1 > 0, pairwise(pixel, (col-2)*H+row) = 1; end 
+    unary(:,pixel) = [1-prob_img(row,col), prob_img(row,col)]';  
+  end
+end
+[LABELS ENERGY ENERGYAFTER] = GCMex(hypo_img(:), unary, pairwise,0)
+
 
 
