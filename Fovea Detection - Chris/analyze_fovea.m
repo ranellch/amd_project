@@ -79,21 +79,7 @@ function analyze_fovea(debug)
             if(size(original_img, 3) > 1)
                 original_img = rgb2gray(original_img);
             end
-            circle_img = plot_circle(x,y,10, size(original_img,2), size(original_img,1));
-            circle_img = bwperim(circle_img);
-            fovea_colored = display_mask( original_img, circle_img, [0 1 0], 'solid' ); %green
-            od_colored  = display_mask(original_img, final_od_img, [0 1 1], 'solid'); %cyan
-            vessels_colored = display_mask(original_img, img_vessel,[1 0 0], 'solid'); %red
-
-            combined_img = fovea_colored;
-            for layer = 1:3
-                J = combined_img(:,:,layer);
-                G = vessels_colored(:,:,layer);
-                K = od_colored(:,:,layer);
-                J(img_vessel) = G(img_vessel);
-                J(final_od_img) = K(final_od_img);
-                combined_img(:,:,layer) = J;
-            end
+            combined_img = display_anatomy( original_img, final_od_img, img_vessel, x, y );
             imwrite(combined_img,['./results/',pid,'_',eye,'_',time,'-processed.tif'], 'tiff');
             
             if debug == 2

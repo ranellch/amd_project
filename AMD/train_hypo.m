@@ -12,8 +12,6 @@ function train_hypo()
     data_file = matfile(filename);
 
     try
-        
-                disp('======================Creating Pixelwise Texture Classifier======================');
                 
                  instance_matrix = data_file.dataset;
                  label_vector = data_file.pixel_classes;
@@ -34,7 +32,7 @@ function train_hypo()
 
                 disp('Building SVM classifier...Please Wait')
 
-                classifier =  libsvmtrain(labeled_vector, sparse(instance_matrix), '-s 2');
+                classifier =  libsvmtrain(label_vector, sparse(instance_matrix), '-b 1');
                 
                 save('hypo_classifier.mat','classifier', 'scaling_factors'); 
                 

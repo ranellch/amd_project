@@ -10,7 +10,7 @@ addpath('../Skeleton')
 addpath('../Circle fit');
 
 if debug == 1|| debug == 2
-    disp('Estimating Location of Fovea')
+    disp('[FOV] Estimating Location of Fovea')
     t = cputime;
 end
 
