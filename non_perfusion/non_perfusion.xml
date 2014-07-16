@@ -30,6 +30,6 @@
    
 <!-- JDRF_003 Video Image Sequence -->
     <video eye="OS" id="JDRF_003" time="Baseline" original_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_vessel-overlap.tif"></video>
-    <video eye="OS" id="JDRF_003" time="6M" original_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" ></video>
+    <video eye="OS" id="JDRF_003" time="6M" original_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\JDRF_003_OS_6M_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\JDRF_003_OS_6M_vessel-overlap.tif"></video>
 
 </images>

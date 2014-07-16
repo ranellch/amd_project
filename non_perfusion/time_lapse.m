@@ -51,7 +51,7 @@ function time_lapse(pid, eye, time, mintime, maxtime, varargin)
     
     if(debug == 2)
         %Video writer for time lapse of intensity
-        uncompressedVideo = VideoWriter(['time_lapse_videos/',pid, '_', eye, '.avi'], 'Uncompressed AVI');
+        uncompressedVideo = VideoWriter(['time_lapse_videos/',pid, '_', eye, '_', time, '.avi'], 'Uncompressed AVI');
         uncompressedVideo.FrameRate = 3;
         open(uncompressedVideo);
     end
