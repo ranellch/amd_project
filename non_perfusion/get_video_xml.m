@@ -1,8 +1,7 @@
 function [path, directory] = get_video_xml(pid, eye, time, attr)
-    addpath('..');
     xDoc= xmlread('non_perfusion.xml');
     videos = xDoc.getElementsByTagName('video');
-    
+        
     path = [];
     found_it = 0;
 	%Loop on the image field in the images tag

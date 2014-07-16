@@ -16,10 +16,10 @@ function register_manual(pid, eye, timing, ref, time)
     [count, paths, times] = get_images_from_video_xml(video_xml_path);
     
     for i=1:count
-        if(times{i} == ref_string)
+        if(str2double(times{i}) == ref)
             ref_path = paths{i};
         end
-        if(times{i} == time_string)
+        if(str2double(times{i}) == time)
             time_path = paths{i};
         end
     end
@@ -33,7 +33,7 @@ function register_manual(pid, eye, timing, ref, time)
     time_image_roi = apply_roi_mask(time_image, time_image_mask);
     
     [aerial_points, ortho_points] = cpselect(time_image_roi, ref_image_roi, 'Wait', true);
-    t_concord = fitgeotrans(aerial_points,ortho_points,'projective');
+    t_concord = fitgeotrans(aerial_points,ortho_points,'Affine');
     Rortho = imref2d(size(time_image_roi));
     registered = imwarp(time_image_roi,t_concord,'OutputView',Rortho);
     %tform = cp2tform(aerial_points, ortho_points, 'projective');

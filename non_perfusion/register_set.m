@@ -1,4 +1,4 @@
-function register_set(pid, eye, time, ref_eye)
+function register_set(pid, eye, time, mintime, maxtime, ref_eye)
     images_path = '../Test Set/';
     
     %Get paths to important functions
@@ -8,7 +8,7 @@ function register_set(pid, eye, time, ref_eye)
     addpath('other_vessels');
     
     %Load the video xml and parse out the important information
-    [video_xml_path, directory] = get_video_xml(pid, eye, time, 'original_path');
+    [video_xml_path, directory] = get_video_xml(pid, eye, time, 'seq_path');
     addpath([images_path, directory]);
     
     %Get all the frames associated with this video
@@ -30,7 +30,8 @@ function register_set(pid, eye, time, ref_eye)
             error(['Could not find reference eye with time: ', num2str(ref_eye)]);
         end
     catch e
-        error([e.message, ' - ', e.stack]);
+        disp(e.stack);
+        error(e.message);
     end
     
     dir_name = ['results - ', pid];
@@ -57,18 +58,26 @@ function register_set(pid, eye, time, ref_eye)
         ref_image_roi_crop = imcrop(ref_image_vessels, crop_ref);
                 
         %Create the results matricies
-        registered_images = uint8(ones(size(times,2), 2, size(ref_image_roi, 1), size(ref_image_roi,2)));
-        registered_images_fuse = uint8(ones(size(times,2), size(ref_image_roi, 1), size(ref_image_roi,2), 3));
-        
-        %Write the reference images to the results array
-        registered_images(ref_eye,1,:,:) = ref_image_roi;
-        registered_images(ref_eye,2,:,:) = ref_image_mask;
+        overlap_mask = ones(size(ref_image_roi, 1), size(ref_image_roi,2));
+
+        docNode = com.mathworks.xml.XMLUtils.createDocument('video_seq');
+        root = docNode.getDocumentElement;
+        root.setAttribute('id',pid);
+        root.setAttribute('timing',time);
+        root.setAttribute('eye',eye);
+        root.setAttribute('ref_eye',num2str(ref_eye));
         
         %Iterate over each image to register
         for i=1:count
             curtime = str2double(times{i});
             if curtime == ref_eye
                 continue;
+            end
+            if curtime < mintime
+                continue;
+            end
+            if curtime > maxtime
+                break;
             end
                                     
             disp(['[IMAGE ', times{i}, '] Registering']);
@@ -96,38 +105,27 @@ function register_set(pid, eye, time, ref_eye)
             
             %Transform the original image and mask
             movingReg = imwarp(img_roi, tform, 'OutputView', Rfixed);
-            movingRegMask = imwarp(img_mask, tform, 'OutputView', Rfixed);
             
             %Save these images to the output array
-            registered_images(i,1,:,:) = movingReg;
-            registered_images(i,2,:,:) = movingRegMask;
-            registered_images_fuse(i,:,:,:) = imfuse(ref_image_roi, movingReg);
+            fused_img = imfuse(ref_image_roi, movingReg);
 
+            %Save the original image to the output
+            img_path = [pid, '_', times{i}, '.tif'];
+            imwrite(movingReg,[dir_name, '/', img_path]);
+            imwrite(fused_img, [dir_name, '/reg_', pid, '_', num2str(ref_eye), '-', times{i}, '.tif']);
+
+            frameElement = docNode.createElement('frame');
+            frameElement.setAttribute('id',num2str(i));
+            frameElement.setAttribute('path',img_path);
+            frameElement.setAttribute('time',times{i});
+            root.appendChild(frameElement);
+            
             if(i == 0)
                 break;
             end
         end
-        
-        %Calculate the final output mask of overlap
-        output_mask = ones(size(ref_image_mask, 1), size(ref_image_mask, 2));
-        for i=1:size(registered_images,1)
-            %Get the current time as a string
-            cur_time_string = num2str(i);
-                       
-            %Add the masked region to the final mask
-            output_mask = output_mask & squeeze(registered_images(i,2,:,:));
-            
-            %Save the original image to the output
-            imwrite(squeeze(registered_images(i,1,:,:)),[dir_name, '/', pid, '_', cur_time_string, '.tif']);
-                        
-            %Save the overlayed image to the output
-            if(strcmp(cur_time_string, num2str(ref_eye)) == 0)
-                fused_img = squeeze(registered_images_fuse(i,:,:,:));
-                imwrite(fused_img, [dir_name, '/reg_', pid, '_', num2str(ref_eye), '-', cur_time_string, '.tif']);
-            end
-        end
-        
-        imwrite(output_mask, [dir_name, '/', pid, '_final_mask.tif']);        
+                
+        xmlwrite([dir_name, '/video.xml'], docNode);     
     end
 end
 

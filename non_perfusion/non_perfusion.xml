@@ -23,7 +23,7 @@
    <image eye="OD" id="JDRF_10" original="Labeled\DME\JDRF\vessels\original\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Labeled\DME\JDRF\vessels\labeled\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
    
 <!-- JDRF_003 Video Image Sequence -->
-    <video eye="OS" id="JDRF_003" time="Baseline" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" ></video>
-    <video eye="OS" id="JDRF_003" time="6M" seq_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" ></video>
+    <video eye="OS" id="JDRF_003" time="Baseline" original_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_vessel-overlap.tif"></video>
+    <video eye="OS" id="JDRF_003" time="6M" original_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" ></video>
 
 </images>
