@@ -57,7 +57,9 @@ t=cputime;
 if(debug == 1 || debug == 2)
     disp('Running Line Operator!');
 end
+
 [lineop_image, mx_angs] = get_fv_lineop( img );
+
 e = cputime - t;
 if(debug == 1 || debug == 2)
     disp(['Time to build lineop features (min): ', num2str(e / 60.0)]);
@@ -68,9 +70,8 @@ t=cputime;
 if(debug == 1 || debug == 2)
     disp('Building Gabor Features!');
 end
-%Run Gabor on lineop, superimpose each orientation
+%Run Gabor
 gabor_image = get_fv_gabor(img);
-
 
 %Disp some information to the user
 e = cputime - t;

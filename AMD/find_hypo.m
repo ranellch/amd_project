@@ -79,6 +79,7 @@ end
 hypo_img = zeros(size(od));
 [hypo_img(~anatomy_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-b 1');
 clear instance_matrix
+probabilities 
 
 prob_img = zeros(size(hypo_img));
 prob_img(~anatomy_mask) = probabilities(:,2);
@@ -88,23 +89,25 @@ if(debug == 2)
     figure(12), imshow(mat2gray(prob_img));
 end
 
-%---Run graph cuts using initial classification as seed points---
-%Calculate pairwise costs
-unary = zeros(2,numel(hypo_img));
-pairwise = spalloc(numel(hypo_img),numel(hypo_img),numel(hypo_img)*8);
-[H,W] = size(hypo_img);
-for col = 1:W
-  for row = 1:H
-    pixel = (col-1)*H + row;
-    if row+1 <= H, pairwise(pixel, (col-1)*H+row+1) = 1; 
-        if col+1 
-    if row-1 > 0, pairwise(pixel, (col-1)*H+row-1) = 1; end 
-    if col+1 <= W, pairwise(pixel, col*H+row) = 1; end
-    if col-1 > 0, pairwise(pixel, (col-2)*H+row) = 1; end 
-    unary(:,pixel) = [1-prob_img(row,col), prob_img(row,col)]';  
-  end
-end
-[LABELS ENERGY ENERGYAFTER] = GCMex(hypo_img(:), unary, pairwise,0)
+%final_segmentation = GraphCuts(logical(hypo_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),original_img));
 
+% %---Run graph cuts using initial classification as seed points---
+% %Calculate pairwise costs
+% unary = zeros(2,numel(hypo_img));
+% pairwise = spalloc(numel(hypo_img),numel(hypo_img),numel(hypo_img)*8);
+% [H,W] = size(hypo_img);
+% for col = 1:W
+%   for row = 1:H
+%     pixel = (col-1)*H + row;
+%     if row+1 <= H, pairwise(pixel, (col-1)*H+row+1) = 1; 
+%         if col+1 
+%     if row-1 > 0, pairwise(pixel, (col-1)*H+row-1) = 1; end 
+%     if col+1 <= W, pairwise(pixel, col*H+row) = 1; end
+%     if col-1 > 0, pairwise(pixel, (col-2)*H+row) = 1; end 
+%     unary(:,pixel) = [1-prob_img(row,col), prob_img(row,col)]';  
+%   end
+% end
+% [LABELS ENERGY ENERGYAFTER] = GCMex(hypo_img(:), unary, pairwise,0)
+% 
 
 

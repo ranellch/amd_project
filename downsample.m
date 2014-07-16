@@ -9,7 +9,7 @@ function [instance_matrix, label_vector] = downsample(instance_matrix, label_vec
     numpos = sum(label_vector==positive_label);
    
     if numpos/(numneg+numpos) < fraction_pos
-        numdiscard = ((fraction_pos-1)*numpos+fraction_pos*numneg)/fraction_pos;
+        numdiscard = numneg-numpos*(1-fraction_pos)/fraction_pos;
         discard_vector = zeros(length(label_vector),1);
         indices = randperm(length(label_vector),length(label_vector));
         discard_count = 0;
