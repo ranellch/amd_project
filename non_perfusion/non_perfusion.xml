@@ -12,7 +12,13 @@
    <video eye="OS" id="014361133" time="0" seq_path="Originals\non_perfusion\014361133\registered\video.xml" roi_path="Originals\non_perfusion\014361133\registered\014361133_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\014361133\registered\014361133_OS_0_vessel-overlap.tif"></video>
 
 <!-- 026919770 -->
-   <video eye="OS" id="026919770" time="0" original_path="Originals\non_perfusion\026919770\video.xml" seq_path="Originals\non_perfusion\026919770\registered\video.xml" roi_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_vessel-overlap.tif"></video>
+   <video eye="OD" id="026919770" time="0" original_path="Originals\non_perfusion\026919770\video.xml" seq_path="Originals\non_perfusion\026919770\registered\video.xml" roi_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_vessel-overlap.tif"></video>
+
+<!-- 031447951 -->
+   <video eye="OS" id="031447951" time="0" original_path="Originals\non_perfusion\031447951\video.xml" seq_path="Originals\non_perfusion\031447951\registered\video.xml" roi_path="Originals\non_perfusion\031447951\registered\031447951_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\031447951\registered\031447951_OS_0_vessel-overlap.tif"></video>
+
+<!-- 033570028 -->
+   <video eye="OS" id="033570028" time="0" original_path="Originals\non_perfusion\033570028\video.xml" seq_path="Originals\non_perfusion\033570028\registered\video.xml" roi_path="Originals\non_perfusion\033570028\registered\033570028_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\033570028\registered\033570028_OS_0_vessel-overlap.tif"></video>
 
 <!-- Testing/Training set for FA vessel detection -->
    <image eye="OD" id="JDRF_1" original="Labeled\DME\JDRF\vessels\original\Outline-Dr.J---JDRF-1-BASELINE---Early.tif" time="1" vessels="Labeled\DME\JDRF\vessels\labeled\Outline-Dr.J---JDRF-1-BASELINE---Early-bin.tif"/>

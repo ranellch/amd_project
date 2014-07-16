@@ -8,7 +8,7 @@ function register_set(pid, eye, time, mintime, maxtime, ref_eye)
     addpath('other_vessels');
     
     %Load the video xml and parse out the important information
-    [video_xml_path, directory] = get_video_xml(pid, eye, time, 'seq_path');
+    [video_xml_path, directory] = get_video_xml(pid, eye, time, 'original_path');
     addpath([images_path, directory]);
     
     %Get all the frames associated with this video
@@ -34,7 +34,7 @@ function register_set(pid, eye, time, mintime, maxtime, ref_eye)
         error(e.message);
     end
     
-    dir_name = ['results - ', pid];
+    dir_name = ['results - ', pid, ' - ', eye, ' - ', time];
     if(exist(dir_name, 'dir'))
         rmdir(dir_name, 's');
     end
@@ -48,8 +48,8 @@ function register_set(pid, eye, time, mintime, maxtime, ref_eye)
         ref_image_mask = find_roi(ref_image, 1);
         
         %Apply the roi mask to the original image
-        ref_image_roi = apply_roi_mask(ref_image, ref_image_mask);
-        
+        ref_image_roi = apply_roi_mask(ref_image, ref_image_mask);    
+
         %Calculate the vessel mask and resize to original size
         ref_image_vessels = find_vessels(ref_image_roi);
         
@@ -67,10 +67,19 @@ function register_set(pid, eye, time, mintime, maxtime, ref_eye)
         root.setAttribute('eye',eye);
         root.setAttribute('ref_eye',num2str(ref_eye));
         
+        ref_path_out = '';
+        
         %Iterate over each image to register
         for i=1:count
             curtime = str2double(times{i});
             if curtime == ref_eye
+                ref_path_out = [pid, '_', times{i}, '.tif'];
+                frameElement = docNode.createElement('frame');
+                frameElement.setAttribute('id',num2str(i));
+                frameElement.setAttribute('path',img_path);
+                frameElement.setAttribute('time',times{i});
+                root.appendChild(frameElement);
+                imwrite(ref_image_roi, [dir_name, '/', ref_path_out]);  
                 continue;
             end
             if curtime < mintime
@@ -124,8 +133,8 @@ function register_set(pid, eye, time, mintime, maxtime, ref_eye)
                 break;
             end
         end
-                
-        xmlwrite([dir_name, '/video.xml'], docNode);     
+                        
+        xmlwrite([dir_name, '/video.xml'], docNode);
     end
 end
 

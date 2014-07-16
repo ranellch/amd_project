@@ -1,4 +1,4 @@
-function time_lapse(pid, eye, time, maxtime, varargin)
+function time_lapse(pid, eye, time, mintime, maxtime, varargin)
     %This functions puts the images into a movie that just looks at intensity though time.
     images_path = '../Test Set/';
     debug = -1;
@@ -8,6 +8,10 @@ function time_lapse(pid, eye, time, maxtime, varargin)
         debug = 1;
     else
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arguments'));
+    end
+    
+    if(maxtime == 0)
+        maxtime = 100000000;
     end
     
     %Add the location of the external scripts that we are going to call
@@ -57,8 +61,11 @@ function time_lapse(pid, eye, time, maxtime, varargin)
         try
             %Get the current time and check if above maxtime
             cur_time = str2double(times{k});
+            if(cur_time < mintime)
+                continue;
+            end
             if(cur_time > maxtime)
-                break; 
+                continue; 
             end
             
             %Get the current path and load the image

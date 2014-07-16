@@ -3,7 +3,7 @@ function register_manual(pid, eye, timing, ref, time)
     images_path = '../Test Set/';
     addpath(genpath(images_path));
     addpath('../roi_mask');
-    dir_name = ['results - ', pid];
+    dir_name = ['results - ', pid, ' - ', eye, ' - ', timing];
 
     ref_string = num2str(ref);
     time_string = num2str(time);

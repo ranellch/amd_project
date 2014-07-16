@@ -22,7 +22,7 @@ function varargout = view_movie_frames(varargin)
 
 % Edit the above text to modify the response to help view_movie_frames
 
-% Last Modified by GUIDE v2.5 15-Jul-2014 12:23:47
+% Last Modified by GUIDE v2.5 16-Jul-2014 14:26:32
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -81,7 +81,19 @@ function nextFrame_Callback(hObject, eventdata, handles)
 % hObject    handle to nextFrame (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+if(handles.ready_to_rumble == 1)
+    cur_frame = handles.frame_current;
+    if(cur_frame + 1 <= handles.frame_count)
+        handles.frame_current = handles.frame_current + 1;
+    end
+    paths = handles.frame_paths;
+    filename = paths{handles.frame_current};
+    img = imread([handles.pathname, filename]);
+    axes(handles.axes1);
+    imshow(img);
+    set(handles.fileNameEdit, 'String', filename);
+end
+guidata(hObject, handles);
 
 
 % --- Executes on button press in prevFrame.
@@ -89,7 +101,19 @@ function prevFrame_Callback(hObject, eventdata, handles)
 % hObject    handle to prevFrame (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+if(handles.ready_to_rumble == 1)
+    cur_frame = handles.frame_current;
+    if(cur_frame + 1 > 0)
+        handles.frame_current = handles.frame_current - 1;
+    end
+    paths = handles.frame_paths;
+    filename = paths{handles.frame_current};
+    img = imread([handles.pathname, filename]);
+    axes(handles.axes1);
+    imshow(img);
+    set(handles.fileNameEdit, 'String', filename);
+end
+guidata(hObject, handles);
 
 function filePath_Callback(hObject, eventdata, handles)
 % hObject    handle to filePath (see GCBO)
@@ -117,20 +141,22 @@ end
 
 
 % --- Executes on button press in loadVideoXML.
-ready_to_rumble = 0;
 function loadVideoXML_Callback(hObject, eventdata, handles)
 % hObject    handle to loadVideoXML (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    path_to_file = handles.filename;
+    path_to_file = [handles.pathname, handles.filename];
     if(exist(path_to_file, 'file') == 0)
-        ready_to_rumble = 0;
-        return;
+        handles.ready_to_rumble = 0;
     else
-        doc = xmlread(path_to_file);
-        root = doc.getDocumentElement;
-        
+        [count, paths, times] = get_images_from_video_xml(path_to_file);
+        handles.frame_count = count;
+        handles.frame_paths = paths;
+        handles.frame_times = times;
+        handles.frame_current = 0;
+        handles.ready_to_rumble = 1;
     end
+    guidata(hObject, handles);
 
 
 % --- Executes on button press in browseFile.
@@ -138,6 +164,31 @@ function browseFile_Callback(hObject, eventdata, handles)
 % hObject    handle to browseFile (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.filename = uigetfile;
-set(handles.filePath, 'String', handles.filename);
+[FileName,PathName,~] = uigetfile('*.xml');
+handles.filename = FileName;
+handles.pathname = PathName;
+set(handles.filePath, 'String', [handles.pathname, handles.filename]);
 guidata(hObject, handles);
+
+
+
+function fileNameEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to fileNameEdit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of fileNameEdit as text
+%        str2double(get(hObject,'String')) returns contents of fileNameEdit as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function fileNameEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to fileNameEdit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
