@@ -12,7 +12,13 @@
    <video eye="OS" id="014361133" time="0" seq_path="Originals\non_perfusion\014361133\registered\video.xml" roi_path="Originals\non_perfusion\014361133\registered\014361133_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\014361133\registered\014361133_OS_0_vessel-overlap.tif"></video>
 
 <!-- 026919770 -->
-   <video eye="OS" id="026919770" time="0" original_path="Originals\non_perfusion\026919770\video.xml" seq_path="Originals\non_perfusion\026919770\registered\video.xml" roi_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_vessel-overlap.tif"></video>
+   <video eye="OD" id="026919770" time="0" original_path="Originals\non_perfusion\026919770\video.xml" seq_path="Originals\non_perfusion\026919770\registered\video.xml" roi_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\026919770\registered\026919770_OS_0_vessel-overlap.tif"></video>
+
+<!-- 031447951 -->
+   <video eye="OS" id="031447951" time="0" original_path="Originals\non_perfusion\031447951\video.xml" seq_path="Originals\non_perfusion\031447951\registered\video.xml" roi_path="Originals\non_perfusion\031447951\registered\031447951_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\031447951\registered\031447951_OS_0_vessel-overlap.tif"></video>
+
+<!-- 033570028 -->
+   <video eye="OS" id="033570028" time="0" original_path="Originals\non_perfusion\033570028\video.xml" seq_path="Originals\non_perfusion\033570028\registered\video.xml" roi_path="Originals\non_perfusion\033570028\registered\033570028_OS_0_roi-overlap.tif" vessel_path="Originals\non_perfusion\033570028\registered\033570028_OS_0_vessel-overlap.tif"></video>
 
 <!-- Testing/Training set for FA vessel detection -->
    <image eye="OD" id="JDRF_1" original="Labeled\DME\JDRF\vessels\original\Outline-Dr.J---JDRF-1-BASELINE---Early.tif" time="1" vessels="Labeled\DME\JDRF\vessels\labeled\Outline-Dr.J---JDRF-1-BASELINE---Early-bin.tif"/>
@@ -23,7 +29,7 @@
    <image eye="OD" id="JDRF_10" original="Labeled\DME\JDRF\vessels\original\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Labeled\DME\JDRF\vessels\labeled\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
    
 <!-- JDRF_003 Video Image Sequence -->
-    <video eye="OS" id="JDRF_003" time="Baseline" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" ></video>
-    <video eye="OS" id="JDRF_003" time="6M" seq_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" ></video>
+    <video eye="OS" id="JDRF_003" time="Baseline" original_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_vessel-overlap.tif"></video>
+    <video eye="OS" id="JDRF_003" time="6M" original_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\JDRF_003_OS_6M_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\JDRF_003_OS_6M_vessel-overlap.tif"></video>
 
 </images>
