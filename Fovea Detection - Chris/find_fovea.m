@@ -1,4 +1,4 @@
-function [ x_fov,y_fov,raphe ] = find_fovea( vessels, angles, od, varargin )
+function [ x_fov,y_fov ] = find_fovea( vessels, angles, od, varargin )
 
 if nargin == 3
     debug = 1;
@@ -10,7 +10,7 @@ addpath('../Skeleton')
 addpath('../Circle fit');
 
 if debug == 1|| debug == 2
-    disp('Estimating Location of Fovea')
+    disp('[FOV] Estimating Location of Fovea')
     t = cputime;
 end
 
@@ -19,10 +19,10 @@ vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 
 %caclulate vessel thicknesses
 [thickness_map, v_thicknesses] = plot_vthickness( vessels, vskel, angles );
-
-if debug == 2
-    figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
-end
+% 
+% if debug == 2
+%     figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
+% end
 
 %fit circle to od border and get estimated center coordinate to define
 %parabola vertex
@@ -77,38 +77,38 @@ f_y = zeros(length(y_domain),2);
 f_y(:,1) = round(a*y_domain.^2); %right facing parabola
 f_y(:,2) = round(-1*a*y_domain.^2); %left facing parabola
 if debug == 2
-    figure(8);
+    %h=figure(8)
+    h = figure('Visible','off');
     imshow(vessels);
-     hold on
+    hold(gca,'on')
     for y = 1:size(yprime,1)
         for x = 1:size(xprime,2)
             for i = 1:length(y_domain) 
                  if (round(xprime(y,x)) == f_y(i,1) || round(xprime(y,x)) == f_y(i,2)) ...
                         && round(yprime(y,x)) == round(y_domain(i))
-                    plot(x,y,'r.');
+                    plot(h,x,y,'r.');
                     break
                  end
             end
         end
     end
      [r,c] = ind2sub(size(vessels),points);
-     plot(c,r,'mx')
-     hold off
+     plot(h, c,r,'mx')
 end
 
 
 %create vessel density map
 density_map = plot_vdensity(vessels);
-if debug == 2
-    figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
-end
+% if debug == 2
+%     figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
+% end
 
 %Combine density and thickness, and use moving average filter along raphe
 %line to find minimum as most likely fovea location
 combined_map = density_map.*thickness_map;
-if debug == 2
-    figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
-end
+% if debug == 2
+%     figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
+% end
 
 %count votes for what side to start on
 move_right = sum(f_y(:,1)<max(xprime(:))&f_y(:,1)>min(xprime(:)));
@@ -130,10 +130,7 @@ else
 end
 
 if debug == 2
-    figure(8)
-    hold on
-    plot(x_raphe,y_raphe,'b-');
-    hold off
+    plot(h, x_raphe,y_raphe,'b-');
 end
 
 winsiz = 200;
@@ -150,9 +147,9 @@ for i = 1:size(indices,1)
     y = indices(i,2);
     combined_avg(i) = mean2(padded_combined(y:y+winsiz-1,x:x+winsiz-1));
 end
-if debug == 2
-    figure(9), plot(1:length(combined_avg),combined_avg), title('Raphe Line Moving Average Values')
-end
+% if debug == 2
+%     figure(9), plot(1:length(combined_avg),combined_avg), title('Raphe Line Moving Average Values')
+% end
 
 %Find all minima
 values = max(combined_avg) - combined_avg;
@@ -170,11 +167,10 @@ x_fov = indices(MinIdx(1),1);
 y_fov = indices(MinIdx(1),2);
 
 if debug == 2
-    figure(8)
-    hold on
-    plot(x_fov,y_fov,'gd','MarkerSize',10)
-    hold off
+    plot(h,x_fov,y_fov,'gd','MarkerSize',10)
+    hold(gca,'off')
 end
+
 
 if debug == 1|| debug == 2
     e = cputime-t;

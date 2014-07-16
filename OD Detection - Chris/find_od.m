@@ -1,4 +1,4 @@
-function [final_od_image, img_vessel, img_angles, probability] = find_od(pid, eye, time, varargin)
+function [final_od_image, img_vessel, img_angles, probability, varargout] = find_od(pid, eye, time, varargin)
 debug = -1;
 resize = 'on';
 if length(varargin) == 1
@@ -12,7 +12,6 @@ else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
 end
 
-%Standardize variables
 t = cputime;
 
 %Add the path for the useful directories
@@ -74,6 +73,12 @@ for y=1:size(feature_image, 1)
             temp = temp + 1;
         end
     end
+end
+
+if length(nargout) == 7
+    varargout{1} = feature_image_g;
+    varargout{2} = feature_image_r;
+    varargout{3} = mat2gray(corrected_img);
 end
 
 %convert this feature image into a flat array of feature vectors

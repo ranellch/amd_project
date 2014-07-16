@@ -22,7 +22,8 @@ function train_od(classifier)
                  pixel_classes = od_file.pixel_classes;
                  
                 %Downsample to get less bias towards the negative samples
-                [od_downsample_variables, od_downsample_classes] = downsample_od(pixel_variables, double(pixel_classes));
+                fraction_pos = .1;
+                [od_downsample_variables, od_downsample_classes] = downsample(pixel_variables, double(pixel_classes),fraction_pos);
 
                 %Get the minumum for each columns
                 mins = min(od_downsample_variables);
@@ -36,7 +37,7 @@ function train_od(classifier)
 
                 disp('Building SVM classifier...Please Wait')
 
-                pixel_classifier =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2 -B 1');
+                pixel_classifier =  train(od_downsample_classes, sparse(od_downsample_variables), '-s 2');
                 
                 save('od_classifiers.mat','pixel_classifier', 'scaling_factors'); 
                 

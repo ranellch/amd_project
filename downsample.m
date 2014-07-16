@@ -1,19 +1,15 @@
-function [instance_matrix, label_vector, scaling_factors] = downsample_od(instance_matrix, label_vector)
-%Try to get at least 20% positive instances by discarding a certain
-    %percentage of negatives
+function [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, fraction_pos)
+%Try to get at least fraction_pos positive instances by discarding a certain
+    %number of negatives
     negative_label = 0;
     positive_label = 1;
-    cutoff = 0.2;
-    
-    %Make this number larger to get more negative samples to be more selective
-    %Make this number smaller to get less negative samples to be less selective
-    %4 For example get you to 20% positive samples and 80% negative
-    numposmulti = 8;
+ 
     
     numneg = sum(label_vector==negative_label);
     numpos = sum(label_vector==positive_label);
-    if numpos/(numneg+numpos) < cutoff
-        numdiscard = numneg - numposmulti*numpos;
+   
+    if numpos/(numneg+numpos) < fraction_pos
+        numdiscard = ((fraction_pos-1)*numpos+fraction_pos*numneg)/fraction_pos;
         discard_vector = zeros(length(label_vector),1);
         indices = randperm(length(label_vector),length(label_vector));
         discard_count = 0;
