@@ -1,6 +1,6 @@
 function [ Iout,background ] = correct_illum( I, thresh )
 %UNTITLED Polynomial fitting motherfucker
-addpath('../../PolyfitnTools/')
+addpath('../PolyfitnTools/')
 
 if size(I,3) ~= 1
     I=rgb2gray(I);
