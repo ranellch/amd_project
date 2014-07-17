@@ -21,7 +21,21 @@
    <image eye="OD" id="JDRF_4" original="Labeled\DME\JDRF\vessels\original\Original-Dr.J---JDRF-4-BASELINE---Late-filled.tif" time="2" vessels="Labeled\DME\JDRF\vessels\labeled\Original-Dr.J---JDRF-4-BASELINE---Late-filled-bin.tif"/>
    <image eye="OD" id="JDRF_10" original="Labeled\DME\JDRF\vessels\original\Outline-Dr.J---JDRF-10-6M---Early.tif" time="1" vessels="Labeled\DME\JDRF\vessels\labeled\Outline-Dr.J---JDRF-10-6M---Early-bin.tif"/>
    <image eye="OD" id="JDRF_10" original="Labeled\DME\JDRF\vessels\original\Original-Dr.J---JDRF-10-6M---Late-filled.tif" time="2" vessels="Labeled\DME\JDRF\vessels\labeled\Original-Dr.J---JDRF-10-6M---Late-filled-bin.tif"/>
+
+<!-- Testing/Training set for Texture classification -->
+   <image id="JDRF_003" eye="OS" timing="6M" path="Labeled\DME\JDRF\non_perfusion\NP Outline-3-6M-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e169-t36_093-i169.tif"></image>
+   <image id="JDRF_003" eye="OS" timing="Baseline" path="Labeled\DME\JDRF\non_perfusion\NP Outline-3-Baseline-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e190-t48_296-i190.tif"></image>
    
+   <image id="JDRF_006" eye="OS" timing="1Y" path="Labeled\DME\JDRF\non_perfusion\NP Outline-6-1Y-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e133-t36_921-i133.tif"></image>
+   <image id="JDRF_006" eye="OS" timing="Baseline" path="Labeled\DME\JDRF\non_perfusion\NP Outline-6-Baseline-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e166-t39_984-i166.tif"></image>
+   
+   <image id="JDRF_007" eye="OS" timing="6M" path="Labeled\DME\JDRF\non_perfusion\NP Outline-7-6M-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e93-t46_89-i93.tif"></image>
+   <image id="JDRF_007" eye="OS" timing="Baseline" path="Labeled\DME\JDRF\non_perfusion\NP Outline-7-Baseline-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e137-t58_421-i137.tif"></image>
+   
+   <image id="JDRF_009" eye="OS" timing="6M" path="Labeled\DME\JDRF\non_perfusion\NP Outline-9-6M-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e209-t52_125-i219.tif"></image>
+   <image id="JDRF_011" eye="OS" timing="Baseline" path="Labeled\DME\JDRF\non_perfusion\NP Outline-11-6M-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e210-t45_703-i210.tif"></image>
+   <image id="JDRF_012" eye="OS" timing="Baseline" path="Labeled\DME\JDRF\non_perfusion\NP Outline-12-Baseline-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e130-t49_906-i131.tif"></image>
+
 <!-- JDRF_003 Video Image Sequence -->
     <video eye="OS" id="JDRF_003" time="Baseline" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" ></video>
     <video eye="OS" id="JDRF_003" time="6M" seq_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" ></video>
