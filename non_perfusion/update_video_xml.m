@@ -1,5 +1,6 @@
-function [path, directory] = get_video_xml(pid, eye, time, attr)
-    xDoc= xmlread('non_perfusion.xml');
+function update_video_xml(pid, eye, time, attr, value)
+    xmlfile = 'non_perfusion.xml';
+    xDoc= xmlread(xmlfile);
     videos = xDoc.getElementsByTagName('video');
     
     path = [];
@@ -10,8 +11,7 @@ function [path, directory] = get_video_xml(pid, eye, time, attr)
         if strcmp(pid, char(video.getAttribute('id'))) == 1 && ...
            strcmp(time, char(video.getAttribute('time'))) == 1 && ...
            strcmp(eye, char(video.getAttribute('eye'))) == 1
-        	path = char(video.getAttribute(attr));
-            found_it = 1;
+        	video.setAttribute(attr, value);
         end
     end
     
@@ -19,7 +19,6 @@ function [path, directory] = get_video_xml(pid, eye, time, attr)
         err = MException('MATLAB:paramAmbiguous', 'Could not find the video sequence in the XML database');
         throw(err);
     elseif ispc ~= 1
-       path = strrep(path, '\', '/');
+       xmlwrite(xmlfile);
     end
-    [directory,~,~] = fileparts(path);
 end
