@@ -67,4 +67,5 @@ function vessel_overlap(pid, eye, time, mintime, maxtime, varargin)
     outputpath = [images_path, directory, '/', pid, '_', eye, '_', time,'_vessel-overlap.tif'];
     disp(['SAVED TO: ', outputpath]);
     imwrite(vessel_mask, outputpath);
+    update_video_xml(pid, eye, time, 'vessel_path', outputpath);
 end

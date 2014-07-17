@@ -167,7 +167,8 @@ function browseFile_Callback(hObject, eventdata, handles)
 [FileName,PathName,~] = uigetfile('*.xml');
 handles.filename = FileName;
 handles.pathname = PathName;
-set(handles.filePath, 'String', [handles.pathname, handles.filename]);
+fullpath = [handles.pathname, handles.filename];
+set(handles.filePath, 'String', fullpath);
 guidata(hObject, handles);
 
 
