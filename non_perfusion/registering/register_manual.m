@@ -1,8 +1,9 @@
 function register_manual(pid, eye, timing, ref, time)
     addpath('..');
-    images_path = '../Test Set/';
+    addpath('../xml_func');
+    images_path = '../../Test Set/';
     addpath(genpath(images_path));
-    addpath('../roi_mask');
+    addpath('../../roi_mask');
     dir_name = ['results - ', pid, ' - ', eye, ' - ', timing];
 
     ref_string = num2str(ref);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<video_seq eye="OS" id="031447951" ref_eye="6" timing="0">
+   <frame id="0" path="031447951_1.tif" time="1"/>
+   <frame id="1" path="031447951_2.tif" time="2"/>
+   <frame id="2" path="031447951_3.tif" time="3"/>
+   <frame id="3" path="031447951_4.tif" time="4"/>
+   <frame id="4" path="031447951_5.tif" time="5"/>
+   <frame id="5" path="031447951_7.tif" time="6"/>
+   <frame id="6" path="031447951_8.tif" time="7"/>
+   <frame id="7" path="031447951_9.tif" time="8"/>
+   <frame id="8" path="031447951_10.tif" time="9"/>
+   <frame id="9" path="031447951_11.tif" time="10"/>
+   <frame id="10" path="031447951_12.tif" time="11"/>
+   <frame id="11" path="031447951_13.tif" time="12"/>
+   <frame id="12" path="031447951_14.tif" time="13"/>
+</video_seq>
