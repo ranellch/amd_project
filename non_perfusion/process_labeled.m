@@ -13,5 +13,6 @@ function [bwimg] = process_labeled(inimg)
         end
     end
     
-    bwimg = imfill(bwimg, 'holes');            
+    bwimg = im2bw(bwimg);
+    bwimg = imfill(bwimg, 'holes');  
 end

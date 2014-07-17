@@ -72,7 +72,7 @@ function build_np_dataset(varargin)
             labeled_image = imread(labeled_path);
             labeled_image = process_labeled(labeled_image);
             labeled_image = imresize(labeled_image, [std_img_size, NaN]);
-
+            
             %Get the original image
             original_path = get_image_xml(pid, eye, time, 'original');
             original_image = imread(original_path);
@@ -91,12 +91,14 @@ function build_np_dataset(varargin)
                 
             %Calculate the image feature vectors
             feature_image = image_feature(original_image);
-
+            
             %Save this data to the results datatable.
-            feature_vectors = matstack2array(feature_image);
             [nrows,~] = size(file_obj, 'dataset');
+            feature_vectors = matstack2array(feature_image);
             file_obj.dataset(nrows+1:nrows+numel(original_image),1:size(feature_vectors,2)) = feature_vectors;
-            file_obj.classes(nrows+1:nrows+numel(original_image),1) = labeled_image(:);
+            
+            label_vectors = matstack2array(labeled_image);
+            file_obj.classes(nrows+1:nrows+numel(original_image),1:size(label_vectors,2)) = label_vectors;
         end
         
         e = cputime - t;
