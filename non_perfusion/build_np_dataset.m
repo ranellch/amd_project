@@ -19,6 +19,8 @@ function build_np_dataset(varargin)
     filename_data = 'np_data.mat';
     images_path = '../Test Set/';
     addpath('illum');
+    addpath('xmlfunc');
+    addpath('auxfunc');
     
     %Remove file is already exists
     if exist(filename_data, 'file') == 2
