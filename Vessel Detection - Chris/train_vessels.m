@@ -39,7 +39,7 @@ function train_vessels()
 % 	[~, vessel_combined_classifier] = adaboost('train', combined_matrices, categories, itt);
 %     vessel_combined_classifier = libsvmtrain(label_vector, instance_matrix, '-t 0 -m 1000 -e 0.01');
 %     options_struct = statset('Display','iter','MaxIter',1000000);
-	vessel_combined_classifier =  train(label_vector, sparse(instance_matrix), '-s 2');
+	vessel_combined_classifier =  train(label_vector, sparse(instance_matrix), '-s 2 -B 1');
 
     save('vessel_combined_classifier.mat', 'vessel_combined_classifier', 'scaling_factors');
     
