@@ -1,4 +1,5 @@
-function time_lapse(pid, eye, time, maxtime, varargin)
+function time_lapse(pid, eye, time, mintime, maxtime, varargin)
+    %This functions puts the images into a movie that just looks at intensity though time.
     images_path = '../Test Set/';
     debug = -1;
     if length(varargin) == 1
@@ -7,6 +8,10 @@ function time_lapse(pid, eye, time, maxtime, varargin)
         debug = 1;
     else
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arguments'));
+    end
+    
+    if(maxtime == 0)
+        maxtime = 100000000;
     end
     
     %Add the location of the external scripts that we are going to call
@@ -35,6 +40,7 @@ function time_lapse(pid, eye, time, maxtime, varargin)
     [vessel_path, vessel_directory] = get_video_xml(pid, eye, time, 'vessel_path');
     addpath([images_path, vessel_directory]);
     vessel_mask = imread(vessel_path);
+    vessel_mask = bwmorph(vessel_mask,'thicken',3);
     if(debug == 2)
         figure, imshow(vessel_mask);
     end
@@ -45,8 +51,8 @@ function time_lapse(pid, eye, time, maxtime, varargin)
     
     if(debug == 2)
         %Video writer for time lapse of intensity
-        uncompressedVideo = VideoWriter(['time_lapse_videos/',pid, '_', eye, '.avi'], 'Uncompressed AVI');
-        uncompressedVideo.FrameRate = 1;
+        uncompressedVideo = VideoWriter(['time_lapse_videos/',pid, '_', eye, '_', time, '.avi'], 'Uncompressed AVI');
+        uncompressedVideo.FrameRate = 3;
         open(uncompressedVideo);
     end
     
@@ -55,8 +61,11 @@ function time_lapse(pid, eye, time, maxtime, varargin)
         try
             %Get the current time and check if above maxtime
             cur_time = str2double(times{k});
+            if(cur_time < mintime)
+                continue;
+            end
             if(cur_time > maxtime)
-                break; 
+                continue; 
             end
             
             %Get the current path and load the image
@@ -65,7 +74,7 @@ function time_lapse(pid, eye, time, maxtime, varargin)
             if(size(img,3) > 1)
                 img = rgb2gray(img);
             end
-                      
+            
             %Get the intensities over time
             for y=1:size(img,1)
                 for x=1:size(img,2)
@@ -75,7 +84,7 @@ function time_lapse(pid, eye, time, maxtime, varargin)
                 end
             end
             
-            if(debug == 2)                
+            if(debug == 2)             
                 %Color the image into a heatmap
                 heatmap = ind2rgb(squeeze(final_graph(:,:,k)), jet(256));
                                 

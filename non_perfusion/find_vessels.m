@@ -8,7 +8,7 @@ function [vsl_img] = find_vessels(img, varargin)
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
     end
     
-    addpath('np_vessel');
+    addpath('vessel');
     
     %Check to see that the path to the image is readable
     if(size(img,3) > 1)

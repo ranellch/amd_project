@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<video_seq eye="OS" id="033570028" ref_eye="3" timing="0">
+   <frame id="1" path="033570028_1.tif" time="1"/>
+   <frame id="2" path="033570028_2.tif" time="2"/>
+   <frame id="3" path="033570028_3.tif" time="3"/>
+   <frame id="4" path="033570028_4.tif" time="4"/>
+   <frame id="5" path="033570028_5.tif" time="5"/>
+   <frame id="6" path="033570028_6.tif" time="6"/>
+</video_seq>

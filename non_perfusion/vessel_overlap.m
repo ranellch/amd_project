@@ -19,7 +19,7 @@ function vessel_overlap(pid, eye, time, mintime, maxtime, varargin)
     
     %Get all the frames associated with this video
     [count, path, times] = get_images_from_video_xml(video_xml_path);
-    
+            
     vessel_mask = zeros(1);
     for k=1:count
         try
@@ -31,7 +31,7 @@ function vessel_overlap(pid, eye, time, mintime, maxtime, varargin)
             if(cur_time > maxtime)
                 break; 
             end
-            
+    
             %Get the current path and load the image
             cur_path = path{k};
             img = imread(cur_path);

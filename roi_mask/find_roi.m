@@ -35,6 +35,7 @@ function [finalroimask] = find_roi(img, varargin)
     [~,idx] = max(numPixels);
     finalroimask(CC.PixelIdxList{idx}) = 1;
     finalroimask = bwmorph(finalroimask, 'majority');
+    finalroimask = imfill(finalroimask, 'holes');
     
     if(debug == 2)
         figure(1), imshow(finalroimask);

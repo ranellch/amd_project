@@ -20,7 +20,7 @@ function train_vessels()
     [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, 0.2);
     
     disp(['Number of Positive Instances: ', num2str(sum(label_vector==1)), ' Number of Negative Instances: ', ... 
-        num2str(sum(label_vector==-1)), ' Total: ', num2str(numel(label_vector))]);  
+        num2str(sum(label_vector==0)), ' Total: ', num2str(numel(label_vector))]);  
     
     %Scale all features to [0 1] (x'=(x-mi)/(Mi-mi))
      %find max and min of each column
