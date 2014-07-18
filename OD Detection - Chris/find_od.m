@@ -13,12 +13,13 @@ else
 end
 
 t = cputime;
+std_imsize = 768;
 
 %Add the path for the useful directories
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath('../intensity normalization');
-addpath('../snake');
+addpath('../active contour without edge');
 addpath(genpath('../liblinear-1.94'))
 addpath('../Skeleton');
 addpath('../Vessel Detection - Chris');
@@ -151,40 +152,93 @@ end
 % end
 
 %Find optic disk region using another classifier
-[pre_snaked_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
-if ~any(pre_snaked_img(:))
-    final_od_image = imresize(pre_snaked_img,[origy,origx]);
+[od_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
+if ~any(od_img(:))
+    final_od_image = imresize(od_img,[origy,origx]);
     disp('Optic Disk Not Found!')
     return
 end
 if (debug == 2)
-    figure(4), imshowpair(pre_snaked_img,img_vessel)
+    figure(4), imshowpair(od_img,img_vessel)
 end
-
-%Use snaking algorithm to get smooth outline of the optic disc
-if(debug == 1 || debug == 2)
-    disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
+Points = get_box_coordinates(od_img);
+%setting the initial level set function 'u':
+c0=2;
+u = ones(size(od_img))*-c0;
+u(min(Points(:,1)):max(Points(:,1)), min(Points(:,2)):max(Points(:,2)))=c0;
+figure, imshow(u)
+bb_t = max([1,min(Points(:,1))-100]);
+bb_b = min([std_imsize,max(Points(:,1))+100]);
+bb_l = max([1,min(Points(:,2))-100]);
+bb_r = min([std_imsize,max(Points(:,2))+100]);
+window = corrected_img(bb_t:bb_b,bb_l:bb_r);
+feature_window = feature_image(bb_t:bb_b,bb_l:bb_r,end-1:end);
+%normalize and weight
+for i = 1:size(feature_window,3)
+    feature_window(:,:,i) = zero_m_unit_std(feature_window(:,:,i));
+    %weight texture features by 1/(number of texture features)
+    if i < size(feature_window,3) 
+        feature_window(:,:,i) = 1/(size(feature_image_g,3)*2)*feature_window(:,:,i);
+    end
 end
+u = u(bb_t:bb_b,bb_l:bb_r);
+%setting the parameters in ACWE algorithm:
+mu=1;
+lambda1=1; lambda2=1;
+timestep = .1; v=1; epsilon=1;
+iterNum = 400;
+%show the initial 0-level-set contour:
+figure;imshow(window, []);hold on;axis off,axis equal
+title('Initial contour');
+[c,h] = contour(u,[0 0],'r');
+pause(0.1);
+% start level set evolution
+for n=1:iterNum
+    u=acwe(u, feature_window,  timestep,...
+             mu, v, lambda1, lambda2, 1, epsilon, 1);
+    if mod(n,10)==0
+        pause(0.1);
+        imshow(window, []);hold on;axis off,axis equal
+        [c,h] = contour(u,[0 0],'r');
+        iterNum=[num2str(n), ' iterations'];
+        title(iterNum);
+        hold off;
+    end
+end
+imshow(window, []);hold on;axis off,axis equal
+[c,h] = contour(u,[0 0],'r');
+totalIterNum=[num2str(n), ' iterations'];
+title(['Final contour, ', totalIterNum]);
 
-Options=struct;
-% if debug == 2
-%     Options.Verbose=true;
-% else 
-    Options.Verbose=false;
+figure;
+imagesc(u);axis off,axis equal;
+title('Final level set function');
+
+% %Use snaking algorithm to get smooth outline of the optic disc
+% if(debug == 1 || debug == 2)
+%     disp('[SNAKES] Using Snaking algorithm to refine the edges of the optic disc');
 % end
-Options.Iterations=200;
-Options.Wedge=30;
-Options.Wline = 1;
-Options.Wterm = 20;
-Options.Delta = .2;
-Points = get_box_coordinates(pre_snaked_img);
-pre_snaked_img = mat2gray(sum(feature_image_g,3)); %snake on superimposed textures
-[~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
 
-if(debug == 2)
-    %Show the image result
-    figure(5), imshowpair(snaked_optic_disc, corrected_img);
-end
+% Options=struct;
+% % if debug == 2
+%      Options.Verbose=true;
+% % else 
+%    % Options.Verbose=false;
+% % end
+% Options.Iterations=200;
+% Options.Wedge=10;
+% Options.Wline = .5;
+% Options.Wterm = 10;
+% Options.Delta = .2;
+
+% pre_snaked_img = mat2gray(feature_image_g(:,:,1)); 
+% figure, imshow(pre_snaked_img)
+% [~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
+
+% if(debug == 2)
+%     %Show the image result
+%     figure(5), imshowpair(snaked_optic_disc, corrected_img);
+% end
 
 %Resize the image to its original size
 if strcmp(resize,'on')
