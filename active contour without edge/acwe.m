@@ -1,4 +1,4 @@
-function u = acwe(u0, FImg, timestep,...
+function u = acwe(u0, FImg, vessels, timestep,...
                     mu, v, lambda1, lambda2, pc, ...
                     epsilon, numIter)
 %Effect: gradient-descent method to optimize the CV model described in
@@ -37,10 +37,11 @@ for k1=1:numIter
         c1 = mean2(Flayer(inside_idx)); c2 = mean2(Flayer(outside_idx));
         DistImg1 = DistImg1 + (FImg(:,:,i) - c1).^2; DistImg2 = DistImg2 + (FImg(:,:,i) - c2).^2;
     end
-    data_force = -DrcU.*(mu*K - v - lambda1/size(FImg,3)*DistImg1 + lambda2/size(FImg,3)*DistImg2);
+    data_force = -DrcU.*(mu*K - v - lambda1*DistImg1 + lambda2*DistImg2);
     %introduce the distance regularation term:
     P=pc*(4*del2(u) - K);               %ref[2]
     u = u+timestep*(data_force+P);
+    u(vessels) = -2;
 end                 %
 
 function g = NeumannBoundCond(f)

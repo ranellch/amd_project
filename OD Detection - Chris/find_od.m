@@ -165,54 +165,70 @@ Points = get_box_coordinates(od_img);
 %setting the initial level set function 'u':
 c0=2;
 u = ones(size(od_img))*-c0;
-u(min(Points(:,1)):max(Points(:,1)), min(Points(:,2)):max(Points(:,2)))=c0;
-figure, imshow(u)
+u(od_img==1)=c0;
 bb_t = max([1,min(Points(:,1))-100]);
 bb_b = min([std_imsize,max(Points(:,1))+100]);
 bb_l = max([1,min(Points(:,2))-100]);
 bb_r = min([std_imsize,max(Points(:,2))+100]);
 window = corrected_img(bb_t:bb_b,bb_l:bb_r);
-feature_window = feature_image(bb_t:bb_b,bb_l:bb_r,end-1:end);
+vessels = logical(img_vessel(bb_t:bb_b,bb_l:bb_r));
+textures = zeros(size(feature_image_g));
+for i = 1:size(feature_image_g,3)
+    textures(:,:,i) = imfilter(feature_image_g(:,:,i),ones(20)/400,'symmetric');
+end
+feature_window = cat(3,corrected_img(bb_t:bb_b,bb_l:bb_r),textures(bb_t:bb_b,bb_l:bb_r,:));
+weights = [sqrt(.8) sqrt(.04) sqrt(.04) sqrt(.04) sqrt(.04) sqrt(.04)]; %squared weights should sum to 1
 %normalize and weight
 for i = 1:size(feature_window,3)
-    feature_window(:,:,i) = zero_m_unit_std(feature_window(:,:,i));
-    %weight texture features by 1/(number of texture features)
-    if i < size(feature_window,3) 
-        feature_window(:,:,i) = 1/(size(feature_image_g,3)*2)*feature_window(:,:,i);
-    end
+    layer = feature_window(:,:,i);
+    feature_window(:,:,i) = (layer - min(layer(:)))/(max(layer(:))-min(layer(:)));
+    feature_window(:,:,i) = weights(i)*feature_window(:,:,i);
 end
 u = u(bb_t:bb_b,bb_l:bb_r);
 %setting the parameters in ACWE algorithm:
 mu=1;
 lambda1=1; lambda2=1;
-timestep = .1; v=1; epsilon=1;
+timestep = .1; v=0; epsilon=1;
 iterNum = 400;
 %show the initial 0-level-set contour:
-figure;imshow(window, []);hold on;axis off,axis equal
-title('Initial contour');
-[c,h] = contour(u,[0 0],'r');
-pause(0.1);
+% figure;imshow(window, []);hold on;axis off,axis equal
+% title('Initial contour');
+% [c,h] = contour(u,[0 0],'r');
+% pause(0.1);
 % start level set evolution
-for n=1:iterNum
-    u=acwe(u, feature_window,  timestep,...
-             mu, v, lambda1, lambda2, 1, epsilon, 1);
-    if mod(n,10)==0
-        pause(0.1);
-        imshow(window, []);hold on;axis off,axis equal
-        [c,h] = contour(u,[0 0],'r');
-        iterNum=[num2str(n), ' iterations'];
-        title(iterNum);
-        hold off;
-    end
-end
-imshow(window, []);hold on;axis off,axis equal
-[c,h] = contour(u,[0 0],'r');
-totalIterNum=[num2str(n), ' iterations'];
-title(['Final contour, ', totalIterNum]);
+% for n = i:iterNum
+    u=acwe(u, feature_window, vessels, timestep,...
+             mu, v, lambda1, lambda2, 1, epsilon, iterNum);
+%     if mod(n,10)==0
+%         pause(0.1);
+%         imshow(window, []);hold on;axis off,axis equal
+%         [c,h] = contour(u,[0 0],'r');
+%         iterNum=[num2str(n), ' iterations'];
+%         title(iterNum);
+%         hold off;
+%     end
+% end
+% imshow(window, []);hold on;axis off,axis equal
+% [c,h] = contour(u,[0 0],'r');
+% totalIterNum=[num2str(n), ' iterations'];
+% title(['Final contour, ', totalIterNum]);
 
-figure;
-imagesc(u);axis off,axis equal;
-title('Final level set function');
+if debug == 2
+    figure(5);
+    imagesc(u);axis off,axis equal;
+    title('Final level set function');
+end
+
+binary_img = u>0;
+%Clean up image, only keep biggest blob
+final_od_window = zeros(size(binary_img));
+CC = bwconncomp(binary_img);
+numPixels = cellfun(@numel,CC.PixelIdxList);
+[~,idx] = max(numPixels);
+final_od_window(CC.PixelIdxList{idx}) = 1;
+
+final_od_image = zeros(size(od_img));
+final_od_image(bb_t:bb_b,bb_l:bb_r) = final_od_window;
 
 % %Use snaking algorithm to get smooth outline of the optic disc
 % if(debug == 1 || debug == 2)
@@ -235,18 +251,16 @@ title('Final level set function');
 % figure, imshow(pre_snaked_img)
 % [~,snaked_optic_disc] = Snake2D(pre_snaked_img, Points, Options); 
 
-% if(debug == 2)
-%     %Show the image result
-%     figure(5), imshowpair(snaked_optic_disc, corrected_img);
-% end
+if(debug == 2)
+    %Show the image result
+    figure(6), imshowpair(final_od_image, corrected_img);
+end
 
 %Resize the image to its original size
 if strcmp(resize,'on')
-    snaked_optic_disc = imresize(snaked_optic_disc, [origy origx]);
+    final_od_image = imresize(final_od_image, [origy origx]);
 end
     
-%return the final image to the function caller
-final_od_image = snaked_optic_disc;
 
 %Report the time it took to classify to the user
 e = cputime - t;
