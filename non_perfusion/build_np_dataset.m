@@ -45,12 +45,15 @@ function build_np_dataset(varargin)
             eye = char(paths{2}{k});
             time = char(paths{3}(k));
             
-            labeled_path = get_image_xml(pid, eye, time, 'path');
-            original_path = get_image_xml(pid, eye, time, 'original');
-            imgl = imread(labeled_path);
-            imgo = imread(original_path);
-                
-            disp([pid, ' - ', time, ' - ', time]);
+%             labeled_path = get_image_xml(pid, eye, time, 'path');
+%             original_path = get_image_xml(pid, eye, time, 'original');
+%             imgl = imread(labeled_path);
+%             imgo = imread(original_path);
+            
+            [video_xml, directory] = get_video_xml(pid, eye, time, 'seq_path');
+            
+            
+            disp([pid, ' - ', eye, ' - ', time]);
         end
         disp('-----Done Checking Files-----');
         
@@ -58,47 +61,82 @@ function build_np_dataset(varargin)
         file_obj = matfile(filename_data,'Writable',true);
         file_obj.dataset = [];
         file_obj.classes = [];
+        file_obj.timestamps = [];
         
         %Iterate over all images to use for training 
         for i=1:numimages
             pid = char(paths{1}{i});
             eye = char(paths{2}{i});
             time = char(paths{3}(i));
+                        
+            %Get the current video to analyze
+            [video_xml, directory] = get_video_xml(pid, eye, time, 'seq_path');
+            addpath([images_path, directory]);
+            [counter, paths, times] = get_images_from_video_xml(video_xml);
             
-            disp(['[PID] ', pid, ' [Eye] ', eye, ' [Time] ', time]);
+            %Display to the user the current video going to be analyzed
+            disp(['[PID] ', pid, ' [Eye] ', eye, ' [Time] ', time, ' [# FRAMES] ', num2str(counter)]);
             
-            %Get the labeled image and process it
-            labeled_path = get_image_xml(pid, eye, time, 'path');
-            labeled_image = imread(labeled_path);
-            labeled_image = process_labeled(labeled_image);
-            labeled_image = imresize(labeled_image, [std_img_size, NaN]);
+            %Get the roi mask
+            [roi_path, roi_directory] = get_video_xml(pid, eye, time, 'roi_path');
+            addpath([images_path, roi_directory]);
+            roi_mask = imread(roi_path);
+            roi_mask = imresize(roi_mask, [std_img_size, NaN]);
             
-            %Get the original image
-            original_path = get_image_xml(pid, eye, time, 'original');
-            original_image = imread(original_path);
-
-            %Convert the image to a grayscale image
-            if (size(original_image, 3) > 1)
-                original_image = original_image(:,:,1:3);
-                original_image = rgb2gray(original_image);
-            end
-
-            %Resize the image and convert to dobule for gaussian filtering and then normalized
-            original_image = imresize(original_image, [std_img_size, NaN]);
-            original_image = im2double(original_image);
-            original_image = gaussian_filter(original_image);
-            original_image = zero_m_unit_std(original_image);
-                
-            %Calculate the image feature vectors
-            feature_image = image_feature(original_image);
+            %Get the vessel mask
+            [vessel_path, vessel_directory] = get_video_xml(pid, eye, time, 'vessel_path');
+            addpath([images_path, vessel_directory]);
+            vessel_mask = imread(vessel_path);
+            vessel_mask = imresize(vessel_mask, [std_img_size, NaN]);
             
-            %Save this data to the results datatable.
+            %Analyze and interpolate the image frames feature vectors
+            
+            %Remove file is already exists
+            filename_gabor = [pid, '_', eye, '_', time, '_gabor.mat'];
+            [x_inter, interpolated_curves] = frame_interpolation(std_img_size, counter, times, paths, filename_gabor);
+        
+            %Write to ouput the results from the frame interpolation method
             [nrows,~] = size(file_obj, 'dataset');
-            feature_vectors = matstack2array(feature_image);
-            file_obj.dataset(nrows+1:nrows+numel(original_image),1:size(feature_vectors,2)) = feature_vectors;
+            next_row = nrows + 1;
+            for y=1:size(interpolated_curves, 1)
+                for x=1:size(interpolated_curves, 2)
+                    if(roi_mask(y,x) == 1 && vessel_mask(y,x) == 0)
+                        file_obj.dataset(next_row, 1:size(interpolated_curves,3)) = interpolated_curves(y,x,:);
+                        file_obj.timestamp(next_row, 1:size(x_inter,3)) = x_inter(:);
+                        next_row = next_row + 1;
+                    end
+                end
+            end
             
-            label_vectors = matstack2array(labeled_image);
-            file_obj.classes(nrows+1:nrows+numel(original_image),1:size(label_vectors,2)) = label_vectors;
+%             %Get the labeled image and process it
+%             labeled_path = get_image_xml(pid, eye, time, 'path');
+%             labeled_image = imread(labeled_path);
+%             labeled_image = process_labeled(labeled_image);
+%             labeled_image = imresize(labeled_image, [std_img_size, NaN]);
+%             
+%             %Get the original image
+%             original_path = get_image_xml(pid, eye, time, 'original');
+%             original_image = imread(original_path);
+% 
+%             %Convert the image to a grayscale image
+%             if (size(original_image, 3) > 1)
+%                 original_image = original_image(:,:,1:3);
+%                 original_image = rgb2gray(original_image);
+%             end
+% 
+%             %Resize the image and convert to dobule for gaussian filtering and then normalized
+%             original_image = imresize(original_image, [std_img_size, NaN]);
+%                 
+%             %Calculate the image feature vectors
+%             feature_image = image_feature(original_image);
+%             
+%             %Save this data to the results datatable.
+%             [nrows,~] = size(file_obj, 'dataset');
+%             feature_vectors = matstack2array(feature_image);
+%             file_obj.dataset(nrows+1:nrows+numel(original_image),1:size(feature_vectors,2)) = feature_vectors;
+%             
+%             label_vectors = matstack2array(labeled_image);
+%             file_obj.classes(nrows+1:nrows+numel(original_image),1:size(label_vectors,2)) = label_vectors;
         end
         
         e = cputime - t;
