@@ -37,7 +37,7 @@
    <image id="JDRF_012" eye="OS" timing="Baseline" path="Labeled\DME\JDRF\non_perfusion\NP Outline-12-Baseline-Dr.J-FILLED.tif" original="Labeled\DME\JDRF\non_perfusion\e130-t49_906-i131.tif"></image>
 
 <!-- JDRF_003 Video Image Sequence -->
-    <video eye="OS" id="JDRF_003" time="Baseline" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" ></video>
-    <video eye="OS" id="JDRF_003" time="6M" seq_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" ></video>
+    <video eye="OS" id="JDRF_003" time="Baseline" original_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\JDRF_003_OS_6M_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\6M\organized\registered\JDRF_003_OS_6M_vessel-overlap.tif"></video>
+    <video eye="OS" id="JDRF_003" time="6M" original_path="Originals\DME\JDRF\JDRF_003\6M\organized\video.xml" seq_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\video.xml" roi_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_roi-overlap.tif" vessel_path="Originals\DME\JDRF\JDRF_003\Baseline\organized\registered\JDRF_003_OS_Baseline_vessel-overlap.tif"></video>
 
 </images>
