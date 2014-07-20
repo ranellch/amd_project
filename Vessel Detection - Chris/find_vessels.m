@@ -22,6 +22,7 @@ addpath('..');
 addpath(genpath('../Test Set'));
 addpath(genpath('../intensity normalization'))
 addpath(genpath('../liblinear-1.94'))
+addpath('../active contour without edge')
 
 %get image
 path = get_pathv2(pid, eye, time, 'original');
@@ -109,16 +110,50 @@ if(debug == 1 || debug == 2)
     disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 end
 
+if(debug == 1 || debug == 2)
+    disp('Running Active Contour Without Edges');
+end
+t = cputime;
+
 binary_img = zeros(size(img));
 binary_img(:) = class_estimates;
-binary_img(binary_img==-1) = 0;
 binary_img = logical(binary_img);
+% figure(2), imshow(display_mask(imcomplement(mat2gray(img)),binary_img,'red'))
+
+c0 = 2;
+u = zeros(size(binary_img));
+u(binary_img) = c0;
+u(~binary_img) = -c0;
+
+mu=1;
+lambda1=1; lambda2=1;
+timestep = .1; v=1; epsilon=1;
+iterNum = 200;
+
+weights = [sqrt(.45) sqrt(.45) sqrt(.1)]; %squared weights should sum to 1
+%normalize and weight
+for i = 1:size(lineop_image,3)
+    layer = lineop_image(:,:,i);
+    lineop_image(:,:,i) = (layer - min(layer(:)))/(max(layer(:))-min(layer(:)));
+    lineop_image(:,:,i) = weights(i)*lineop_image(:,:,i);
+end
+
+u=acwe_vessels(u, lineop_image, timestep,...
+             mu, v, lambda1, lambda2, 1, epsilon, iterNum);
+         
+binary_img = u>0;
+% figure(3), imshow(display_mask(imcomplement(mat2gray(img)),binary_img,'red'))
+
+e = cputime-t;
+if(debug == 1 || debug == 2)
+    disp(['ACWE (min): ', num2str(double(e) / 60.0)]);
+end
 
 %Clean up image
 CC = bwconncomp(binary_img);
 stats = regionprops(CC,'Extent','Eccentricity');
 for i = 1:length(stats)
-    if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.95
+    if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.9
         binary_img(CC.PixelIdxList{i}) = 0;
     end
 end
