@@ -127,10 +127,10 @@ u(~binary_img) = -c0;
 
 mu=1;
 lambda1=1; lambda2=1;
-timestep = .1; v=1; epsilon=1;
-iterNum = 200;
+timestep = .1; v= 0; epsilon=1;
+iterNum = 100;
 
-weights = [sqrt(.45) sqrt(.45) sqrt(.1)]; %squared weights should sum to 1
+weights = [sqrt(.33) sqrt(.33) sqrt(.33)]; %squared weights should sum to 1
 %normalize and weight
 for i = 1:size(lineop_image,3)
     layer = lineop_image(:,:,i);
@@ -138,9 +138,15 @@ for i = 1:size(lineop_image,3)
     lineop_image(:,:,i) = weights(i)*lineop_image(:,:,i);
 end
 
-u=acwe_vessels(u, lineop_image, timestep,...
-             mu, v, lambda1, lambda2, 1, epsilon, iterNum);
-         
+%Run on sections of image at a time
+for i = 1:3
+    for j = 1:3
+        u((i-1)*256+1:i*256,(j-1)*256+1:j*256)=acwe_vessels(u((i-1)*256+1:i*256,(j-1)*256+1:j*256), ...
+            lineop_image((i-1)*256+1:i*256,(j-1)*256+1:j*256,:), timestep,...
+                 mu, v, lambda1, lambda2, 1, epsilon, iterNum);
+    end
+end
+
 binary_img = u>0;
 % figure(3), imshow(display_mask(imcomplement(mat2gray(img)),binary_img,'red'))
 
@@ -153,7 +159,7 @@ end
 CC = bwconncomp(binary_img);
 stats = regionprops(CC,'Extent','Eccentricity');
 for i = 1:length(stats)
-    if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.9
+    if stats(i).Extent > 0.1 && stats(i).Eccentricity < 0.95
         binary_img(CC.PixelIdxList{i}) = 0;
     end
 end

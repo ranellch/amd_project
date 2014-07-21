@@ -21,9 +21,10 @@ function u = acwe(u0, FImg, vessels, timestep,...
 u = u0;
 c1 = [];
 c2 = [];
-DistImg1 = zeros(size(FImg,1),size(FImg,2));
-DistImg2 = DistImg1;
+
 for k1=1:numIter
+	DistImg1 = zeros(size(FImg,1),size(FImg,2));
+	DistImg2 = DistImg1;
     u=NeumannBoundCond(u);
     K=curvature_central(u);
     

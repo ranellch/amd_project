@@ -71,6 +71,7 @@ function analyze_od(rebuild_classifier)
         %Get the image run by the algorithm
         [calced_img, vessel_img, ~, probability] = find_od(pid, eye, time, 1);
         imwrite(vessel_img,['./results/',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');
+        colormap(jet)
         imwrite(display_outline(original_img,calced_img,[1 0 0]), ['./results/',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
         
         %Get the image snaked by hand

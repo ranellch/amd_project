@@ -19,11 +19,9 @@ function u = acwe_vessels(u0, FImg, timestep,...
 %     by Li chunming etc.
 %Author: Su dongcai at 2012/1/12 Email: suntree4152@gmail.com, qq:272973536
 u = u0;
-c1 = [];
-c2 = [];
-DistImg1 = zeros(size(FImg,1),size(FImg,2));
-DistImg2 = DistImg1;
 for k1=1:numIter
+    DistImg1 = zeros(size(FImg,1),size(FImg,2));
+    DistImg2 = DistImg1;
     u=NeumannBoundCond(u);
     K=curvature_central(u);
     

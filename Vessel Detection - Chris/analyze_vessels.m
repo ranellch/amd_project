@@ -61,6 +61,8 @@ function analyze_vessels(rebuild_classifier)
        pid = char(paths{1}{k});
        eye = char(paths{2}{k});
        time = num2str((paths{3}(k)));
+       line = [pid,' ', eye, ' (', time, '):'];
+       disp(line)
        vessel_image = get_pathv2(pid, eye, time, 'vessels');
        
         %Get the original image 

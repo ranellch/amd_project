@@ -9,7 +9,6 @@ function [ Iout ] = display_outline( I, mask, color)
         Ig(outline) = color(2);
         Ib(outline) = color(3);
         Iout = cat(3,Ir,Ig,Ib);
-        colormap(jet)
 
 end
 
