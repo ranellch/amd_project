@@ -177,7 +177,7 @@ for i = 1:size(feature_image_g,3)
     textures(:,:,i) = imfilter(feature_image_g(:,:,i),ones(20)/400,'symmetric');
 end
 feature_window = cat(3,corrected_img(bb_t:bb_b,bb_l:bb_r),textures(bb_t:bb_b,bb_l:bb_r,:));
-weights = [sqrt(.8) sqrt(.04) sqrt(.04) sqrt(.04) sqrt(.04) sqrt(.04)]; %squared weights should sum to 1
+weights = [sqrt(.5) sqrt(.1) sqrt(.1) sqrt(.1) sqrt(.1) sqrt(.1)]; %squared weights should sum to 1
 %normalize and weight
 for i = 1:size(feature_window,3)
     layer = feature_window(:,:,i);
