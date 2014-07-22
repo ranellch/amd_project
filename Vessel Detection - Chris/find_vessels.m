@@ -22,7 +22,7 @@ addpath('..');
 addpath(genpath('../Test Set'));
 addpath(genpath('../intensity normalization'))
 addpath(genpath('../liblinear-1.94'))
-addpath('../active contour without edge')
+addpath('../Chen-Vese ACWE')
 
 %get image
 path = get_pathv2(pid, eye, time, 'original');
@@ -110,56 +110,62 @@ if(debug == 1 || debug == 2)
     disp(['Classify (min): ', num2str(double(e) / 60.0)]);
 end
 
-if(debug == 1 || debug == 2)
-    disp('Running Active Contour Without Edges');
-end
-t = cputime;
+% if(debug == 1 || debug == 2)
+%     disp('Running Active Contour Without Edges');
+% end
+% t = cputime;
 
 binary_img = zeros(size(img));
 binary_img(:) = class_estimates;
 binary_img = logical(binary_img);
 % figure(2), imshow(display_mask(imcomplement(mat2gray(img)),binary_img,'red'))
+% figure(1)
+% subplot(1,2,1); imshow(binary_img); title('Before Level Set');
 
-c0 = 2;
-u = zeros(size(binary_img));
-u(binary_img) = c0;
-u(~binary_img) = -c0;
-
-mu=1;
-lambda1=1; lambda2=1;
-timestep = .1; v= 0; epsilon=1;
-iterNum = 100;
-
-weights = [sqrt(.33) sqrt(.33) sqrt(.33)]; %squared weights should sum to 1
-%normalize and weight
-for i = 1:size(lineop_image,3)
-    layer = lineop_image(:,:,i);
-    lineop_image(:,:,i) = (layer - min(layer(:)))/(max(layer(:))-min(layer(:)));
-    lineop_image(:,:,i) = weights(i)*lineop_image(:,:,i);
-end
-
-%Run on sections of image at a time
-for i = 1:3
-    for j = 1:3
-        u((i-1)*256+1:i*256,(j-1)*256+1:j*256)=acwe_vessels(u((i-1)*256+1:i*256,(j-1)*256+1:j*256), ...
-            lineop_image((i-1)*256+1:i*256,(j-1)*256+1:j*256,:), timestep,...
-                 mu, v, lambda1, lambda2, 1, epsilon, iterNum);
-    end
-end
-
-binary_img = u>0;
+% c0 = 2;
+% u = zeros(size(binary_img));
+% u(binary_img) = c0;
+% u(~binary_img) = -c0;
+% 
+% mu=1;
+% lambda1=1; lambda2=1;
+% timestep = .1; v= 0; epsilon=1;
+% iterNum = 100;
+% 
+% weights = [sqrt(.33) sqrt(.33) sqrt(.33)]; %squared weights should sum to 1
+% %normalize and weight
+% for i = 1:size(lineop_image,3)
+%     layer = lineop_image(:,:,i);
+%     lineop_image(:,:,i) = (layer - min(layer(:)))/(max(layer(:))-min(layer(:)));
+% %     lineop_image(:,:,i) = weights(i)*lineop_image(:,:,i);
+% end     
+% 
+% %Run on sections of image at a time
+% for i = 1:2
+%     for j = 1:2
+%         input = lineop_image((i-1)*384+1:i*384,(j-1)*384+1:j*384,1:3);
+%         mask = binary_img((i-1)*384+1:i*384,(j-1)*384+1:j*384);
+%         output = chenvese(input, mask, 400,0.02,'chan');
+%         binary_img((i-1)*384+1:i*384,(j-1)*384+1:j*384)= imresize(output,[384, 384]);
+%      end
+%  end
+% 
+% 
+% binary_img = u>0;
 % figure(3), imshow(display_mask(imcomplement(mat2gray(img)),binary_img,'red'))
-
-e = cputime-t;
-if(debug == 1 || debug == 2)
-    disp(['ACWE (min): ', num2str(double(e) / 60.0)]);
-end
+% 
+% figure(1), subplot(1,2,2); imshow(binary_img); title('After Level Set');
+% 
+% e = cputime-t;
+% if(debug == 1 || debug == 2)
+%     disp(['ACWE (min): ', num2str(double(e) / 60.0)]);
+% end
 
 %Clean up image
 CC = bwconncomp(binary_img);
 stats = regionprops(CC,'Extent','Eccentricity');
 for i = 1:length(stats)
-    if stats(i).Extent > 0.1 && stats(i).Eccentricity < 0.95
+    if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.95
         binary_img(CC.PixelIdxList{i}) = 0;
     end
 end
@@ -168,10 +174,10 @@ end
 % binary_img = imresize(binary_img, [origy origx]);
 
 %clean up vessel image borders
-% binary_img(1:5,:) = 0;
-% binary_img(:,1:5) = 0;
-% binary_img(size(binary_img,1)-4:end,:) = 0;
-% binary_img(:,size(binary_img,2)-4:end) = 0;
+binary_img(1:5,:) = 0;
+binary_img(:,1:5) = 0;
+binary_img(size(binary_img,1)-4:end,:) = 0;
+binary_img(:,size(binary_img,2)-4:end) = 0;
 
 % if debug == 2
 %      figure(6), imshow(binary_img);

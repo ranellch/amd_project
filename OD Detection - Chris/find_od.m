@@ -19,7 +19,7 @@ std_imsize = 768;
 addpath('..');
 addpath(genpath('../Test Set'));
 addpath('../intensity normalization');
-addpath('../active contour without edge');
+addpath('../Chen-Vese ACWE');
 addpath(genpath('../liblinear-1.94'))
 addpath('../Skeleton');
 addpath('../Vessel Detection - Chris');
@@ -133,6 +133,7 @@ else
 end
 
 if(debug == 2)
+    colormap(jet)
     figure(2), imagesc(final_clusters);
 end
 
@@ -151,7 +152,10 @@ end
 %     figure(4), imshowpair(od_image, img_vessel);
 % end
 
-%Find optic disk region using another classifier
+%Find optic disk region using another classifier]
+if(debug == 1 || debug == 2)
+    disp('[REGIONS] Running region classification');
+end
 [od_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
 if ~any(od_img(:))
     final_od_image = imresize(od_img,[origy,origx]);
@@ -161,44 +165,46 @@ end
 if (debug == 2)
     figure(4), imshowpair(od_img,img_vessel)
 end
+if(debug == 1 || debug == 2)
+    disp('[ACWE] Running final segmentation');
+end
 Points = get_box_coordinates(od_img);
 %setting the initial level set function 'u':
-c0=2;
-u = ones(size(od_img))*-c0;
-u(od_img==1)=c0;
+% c0=2;
+% u = ones(size(od_img))*-c0;
+% u(od_img==1)=c0;
 bb_t = max([1,min(Points(:,1))-100]);
 bb_b = min([std_imsize,max(Points(:,1))+100]);
 bb_l = max([1,min(Points(:,2))-100]);
 bb_r = min([std_imsize,max(Points(:,2))+100]);
-window = corrected_img(bb_t:bb_b,bb_l:bb_r);
-vessels = logical(img_vessel(bb_t:bb_b,bb_l:bb_r));
-textures = zeros(size(feature_image_g));
-for i = 1:size(feature_image_g,3)
-    textures(:,:,i) = imfilter(feature_image_g(:,:,i),ones(20)/400,'symmetric');
-end
+textures = feature_image_g;
+% for i = 1:size(feature_image_g,3)
+%     textures(:,:,i) = feature_image_g(:,:,i);
+% end
 feature_window = cat(3,corrected_img(bb_t:bb_b,bb_l:bb_r),textures(bb_t:bb_b,bb_l:bb_r,:));
-weights = [sqrt(.5) sqrt(.1) sqrt(.1) sqrt(.1) sqrt(.1) sqrt(.1)]; %squared weights should sum to 1
+% weights = [sqrt(.5) sqrt(.1) sqrt(.1) sqrt(.1) sqrt(.1) sqrt(.1)]; %squared weights should sum to 1
 %normalize and weight
 for i = 1:size(feature_window,3)
     layer = feature_window(:,:,i);
     feature_window(:,:,i) = (layer - min(layer(:)))/(max(layer(:))-min(layer(:)));
-    feature_window(:,:,i) = weights(i)*feature_window(:,:,i);
+%     feature_window(:,:,i) = weights(i)*feature_window(:,:,i);
 end
-u = u(bb_t:bb_b,bb_l:bb_r);
+mask = od_img(bb_t:bb_b,bb_l:bb_r);
+output = chenvese(feature_window,mask,200,0.02,'vector'); 
 %setting the parameters in ACWE algorithm:
-mu=1;
-lambda1=1; lambda2=1;
-timestep = .1; v=0; epsilon=1;
-iterNum = 400;
+% mu=1;
+% lambda1=1; lambda2=1;
+% timestep = .1; v=0; epsilon=1;
+% iterNum = 400;
 %show the initial 0-level-set contour:
 % figure;imshow(window, []);hold on;axis off,axis equal
 % title('Initial contour');
 % [c,h] = contour(u,[0 0],'r');
 % pause(0.1);
 % start level set evolution
-% for n = i:iterNum
-    u=acwe(u, feature_window, vessels, timestep,...
-             mu, v, lambda1, lambda2, 1, epsilon, iterNum);
+% % for n = i:iterNum
+%     u=acwe(u, feature_window, vessels, timestep,...
+%              mu, v, lambda1, lambda2, 1, epsilon, iterNum);
 %     if mod(n,10)==0
 %         pause(0.1);
 %         imshow(window, []);hold on;axis off,axis equal
@@ -213,22 +219,28 @@ iterNum = 400;
 % totalIterNum=[num2str(n), ' iterations'];
 % title(['Final contour, ', totalIterNum]);
 
-if debug == 2
-    figure(5);
-    imagesc(u);axis off,axis equal;
-    title('Final level set function');
-end
+% if debug == 2
+%     figure(5);
+%     imagesc(u);axis off,axis equal;
+%     title('Final level set function');
+% end
+% 
+% binary_img = u>0;
 
-binary_img = u>0;
-%Clean up image, only keep biggest blob
-final_od_window = zeros(size(binary_img));
+
+binary_img = zeros(size(od_img));
+binary_img(bb_t:bb_b,bb_l:bb_r) = imresize(output,[bb_b-bb_t+1, bb_r-bb_l+1]);
+binary_img(img_vessel==1) = 0;
+
+% Clean up image, only keep biggest blob
+final_od_image = zeros(size(od_image));
 CC = bwconncomp(binary_img);
 numPixels = cellfun(@numel,CC.PixelIdxList);
 [~,idx] = max(numPixels);
-final_od_window(CC.PixelIdxList{idx}) = 1;
+final_od_image(CC.PixelIdxList{idx}) = 1;
+final_od_image = imfill(final_od_image,'holes');
 
-final_od_image = zeros(size(od_img));
-final_od_image(bb_t:bb_b,bb_l:bb_r) = final_od_window;
+final_od_image = im2bw(final_od_image);
 
 % %Use snaking algorithm to get smooth outline of the optic disc
 % if(debug == 1 || debug == 2)

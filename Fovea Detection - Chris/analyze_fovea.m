@@ -59,7 +59,7 @@ function analyze_fovea(debug)
         if ~any(final_od_img(:))
             continue
         end
-        [ x,y ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
+        [ x,y,h ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
         t = (cputime - e)/60.0;
         disp(['TOTAL PROCESSING TIME (MIN): ', num2str(t)])
         if x == -1
@@ -83,7 +83,6 @@ function analyze_fovea(debug)
             imwrite(combined_img,['./results/',pid,'_',eye,'_',time,'-processed.tif'], 'tiff');
             
             if debug == 2
-                h = figure(8);
                 saveas(h,['./results/',pid,'_',eye,'_',time,'-lines.png']);
             end
 

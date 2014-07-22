@@ -1,4 +1,4 @@
-function [ x_fov,y_fov ] = find_fovea( vessels, angles, od, varargin )
+function [ x_fov,y_fov, varargout ] = find_fovea( vessels, angles, od, varargin )
 
 if nargin == 3
     debug = 1;
@@ -41,7 +41,7 @@ yc = Par(2);
 
 %find all points of thick vessels (>7 pixels)
 % figure, imshow(v_thicknesses>7)
-points = find(v_thicknesses>7);
+points = find(v_thicknesses>5);
 x = xcorr(points);
 y = ycorr(points);
 
@@ -86,14 +86,14 @@ if debug == 2
             for i = 1:length(y_domain) 
                  if (round(xprime(y,x)) == f_y(i,1) || round(xprime(y,x)) == f_y(i,2)) ...
                         && round(yprime(y,x)) == round(y_domain(i))
-                    plot(h,x,y,'r.');
+                    plot( x,y,'r.');
                     break
                  end
             end
         end
     end
      [r,c] = ind2sub(size(vessels),points);
-     plot(h, c,r,'mx')
+     plot(c,r,'mx')
 end
 
 
@@ -130,7 +130,7 @@ else
 end
 
 if debug == 2
-    plot(h, x_raphe,y_raphe,'b-');
+    plot(x_raphe,y_raphe,'b-');
 end
 
 winsiz = 200;
@@ -159,6 +159,7 @@ values = smooth(values,20,'lowess');
 if isempty(MinIdx)
     x_fov = -1;
     y_fov = -1;
+    varargout{1} = h;
     return
 end
 
@@ -167,8 +168,9 @@ x_fov = indices(MinIdx(1),1);
 y_fov = indices(MinIdx(1),2);
 
 if debug == 2
-    plot(h,x_fov,y_fov,'gd','MarkerSize',10)
+    plot(x_fov,y_fov,'gd','MarkerSize',10)
     hold(gca,'off')
+    varargout{1} = h;
 end
 
 

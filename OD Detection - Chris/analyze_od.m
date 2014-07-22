@@ -62,7 +62,7 @@ function analyze_od(rebuild_classifier)
        
         %Get the original image 
         original_path = get_pathv2(pid, eye, time, 'original');
-        original_img = imread(original_path);
+        original_img = im2double(imread(original_path));
         if(size(original_img, 3) > 1)
             original_img = rgb2gray(original_img);
         end
@@ -71,9 +71,8 @@ function analyze_od(rebuild_classifier)
         %Get the image run by the algorithm
         [calced_img, vessel_img, ~, probability] = find_od(pid, eye, time, 1);
         imwrite(vessel_img,['./results/',pid,'_',eye,'_',time,'-vessels.tif'], 'tiff');
-        colormap(jet)
         imwrite(display_outline(original_img,calced_img,[1 0 0]), ['./results/',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
-        
+
         %Get the image snaked by hand
         super_img = im2bw(imread(od_image));
         total_positive_count = 0;
@@ -87,7 +86,7 @@ function analyze_od(rebuild_classifier)
                 end
             end
         end
-        
+
         %Get some statistics about the quality of the pixel classification
         total_count = 0;
         true_positive = 0;
