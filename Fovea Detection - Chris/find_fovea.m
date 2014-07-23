@@ -51,6 +51,7 @@ B0 = 0;
 options = optimoptions('lsqnonlin');
 % options.Algorithm = 'levenberg-marquardt';
 options.TolFun = 1e-9;
+options.TolX = 1e-12;
 params = lsqnonlin(@parabola_criterion,[a0,B0],[],[],options);
 a = params(1)
 B = params(2)
@@ -94,6 +95,12 @@ if debug == 2
     end
      [r,c] = ind2sub(size(vessels),points);
      plot(c,r,'mx')
+end
+
+if nargout == 5
+    varargout{1} = h;
+    varargout{2} = B;
+    varargout{3} = [xc,yc];
 end
 
 
@@ -159,7 +166,6 @@ values = smooth(values,20,'lowess');
 if isempty(MinIdx)
     x_fov = -1;
     y_fov = -1;
-    varargout{1} = h;
     return
 end
 
@@ -170,7 +176,6 @@ y_fov = indices(MinIdx(1),2);
 if debug == 2
     plot(x_fov,y_fov,'gd','MarkerSize',10)
     hold(gca,'off')
-    varargout{1} = h;
 end
 
 

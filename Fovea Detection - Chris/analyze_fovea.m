@@ -20,7 +20,7 @@ function analyze_fovea(debug)
     fout = fopen(results_file, 'w');
     
     disp('----------Results----------');
-    line = 'Img, Distance';
+    line = 'Img, Distance, Angle Distance';
     fprintf(fout, '%s\n', line);
     
     
@@ -59,7 +59,7 @@ function analyze_fovea(debug)
         if ~any(final_od_img(:))
             continue
         end
-        [ x,y,h ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
+        [ x,y,h,B,od ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
         t = (cputime - e)/60.0;
         disp(['TOTAL PROCESSING TIME (MIN): ', num2str(t)])
         if x == -1
@@ -89,9 +89,17 @@ function analyze_fovea(debug)
 
             %Get some statistics about the quality of the fovea estimation
             distances(k) = sqrt((x-x_fov)^2+(y-y_fov)^2);
-
+            ta = atan2d(od(2)-y_fov,x_fov-od(1));
+            ta = plusminus90(ta);
+            B = plusminus90(B);
+            if strcmp(eye,'OS')
+                ang_dist(k) = B-ta;
+            else 
+                ang_dist(k) = ta - B;
+            end
+            
            %Write the results from this badboy  
-            line = [pid,' ', eye, ' (', time, '), ', num2str(distances(k))];
+            line = [pid,' ', eye, ' (', time, '), ', num2str(distances(k)),', ', num2str(ang_dist(k))];
             disp(line);
             fprintf(fout, '%s\n', line);
             disp('--------------------------------------');

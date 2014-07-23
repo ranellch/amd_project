@@ -1,4 +1,5 @@
 function train_hypo()
+    addpath('..')
     if ispc
         addpath(genpath('..\libsvm-3.18'))
     else
@@ -14,11 +15,26 @@ function train_hypo()
     try
                 
                  instance_matrix = data_file.dataset;
-                 label_vector = data_file.pixel_classes;
+                 label_vector = data_file.classes;
                  
                 %Downsample to get less bias towards the negative samples
                  pos_cutoff = .1;
                 [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, pos_cutoff);
+                
+                %Downsample to 100000 points
+                 indices = randperm(length(label_vector), 100000);
+                 ds_instances = zeros(100000,size(instance_matrix,2));
+                 ds_labels = zeros(100000,1);
+                 count = 1;
+                 for i = indices
+                    ds_instances(count,:) = instance_matrix(i,:);
+                    ds_labels(count) = label_vector(i);
+                    count = count + 1;
+                 end
+                 instance_matrix = ds_instances;
+                 label_vector = ds_labels;
+                 clear ds_instances
+                 clear ds_labels
 
                 %Get the minumum for each columns
                 mins = min(instance_matrix);

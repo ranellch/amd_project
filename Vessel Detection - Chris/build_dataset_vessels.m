@@ -121,7 +121,7 @@ function build_dataset_vessels(varargin)
                 feature_vectors = matstack2array(feature_image);
                 [nrows,~] = size(file_obj, 'dataset');
                 file_obj.dataset(nrows+1:nrows+numel(original_img),1:size(feature_vectors,2)) = feature_vectors;
-                file_obj.classes(nrows+1:nrows+numel(original_img),1) = vesselized_img_binary(:);
+                file_obj.classes(nrows+1:nrows+numel(original_img),1) = vesselized_img_binary(~anatomy_mask);
         end              
     catch err
         error(err.message);

@@ -23,11 +23,13 @@ addpath(genpath('..\Test Set'));
 addpath(genpath('..\Vessel Detection - Chris'));
 addpath(genpath('..\OD Detection - Chris'));
 addpath(genpath('..\intensity normalization'));
+addpath('..\Fovea Detection - Chris');
 else
 addpath(genpath('../Test Set'));
 addpath(genpath('../Vessel Detection - Chris'));
 addpath(genpath('../OD Detection - Chris'));
 addpath(genpath('../intensity normalization'));
+addpath('../Fovea Detection - Chris');
 end
 
 %Get the images to include from this list
@@ -82,6 +84,8 @@ for k=1:size(includes{1}, 1)
 end
 if err_cnt == 0
     disp('All Files Look Ready To Rumble');
+else
+    return
 end
 disp('-------Done Checking Files-------');
 
@@ -128,23 +132,26 @@ for k=1:size(includes{1}, 1)
         
         %Create mask to exclude vessels and optic disk from training data
         od = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
-        vessels = im2bw(imread(get_pathv2(pid, eye, time, 'vessels')));
+        od = imresize(od,[std_size,std_size]);
+        vessels = imread(get_pathv2(pid, eye, time, 'vessels'));
+        vessels = imresize(vessels,[std_size,std_size]);
+        if(size(vessels, 3) > 1)
+        	vessels = vessels(:,:,1);
+        end
+        vessels = im2bw(vessels);
         
-        anatomy_mask = od || vessels;
+        anatomy_mask = od | vessels;
         
         %Save feature vectors and pixel classes for current image in .mat file generated above
         feature_vectors = [];
-        for i = 1:std_size
-            for j = 1:std_size
-                if anatomy_mask(j,i) ~= 1
-                    current_vector = feature_image(j,i,:);
-                    feature_vectors = [feature_vectors; current_vector];
-                end
-            end
+        for i = 1:size(feature_image,3)
+            layer = feature_image(:,:,i);
+            feature = layer(~anatomy_mask);
+            feature_vectors = [feature_vectors, feature];
         end
         [nrows,~] = size(file_obj, 'dataset');
-        file_obj.dataset(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+numel(img),1) = labeled_img(~anatomy_mask);
+        file_obj.dataset(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
+        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = double(labeled_img(~anatomy_mask));
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));

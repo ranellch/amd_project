@@ -76,10 +76,9 @@ for y=1:size(feature_image, 1)
     end
 end
 
-if length(nargout) == 7
+if nargout == 6
     varargout{1} = feature_image_g;
     varargout{2} = feature_image_r;
-    varargout{3} = mat2gray(corrected_img);
 end
 
 %convert this feature image into a flat array of feature vectors
