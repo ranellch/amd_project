@@ -37,11 +37,14 @@ if debug == 1 || debug == 2
 end
 
 original_img = imread(get_pathv2(pid, eye, time, 'original'));
+if size(original_img,3) > 1
+    original_img = rgb2gray(original_img);
+end
 original_img = imresize(original_img, [std_size std_size]);
 original_img = im2double(original_img);
 
 %Find optic disk and vessels
-[od, vessels, angles, ~, gabor_img, avg_img] = find_od(pid, eye, time, debug, resize);
+[od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, resize);
 
 %Find fovea
 [ x_fov,y_fov ] = find_fovea( vessels, angles, od, 1 );
@@ -79,17 +82,17 @@ if(debug == 1 || debug == 2)
     disp('[SVM] Running the classification algorithm');
 end
 hypo_img = zeros(size(od));
-[hypo_img(~anatomy_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-b 1');
+[hypo_img(~anatomy_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q -b 1');
 clear instance_matrix
 
 prob_img = zeros(size(hypo_img));
 prob_img(~anatomy_mask) = probabilities(:,2);
 
-final_segmentation = GraphCutsHypo(logical(hypo_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),original_img));
+final_segmentation = GraphCutsHypo(logical(hypo_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),corrected_img));
 
 if(debug == 2)
-    figure(11), imshow(display_mask(original_img, logical(hypo_img), [1 0 0], 'solid'))
-    figure(12), imshow(mat2gray(prob_img));
+    figure(11), imshow(display_outline(original_img, logical(hypo_img), [1 0 0]))
+    figure(12), imshow(prob_img);
     figure(13), imshow(display_outline(original_img, logical(final_segmentation), [1 0 0]));
 end
 

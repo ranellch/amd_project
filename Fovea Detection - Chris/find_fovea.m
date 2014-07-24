@@ -112,6 +112,7 @@ density_map = plot_vdensity(vessels);
 
 %Combine density and thickness, and use moving average filter along raphe
 %line to find minimum as most likely fovea location
+size(density_map), size(thickness_map)
 combined_map = density_map.*thickness_map;
 % if debug == 2
 %     figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')

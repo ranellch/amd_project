@@ -24,9 +24,9 @@ function [finalLabeling] = GraphCutsHypo(labeling, prob_img, feature_img)
     
     save('.\IM.mat', ...
         'labeling', 'L0Cost', 'L1Cost', 'hCost', 'vCost');
-    iterNum = 2;
+    iterNum = 200;
     call2dCutExecutable;
-    load('.\scarSegment\classifyGraphCut\IM.mat', 'optimizedLabeling');
+    load('IM.mat', 'optimizedLabeling');
     finalLabeling= optimizedLabeling;
 
 end

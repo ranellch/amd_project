@@ -5,7 +5,7 @@ if strcmp(computer, 'PCWIN')
     % if you want the energy minimization detail of each slice to be
     % displayed, you can add the final input 'on'
 elseif strcmp(computer, 'PCWIN64')
-    system(['"..\Graph Cuts\cutInfarct2D_x64.exe"s .\IM.mat ' num2str(iterNum)]);
+    system(['"..\Graph Cuts\cutInfarct2D_x64.exe" .\IM.mat ' num2str(iterNum)]);
 else
     error('exeCall:platformChk', 'Current platform not supported.');
 end

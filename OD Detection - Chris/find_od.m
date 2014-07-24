@@ -76,9 +76,10 @@ for y=1:size(feature_image, 1)
     end
 end
 
-if nargout == 6
+if nargout == 7
     varargout{1} = feature_image_g;
     varargout{2} = feature_image_r;
+	varargout{3} = corrected_img; 
 end
 
 %convert this feature image into a flat array of feature vectors
@@ -100,9 +101,9 @@ od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix
 % figure(10), imshow(mat2gray(probs))
 clear instance_matrix
 
-if(debug == 2)
-    figure(1), imshow(od_image);
-end
+% if(debug == 2)
+%     figure(1), imshow(od_image);
+% end
 
 %Remove all classified datapoints that were already classified as a vessel
 positive_count = 0;

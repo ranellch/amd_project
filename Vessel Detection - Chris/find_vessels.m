@@ -174,9 +174,9 @@ end
 % binary_img = imresize(binary_img, [origy origx]);
 
 
-% if debug == 2
-%      figure(6), imshow(binary_img);
-% end
+if debug == 2
+     figure(1), imshow(binary_img);
+end
 
 end
 
