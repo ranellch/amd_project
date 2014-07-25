@@ -47,7 +47,7 @@ for i = 1:4:length(sky)
         if y-delta_y < 1 || y-delta_y > size(vessels,1) || x+delta_x < 1 || x+delta_x > size(vessels,2)
             on_vessel = false;
         else
-            if vessels(y-delta_y,x+delta_x) == 1
+            if vessels(y-delta_y,x+delta_x) == 1 &&  v_thicknesses(y,x) < 20
                 v_thicknesses(y,x) = v_thicknesses(y,x) + 1;
             else
                 on_vessel = false;

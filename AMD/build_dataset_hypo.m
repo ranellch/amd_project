@@ -159,5 +159,5 @@ for k=1:size(includes{1}, 1)
 end
 
 e = cputime - t;
-disp(['Optic Disc Build Classifier Time (min): ', num2str(e/60.0)]);
+disp(['Hypo Build Classifier Time (min): ', num2str(e/60.0)]);
 end

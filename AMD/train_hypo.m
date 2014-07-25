@@ -59,5 +59,5 @@ function train_hypo()
     end
     
     e = cputime - t;
-    disp(['Train Classifier Time (sec): ', num2str(e)]);
+    disp(['Train Classifier Time (min): ', num2str(e/60.0)]);
 end
