@@ -23,12 +23,14 @@ else
 end
 
 %Calculate each point's distance from model
-f_y = zeros(npoints,2);
-f_y(:,1) = round(a*yprime.^2); %right facing parabola
-f_y(:,2) = round(-1*a*yprime.^2); %left facing parabola
+if sum(xprime>0) > sum(xprime<0)
+    f_y = round(a*yprime.^2); %right facing parabola
+else
+    f_y = round(-1*a*yprime.^2); %left facing parabola
+end
 inliers = [];
 for i = 1:length(x)
-    dist = min([abs(f_y(i,1)-xprime(i)),abs(f_y(i,2)-xprime(i))]);
+    dist = abs(f_y(i)-xprime(i));
     if dist < t
         inliers = [inliers,i];
     end

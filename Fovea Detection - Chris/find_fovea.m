@@ -48,12 +48,12 @@ if debug == 1|| debug == 2
     tr = cputime;
 end
 
-s = 200;
-t = 100;
+s = 400;
+t = 50;
 maxTrials = 500;
 [M, inliers] = ransac(points', @fitParabola, @distfn, @dummy, s, t, 0, 2, maxTrials);
-a = M(1);
-B = M(2);
+a = M(1)
+B = M(2)
 
 if debug == 1|| debug == 2
     e = cputime-tr;
@@ -77,10 +77,14 @@ for i = 1:size(vessels,1)
 end
                    
 %calculate parabola
-y_domain = min(yprime(:)):max(yprime(:));
-f_y = zeros(length(y_domain),2);
-f_y(:,1) = round(a*y_domain.^2); %right facing parabola
-f_y(:,2) = round(-1*a*y_domain.^2); %left facing parabola
+ydomain = min(yprime(:)):max(yprime(:));
+if sum(xprime>0) > sum(xprime<0)
+    f_y = round(a*ydomain.^2); %right facing parabola
+    move_right = true;
+else
+    f_y = round(-1*a*ydomain.^2); %left facing parabola
+    move_right = false;
+end
 if debug == 2
 %     h=figure(8);
     h = figure('Visible','off');
@@ -89,16 +93,9 @@ if debug == 2
     % get original indices for inlier points
     inliers = [x(inliers)+xc,yc-y(inliers)];
     % show parabola points
-    for y = 1:size(yprime,1)
-        for x = 1:size(xprime,2)
-            for i = 1:length(y_domain) 
-                 if (round(xprime(y,x)) == f_y(i,1) || round(xprime(y,x)) == f_y(i,2)) ...
-                        && round(yprime(y,x)) == round(y_domain(i))
-                    plot( x,y,'r.');
-                    break
-                 end
-            end
-        end
+    for i = 1:length(ydomain) 
+        [y,x] = find((round(f_y(i))==round(xprime)) & (round(ydomain(i)) == round(yprime)));
+        plot( x,y,'r.');
     end
      plot(inliers(:,1),inliers(:,2),'mx')
 end
@@ -124,17 +121,13 @@ combined_map = density_map.*thickness_map;
 % end
 
 %count votes for what side to start on
-move_right = sum(f_y(:,1)<max(xprime(:))&f_y(:,1)>min(xprime(:)));
-move_left = sum(f_y(:,2)<max(xprime(:))&f_y(:,2)>min(xprime(:)));
-if move_right > move_left
-    move_right = true;
+if move_right
     %get x,y coordinates along raphe line pointing towards fovea
     [y_raphe,x_raphe] = find(round(yprime)==0 & xprime>0 & ~od);
     if debug == 1 || debug == 2
         disp('Fovea is to the right of the optic disk')
     end
 else
-    move_right = false;
     %get x,y coordinates along raphe line pointing towards fovea
     [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<0 & ~od);
     if debug == 1 || debug ==2
@@ -147,12 +140,14 @@ if debug == 2
 end
 
 indices = [x_raphe,y_raphe];
-combined_vals = zeros(size(indices,1),1);    
-if move_right
-    indices = sortrows(indices,1);
-else
-    indices = sortrows(indices,-1);
+xprime_raphe = zeros(length(x_raphe),1);
+for i = 1:length(x_raphe)
+    xprime_raphe(i) = xprime(y_raphe(i),x_raphe(i));
 end
+sortinfo = [indices, xprime_raphe];
+combined_vals = zeros(size(indices,1),1);    
+sortinfo = sortrows(sortinfo,3);
+indices = sortinfo(:,1:2);
 for i = 1:size(indices,1)
     x = indices(i,1);
     y = indices(i,2);
@@ -164,16 +159,17 @@ end
 
 %Find all minima
 values = max(combined_vals) - combined_vals;
-threshold = min(values) + 0.5*(max(values)-min(values));
-values = smooth(values,100,'lowess');
-[~,MinIdx] = findpeaks(values,'MinPeakHeight',threshold);
+threshold1 = .1*(max(values)-min(values));
+threshold2 = .5*(max(values)-min(values));
+delta = 50;
+MinIdx = findPeaksEasy(values, threshold1, threshold2, delta);
 if isempty(MinIdx)
     x_fov = -1;
     y_fov = -1;
     return
 end
 
-%Take first one (points ordered from distance away from OD) as the location of the fovea
+%Take biggest one 
 x_fov = indices(MinIdx(1),1);
 y_fov = indices(MinIdx(1),2);
 

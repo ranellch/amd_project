@@ -5,7 +5,7 @@ function [ params ] = fitParabola( points )
 x = points(1,:);
 y = points(2,:);
 %find parameters a and b to best fit parabola
-a0 = 0.003;
+a0 = 0.002;
 B0 = 0;
 options = optimoptions('lsqnonlin');
 options.Display = 'off';
