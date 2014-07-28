@@ -45,13 +45,7 @@ function build_np_dataset(varargin)
             eye = char(paths{2}{k});
             time = char(paths{3}(k));
             
-%             labeled_path = get_image_xml(pid, eye, time, 'path');
-%             original_path = get_image_xml(pid, eye, time, 'original');
-%             imgl = imread(labeled_path);
-%             imgo = imread(original_path);
-            
             [video_xml, directory] = get_video_xml(pid, eye, time, 'seq_path');
-            
             
             disp([pid, ' - ', eye, ' - ', time]);
         end
@@ -89,31 +83,37 @@ function build_np_dataset(varargin)
             vessel_mask = imread(vessel_path);
             vessel_mask = imresize(vessel_mask, [std_img_size, NaN]);
             
-            %Analyze and interpolate the image frames feature vectors
+            %Overlap the roi and vessel mask
+            positive_image = roi_mask & ~vessel_mask;
+            
+            %Get the labeled image and process it into a mask
+            [labeled_path, labeled_directory] = get_video_xml(pid, eye, time, 'labeled_path');
+            addpath([images_path, labeled_directory]);
+            labeled_mask = imread(labeled_path);
+            labeled_mask = imresize(labeled_mask, [std_img_size, NaN]);
+            labeled_mask = process_labeled(labeled_mask);
+            
+            imshow(labeled_mask);
             
             %Remove file is already exists
             filename_gabor = [pid, '_', eye, '_', time, '_gabor.mat'];
-            [x_inter, interpolated_curves] = frame_interpolation(std_img_size, counter, times, paths, filename_gabor);
+            [x_inter, interpolated_curves] = frame_interpolation(std_img_size, counter, times, paths, positive_image, filename_gabor);
         
             %Write to ouput the results from the frame interpolation method
             [nrows,~] = size(file_obj, 'dataset');
             next_row = nrows + 1;
             for y=1:size(interpolated_curves, 1)
                 for x=1:size(interpolated_curves, 2)
-                    if(roi_mask(y,x) == 1 && vessel_mask(y,x) == 0)
+                    if(positive_image(y,x) == 1)
                         file_obj.dataset(next_row, 1:size(interpolated_curves,3)) = interpolated_curves(y,x,:);
                         file_obj.timestamp(next_row, 1:size(x_inter,3)) = x_inter(:);
+                        file_obj.class(next_row, 1) = labeled_mask(y,x);
                         next_row = next_row + 1;
                     end
                 end
             end
+                        
             
-%             %Get the labeled image and process it
-%             labeled_path = get_image_xml(pid, eye, time, 'path');
-%             labeled_image = imread(labeled_path);
-%             labeled_image = process_labeled(labeled_image);
-%             labeled_image = imresize(labeled_image, [std_img_size, NaN]);
-%             
 %             %Get the original image
 %             original_path = get_image_xml(pid, eye, time, 'original');
 %             original_image = imread(original_path);
@@ -142,6 +142,7 @@ function build_np_dataset(varargin)
         e = cputime - t;
         disp(['Time to build dataset (min): ', num2str(e / 60.0)]);
     catch Ex
+        disp('-----Stack Errors-----');
         for i=1:length(Ex.stack)
             disp(Ex.stack(i));
         end

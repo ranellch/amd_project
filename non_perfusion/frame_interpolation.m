@@ -1,4 +1,4 @@
-function [x_inter, interpolated_curves] = frame_interpolation(std_img_size, counter, times, paths, filename_gabor)
+function [x_inter, interpolated_curves] = frame_interpolation(std_img_size, counter, times, paths, positive_image, filename_gabor)
     %Output scatter plot for each pixel
     scatter_plot = double(zeros(1));
     x_values = double(zeros(counter,1));
@@ -38,6 +38,7 @@ function [x_inter, interpolated_curves] = frame_interpolation(std_img_size, coun
     end
     
     save(filename_gabor, 'scatter_plot');
+    save('x_values.mat','x_values');
     
-    [x_inter, interpolated_curves] = interpolate_time_curves(0.1, x_values, scatter_plot);
+    [x_inter, interpolated_curves] = interpolate_time_curves(0.1, x_values, scatter_plot, positive_image);
 end
