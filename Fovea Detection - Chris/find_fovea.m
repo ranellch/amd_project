@@ -19,11 +19,11 @@ vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 
 %caclulate vessel thicknesses
 [thickness_map, ~] = plot_vthickness( vessels, vskel, angles );
-% 
-% if debug == 2
-%     figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
-%     colormap(jet)
-% end
+
+if debug == 2
+    figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
+    colormap(jet)
+end
 
 %fit circle to od border and get estimated center coordinate to define
 %parabola vertex
@@ -48,7 +48,7 @@ if debug == 1|| debug == 2
     tr = cputime;
 end
 
-s = 400;
+s = 50;
 t = 50;
 maxTrials = 500;
 [M, inliers] = ransac(points', @fitParabola, @distfn, @dummy, s, t, 0, 2, maxTrials);
@@ -86,8 +86,8 @@ else
     move_right = false;
 end
 if debug == 2
-%     h=figure(8);
-    h = figure('Visible','off');
+    h=figure(8);
+%     h = figure('Visible','off');
     imshow(vessels);
     hold(gca,'on')    
     % get original indices for inlier points
@@ -109,16 +109,16 @@ end
 
 %create vessel density map
 density_map = plot_vdensity(vessels);
-% if debug == 2
-%     figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
-% end
+if debug == 2
+    figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
+end
 
 %Combine density and thickness, and use moving average filter along raphe
 %line to find minimum as most likely fovea location
 combined_map = density_map.*thickness_map;
-% if debug == 2
-%     figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
-% end
+if debug == 2
+    figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
+end
 
 %count votes for what side to start on
 if move_right
@@ -136,6 +136,7 @@ else
 end
 
 if debug == 2
+    figure(h)
     plot(x_raphe,y_raphe,'b-');
 end
 
@@ -153,16 +154,16 @@ for i = 1:size(indices,1)
     y = indices(i,2);
     combined_vals(i) = combined_map(y,x);
 end
-% if debug == 2
-%     figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
-% end
+if debug == 2
+    figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
+end
 
 %Find all minima
-values = max(combined_vals) - combined_vals;
-threshold1 = .1*(max(values)-min(values));
-threshold2 = .5*(max(values)-min(values));
-delta = 50;
-MinIdx = findPeaksEasy(values, threshold1, threshold2, delta);
+combined_vals = smooth(combined_vals,20);
+combined_vals = max(combined_vals)-combined_vals;
+tol = 1e-5;
+threshold = .5*(max(combined_vals)-min(combined_vals));
+MinIdx = findPeaksEasy(combined_vals, tol, threshold);
 if isempty(MinIdx)
     x_fov = -1;
     y_fov = -1;
@@ -174,6 +175,7 @@ x_fov = indices(MinIdx(1),1);
 y_fov = indices(MinIdx(1),2);
 
 if debug == 2
+    figure(h)
     plot(x_fov,y_fov,'gd','MarkerSize',10)
     hold(gca,'off')
 end
