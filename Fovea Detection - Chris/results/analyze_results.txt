@@ -1,2 +1,1 @@
 Img, Distance, Angle Distance
-09323896 OD (1), 7.8102, 0.61122

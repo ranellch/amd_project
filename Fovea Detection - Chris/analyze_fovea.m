@@ -84,6 +84,7 @@ function analyze_fovea(debug)
             
             if debug == 2
                 saveas(h,['./results/',pid,'_',eye,'_',time,'-lines.png']);
+                close(h)
             end
 
 
