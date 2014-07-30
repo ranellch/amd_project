@@ -48,9 +48,9 @@ if debug == 1|| debug == 2
     tr = cputime;
 end
 
-s = 50;
-t = 50;
-maxTrials = 500;
+s = 20;
+t = 100;
+maxTrials = 1000;
 [M, inliers] = ransac(points', @fitParabola, @distfn, @dummy, s, t, 0, 2, maxTrials);
 a = M(1)
 B = M(2)
@@ -78,7 +78,7 @@ end
                    
 %calculate parabola
 ydomain = min(yprime(:)):max(yprime(:));
-if sum(xprime>0) > sum(xprime<0)
+if sum(xprime(1,:)>0) > sum(xprime(1,:)<0)
     f_y = round(a*ydomain.^2); %right facing parabola
     move_right = true;
 else
@@ -114,7 +114,7 @@ if debug == 2
 end
 
 %Combine density and thickness, and use moving average filter along raphe
-%line to find minimum as most likely fovea location
+%line to find broadest minimum as most likely fovea location
 combined_map = density_map.*thickness_map;
 if debug == 2
     figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
@@ -158,11 +158,11 @@ if debug == 2
     figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
 end
 
-%Find all minima
-combined_vals = smooth(combined_vals,20);
+%Find biggest trough below some threshold
+combined_vals = smooth(combined_vals,10,'rloess');
 combined_vals = max(combined_vals)-combined_vals;
-tol = 1e-5;
-threshold = .5*(max(combined_vals)-min(combined_vals));
+tol = 1e-4;
+threshold = .75*(max(combined_vals)-min(combined_vals));
 MinIdx = findPeaksEasy(combined_vals, tol, threshold);
 if isempty(MinIdx)
     x_fov = -1;
@@ -170,9 +170,8 @@ if isempty(MinIdx)
     return
 end
 
-%Take biggest one 
-x_fov = indices(MinIdx(1),1);
-y_fov = indices(MinIdx(1),2);
+x_fov = indices(MinIdx,1);
+y_fov = indices(MinIdx,2);
 
 if debug == 2
     figure(h)
