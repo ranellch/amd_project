@@ -19,7 +19,7 @@ function [instance_matrix, label_vector] = downsample(instance_matrix, label_vec
                 discard_count = discard_count + 1;
 
             end
-            if discard_count == numdiscard
+            if discard_count >= numdiscard
                 break
             end
         end
