@@ -1,5 +1,4 @@
-function find_np(pid, eye, time, varargin)
-    images_path = '../Test Set/';
+function np_find(pid, eye, time, varargin)
     debug = -1;
     if length(varargin) == 1
         debug = varargin{1};
@@ -14,104 +13,98 @@ function find_np(pid, eye, time, varargin)
     %Load the classifier struct for this bad boy
     model = load('np_combined_classifier.mat');
     scaling_factors = model.scaling_factors;
+    x_values = model.x_values;
     classifier = model.np_combined_classifier;
 
     %Add the location of the external scripts that we are going to call
     addpath('xmlfunc');
     addpath('auxfunc');
-    
-    %Load the video xml and parse out the important information
-    [video_xml_path, directory] = get_video_xml(pid, eye, time, 'seq_path');
-    addpath([images_path, directory]);
-    
-    %Get all the frames associated with this video
-    [count, path, times] = get_images_from_video_xml(video_xml_path);
-    
-    %Fetch the precomputed ROI mask
-    disp('----------Fetching ROI---------');
-    [roi_path, roi_directory] = get_video_xml(pid, eye, time, 'roi_path');
-    addpath([images_path, roi_directory]);
-    roi_mask = imread(roi_path);
-    if(debug == 2)
-        figure, imshow(roi_mask);
+            
+    disp('------Feature Extraction-----');
+    try
+        %Run the feature extraction on each image
+        [data_matrix, timing_matrix, binary_matrix, ~] = get_image_features(pid, eye, time, std_img_size, 0);
+         
+    catch e
+        for i=1:size(e.stack, 1)
+            disp(e.stack(i));
+        end
+        error(e.message);
     end
-    disp('-------Done Fetching ROI-------');
-
-    %Fetch the precomputed vessels mask
-    disp('----------Fetching Vessels---------');
-    [vessel_path, vessel_directory] = get_video_xml(pid, eye, time, 'vessel_path');
-    addpath([images_path, vessel_directory]);
-    vessel_mask = imread(vessel_path);
-    vessel_mask = bwmorph(vessel_mask,'thicken',3);
-    if(debug == 2)
-        figure, imshow(vessel_mask);
+    disp('------End Feature Extraction-----');
+    
+    disp('------Interpolate Features-----');
+    %Interpolate the features for a frame set
+    try
+        [interpolated_curves] = interpolate_time_curves(x_values, timing_matrix, data_matrix, binary_matrix);
+    catch e
+        for i=1:size(e.stack, 1)
+            disp(e.stack(i));
+        end
+        error(e.message);
     end
-    disp('----------Done Fetching Vessels---------');
+    disp('------End Interpolate Features-----');
     
-    scatter_plot = double(zeros(1));
+    %Create the resultant matrix of feature vectors
+    feature_count = size(interpolated_curves, 4) * size(x_values, 2);
+    observation_count = numel(find(binary_matrix == 1));
+    instance_matrix = double(zeros(observation_count, feature_count));
+    cur_observation = 1;
     
-    %Iterate over the files
-    for k=1:count
-        try         
-            %Get the current path and load the image
-            cur_path = path{k};
-            original_image = imread(cur_path);
-            
-            %Convert the image to a grayscale image
-            if (size(original_image, 3) > 1)
-                original_image = original_image(:,:,1:3);
-                original_image = rgb2gray(original_image);
-            end
+    %Copy the y,x coordinates into the matrix
+    for y=1:size(interpolated_curves, 1);
+        for x=1:size(interpolated_curves, 2);
+            if(binary_matrix(y,x) == 1)
+                for z=1:size(interpolated_curves, 3)
+                    %Calculate the start and end index of current features
+                    expanded_features = size(x_values, 2);
+                    sindex = ((z-1) * expanded_features)+1;
+                    eindex = sindex + expanded_features - 1;
 
-            %Resize the image and convert to dobule for gaussian filtering and then normalized
-            original_image = imresize(original_image, [std_img_size, NaN]);
-            original_image = im2double(original_image);
-            original_features = image_feature(original_image);
-            
-            %If first iteration then build the scatter plot array
-            if(k == 1)
-                scatter_plot = double(zeros(size(original_features, 1), size(original_features, 2), count, size(original_features, 3) + 1));
-            end
-            
-            %Copy results into the interpolation array
-            for y=1:size(original_features,1)
-                for x=1:size(original_features,2)
-                    scatter_plot(y,x,k,1) = str2double(times{k});
-                    scatter_plot(y,x,k,2:end) = original_features(y,x,:);
+                    %Load the interpolated values into the appropiate place in the feature vector
+                    cur_index = 1;
+                    for k=sindex:eindex
+                        instance_matrix(cur_observation, k) = interpolated_curves(y,x,z,cur_index);
+                        cur_index = cur_index + 1;
+                    end
                 end
-            end
-            
-            
-            %Calculate the image feature vectors
-            feature_image = matstack2array(original_features);
-            
-            %Scale vectors
-            for i = 1:size(feature_image,2)
-                fmin = scaling_factors(1,i);
-                fmax = scaling_factors(2,i);
-                feature_image(:,i) = (feature_image(:,i)-fmin)/(fmax-fmin);
-            end
 
-            t = cputime;
-
-            %Do pixelwise classification
-            binary_img = zeros(size(original_image));
-            binary_img(:) = libpredict(zeros(length(feature_image),1), sparse(feature_image), classifier, '-q');
-            
-            %Output how long it took to do this
-            e = cputime-t;
-            if(debug == 1 || debug == 2)
-                disp(['Classify (min): ', num2str(double(e) / 60.0)]);
+                %Move onto the next observation
+                cur_observation = cur_observation + 1;
             end
-
-            %Mask out the roi and the vessels
-            binary_mask = apply_mask(binary_mask, roi_mask, 0);
-            binary_mask = apply_mask(binary_mask, vessel_mask, 1);
-        catch e
-            for i=1:size(e.stack, 1)
-                disp(e.stack(i));
-            end
-            error(e.message);
         end
     end
+        
+    %Scale the feature vectors
+    for i = 1:size(instance_matrix, 2)
+        fmin = scaling_factors(1, i);
+        fmax = scaling_factors(2, i);
+        instance_matrix(:, i) = (instance_matrix(:, i) - fmin) / (fmax - fmin);
+    end
+
+    %Start timing clock
+    t = cputime;
+
+    %Do pixelwise classification
+    classification = libpredict(zeros(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q');
+    cur_class_index = 1;
+    
+    %Return the classification to the image pixels
+    binary_image = zeros(size(original_image,1), size(original_image,2));
+    for y=1:size(original_image,1)
+        for x=1:size(original_image,2)
+            if(binary_matrix(y,x) == 1)
+                binary_image(y,x) = classification(cur_class_index, 1);
+                cur_class_index = cur_class_index + 1;
+            end
+        end
+    end
+    
+    %Output how long it took to do this
+    e = cputime-t;
+    if(debug == 1 || debug == 2)
+        disp(['Classify (min): ', num2str(double(e) / 60.0)]);
+    end
+    
+    figure, imshow(binary_image);
 end

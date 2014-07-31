@@ -16,7 +16,7 @@ function np_train()
         disp(['[TIMING] ', num2str(i), ' / ', num2str(size(data_file,2))]);
         
         %Open the time file
-        time_file = data_file.file_obj_names{2,i};
+        time_file = data_file.names_matrix{2,i};
         time = load(time_file);
         
         %Find the max minumim time
@@ -50,8 +50,7 @@ function np_train()
     for i=1:size(data_file,2)
         %Get the mask for vessels/roi and the labeled binary image
         disp('[COUNTING] loading up and counting all the observations in all training sets');
-        labeled_file = data_file.file_obj_names{3,i};
-        labeled = load(labeled_file);
+        labeled = load(data_file.names_matrix{3,i});
         valid_pixels = labeled.binary_matrix(:,:,1);
         
         observation_count = observation_count + numel(find(valid_pixels == 1));
@@ -65,34 +64,31 @@ function np_train()
 
         %Get the mask for vessels/roi and the labeled binary image
         disp('[LOAD] Loading the labeled and the binary roi/vessel mask');
-        labeled_file = data_file.file_obj_names{3,i};
-        labeled = load(labeled_file);
+        labeled = load(data_file.names_matrix{3,i});
         valid_pixels = labeled.binary_matrix(:,:,1);
         labeled_pixels = labeled.binary_matrix(:,:,2);
 
         %Get the timing information for this frame set
         disp('[LOAD] Loading the frame timing information');
-        time_file = data_file.file_obj_names{2,i};
-        time = load(time_file);
+        time = load(data_file.names_matrix{2,i});
 
         %Load the features files and then interpolate all the values
         disp('[LOAD] Loading the frames features dataset');
-        feature_file = data_file.file_obj_names{1,i};
-        features = load(feature_file);
+        features = (data_file.names_matrix{1,i});
         
         %Do some error checking or initialize the output variables
         if(i == 1)
-            feature_count = size(features.file_obj,4) * size(x_values,2);
+            feature_count = size(features.data_matrix, 4) * size(x_values,2);
             instance_matrix = double(zeros(observation_count, feature_count));
-            label_vector = zeros(observation_count,1);
+            label_vector = zeros(observation_count, 1);
         else
-            if ((size(features.file_obj,4) * size(x_values,2)) ~= feature_count)
+            if ((size(features.data_matrix, 4) * size(x_values, 2)) ~= feature_count)
                 error('The features variables do not seem to match the initialized area');
             end
         end
         
         %Interpolate the features for a frame set
-        [interpolated_curves] = interpolate_time_curves(x_values, time.timing_matrix, features.file_obj, valid_pixels);
+        [interpolated_curves] = interpolate_time_curves(x_values, time.timing_matrix, features.data_matrix, valid_pixels);
         
         %Write the results to the output file
         disp('[RESULTS] Formatting results into a feature vector label format');
@@ -155,7 +151,7 @@ function np_train()
 
 	np_combined_classifier =  train(label_vector, sparse(instance_matrix), '-s 2');
 
-    save('np_combined_classifier.mat', 'np_combined_classifier', 'scaling_factors');
+    save('np_combined_classifier.mat', 'np_combined_classifier', 'scaling_factors', 'x_values');
     
     %Disp some informaiton to the user
     e = cputime - t;
