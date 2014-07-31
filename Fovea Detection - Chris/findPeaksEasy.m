@@ -11,8 +11,7 @@ end
 for i = 2:length(values)
     diff2(i) = diff(i)-diff(i-1);
 end
-figure, plot(diff)
-figure, plot(diff2)
+
 %Return widest extrema greater than the threshold
 Idx = find(abs(diff)<tol & values > threshold);
 if isempty(Idx) || length(Idx) == 1
@@ -26,8 +25,9 @@ else
         sz = sum(T==i);
         if sz > max_sz;
             %make sure its a peak
-            Range = (min(Idx(T==i))-1):(max(Idx(T==i))+1);
-            if Range(end) > length(diff2), Range = Range(1:end-1); end
+            Range = (min(Idx(T==i))-2):(max(Idx(T==i))+2);
+            while Range(1)<3, Range = Range(2:end); end
+            if Range(end) > length(diff2), Range = Range(1:end-2); end
             if mean(diff2(Range)) < 0 
                 max_sz = sz;
                 biggest = i;

@@ -57,50 +57,48 @@ function analyze_fovea(debug)
         e = cputime;
         [final_od_img, img_vessel, img_angles,~] = find_od(pid, eye, time, 1, 'off');
         if ~any(final_od_img(:))
-            continue
-        end
-        [ x,y,h,B,od ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
-        t = (cputime - e)/60.0;
-        disp(['TOTAL PROCESSING TIME (MIN): ', num2str(t)])
-        if x == -1
-            %Write error message 
-            line = [pid,' ', eye, ' (', time, '), ERROR, -1'];
-            disp(line);
-            fprintf(fout, '%s\n', line);
-            disp('--------------------------------------');
+            line = [pid,' ', eye, ' (', time, '), ERROR: OD Not Found, -1'];
         else
-            %Get the user labeled fovea
-            [x_fov,y_fov] = get_fovea(pid, eye, time);
+            [ x,y,h,B,od ] = find_fovea( img_vessel, img_angles, final_od_img, debug );
+            t = (cputime - e)/60.0;
+            disp(['TOTAL PROCESSING TIME (MIN): ', num2str(t)])
+            if x == -1
+                %Write error message 
+                line = [pid,' ', eye, ' (', time, '), ERROR, -1'];
+            else
+                %Get the user labeled fovea
+                [x_fov,y_fov] = get_fovea(pid, eye, time);
 
-            %Show location on original image
-            original_path = get_pathv2(pid,eye,time,'original');
-            original_img = im2double(imread(original_path));
-            original_img = imresize(original_img, [768 768]);
-            if(size(original_img, 3) > 1)
-                original_img = rgb2gray(original_img);
+                %Show location on original image
+                original_path = get_pathv2(pid,eye,time,'original');
+                original_img = im2double(imread(original_path));
+                original_img = imresize(original_img, [768 768]);
+                if(size(original_img, 3) > 1)
+                    original_img = rgb2gray(original_img);
+                end
+                combined_img = display_anatomy( original_img, final_od_img, img_vessel, x, y );
+                imwrite(combined_img,['./results/',pid,'_',eye,'_',time,'-processed.tif'], 'tiff');
+
+                if debug == 2
+                    saveas(h,['./results/',pid,'_',eye,'_',time,'-lines.png']);
+                    close(h)
+                end
+
+
+                %Get some statistics about the quality of the fovea estimation
+                distances(k) = sqrt((x-x_fov)^2+(y-y_fov)^2);
+                ta = atan2d(od(2)-y_fov,x_fov-od(1));
+                ta = plusminus90(ta);
+                B = plusminus90(B);
+                if strcmp(eye,'OS')
+                    ang_dist(k) = B-ta;
+                else 
+                    ang_dist(k) = ta - B;
+                end
+                line = [pid,' ', eye, ' (', time, '), ', num2str(distances(k)),', ', num2str(ang_dist(k))];
             end
-            combined_img = display_anatomy( original_img, final_od_img, img_vessel, x, y );
-            imwrite(combined_img,['./results/',pid,'_',eye,'_',time,'-processed.tif'], 'tiff');
             
-            if debug == 2
-                saveas(h,['./results/',pid,'_',eye,'_',time,'-lines.png']);
-                close(h)
-            end
-
-
-            %Get some statistics about the quality of the fovea estimation
-            distances(k) = sqrt((x-x_fov)^2+(y-y_fov)^2);
-            ta = atan2d(od(2)-y_fov,x_fov-od(1));
-            ta = plusminus90(ta);
-            B = plusminus90(B);
-            if strcmp(eye,'OS')
-                ang_dist(k) = B-ta;
-            else 
-                ang_dist(k) = ta - B;
-            end
-            
-           %Write the results from this badboy  
-            line = [pid,' ', eye, ' (', time, '), ', num2str(distances(k)),', ', num2str(ang_dist(k))];
+           %Write the results from this badboy              
             disp(line);
             fprintf(fout, '%s\n', line);
             disp('--------------------------------------');

@@ -20,18 +20,26 @@ vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 %caclulate vessel thicknesses
 [thickness_map, ~] = plot_vthickness( vessels, vskel, angles );
 
-if debug == 2
-    figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
-    colormap(jet)
-end
+% if debug == 2
+%     figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
+%     colormap(jet)
+% end
 
-%fit circle to od border and get estimated center coordinate to define
-%parabola vertex
-od_perim = bwperim(od);
-[y,x] = find(od_perim);
-Par = CircleFitByTaubin([x,y]);
-xc = Par(1);
-yc = Par(2);
+if any(od(:))
+    %fit circle to od border and get estimated center coordinate to define
+    %parabola vertex
+    od_perim = bwperim(od);
+    [y,x] = find(od_perim);
+    Par = CircleFitByTaubin([x,y]);
+    xc = Par(1);
+    yc = Par(2);
+    R = Par(3);
+    ODD = 2*R;
+else
+    [xc, yc] = estimate_od(vessels,angles);
+    R = 1000;
+end
+    
 
 %Put image in normal coordinates centered at optic disk
 [xcorr,ycorr] = meshgrid((1:size(vessels,2)) - xc, yc - (1:size(vessels,1)));
@@ -86,8 +94,8 @@ else
     move_right = false;
 end
 if debug == 2
-    h=figure(8);
-%     h = figure('Visible','off');
+     h=figure(8);
+%      h = figure('Visible','off');
     imshow(vessels);
     hold(gca,'on')    
     % get original indices for inlier points
@@ -109,27 +117,26 @@ end
 
 %create vessel density map
 density_map = plot_vdensity(vessels);
-if debug == 2
-    figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
-end
+% if debug == 2
+%     figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
+% end
 
 %Combine density and thickness, and use moving average filter along raphe
 %line to find broadest minimum as most likely fovea location
 combined_map = density_map.*thickness_map;
-if debug == 2
-    figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
-end
+% if debug == 2
+%     figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
+% end
 
-%count votes for what side to start on
+%get x,y coordinates along raphe line pointing towards fovea from 1 ODD
+%to 4ODD
 if move_right
-    %get x,y coordinates along raphe line pointing towards fovea
-    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime>0 & ~od);
+    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime>ODD & xprime<4*ODD);
     if debug == 1 || debug == 2
         disp('Fovea is to the right of the optic disk')
     end
 else
-    %get x,y coordinates along raphe line pointing towards fovea
-    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<0 & ~od);
+    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<-ODD & xprime>-4*ODD);
     if debug == 1 || debug ==2
         disp('Fovea is to the left of the optic disk')
     end
@@ -154,16 +161,15 @@ for i = 1:size(indices,1)
     y = indices(i,2);
     combined_vals(i) = combined_map(y,x);
 end
-if debug == 2
-    figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
-end
+% if debug == 2
+%     figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
+% end
 
-%Find biggest trough below some threshold
-combined_vals = smooth(combined_vals,10,'rloess');
+%Find absolute minimum 
+combined_vals = smooth(combined_vals);
 combined_vals = max(combined_vals)-combined_vals;
 tol = 1e-4;
-threshold = .75*(max(combined_vals)-min(combined_vals));
-MinIdx = findPeaksEasy(combined_vals, tol, threshold);
+MinIdx = findMaxPeakEasy(combined_vals, tol);
 if isempty(MinIdx)
     x_fov = -1;
     y_fov = -1;

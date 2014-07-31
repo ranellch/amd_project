@@ -96,7 +96,7 @@ for i = 1:numclusters
      if isnan(interior_alignment)
          interior_alignment=0;
      end
-    feature_vector = [R,radial_normal_density,interior_alignment, ppv, fnr];
+    feature_vector = [radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);

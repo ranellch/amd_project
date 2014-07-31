@@ -102,7 +102,7 @@ for i = 1:numclusters
      if isnan(interior_alignment)
          interior_alignment=0;
      end
-    feature_vector = [R,radial_normal_density,interior_alignment, ppv, fnr];
+    feature_vector = [radial_normal_density,interior_alignment, ppv, fnr];
     feature_vectors = [feature_vectors; feature_vector];
 end
 
