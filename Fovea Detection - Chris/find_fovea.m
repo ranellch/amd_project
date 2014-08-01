@@ -9,7 +9,7 @@ end
 addpath('../Skeleton')
 addpath('../Circle fit');
 
-if debug == 1|| debug == 2
+if debug > 0
     disp('[FOV] Estimating Location of Fovea')
     time = cputime;
 end
@@ -19,26 +19,35 @@ vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 
 %caclulate vessel thicknesses
 [thickness_map, ~] = plot_vthickness( vessels, vskel, angles );
-
-% if debug == 2
-%     figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
-%     colormap(jet)
-% end
-
-if any(od(:))
-    %fit circle to od border and get estimated center coordinate to define
-    %parabola vertex
-    od_perim = bwperim(od);
-    [y,x] = find(od_perim);
-    Par = CircleFitByTaubin([x,y]);
-    xc = Par(1);
-    yc = Par(2);
-    R = Par(3);
-    ODD = 2*R;
-else
-    [xc, yc] = estimate_od(vessels,angles);
-    R = 1000;
+if debug == 2
+    figure(7), subplot(2,2,1), imagesc(thickness_map), title('Vessel Thickness Map')
+    colormap(jet)
 end
+
+%create vessel density map
+density_map = plot_vdensity(vessels);
+if debug == 2
+    figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
+end
+
+%Combine density and thickness, and use moving average filter along raphe
+%line to find broadest minimum as most likely fovea location
+combined_map = density_map.*thickness_map;
+if debug == 2
+    figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
+end
+
+
+
+%fit circle to od border and get estimated center coordinate to define
+%parabola vertex
+od_perim = bwperim(od);
+[y,x] = find(od_perim);
+Par = CircleFitByTaubin([x,y]);
+xc = Par(1);
+yc = Par(2);
+R = Par(3);
+ODD = 2*R;
     
 
 %Put image in normal coordinates centered at optic disk
@@ -51,7 +60,7 @@ points = [x,y];
 
 %Fit parabola using ransac for point selection
 %Note that degenfn has been replaced by a dummy function that always returns 1
-if debug == 1|| debug == 2
+if debug >0
     disp('[RANSAC] Estimating Parabola')
     tr = cputime;
 end
@@ -63,7 +72,7 @@ maxTrials = 1000;
 a = M(1)
 B = M(2)
 
-if debug == 1|| debug == 2
+if debug > 0
     e = cputime-tr;
     disp(['Parabola Estimation Time(min): ',num2str(e/60.0)])
 end
@@ -93,9 +102,9 @@ else
     f_y = round(-1*a*ydomain.^2); %left facing parabola
     move_right = false;
 end
-if debug == 2
-     h=figure(8);
-%      h = figure('Visible','off');
+if debug >= 2
+     if debug == 3, h = figure('Visible','off'); 
+     else h=figure(8); end
     imshow(vessels);
     hold(gca,'on')    
     % get original indices for inlier points
@@ -115,19 +124,6 @@ if nargout == 5
 end
 
 
-%create vessel density map
-density_map = plot_vdensity(vessels);
-% if debug == 2
-%     figure(7), subplot(2,2,2), imagesc(density_map), title('Vessel Density Map')
-% end
-
-%Combine density and thickness, and use moving average filter along raphe
-%line to find broadest minimum as most likely fovea location
-combined_map = density_map.*thickness_map;
-% if debug == 2
-%     figure(7), subplot(2,2,3,'position',[.275 .05 .45 .45]), imagesc(combined_map),  title('Combined Map')
-% end
-
 %get x,y coordinates along raphe line pointing towards fovea from 1 ODD
 %to 4ODD
 if move_right
@@ -142,8 +138,8 @@ else
     end
 end
 
-if debug == 2
-    figure(h)
+if debug >= 2
+    if debug == 2, figure(8); end
     plot(x_raphe,y_raphe,'b-');
 end
 
@@ -161,9 +157,9 @@ for i = 1:size(indices,1)
     y = indices(i,2);
     combined_vals(i) = combined_map(y,x);
 end
-% if debug == 2
-%     figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
-% end
+if debug == 2
+    figure(9), plot(1:length(combined_vals),combined_vals), title('Raphe Line Moving Average Values')
+end
 
 %Find absolute minimum 
 combined_vals = smooth(combined_vals);
@@ -179,14 +175,14 @@ end
 x_fov = indices(MinIdx,1);
 y_fov = indices(MinIdx,2);
 
-if debug == 2
-    figure(h)
+if debug >= 2
+    if debug == 2, figure(8); end
     plot(x_fov,y_fov,'gd','MarkerSize',10)
     hold(gca,'off')
 end
 
 
-if debug == 1|| debug == 2
+if debug > 0
     e = cputime-time;
     disp(['Fovea Estimation Time(min): ',num2str(e/60.0)])
 end

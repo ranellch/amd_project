@@ -163,9 +163,9 @@ binary_img = logical(binary_img);
 
 %Clean up image
 CC = bwconncomp(binary_img);
-stats = regionprops(CC,'Extent','Eccentricity');
+stats = regionprops(CC,'Solidity','Eccentricity');
 for i = 1:length(stats)
-    if stats(i).Extent > 0.15 && stats(i).Eccentricity < 0.95
+    if stats(i).Solidity > 0.15 && stats(i).Eccentricity < 0.95
         binary_img(CC.PixelIdxList{i}) = 0;
     end
 end

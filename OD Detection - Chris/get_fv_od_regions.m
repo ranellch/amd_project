@@ -87,6 +87,7 @@ for i = 1:numclusters
             weighted_count = weighted_count + correlation;
     end
     radial_normal_density = weighted_count/sum(sum(circle_border));
+    border_alignment = weighted_count/sum(sum(circle_border&vessels));
     if isnan(radial_normal_density)
         radial_normal_density = 0;
     end
@@ -102,7 +103,7 @@ for i = 1:numclusters
      if isnan(interior_alignment)
          interior_alignment=0;
      end
-    feature_vector = [radial_normal_density,interior_alignment, ppv, fnr];
+    feature_vector = [R, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
     feature_vectors = [feature_vectors; feature_vector];
 end
 
