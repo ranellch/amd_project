@@ -12,6 +12,7 @@ end
 
 addpath('..');
 addpath('../Circle fit');
+addpath('../Skeleton');
 
 %Load region classifier
 model = load('od_classifiers.mat','region_classifier');
@@ -81,10 +82,19 @@ for i = 1:numclusters
             weighted_count = weighted_count + correlation;
     end
     radial_normal_density = weighted_count/sum(sum(circle_border));
-    border_alignment = weighted_count/sum(sum(circle_border&vessels));
-    if isnan(radial_normal_density)
+	if isinf(radial_normal_density) || isnan(radial_normal_density)
         radial_normal_density = 0;
     end
+    border_alignment = weighted_count/sum(sum(circle_border&vessels));
+	if isinf(border_alignment) || isnan(border_alignment)
+        border_alignment = 0;
+    end
+	%get average vessel thickness at circle border
+	 vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf); 
+	 vessel_thickness = weighted_count/sum(sum(circle_border&vskel));
+	 if isinf(vessel_thickness) || isnan(vessel_thickness)
+		vessel_thickness = 0;
+	end 
     [y,x,~] = find(circle_img&vessels&~circle_border);
     for j = 1:length(y)
             ang1 = angles(y(j),x(j));
@@ -94,14 +104,20 @@ for i = 1:numclusters
             weighted_count = weighted_count + correlation;
     end     
      interior_alignment= weighted_count/sum(sum(circle_img&vessels));
-     if isnan(interior_alignment)
+     if isinf(interior_alignment) || isnan(interior_alignment)
          interior_alignment=0;
      end
-    feature_vector = [R, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
+	 %estimate size of od by comparing radius to vessel thickness
+	 region_size = R/vessel_thickness;
+	if isinf(region_size)
+		region_size = 0;
+	end 
+	 %put everything together
+    feature_vector = [region_size, vessel_thickness, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
-    if class == 1
+    if class == 1 && od_probability >= .95
         index = i;
          break
     elseif i == numclusters 
