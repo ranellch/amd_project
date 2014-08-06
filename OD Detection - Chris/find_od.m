@@ -133,8 +133,8 @@ else
 end
 
 if(debug == 2)
-    colormap(jet)
     figure(2), imagesc(final_clusters);
+    colormap(jet)
 end
 
 % %Translate the cluster mask to the od_image

@@ -6,8 +6,9 @@ else
     debug = varargin{1};
 end
 
+addpath('..')
 addpath('../Skeleton')
-addpath('../Circle fit');
+addpath('../Circle fit')
 
 if debug > 0
     disp('[FOV] Estimating Location of Fovea')
@@ -70,7 +71,7 @@ t = 100;
 maxTrials = 1000;
 [M, inliers] = ransac(points', @fitParabola, @distfn, @dummy, s, t, 0, 2, maxTrials);
 a = M(1)
-B = M(2)
+B = plusminus90(mod(M(2),360))
 
 if debug > 0
     e = cputime-tr;

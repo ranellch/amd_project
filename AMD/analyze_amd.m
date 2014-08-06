@@ -90,8 +90,8 @@ function analyze_amd(rebuild_classifier)
         true_negative = 0;
         false_positive = 0;
         false_negative = 0;
-        for y=1:size(super_img,1)
-            for x=1:size(super_img,2)
+        for y=1:size(hypo,1)
+            for x=1:size(hypo,2)
                 if(super_img(y,x) == 1 && hypo(y,x) == 1)
                     true_positive = true_positive + 1;
                 elseif(super_img(y,x) == 0 && hypo(y,x) == 0)
@@ -126,8 +126,8 @@ function analyze_amd(rebuild_classifier)
         true_negative = 0;
         false_positive = 0;
         false_negative = 0;
-        for y=1:size(calced_img,1)
-            for x=1:size(calced_img,2)
+        for y=1:size(hyper,1)
+            for x=1:size(hyper,2)
                 if(super_img(y,x) == 1 && hyper(y,x) == 1)
                     true_positive = true_positive + 1;
                 elseif(super_img(y,x) == 0 && hyper(y,x) == 0)

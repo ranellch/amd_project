@@ -9,7 +9,7 @@ a0 = 0.002;
 B0 = 0;
 options = optimoptions('lsqnonlin');
 options.Display = 'off';
-% options.Algorithm = 'levenberg-marquardt';
+options.Algorithm = 'levenberg-marquardt';
 params = lsqnonlin(@parabola_criterion,[a0,B0],[],[],options);
 
 

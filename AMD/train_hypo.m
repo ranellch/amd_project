@@ -18,7 +18,7 @@ function train_hypo()
                  label_vector = data_file.classes;
                  
                 %Downsample to get less bias towards the negative samples
-                 pos_cutoff = .5;
+                 pos_cutoff = .2;
                 [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, pos_cutoff);
                 
                 %Downsample to 100000 points
@@ -48,7 +48,7 @@ function train_hypo()
 
                 disp('Building SVM classifier...Please Wait')
 
-                classifier =  libsvmtrain(label_vector, sparse(instance_matrix), '-b 1');
+                classifier =  libsvmtrain(label_vector, sparse(instance_matrix), '-b 1 -h 0');
                 
                 save('hypo_classifier.mat','classifier', 'scaling_factors'); 
                 

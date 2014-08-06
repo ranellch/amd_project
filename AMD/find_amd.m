@@ -1,6 +1,7 @@
 function [ final_hypo, final_hyper ] = find_amd( pid, eye, time, varargin )
 %Returns binary image indicating location of hypofluorescence
 resize = 'off';
+status = 'generate'; 
 if length(varargin) == 1
     debug = varargin{1};
 elseif isempty(varargin)
@@ -8,6 +9,8 @@ elseif isempty(varargin)
 elseif length(varargin) == 2
     debug = varargin{1};
     resize = varargin{2};
+elseif length(varargin) == 3
+    status = varargin{3};
 else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arguments'));
 end
@@ -27,6 +30,7 @@ addpath('../Vessel Detection - Chris');
 addpath('../OD Detection - Chris');
 addpath('../Fovea Detection - Chris');
 addpath('../Graph Cuts');
+addpath('../superpixels');
 
 original_img = imread(get_pathv2(pid, eye, time, 'original'));
 if size(original_img,3) > 1
@@ -35,11 +39,31 @@ end
 original_img = imresize(original_img, [std_size std_size]);
 original_img = im2double(original_img);
 
-%Find optic disk and vessels
-[od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, resize);
+%Get intermediate data either by generating it or loading from file
+file = ['./matfiles/',pid,'_',eye,'_',time,'.mat'];
 
-%Find fovea
-[ x_fov,y_fov ] = find_fovea( vessels, angles, od, 1 );
+if strcmp(status,'generate')
+    %Find optic disk and vessels
+    [od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, resize);
+
+    %Find fovea
+    [ x_fov,y_fov ] = find_fovea( vessels, angles, od, 1 );
+    
+    if ~isdir('./matfiles')
+        mkdir('./matfiles');
+    end
+
+    save(file,'od','vessels','gabor_img','avg_img','corrected_img','x_fov','y_fov');
+else
+    int_data = load(file);
+    od = int_data.od;
+    vessels = int_data.vessels;
+    gabor_img = int_data.gabor_img;
+    avg_img = int_data.avg_img;
+    corrected_img = int_data.corrected_img;
+    x_fov = int_data.x_fov;
+    y_fov = int_data.y_fov;
+end
 
 %Show the user what's been detected so far
 if debug == 2
@@ -57,11 +81,11 @@ scaling_factors = model.scaling_factors;
 classifier = model.classifier;
 
 %Get radial coords
-coord_system = get_radial_coords(size(od),x_fov,y_fov);
+dist = get_radial_coords(size(od),x_fov,y_fov);
 
 %combine with other data from optic disk detection, and exclude vessel or
 %od pixels
-feature_image = cat(3,gabor_img, avg_img, coord_system);
+feature_image = cat(3,gabor_img, avg_img, dist);
 anatomy_mask = od | vessels;
 instance_matrix = [];
 for i = 1:size(feature_image,3)
@@ -83,7 +107,7 @@ labeled_img = zeros(size(od));
 clear instance_matrix
 
 prob_img = zeros(size(labeled_img));
-prob_img(~anatomy_mask) = probabilities(:,2);
+prob_img(~anatomy_mask) = probabilities(:,classifier.Label==1);
 
 final_hypo = GraphCutsHypo(logical(labeled_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),corrected_img));
 
@@ -106,8 +130,8 @@ if debug == 1 || debug == 2
 end
 
 %get superpixels from intensity image
-corrected_img = zero_m_unit_std(corrected_img);
-im = cat(3,corrected_img, corrected_img,corrected_img);
+norm_img = zero_m_unit_std(corrected_img);
+im = cat(3,norm_img, norm_img, norm_img);
 k = 1000;
 m = 20;
 seRadius = 1;
@@ -117,7 +141,7 @@ threshold = 4;
 lc = spdbscan(l, Sp, Am, threshold);
 %generate feature vectors for each labeled region
 [~, Al] = regionadjacency(lc);
-instance_matrix = get_fv_hyper(lc,Al,hypo_centroid,corrected_img);
+instance_matrix = get_fv_hyper(lc,Al,hypo_centroid,norm_img);
 
 %Load the classifier
 model = load('hyper_classifier.mat', 'scaling_factors','classifier');

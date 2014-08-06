@@ -140,7 +140,7 @@ for k=1:size(includes{1}, 1)
         labels = zeros(size(feature_vectors,1),1);
         for i = 1:size(feature_vectors,1)
             overlap = labeled_img & lc==i;
-            if overlap/numel(lc(lc==i)) > .9
+            if sum(overlap(:)==1)/numel(lc(lc==i)) > .9
                 labels(i) = 1;
             else
                 labels(i) = 0;

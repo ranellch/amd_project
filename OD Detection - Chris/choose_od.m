@@ -30,6 +30,7 @@ if debug == 2
     feature_img = cluster_img;
     feature_img(vessels) = numclusters+1;
     figure(3), imagesc(feature_img)
+    colormap(jet)
     hold on
 end
 
