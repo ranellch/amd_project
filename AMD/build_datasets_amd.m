@@ -1,14 +1,18 @@
-function build_dataset_hyper()
+function build_datasets_amd()
 %Constants for file names
-mat_file = 'hyper_training_data.mat';
+hyper_file = 'hyper_training_data.mat';
+hypo_file  = 'hypo_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
 std_size = 768;
 
-%Remove texture file if already exists
-if(exist(mat_file, 'file') == 2)
-    delete(mat_file);
+%Remove texture files if already exist
+if(exist(hyper_file, 'file') == 2)
+    delete(hyper_file);
+end
+if(exist(hypo_file, 'file') == 2)
+    delete(hypo_file);
 end
 file_obj = matfile(mat_file,'Writable',true);
 file_obj.dataset = [];
@@ -16,7 +20,6 @@ file_obj.classes = [];
 
 %Add the location of the get_path script
 addpath('..');
-addpath('../superpixels');
 
 %Add the location of the images resultant from get_path
 if ispc
@@ -123,33 +126,36 @@ for k=1:size(includes{1}, 1)
         img = correct_illum(img,0.7);
         norm_img = zero_m_unit_std(img);
         
-        %get superpixels from intensity image
+        %Get the pixelwise feature vectors of the input image
+        feature_image_g = get_fv_gabor_od(norm_img);
         [x,y] = get_fovea(pid, eye, time);
-        im = cat(3,norm_img, norm_img,norm_img);
-        n = 1000;
-        m = 20;
-        seRadius = 1;
-        threshold = 4;
-        [l, Am, Sp, ~] = slic(im, n, m, seRadius);
-        %cluster superpixels
-        lc = spdbscan(l, Sp, Am, threshold);
-        %generate feature vectors for each labeled region
-        [~, Al] = regionadjacency(lc);
-        feature_vectors = get_fv_hyper(lc,Al,[x y],norm_img);
-        %generate label vector
-        labels = zeros(size(feature_vectors,1),1);
-        for i = 1:size(feature_vectors,1)
-            overlap = labeled_img & lc==i;
-            if overlap/numel(lc(lc==i)) > .9
-                labels(i) = 1;
-            else
-                labels(i) = 0;
-            end
+        feature_image_i = imfilter(norm_img,ones(3)/9, 'symmetric');
+        feature_image_r = get_radial_coords(size(norm_img),x,y);
+        
+        feature_image = cat(3,feature_image_g,feature_image_i,feature_image_r);
+        
+        %Create mask to exclude vessels and optic disk from training data
+        od = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
+        od = imresize(od,[std_size,std_size]);
+        vessels = imread(get_pathv2(pid, eye, time, 'vessels'));
+        vessels = imresize(vessels,[std_size,std_size]);
+        if(size(vessels, 3) > 1)
+        	vessels = vessels(:,:,1);
         end
+        vessels = im2bw(vessels);
+        
+        anatomy_mask = od | vessels;
+        
         %Save feature vectors and pixel classes for current image in .mat file generated above
+        feature_vectors = [];
+        for i = 1:size(feature_image,3)
+            layer = feature_image(:,:,i);
+            feature = layer(~anatomy_mask);
+            feature_vectors = [feature_vectors, feature];
+        end
         [nrows,~] = size(file_obj, 'dataset');
         file_obj.dataset(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = double(labels);
+        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = double(labeled_img(~anatomy_mask));
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));
