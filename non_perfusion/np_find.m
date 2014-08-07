@@ -19,12 +19,11 @@ function np_find(pid, eye, time, varargin)
     %Add the location of the external scripts that we are going to call
     addpath('xmlfunc');
     addpath('auxfunc');
-            
+    
     disp('------Feature Extraction-----');
     try
         %Run the feature extraction on each image
         [data_matrix, timing_matrix, binary_matrix, ~] = get_image_features(pid, eye, time, std_img_size, 0);
-         
     catch e
         for i=1:size(e.stack, 1)
             disp(e.stack(i));
@@ -46,7 +45,7 @@ function np_find(pid, eye, time, varargin)
     disp('------End Interpolate Features-----');
     
     %Create the resultant matrix of feature vectors
-    feature_count = size(interpolated_curves, 4) * size(x_values, 2);
+    feature_count = size(interpolated_curves, 3) * size(interpolated_curves, 4);
     observation_count = numel(find(binary_matrix == 1));
     instance_matrix = double(zeros(observation_count, feature_count));
     cur_observation = 1;
@@ -58,7 +57,7 @@ function np_find(pid, eye, time, varargin)
                 for z=1:size(interpolated_curves, 3)
                     %Calculate the start and end index of current features
                     expanded_features = size(x_values, 2);
-                    sindex = ((z-1) * expanded_features)+1;
+                    sindex = ((z-1) * expanded_features) + 1;
                     eindex = sindex + expanded_features - 1;
 
                     %Load the interpolated values into the appropiate place in the feature vector
@@ -74,7 +73,7 @@ function np_find(pid, eye, time, varargin)
             end
         end
     end
-        
+    
     %Scale the feature vectors
     for i = 1:size(instance_matrix, 2)
         fmin = scaling_factors(1, i);
@@ -90,9 +89,9 @@ function np_find(pid, eye, time, varargin)
     cur_class_index = 1;
     
     %Return the classification to the image pixels
-    binary_image = zeros(size(original_image,1), size(original_image,2));
-    for y=1:size(original_image,1)
-        for x=1:size(original_image,2)
+    binary_image = zeros(size(binary_matrix,1), size(binary_matrix,2));
+    for y=1:size(binary_matrix,1)
+        for x=1:size(binary_matrix,2)
             if(binary_matrix(y,x) == 1)
                 binary_image(y,x) = classification(cur_class_index, 1);
                 cur_class_index = cur_class_index + 1;

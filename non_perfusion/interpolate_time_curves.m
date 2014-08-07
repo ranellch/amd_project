@@ -3,7 +3,7 @@ function [result] = interpolate_time_curves(xinter, x_values, scatter, positive_
     result = double(zeros(size(scatter,1), size(scatter,2), size(scatter, 4), size(xinter,2)));
     
     disp('[INTERPOLATING] Running interpolation on each pixel,feature');
-    
+
     %Loop on each pixel in the image set
     for y=1:size(scatter,1)
         for x=1:size(scatter,2)

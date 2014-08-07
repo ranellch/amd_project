@@ -74,7 +74,7 @@ function np_train()
 
         %Load the features files and then interpolate all the values
         disp('[LOAD] Loading the frames features dataset');
-        features = (data_file.names_matrix{1,i});
+        features = load(data_file.names_matrix{1,i});
         
         %Do some error checking or initialize the output variables
         if(i == 1)

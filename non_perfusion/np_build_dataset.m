@@ -36,7 +36,7 @@ function np_build_dataset(varargin)
         numimages = size(lines{1}, 1);
         
         %Make sure that all images and paths exist
-        addpath(genpath(images_path));
+        addpath(genpath('../Test Set'));
         disp('----Checking Files----');
         for k=1:numimages
             pid = char(lines{1}{k});
