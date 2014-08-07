@@ -45,12 +45,12 @@ function train_od(classifier)
                 
                 disp('======================Creating OD Region Classifier=============================');
                 
-                region_variables = od_file.region_features;
-                region_classes = od_file.region_classes;
+                instance_matrix = od_file.region_features;
+                label_vector = od_file.region_classes;
         
-                disp('Building Naive Bayes classifier...Please Wait')
+                 disp('Building Naive Bayes classifier...Please Wait')
 
-                region_classifier = NaiveBayes.fit(region_variables, region_classes, 'Distribution','kernel');
+				region_classifier =  NaiveBayes.fit(instance_matrix,label_vector,'Distribution','kernel');
 
                 save('od_classifiers.mat', 'region_classifier','-append');
         end

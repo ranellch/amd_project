@@ -5,13 +5,14 @@ file = open(filename, "r+")
 sums = []
 labels = []
 error_pats = []
-numpos = 0
+numpos = []
 for line in file:
 	line = line.rstrip()
 	line = line.split(', ')
 	print(line)
 	if line[0] == 'Img':
 		for i in range(1,len(line)):
+			numpos.append(0)
 			sums.append(0)
 			labels.append(line[i])
 		continue
@@ -27,11 +28,11 @@ for line in file:
 		elif first_str[0] == 'O':
 			continue
 		else:
-			numpos += 1
-			for i in range(0,len(sums)):
+			for i in range(0,len(data)):
 				sums[i] += float(data[i])
+				numpos[i] += 1
 	
-avgs = [sum/numpos for sum in sums]
+avgs = [sums[i]/numpos[i] for i in range(0,len(sums))]
 file.write('\n')
 for i in range(0,len(avgs)):
 	file.write('Average ' + labels[i] + ': %.4f\n' % avgs[i])

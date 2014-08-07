@@ -30,11 +30,14 @@ if ispc
 addpath(genpath('..\Test Set'));
 addpath(genpath('..\Vessel Detection - Chris'));
 addpath(genpath('..\intensity normalization'));
+addpath(genpath('..\libsvm-3.18'));
 else
 addpath(genpath('../Test Set'));
 addpath(genpath('../Vessel Detection - Chris'));
 addpath(genpath('../intensity normalization'));
+addpath(genpath('../libsvm-3.18'));
 end
+
 
 %Get the images to include from this list
 fid = fopen('od_draw.training', 'r');

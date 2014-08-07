@@ -1,0 +1,96 @@
+Img, Distance, Angle Distance
+09323896 OD (1), 137.6445, 13.8301
+09323896 OD (2), 114.2366, 6.3233
+09323896 OS (1), 48.1664, 4.6246
+09323896 OS (2), 41.1461, 2.7218
+09237019 OD (1), ERROR: OD Not Found, find_fov_no_od distance: 52.0093
+09237019 OD (2), ERROR: OD Not Found, find_fov_no_od distance: 108.5178
+07091810 OD (3), 28.1603, 4.1161
+07091810 OD (4), 43.9659, 6.9504
+07091810 OD (5), 185.8521, 8.1466
+07091810 OD (6), 70.4557, 9.7551
+07091810 OS (1), 45.7056, 7.6713
+07091810 OS (2), ERROR: OD Not Found, find_fov_no_od distance: 344.3383
+07091810 OS (5), 351.5139, 6.0166
+07091810 OS (6), ERROR: OD Not Found, find_fov_no_od distance: 375.6611
+09198258 OS (1), 5.3852, 0.16713
+09198258 OS (2), 384.6414, 0.64317
+09198258 OS (5), 109.2383, 0.9987
+00349225 OD (1), 17, -1.8665
+00349225 OD (2), 47.0106, -7.3356
+00349225 OD (3), 73.9797, -10.9584
+09181670 OD (1), ERROR: OD Not Found, find_fov_no_od distance: 284.4242
+09181670 OD (2), ERROR: OD Not Found, find_fov_no_od distance: 403.3946
+09181670 OS (1), 292.4791, 0.057681
+09181670 OS (2), 19.3132, -1.9259
+09210105 OD (1), 203.1797, 28.4063
+09210105 OD (2), 56.4624, 8.3523
+09210105 OD (5), ERROR: OD Not Found, find_fov_no_od distance: 396.7211
+09210105 OS (1), 231.6981, -24.6991
+09210105 OS (2), ERROR: OD Not Found, find_fov_no_od distance: 37.6019
+09210105 OS (5), ERROR: OD Not Found, find_fov_no_od distance: 89.2028
+09210105 OS (6), ERROR: OD Not Found, find_fov_no_od distance: 27.445
+09230622 OD (1), 105.1903, 6.7105
+09230622 OD (2), 92.3472, 4.4142
+09230622 OS (1), ERROR: OD Not Found, find_fov_no_od distance: 76.9767
+09230622 OS (2), 58.1808, 4.581
+09230622 OS (5), ERROR: OD Not Found, find_fov_no_od distance: 15.2911
+09230622 OS (6), ERROR: OD Not Found, find_fov_no_od distance: 169.9096
+00518054 OS (1), 36.7151, 0.92299
+00518054 OS (2), 38.2753, 1.4325
+07093874 OD (1), 215.1767, 9.813
+07093874 OD (2), 222.4972, 7.7601
+07093874 OS (1), 207.7811, 5.4292
+07093874 OS (2), ERROR: OD Not Found, find_fov_no_od distance: 41.7732
+09186494 OS (1), ERROR, -2
+09186494 OS (2), ERROR: OD Not Found, find_fov_no_od distance: 386.3381
+09186494 OS (5), 89.5545, 4.4163
+09186494 OS (6), ERROR: OD Not Found, find_fov_no_od distance: 298.0252
+00387531 OS (1), ERROR: OD Not Found, find_fov_no_od distance: 164.435
+00387531 OS (2), ERROR: OD Not Found, find_fov_no_od distance: 408.5021
+09146686 OD (1), 51.0784, -7.5106
+09146686 OD (2), ERROR: OD Not Found, find_fov_no_od distance: 44.3405
+09146686 OD (5), ERROR: OD Not Found, find_fov_no_od distance: 48.7352
+09306504 OS (1), ERROR: OD Not Found, find_fov_no_od distance: 61.7367
+09306504 OS (2), ERROR: OD Not Found, find_fov_no_od distance: 396.0989
+00538530 OS (1), 11, 1.7268
+00538530 OS (2), 37.3631, -6.1746
+00538530 OS (5), 10.2956, 1.8197
+09227227 OD (1), 146.5401, 8.8702
+09227227 OD (2), 238.8137, 25.4598
+09227227 OD (5), 96.8814, -0.2908
+09227227 OD (6), 212.8967, 16.697
+09362244 OS (1), ERROR: OD Not Found, find_fov_no_od distance: 47.817
+09362244 OS (2), 15.1327, 0.032567
+09317927 OD (1), 43.2782, -5.7204
+09317927 OD (2), 9.2195, 0.94955
+09317927 OS (1), 78.2368, 7.634
+
+Average Distance: 107.7069
+Average Angle Distance: 3.5945
+
+Error cases: 
+09237019 OD (1): False Positive
+09237019 OD (2): False Positive
+07091810 OS (2): False Positive
+07091810 OS (6): False Positive
+09181670 OD (1): False Positive
+09181670 OD (2): False Positive
+09210105 OD (5): False Positive
+09210105 OS (2): False Positive
+09210105 OS (5): False Positive
+09210105 OS (6): False Positive
+09230622 OS (1): False Positive
+09230622 OS (5): False Positive
+09230622 OS (6): False Positive
+07093874 OS (2): False Positive
+09186494 OS (1): False Positive
+09186494 OS (2): False Positive
+09186494 OS (6): False Positive
+00387531 OS (1): False Positive
+00387531 OS (2): False Positive
+09146686 OD (2): False Positive
+09146686 OD (5): False Positive
+09306504 OS (1): False Positive
+09306504 OS (2): False Positive
+09362244 OS (1): False Positive

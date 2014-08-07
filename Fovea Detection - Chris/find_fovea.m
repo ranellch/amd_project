@@ -71,7 +71,7 @@ t = 100;
 maxTrials = 1000;
 [M, inliers] = ransac(points', @fitParabola, @distfn, @dummy, s, t, 0, 2, maxTrials);
 a = M(1)
-B = plusminus90(mod(M(2),360))
+B = plusminus90(mod(M(2),180))
 
 if debug > 0
     e = cputime-tr;

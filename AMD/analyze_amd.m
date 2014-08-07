@@ -68,12 +68,14 @@ function analyze_amd(rebuild_classifier)
         if(size(original_img, 3) > 1)
             original_img = rgb2gray(original_img);
         end
+        original_img = imresize(original_img,[768 768]);
+        original_img = im2double(original_img);
                 
         %Get the images run by the algorithm
         [hypo, hyper] = find_amd(pid, eye, time, 1);
 		temp = display_outline(original_img,hypo,[1 0 0]);
 		final = display_outline(temp,hyper,[1 1 0]);
-        imwrite(final, ['./results/',pid,'_',eye,'_',time,'-hypo.tif'], 'tiff');
+        imwrite(final, ['./results/',pid,'_',eye,'_',time,'-amd.tif'], 'tiff');
 
         %Get the hypo image labeled by hand
 		amd_image = imread(get_pathv2(pid, eye, time, 'AMD'));
