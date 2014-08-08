@@ -47,7 +47,11 @@ if strcmp(status,'generate')
     [od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, resize);
 
     %Find fovea
-    [ x_fov,y_fov ] = find_fovea( vessels, angles, od, 1 );
+	if ~any(od(:))
+        [x_fov,y_fov] = find_fovea_no_od(vessels,angles,1);
+	else
+		[ x_fov,y_fov ] = find_fovea( vessels, angles, od, 1 );
+	end
     
     if ~isdir('./matfiles')
         mkdir('./matfiles');

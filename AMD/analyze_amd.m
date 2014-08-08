@@ -65,9 +65,6 @@ function analyze_amd(rebuild_classifier)
         %Get the original image 
         original_path = get_pathv2(pid, eye, time, 'original');
         original_img = im2double(imread(original_path));
-        if(size(original_img, 3) > 1)
-            original_img = rgb2gray(original_img);
-        end
         original_img = imresize(original_img,[768 768]);
         original_img = im2double(original_img);
                 
@@ -158,13 +155,11 @@ function analyze_amd(rebuild_classifier)
         for l=2:size(output_results,2)
                 numline = [numline, ', ', num2str(output_results(k,l));];
         end
-            line = [pid,' ', eye, ' (', time, '), ', numline];
+        line = [pid,' ', eye, ' (', time, '), ', numline];
         disp(line);
         fprintf(fout, '%s\n', line);
         disp('--------------------------------------');
 
-    fprintf(fout, '%s\n', line);
-    fclose(fout);
     end
-
+    fclose(fout);
 end

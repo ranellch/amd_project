@@ -73,11 +73,11 @@ function analyze_fovea(debug)
             disp(['TOTAL PROCESSING TIME (MIN): ', num2str(t)])
             if x == -1
                 %Write error message 
-                distances(k) = -1;
+                line = [pid,' ', eye, ' (', time, '), ERROR, -1'];
             else
                  distances(k) = sqrt((x-x_fov)^2+(y-y_fov)^2);
+                 line = [pid,' ', eye, ' (', time, '), ', num2str(distances(k))];
             end
-            line = [pid,' ', eye, ' (', time, '), ', num2str(distances(k))];
         else
             [ x,y,h,B,od ] = find_fovea( img_vessel, img_angles, final_od_img, 3 );
             t = (cputime - e)/60.0;

@@ -63,9 +63,19 @@ c = A\y;
 %plot raphe line
 x= 1:size(combined_map,2);
 y = zeros(size(x));
-for i=x
-	y(i) = c(1)*i+c(2);
+for i=1:length(x);
+	y(i) = round(c(1)*i+c(2));
 end
+%get final raphe line, discarding uninterpolated points
+raphe_x=[];
+raphe_y=[];
+for i=1:length(x)
+    if ~isnan(combined_map(y(i),x(i)))
+        raphe_x=[raphe_x,x(i)];
+        raphe_y=[raphe_y,y(i)];
+    end
+end
+
 if debug >= 2
      h=figure(8);
     imshow(vessels);
@@ -79,9 +89,9 @@ if nargout == 3
 end
 
 %get values along estimated raphe line 
-raphe_vals = zeros(size(x));
-for i = 1:length(x)
-    raphe_vals(i) = combined_map(round(y(i)),x(i));
+raphe_vals = zeros(size(raphe_x));
+for i = 1:length(raphe_x)
+    raphe_vals(i) = combined_map(raphe_y(i),raphe_x(i));
 end
 
 %find minimum along line
@@ -95,8 +105,8 @@ if isempty(MinIdx)
     return
 end
 
-x_fov = x(MinIdx);
-y_fov = y(MinIdx);
+x_fov = raphe_x(MinIdx);
+y_fov = raphe_y(MinIdx);
 
 if debug >= 2
     figure(8)

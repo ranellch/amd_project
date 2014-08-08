@@ -128,12 +128,12 @@ end
 %get x,y coordinates along raphe line pointing towards fovea from 1 ODD
 %to 4ODD
 if move_right
-    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime>ODD & xprime<4*ODD);
+    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime>ODD & xprime<4*ODD & ~isnan(combined_map));
     if debug == 1 || debug == 2
         disp('Fovea is to the right of the optic disk')
     end
 else
-    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<-ODD & xprime>-4*ODD);
+    [y_raphe,x_raphe] = find(round(yprime)==0 & xprime<-ODD & xprime>-4*ODD & ~isnan(combined_map));
     if debug == 1 || debug ==2
         disp('Fovea is to the left of the optic disk')
     end
