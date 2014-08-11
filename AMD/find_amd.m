@@ -1,4 +1,4 @@
-function [ final_hypo, final_hyper ] = find_amd( pid, eye, time, varargin )
+function [ final_hypo, final_hyper, scores ] = find_amd( pid, eye, time, varargin )
 %Returns binary image indicating location of hypofluorescence
 resize = 'off';
 status = 'generate'; 
@@ -10,6 +10,8 @@ elseif length(varargin) == 2
     debug = varargin{1};
     resize = varargin{2};
 elseif length(varargin) == 3
+    debug = varargin{1};
+    resize = varargin{2};
     status = varargin{3};
 else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arguments'));
@@ -167,9 +169,23 @@ for i = 1:length(classifications)
     final_hyper(lc==i) = classifications(i);
 end
 
+final_hyper = logical(final_hyper);
+
 if(debug == 2)
-    figure(14), imshow(display_outline(original_img, logical(final_hyper), [1 1 0]));
+    figure(14), imshow(display_outline(original_img, final_hyper, [1 1 0]));
 end
+
+%Generate quantification metrics
+corrected_img = mat2gray(corrected_img);
+scores = struct;
+%1 pixel = 2.5e-5 mm^2
+scores.hypo_area = sum(final_hypo(:))*2.5e-5;
+scores.hypo_intensity = mean(corrected_img(final_hypo));
+scores.hypo_score = (1-scores.hypo_intensity)*scores.hypo_area;
+scores.hyper_area = sum(final_hyper(:))*2.5e-5;
+scores.hyper_intensity = mean(corrected_img(final_hyper));
+scores.hyper_score = scores.hyper_intensity*scores.hyper_area;
+scores.combined_score = scores.hypo_score+scores.hyper_score;
 
 e = cputime - t;
 disp(['Total [AMD] Processing Time (min): ', num2str(e/60.0)]);

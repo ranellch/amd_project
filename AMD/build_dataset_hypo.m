@@ -131,13 +131,18 @@ for k=1:size(includes{1}, 1)
         feature_image = cat(3,feature_image_g,feature_image_i,feature_image_r);
         
         %Create mask to exclude vessels and optic disk from training data
-        od = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
+        od = imread(get_pathv2(pid, eye, time, 'optic_disc'));
+        if(size(od, 3) > 1)
+        	od = od(:,:,1);
+        end
         od = imresize(od,[std_size,std_size]);
+        od = im2bw(od);
+        
         vessels = imread(get_pathv2(pid, eye, time, 'vessels'));
-        vessels = imresize(vessels,[std_size,std_size]);
         if(size(vessels, 3) > 1)
         	vessels = vessels(:,:,1);
         end
+        vessels = imresize(vessels,[std_size,std_size]);
         vessels = im2bw(vessels);
         
         anatomy_mask = od | vessels;

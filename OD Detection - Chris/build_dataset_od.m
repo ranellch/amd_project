@@ -44,15 +44,14 @@ for k=1:size(includes{1}, 1)
         time = num2str(includes{3}(k));
       
         %Check to see that the path to the image is readable
-        the_path = get_pathv2(pid, eye, time, 'original');
-        img = imread(the_path);
+        img = imread(get_pathv2(pid, eye, time, 'original'));
         
         try
             %Check to make sure that the snaked image is readable
-            snaked_path = get_pathv2(pid, eye, time, 'optic_disc');
-            snaked_image = im2bw(imread(snaked_path));
+            od_img = imread(get_pathv2(pid, eye, time, 'optic_disc'));
+            
         catch
-            disp(['Could not load snaked image: ', pid , ' - ', time]);
+            disp(['Could not load od image: ', pid , ' - ', time]);
             err_cnt = err_cnt + 1;
         end
     catch
@@ -86,11 +85,15 @@ for k=1:size(includes{1}, 1)
         end
         
         %Get the snaked image
-        snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
+        od_img = imread(get_pathv2(pid, eye, time, 'optic_disc'));
+        if(size(od_img, 3) > 1)
+            od_img = od_img(:,:,1);
+        end
+        od_img = im2bw(od_img);
         
         %Resize images to a standard sizing
         img = imresize(img, [768 768]);
-        snaked_image = imresize(snaked_image, [768 768]);
+        od_img = imresize(od_img, [768 768]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
@@ -121,7 +124,7 @@ for k=1:size(includes{1}, 1)
         feature_vectors = matstack2array(feature_image);
         [nrows,~] = size(file_obj, 'dataset');
         file_obj.dataset(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+        file_obj.classes(nrows+1:nrows+numel(img),1) = od_img(:);
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));

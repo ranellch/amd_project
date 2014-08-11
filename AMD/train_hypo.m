@@ -18,7 +18,7 @@ function train_hypo()
                  label_vector = data_file.classes;
                  
                 %Downsample to get less bias towards the negative samples
-                 pos_cutoff = .2;
+                 pos_cutoff = .1;
                 [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, pos_cutoff);
                 
                 %Downsample to 100000 points

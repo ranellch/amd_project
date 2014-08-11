@@ -62,22 +62,7 @@ for k=1:size(includes{1}, 1)
             disp(['Could not load AMD image: ', pid , ' - ', time]);
             err_cnt = err_cnt + 1;
         end
-        try
-            %Check to make sure that the labeled images are readable
-            vessel_path = get_pathv2(pid, eye, time, 'vessels');
-            img =  imread(vessel_path);
-        catch
-            disp(['Could not load vessel image: ', pid , ' - ', time]);
-            err_cnt = err_cnt + 1;
-        end
-        try
-            %Check to make sure that the labeled images are readable
-            od_path = get_pathv2(pid, eye, time, 'optic_disc');
-            img =  imread(od_path);
-        catch
-            disp(['Could not load optic disk image: ', pid , ' - ', time]);
-            err_cnt = err_cnt + 1;
-        end
+        
     catch
         disp(['Could not load original image: ', pid , ' - ', time]);
         err_cnt = err_cnt + 1;

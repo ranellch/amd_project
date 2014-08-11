@@ -158,7 +158,11 @@ if(debug == 1 || debug == 2)
 end
 [od_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
 if ~any(od_img(:))
-    final_od_image = imresize(od_img,[origy,origx]);
+    if strcmp(resize,'on')
+        final_od_image = imresize(od_img,[origy,origx]);
+    else 
+        final_od_image = od_img;
+    end
     disp('Optic Disk Not Found!')
     return
 end

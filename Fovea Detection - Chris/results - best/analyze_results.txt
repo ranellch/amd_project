@@ -88,3 +88,9 @@ Img, Distance, Angle Distance
 09228261 OS (3), 22.4722, 3.5036
 09228261 OS (4), 22.0227, 2.7342
 09228261 OS (5), 18.3848, 2.881
+
+Average Distance: 103.5724
+Average Angle Distance: 3.4699
+
+Error cases: 
+09237019 OD (2): No Positive

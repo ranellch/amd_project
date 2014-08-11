@@ -16,8 +16,12 @@ function train_hyper()
                 
          instance_matrix = data_file.dataset;
          label_vector = data_file.classes;
+                                   
+        %Downsample to get less bias towards the negative samples
+         pos_cutoff = .1;
+        [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, pos_cutoff);
 
-        %Get the scaling for each column
+        %Get the scaling info for each column
         mins = min(instance_matrix);
         maxs = max(instance_matrix);
         scaling_factors = [mins; maxs];
