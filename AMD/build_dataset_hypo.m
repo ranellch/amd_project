@@ -126,9 +126,8 @@ for k=1:size(includes{1}, 1)
         feature_image_g = get_fv_gabor_od(norm_img);
         [x,y] = get_fovea(pid, eye, time);
         feature_image_i = imfilter(norm_img,ones(3)/9, 'symmetric');
-        feature_image_r = get_radial_coords(size(norm_img),x,y);
-        
-        feature_image = cat(3,feature_image_g,feature_image_i,feature_image_r);
+        feature_image_r = get_radial_dist(size(norm_img),x,y);
+        feature_image = cat(3,feature_image_g,feature_image_i, feature_image_r);
         
         %Create mask to exclude vessels and optic disk from training data
         od = imread(get_pathv2(pid, eye, time, 'optic_disc'));
@@ -164,5 +163,5 @@ for k=1:size(includes{1}, 1)
 end
 
 e = cputime - t;
-disp(['Hypo Build Classifier Time (min): ', num2str(e/60.0)]);
+disp(['Hypo Build Dataset Time (min): ', num2str(e/60.0)]);
 end

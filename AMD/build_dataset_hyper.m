@@ -95,13 +95,15 @@ for k=1:size(includes{1}, 1)
             img = rgb2gray(img);
         end
         
-        %Get the labeled image
+        %Get the labeled images
         labeled_img = imread(get_pathv2(pid, eye, time, 'AMD'));
-        labeled_img = labeled_img(:,:,1) > labeled_img(:,:,2);
+        hyper_img = labeled_img(:,:,1) > labeled_img(:,:,2);
+        hypo_img = labeled_img(:,:,3) > labeled_img(:,:,1);
+        
         
         %Resize images to a standard sizing
         img = imresize(img, [std_size std_size]);
-        labeled_img = imresize(labeled_img, [std_size std_size]);
+        hyper_img = imresize(hyper_img, [std_size std_size]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
@@ -120,11 +122,16 @@ for k=1:size(includes{1}, 1)
         lc = spdbscan(l, Sp, Am, threshold);
         %generate feature vectors for each labeled region
         [~, Al] = regionadjacency(lc);
-        feature_vectors = get_fv_hyper(lc,Al,[x y],norm_img);
+        if any(hypo_img(:))
+            hypo_input = hypo_img;
+        else 
+            hypo_input = [x,y];
+        end
+        feature_vectors = get_fv_hyper(lc,Al,hypo_input,norm_img);
         %generate label vector
         labels = zeros(size(feature_vectors,1),1);
         for i = 1:size(feature_vectors,1)
-            overlap = labeled_img & lc==i;
+            overlap = hyper_img & lc==i;
             if sum(overlap(:)==1)/numel(lc(lc==i)) > .9
                 labels(i) = 1;
             else

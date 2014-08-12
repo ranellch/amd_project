@@ -86,11 +86,14 @@ model = load('hypo_classifier.mat', 'scaling_factors','classifier');
 scaling_factors = model.scaling_factors;
 classifier = model.classifier;
 
-%Get radial coords
-dist = get_radial_coords(size(od),x_fov,y_fov);
+% %Get radial coords
+ dist = get_radial_dist(size(od),x_fov,y_fov);
 
 %combine with other data from optic disk detection, and exclude vessel or
 %od pixels
+figure, imshow(mat2gray(avg_img))
+figure, imshow(mat2gray(corrected_img))
+return
 feature_image = cat(3,gabor_img, avg_img, dist);
 anatomy_mask = od | vessels;
 instance_matrix = [];
@@ -114,6 +117,10 @@ clear instance_matrix
 
 prob_img = zeros(size(labeled_img));
 prob_img(~anatomy_mask) = probabilities(:,classifier.Label==1);
+figure, imshow(prob_img)
+hold on
+plot(x_fov,y_fov,'go')
+hold off
 
 final_hypo = GraphCutsHypo(logical(labeled_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),corrected_img));
 
@@ -124,10 +131,9 @@ if(debug == 2)
 end
 
 if any(final_hypo(:))
-    stat = regionprops(double(final_hypo),'centroid');
-    hypo_centroid = round(stat.Centroid); %[x y]
+    hypo_input = final_hypo;
 else
-    hypo_centroid = [x_fov,y_fov];
+    hypo_input = [x_fov,y_fov];
 end
 
 %-----Run superpixelwise classification of hyperfluorescence-----
@@ -147,7 +153,7 @@ threshold = 4;
 lc = spdbscan(l, Sp, Am, threshold);
 %generate feature vectors for each labeled region
 [~, Al] = regionadjacency(lc);
-instance_matrix = get_fv_hyper(lc,Al,hypo_centroid,norm_img);
+instance_matrix = get_fv_hyper(lc,Al,hypo_input,norm_img);
 
 %Load the classifier
 model = load('hyper_classifier.mat', 'scaling_factors','classifier');
