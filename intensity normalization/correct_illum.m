@@ -50,11 +50,21 @@ background = logical(background);
 %Throw background pixels into polynomial fitter
 indepvar = [];
 depvar = [];
-for y = 1:8:Iheight
-    for x = 1:8:Iwidth
+[i,j] = find(background);
+for y = 1:16:Iheight
+    for x = 1:16:Iwidth
         if background(y,x) == 1
             indepvar = [indepvar;x y];
             depvar = [depvar; I(y,x)];
+        else
+            %find nearest background point
+            dists = sqrt((i-y).^2+(j-x).^2);
+            newx = j(dists==min(dists));
+            newy = i(dists==min(dists));
+            if length(newx) > 1, newx = newx(1); end
+            if length(newy) > 1, newy = newy(1); end
+            indepvar = [indepvar;newx newy];
+            depvar = [depvar; I(newy,newx)];
         end
     end
 end
@@ -71,20 +81,24 @@ for i = 1:Iwidth
 end
 %Create surface spanning entire image
 estimates = polyvaln(polymodel,[x,y]);
-estimates = estimates - min(estimates(:)) + eps;
+
+%Remove nonsense data
+% estimates = estimates - min(estimates(:)) + eps;
+% log_e = log(estimates);
+% log_e(log_e<mean(log_e)-3*std(log_e)) = mean(log_e) - 3*std(log_e);
+% log_e(log_e>mean(log_e)+3*std(log_e)) = mean(log_e) + 3*std(log_e);
+% estimates = exp(log_e);
+
 C = zeros(size(I));
  C(:) = estimates;
-%    figure , imshow(mat2gray(C))     
 
-%Divide out surface (i.e. "camera function)
-Iout = I./C;
-mean(Iout(:)), std(Iout(:))
-Iout(Iout<(mean(Iout(:))-std(Iout(:)))) = mean(Iout(:))-std(Iout(:));
-Iout(Iout>(mean(Iout(:))+std(Iout(:)))) = mean(Iout(:))+std(Iout(:));
+%Subtract background (i.e. "camera function)
+Iout = I - C;
 
-%Supress extreme outliers
-%  Iout(Iout>2) = 2;
-%  Iout(Iout<0) = 0;
+%Remove nonsense
+% Iout(Iout<mean(Iout(:))-3*std(Iout(:))) = mean(Iout(:)) - 3*std(Iout(:));
+% Iout(Iout>mean(Iout(:))+3*std(Iout(:))) = mean(Iout(:)) + 3*std(Iout(:));
+
 
 H = fspecial('gaussian', [3 3], 1);
 Iout = imfilter(Iout, H, 'symmetric');
