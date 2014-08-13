@@ -6,7 +6,9 @@ if size(I,3) ~= 1
     I=rgb2gray(I);
 end
 
-I=double(im2uint8(I));
+if ~isa(I,'double')
+    I=im2double(I);
+end
 Iwidth = size(I, 2);
 Iheight = size(I, 1);
 mu = zeros(size(I));
@@ -42,7 +44,7 @@ sigma = griddata(x, y, sigma, xq, yq,'cubic');
 
 
 %Get background by thresholding Mahalanobis distance of every pixel
-background = abs((I-mu)./sigma)<=thresh*255;
+background = abs((I-mu)./sigma)<=thresh;
 background = logical(background);
 
 %Throw background pixels into polynomial fitter
@@ -69,13 +71,16 @@ for i = 1:Iwidth
 end
 %Create surface spanning entire image
 estimates = polyvaln(polymodel,[x,y]);
-estimates = estimates - min(estimates(:)) + 1;
+estimates = estimates - min(estimates(:)) + eps;
 C = zeros(size(I));
  C(:) = estimates;
 %    figure , imshow(mat2gray(C))     
 
 %Divide out surface (i.e. "camera function)
 Iout = I./C;
+mean(Iout(:)), std(Iout(:))
+Iout(Iout<(mean(Iout(:))-std(Iout(:)))) = mean(Iout(:))-std(Iout(:));
+Iout(Iout>(mean(Iout(:))+std(Iout(:)))) = mean(Iout(:))+std(Iout(:));
 
 %Supress extreme outliers
 %  Iout(Iout>2) = 2;
@@ -83,7 +88,6 @@ Iout = I./C;
 
 H = fspecial('gaussian', [3 3], 1);
 Iout = imfilter(Iout, H, 'symmetric');
-Iout = mat2gray(Iout);
 
 end
 
