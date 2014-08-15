@@ -77,6 +77,11 @@ if debug == 2
     figure(10), imshow(combined_img)
 end
 
+%----Run pixelwise classification of normal retina---------------
+anatomy_mask = od | vessels;
+normal = find_normal(gabor_img, avg_img, anatomy_mask, debug);
+figure(11), imshow(display_outline(original_img, ~normal, [0 0 1]))
+
 %---Run pixelwise classification of hypofluorescence-----
 if debug == 1 || debug == 2
     disp('[HYPO] Finding areas of hypofluorescence');
@@ -90,16 +95,13 @@ classifier = model.classifier;
  dist = get_radial_dist(size(od),x_fov,y_fov);
 
 %combine with other data from optic disk detection, and exclude vessel or
-%od pixels
-figure, imshow(mat2gray(avg_img))
-figure, imshow(mat2gray(corrected_img))
-return
+%od or normal pixels
 feature_image = cat(3,gabor_img, avg_img, dist);
-anatomy_mask = od | vessels;
 instance_matrix = [];
+exclusion_mask = anatomy_mask | normal;
 for i = 1:size(feature_image,3)
     layer = feature_image(:,:,i);
-    feature = layer(~anatomy_mask);
+    feature = layer(~exclusion_mask);
     instance_matrix = [instance_matrix, feature];
 end
 
@@ -112,11 +114,11 @@ end
 
 %Run hypo classification
 labeled_img = zeros(size(od));
-[labeled_img(~anatomy_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q -b 1');
+[labeled_img(~exclusion_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q -b 1');
 clear instance_matrix
 
 prob_img = zeros(size(labeled_img));
-prob_img(~anatomy_mask) = probabilities(:,classifier.Label==1);
+prob_img(~exclusion_mask) = probabilities(:,classifier.Label==1);
 figure, imshow(prob_img)
 hold on
 plot(x_fov,y_fov,'go')
@@ -125,9 +127,9 @@ hold off
 final_hypo = GraphCutsHypo(logical(labeled_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),corrected_img));
 
 if(debug == 2)
-    figure(11), imshow(display_outline(original_img, logical(labeled_img), [1 0 0]))
-    figure(12), imshow(prob_img);
-    figure(13), imshow(display_outline(original_img, logical(final_hypo), [1 0 0]));
+    figure(12), imshow(display_outline(original_img, logical(labeled_img), [1 0 0]))
+    figure(13), imshow(prob_img);
+    figure(14), imshow(display_outline(original_img, logical(final_hypo), [1 0 0]));
 end
 
 if any(final_hypo(:))
@@ -142,8 +144,7 @@ if debug == 1 || debug == 2
 end
 
 %get superpixels from intensity image
-norm_img = zero_m_unit_std(corrected_img);
-im = cat(3,norm_img, norm_img, norm_img);
+im = cat(3,corrected_img, corrected_img, corrected_img);
 k = 1000;
 m = 20;
 seRadius = 1;
@@ -153,7 +154,7 @@ threshold = 4;
 lc = spdbscan(l, Sp, Am, threshold);
 %generate feature vectors for each labeled region
 [~, Al] = regionadjacency(lc);
-instance_matrix = get_fv_hyper(lc,Al,hypo_input,norm_img);
+instance_matrix = get_fv_hyper(lc,Al,hypo_input,corrected_img);
 
 %Load the classifier
 model = load('hyper_classifier.mat', 'scaling_factors','classifier');
@@ -178,7 +179,7 @@ end
 final_hyper = logical(final_hyper);
 
 if(debug == 2)
-    figure(14), imshow(display_outline(original_img, final_hyper, [1 1 0]));
+    figure(15), imshow(display_outline(original_img, final_hyper, [1 1 0]));
 end
 
 %Generate quantification metrics

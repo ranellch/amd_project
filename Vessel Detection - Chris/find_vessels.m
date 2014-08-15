@@ -45,7 +45,6 @@ img = imresize(img, [768 768]);
 img = gaussian_filter(img);
 [corrected_img, ~] = correct_illum(img,0.7);
 img = imcomplement(corrected_img);
-img = zero_m_unit_std(img);
 
 %Load the classifier struct for this bad boy
 model = load('vessel_combined_classifier.mat');

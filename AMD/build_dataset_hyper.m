@@ -108,11 +108,10 @@ for k=1:size(includes{1}, 1)
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
         img = correct_illum(img,0.7);
-        norm_img = zero_m_unit_std(img);
         
         %get superpixels from intensity image
         [x,y] = get_fovea(pid, eye, time);
-        im = cat(3,norm_img, norm_img,norm_img);
+        im = cat(3,img, img,img);
         n = 1000;
         m = 20;
         seRadius = 1;
@@ -127,7 +126,7 @@ for k=1:size(includes{1}, 1)
         else 
             hypo_input = [x,y];
         end
-        feature_vectors = get_fv_hyper(lc,Al,hypo_input,norm_img);
+        feature_vectors = get_fv_hyper(lc,Al,hypo_input,img);
         %generate label vector
         labels = zeros(size(feature_vectors,1),1);
         for i = 1:size(feature_vectors,1)

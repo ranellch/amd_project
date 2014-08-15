@@ -118,7 +118,7 @@ for i = 1:numclusters
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
-    if class == 1 && od_probability >= .95
+    if class == 1 
         index = i;
          break
     elseif i == numclusters 

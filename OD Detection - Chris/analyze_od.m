@@ -74,7 +74,11 @@ function analyze_od(rebuild_classifier)
         imwrite(display_outline(original_img,calced_img,[1 0 0]), ['./results/',pid,'_',eye,'_',time,'-od.tif'], 'tiff');
 
         %Get the image snaked by hand
-        super_img = im2bw(imread(od_image));
+        super_img = imread(od_image);
+        if size(super_img,3) > 1
+            super_img = super_img(:,:,1);
+        end
+        super_img = im2bw(super_img);
         total_positive_count = 0;
         total_negative_count = 0;
         for y=1:size(super_img,1)

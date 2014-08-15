@@ -1,6 +1,7 @@
 function [ Iout,background ] = correct_illum( I, thresh )
 %UNTITLED Polynomial fitting motherfucker
 addpath('../PolyfitnTools/')
+addpath('../intensity normalization/DME Quadtree/')
 
 if size(I,3) ~= 1
     I=rgb2gray(I);
@@ -47,28 +48,66 @@ sigma = griddata(x, y, sigma, xq, yq,'cubic');
 background = abs((I-mu)./sigma)<=thresh;
 background = logical(background);
 
-%Throw background pixels into polynomial fitter
+
+%Sample background using quadtree decomposition
+boxsize = Iheight/32;
+[qt_sparse, dims] = qtdecompMinCountThresh(background, boxsize^2, 0, []);
+
+x=[];
+y=[];
+o=[];
+m=[];
 indepvar = [];
-depvar = [];
-[i,j] = find(background);
-for y = 1:16:Iheight
-    for x = 1:16:Iwidth
-        if background(y,x) == 1
-            indepvar = [indepvar;x y];
-            depvar = [depvar; I(y,x)];
-        else
-            %find nearest background point
-            dists = sqrt((i-y).^2+(j-x).^2);
-            newx = j(dists==min(dists));
-            newy = i(dists==min(dists));
-            if length(newx) > 1, newx = newx(1); end
-            if length(newy) > 1, newy = newy(1); end
-            indepvar = [indepvar;newx newy];
-            depvar = [depvar; I(newy,newx)];
+depvarL = [];
+depvarC = [];
+
+for dim = dims
+    bkgblks = qtgetblk(background, qt_sparse, dim);
+    [imgblks, r, c] = qtgetblk(I, qt_sparse, dim);
+    for i = 1:size(imgblks,3)
+        tmpbkg = bkgblks(:,:,i);
+        tmpimg = imgblks(:,:,i);
+        data = tmpimg(tmpbkg);
+
+        %check for boundaries, simulate mirror padding
+        x = [x; c(i)+dim/2];
+        y = [y; r(i)+dim/2];
+        o = [o; std(data)];
+        m = [m; mean(data)];
+        if r(i)==1
+            x = [x; c(i)+dim/2];
+            y = [y; r(i)-dim/2];
+            o = [o; std(data)];
+            m = [m; mean(data)];
         end
+        if c(i)==1
+            x = [x; c(i)-dim/2];
+            y = [y; r(i)+dim/2];
+            o = [o; std(data)];
+            m = [m; mean(data)];
+        end
+        if r(i)+dim>Iheight
+            x = [x; c(i)+dim/2];
+            y = [y; r(i)+dim*3/2];
+            o = [o; std(data)];
+            m = [m; mean(data)];
+        end
+        if c(i)+dim>Iwidth
+            x = [x; c(i)+dim*3/2];
+            y = [y; r(i)+dim/2];
+            o = [o; std(data)];
+            m = [m; mean(data)];
+        end
+        indepvar = [indepvar; x y];
+        depvarL = [depvarL; m];
+        depvarC = [depvarC; o];
     end
 end
-polymodel = polyfitn(indepvar,depvar,3);
+
+%Throw background pixels into polynomial fitter for illumination and
+%contrast drifts
+polymodelL = polyfitn(indepvar,depvarL,3);
+polymodelC = polyfitn(indepvar,depvarC,3);
 
 %get coordinates of entire image
 y=[];
@@ -79,29 +118,21 @@ for i = 1:Iwidth
         x = [x; i];
     end
 end
-%Create surface spanning entire image
-estimates = polyvaln(polymodel,[x,y]);
+%Create surfaces spanning entire image
+estimatesL = polyvaln(polymodelL,[x,y]);
+estiamtesC = polyvaln(polymodelC,[x,y]);
 
-%Remove nonsense data
-% estimates = estimates - min(estimates(:)) + eps;
-% log_e = log(estimates);
-% log_e(log_e<mean(log_e)-3*std(log_e)) = mean(log_e) - 3*std(log_e);
-% log_e(log_e>mean(log_e)+3*std(log_e)) = mean(log_e) + 3*std(log_e);
-% estimates = exp(log_e);
 
+L = zeros(size(I));
 C = zeros(size(I));
- C(:) = estimates;
+L(:) = estimatesL;
+C(:) = estiamtesC;
 
-%Subtract background (i.e. "camera function)
-Iout = I - C;
+%Subtract background (i.e. camera function), divide by contrast drift
+Iout = (I - L)./C;
 
-%Remove nonsense
-% Iout(Iout<mean(Iout(:))-3*std(Iout(:))) = mean(Iout(:)) - 3*std(Iout(:));
-% Iout(Iout>mean(Iout(:))+3*std(Iout(:))) = mean(Iout(:)) + 3*std(Iout(:));
-
-
-H = fspecial('gaussian', [3 3], 1);
-Iout = imfilter(Iout, H, 'symmetric');
+%Normalize output to original histogram using least squares fitting
+Iout = mat2gray(Iout,[mean(Iout(:))-3*std(Iout(:)), mean(Iout(:))+3*std(Iout(:))]);
 
 end
 

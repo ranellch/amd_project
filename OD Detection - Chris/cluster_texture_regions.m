@@ -106,7 +106,7 @@ function [final_clusters] = cluster_texture_regions(img, varargin)
     only_big_clusters = zeros(size(final_clusters));
     cluster_count = 1;
     for i = 1:max(final_clusters(:))
-        if sum(sum(final_clusters==i)) > 50
+        if sum(sum(final_clusters==i)) > 100
             only_big_clusters(final_clusters==i) = cluster_count;
             cluster_count = cluster_count+1;
         end

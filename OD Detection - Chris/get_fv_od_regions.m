@@ -1,4 +1,4 @@
-function [ feature_vectors, classes ] = get_fv_od_regions( od_texture_img, pid, eye, time )
+function [ feature_vectors, classes ] = get_fv_od_regions( labeled_od, od_texture_img, pid, eye, time )
 %Runs texture based classification and clustering on input image.  Then uses user
 %input to classify regions and build feature vectors based on radial vessel
 %thickness and density features found in choose_od
@@ -35,10 +35,6 @@ numclusters = max(cluster_img(:));
 feature_vectors = [];
 classes = [];
 angles = mod(angles,180);
-
-%Get snaked image for labeling roi class
-labeled_od  = im2bw(imread(get_pathv2(pid,eye,time,'optic_disc')));
-labeled_od = imresize(labeled_od,[size(cluster_img,1),size(cluster_img,2)]);
 
 for i = 1:numclusters
     roi = cluster_img==i;

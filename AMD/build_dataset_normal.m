@@ -1,6 +1,6 @@
-function build_dataset_hypo()
+function build_dataset_normal()
 %Constants for file names
-mat_file = 'hypo_training_data.mat';
+mat_file = 'normal_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
@@ -33,7 +33,7 @@ addpath('../Fovea Detection - Chris');
 end
 
 %Get the images to include from this list
-fid = fopen('hypo_draw.training', 'r');
+fid = fopen('normal_draw.training', 'r');
 includes = textscan(fid,'%q %q %d %*[^\n]');
 fclose(fid);
 
@@ -111,11 +111,17 @@ for k=1:size(includes{1}, 1)
         
         %Get the labeled image
         labeled_img = imread(get_pathv2(pid, eye, time, 'AMD'));
-        labeled_img = labeled_img(:,:,3) > labeled_img(:,:,1);
+        green_line = labeled_img(:,:,2) > labeled_img(:,:,1);
+        if ~any(green_line(:))
+            abnormal = labeled_img(:,:,1) ~= labeled_img(:,:,3);
+        else 
+            abnormal = imfill(green_line,'holes');
+        end
+        normal_img = ~abnormal;
         
         %Resize images to a standard sizing
         img = imresize(img, [std_size std_size]);
-        labeled_img = imresize(labeled_img, [std_size std_size]);
+        normal_img = imresize(normal_img, [std_size std_size]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
@@ -123,10 +129,8 @@ for k=1:size(includes{1}, 1)
         
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor_od(img);
-        [x,y] = get_fovea(pid, eye, time);
         feature_image_i = imfilter(img,ones(3)/9, 'symmetric');
-        feature_image_r = get_radial_dist(size(img),x,y);
-        feature_image = cat(3,feature_image_g,feature_image_i, feature_image_r);
+        feature_image = cat(3,feature_image_g, feature_image_i);
         
         %Create mask to exclude vessels and optic disk from training data
         od = imread(get_pathv2(pid, eye, time, 'optic_disc'));
@@ -154,7 +158,7 @@ for k=1:size(includes{1}, 1)
         end
         [nrows,~] = size(file_obj, 'dataset');
         file_obj.dataset(nrows+1:nrows+size(feature_vectors,1),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = double(labeled_img(~anatomy_mask));
+        file_obj.classes(nrows+1:nrows+size(feature_vectors,1),1) = double(normal_img(~anatomy_mask));
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
         disp(getReport(e));
@@ -162,5 +166,5 @@ for k=1:size(includes{1}, 1)
 end
 
 e = cputime - t;
-disp(['Hypo Build Dataset Time (min): ', num2str(e/60.0)]);
+disp(['Normal Build Dataset Time (min): ', num2str(e/60.0)]);
 end

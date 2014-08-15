@@ -102,7 +102,6 @@ function build_dataset_vessels(varargin)
                 original_img = gaussian_filter(original_img);
                 [original_img, ~] = correct_illum(original_img,0.7);
                 original_img = imcomplement(original_img);
-                original_img = zero_m_unit_std(original_img);
                 
                 if(debug == 1)
                     disp(['Extracting Info: ', pid, ' ', eye, ' (', time, ') Ref: ', vessel_image]);

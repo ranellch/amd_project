@@ -62,10 +62,10 @@ for k=1:size(includes{1}, 1)
         
         try
             %Check to make sure that the snaked image is readable
-            snaked_path = get_pathv2(pid, eye, time, 'optic_disc');
-            snaked_image = im2bw(imread(snaked_path));
+            od_path = get_pathv2(pid, eye, time, 'optic_disc');
+            od_img = imread(od_path);
         catch
-            disp(['Could not load snaked image: ', pid , ' - ', time]);
+            disp(['Could not load od image: ', pid , ' - ', time]);
             err_cnt = err_cnt + 1;
         end
     catch
@@ -103,20 +103,24 @@ for k=1:size(includes{1}, 1)
         img = crop_footer(img);
         
         %Get the snaked image
-        snaked_image = im2bw(imread(get_pathv2(pid, eye, time, 'optic_disc')));
+        od_img = imread(get_pathv2(pid, eye, time, 'optic_disc'));
+        if size(od_img,3) > 1
+            od_img = od_img(:,:,1);
+        end        
         
         %Resize images to a standard sizing
         img = imresize(img, [std_img_size std_img_size]);
-        snaked_image = imresize(snaked_image, [std_img_size std_img_size]);
+        od_img = imresize(od_img, [std_img_size std_img_size]);
 
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
         img = correct_illum(img,0.7);
-        norm_img = zero_m_unit_std(img);
         
+%-----------Build Classifier 1--------------------------------------
+
         %Get the pixelwise feature vectors of the input image
-        feature_image_g = get_fv_gabor_od(norm_img);
-        feature_image_r = imfilter(norm_img,ones(3)/9, 'symmetric');
+        feature_image_g = get_fv_gabor_od(img);
+        feature_image_r = imfilter(img,ones(3)/9, 'symmetric');
         
         feature_image = zeros(size(img,1), size(img,2), size(feature_image_g,3) + size(feature_image_r, 3));
         
@@ -138,7 +142,7 @@ for k=1:size(includes{1}, 1)
         feature_vectors = matstack2array(feature_image);
         [nrows,~] = size(file_obj, 'pixel_features');
         file_obj.pixel_features(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
-        file_obj.pixel_classes(nrows+1:nrows+numel(img),1) = snaked_image(:);
+        file_obj.pixel_classes(nrows+1:nrows+numel(img),1) = od_img(:);
                
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
@@ -148,8 +152,8 @@ end
 
 %--------------Train classifier 1-------------
 train_od('pixel');
-%---------------------------------------------
 
+%--------------Build Classifier 2--------------------
 e = cputime - t;
 disp(['Total Optic Disc Build Pixel Classifier Time (min): ', num2str(e/60.0)]);
 
@@ -184,7 +188,7 @@ for k=1:size(includes{1}, 1)
         %Get texture segmented image
         od_texture_img(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
 
-        [feature_vectors,classes] = get_fv_od_regions(od_texture_img,pid,eye,time);
+        [feature_vectors,classes] = get_fv_od_regions(od_img, od_texture_img,pid,eye,time);
         if isempty(classes)
             continue
         end
@@ -202,7 +206,7 @@ end
 
 %--------------Train classifier 2-------------
 train_od('region');
-%---------------------------------------------
+
 
 e = cputime - t;
 disp(['Total Optic Disc Build Region Classifier Time (min): ', num2str(e/60.0)]);

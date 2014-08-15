@@ -46,18 +46,15 @@ orig_img = crop_footer(orig_img);
 origy = size(orig_img, 1);
 origx = size(orig_img, 2);
 
-%Normalize intensities
-norm_img = zero_m_unit_std(corrected_img);
-
 %Initiate the results image
-od_image = zeros(size(norm_img, 1), size(norm_img, 2));
+od_image = zeros(size(corrected_img, 1), size(corrected_img, 2));
 
 %Get feature vectors for each pixel in image
 if(debug == 1 || debug == 2)
     disp('[FV] Building the pixelwise feature vectors');
 end
-feature_image_g = get_fv_gabor_od(norm_img);
-feature_image_r = imfilter(norm_img,ones(3)/9, 'symmetric');
+feature_image_g = get_fv_gabor_od(corrected_img);
+feature_image_r = imfilter(corrected_img,ones(3)/9, 'symmetric');
 
 %Build the finalized feature vector
 feature_image = zeros(size(od_image,1), size(od_image,2), size(feature_image_g,3) + size(feature_image_r,3));

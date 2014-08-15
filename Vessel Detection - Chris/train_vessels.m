@@ -17,7 +17,7 @@ function train_vessels()
     
     %Try to get at least 20% positive instances by discarding a certain
     %percentage of negatives
-    [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, 0.2);
+    [instance_matrix, label_vector] = downsample(instance_matrix, label_vector, 0.3);
     
     disp(['Number of Positive Instances: ', num2str(sum(label_vector==1)), ' Number of Negative Instances: ', ... 
         num2str(sum(label_vector==0)), ' Total: ', num2str(numel(label_vector))]);  
