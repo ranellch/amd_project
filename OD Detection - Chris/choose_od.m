@@ -109,7 +109,7 @@ for i = 1:numclusters
          interior_alignment=0;
      end
 	 %estimate size of od by comparing radius to vessel thickness
-	 region_size = R/vessel_thickness;
+	 region_size = R/(sum(vessels(:))/sum(vskel(:)));
 	if isinf(region_size)
 		region_size = 0;
 	end 

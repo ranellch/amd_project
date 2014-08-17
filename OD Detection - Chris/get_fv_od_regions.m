@@ -109,8 +109,9 @@ for i = 1:numclusters
      if isnan(interior_alignment) || isnan(interior_alignment)
          interior_alignment=0;
      end
-	 %estimate size of od by comparing radius to vessel thickness
-	 region_size = R/vessel_thickness;
+	 %estimate size of od by comparing radius to estimation of average vessel
+	 %thickness across entire image
+	 region_size = R/(sum(vessels(:))/sum(vskel(:)));
 	if isinf(region_size)
 		region_size = 0;
 	end 

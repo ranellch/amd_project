@@ -5,7 +5,7 @@ function add_patient_image(pid, varargin)
     end
 
     %Edit this line below to add new images to the xml
-    image_type = 'vessels';
+    image_type = 'optic_disc';
     disp(['You are entereing image type => ', image_type]);
     
     if ispc
