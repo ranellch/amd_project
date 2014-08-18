@@ -115,3 +115,9 @@ VINCENT OD (1), 253.2982, -19.3819
 VINCENT OD (2), 189.2564, -34.7608
 WHITE OD (1), 37, 0.50651
 WHITE OD (2), 71.4493, 0.40173
+
+Average Distance: 121.3732
+Average Angle Distance: 0.2011
+
+Error cases: 
+07091810 OD (6): No Positive

@@ -1,6 +1,5 @@
 function [ final_hypo, final_hyper, scores ] = find_amd( pid, eye, time, varargin )
 %Returns binary image indicating location of hypofluorescence
-resize = 'off';
 status = 'generate'; 
 if length(varargin) == 1
     debug = varargin{1};
@@ -8,11 +7,7 @@ elseif isempty(varargin)
     debug = 1;
 elseif length(varargin) == 2
     debug = varargin{1};
-    resize = varargin{2};
-elseif length(varargin) == 3
-    debug = varargin{1};
-    resize = varargin{2};
-    status = varargin{3};
+    status = varargin{2};
 else
     throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arguments'));
 end
@@ -34,6 +29,18 @@ addpath('../Fovea Detection - Chris');
 addpath('../Graph Cuts');
 addpath('../superpixels');
 
+%initialize output
+scores = struct;
+scores.hypo_area = 0;
+scores.hypo_intensity = 0;
+scores.hypo_score = 0;
+scores.hyper_area = 0;
+scores.hyper_intensity = 0;
+scores.hyper_score = 0;
+scores.combined_score = 0;
+final_hypo = zeros(std_size);
+final_hyper = zeros(std_size);
+
 original_img = imread(get_pathv2(pid, eye, time, 'original'));
 if size(original_img,3) > 1
     original_img = rgb2gray(original_img);
@@ -46,7 +53,7 @@ file = ['./matfiles/',pid,'_',eye,'_',time,'.mat'];
 
 if strcmp(status,'generate')
     %Find optic disk and vessels
-    [od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, resize);
+    [od, vessels, angles, ~, gabor_img, avg_img, corrected_img] = find_od(pid, eye, time, debug, 'off');
 
     %Find fovea
 	if ~any(od(:))
@@ -72,18 +79,25 @@ else
 end
 
 %Show the user what's been detected so far
-if debug == 2
+if debug == 2 || debug == 4
     combined_img = display_anatomy( original_img, od, vessels, x_fov, y_fov );
     figure(10), imshow(combined_img)
 end
 
-%----Run pixelwise classification of normal retina---------------
+%----Detect regions of possible macular degeneration---------------
 anatomy_mask = od | vessels;
 normal = find_normal(gabor_img, avg_img, anatomy_mask, debug);
-figure(11), imshow(display_outline(original_img, ~normal, [0 0 1]))
+if debug == 4
+    figure(11), imshow(normal)
+end
+not_amd = normal | anatomy_mask;
+rois = find_possible_amd(avg_img,not_amd,x_fov,y_fov); 
+if ~any(rois(:))
+    return
+end
 
 %---Run pixelwise classification of hypofluorescence-----
-if debug == 1 || debug == 2
+if debug >= 1
     disp('[HYPO] Finding areas of hypofluorescence');
 end
 %Load the classifier
@@ -91,17 +105,13 @@ model = load('hypo_classifier.mat', 'scaling_factors','classifier');
 scaling_factors = model.scaling_factors;
 classifier = model.classifier;
 
-% %Get radial coords
- dist = get_radial_dist(size(od),x_fov,y_fov);
-
 %combine with other data from optic disk detection, and exclude vessel or
 %od or normal pixels
 feature_image = cat(3,gabor_img, avg_img, dist);
 instance_matrix = [];
-exclusion_mask = anatomy_mask | normal;
 for i = 1:size(feature_image,3)
     layer = feature_image(:,:,i);
-    feature = layer(~exclusion_mask);
+    feature = layer(rois);
     instance_matrix = [instance_matrix, feature];
 end
 
@@ -114,11 +124,11 @@ end
 
 %Run hypo classification
 labeled_img = zeros(size(od));
-[labeled_img(~exclusion_mask), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q -b 1');
+[labeled_img(rois), ~, probabilities] = libsvmpredict(ones(length(instance_matrix),1), sparse(instance_matrix), classifier, '-q -b 1');
 clear instance_matrix
 
 prob_img = zeros(size(labeled_img));
-prob_img(~exclusion_mask) = probabilities(:,classifier.Label==1);
+prob_img(rois) = probabilities(:,classifier.Label==1);
 figure, imshow(prob_img)
 hold on
 plot(x_fov,y_fov,'go')
@@ -126,7 +136,7 @@ hold off
 
 final_hypo = GraphCutsHypo(logical(labeled_img), prob_img, cat(3,feature_image(:,:,1:size(gabor_img,3)),corrected_img));
 
-if(debug == 2)
+if(debug == 2 || debug == 4)
     figure(12), imshow(display_outline(original_img, logical(labeled_img), [1 0 0]))
     figure(13), imshow(prob_img);
     figure(14), imshow(display_outline(original_img, logical(final_hypo), [1 0 0]));
@@ -139,7 +149,7 @@ else
 end
 
 %-----Run superpixelwise classification of hyperfluorescence-----
-if debug == 1 || debug == 2
+if debug >= 1
     disp('[HYPER] Finding areas of hyperfluorescence');
 end
 
@@ -178,7 +188,7 @@ end
 
 final_hyper = logical(final_hyper);
 
-if(debug == 2)
+if(debug == 2 || debug == 4)
     figure(15), imshow(display_outline(original_img, final_hyper, [1 1 0]));
 end
 

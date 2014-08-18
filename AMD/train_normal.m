@@ -16,6 +16,12 @@ function train_normal()
                 
                  instance_matrix = data_file.dataset;
                  label_vector = data_file.classes;
+                 
+                %Downsample positives to get less bias towards normal
+                %retina
+                 neg_cutoff = .4;
+                [instance_matrix, label_vector] = downsample(instance_matrix, ~label_vector, neg_cutoff);
+                label_vector = double(~label_vector);
 
                 %Get the minumum for each columns
                 mins = min(instance_matrix);
