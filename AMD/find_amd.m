@@ -86,12 +86,12 @@ end
 
 %----Detect regions of possible macular degeneration---------------
 anatomy_mask = od | vessels;
-normal = find_normal(gabor_img, avg_img, anatomy_mask, debug);
+insig = find_insig(gabor_img, avg_img, anatomy_mask, debug);
 if debug == 4
-    figure(11), imshow(normal)
+    figure(11), imshow(peripheral)
 end
-not_amd = normal | anatomy_mask;
-rois = find_possible_amd(avg_img,not_amd,x_fov,y_fov); 
+not_amd = insig | anatomy_mask;
+rois = find_possible_amd(avg_img,not_amd,x_fov,y_fov,debug); 
 if ~any(rois(:))
     return
 end
@@ -159,9 +159,9 @@ k = 1000;
 m = 20;
 seRadius = 1;
 threshold = 4;
-[l, Am, Sp, ~] = slic(im, k, m, seRadius);
+[insig, Am, Sp, ~] = slic(im, k, m, seRadius);
 %cluster superpixels
-lc = spdbscan(l, Sp, Am, threshold);
+lc = spdbscan(insig, Sp, Am, threshold);
 %generate feature vectors for each labeled region
 [~, Al] = regionadjacency(lc);
 instance_matrix = get_fv_hyper(lc,Al,hypo_input,corrected_img);

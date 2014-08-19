@@ -1,4 +1,4 @@
-function train_normal()
+function train_peripheral()
     addpath('..')
     if ispc
          addpath(genpath('..\liblinear-1.94'))
@@ -8,7 +8,7 @@ function train_normal()
 
     t = cputime;
 
-    filename = 'normal_training_data.mat';
+    filename = 'peripheral_training_data.mat';
 
     data_file = matfile(filename);
 
@@ -37,7 +37,7 @@ function train_normal()
 
                 classifier =  train(label_vector, sparse(instance_matrix), '-s 2 -B 1');
                 
-                save('normal_classifier.mat','classifier', 'scaling_factors'); 
+                save('peripheral_classifier.mat','classifier', 'scaling_factors'); 
                 
  
     catch e

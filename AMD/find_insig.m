@@ -1,11 +1,11 @@
-function labeled_img = find_normal( gabor_img, avg_img, anatomy_mask, debug )
+function labeled_img = find_insig( gabor_img, avg_img, anatomy_mask, debug )
 
 %---Run pixelwise classification of normal retina-----
-if debug == 1 || debug == 2
-    disp('[NORM] Finding areas of normal retina');
+if debug >= 1
+    disp('[INSIG] Finding peripheral or otherwise normal retina');
 end
 %Load the classifier
-model = load('normal_classifier.mat', 'scaling_factors','classifier');
+model = load('insig_classifier.mat', 'scaling_factors','classifier');
 scaling_factors = model.scaling_factors;
 classifier = model.classifier;
 

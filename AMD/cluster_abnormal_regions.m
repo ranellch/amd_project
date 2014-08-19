@@ -8,10 +8,8 @@ function [final_clusters] = cluster_abnormal_regions(img, varargin)
         throw(MException('MATLAB:paramAmbiguous','Incorrect number of input arugments'));
     end
 
-    %Clean up the really small regions and holes in mostly clustered areas
-    figure, imshow(img)
+    %Clean up the really small regions in mostly clustered areas
     cleaned = bwareaopen(img,50);
-    figure, imshow(cleaned)
     
     %Downsample if necessary to maxsamples
     total_samples = sum(cleaned(:) == 1);
@@ -85,12 +83,7 @@ function [final_clusters] = cluster_abnormal_regions(img, varargin)
     end
 
     out = clusterdata(output_list, 'cutoff', cutoffval, 'distance', 'euclidean', 'criterion', 'distance');
-    cluster_count = histc(out, unique(out));
 
-    if(debug == 1 || 2)
-        disp(cluster_count);
-    end
-    
     %Remap the clustered output to a results image
     final_clusters = zeros(size(img,1), size(img,2));
     current_index = 1;

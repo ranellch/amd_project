@@ -1,6 +1,6 @@
-function build_dataset_normal()
+function build_dataset_peripheral()
 %Constants for file names
-mat_file = 'normal_training_data.mat';
+mat_file = 'peripheral_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
