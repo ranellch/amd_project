@@ -1,4 +1,4 @@
-function train_peripheral()
+function train_insig()
     addpath('..')
     if ispc
          addpath(genpath('..\liblinear-1.94'))
@@ -8,7 +8,7 @@ function train_peripheral()
 
     t = cputime;
 
-    filename = 'peripheral_training_data.mat';
+    filename = 'insig_training_data.mat';
 
     data_file = matfile(filename);
 
@@ -37,7 +37,7 @@ function train_peripheral()
 
                 classifier =  train(label_vector, sparse(instance_matrix), '-s 2 -B 1');
                 
-                save('peripheral_classifier.mat','classifier', 'scaling_factors'); 
+                save('insig_classifier.mat','classifier', 'scaling_factors'); 
                 
  
     catch e

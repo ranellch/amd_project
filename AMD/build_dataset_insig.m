@@ -1,6 +1,6 @@
-function build_dataset_peripheral()
+function build_dataset_insig()
 %Constants for file names
-mat_file = 'peripheral_training_data.mat';
+mat_file = 'insig_training_data.mat';
 
 %Get the time of the start of this function to get how long it took to run.
 t = cputime;
@@ -128,9 +128,7 @@ for k=1:size(includes{1}, 1)
         img = correct_illum(img,0.7);
         
         %Get the pixelwise feature vectors of the input image
-        feature_image_g = get_fv_gabor_od(img);
-        feature_image_i = imfilter(img,ones(3)/9, 'symmetric');
-        feature_image = cat(3,feature_image_g, feature_image_i);
+        feature_image = get_fv_gabor_od(img);
         
         %Create mask to exclude vessels and optic disk from training data
         od = imread(get_pathv2(pid, eye, time, 'optic_disc'));
