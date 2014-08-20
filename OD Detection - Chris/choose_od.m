@@ -1,4 +1,4 @@
-function [ candidate_region, od_probability ] = choose_od( cluster_img, vessels, angles,varargin )
+function [ candidate_region, od_probability ] = choose_od( cluster_img, corrected_img, vessels, angles,varargin )
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
@@ -57,7 +57,7 @@ for i = 1:numclusters
     %calculate portion of roi outside of circle
     fnr = sum(sum(~circle_img&roi))/sum(sum(circle_img));
     %get circle perimeter for dilated circle
-	circle_img = plot_circle(xc,yc,R+R/2, size(cluster_img,2), size(cluster_img,1));
+	circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
     circle_border = bwperim(circle_img);
     %get rid of pixels on image border
     circle_border(1,:) = 0;
@@ -112,13 +112,18 @@ for i = 1:numclusters
 	 region_size = R/(sum(vessels(:))/sum(vskel(:)));
 	if isinf(region_size)
 		region_size = 0;
-	end 
+    end 
+    %Get normalized number of vessel crossings
+    crossing_density = sum(sum(circle_border&vskel))/sum(sum(circle_border));
+    %get intensity and stddev as additional features
+     int = mean(corrected_img(roi));
+     std = std(corrected_img(roi));
 	 %put everything together
-    feature_vector = [region_size, vessel_thickness, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
+    feature_vector = [int, std, region_size, vessel_thickness, crossing_density, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
-    if class == 1 && od_probability >= .95
+    if class == 1
         index = i;
          break
     elseif i == numclusters 

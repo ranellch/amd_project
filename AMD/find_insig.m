@@ -1,4 +1,4 @@
-function labeled_img = find_insig( gabor_img, avg_img, anatomy_mask, debug )
+function labeled_img = find_insig( gabor_img, img, anatomy_mask, debug )
 
 %---Run pixelwise classification of normal retina-----
 if debug >= 1

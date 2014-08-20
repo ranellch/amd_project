@@ -11,7 +11,7 @@ figure, imshow(not_amd)
 clusters = cluster_abnormal_regions(~not_amd);
 figure, imagesc(clusters)
 
-%Get clusters within 100 pixels of fovea, turn into solid regions
+%Get clusters within 200 pixels of fovea, turn into solid regions
 regions = zeros(size(clusters));
 count = 1;
 se = strel('disk',10);

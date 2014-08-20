@@ -86,7 +86,7 @@ end
 
 %----Detect regions of possible macular degeneration---------------
 anatomy_mask = od | vessels;
-insig = find_insig(gabor_img, avg_img, anatomy_mask, debug);
+insig = find_insig(gabor_img, corrected_img, anatomy_mask, debug);
 if debug == 4
     figure(11), imshow(peripheral)
 end

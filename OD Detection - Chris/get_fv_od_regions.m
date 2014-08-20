@@ -1,4 +1,4 @@
-function [ feature_vectors, classes ] = get_fv_od_regions( labeled_od, od_texture_img, pid, eye, time )
+function [ feature_vectors, classes ] = get_fv_od_regions( labeled_od, od_texture_img, corrected_img, pid, eye, time )
 %Runs texture based classification and clustering on input image.  Then uses user
 %input to classify regions and build feature vectors based on radial vessel
 %thickness and density features found in choose_od
@@ -65,7 +65,7 @@ for i = 1:numclusters
     %calculate portion of roi outside of circle
     fnr = sum(sum(~circle_img&roi))/sum(sum(circle_img));
     %get circle perimeter for dilated circle
-	circle_img = plot_circle(xc,yc,R+R/2, size(cluster_img,2), size(cluster_img,1));
+	circle_img = plot_circle(xc,yc,R+R/3, size(cluster_img,2), size(cluster_img,1));
     circle_border = bwperim(circle_img);
     %get rid of pixels on image border
     circle_border(1,:) = 0;
@@ -114,9 +114,13 @@ for i = 1:numclusters
 	 region_size = R/(sum(vessels(:))/sum(vskel(:)));
 	if isinf(region_size)
 		region_size = 0;
-	end 
+    end 
+     crossing_density = sum(sum(circle_border&vskel))/sum(sum(circle_border));
+     %get intensity and stddev as additional features
+     int = mean(corrected_img(roi));
+     std = std(corrected_img(roi));
 	 %put everything together
-    feature_vector = [region_size, vessel_thickness, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
+    feature_vector = [int, std, region_size, vessel_thickness, crossing_density, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
     feature_vectors = [feature_vectors; feature_vector];
 end
 

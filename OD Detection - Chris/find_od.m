@@ -153,7 +153,7 @@ end
 if(debug == 1 || debug == 2)
     disp('[REGIONS] Running region classification');
 end
-[od_img, probability] = choose_od(final_clusters, img_vessel, img_angles, debug);
+[od_img, probability] = choose_od(final_clusters, corrected_img, img_vessel, img_angles, debug);
 if ~any(od_img(:))
     if strcmp(resize,'on')
         final_od_image = imresize(od_img,[origy,origx]);

@@ -188,7 +188,7 @@ for k=1:size(includes{1}, 1)
         %Get texture segmented image
         od_texture_img(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
 
-        [feature_vectors,classes] = get_fv_od_regions(od_img, od_texture_img,pid,eye,time);
+        [feature_vectors,classes] = get_fv_od_regions(od_img, od_texture_img,img,pid,eye,time);
         if isempty(classes)
             continue
         end
