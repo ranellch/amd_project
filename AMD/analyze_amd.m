@@ -26,7 +26,7 @@ function analyze_amd(rebuild_classifier)
     fout = fopen(results_file, 'w');
     
     disp('----------Results----------');
-    line = 'Img, Sensitivity HYPO, Specificity HYPO, Accuracy HYPO, Precision HYPO, Sensitivity HYPER, Specificity HYPER, Accuracy HYPER, Precision HYPER';
+    line = 'Img, Sensitivity HYPO, Specificity HYPO, Accuracy HYPO, Precision HYPO, Sensitivity HYPER, Specificity HYPER, Accuracy HYPER, Precision HYPER, Sensitivity ABNORM, Specificity ABNORM, Accuracy ABNORM, Precision ABNORM';
     fprintf(fout, '%s\n', line);
     
     
@@ -54,7 +54,7 @@ function analyze_amd(rebuild_classifier)
     end
     disp('All images valid.  Running tests')
     disp('-----------------------------');
-    output_results = zeros(numimages, 8);
+    output_results = zeros(numimages, 12);
     od_notfound = 0;
 
     for k=1:numimages
@@ -69,8 +69,9 @@ function analyze_amd(rebuild_classifier)
         original_img = im2double(original_img);
                 
         %Get the images run by the algorithm
-        [hypo, hyper] = find_amd(pid, eye, time, 1);
-		temp = display_outline(original_img,hypo,[1 0 0]);
+        [hypo, hyper, abnorm] = find_amd(pid, eye, time, 1);
+        temp = display_outline(original_img,abnorm,[0 0 1]);
+		temp = display_outline(temp,hypo,[1 0 0]);
 		final = display_outline(temp,hyper,[1 1 0]);
         imwrite(final, ['./results/',pid,'_',eye,'_',time,'-amd.tif'], 'tiff');
 
@@ -78,6 +79,7 @@ function analyze_amd(rebuild_classifier)
 		amd_image = imread(get_pathv2(pid, eye, time, 'AMD'));
 		amd_image = imresize(amd_image,[768 768]);
 		
+        %-------------------HYPO------------------------
         super_img = amd_image(:,:,3) > amd_image(:,:,1);
         total_positive_count = numel(super_img(super_img==1));
         total_negative_count = numel(super_img(super_img==0));
@@ -114,7 +116,9 @@ function analyze_amd(rebuild_classifier)
         output_results(k,2) = true_negative/total_negative_count; %specificity
         output_results(k,3) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,4) = true_positive/(true_positive+false_positive); %precision
-		
+        
+        
+        %----------------HYPER-------------------------------
 		super_img = amd_image(:,:,1) > amd_image(:,:,2);
         total_positive_count = numel(super_img(super_img==1));
         total_negative_count = numel(super_img(super_img==0));
@@ -149,6 +153,49 @@ function analyze_amd(rebuild_classifier)
         output_results(k,6) = true_negative/total_negative_count; %specificity
         output_results(k,7) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
         output_results(k,8) = true_positive/(true_positive+false_positive); %precision
+        
+        %-------------------ABNORMAL-----------------------------------------
+        green_line = amd_image(:,:,2) > amd_image(:,:,1);
+        if ~any(green_line(:))
+            super_img = amd_image(:,:,1) ~= amd_image(:,:,3);
+        else 
+            super_img = imfill(green_line,'holes');
+        end
+        total_positive_count = numel(super_img(super_img==1));
+        total_negative_count = numel(super_img(super_img==0));
+
+
+        %Get some statistics about the quality of the abnorm pixel classification
+        total_count = 0;
+        true_positive = 0;
+        true_negative = 0;
+        false_positive = 0;
+        false_negative = 0;
+        for y=1:size(abnorm,1)
+            for x=1:size(abnorm,2)
+                if(super_img(y,x) == 1 && abnorm(y,x) == 1)
+                    true_positive = true_positive + 1;
+                elseif(super_img(y,x) == 0 && abnorm(y,x) == 0)
+                    true_negative = true_negative + 1;
+                elseif(super_img(y,x) == 0 && abnorm(y,x) == 1)
+                    false_positive = false_positive + 1;
+                elseif(super_img(y,x) == 1 && abnorm(y,x) == 0)
+                    false_negative = false_negative + 1;
+                end
+                total_count = total_count + 1;
+            end
+        end
+		
+        
+        if(total_count ~= (total_negative_count + total_positive_count))
+            disp(['total_count (', num2str(total_count),') and total_negative + total_positive_count (', num2str(total_negative_count + total_positive_count),') Do not match']);
+            continue;
+        end
+		
+		output_results(k,9) = true_positive/total_positive_count; %sensitivity
+        output_results(k,10) = true_negative/total_negative_count; %specificity
+        output_results(k,11) = (true_positive+true_negative)/(total_positive_count+total_negative_count); %accuracy
+        output_results(k,12) = true_positive/(true_positive+false_positive); %precision
         
        %Write the results from this badboy
         numline = num2str(output_results(k,1));

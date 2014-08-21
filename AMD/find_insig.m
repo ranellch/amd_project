@@ -1,4 +1,4 @@
-function labeled_img = find_insig( gabor_img, img, anatomy_mask, debug )
+function labeled_img = find_insig( gabor_img,avg_img,anatomy_mask, debug )
 
 %---Run pixelwise classification of normal retina-----
 if debug >= 1
@@ -11,7 +11,7 @@ classifier = model.classifier;
 
 %combine with other data from optic disk detection, and exclude vessel or
 %od or normal pixels
-feature_image = gabor_img;
+feature_image = cat(3,gabor_img,avg_img);
 instance_matrix = [];
 for i = 1:size(feature_image,3)
     layer = feature_image(:,:,i);

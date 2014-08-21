@@ -123,9 +123,10 @@ for k=1:size(includes{1}, 1)
         
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor_od(img);
-        [x,y] = get_fovea(pid, eye, time);
+        [fov_x,fov_y] = get_fovea(pid, eye, time);
+        [ r ] = get_radial_dist( size(img), fov_x, fov_y );
         feature_image_i = imfilter(img,ones(3)/9, 'symmetric');
-        feature_image = cat(3,feature_image_g,feature_image_i);
+        feature_image = cat(3,feature_image_g,feature_image_i,r);
         
         %Create mask to exclude vessels and optic disk from training data
         od = imread(get_pathv2(pid, eye, time, 'optic_disc'));

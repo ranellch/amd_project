@@ -98,7 +98,7 @@ for k=1:size(includes{1}, 1)
         %Get the labeled images
         labeled_img = imread(get_pathv2(pid, eye, time, 'AMD'));
         hyper_img = labeled_img(:,:,1) > labeled_img(:,:,2);
-        hypo_img = labeled_img(:,:,3) > labeled_img(:,:,1);
+        hypo_img = labeled_img(:,:,2) > labeled_img(:,:,1);
         
         
         %Resize images to a standard sizing

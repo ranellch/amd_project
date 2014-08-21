@@ -126,9 +126,10 @@ for k=1:size(includes{1}, 1)
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
         img = correct_illum(img,0.7);
+        avg_img = imfilter(img,ones(3)/9,'symmetric');
         
         %Get the pixelwise feature vectors of the input image
-        feature_image = get_fv_gabor_od(img);
+        feature_image = cat(3,get_fv_gabor_od(img),avg_img);
         
         %Create mask to exclude vessels and optic disk from training data
         od = imread(get_pathv2(pid, eye, time, 'optic_disc'));

@@ -91,12 +91,6 @@ for i = 1:numclusters
 	if isinf(border_alignment) || isnan(border_alignment)
         border_alignment = 0;
     end
-	%get average vessel thickness at circle border
-	 vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf); 
-	 vessel_thickness = weighted_count/sum(sum(circle_border&vskel));
-	 if isinf(vessel_thickness) || isnan(vessel_thickness)
-		vessel_thickness = 0;
-	end 
     [y,x,~] = find(circle_img&vessels&~circle_border);
     for j = 1:length(y)
             ang1 = angles(y(j),x(j));
@@ -111,16 +105,15 @@ for i = 1:numclusters
      end
 	 %estimate size of od by comparing radius to estimation of average vessel
 	 %thickness across entire image
+     vskel = bwmorph(skeleton(vessels) > 35, 'skel', Inf);
 	 region_size = R/(sum(vessels(:))/sum(vskel(:)));
 	if isinf(region_size)
 		region_size = 0;
     end 
+    %get crossings
      crossing_density = sum(sum(circle_border&vskel))/sum(sum(circle_border));
-     %get intensity and stddev as additional features
-     int = mean(corrected_img(roi));
-     std = std(corrected_img(roi));
 	 %put everything together
-    feature_vector = [int, std, region_size, vessel_thickness, crossing_density, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
+    feature_vector = [region_size, crossing_density, radial_normal_density,interior_alignment, border_alignment, ppv, fnr];
     feature_vectors = [feature_vectors; feature_vector];
 end
 

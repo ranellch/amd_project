@@ -98,7 +98,6 @@ for k=1:size(includes{1}, 1)
         %Apply a gaussian filter to the img  and the smooth out the illumination
         img = gaussian_filter(img);
         img = correct_illum(img,0.7);
-        img = mat2gray(img);
         
         %Get the pixelwise feature vectors of the input image
         feature_image_g = get_fv_gabor_od(img);

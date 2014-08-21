@@ -1,4 +1,4 @@
-function regions = find_possible_amd(avg_img,not_amd,x_fov,y_fov,debug)
+function regions = find_possible_amd(not_amd,x_fov,y_fov,debug)
 %Generates large regions of interest based on areas without normal retina
 %pixels, distance from fovea, and the presence of symmetry/normal hypo
 %center
@@ -19,11 +19,9 @@ for k = 1:max(clusters(:))
     cluster = clusters == k;
     [y,x] = find(cluster);
     dists = sqrt((y-y_fov).^2+(x-x_fov).^2);
-    if min(dists(:)) <= 200
-        cluster = imclose(cluster,se);
-        regions(cluster) = count;
-        count = count+1;
-    end
+    cluster = imclose(cluster,se);
+    regions(cluster) = count;
+    count = count+1;
 end
 figure, imagesc(regions);
 
