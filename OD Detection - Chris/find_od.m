@@ -42,7 +42,6 @@ end
 
 %Get the dimensions of the original image
 orig_img = imread(get_pathv2(pid,eye,time,'original'));
-orig_img = crop_footer(orig_img);
 origy = size(orig_img, 1);
 origx = size(orig_img, 2);
 

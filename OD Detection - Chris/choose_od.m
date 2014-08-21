@@ -86,6 +86,7 @@ for i = 1:numclusters
 	if isinf(radial_normal_density) || isnan(radial_normal_density)
         radial_normal_density = 0;
     end
+    %get average alignment at border
     border_alignment = weighted_count/sum(sum(circle_border&vessels));
 	if isinf(border_alignment) || isnan(border_alignment)
         border_alignment = 0;
@@ -98,6 +99,7 @@ for i = 1:numclusters
             correlation = 1 - diff/90.0;
             weighted_count = weighted_count + correlation;
     end     
+    %get average alignment at interior
      interior_alignment= weighted_count/sum(sum(circle_img&vessels));
      if isinf(interior_alignment) || isnan(interior_alignment)
          interior_alignment=0;

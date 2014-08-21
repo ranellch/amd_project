@@ -1,12 +1,11 @@
-function add_patient_image(pid, varargin)
+function add_patient_image(image_type, pid, varargin)
     if(length(varargin) > 2)
         disp('Error too many input arguements');
         return;
     end
 
     %Edit this line below to add new images to the xml
-    image_type = 'vessels';
-    disp(['You are entereing image type => ', image_type]);
+    disp(['You are entering image type => ', image_type]);
     
     if ispc
         %Have user select an image and then get the relative path

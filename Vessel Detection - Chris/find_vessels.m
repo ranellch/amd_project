@@ -32,7 +32,6 @@ img = imread(path);
 if (size(img, 3) > 1)
     img = rgb2gray(img(:,:,1:3));
 end
-img = crop_footer(img);
 
 img = im2double(img);
 if strcmp(imcomp, 'complement') == 1

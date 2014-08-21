@@ -130,6 +130,7 @@ C(:) = estiamtesC;
 
 %Subtract background (i.e. camera function), divide by contrast drift
 Iout = (I - L)./C;
+figure, imagesc(Iout)
 
 %Normalize output to original histogram using least squares fitting
 Iout = mat2gray(Iout,[mean(Iout(:))-3*std(Iout(:)), mean(Iout(:))+3*std(Iout(:))]);
