@@ -202,11 +202,12 @@ if ~any(overlap(:))
     disp(['Total [AMD] Processing Time (min): ', num2str(e/60.0)]);
     return
 else
+    %check how much hyper or hypo is present in each abnormal region.  if
+    %none do not put region in final mask
     for k = 1:max(rois(:))
         region = rois == k;
-        if sum(sum(region&(final_hyper|final_hypo)))/sum(sum(region)) < .9
-            final_abnormal(region) = 1;
-        else
+        overlap = sum(sum(region&(final_hyper|final_hypo)))/sum(sum(region));
+        if overlap < .9 && overlap > 0
             convex = regionprops(region,'ConvexImage','BoundingBox');
             boxlimits = convex.BoundingBox;
             ul_x = round(boxlimits(1));

@@ -1,4 +1,4 @@
-function [ candidate_region, od_probability ] = choose_od( cluster_img, corrected_img, vessels, angles,varargin )
+function [ candidate_region, od_probability ] = choose_od( cluster_img, vessels, angles,varargin )
 debug = -1;
 if length(varargin) == 1
     debug = varargin{1};
