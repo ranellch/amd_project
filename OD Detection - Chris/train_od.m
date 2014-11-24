@@ -47,6 +47,7 @@ function train_od(classifier)
                 
                 instance_matrix = od_file.region_features;
                 label_vector = od_file.region_classes;
+                disp(sum(label_vector))
         
                  disp('Building Naive Bayes classifier...Please Wait')
 

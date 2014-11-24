@@ -97,9 +97,9 @@ od_image(:) = libpredict(ones(length(instance_matrix),1), sparse(instance_matrix
 % figure(10), imshow(mat2gray(probs))
 clear instance_matrix
 
-% if(debug == 2)
-%     figure(1), imshow(od_image);
-% end
+if(debug == 2)
+     figure, imshow(od_image);
+end
 
 %Remove all classified datapoints that were already classified as a vessel
 positive_count = 0;

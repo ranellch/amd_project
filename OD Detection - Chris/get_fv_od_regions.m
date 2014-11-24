@@ -1,4 +1,4 @@
-function [ feature_vectors, classes ] = get_fv_od_regions( labeled_od, od_texture_img, corrected_img, pid, eye, time )
+function [ feature_vectors, classes ] = get_fv_od_regions( labeled_od, od_texture_img, pid, eye, time )
 %Runs texture based classification and clustering on input image.  Then uses user
 %input to classify regions and build feature vectors based on radial vessel
 %thickness and density features found in choose_od

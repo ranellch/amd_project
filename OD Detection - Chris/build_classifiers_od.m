@@ -104,9 +104,10 @@ for k=1:size(includes{1}, 1)
         
         %Get the snaked image
         od_img = imread(get_pathv2(pid, eye, time, 'optic_disc'));
-        if size(od_img,3) > 1
+		if(size(od_img, 3) > 1)
             od_img = od_img(:,:,1);
-        end        
+        end
+		od_img = im2bw(od_img);
         
         %Resize images to a standard sizing
         img = imresize(img, [std_img_size std_img_size]);
@@ -143,6 +144,7 @@ for k=1:size(includes{1}, 1)
         [nrows,~] = size(file_obj, 'pixel_features');
         file_obj.pixel_features(nrows+1:nrows+numel(img),1:size(feature_vectors,2)) = feature_vectors;
         file_obj.pixel_classes(nrows+1:nrows+numel(img),1) = od_img(:);
+		
                
     catch e
         disp(['Could not deal with: ', pid, '(', time, ')']);
@@ -173,6 +175,10 @@ for k=1:size(includes{1}, 1)
     disp(['Running: ', pid, ' - ', time]);
     
     try
+	    %Get the snaked image
+		od_img = zeros(std_img_size);
+        od_img(:) = file_obj.pixel_classes((k-1)*std_img_size^2+1:k*std_img_size^2,:);
+		
         %Run texture classification on pixels/feature vectors corresponding
         %to this image
         od_texture_img = zeros(std_img_size, std_img_size);
@@ -188,7 +194,7 @@ for k=1:size(includes{1}, 1)
         %Get texture segmented image
         od_texture_img(:) = libpredict(zeros(length(feature_vectors),1), sparse(feature_vectors), classifier, '-q');
 
-        [feature_vectors,classes] = get_fv_od_regions(od_img, od_texture_img,img,pid,eye,time);
+        [feature_vectors,classes] = get_fv_od_regions(od_img, od_texture_img,pid,eye,time);
         if isempty(classes)
             continue
         end

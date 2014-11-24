@@ -27,6 +27,7 @@ e = cputime;
 numclusters = max(cluster_img(:));
 angles = mod(angles,180);
 if debug == 2
+ figure, imshow(cluster_img>0)
     feature_img = cluster_img;
     feature_img(vessels) = numclusters+1;
     figure(3), imagesc(feature_img)
@@ -117,7 +118,7 @@ for i = 1:numclusters
     [post,class] = posterior(classifier,feature_vector);
     %get probability of being in class "1"
     od_probability = post(2);
-    if class == 1
+    if class == 1 && od_probability > .9
         index = i;
          break
     elseif i == numclusters 
